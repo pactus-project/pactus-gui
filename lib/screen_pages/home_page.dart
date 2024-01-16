@@ -1,4 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pactus/provider/theme_provider.dart';
@@ -48,9 +50,9 @@ class _HomePageState extends ConsumerState<HomePage> {
               children: [
                 //list
                 Container(
-                  width: 250.w,
+                  width: 280.w,
                   // color: const Color(0xFF252F45),
-                  padding: EdgeInsetsDirectional.symmetric(horizontal: 24.0.h, vertical: 24.0.h),
+                  padding: const EdgeInsetsDirectional.symmetric(horizontal: 24.0, vertical: 24.0),
                   child: ListView.builder(
                     padding: EdgeInsets.zero,
                     itemCount: listEntries.length,
@@ -72,88 +74,101 @@ class _HomePageState extends ConsumerState<HomePage> {
                     child: Column(
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.symmetric(horizontal: 50.0.h, vertical: 30.0.h),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "How to create you wallet?",
-                                style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w600),
-                              ),
-                              gapH8,
-                              Text(
-                                "If you running a node for first time, choose the first options",
-                                style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300),
-                              ),
-                              gapH48,
-                              Padding(
-                                padding:  EdgeInsets.only(left:12.0.w),
-                                child: SizedBox(
-                                  height: 22.sp,
-                                  child: Row(
-                                    children: [
-                                      RadioButton(
-                                        checked: radioValues[0],
-                                        onChanged: (state) {
-                                          setState(() {
-                                            radioValues = [true, false];
-                                          });
-                                        },
-                                      ),
-                                      gapW12,
-                                      Text("Create new wallet from scratch", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300))
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              gapH24,
-                              Padding(
-                                padding:  EdgeInsets.only(left: 12.0.w),
-                                child: SizedBox(
-                                  height: 22.sp,
-                                  child: Row(
-                                    children: [
-                                      RadioButton(
-                                        checked: radioValues[1],
-                                        onChanged: (state) {
-                                          setState(() {
-                                            radioValues = [false, true];
-                                          });
-                                        },
-                                      ),
-                                      gapW12,
-                                      Text("Restore a wallet from seed phrase", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300))
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
+                      padding: const EdgeInsetsDirectional.symmetric(horizontal: 50.0, vertical: 30.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "How to create you wallet?",
+                            style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w600),
                           ),
-                        ),
-                        Expanded(child: Align(alignment: Alignment.bottomLeft,
-                          child: Container(
-                            width: double.infinity,
-                            height: 80.h,
-                            color:theme.buttonBar,
-                          padding: EdgeInsetsDirectional.symmetric(horizontal: 20.0.h, vertical: 20.0.h),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Button(
-                                child: const Text('Cancel'),
-                                onPressed: () {},
+                          gapH8,
+                          Text(
+                            "If you running a node for first time, choose the first options",
+                            style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300),
+                          ),
+                          gapH32,
+                          gapH8,
+                          Padding(
+                            padding: EdgeInsets.only(left: 12.0.w),
+                            child: SizedBox(
+                              height: 22.sp,
+                              child: Row(
+                                children: [
+                                  RadioButton(
+                                    checked: radioValues[0],
+                                    onChanged: (state) {
+                                      setState(() {
+                                        radioValues = [true, false];
+                                      });
+                                    },
+                                  ),
+                                  gapW12,
+                                  GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          radioValues = [true, false];
+                                        });
+                                      },
+                                      child: Text("Create new wallet from scratch", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300)))
+                                ],
                               ),
-                              Button(
-                                child: const Text('Next'),
-                                style: ButtonStyle(
-                                  backgroundColor: ButtonState.all(Colors.white),
-                                ),
-                                onPressed: () {},
+                            ),
+                          ),
+                          gapH24,
+                          Padding(
+                            padding: EdgeInsets.only(left: 12.0.w),
+                            child: SizedBox(
+                              height: 22.sp,
+                              child: Row(
+                                children: [
+                                  RadioButton(
+                                    checked: radioValues[1],
+                                    onChanged: (state) {
+                                      setState(() {
+                                        radioValues = [false, true];
+                                      });
+                                    },
+                                  ),
+                                  gapW12,
+                                  GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          radioValues = [false, true];
+                                        });
+                                      },
+                                      child: Text("Restore a wallet from seed phrase", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300)))
+                                ],
                               ),
-                            ],
-                          ),))),
-                      ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                        child: Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Container(
+                              width: double.infinity,
+                              height: 80.h,
+                              color: theme.buttonBar,
+                              padding: const EdgeInsetsDirectional.symmetric(horizontal: 20.0, vertical: 20.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Button(
+                                    child: const Text('Cancel'),
+                                    onPressed: () {},
+                                  ),
+                                  Button(
+                                    child: const Text('Next'),
+                                    onPressed: () {},
+                                  ),
+                                ],
+                              ),
+                            ))),
+                  ],
                     ))
               ],
             ))
@@ -171,9 +186,9 @@ class ListEntry extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50.h,
+      height: 40.h,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.0.w),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Opacity(opacity: selected ? 1.0 : 0.2, child: Text(title, style: FluentTheme.of(context).typography.body!.copyWith(fontSize: 16.sp, fontWeight: FontWeight.w300))),
       ),
     );

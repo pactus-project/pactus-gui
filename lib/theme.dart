@@ -25,7 +25,7 @@ class AppTheme extends ChangeNotifier {
     notifyListeners();
   }
 
-  ThemeMode _mode = ThemeMode.system;
+  ThemeMode _mode = ThemeMode.light;
 
   ThemeMode get mode => _mode;
 
@@ -92,12 +92,15 @@ class AppTheme extends ChangeNotifier {
     notifyListeners();
   }
 
-  Color get navigationBarBackground => _mode == ThemeMode.dark || _mode == ThemeMode.system ?
-  const Color(0xFF1A1A1A) : const Color(0xFFF0F0F0);
+  Color get navigationBarBackground {
+    return _mode == ThemeMode.dark
+        ? const Color(0xFF1A1A1A)
+        : const Color(0xFFF0F0F0);
+  }
 
   Color get separator => _mode == ThemeMode.dark || _mode == ThemeMode.system ? Colors.white.withOpacity(0.2) : Colors.black.withOpacity(0.1);
 
-  Color get buttonBar => _mode == ThemeMode.dark || _mode == ThemeMode.system ? Colors.black.withOpacity(0.6) : Colors.white;
+  Color get buttonBar => _mode == ThemeMode.dark || _mode == ThemeMode.system ? Colors.black.withOpacity(0.2) : Colors.white;
 
 }
 

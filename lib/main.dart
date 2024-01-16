@@ -12,13 +12,13 @@ import 'package:flutter_acrylic/flutter_acrylic.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   GoRouter.optionURLReflectsImperativeAPIs = true;
-  if (!kIsWeb &&
-      [
-        TargetPlatform.windows,
-        TargetPlatform.android,
-      ].contains(defaultTargetPlatform)) {
-    SystemTheme.accentColor.load();
-  }
+  // if (!kIsWeb &&
+  //     [
+  //       TargetPlatform.windows,
+  //       TargetPlatform.android,
+  //     ].contains(defaultTargetPlatform)) {
+  //   SystemTheme.accentColor.load();
+  // }
 
   if (isDesktop) {
     await Window.initialize();
