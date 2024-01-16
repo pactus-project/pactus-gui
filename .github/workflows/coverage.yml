@@ -1,0 +1,31 @@
+name: Reporting test coverage
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Install Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.21
+
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Test with coverage
+      run: go test -gcflags=-l -coverprofile=coverage.txt -covermode=atomic ./...
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        file: ./coverage.txt
