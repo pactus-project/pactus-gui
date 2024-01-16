@@ -37,7 +37,7 @@ class _MyHomePageState extends ConsumerState<WrapperPage> {
             child: Padding(
               padding: EdgeInsetsDirectional.only(end: 80.0.w),
               child: ToggleSwitch(
-                content: Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high,),
+                content: Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.dark ? Colors.white.withOpacity(0.5) : null,),
                 checked: FluentTheme.of(context).brightness.isDark,
                 onChanged: (v) {
                   if (v) {
