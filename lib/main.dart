@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pactus/provider/theme_provider.dart';
 import 'package:pactus/support/app_router.dart';
+import 'package:pactus/support/extensions.dart';
 import 'package:pactus/support/platform_detect.dart';
 import 'package:system_theme/system_theme.dart';
 import 'package:window_manager/window_manager.dart';
@@ -51,16 +52,42 @@ bool get isDesktop {
   ].contains(defaultTargetPlatform);
 }
 
-class MyApp extends ConsumerWidget {
+bool isDarkMode() {
+  final darkMode = WidgetsBinding.instance.platformDispatcher.platformBrightness;
+  if (darkMode == Brightness.dark) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+class MyApp extends ConsumerStatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends ConsumerState<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    context.afterBuild(() {
+      var darkMode = isDarkMode();
+      if (darkMode) {
+        ref.read(appThemeProvider.notifier).mode = ThemeMode.dark;
+      } else {
+        ref.read(appThemeProvider.notifier).mode = ThemeMode.light;
+      }
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
     final router = ref.watch(goRouterProvider);
     final appTheme = ref.watch(appThemeProvider);
     return FluentApp.router(
       title: "appTitle",
-      themeMode: appTheme.mode,
+      themeMode: isDarkMode() ? ThemeMode.dark : ThemeMode.light,
       debugShowCheckedModeBanner: false,
       color: appTheme.color,
       darkTheme: FluentThemeData(
