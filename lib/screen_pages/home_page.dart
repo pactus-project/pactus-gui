@@ -29,7 +29,7 @@ class _HomePageState extends ConsumerState<HomePage> {
         title: "Pactus",
         content: Column(
           children: [
-            gapH32,
+            gapH24,
             Align(
                 alignment: AlignmentDirectional.centerStart,
                 child: Padding(

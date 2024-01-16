@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pactus/provider/theme_provider.dart';
 import 'package:pactus/support/app_router.dart';
+import 'package:pactus/support/platform_detect.dart';
 import 'package:system_theme/system_theme.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:flutter_acrylic/flutter_acrylic.dart';
@@ -27,7 +28,7 @@ void main() async {
     }
     await WindowManager.instance.ensureInitialized();
     windowManager.waitUntilReadyToShow().then((_) async {
-      await windowManager.setTitleBarStyle(TitleBarStyle.hidden, windowButtonVisibility: false); //Hiding the titlebar
+      await windowManager.setTitleBarStyle(TitleBarStyle.hidden, windowButtonVisibility: PlatformDetect.isMacOS); //Hiding the titlebar
       await windowManager.setMinimumSize(const Size(1024, 600));
       await windowManager.show();
       await windowManager.setPreventClose(true);

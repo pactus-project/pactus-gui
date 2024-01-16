@@ -2,6 +2,8 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pactus/support/app_sizes.dart';
+import 'package:pactus/support/platform_detect.dart';
 import 'package:window_manager/window_manager.dart';
 
 import '../provider/theme_provider.dart';
@@ -26,16 +28,26 @@ class _MyHomePageState extends ConsumerState<WrapperPage> {
     return NavigationView(
       key: viewKey,
       appBar: NavigationAppBar(
-        height: 50,
+        height: PlatformDetect.isMacOS ? 40 : 50,
         backgroundColor: appTheme.navigationBarBackground,
         automaticallyImplyLeading: false,
-        title: Text(widget.title),
-        leading: Image.asset("assets/icons/logo.png", height: 30, width: 30, filterQuality: FilterQuality.high),
-        actions: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+        title: PlatformDetect.isMacOS ? null :  Text(widget.title),
+        leading: PlatformDetect.isMacOS ? null : Image.asset("assets/icons/logo.png", height: 30, width: 30, filterQuality: FilterQuality.high),
+        actions: Stack(
+            alignment: AlignmentDirectional.center,
+            children: [
+              Center(child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset("assets/icons/logo.png", height: 20, width: 20, filterQuality: FilterQuality.high),
+                  gapW8,
+                  Text(widget.title, textAlign: TextAlign.center,),
+                ],
+              )),
           Align(
             alignment: AlignmentDirectional.centerEnd,
             child: Padding(
-              padding: EdgeInsetsDirectional.only(end: 80.0.w),
+              padding: EdgeInsetsDirectional.only(end: PlatformDetect.isMacOS ? 30.0.w : 80.0.w),
               child: ToggleSwitch(
                 content: Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.dark ? Colors.white.withOpacity(0.5) : null,),
                 checked: FluentTheme.of(context).brightness.isDark,
@@ -49,11 +61,12 @@ class _MyHomePageState extends ConsumerState<WrapperPage> {
               ),
             ),
           ),
-          if (!kIsWeb) const WindowButtons(),
+          if (!PlatformDetect.isMacOS || kIsWeb) const WindowButtons(),
         ]),
       ),
-
-      content: widget.content,
+      content: Container(
+        color: appTheme.backgroungColor,
+          child: widget.content),
     );
   }
 }
