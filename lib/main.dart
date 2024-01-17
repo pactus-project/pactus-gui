@@ -87,7 +87,7 @@ class _MyAppState extends ConsumerState<MyApp> {
     final appTheme = ref.watch(appThemeProvider);
     return FluentApp.router(
       title: "appTitle",
-      themeMode: isDarkMode() ? ThemeMode.dark : ThemeMode.light,
+      themeMode: appTheme.mode,
       debugShowCheckedModeBanner: false,
       color: appTheme.color,
       darkTheme: FluentThemeData(
