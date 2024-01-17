@@ -6,7 +6,6 @@ import 'package:go_router/go_router.dart';
 import 'package:pactus/provider/theme_provider.dart';
 import 'package:pactus/support/app_router.dart';
 import 'package:pactus/support/platform_detect.dart';
-import 'package:system_theme/system_theme.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:flutter_acrylic/flutter_acrylic.dart';
 
