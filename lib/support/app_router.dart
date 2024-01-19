@@ -1,9 +1,8 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pactus/main.dart';
-import 'package:pactus/screen_pages/home_page.dart';
-
+import 'package:pactus/screens/init_screen.dart';
+import 'package:pactus/screens/welcome_screen.dart';
 
 CustomTransitionPage fadeRouteTransition<T>({
   required BuildContext context,
@@ -24,12 +23,23 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     routes: [
       GoRoute(
         path: '/',
-        name: HomePage.route,
+        name: WelcomeScreen.route,
         pageBuilder: (context, state) => fadeRouteTransition<void>(
           context: context,
           state: state,
-          child: const HomePage(),
+          child: const WelcomeScreen(),
         ),
+        routes: [
+          GoRoute(
+            path: 'init',
+            name: InitialScreen.route,
+            pageBuilder: (context, state) => fadeRouteTransition<void>(
+              context: context,
+              state: state,
+              child: const InitialScreen(),
+            ),
+          ),
+        ],
       ),
     ],
     errorBuilder: (context, state) => Text(state.error!.message),
