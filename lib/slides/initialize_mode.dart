@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pactus/provider/theme_provider.dart';
 
+import '../provider/button_control_provider.dart';
 import '../support/app_sizes.dart';
 
 class InitializeModeSlide extends ConsumerStatefulWidget {
@@ -41,6 +42,7 @@ class _InitializeModeState extends ConsumerState<InitializeModeSlide> {
                   onChanged: (state) {
                     setState(() {
                       radioValues = [true, false];
+                      ref.read(radioButtonProvider.notifier).state = 0;
                     });
                   },
                 ),
@@ -49,6 +51,7 @@ class _InitializeModeState extends ConsumerState<InitializeModeSlide> {
                     onTap: () {
                       setState(() {
                         radioValues = [true, false];
+                        ref.read(radioButtonProvider.notifier).state = 0;
                       });
                     },
                     child: Text("Create new wallet from scratch", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300)))
@@ -68,6 +71,7 @@ class _InitializeModeState extends ConsumerState<InitializeModeSlide> {
                   onChanged: (state) {
                     setState(() {
                       radioValues = [false, true];
+                      ref.read(radioButtonProvider.notifier).state = 1;
                     });
                   },
                 ),
@@ -76,6 +80,7 @@ class _InitializeModeState extends ConsumerState<InitializeModeSlide> {
                     onTap: () {
                       setState(() {
                         radioValues = [false, true];
+                        ref.read(radioButtonProvider.notifier).state = 1;
                       });
                     },
                     child: Text("Restore a wallet from seed phrase", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300)))

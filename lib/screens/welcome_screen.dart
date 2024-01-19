@@ -15,7 +15,7 @@ class WelcomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final height = MediaQuery.of(context).size.height;
     return WrapperPage(
-        title: "Welcome",
+        title: "Pactus",
         content: Column(
           children: [
             gapH24,
