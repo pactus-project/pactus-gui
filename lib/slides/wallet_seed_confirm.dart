@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pactus/provider/button_control_provider.dart';
 import 'package:pactus/provider/seed_provider.dart';
+import 'package:pactus/provider/slides_provider.dart';
 import 'package:pactus/provider/theme_provider.dart';
 import 'package:pactus/support/app_sizes.dart';
 import 'package:pactus/support/extensions.dart';
@@ -15,9 +18,11 @@ class WalletSeedConfirmSlide extends ConsumerStatefulWidget {
 }
 
 class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
-  List<String> words = [""];
+  List<String> words = [];
   String mnemonicString = "";
   late FocusNode myFocusNode;
+  List<FocusNode> focusNodes = [];
+  int focusIndex = 0;
 
   @override
   void initState() {
@@ -25,6 +30,23 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
     myFocusNode = FocusNode();
     context.afterBuild(() {
       ref.read(nextButtonDisableProvider.notifier).state = true;
+      var stuff = ref.read(seedProvider.notifier).state;
+      final random = Random();
+      final indicesToHide = <int>{};
+      for (int i = 0; i < stuff.length; i++) {
+        words.add(stuff[i]);
+      }
+      while (indicesToHide.length < 8) {
+        int index = random.nextInt(stuff.length);
+        indicesToHide.add(index);
+      }
+
+      for (int index in indicesToHide) {
+        words[index] = "";
+      }
+      setState(() {});
+      Future.delayed(const Duration(milliseconds: 100), () => focusNodes[0].requestFocus());
+      // focusNodes[0].requestFocus();
     });
   }
 
@@ -62,7 +84,7 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
         ),
         gapH32,
         Container(
-          height: 200.h,
+          height: 250.h,
           margin: EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 6.0.h),
           padding: EdgeInsets.all(12.0.sp),
           decoration: BoxDecoration(
@@ -80,9 +102,10 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
                 mainAxisExtent: 30.0.h, // row height
               ),
               itemBuilder: (ctx, index) {
-                var node = FocusNode();
                 if (words[index] == "") {
-                  node.requestFocus();
+                  var node = FocusNode();
+                  focusNodes.add(node);
+                  // focusIndex++;
                   return Container(
                     padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 4.h),
                     decoration: BoxDecoration(
@@ -91,7 +114,7 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
                     ),
                     child: Row(
                       children: [
-                        Text("$index. ", style: TextStyle(color: theme.mnemonicText, fontSize: 20.sp, fontWeight: FontWeight.w900)),
+                        Text("${index + 1}. ", style: TextStyle(color: theme.mnemonicText, fontSize: 20.sp, fontWeight: FontWeight.w900)),
                         gapW4,
                         Expanded(
                           child: TextBox(
@@ -101,13 +124,15 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
                             controller: TextEditingController(text: ""),
                             onChanged: (text) {
                               if (text.length > 3 && (text.endsWith(' ') || text.endsWith('\n'))) {
-                                node.dispose();
-                                if (words.length == seed.length) {
+                                var nulls = words.where((element) => element == "").toList();
+                                if (nulls.length == 1) {
                                   _checkMnemonic(seed, words);
                                 } else {
                                   setState(() {
-                                    words[index] = text;
-                                    words.add("");
+                                    words[index] = text.trim();
+                                    focusNodes[focusIndex].dispose();
+                                    focusIndex++;
+                                    focusNodes[focusIndex].requestFocus();
                                   });
                                 }
                               }
@@ -132,7 +157,7 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
                                 borderRadius: BorderRadius.circular(32.0.r),
                               ),
                               child: Text(
-                                "$index. ${words[index]}",
+                                "${index + 1}. ${words[index]}",
                                 textAlign: TextAlign.start,
                                 style: TextStyle(color: theme.mnemonicText, fontSize: 20.sp, fontWeight: FontWeight.w900),
                               ))));
@@ -146,7 +171,7 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
 
   void _checkMnemonic(List<String> ogSeed, newSeed) {
     //compare the two seeds
-    ref.read(nextButtonDisableProvider.notifier).state = false; //TODO: remove this
+    // ref.read(nextButtonDisableProvider.notifier).state = false; //TODO: remove this
     if (ogSeed == newSeed) {
       ref.read(nextButtonDisableProvider.notifier).state = false;
     } else {
@@ -165,10 +190,16 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
         ),
         actions: [
           Button(
+            style: ButtonStyle(
+              backgroundColor: ButtonState.all<Color>(Colors.blue),
+              foregroundColor: ButtonState.all<Color>(Colors.white),
+            ),
             child: const Text('Try Again'),
             onPressed: () {
               words = [""];
-              Navigator.pop(context, 'User tried again');
+              Navigator.of(context).pop();
+              ref.read(slideProvider.notifier).state = 1;
+              ref.read(nextButtonDisableProvider.notifier).state = false;
               // Delete file here
             },
           ),
