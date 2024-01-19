@@ -76,7 +76,7 @@ class _WalletSeedSlideState extends ConsumerState<WalletSeedSlide> {
         ),
         gapH32,
         Container(
-          height: 200.h,
+          height: 250.h,
           margin: EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 6.0.h),
           padding: EdgeInsets.all(12.0.sp),
           decoration: BoxDecoration(
@@ -109,7 +109,7 @@ class _WalletSeedSlideState extends ConsumerState<WalletSeedSlide> {
                                 borderRadius: BorderRadius.circular(32.0.r),
                               ),
                               child: Text(
-                                "$index. ${mnemonic[index]}",
+                                "${index +1}. ${mnemonic[index]}",
                                 textAlign: TextAlign.start,
                                 style: TextStyle(color: theme.mnemonicText, fontSize: 20.sp, fontWeight: FontWeight.w900),
                               ))));
