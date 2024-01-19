@@ -65,7 +65,6 @@ class _MyHomePageState extends ConsumerState<WrapperPage> {
         ]),
       ),
       content: Container(
-        color: appTheme.backgroungColor,
           child: widget.content),
     );
   }

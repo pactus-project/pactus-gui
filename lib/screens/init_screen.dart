@@ -4,21 +4,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pactus/provider/slides_provider.dart';
 import 'package:pactus/provider/theme_provider.dart';
-import 'package:pactus/screens/wrapper_screen.dart';
 import 'package:pactus/slides/initialize_mode.dart';
 import 'package:pactus/slides/wallet_seed.dart';
-import 'package:pactus/support/app_sizes.dart';
 
-class HomePage extends ConsumerStatefulWidget {
-  static const String route = '/';
+import '../screen_wrapper/wrapper_screen.dart';
 
-  const HomePage({super.key});
+class InitialScreen extends ConsumerStatefulWidget {
+  static const String route = '/init';
+
+  const InitialScreen({super.key});
 
   @override
-  ConsumerState<HomePage> createState() => _HomePageState();
+  ConsumerState<InitialScreen> createState() => _HomePageState();
 }
 
-class _HomePageState extends ConsumerState<HomePage> {
+class _HomePageState extends ConsumerState<InitialScreen> {
   final List<String> listEntries = <String>['Initialize mode', 'Wallet seed', 'Confirm seed', 'Wallet seed restore', 'Wallet password', 'Number of validators', 'Node info', 'Finish'];
 
   List<Widget> slides = [
