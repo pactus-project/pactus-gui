@@ -21,6 +21,8 @@ dependencies:
   go_router: ^13.0.1
   flutter_riverpod: ^2.4.9
   flutter_screenutil: ^5.9.0
+  google_fonts: ^6.1.0
+  bip39_mnemonic: ^3.0.6
 
 dev_dependencies:
   flutter_test:
@@ -35,4 +37,3 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-

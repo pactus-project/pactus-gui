@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pactus/provider/theme_provider.dart';
 import 'package:pactus/support/app_router.dart';
 import 'package:pactus/support/extensions.dart';
@@ -91,6 +92,7 @@ class _MyAppState extends ConsumerState<MyApp> {
       debugShowCheckedModeBanner: false,
       color: appTheme.color,
       darkTheme: FluentThemeData(
+        fontFamily: GoogleFonts.roboto().fontFamily,
         brightness: Brightness.dark,
         accentColor: appTheme.color,
         micaBackgroundColor: appTheme.scaffoldBackgroundColor,
@@ -101,6 +103,7 @@ class _MyAppState extends ConsumerState<MyApp> {
         ),
       ),
       theme: FluentThemeData(
+        fontFamily: GoogleFonts.robotoFlex().fontFamily,
         accentColor: appTheme.color,
         inactiveBackgroundColor: appTheme.scaffoldBackgroundColor,
         visualDensity: VisualDensity.standard,
