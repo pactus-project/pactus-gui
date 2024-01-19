@@ -1,12 +1,17 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pactus/provider/slides_provider.dart';
 import 'package:pactus/provider/theme_provider.dart';
+import 'package:pactus/screens/welcome_screen.dart';
 import 'package:pactus/slides/initialize_mode.dart';
+import 'package:pactus/slides/master_password.dart';
 import 'package:pactus/slides/wallet_seed.dart';
+import 'package:pactus/slides/wallet_seed_confirm.dart';
+import 'package:pactus/support/extensions.dart';
 
+import '../provider/button_control_provider.dart';
 import '../screen_wrapper/wrapper_screen.dart';
 
 class InitialScreen extends ConsumerStatefulWidget {
@@ -19,12 +24,38 @@ class InitialScreen extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<InitialScreen> {
-  final List<String> listEntries = <String>['Initialize mode', 'Wallet seed', 'Confirm seed', 'Wallet seed restore', 'Wallet password', 'Number of validators', 'Node info', 'Finish'];
+  final List<String> listEntries = <String>['Initialize mode', 'Wallet seed', 'Confirm seed', 'Wallet password', 'Number of validators', 'Node info', 'Finish'];
 
   List<Widget> slides = [
-    const InitializeModeSlide(key: ValueKey<String>('Initialize mode'),),
-    const WalletSeedSlide(key: ValueKey<String>('Wallet seed'),),
+    const InitializeModeSlide(
+      key: ValueKey<String>('Initialize mode'),
+    ),
+    const WalletSeedSlide(
+      key: ValueKey<String>('Wallet seed'),
+    ),
+    const WalletSeedConfirmSlide(
+      key: ValueKey<String>('Confirm seed'),
+    ),
+    const MasterPasswordSlide(
+      key: ValueKey<String>('Wallet password'),
+    ),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    context.afterBuild(() {
+      ref.watch(radioButtonProvider.notifier).addListener((state) {
+        setState(() {
+          if (state == 1) {
+            listEntries[1] = "Wallet seed restore";
+          } else {
+            listEntries[1] = "Wallet seed";
+          }
+        });
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +63,8 @@ class _HomePageState extends ConsumerState<InitialScreen> {
     final height = MediaQuery.of(context).size.height;
     final theme = ref.watch(appThemeProvider);
     var slideIndex = ref.watch(slideProvider);
+    var buttonControl = ref.watch(nextButtonDisableProvider);
+    final radioValue = ref.watch(radioButtonProvider);
     return WrapperPage(
         title: "Pactus",
         content: Column(
@@ -92,25 +125,37 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Button(
-                                  child: Text(slideIndex == 0 ? 'Cancel' : 'Back'),
                                   onPressed: () {
                                     if (slideIndex == 0) {
-                                      // context.go(WrapperPage.routeName);
-                                      //quit the app
+                                      context.go(WelcomeScreen.route);
                                     } else {
                                       setState(() {
-                                        ref.read(slideProvider.notifier).state = (slideIndex - 1) % slides.length;
+                                        ref.read(slideProvider.notifier).state = (slideIndex - 1);
+                                        ref.read(nextButtonDisableProvider.notifier).state = false;
                                       });
                                     }
                                   },
+                                  child: Text(slideIndex == 0 ? 'Cancel' : 'Back'),
                                 ),
                                 Button(
+                                  onPressed: buttonControl
+                                      ? null
+                                      : () {
+                                          if (slideIndex == 0 && radioValue == 1) {
+                                            setState(() {
+                                              ref.read(slideProvider.notifier).state = (slideIndex + 2);
+                                            });
+                                          } else {
+                                            setState(() {
+                                              ref.read(slideProvider.notifier).state = (slideIndex + 1);
+                                            });
+                                          }
+                                        },
+                                  style: ButtonStyle(
+                                    backgroundColor: ButtonState.all<Color>(buttonControl ? Colors.grey.withOpacity(0.1) : Colors.blue),
+                                    foregroundColor: ButtonState.all<Color>(buttonControl ? Colors.black.withOpacity(0.1) : Colors.white),
+                                  ),
                                   child: const Text('Next'),
-                                  onPressed: () {
-                                    setState(() {
-                                      ref.read(slideProvider.notifier).state = (slideIndex + 1) % slides.length;
-                                    });
-                                  },
                                 ),
                               ],
                             ),

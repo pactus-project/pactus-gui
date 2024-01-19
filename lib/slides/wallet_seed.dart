@@ -3,8 +3,10 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pactus/provider/seed_provider.dart';
 import 'package:pactus/provider/theme_provider.dart';
 import 'package:pactus/support/app_sizes.dart';
+import 'package:pactus/support/extensions.dart';
 
 class WalletSeedSlide extends ConsumerStatefulWidget {
   const WalletSeedSlide({super.key});
@@ -51,6 +53,7 @@ class _WalletSeedSlideState extends ConsumerState<WalletSeedSlide> {
             Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: DropDownButton(
+                closeAfterClick: false,
                   title: Text(
                     "$defaultDropDown words",
                     style: TextStyle(color: theme.textColor.withOpacity(0.4)),
@@ -139,7 +142,7 @@ class _WalletSeedSlideState extends ConsumerState<WalletSeedSlide> {
             gapW12,
           ],
         ),
-        Spacer(),
+        const Spacer(),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -186,5 +189,8 @@ class _WalletSeedSlideState extends ConsumerState<WalletSeedSlide> {
     );
     mnemonic = m.words;
     mnemonicString = m.sentence;
+    context.afterBuild(() {
+      ref.read(seedProvider.notifier).state = mnemonic;
+    });
   }
 }
