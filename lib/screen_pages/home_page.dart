@@ -1,10 +1,12 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pactus/provider/slides_provider.dart';
 import 'package:pactus/provider/theme_provider.dart';
 import 'package:pactus/screens/wrapper_screen.dart';
+import 'package:pactus/slides/initialize_mode.dart';
+import 'package:pactus/slides/wallet_seed.dart';
 import 'package:pactus/support/app_sizes.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -18,33 +20,22 @@ class HomePage extends ConsumerStatefulWidget {
 
 class _HomePageState extends ConsumerState<HomePage> {
   final List<String> listEntries = <String>['Initialize mode', 'Wallet seed', 'Confirm seed', 'Wallet seed restore', 'Wallet password', 'Number of validators', 'Node info', 'Finish'];
-  List<bool> radioValues = [true, false];
+
+  List<Widget> slides = [
+    const InitializeModeSlide(key: ValueKey<String>('Initialize mode'),),
+    const WalletSeedSlide(key: ValueKey<String>('Wallet seed'),),
+  ];
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final theme = ref.watch(appThemeProvider);
+    var slideIndex = ref.watch(slideProvider);
     return WrapperPage(
         title: "Pactus",
         content: Column(
           children: [
-            gapH24,
-            Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: Padding(
-                  padding: EdgeInsets.only(left: 45.0.w),
-                  child: Text(
-                    "Setup Pactus",
-                    style: FluentTheme.of(context).typography.bodyLarge!.copyWith(fontSize: 24.sp, fontWeight: FontWeight.w600),
-                  ),
-                )),
-            gapH16,
-            Container(
-              height: 1,
-              width: width,
-              color: theme.separator,
-            ),
             Expanded(
                 child: Row(
               children: [
@@ -59,7 +50,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                     itemBuilder: (BuildContext context, int index) {
                       return ListEntry(
                         title: listEntries[index],
-                        selected: index == 0,
+                        selected: index <= slideIndex,
                       );
                     },
                   ),
@@ -71,105 +62,63 @@ class _HomePageState extends ConsumerState<HomePage> {
                 ),
                 // Content
                 Expanded(
-                    child: Column(
-                      children: [
-                        Padding(
-                      padding: const EdgeInsetsDirectional.symmetric(horizontal: 50.0, vertical: 30.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "How to create you wallet?",
-                            style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w600),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding:  EdgeInsetsDirectional.symmetric(horizontal: 30.0.w, vertical: 30.0.h),
+                          child: AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 500), // Set your desired animation duration
+                            transitionBuilder: (Widget child, Animation<double> animation) {
+                              return FadeTransition(
+                                opacity: animation,
+                                child: child,
+                              );
+                            },
+                            child: slides[slideIndex], // Your slide widget here
                           ),
-                          gapH8,
-                          Text(
-                            "If you running a node for first time, choose the first options",
-                            style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300),
-                          ),
-                          gapH32,
-                          gapH8,
-                          Padding(
-                            padding: EdgeInsets.only(left: 12.0.w),
-                            child: SizedBox(
-                              height: 22.sp,
-                              child: Row(
-                                children: [
-                                  RadioButton(
-                                    checked: radioValues[0],
-                                    onChanged: (state) {
-                                      setState(() {
-                                        radioValues = [true, false];
-                                      });
-                                    },
-                                  ),
-                                  gapW12,
-                                  GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          radioValues = [true, false];
-                                        });
-                                      },
-                                      child: Text("Create new wallet from scratch", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300)))
-                                ],
-                              ),
-                            ),
-                          ),
-                          gapH24,
-                          Padding(
-                            padding: EdgeInsets.only(left: 12.0.w),
-                            child: SizedBox(
-                              height: 22.sp,
-                              child: Row(
-                                children: [
-                                  RadioButton(
-                                    checked: radioValues[1],
-                                    onChanged: (state) {
-                                      setState(() {
-                                        radioValues = [false, true];
-                                      });
-                                    },
-                                  ),
-                                  gapW12,
-                                  GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          radioValues = [false, true];
-                                        });
-                                      },
-                                      child: Text("Restore a wallet from seed phrase", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300)))
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
-                    Expanded(
-                        child: Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Container(
-                              width: double.infinity,
-                              height: 80.h,
-                              color: theme.buttonBar,
-                              padding: const EdgeInsetsDirectional.symmetric(horizontal: 20.0, vertical: 20.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Button(
-                                    child: const Text('Cancel'),
-                                    onPressed: () {},
-                                  ),
-                                  Button(
-                                    child: const Text('Next'),
-                                    onPressed: () {},
-                                  ),
-                                ],
-                              ),
-                            ))),
-                  ],
-                    ))
+                      Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Container(
+                            width: double.infinity,
+                            height: 80.h,
+                            color: theme.buttonBar,
+                            padding: const EdgeInsetsDirectional.symmetric(horizontal: 20.0, vertical: 20.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Button(
+                                  child: Text(slideIndex == 0 ? 'Cancel' : 'Back'),
+                                  onPressed: () {
+                                    if (slideIndex == 0) {
+                                      // context.go(WrapperPage.routeName);
+                                      //quit the app
+                                    } else {
+                                      setState(() {
+                                        ref.read(slideProvider.notifier).state = (slideIndex - 1) % slides.length;
+                                      });
+                                    }
+                                  },
+                                ),
+                                Button(
+                                  child: const Text('Next'),
+                                  onPressed: () {
+                                    setState(() {
+                                      ref.read(slideProvider.notifier).state = (slideIndex + 1) % slides.length;
+                                    });
+                                  },
+                                ),
+                              ],
+                            ),
+                          )),
+                    ],
+                  ),
+                  // Your buttons or gestures to change the slide index
+                )
               ],
             ))
           ],

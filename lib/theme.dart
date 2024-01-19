@@ -103,6 +103,17 @@ class AppTheme extends ChangeNotifier {
 
   Color get buttonBar => _mode == ThemeMode.dark || _mode == ThemeMode.system ? Colors.black.withOpacity(0.2) : Colors.white;
 
+  Color get fieldBackground => _mode == ThemeMode.dark || _mode == ThemeMode.system ? Colors.white.withOpacity(0.05) : Colors.white;
+
+  Color get mnemonicWords => _mode == ThemeMode.dark || _mode == ThemeMode.system ? Colors.white.withOpacity(0.1) : const Color(0xFFEBF3FC);
+
+  Color get mnemonicText => _mode == ThemeMode.dark || _mode == ThemeMode.system ? Colors.white.withOpacity(0.9) : const Color(0xFF0F6CBD);
+
+  Color get clipBoardText => _mode == ThemeMode.dark || _mode == ThemeMode.system ? Colors.white.withOpacity(0.7) : const Color(0xFF0066B4);
+
+  Color get textColor => _mode == ThemeMode.dark || _mode == ThemeMode.system ? Colors.white : Colors.black;
+
+
 }
 
 AccentColor get systemAccentColor {
