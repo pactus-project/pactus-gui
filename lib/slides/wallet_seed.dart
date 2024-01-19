@@ -150,27 +150,27 @@ class _WalletSeedSlideState extends ConsumerState<WalletSeedSlide> {
               "Please write these $defaultDropDown words on paper",
               style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w300, color: theme.textColor.withOpacity(0.5)),
             ),
-            gapH8,
+            gapH4,
             Text(
              "This seed will allow you to recover your wallet in case of computer failure",
               style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w300, color: theme.textColor.withOpacity(0.5)),
             ),
-            gapH32,
+    gapH16,
             Text(
               "Warning",
               style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w900, color: theme.textColor.withOpacity(0.8)),
             ),
-            gapH8,
+            gapH4,
             Text(
               "- Never disclose your seed",
               style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w300, color: theme.textColor.withOpacity(0.5)),
             ),
-            gapH8,
+            gapH4,
             Text(
               "- Never type it on website",
               style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w300, color: theme.textColor.withOpacity(0.5)),
             ),
-            gapH8,
+            gapH4,
             Text(
               "- Do not store electronically",
               style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w300, color: theme.textColor.withOpacity(0.5)),
