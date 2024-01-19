@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -19,17 +20,16 @@ class WelcomeScreen extends ConsumerWidget {
         content: Column(
           children: [
             gapH24,
-            SizedBox(
-              height: height * 0.6,
+            Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(right: 192.0.w),
+                  padding: EdgeInsets.only(right: 120.0.w),
                   child: Image.asset("assets/images/splash.png", filterQuality: FilterQuality.high, fit: BoxFit.fitWidth, ),
                 )),
             gapH16,
             Text("Welcome to the Future of Blockchain with Pactus!", style: FluentTheme.of(context).typography.bodyLarge!.copyWith(fontWeight: FontWeight.w900),),
             gapH24,
             Text("Where the future of blockchain unfolds with trust and transparency in every transaction\n\nJoin us in shaping a decentralized revolution!", textAlign: TextAlign.center, style: FluentTheme.of(context).typography.body!.copyWith(fontSize:16.sp,fontWeight: FontWeight.w200),),
-            gapH32,
+            gapH24,
             SizedBox(
               width: 200.w,
               height: 40.h,
@@ -49,10 +49,11 @@ class WelcomeScreen extends ConsumerWidget {
                     }),
                     // padding: ButtonState.all(EdgeInsets.symmetric(horizontal: 32.0.w, vertical: 12.0.h)),
                   ),
-                  child: Center(child: Text("Get Started", style: FluentTheme.of(context).typography.body!.copyWith(fontSize:18.sp,fontWeight: FontWeight.w800, color: Colors.white),)),
+                  child: Center(child: Text("Get Started", style: FluentTheme.of(context).typography.body!.copyWith(fontSize:16.sp,fontWeight: FontWeight.w800, color: Colors.white),)),
                 ),
               ),
-            )
+            ),
+            gapH24,
           ],
         ));
   }

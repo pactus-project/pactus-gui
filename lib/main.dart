@@ -119,7 +119,7 @@ class _MyAppState extends ConsumerState<MyApp> {
             data: NavigationPaneThemeData(
               backgroundColor: appTheme.windowEffect != WindowEffect.disabled ? Colors.transparent : null,
             ),
-            child: ScreenUtilInit(minTextAdapt: true, splitScreenMode: true, designSize: const Size(802, 523), child: child!),
+            child: ScreenUtilInit(minTextAdapt: true, splitScreenMode: true, designSize: const Size(1366, 800), child: child!),
           ),
         );
       },
