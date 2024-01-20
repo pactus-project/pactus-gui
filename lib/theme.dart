@@ -1,6 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_acrylic/flutter_acrylic.dart';
-import 'package:system_theme/system_theme.dart';
 
 import 'package:fluent_ui/fluent_ui.dart';
 
@@ -9,7 +7,15 @@ enum NavigationIndicators { sticky, end }
 class AppTheme extends ChangeNotifier {
   AccentColor? _color;
 
-  AccentColor get color => _color ?? systemAccentColor;
+  AccentColor get color => _color ?? AccentColor.swatch({
+    'darkest': Colors.blue.darkest,
+    'darker': Colors.blue.darker,
+    'dark':  Colors.blue.dark,
+    'normal':  Colors.blue.normal,
+    'light':  Colors.blue.light,
+    'lighter':  Colors.blue.lighter,
+    'lightest':  Colors.blue.lightest,
+  });
 
   set color(AccentColor color) {
     _color = color;
@@ -116,17 +122,17 @@ class AppTheme extends ChangeNotifier {
 
 }
 
-AccentColor get systemAccentColor {
-  if ((defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.android) && !kIsWeb) {
-    return AccentColor.swatch({
-      'darkest': SystemTheme.accentColor.darkest,
-      'darker': SystemTheme.accentColor.darker,
-      'dark': SystemTheme.accentColor.dark,
-      'normal': SystemTheme.accentColor.accent,
-      'light': SystemTheme.accentColor.light,
-      'lighter': SystemTheme.accentColor.lighter,
-      'lightest': SystemTheme.accentColor.lightest,
-    });
-  }
-  return Colors.blue;
-}
+// AccentColor get systemAccentColor {
+//   if ((defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.android) && !kIsWeb) {
+//     return AccentColor.swatch({
+//       'darkest': FluentTheme.of(context).darkest,
+//       'darker': SystemTheme.accentColor.darker,
+//       'dark': SystemTheme.accentColor.dark,
+//       'normal': SystemTheme.accentColor.accent,
+//       'light': SystemTheme.accentColor.light,
+//       'lighter': SystemTheme.accentColor.lighter,
+//       'lightest': SystemTheme.accentColor.lightest,
+//     });
+//   }
+//   return Colors.blue;
+// }

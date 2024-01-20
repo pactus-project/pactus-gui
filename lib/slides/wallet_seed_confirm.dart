@@ -1,11 +1,12 @@
 import 'dart:math';
 
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pactus/provider/button_control_provider.dart';
 import 'package:pactus/provider/seed_provider.dart';
-import 'package:pactus/provider/slides_provider.dart';
 import 'package:pactus/provider/theme_provider.dart';
 import 'package:pactus/support/app_sizes.dart';
 import 'package:pactus/support/extensions.dart';
@@ -20,39 +21,25 @@ class WalletSeedConfirmSlide extends ConsumerStatefulWidget {
 class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
   List<String> words = [];
   String mnemonicString = "";
-  late FocusNode myFocusNode;
   List<FocusNode> focusNodes = [];
   int focusIndex = 0;
+  var error = false;
 
   @override
   void initState() {
     super.initState();
-    myFocusNode = FocusNode();
-    context.afterBuild(() {
-      ref.read(nextButtonDisableProvider.notifier).state = true;
-      var stuff = ref.read(seedProvider.notifier).state;
-      final random = Random();
-      final indicesToHide = <int>{};
-      for (int i = 0; i < stuff.length; i++) {
-        words.add(stuff[i]);
-      }
-      while (indicesToHide.length < 8) {
-        int index = random.nextInt(stuff.length);
-        indicesToHide.add(index);
-      }
-
-      for (int index in indicesToHide) {
-        words[index] = "";
-      }
-      setState(() {});
-      Future.delayed(const Duration(milliseconds: 100), () => focusNodes[0].requestFocus());
-      // focusNodes[0].requestFocus();
-    });
+    _refresh();
   }
 
   @override
   void dispose() {
-    myFocusNode.dispose();
+    for (var element in focusNodes) {
+      try {
+        element.dispose();
+      } catch (e) {
+        debugPrint(e.toString());
+      }
+    }
     super.dispose();
   }
 
@@ -164,6 +151,38 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
                 }
               }),
         ),
+        gapH8,
+        Visibility(
+          visible: error,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 14.0.w),
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () {
+                      ClipboardData data = ClipboardData(text: mnemonicString);
+                      Clipboard.setData(data);
+                    },
+                    child: Row(
+                      children: [
+                        Icon(FluentIcons.error, color: Colors.red.light,),
+                        gapW4,
+                        Text(
+                          "Seed is incorrect".hardcoded,
+                          style: TextStyle(color: Colors.red.light, fontSize: 16.sp),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        gapW12,
         const Spacer(),
       ],
     );
@@ -175,37 +194,35 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
     if (ogSeed == newSeed) {
       ref.read(nextButtonDisableProvider.notifier).state = false;
     } else {
-      showContentDialog(context: context, title: "Error", content: "The seed you entered does not match the seed generated. Please try again.");
-      //if they are not the same, show an error
+      _refresh();
+      setState(() {
+        error = true;
+      });
     }
   }
 
-  void showContentDialog({required BuildContext context, required String title, required String content}) async {
-    final result = await showDialog<String>(
-      context: context,
-      builder: (context) => ContentDialog(
-        title: Text(title),
-        content: Text(
-          content,
-        ),
-        actions: [
-          Button(
-            style: ButtonStyle(
-              backgroundColor: ButtonState.all<Color>(Colors.blue),
-              foregroundColor: ButtonState.all<Color>(Colors.white),
-            ),
-            child: const Text('Try Again'),
-            onPressed: () {
-              words = [""];
-              Navigator.of(context).pop();
-              ref.read(slideProvider.notifier).state = 1;
-              ref.read(nextButtonDisableProvider.notifier).state = false;
-              // Delete file here
-            },
-          ),
-        ],
-      ),
-    );
-    setState(() {});
+  void _refresh() {
+    context.afterBuild(() {
+      words.clear();
+      focusNodes.clear();
+      ref.read(nextButtonDisableProvider.notifier).state = true;
+      var stuff = ref.read(seedProvider.notifier).state;
+      final random = Random();
+      final indicesToHide = <int>{};
+      for (int i = 0; i < stuff.length; i++) {
+        words.add(stuff[i]);
+      }
+      while (indicesToHide.length < 8) {
+        int index = random.nextInt(stuff.length);
+        indicesToHide.add(index);
+      }
+
+      for (int index in indicesToHide) {
+        words[index] = "";
+      }
+      setState(() {});
+      Future.delayed(const Duration(milliseconds: 100), () => focusNodes[0].requestFocus());
+      // focusNodes[0].requestFocus();
+    });
   }
 }
