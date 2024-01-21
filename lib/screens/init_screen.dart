@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -16,6 +17,8 @@ import 'package:pactus/support/extensions.dart';
 import '../provider/button_control_provider.dart';
 import '../screen_wrapper/wrapper_screen.dart';
 
+enum TransitionDirection { forward, backward }
+
 class InitialScreen extends ConsumerStatefulWidget {
   static const String route = '/init';
 
@@ -27,7 +30,7 @@ class InitialScreen extends ConsumerStatefulWidget {
 
 class _HomePageState extends ConsumerState<InitialScreen> {
   final List<String> listEntries = <String>['Initialize mode', 'Wallet seed', 'Confirm seed', 'Wallet password', 'Number of validators', 'Node info', 'Finish'];
-
+  final pageController = PageController();
   List<Widget> slides = [
     const InitializeModeSlide(
       key: ValueKey<String>('Initialize mode'),
@@ -106,15 +109,15 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                       Expanded(
                         child: Padding(
                           padding:  EdgeInsetsDirectional.symmetric(horizontal: 30.0.w, vertical: 30.0.h),
-                          child: AnimatedSwitcher(
-                            duration: const Duration(milliseconds: 500), // Set your desired animation duration
-                            transitionBuilder: (Widget child, Animation<double> animation) {
-                              return FadeTransition(
-                                opacity: animation,
-                                child: child,
-                              );
+                          child: PageView.builder(
+                            controller: pageController,
+                            itemCount: slides.length,
+                            onPageChanged: (int index) {
+                              ref.read(slideProvider.notifier).state = index;
                             },
-                            child: slides[slideIndex], // Your slide widget here
+                            itemBuilder: (context, index) {
+                              return slides[index];
+                            },
                           ),
                         ),
                       ),
@@ -135,9 +138,10 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                                       context.go(WelcomeScreen.route);
                                     } else {
                                       setState(() {
-                                        ref.read(slideProvider.notifier).state = (slideIndex - 1);
+                                        // ref.read(slideProvider.notifier).state = (slideIndex - 1);
                                         ref.read(nextButtonDisableProvider.notifier).state = false;
                                       });
+                                      goBack(ref, pageController);
                                     }
                                   },
                                   child: Text(slideIndex == 0 ? 'Cancel' : 'Back'),
@@ -146,7 +150,7 @@ class _HomePageState extends ConsumerState<InitialScreen> {
 
                                   Row(
                                     children: [
-                                      if (slideIndex == 2)
+                                      if (slideIndex == 3)
                                       Button(
                                         style: ButtonStyle(
                                           backgroundColor: ButtonState.all<Color>(Colors.transparent),
@@ -154,8 +158,9 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                                           shape: ButtonState.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
                                         ),
                                         onPressed: () {
-                                          ref.read(slideProvider.notifier).state++;
+                                          // ref.read(slideProvider.notifier).state++;
                                           ref.read(nextButtonDisableProvider.notifier).state = false;
+                                          goForward(ref, pageController);
                                         },
                                         child: const Text('Skip'),
                                       ),
@@ -166,12 +171,12 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                                             : () {
                                           if (slideIndex == 0 && radioValue == 1) {
                                             setState(() {
-                                              ref.read(slideProvider.notifier).state = (slideIndex + 2);
+                                              goForward(ref, pageController);
+                                              goForward(ref, pageController);
+                                              // ref.read(slideProvider.notifier).state = (slideIndex + 2);
                                             });
                                           } else {
-                                            setState(() {
-                                              ref.read(slideProvider.notifier).state = (slideIndex + 1);
-                                            });
+                                            goForward(ref, pageController);
                                           }
                                         },
                                         style: ButtonStyle(
@@ -195,6 +200,34 @@ class _HomePageState extends ConsumerState<InitialScreen> {
           ],
         ));
   }
+
+  void goBack(WidgetRef ref, PageController pageController) {
+
+    final currentIndex = ref.read(slideProvider.notifier).state;
+    if (currentIndex > 0) {
+      final newIndex = currentIndex - 1;
+      pageController.animateToPage(
+        newIndex,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.fastLinearToSlowEaseIn,
+      );
+      ref.read(slideProvider.notifier).state = newIndex;
+    }
+  }
+
+  void goForward(WidgetRef ref, PageController pageController) {
+    final currentIndex = ref.read(slideProvider.notifier).state;
+    final newIndex = currentIndex + 1;
+    if (newIndex < slides.length) {
+      pageController.animateToPage(
+        newIndex,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.fastEaseInToSlowEaseOut,
+      );
+      ref.read(slideProvider.notifier).state = newIndex;
+    }
+  }
+
 }
 
 class ListEntry extends StatelessWidget {

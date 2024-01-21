@@ -91,7 +91,7 @@ class _MyAppState extends ConsumerState<MyApp> {
       debugShowCheckedModeBanner: false,
       color: appTheme.color,
       darkTheme: FluentThemeData(
-        fontFamily: GoogleFonts.roboto().fontFamily,
+        fontFamily: GoogleFonts.inter().fontFamily,
         brightness: Brightness.dark,
         accentColor: appTheme.color,
         micaBackgroundColor: appTheme.scaffoldBackgroundColor,
@@ -102,7 +102,7 @@ class _MyAppState extends ConsumerState<MyApp> {
         ),
       ),
       theme: FluentThemeData(
-        fontFamily: GoogleFonts.robotoFlex().fontFamily,
+        fontFamily: GoogleFonts.inter().fontFamily,
         accentColor: appTheme.color,
         inactiveBackgroundColor: appTheme.scaffoldBackgroundColor,
         visualDensity: VisualDensity.standard,
