@@ -9,6 +9,7 @@ import 'package:pactus/slides/initialize_mode.dart';
 import 'package:pactus/slides/master_password.dart';
 import 'package:pactus/slides/wallet_seed.dart';
 import 'package:pactus/slides/wallet_seed_confirm.dart';
+import 'package:pactus/support/app_sizes.dart';
 import 'package:pactus/support/extensions.dart';
 
 import '../provider/button_control_provider.dart';
@@ -137,10 +138,28 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                                   },
                                   child: Text(slideIndex == 0 ? 'Cancel' : 'Back'),
                                 ),
-                                Button(
-                                  onPressed: buttonControl
-                                      ? null
-                                      : () {
+                                //skip button
+
+                                  Row(
+                                    children: [
+                                      if (slideIndex == 2)
+                                      Button(
+                                        style: ButtonStyle(
+                                          backgroundColor: ButtonState.all<Color>(Colors.transparent),
+                                          foregroundColor: ButtonState.all<Color>(Colors.blue),
+                                          shape: ButtonState.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+                                        ),
+                                        onPressed: () {
+                                          ref.read(slideProvider.notifier).state++;
+                                          ref.read(nextButtonDisableProvider.notifier).state = false;
+                                        },
+                                        child: const Text('Skip'),
+                                      ),
+                                      gapW16,
+                                      Button(
+                                        onPressed: buttonControl
+                                            ? null
+                                            : () {
                                           if (slideIndex == 0 && radioValue == 1) {
                                             setState(() {
                                               ref.read(slideProvider.notifier).state = (slideIndex + 2);
@@ -151,12 +170,15 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                                             });
                                           }
                                         },
-                                  style: ButtonStyle(
-                                    backgroundColor: ButtonState.all<Color>(buttonControl ? Colors.grey.withOpacity(0.1) : Colors.blue),
-                                    foregroundColor: ButtonState.all<Color>(buttonControl ? Colors.black.withOpacity(0.1) : Colors.white),
+                                        style: ButtonStyle(
+                                          backgroundColor: ButtonState.all<Color>(buttonControl ? Colors.grey.withOpacity(0.1) : Colors.blue),
+                                          foregroundColor: ButtonState.all<Color>(buttonControl ? Colors.black.withOpacity(0.1) : Colors.white),
+                                        ),
+                                        child: const Text('Next'),
+                                      ),
+                                    ],
                                   ),
-                                  child: const Text('Next'),
-                                ),
+
                               ],
                             ),
                           )),
