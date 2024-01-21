@@ -36,6 +36,7 @@ class _MyHomePageState extends ConsumerState<WrapperPage> {
         actions: Stack(
             alignment: AlignmentDirectional.center,
             children: [
+              if (PlatformDetect.isMacOS)
           Center(
               child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -48,6 +49,7 @@ class _MyHomePageState extends ConsumerState<WrapperPage> {
               ),
             ],
           )),
+          if (PlatformDetect.isMacOS)
           Align(
             alignment: AlignmentDirectional.centerEnd,
             child: Padding(
@@ -76,7 +78,29 @@ class _MyHomePageState extends ConsumerState<WrapperPage> {
               ),
             ),
           ),
-          if (!PlatformDetect.isMacOS || kIsWeb) const WindowButtons(),
+          if (!PlatformDetect.isMacOS || kIsWeb) Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Image.asset("assets/icons/sun.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.light ? Colors.transparent : Colors.white.withOpacity(0.8),),
+
+              gapW16,
+              ToggleSwitch(
+                // content: Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.dark ? Colors.white.withOpacity(0.5) : null,),
+                checked: FluentTheme.of(context).brightness.isDark,
+                onChanged: (v) {
+                  if (v) {
+                    appTheme.mode = ThemeMode.dark;
+                  } else {
+                    appTheme.mode = ThemeMode.light;
+                  }
+                },
+              ),
+              gapW16,
+              Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.dark ? Colors.transparent : null,),
+gapW8,
+              const WindowButtons(),
+            ],
+          ),
         ]),
       ),
       content: Container(
