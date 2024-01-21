@@ -76,7 +76,7 @@ class _WalletSeedSlideState extends ConsumerState<WalletSeedSlide> {
         ),
         gapH32,
         Container(
-          height: 250.h,
+          height:mnemonic.length == 12 ? 120.h : 200.h,
           margin: EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 6.0.h),
           padding: EdgeInsets.all(12.0.sp),
           decoration: BoxDecoration(
