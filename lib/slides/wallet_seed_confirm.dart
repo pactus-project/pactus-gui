@@ -26,7 +26,6 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
   List<int> focusNodeSet = [];
   List<bool> errorNodes = [];
   List<bool> failNodes = [];
-  Map<int,bool> colorsMap = {};
   int focusIndex = 0;
   var error = false;
 
@@ -125,7 +124,6 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
                                       setState(() {
                                         errorNodes[index] = false;
                                         failNodes[index] = false;
-                                        colorsMap[index] = true;
                                         error = false;
                                       });
                                       words[index] = text.trim();
@@ -268,8 +266,6 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
 
   void _refresh() {
     context.afterBuild(() {
-      // words.clear();
-      // focusNodes.clear();
       ref.read(nextButtonDisableProvider.notifier).state = true;
       var stuff = ref.read(seedProvider.notifier).state;
       final random = Random();
@@ -295,7 +291,6 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
         failNodes.add(true);
         if (words[i] == "") {
           focusNodeSet.add(i);
-          colorsMap[i] = false;
         }
       }
       setState(() {});
