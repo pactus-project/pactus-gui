@@ -36,28 +36,43 @@ class _MyHomePageState extends ConsumerState<WrapperPage> {
         actions: Stack(
             alignment: AlignmentDirectional.center,
             children: [
-              Center(child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset("assets/icons/logo.png", height: 20, width: 20, filterQuality: FilterQuality.high),
-                  gapW8,
-                  Text(widget.title, textAlign: TextAlign.center,),
-                ],
-              )),
+          Center(
+              child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset("assets/icons/logo.png", height: 20, width: 20, filterQuality: FilterQuality.high),
+              gapW8,
+              Text(
+                widget.title,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          )),
           Align(
             alignment: AlignmentDirectional.centerEnd,
             child: Padding(
               padding: EdgeInsetsDirectional.only(end: PlatformDetect.isMacOS ? 30.0.w : 80.0.w),
-              child: ToggleSwitch(
-                content: Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.dark ? Colors.white.withOpacity(0.5) : null,),
-                checked: FluentTheme.of(context).brightness.isDark,
-                onChanged: (v) {
-                  if (v) {
-                    appTheme.mode = ThemeMode.dark;
-                  } else {
-                    appTheme.mode = ThemeMode.light;
-                  }
-                },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Image.asset("assets/icons/sun.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.light ? Colors.transparent : Colors.white.withOpacity(0.8),),
+
+                  gapW16,
+                  ToggleSwitch(
+                    // content: Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.dark ? Colors.white.withOpacity(0.5) : null,),
+                    checked: FluentTheme.of(context).brightness.isDark,
+                    onChanged: (v) {
+                      if (v) {
+                        appTheme.mode = ThemeMode.dark;
+                      } else {
+                        appTheme.mode = ThemeMode.light;
+                      }
+                    },
+                  ),
+                  gapW16,
+                  Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.dark ? Colors.transparent : null,),
+
+                ],
               ),
             ),
           ),
