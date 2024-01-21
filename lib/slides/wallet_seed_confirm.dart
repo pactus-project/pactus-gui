@@ -1,7 +1,7 @@
 import 'dart:math';
 
+import 'package:collection/collection.dart';
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,7 +21,12 @@ class WalletSeedConfirmSlide extends ConsumerStatefulWidget {
 class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
   List<String> words = [];
   String mnemonicString = "";
-  List<FocusNode> focusNodes = [];
+  List<FocusNode?> focusNodes = [];
+  List<TextEditingController> controllers = [];
+  List<int> focusNodeSet = [];
+  List<bool> errorNodes = [];
+  List<bool> failNodes = [];
+  Map<int,bool> colorsMap = {};
   int focusIndex = 0;
   var error = false;
 
@@ -33,15 +38,13 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
 
   @override
   void dispose() {
-    for (var element in focusNodes) {
-      try {
-        element.dispose();
-      } catch (e) {
-        debugPrint(e.toString());
-      }
+    for (int i = 0; i < words.length; i++) {
+      focusNodes[i]?.dispose();
+      controllers[i].dispose();
     }
     super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +74,7 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
         ),
         gapH32,
         Container(
-          height: 250.h,
+          height: words.length == 12 ? 120.h : 250.h,
           margin: EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 6.0.h),
           padding: EdgeInsets.all(12.0.sp),
           decoration: BoxDecoration(
@@ -79,77 +82,99 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
             borderRadius: BorderRadius.circular(8.0.r),
           ),
           width: MediaQuery.sizeOf(context).width,
-          child: GridView.builder(
-              shrinkWrap: true,
-              itemCount: words.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 6, // number of items in each row
-                mainAxisSpacing: 17.h, // spacing between rows
-                crossAxisSpacing: 4.0.w, // spacing between columns
-                mainAxisExtent: 30.0.h, // row height
-              ),
-              itemBuilder: (ctx, index) {
-                if (words[index] == "") {
-                  var node = FocusNode();
-                  focusNodes.add(node);
-                  // focusIndex++;
-                  return Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 4.h),
-                    decoration: BoxDecoration(
-                      color: theme.mnemonicWords,
-                      borderRadius: BorderRadius.circular(32.0.r),
-                    ),
-                    child: Row(
-                      children: [
-                        Text("${index + 1}. ", style: TextStyle(color: theme.mnemonicText, fontSize: 20.sp, fontWeight: FontWeight.w900)),
-                        gapW4,
-                        Expanded(
-                          child: TextBox(
-                            focusNode: node,
-                            highlightColor: Colors.transparent,
-                            style: TextStyle(color: theme.mnemonicText, fontSize: 18.sp, fontWeight: FontWeight.w900),
-                            controller: TextEditingController(text: ""),
-                            onChanged: (text) {
-                              if (text.length > 3 && (text.endsWith(' ') || text.endsWith('\n'))) {
-                                var nulls = words.where((element) => element == "").toList();
-                                if (nulls.length == 1) {
-                                  _checkMnemonic(seed, words);
-                                } else {
-                                  setState(() {
-                                    words[index] = text.trim();
-                                    focusNodes[focusIndex].dispose();
-                                    focusIndex++;
-                                    focusNodes[focusIndex].requestFocus();
-                                  });
-                                }
-                              }
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                } else {
-                  return Container(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      decoration: const BoxDecoration(
-                        color: Colors.transparent,
+          child: Center(
+            child: GridView.builder(
+                shrinkWrap: true,
+                itemCount: focusNodes.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 6, // number of items in each row
+                  mainAxisSpacing: 17.h, // spacing between rows
+                  crossAxisSpacing: 4.0.w, // spacing between columns
+                  mainAxisExtent: 30.0.h, // row height
+                ),
+                itemBuilder: (ctx, index) {
+                  if (words[index] == "") {
+                    return Container(
+                      padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 2.h),
+                      decoration: BoxDecoration(
+                        color: errorNodes[index] == true
+                                ? Colors.red.withOpacity(0.5)
+                                : theme.mnemonicWords,
+                        borderRadius: BorderRadius.circular(32.0.r),
                       ),
-                      child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 4.h),
-                              decoration: BoxDecoration(
-                                color: theme.mnemonicWords,
-                                borderRadius: BorderRadius.circular(32.0.r),
+                      child: Row(
+                        children: [
+                          Text("${index + 1}. ", style: TextStyle(color: theme.mnemonicText, fontSize: 18.sp, fontWeight: FontWeight.w900)),
+                          gapW4,
+                          Expanded(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: TextBox(
+                                padding: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 4.h),
+                                focusNode: focusNodes[index],
+                                enabled: failNodes[index],
+                                expands: true,
+                                minLines: null,
+                                maxLines: null,
+                                highlightColor: Colors.transparent,
+                                style: TextStyle(color: theme.mnemonicText, fontSize: 13.h, fontWeight: FontWeight.w900),
+                                controller: controllers[index],
+                                onChanged: (text) {
+                                  if (text.length >= 3 && (text.endsWith(' ') || text.endsWith('\n'))) {
+                                    if (text.trim().compareTo(seed[index]) == 0) {
+                                      setState(() {
+                                        errorNodes[index] = false;
+                                        failNodes[index] = false;
+                                        colorsMap[index] = true;
+                                        error = false;
+                                      });
+                                      words[index] = text.trim();
+                                      requestNextFocus(index);
+                                    } else {
+                                      controllers[index].clear();
+                                      setState(() {
+                                        errorNodes[index] = true;
+                                        error = true;
+                                      });
+                                    }
+                                    var nulls = words.where((element) => element == "").toList();
+                                    if (nulls.isEmpty) {
+                                      _checkMnemonic(seed, words);
+                                    }
+                                  }
+                                },
                               ),
-                              child: Text(
-                                "${index + 1}. ${words[index]}",
-                                textAlign: TextAlign.start,
-                                style: TextStyle(color: theme.mnemonicText, fontSize: 20.sp, fontWeight: FontWeight.w900),
-                              ))));
-                }
-              }),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  } else {
+                    return Container(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        decoration: const BoxDecoration(
+                          color: Colors.transparent,
+                        ),
+                        child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Container(
+                                padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 4.h),
+                                decoration: BoxDecoration(
+                                  color:  focusNodeSet.firstWhereOrNull(
+                                        (i) => i == index,
+                                  ) != null && failNodes[index] == false
+                                      ? theme.successWords
+                                      : theme.mnemonicWords,
+                                  borderRadius: BorderRadius.circular(32.0.r),
+                                ),
+                                child: Text(
+                                  "${index + 1}. ${words[index]}",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(color: theme.mnemonicText, fontSize: 20.sp, fontWeight: FontWeight.w900),
+                                ))));
+                  }
+                }),
+          ),
         ),
         gapH8,
         Visibility(
@@ -182,29 +207,69 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
             ],
           ),
         ),
+        Visibility(
+          visible: !ref.watch(nextButtonDisableProvider.notifier).state,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 14.0.w),
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () {
+                      ClipboardData data = ClipboardData(text: mnemonicString);
+                      Clipboard.setData(data);
+                    },
+                    child: Row(
+                      children: [
+                        Icon(FluentIcons.check_mark, color: Colors.green.light,),
+                        gapW4,
+                        Text(
+                          "Seed is correct".hardcoded,
+                          style: TextStyle(color: Colors.green.light, fontSize: 16.sp),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
         gapW12,
         const Spacer(),
       ],
     );
   }
 
-  void _checkMnemonic(List<String> ogSeed, newSeed) {
-    //compare the two seeds
-    // ref.read(nextButtonDisableProvider.notifier).state = false; //TODO: remove this
-    if (ogSeed == newSeed) {
+  void _checkMnemonic(List<String> ogSeed, List<String> newSeed) {
+    const DeepCollectionEquality equality = DeepCollectionEquality();
+
+    if (equality.equals(ogSeed, newSeed)) {
       ref.read(nextButtonDisableProvider.notifier).state = false;
     } else {
-      _refresh();
       setState(() {
         error = true;
       });
     }
   }
 
+  void requestNextFocus(int currentIndex) {
+    int? nextIndex = focusNodeSet.firstWhereOrNull(
+          (index) => index > currentIndex,
+    );
+
+    if (nextIndex != null && nextIndex < focusNodes.length) {
+      FocusScope.of(context).requestFocus(focusNodes[nextIndex]);
+    }
+  }
+
+
   void _refresh() {
     context.afterBuild(() {
-      words.clear();
-      focusNodes.clear();
+      // words.clear();
+      // focusNodes.clear();
       ref.read(nextButtonDisableProvider.notifier).state = true;
       var stuff = ref.read(seedProvider.notifier).state;
       final random = Random();
@@ -212,7 +277,9 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
       for (int i = 0; i < stuff.length; i++) {
         words.add(stuff[i]);
       }
-      while (indicesToHide.length < 8) {
+      var number = stuff.length == 12 ? 4 : 8;
+
+      while (indicesToHide.length < number) {
         int index = random.nextInt(stuff.length);
         indicesToHide.add(index);
       }
@@ -220,9 +287,19 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
       for (int index in indicesToHide) {
         words[index] = "";
       }
+
+      for (int i = 0; i < words.length; i++) {
+        focusNodes.add(FocusNode());
+        controllers.add(TextEditingController());
+        errorNodes.add(false);
+        failNodes.add(true);
+        if (words[i] == "") {
+          focusNodeSet.add(i);
+          colorsMap[i] = false;
+        }
+      }
       setState(() {});
-      Future.delayed(const Duration(milliseconds: 100), () => focusNodes[0].requestFocus());
-      // focusNodes[0].requestFocus();
+      focusNodes[focusNodeSet.first]?.requestFocus();
     });
   }
 }
