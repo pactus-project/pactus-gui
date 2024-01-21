@@ -7,6 +7,7 @@ import 'package:pactus/provider/theme_provider.dart';
 import 'package:pactus/screens/welcome_screen.dart';
 import 'package:pactus/slides/initialize_mode.dart';
 import 'package:pactus/slides/master_password.dart';
+import 'package:pactus/slides/number_validators.dart';
 import 'package:pactus/slides/wallet_seed.dart';
 import 'package:pactus/slides/wallet_seed_confirm.dart';
 import 'package:pactus/support/app_sizes.dart';
@@ -39,6 +40,9 @@ class _HomePageState extends ConsumerState<InitialScreen> {
     ),
     const MasterPasswordSlide(
       key: ValueKey<String>('Wallet password'),
+    ),
+    const NumberValidatorsSlide(
+      key: ValueKey<String>('Number of validators'),
     ),
   ];
 
