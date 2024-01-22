@@ -10,6 +10,7 @@ import 'package:pactus/slides/master_password.dart';
 import 'package:pactus/slides/number_validators.dart';
 import 'package:pactus/slides/wallet_seed.dart';
 import 'package:pactus/slides/wallet_seed_confirm.dart';
+import 'package:pactus/slides/wallet_seed_restore.dart';
 import 'package:pactus/support/app_sizes.dart';
 import 'package:pactus/support/extensions.dart';
 
@@ -28,8 +29,12 @@ class InitialScreen extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<InitialScreen> {
-  final List<String> listEntries = <String>['Initialize mode', 'Wallet seed', 'Confirm seed', 'Wallet password', 'Number of validators', 'Node info', 'Finish'];
+  final List<String> listEntries = <String>['Initialize mode', 'Wallet seed', 'Confirm seed', 'Master password', 'Validator Config', 'Initialization', 'Finish'];
+  final List<String> listRestore = <String>['Initialize mode', 'Restoration seed', 'Master password', 'Validator Config', 'Initialization', 'Finish'];
+
   final pageController = PageController();
+  var restore = false;
+
   List<Widget> slides = [
     const InitializeModeSlide(
       key: ValueKey<String>('Initialize mode'),
@@ -41,10 +46,25 @@ class _HomePageState extends ConsumerState<InitialScreen> {
       key: ValueKey<String>('Confirm seed'),
     ),
     const MasterPasswordSlide(
-      key: ValueKey<String>('Wallet password'),
+      key: ValueKey<String>('Master password'),
     ),
     const NumberValidatorsSlide(
-      key: ValueKey<String>('Number of validators'),
+      key: ValueKey<String>('Validator Config'),
+    ),
+  ];
+
+  List<Widget> slidesRestore = [
+    const InitializeModeSlide(
+      key: ValueKey<String>('Initialize mode'),
+    ),
+    const WalletSeedRestoreSlide(
+      key: ValueKey<String>('Restoration seed'),
+    ),
+    const MasterPasswordSlide(
+      key: ValueKey<String>('Master password'),
+    ),
+    const NumberValidatorsSlide(
+      key: ValueKey<String>('Validator Config'),
     ),
   ];
 
@@ -55,9 +75,9 @@ class _HomePageState extends ConsumerState<InitialScreen> {
       ref.watch(radioButtonProvider.notifier).addListener((state) {
         setState(() {
           if (state == 1) {
-            listEntries[1] = "Wallet seed restore";
+            restore = true;
           } else {
-            listEntries[1] = "Wallet seed";
+            restore = false;
           }
         });
       });
@@ -86,10 +106,10 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                   padding: const EdgeInsetsDirectional.symmetric(horizontal: 24.0, vertical: 24.0),
                   child: ListView.builder(
                     padding: EdgeInsets.zero,
-                    itemCount: listEntries.length,
+                    itemCount: restore ? listRestore.length : listEntries.length,
                     itemBuilder: (BuildContext context, int index) {
                       return ListEntry(
-                        title: listEntries[index],
+                        title: restore ? listRestore[index] : listEntries[index],
                         selected: index <= slideIndex,
                       );
                     },
@@ -110,12 +130,12 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                           padding:  EdgeInsetsDirectional.symmetric(horizontal: 30.0.w, vertical: 30.0.h),
                           child: PageView.builder(
                             controller: pageController,
-                            itemCount: slides.length,
+                            itemCount: restore ? slidesRestore.length : slides.length,
                             onPageChanged: (int index) {
                               ref.read(slideProvider.notifier).state = index;
                             },
                             itemBuilder: (context, index) {
-                              return slides[index];
+                              return restore ? slidesRestore[index] : slides[index];
                             },
                           ),
                         ),
@@ -137,7 +157,6 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                                       context.go(WelcomeScreen.route);
                                     } else {
                                       setState(() {
-                                        // ref.read(slideProvider.notifier).state = (slideIndex - 1);
                                         ref.read(nextButtonDisableProvider.notifier).state = false;
                                       });
                                       goBack(ref, pageController);
@@ -146,10 +165,9 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                                   child: Text(slideIndex == 0 ? 'Cancel' : 'Back'),
                                 ),
                                 //skip button
-
                                   Row(
                                     children: [
-                                      if (slideIndex == 3)
+                                      if (slideIndex == 3 && radioValue == 0)
                                       Button(
                                         style: ButtonStyle(
                                           backgroundColor: ButtonState.all<Color>(Colors.transparent),
@@ -168,15 +186,7 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                                         onPressed: buttonControl
                                             ? null
                                             : () {
-                                          if (slideIndex == 0 && radioValue == 1) {
-                                            setState(() {
                                               goForward(ref, pageController);
-                                              goForward(ref, pageController);
-                                              // ref.read(slideProvider.notifier).state = (slideIndex + 2);
-                                            });
-                                          } else {
-                                            goForward(ref, pageController);
-                                          }
                                         },
                                         style: ButtonStyle(
                                           backgroundColor: ButtonState.all<Color>(buttonControl ? Colors.grey.withOpacity(0.1) : Colors.blue),
@@ -200,11 +210,10 @@ class _HomePageState extends ConsumerState<InitialScreen> {
         ));
   }
 
-  void goBack(WidgetRef ref, PageController pageController) {
-
+  void goBack(WidgetRef ref, PageController pageController, {int? page}) {
     final currentIndex = ref.read(slideProvider.notifier).state;
     if (currentIndex > 0) {
-      final newIndex = currentIndex - 1;
+      final newIndex = page ?? currentIndex - 1;
       pageController.animateToPage(
         newIndex,
         duration: const Duration(milliseconds: 500),
@@ -214,9 +223,9 @@ class _HomePageState extends ConsumerState<InitialScreen> {
     }
   }
 
-  void goForward(WidgetRef ref, PageController pageController) {
+  void goForward(WidgetRef ref, PageController pageController, {int? page}) {
     final currentIndex = ref.read(slideProvider.notifier).state;
-    final newIndex = currentIndex + 1;
+    final newIndex = page ?? currentIndex + 1;
     if (newIndex < slides.length) {
       pageController.animateToPage(
         newIndex,

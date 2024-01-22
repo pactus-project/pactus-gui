@@ -1,5 +1,4 @@
-import 'dart:math';
-
+import 'package:bip39_mnemonic/bip39_mnemonic.dart';
 import 'package:collection/collection.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/services.dart';
@@ -11,14 +10,14 @@ import 'package:pactus/provider/theme_provider.dart';
 import 'package:pactus/support/app_sizes.dart';
 import 'package:pactus/support/extensions.dart';
 
-class WalletSeedConfirmSlide extends ConsumerStatefulWidget {
-  const WalletSeedConfirmSlide({super.key});
+class WalletSeedRestoreSlide extends ConsumerStatefulWidget {
+  const WalletSeedRestoreSlide({super.key});
 
   @override
-  ConsumerState<WalletSeedConfirmSlide> createState() => _WalletSeedConfirmSlide();
+  ConsumerState<WalletSeedRestoreSlide> createState() => _WalletSeedRestoreSlide();
 }
 
-class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
+class _WalletSeedRestoreSlide extends ConsumerState<WalletSeedRestoreSlide> {
   List<String> words = [];
   String mnemonicString = "";
   List<FocusNode?> focusNodes = [];
@@ -29,10 +28,13 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
   int focusIndex = 0;
   var error = false;
 
+  List<int> dropDown = [24, 12];
+  int defaultDropDown = 24;
+
   @override
   void initState() {
     super.initState();
-    _refresh();
+    _refresh(24);
   }
 
   @override
@@ -44,11 +46,9 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     final theme = ref.watch(appThemeProvider);
-    final seed = ref.watch(seedProvider);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -59,15 +59,37 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Confirm your wallet generation seed",
+                  "Restoration Seed",
                   style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w600),
                 ),
                 gapH8,
                 Text(
-                  "Embark with Assurance, your gateway to secure seed generation",
+                  "Restoration Seed, Your Key to Digital Resilience and Recovery",
                   style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300, color: theme.textColor.withOpacity(0.5)),
                 ),
               ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: DropDownButton(
+                  closeAfterClick: false,
+                  title: Text(
+                    "$defaultDropDown words",
+                    style: TextStyle(color: theme.textColor.withOpacity(0.4)),
+                  ),
+                  items: dropDown
+                      .map((e) => MenuFlyoutItem(
+                      text: Text(
+                        "${e}word",
+                        style: TextStyle(color: theme.textColor.withOpacity(0.4)),
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          defaultDropDown = e;
+                          _refresh(e);
+                        });
+                      }))
+                      .toList()),
             ),
           ],
         ),
@@ -96,9 +118,7 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
                     return Container(
                       padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 2.h),
                       decoration: BoxDecoration(
-                        color: errorNodes[index] == true
-                                ? Colors.red.withOpacity(0.5)
-                                : theme.mnemonicWords,
+                        color: errorNodes[index] == true ? Colors.red.withOpacity(0.5) : theme.mnemonicWords,
                         borderRadius: BorderRadius.circular(32.0.r),
                       ),
                       child: Row(
@@ -109,40 +129,33 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
                             child: Align(
                               alignment: Alignment.center,
                               child: EditableText(
-                                cursorColor: theme.cursorColor,
-                                backgroundCursorColor: Colors.grey.withOpacity(0.5),
                                 // padding: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 4.h),
                                 focusNode: focusNodes[index]!,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(RegExp("[a-z A-Z \n \t \v]")),
+                                ],
                                 // enabled: failNodes[index],
                                 expands: true,
                                 minLines: null,
                                 maxLines: null,
                                 // highlightColor: Colors.transparent,
-                                style: TextStyle(color: theme.mnemonicText, fontSize: 13.h, fontWeight: FontWeight.w900),
+                                style: TextStyle(color: theme.mnemonicText, fontSize: 13.h, fontWeight: FontWeight.w600),
                                 controller: controllers[index],
                                 onChanged: (text) {
-                                  if (text.length >= 3 && (text.endsWith(' ') || text.endsWith('\n') || text.endsWith("\t")  || text.endsWith("\v")) ) {
-                                    if (text.trim().compareTo(seed[index]) == 0) {
-                                      setState(() {
-                                        errorNodes[index] = false;
-                                        failNodes[index] = false;
-                                        error = false;
-                                      });
-                                      words[index] = text.trim();
-                                      requestNextFocus(index);
-                                    } else {
-                                      controllers[index].clear();
-                                      setState(() {
-                                        errorNodes[index] = true;
-                                        error = true;
-                                      });
-                                    }
+                                  if (text.length >= 3 && (text.endsWith(' ') || text.endsWith('\n') || text.endsWith("\t")  || text.endsWith("\v"))) {
+                                    setState(() {
+                                      errorNodes[index] = false;
+                                      failNodes[index] = false;
+                                      error = false;
+                                    });
+                                    words[index] = text.trim();
+                                    requestNextFocus(index);
                                     var nulls = words.where((element) => element == "").toList();
                                     if (nulls.isEmpty) {
-                                      _checkMnemonic(seed, words);
+                                      _confirmMnemonic(words);
                                     }
                                   }
-                                },
+                                }, cursorColor: theme.cursorColor, backgroundCursorColor: Colors.grey.withOpacity(0.5),
                               ),
                             ),
                           ),
@@ -150,28 +163,42 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
                       ),
                     );
                   } else {
-                    return Container(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        decoration: const BoxDecoration(
-                          color: Colors.transparent,
-                        ),
-                        child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Container(
-                                padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 4.h),
-                                decoration: BoxDecoration(
-                                  color:  focusNodeSet.firstWhereOrNull(
-                                        (i) => i == index,
-                                  ) != null && failNodes[index] == false
-                                      ? theme.successWords
-                                      : theme.mnemonicWords,
-                                  borderRadius: BorderRadius.circular(32.0.r),
-                                ),
-                                child: Text(
-                                  "${index + 1}. ${words[index]}",
-                                  textAlign: TextAlign.start,
-                                  style: TextStyle(color: theme.mnemonicText, fontSize: 20.sp, fontWeight: FontWeight.w900),
-                                ))));
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          // errorNodes[index] = true;
+                          failNodes[index] = true;
+                        });
+                        controllers[index].clear();
+                        words[index] = "";
+                        focusNodeSet.add(index);
+                        focusNodes[index]?.requestFocus();
+                      },
+                      child: Container(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          decoration: const BoxDecoration(
+                            color: Colors.transparent,
+                          ),
+                          child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 4.h),
+                                  decoration: BoxDecoration(
+                                    color: focusNodeSet.firstWhereOrNull(
+                                                  (i) => i == index,
+                                                ) !=
+                                                null &&
+                                            failNodes[index] == false
+                                        ? theme.successWords
+                                        : theme.mnemonicWords,
+                                    borderRadius: BorderRadius.circular(32.0.r),
+                                  ),
+                                  child: Text(
+                                    "${index + 1}. ${words[index]}",
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(color: theme.mnemonicText, fontSize: 20.sp, fontWeight: FontWeight.w900),
+                                  )))),
+                    );
                   }
                 }),
           ),
@@ -193,15 +220,24 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
                     padding: EdgeInsets.symmetric(horizontal: 14.0.w),
                     child: MouseRegion(
                       cursor: SystemMouseCursors.click,
-                      child: Row(
-                        children: [
-                          Icon(FluentIcons.error, color: Colors.red.light,),
-                          gapW4,
-                          Text(
-                            "Seed is incorrect".hardcoded,
-                            style: TextStyle(color: Colors.red.light, fontSize: 16.sp),
-                          ),
-                        ],
+                      child: GestureDetector(
+                        onTap: () {
+                          ClipboardData data = ClipboardData(text: mnemonicString);
+                          Clipboard.setData(data);
+                        },
+                        child: Row(
+                          children: [
+                            Icon(
+                              FluentIcons.error,
+                              color: Colors.red.light,
+                            ),
+                            gapW4,
+                            Text(
+                              "Seed is incorrect".hardcoded,
+                              style: TextStyle(color: Colors.red.light, fontSize: 16.sp),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -226,7 +262,10 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
                     },
                     child: Row(
                       children: [
-                        Icon(FluentIcons.check_mark, color: Colors.green.light,),
+                        Icon(
+                          FluentIcons.check_mark,
+                          color: Colors.green.light,
+                        ),
                         gapW4,
                         Text(
                           "Seed is correct".hardcoded,
@@ -246,12 +285,11 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
     );
   }
 
-  void _checkMnemonic(List<String> ogSeed, List<String> newSeed) {
-    const DeepCollectionEquality equality = DeepCollectionEquality();
-
-    if (equality.equals(ogSeed, newSeed)) {
+  void _confirmMnemonic(List<String> seed) {
+    try {
+      Mnemonic.fromSentence(seed.join(" "), Language.english);
       ref.read(nextButtonDisableProvider.notifier).state = false;
-    } else {
+    } catch (e) {
       setState(() {
         error = true;
       });
@@ -260,7 +298,7 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
 
   void requestNextFocus(int currentIndex) {
     int? nextIndex = focusNodeSet.firstWhereOrNull(
-          (index) => index > currentIndex,
+      (index) => index > currentIndex,
     );
 
     if (nextIndex != null && nextIndex < focusNodes.length) {
@@ -268,27 +306,22 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
     }
   }
 
-
-  void _refresh() {
+  void _refresh(int length) {
     context.afterBuild(() {
+      words.clear();
+      for (var element in focusNodes) {
+        element?.dispose();
+      }
+      focusNodes.clear();
+      for (var element in controllers) {
+        element.dispose();
+      }
+      controllers.clear();
       ref.read(nextButtonDisableProvider.notifier).state = true;
-      var stuff = ref.read(seedProvider.notifier).state;
-      final random = Random();
-      final indicesToHide = <int>{};
+      List<String> stuff = List.generate(length, (index) => "");
       for (int i = 0; i < stuff.length; i++) {
         words.add(stuff[i]);
       }
-      var number = stuff.length == 12 ? 4 : 8;
-
-      while (indicesToHide.length < number) {
-        int index = random.nextInt(stuff.length);
-        indicesToHide.add(index);
-      }
-
-      for (int index in indicesToHide) {
-        words[index] = "";
-      }
-
       for (int i = 0; i < words.length; i++) {
         focusNodes.add(FocusNode());
         controllers.add(TextEditingController());
