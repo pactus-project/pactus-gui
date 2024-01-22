@@ -121,6 +121,8 @@ class AppTheme extends ChangeNotifier {
 
   Color get textColor => _mode == ThemeMode.dark || _mode == ThemeMode.system ? Colors.white : Colors.black;
 
+  Color get cursorColor => _mode == ThemeMode.dark || _mode == ThemeMode.system ? Colors.white.withOpacity(0.8) : Colors.black.withOpacity(0.8);
+
 
 }
 
