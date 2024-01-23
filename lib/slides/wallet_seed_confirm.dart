@@ -124,10 +124,6 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
                                   if (text.length >= 3 && (text.endsWith(' ') || text.endsWith('\n')) ) {
                                     validateInput(index);
                                     requestNextFocus(index);
-                                    var nulls = words.where((element) => element == "").toList();
-                                    if (nulls.isEmpty) {
-                                      _checkMnemonic(seed, words);
-                                    }
                                   }
                                 },
                               ),
@@ -214,6 +210,10 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
         error = false;
       });
       words[index] = controllers[index].text.trim();
+      var nulls = words.where((element) => element == "").toList();
+      if (nulls.isEmpty) {
+        _checkMnemonic(seed, words);
+      }
     }
   }
 

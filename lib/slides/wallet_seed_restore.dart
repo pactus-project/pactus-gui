@@ -145,10 +145,6 @@ class _WalletSeedRestoreSlide extends ConsumerState<WalletSeedRestoreSlide> {
                                   if (text.length >= 3 && (text.endsWith(' ') || text.endsWith('\n'))) {
                                     validateInput(index);
                                     requestNextFocus(index);
-                                    var nulls = words.where((element) => element == "").toList();
-                                    if (nulls.isEmpty) {
-                                      _confirmMnemonic(words);
-                                    }
                                   }
                                 }, cursorColor: theme.cursorColor, backgroundCursorColor: Colors.grey.withOpacity(0.5),
                               ),
@@ -298,6 +294,10 @@ class _WalletSeedRestoreSlide extends ConsumerState<WalletSeedRestoreSlide> {
       error = false;
     });
     words[index] = controllers[index].text.trim();
+    var nulls = words.where((element) => element == "").toList();
+    if (nulls.isEmpty) {
+      _confirmMnemonic(words);
+    }
   }
 
   void requestNextFocus(int currentIndex) {
