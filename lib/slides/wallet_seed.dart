@@ -24,7 +24,9 @@ class _WalletSeedSlideState extends ConsumerState<WalletSeedSlide> {
   @override
   void initState() {
     super.initState();
-    _generateWords(24);
+    context.afterBuild(() {
+      _generateWords(24);
+    });
   }
 
   @override
@@ -86,7 +88,7 @@ class _WalletSeedSlideState extends ConsumerState<WalletSeedSlide> {
           width: MediaQuery.sizeOf(context).width,
           child: Center(
             child: GridView.builder(
-                shrinkWrap: true,
+                shrinkWrap: false,
                 itemCount: mnemonic.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 6, // number of items in each row
@@ -96,6 +98,7 @@ class _WalletSeedSlideState extends ConsumerState<WalletSeedSlide> {
                 ),
                 itemBuilder: (ctx, index) {
                   return Container(
+                    key: Key(mnemonic[index]),
                       padding: const EdgeInsets.only(left: 8.0),
                       decoration: const BoxDecoration(
                         color: Colors.transparent,
@@ -111,7 +114,7 @@ class _WalletSeedSlideState extends ConsumerState<WalletSeedSlide> {
                               child: Text(
                                 "${index +1}. ${mnemonic[index]}",
                                 textAlign: TextAlign.start,
-                                style: TextStyle(color: theme.mnemonicText, fontSize: 20.sp, fontWeight: FontWeight.w900),
+                                style: TextStyle(color: theme.mnemonicText, fontSize: 18.sp, fontWeight: FontWeight.w900),
                               ))));
                 }),
           ),
@@ -189,8 +192,12 @@ class _WalletSeedSlideState extends ConsumerState<WalletSeedSlide> {
     );
     mnemonic = m.words;
     mnemonicString = m.sentence;
+    setState(() {
+
+    });
     context.afterBuild(() {
       ref.read(seedProvider.notifier).state = mnemonic;
     });
+
   }
 }

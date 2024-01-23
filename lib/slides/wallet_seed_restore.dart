@@ -142,13 +142,8 @@ class _WalletSeedRestoreSlide extends ConsumerState<WalletSeedRestoreSlide> {
                                 style: TextStyle(color: theme.mnemonicText, fontSize: 13.h, fontWeight: FontWeight.w600),
                                 controller: controllers[index],
                                 onChanged: (text) {
-                                  if (text.length >= 3 && (text.endsWith(' ') || text.endsWith('\n') || text.endsWith("\t")  || text.endsWith("\v"))) {
-                                    setState(() {
-                                      errorNodes[index] = false;
-                                      failNodes[index] = false;
-                                      error = false;
-                                    });
-                                    words[index] = text.trim();
+                                  if (text.length >= 3 && (text.endsWith(' ') || text.endsWith('\n'))) {
+                                    validateInput(index);
                                     requestNextFocus(index);
                                     var nulls = words.where((element) => element == "").toList();
                                     if (nulls.isEmpty) {
@@ -296,6 +291,15 @@ class _WalletSeedRestoreSlide extends ConsumerState<WalletSeedRestoreSlide> {
     }
   }
 
+  void validateInput(int index) {
+    setState(() {
+      errorNodes[index] = false;
+      failNodes[index] = false;
+      error = false;
+    });
+    words[index] = controllers[index].text.trim();
+  }
+
   void requestNextFocus(int currentIndex) {
     int? nextIndex = focusNodeSet.firstWhereOrNull(
       (index) => index > currentIndex,
@@ -323,7 +327,13 @@ class _WalletSeedRestoreSlide extends ConsumerState<WalletSeedRestoreSlide> {
         words.add(stuff[i]);
       }
       for (int i = 0; i < words.length; i++) {
-        focusNodes.add(FocusNode());
+        FocusNode focusNode = FocusNode();
+        focusNode.addListener(() {
+          if (!focusNode.hasFocus) {
+            validateInput(i);
+          }
+        });
+        focusNodes.add(focusNode);
         controllers.add(TextEditingController());
         errorNodes.add(false);
         failNodes.add(true);
