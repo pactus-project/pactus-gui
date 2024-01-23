@@ -118,25 +118,12 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
                                 minLines: null,
                                 maxLines: null,
                                 // highlightColor: Colors.transparent,
-                                style: TextStyle(color: theme.mnemonicText, fontSize: 13.h, fontWeight: FontWeight.w900),
+                                style: TextStyle(color: theme.mnemonicText, fontSize: 13.h, fontWeight: FontWeight.w500),
                                 controller: controllers[index],
                                 onChanged: (text) {
-                                  if (text.length >= 3 && (text.endsWith(' ') || text.endsWith('\n') || text.endsWith("\t")  || text.endsWith("\v")) ) {
-                                    if (text.trim().compareTo(seed[index]) == 0) {
-                                      setState(() {
-                                        errorNodes[index] = false;
-                                        failNodes[index] = false;
-                                        error = false;
-                                      });
-                                      words[index] = text.trim();
-                                      requestNextFocus(index);
-                                    } else {
-                                      controllers[index].clear();
-                                      setState(() {
-                                        errorNodes[index] = true;
-                                        error = true;
-                                      });
-                                    }
+                                  if (text.length >= 3 && (text.endsWith(' ') || text.endsWith('\n')) ) {
+                                    validateInput(index);
+                                    requestNextFocus(index);
                                     var nulls = words.where((element) => element == "").toList();
                                     if (nulls.isEmpty) {
                                       _checkMnemonic(seed, words);
@@ -177,39 +164,6 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
           ),
         ),
         gapH8,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(left: 12.0.w),
-              child: Text("Please confirm your entry by pressing enter or spacebar".hardcoded, style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w300, color: theme.textColor.withOpacity(0.5))),
-            ),
-            Visibility(
-              visible: error,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 14.0.w),
-                    child: MouseRegion(
-                      cursor: SystemMouseCursors.click,
-                      child: Row(
-                        children: [
-                          Icon(FluentIcons.error, color: Colors.red.light,),
-                          gapW4,
-                          Text(
-                            "Seed is incorrect".hardcoded,
-                            style: TextStyle(color: Colors.red.light, fontSize: 16.sp),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
         Visibility(
           visible: !ref.watch(nextButtonDisableProvider.notifier).state,
           child: Row(
@@ -244,6 +198,23 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
         const Spacer(),
       ],
     );
+  }
+
+  void validateInput(int index) {
+    final seed = ref.watch(seedProvider);
+    if (controllers[index].text.trim() != seed[index]) {
+      setState(() {
+        errorNodes[index] = true;
+        error = true;
+      });
+    } else {
+      setState(() {
+        errorNodes[index] = false;
+        failNodes[index] = false;
+        error = false;
+      });
+      words[index] = controllers[index].text.trim();
+    }
   }
 
   void _checkMnemonic(List<String> ogSeed, List<String> newSeed) {
@@ -290,7 +261,13 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
       }
 
       for (int i = 0; i < words.length; i++) {
-        focusNodes.add(FocusNode());
+        FocusNode focusNode = FocusNode();
+        focusNode.addListener(() {
+          if (!focusNode.hasFocus) {
+            validateInput(i);
+          }
+        });
+        focusNodes.add(focusNode);
         controllers.add(TextEditingController());
         errorNodes.add(false);
         failNodes.add(true);

@@ -42,9 +42,9 @@ class WelcomeScreen extends ConsumerWidget {
                     backgroundColor:  ButtonState.resolveWith((states) {
                       // If the button is pressed, return size 40, otherwise 20
                       if (states.contains(ButtonStates.hovering)) {
-                        return Colors.blue;
+                        return Colors.blue.withOpacity(0.9);
                       }
-                      return Colors.blue.withOpacity(0.5);
+                      return Colors.blue;
                     }),
                     // padding: ButtonState.all(EdgeInsets.symmetric(horizontal: 32.0.w, vertical: 12.0.h)),
                   ),

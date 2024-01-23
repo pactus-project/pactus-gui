@@ -2,6 +2,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pactus/provider/slides_provider.dart';
 import 'package:pactus/provider/theme_provider.dart';
 import 'package:pactus/screens/welcome_screen.dart';
@@ -102,7 +103,6 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                 //list
                 Container(
                   width: 280.w,
-                  // color: const Color(0xFF252F45),
                   padding: const EdgeInsetsDirectional.symmetric(horizontal: 24.0, vertical: 24.0),
                   child: ListView.builder(
                     padding: EdgeInsets.zero,
@@ -151,23 +151,28 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Button(
-                                  onPressed: () {
-                                    if (slideIndex == 0) {
-                                      context.go(WelcomeScreen.route);
-                                    } else {
-                                      setState(() {
-                                        ref.read(nextButtonDisableProvider.notifier).state = false;
-                                      });
-                                      goBack(ref, pageController);
-                                    }
-                                  },
-                                  child: Text(slideIndex == 0 ? 'Cancel' : 'Back'),
-                                ),
+                                slideIndex == 0
+                                    ? const SizedBox()
+                                    : SizedBox(
+                                        width: 96.w,
+                                        child: Button(
+                                          onPressed: () {
+                                            if (slideIndex == 0) {
+                                              context.go(WelcomeScreen.route);
+                                            } else {
+                                              setState(() {
+                                                ref.read(nextButtonDisableProvider.notifier).state = false;
+                                              });
+                                              goBack(ref, pageController);
+                                            }
+                                          },
+                                          child: const Text('Back'),
+                                        ),
+                                      ),
                                 //skip button
-                                  Row(
-                                    children: [
-                                      if (slideIndex == 3 && radioValue == 0)
+                                Row(
+                                  children: [
+                                    if (slideIndex == 3 && radioValue == 0)
                                       Button(
                                         style: ButtonStyle(
                                           backgroundColor: ButtonState.all<Color>(Colors.transparent),
@@ -181,20 +186,23 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                                         },
                                         child: const Text('Skip'),
                                       ),
-                                      gapW16,
-                                      Button(
+                                    gapW16,
+                                    SizedBox(
+                                      width: 96.w,
+                                      child: Button(
                                         onPressed: buttonControl
                                             ? null
                                             : () {
-                                              goForward(ref, pageController);
-                                        },
+                                                goForward(ref, pageController);
+                                              },
                                         style: ButtonStyle(
                                           backgroundColor: ButtonState.all<Color>(buttonControl ? Colors.grey.withOpacity(0.1) : Colors.blue),
                                           foregroundColor: ButtonState.all<Color>(buttonControl ? Colors.black.withOpacity(0.1) : Colors.white),
                                         ),
                                         child: const Text('Next'),
                                       ),
-                                    ],
+                                    ),
+                                  ],
                                   ),
 
                               ],
@@ -250,7 +258,7 @@ class ListEntry extends StatelessWidget {
       height: 40.h,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Opacity(opacity: selected ? 1.0 : 0.2, child: Text(title, style: FluentTheme.of(context).typography.body!.copyWith(fontSize: 16.sp, fontWeight: FontWeight.w300))),
+        child: Opacity(opacity: selected ? 1.0 : 0.2, child: Text(title, style: GoogleFonts.inter(fontSize: 16.sp, fontWeight: FontWeight.w500))),
       ),
     );
   }

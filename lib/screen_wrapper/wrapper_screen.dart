@@ -31,77 +31,79 @@ class _MyHomePageState extends ConsumerState<WrapperPage> {
         height: PlatformDetect.isMacOS ? 40 : 50,
         backgroundColor: appTheme.navigationBarBackground,
         automaticallyImplyLeading: false,
-        title: PlatformDetect.isMacOS ? null :  Text(widget.title),
+        // title: PlatformDetect.isMacOS ? null :  Text(widget.title),
         leading: PlatformDetect.isMacOS ? null : Image.asset("assets/icons/logo.png", height: 30, width: 30, filterQuality: FilterQuality.high),
-        actions: Stack(
-            alignment: AlignmentDirectional.center,
-            children: [
-              if (PlatformDetect.isMacOS)
-          Center(
-              child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset("assets/icons/logo.png", height: 20, width: 20, filterQuality: FilterQuality.high),
-              gapW8,
-              Text(
-                widget.title,
-                textAlign: TextAlign.center,
-              ),
-            ],
-          )),
-          if (PlatformDetect.isMacOS)
-          Align(
-            alignment: AlignmentDirectional.centerEnd,
-            child: Padding(
-              padding: EdgeInsetsDirectional.only(end: PlatformDetect.isMacOS ? 30.0.w : 80.0.w),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Image.asset("assets/icons/sun.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.light ? Colors.transparent : Colors.white.withOpacity(0.8),),
+        actions: DragToMoveArea(
+          child: Stack(
+              alignment: AlignmentDirectional.center,
+              children: [
+                if (PlatformDetect.isMacOS)
+            Center(
+                child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset("assets/icons/logo.png", height: 20, width: 20, filterQuality: FilterQuality.high),
+                gapW8,
+                Text(
+                  widget.title,
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            )),
+            if (PlatformDetect.isMacOS)
+            Align(
+              alignment: AlignmentDirectional.centerEnd,
+              child: Padding(
+                padding: EdgeInsetsDirectional.only(end: PlatformDetect.isMacOS ? 30.0.w : 80.0.w),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Image.asset("assets/icons/sun.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.light ? Colors.transparent : Colors.white.withOpacity(0.8),),
 
-                  gapW16,
-                  ToggleSwitch(
-                    // content: Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.dark ? Colors.white.withOpacity(0.5) : null,),
-                    checked: FluentTheme.of(context).brightness.isDark,
-                    onChanged: (v) {
-                      if (v) {
-                        appTheme.mode = ThemeMode.dark;
-                      } else {
-                        appTheme.mode = ThemeMode.light;
-                      }
-                    },
-                  ),
-                  gapW16,
-                  Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.dark ? Colors.transparent : null,),
+                    gapW16,
+                    ToggleSwitch(
+                      // content: Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.dark ? Colors.white.withOpacity(0.5) : null,),
+                      checked: FluentTheme.of(context).brightness.isDark,
+                      onChanged: (v) {
+                        if (v) {
+                          appTheme.mode = ThemeMode.dark;
+                        } else {
+                          appTheme.mode = ThemeMode.light;
+                        }
+                      },
+                    ),
+                    gapW16,
+                    Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.dark ? Colors.transparent : null,),
 
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          if (!PlatformDetect.isMacOS || kIsWeb) Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Image.asset("assets/icons/sun.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.light ? Colors.transparent : Colors.white.withOpacity(0.8),),
+            if (!PlatformDetect.isMacOS || kIsWeb) Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Image.asset("assets/icons/sun.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.light ? Colors.transparent : Colors.white.withOpacity(0.8),),
 
-              gapW16,
-              ToggleSwitch(
-                // content: Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.dark ? Colors.white.withOpacity(0.5) : null,),
-                checked: FluentTheme.of(context).brightness.isDark,
-                onChanged: (v) {
-                  if (v) {
-                    appTheme.mode = ThemeMode.dark;
-                  } else {
-                    appTheme.mode = ThemeMode.light;
-                  }
-                },
-              ),
-              gapW16,
-              Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.dark ? Colors.transparent : null,),
-gapW8,
-              const WindowButtons(),
-            ],
-          ),
-        ]),
+                gapW16,
+                ToggleSwitch(
+                  // content: Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.dark ? Colors.white.withOpacity(0.5) : null,),
+                  checked: FluentTheme.of(context).brightness.isDark,
+                  onChanged: (v) {
+                    if (v) {
+                      appTheme.mode = ThemeMode.dark;
+                    } else {
+                      appTheme.mode = ThemeMode.light;
+                    }
+                  },
+                ),
+                gapW16,
+                Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.dark ? Colors.transparent : null,),
+          gapW8,
+                const WindowButtons(),
+              ],
+            ),
+          ]),
+        ),
       ),
       content: Container(
           child: widget.content),
