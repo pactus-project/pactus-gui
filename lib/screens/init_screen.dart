@@ -175,7 +175,15 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                                     if (slideIndex == 3 && radioValue == 0)
                                       Button(
                                         style: ButtonStyle(
-                                          backgroundColor: ButtonState.all<Color>(Colors.transparent),
+                                          backgroundColor:  ButtonState.resolveWith((states) {
+                                            if (buttonControl) {
+                                              return Colors.grey.withOpacity(0.2);
+                                            }
+                                            if (states.contains(ButtonStates.hovering)) {
+                                              return Colors.grey.withOpacity(0.05);
+                                            }
+                                            return Colors.transparent;
+                                          }),
                                           foregroundColor: ButtonState.all<Color>(Colors.blue),
                                           shape: ButtonState.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
                                         ),
@@ -196,7 +204,16 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                                                 goForward(ref, pageController);
                                               },
                                         style: ButtonStyle(
-                                          backgroundColor: ButtonState.all<Color>(buttonControl ? Colors.grey.withOpacity(0.1) : Colors.blue),
+                                          // backgroundColor: ButtonState.all<Color>(buttonControl ? Colors.grey.withOpacity(0.1) : Colors.blue),
+                                          backgroundColor:  ButtonState.resolveWith((states) {
+                                            if (buttonControl) {
+                                              return Colors.grey.withOpacity(0.1);
+                                            }
+                                            if (states.contains(ButtonStates.hovering)) {
+                                              return Colors.blue.lightest;
+                                            }
+                                            return Colors.blue;
+                                          }),
                                           foregroundColor: ButtonState.all<Color>(buttonControl ? Colors.black.withOpacity(0.1) : Colors.white),
                                         ),
                                         child: const Text('Next'),
@@ -258,7 +275,7 @@ class ListEntry extends StatelessWidget {
       height: 40.h,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Opacity(opacity: selected ? 1.0 : 0.2, child: Text(title, style: GoogleFonts.inter(fontSize: 16.sp, fontWeight: FontWeight.w500))),
+        child: Opacity(opacity: selected ? 1.0 : 0.2, child: Text(title, style: GoogleFonts.inter(fontSize: 16.sp, fontWeight: selected ? FontWeight.w700 : FontWeight.w500))),
       ),
     );
   }
