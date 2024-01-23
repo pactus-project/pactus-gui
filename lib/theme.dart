@@ -22,14 +22,14 @@ class AppTheme extends ChangeNotifier {
     notifyListeners();
   }
 
-  Color? _scaffoldBackgroundColor;
-
-  Color get scaffoldBackgroundColor => _scaffoldBackgroundColor ?? Colors.white;
-
-  set scaffold(Color color) {
-    _scaffoldBackgroundColor = color;
-    notifyListeners();
-  }
+  // Color? _scaffoldBackgroundColor;
+  //
+  // Color get scaffoldBackgroundColor => _scaffoldBackgroundColor ?? Colors.white;
+  //
+  // set scaffold(Color color) {
+  //   _scaffoldBackgroundColor = color;
+  //   notifyListeners();
+  // }
 
   ThemeMode _mode = ThemeMode.light;
 

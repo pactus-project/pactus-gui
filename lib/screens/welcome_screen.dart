@@ -14,46 +14,51 @@ class WelcomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return WrapperPage(
         title: "Pactus",
-        content: Column(
-          children: [
-            gapH24,
-            Expanded(
-                child: Padding(
-                  padding: EdgeInsets.only(right: 120.0.w),
-                  child: Image.asset("assets/images/splash.png", filterQuality: FilterQuality.high, fit: BoxFit.fitWidth, ),
-                )),
-            gapH16,
-            Text("Welcome to the Future of Blockchain with Pactus!", style: FluentTheme.of(context).typography.bodyLarge!.copyWith(fontWeight: FontWeight.w900),),
-            gapH24,
-            Text("Where the future of blockchain unfolds with trust and transparency in every transaction\n\nJoin us in shaping a decentralized revolution!", textAlign: TextAlign.center, style: FluentTheme.of(context).typography.body!.copyWith(fontSize:16.sp,fontWeight: FontWeight.w200),),
-            gapH24,
-            SizedBox(
-              width: 200.w,
-              height: 40.h,
-              child: MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: Button(
-                  onPressed: () {
-                    context.go(InitialScreen.route);
-                  },
-                  style: ButtonStyle(
-                    backgroundColor:  ButtonState.resolveWith((states) {
-                      // If the button is pressed, return size 40, otherwise 20
-                      if (states.contains(ButtonStates.hovering)) {
-                        return Colors.blue.withOpacity(0.9);
-                      }
-                      return Colors.blue;
-                    }),
-                    // padding: ButtonState.all(EdgeInsets.symmetric(horizontal: 32.0.w, vertical: 12.0.h)),
+        content: SizedBox(
+          width: width,
+          height: height,
+          child: Column(
+            children: [
+              gapH24,
+              Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(right: 120.0.w),
+                    child: Image.asset("assets/images/splash.png", filterQuality: FilterQuality.high, fit: BoxFit.fitWidth, ),
+                  )),
+              gapH16,
+              Text("Welcome to the Future of Blockchain with Pactus!", style: FluentTheme.of(context).typography.bodyLarge!.copyWith(fontWeight: FontWeight.w900),),
+              gapH24,
+              Text("Where the future of blockchain unfolds with trust and transparency in every transaction\n\nJoin us in shaping a decentralized revolution!", textAlign: TextAlign.center, style: FluentTheme.of(context).typography.body!.copyWith(fontSize:16.sp,fontWeight: FontWeight.w200),),
+              gapH24,
+              SizedBox(
+                width: 200.w,
+                height: 40.h,
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: Button(
+                    onPressed: () {
+                      context.go(InitialScreen.route);
+                    },
+                    style: ButtonStyle(
+                      backgroundColor:  ButtonState.resolveWith((states) {
+                        // If the button is pressed, return size 40, otherwise 20
+                        if (states.contains(ButtonStates.hovering)) {
+                          return Colors.blue.withOpacity(0.9);
+                        }
+                        return Colors.blue;
+                      }),
+                      // padding: ButtonState.all(EdgeInsets.symmetric(horizontal: 32.0.w, vertical: 12.0.h)),
+                    ),
+                    child: Center(child: Text("Get Started", style: FluentTheme.of(context).typography.body!.copyWith(fontSize:16.sp,fontWeight: FontWeight.w800, color: Colors.white),)),
                   ),
-                  child: Center(child: Text("Get Started", style: FluentTheme.of(context).typography.body!.copyWith(fontSize:16.sp,fontWeight: FontWeight.w800, color: Colors.white),)),
                 ),
               ),
-            ),
-            gapH24,
-          ],
+              gapH24,
+            ],
+          ),
         ));
   }
 }

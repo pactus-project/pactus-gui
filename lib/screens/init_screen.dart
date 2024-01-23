@@ -2,7 +2,6 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:pactus/provider/slides_provider.dart';
 import 'package:pactus/provider/theme_provider.dart';
 import 'package:pactus/screens/welcome_screen.dart';
@@ -101,18 +100,29 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                 child: Row(
               children: [
                 //list
-                Container(
-                  width: 280.w,
-                  padding: const EdgeInsetsDirectional.symmetric(horizontal: 24.0, vertical: 24.0),
-                  child: ListView.builder(
-                    padding: EdgeInsets.zero,
-                    itemCount: restore ? listRestore.length : listEntries.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ListEntry(
-                        title: restore ? listRestore[index] : listEntries[index],
-                        selected: index <= slideIndex,
-                      );
-                    },
+                Padding(
+                  padding: EdgeInsets.only(top:35.0.w),
+                  child: SizedBox(
+                    width: 240.w,
+                    child: ListView.builder(
+                      padding: EdgeInsets.zero,
+                      itemCount: restore ? listRestore.length : listEntries.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          height: 40.h,
+                          width: 240.w,
+                          padding: EdgeInsetsDirectional.symmetric(horizontal: 20.w, vertical: 12.0.h),
+                          decoration: BoxDecoration(
+                            color: index <= slideIndex ? Colors.white : Colors.transparent,
+                          ),
+                          child: ListEntry(
+                            title: restore ? listRestore[index] : listEntries[index],
+                            selected: index <= slideIndex,
+                            bold: index == slideIndex,
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
                 Container(
@@ -145,7 +155,15 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                           child: Container(
                             width: double.infinity,
                             height: 80.h,
-                            color: theme.buttonBar,
+                            decoration: BoxDecoration(
+    color: theme.buttonBar,
+                              border: Border(
+                                top: BorderSide(
+                                  color: theme.separator.withOpacity(0.08),
+                                  width: 1,
+                                ),
+                              ),
+                            ),
                             padding: const EdgeInsetsDirectional.symmetric(horizontal: 20.0, vertical: 20.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -266,8 +284,9 @@ class _HomePageState extends ConsumerState<InitialScreen> {
 class ListEntry extends StatelessWidget {
   final String title;
   final bool selected;
+  final bool bold;
 
-  const ListEntry({super.key, required this.title, this.selected = false});
+  const ListEntry({super.key, required this.title, this.selected = false, this.bold = false});
 
   @override
   Widget build(BuildContext context) {
@@ -275,7 +294,7 @@ class ListEntry extends StatelessWidget {
       height: 40.h,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Opacity(opacity: selected ? 1.0 : 0.2, child: Text(title, style: GoogleFonts.inter(fontSize: 16.sp, fontWeight: selected ? FontWeight.w700 : FontWeight.w500))),
+        child: Opacity(opacity: selected ? 1.0 : 0.2, child: Text(title, style: TextStyle(fontSize: 16.sp, fontWeight: bold ? FontWeight.w600 : FontWeight.w400))),
       ),
     );
   }

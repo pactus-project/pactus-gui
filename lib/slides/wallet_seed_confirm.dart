@@ -103,21 +103,23 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
                       ),
                       child: Row(
                         children: [
-                          Text("${index + 1}. ", style: TextStyle(color: theme.mnemonicText, fontSize: 18.sp, fontWeight: FontWeight.w900)),
+                          Text("${index + 1}. ", style: TextStyle(color: theme.mnemonicText, fontSize: 18.sp, fontWeight: FontWeight.w500)),
                           gapW4,
                           Expanded(
                             child: Align(
                               alignment: Alignment.center,
                               child: EditableText(
+                                contentInsertionConfiguration: ContentInsertionConfiguration(
+                                  onContentInserted: (text) {
+                                    controllers[index].clear();
+                                  },
+                                ),
                                 cursorColor: theme.cursorColor,
                                 backgroundCursorColor: Colors.grey.withOpacity(0.5),
-                                // padding: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 4.h),
                                 focusNode: focusNodes[index]!,
-                                // enabled: failNodes[index],
                                 expands: false,
                                 minLines: 1,
                                 maxLines: 1,
-                                // highlightColor: Colors.transparent,
                                 style: TextStyle(color: theme.mnemonicText, fontSize: 13.h, fontWeight: FontWeight.w500),
                                 controller: controllers[index],
                                 onChanged: (text) {
@@ -153,7 +155,7 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
                                 child: Text(
                                   "${index + 1}. ${words[index]}",
                                   textAlign: TextAlign.start,
-                                  style: TextStyle(color: theme.mnemonicText, fontSize: 20.sp, fontWeight: FontWeight.w900),
+                                  style: TextStyle(color: theme.mnemonicText, fontSize: 20.sp, fontWeight: FontWeight.w500),
                                 ))));
                   }
                 }),
