@@ -22,14 +22,15 @@ class WrapperPage extends ConsumerStatefulWidget {
 class _MyHomePageState extends ConsumerState<WrapperPage> {
   final viewKey = GlobalKey(debugLabel: 'Navigation View Key');
   get router => ref.read(goRouterProvider);
-  get appTheme => ref.read(appThemeProvider);
+  // get theme => ref.read(themeProvider);
   @override
   Widget build(BuildContext context) {
+    final theme = ref.watch(appThemeProvider);
     return NavigationView(
       key: viewKey,
       appBar: NavigationAppBar(
         height: PlatformDetect.isMacOS ? 40 : 50,
-        backgroundColor: appTheme.navigationBarBackground,
+        backgroundColor: theme.navigationBarBackground,
         automaticallyImplyLeading: false,
         // title: PlatformDetect.isMacOS ? null :  Text(widget.title),
         leading: PlatformDetect.isMacOS ? null : Image.asset("assets/icons/logo.png", height: 30, width: 30, filterQuality: FilterQuality.high),
@@ -58,22 +59,22 @@ class _MyHomePageState extends ConsumerState<WrapperPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Image.asset("assets/icons/sun.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.light ? Colors.transparent : Colors.white.withOpacity(0.8),),
+                    Image.asset("assets/icons/sun.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: theme.mode == ThemeMode.light ? Colors.transparent : Colors.white.withOpacity(0.8),),
 
                     gapW16,
                     ToggleSwitch(
-                      // content: Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.dark ? Colors.white.withOpacity(0.5) : null,),
+                      // content: Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: theme.mode == ThemeMode.dark ? Colors.white.withOpacity(0.5) : null,),
                       checked: FluentTheme.of(context).brightness.isDark,
                       onChanged: (v) {
                         if (v) {
-                          appTheme.mode = ThemeMode.dark;
+                          theme.mode = ThemeMode.dark;
                         } else {
-                          appTheme.mode = ThemeMode.light;
+                          theme.mode = ThemeMode.light;
                         }
                       },
                     ),
                     gapW16,
-                    Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.dark ? Colors.transparent : null,),
+                    Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: theme.mode == ThemeMode.dark ? Colors.transparent : null,),
 
                   ],
                 ),
@@ -82,22 +83,22 @@ class _MyHomePageState extends ConsumerState<WrapperPage> {
             if (!PlatformDetect.isMacOS || kIsWeb) Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Image.asset("assets/icons/sun.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.light ? Colors.transparent : Colors.white.withOpacity(0.8),),
+                Image.asset("assets/icons/sun.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: theme.mode == ThemeMode.light ? Colors.transparent : Colors.white.withOpacity(0.8),),
 
                 gapW16,
                 ToggleSwitch(
-                  // content: Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.dark ? Colors.white.withOpacity(0.5) : null,),
+                  // content: Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: theme.mode == ThemeMode.dark ? Colors.white.withOpacity(0.5) : null,),
                   checked: FluentTheme.of(context).brightness.isDark,
                   onChanged: (v) {
                     if (v) {
-                      appTheme.mode = ThemeMode.dark;
+                      theme.mode = ThemeMode.dark;
                     } else {
-                      appTheme.mode = ThemeMode.light;
+                      theme.mode = ThemeMode.light;
                     }
                   },
                 ),
                 gapW16,
-                Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: appTheme.mode == ThemeMode.dark ? Colors.transparent : null,),
+                Image.asset("assets/icons/moon.png", height: 20, width: 20, filterQuality: FilterQuality.high, color: theme.mode == ThemeMode.dark ? Colors.transparent : null,),
           gapW8,
                 const WindowButtons(),
               ],
@@ -106,6 +107,7 @@ class _MyHomePageState extends ConsumerState<WrapperPage> {
         ),
       ),
       content: Container(
+          color: theme.backgroungColor,
           child: widget.content),
     );
   }

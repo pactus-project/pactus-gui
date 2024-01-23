@@ -92,20 +92,20 @@ class _MyAppState extends ConsumerState<MyApp> {
       debugShowCheckedModeBanner: false,
       color: appTheme.color,
       darkTheme: FluentThemeData(
-        fontFamily: GoogleFonts.inter().fontFamily,
+        fontFamily: 'Inter',
         brightness: Brightness.dark,
         accentColor: appTheme.color,
-        micaBackgroundColor: appTheme.scaffoldBackgroundColor,
-        inactiveBackgroundColor: appTheme.scaffoldBackgroundColor,
+        // micaBackgroundColor: appTheme.backgroungColor,
+        inactiveBackgroundColor: appTheme.backgroungColor,
         visualDensity: VisualDensity.standard,
         focusTheme: FocusThemeData(
           glowFactor: is10footScreen(context) ? 2.0 : 0.0,
         ),
       ),
       theme: FluentThemeData(
-        fontFamily: GoogleFonts.inter().fontFamily,
-        accentColor: appTheme.color,
-        inactiveBackgroundColor: appTheme.scaffoldBackgroundColor,
+        fontFamily: 'Inter',
+        // accentColor: appTheme.color,
+        // inactiveBackgroundColor: appTheme.backgroungColor,
         visualDensity: VisualDensity.standard,
         focusTheme: FocusThemeData(
           glowFactor: is10footScreen(context) ? 2.0 : 0.0,
