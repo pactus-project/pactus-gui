@@ -192,11 +192,10 @@ class _WalletSeedSlideState extends ConsumerState<WalletSeedSlide> {
     );
     mnemonic = m.words;
     mnemonicString = m.sentence;
-    setState(() {
 
-    });
     context.afterBuild(() {
       ref.read(seedProvider.notifier).state = mnemonic;
+      setState(() {});
     });
 
   }
