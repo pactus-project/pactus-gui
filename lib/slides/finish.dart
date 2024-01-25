@@ -74,7 +74,7 @@ mere participants to guardians of the blockchain, an essential facet of the Pact
                           if (states.contains(ButtonStates.hovering)) {
                             return Colors.blue.withOpacity(0.8);
                           }
-                          return Color(0xFF0066B4);
+                          return const Color(0xFF0066B4);
                         }),
                         // padding: ButtonState.all(EdgeInsets.symmetric(horizontal: 32.0.w, vertical: 12.0.h)),
                       ),
