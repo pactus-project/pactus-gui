@@ -1,11 +1,14 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pactus/provider/slides_provider.dart';
 import 'package:pactus/provider/theme_provider.dart';
 import 'package:pactus/screens/welcome_screen.dart';
+import 'package:pactus/slides/finish.dart';
 import 'package:pactus/slides/initialize_mode.dart';
+import 'package:pactus/slides/initializing.dart';
 import 'package:pactus/slides/master_password.dart';
 import 'package:pactus/slides/number_validators.dart';
 import 'package:pactus/slides/wallet_seed.dart';
@@ -51,6 +54,12 @@ class _HomePageState extends ConsumerState<InitialScreen> {
     const NumberValidatorsSlide(
       key: ValueKey<String>('Validator Config'),
     ),
+    const InitializingSlide(
+      key: ValueKey<String>('Initialization'),
+    ),
+    const FinishSlide(
+      key: ValueKey<String>('Finish'),
+    ),
   ];
 
   List<Widget> slidesRestore = [
@@ -65,6 +74,12 @@ class _HomePageState extends ConsumerState<InitialScreen> {
     ),
     const NumberValidatorsSlide(
       key: ValueKey<String>('Validator Config'),
+    ),
+    const InitializingSlide(
+      key: ValueKey<String>('Initialization'),
+    ),
+    const FinishSlide(
+      key: ValueKey<String>('Finish'),
     ),
   ];
 
@@ -113,7 +128,7 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                           width: 240.w,
                           padding: EdgeInsetsDirectional.symmetric(horizontal: 20.w, vertical: 12.0.h),
                           decoration: BoxDecoration(
-                            color: index <= slideIndex ? Colors.white : Colors.transparent,
+                            color: index <= slideIndex ? theme.isLightTheme(context) ? Colors.white : const Color(0xFF323232) : Colors.transparent,
                           ),
                           child: ListEntry(
                             title: restore ? listRestore[index] : listEntries[index],
@@ -150,99 +165,102 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                           ),
                         ),
                       ),
-                      Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Container(
-                            width: double.infinity,
-                            height: 80.h,
-                            decoration: BoxDecoration(
-    color: theme.buttonBar,
-                              border: Border(
-                                top: BorderSide(
-                                  color: theme.separator.withOpacity(0.08),
-                                  width: 1,
+                      Visibility(
+                        visible: restore? slideIndex != 5 :slideIndex != 6,
+                        child: Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Container(
+                              width: double.infinity,
+                              height: 80.h,
+                              decoration: BoxDecoration(
+                            color: theme.buttonBar,
+                                border: Border(
+                                  top: BorderSide(
+                                    color: theme.separator.withOpacity(0.08),
+                                    width: 1,
+                                  ),
                                 ),
                               ),
-                            ),
-                            padding: const EdgeInsetsDirectional.symmetric(horizontal: 20.0, vertical: 20.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                slideIndex == 0
-                                    ? const SizedBox()
-                                    : SizedBox(
+                              padding: const EdgeInsetsDirectional.symmetric(horizontal: 20.0, vertical: 20.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  slideIndex == 0
+                                      ? const SizedBox()
+                                      : SizedBox(
+                                          width: 96.w,
+                                          child: Button(
+                                            onPressed: () {
+                                              if (slideIndex == 0) {
+                                                context.go(WelcomeScreen.route);
+                                              } else {
+                                                setState(() {
+                                                  ref.read(nextButtonDisableProvider.notifier).state = false;
+                                                });
+                                                goBack(ref, pageController);
+                                              }
+                                            },
+                                            child: const Text('Back'),
+                                          ),
+                                        ),
+                                  //skip button
+                                  Row(
+                                    children: [
+                                      if (slideIndex == 3 && radioValue == 0)
+                                        Button(
+                                          style: ButtonStyle(
+                                            backgroundColor:  ButtonState.resolveWith((states) {
+                                              if (buttonControl) {
+                                                return Colors.grey.withOpacity(0.2);
+                                              }
+                                              if (states.contains(ButtonStates.hovering)) {
+                                                return Colors.grey.withOpacity(0.05);
+                                              }
+                                              return Colors.transparent;
+                                            }),
+                                            foregroundColor: ButtonState.all<Color>(Colors.blue),
+                                            shape: ButtonState.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+                                          ),
+                                          onPressed: () {
+                                            // ref.read(slideProvider.notifier).state++;
+                                            ref.read(nextButtonDisableProvider.notifier).state = false;
+                                            goForward(ref, pageController);
+                                          },
+                                          child: const Text('Skip'),
+                                        ),
+                                      gapW16,
+                                      SizedBox(
                                         width: 96.w,
                                         child: Button(
-                                          onPressed: () {
-                                            if (slideIndex == 0) {
-                                              context.go(WelcomeScreen.route);
-                                            } else {
-                                              setState(() {
-                                                ref.read(nextButtonDisableProvider.notifier).state = false;
-                                              });
-                                              goBack(ref, pageController);
-                                            }
-                                          },
-                                          child: const Text('Back'),
+                                          onPressed: buttonControl
+                                              ? null
+                                              : () {
+                                                  goForward(ref, pageController);
+                                                },
+                                          style: ButtonStyle(
+                                            // backgroundColor: ButtonState.all<Color>(buttonControl ? Colors.grey.withOpacity(0.1) : Colors.blue),
+                                            backgroundColor: ButtonState.resolveWith((states) {
+                                              if (buttonControl) {
+                                                return Colors.grey.withOpacity(0.1);
+                                              }
+                                              if (states.contains(ButtonStates.hovering)) {
+                                                return Colors.blue.lightest;
+                                              }
+                                              return Colors.blue;
+                                            }),
+                                            foregroundColor: ButtonState.all<Color>(buttonControl ? Colors.black.withOpacity(0.1) : Colors.white),
+                                          ),
+                                          child: const Text('Next'),
                                         ),
                                       ),
-                                //skip button
-                                Row(
-                                  children: [
-                                    if (slideIndex == 3 && radioValue == 0)
-                                      Button(
-                                        style: ButtonStyle(
-                                          backgroundColor:  ButtonState.resolveWith((states) {
-                                            if (buttonControl) {
-                                              return Colors.grey.withOpacity(0.2);
-                                            }
-                                            if (states.contains(ButtonStates.hovering)) {
-                                              return Colors.grey.withOpacity(0.05);
-                                            }
-                                            return Colors.transparent;
-                                          }),
-                                          foregroundColor: ButtonState.all<Color>(Colors.blue),
-                                          shape: ButtonState.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
-                                        ),
-                                        onPressed: () {
-                                          // ref.read(slideProvider.notifier).state++;
-                                          ref.read(nextButtonDisableProvider.notifier).state = false;
-                                          goForward(ref, pageController);
-                                        },
-                                        child: const Text('Skip'),
-                                      ),
-                                    gapW16,
-                                    SizedBox(
-                                      width: 96.w,
-                                      child: Button(
-                                        onPressed: buttonControl
-                                            ? null
-                                            : () {
-                                                goForward(ref, pageController);
-                                              },
-                                        style: ButtonStyle(
-                                          // backgroundColor: ButtonState.all<Color>(buttonControl ? Colors.grey.withOpacity(0.1) : Colors.blue),
-                                          backgroundColor:  ButtonState.resolveWith((states) {
-                                            if (buttonControl) {
-                                              return Colors.grey.withOpacity(0.1);
-                                            }
-                                            if (states.contains(ButtonStates.hovering)) {
-                                              return Colors.blue.lightest;
-                                            }
-                                            return Colors.blue;
-                                          }),
-                                          foregroundColor: ButtonState.all<Color>(buttonControl ? Colors.black.withOpacity(0.1) : Colors.white),
-                                        ),
-                                        child: const Text('Next'),
-                                      ),
+                                    ],
                                     ),
-                                  ],
-                                  ),
 
-                              ],
-                            ),
-                          )),
+                                ],
+                              ),
+                            )),
+                      ),
                     ],
                   ),
                   // Your buttons or gestures to change the slide index
@@ -267,7 +285,7 @@ class _HomePageState extends ConsumerState<InitialScreen> {
   }
 
   void goForward(WidgetRef ref, PageController pageController, {int? page}) {
-    final currentIndex = ref.read(slideProvider.notifier).state;
+    final currentIndex =  ref.read(slideProvider.notifier).state;
     final newIndex = page ?? currentIndex + 1;
     if (newIndex < slides.length) {
       pageController.animateToPage(

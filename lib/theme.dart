@@ -105,6 +105,10 @@ class AppTheme extends ChangeNotifier {
         : const Color(0xFFF0F0F0);
   }
 
+  bool isLightTheme(BuildContext context) {
+    return _mode == ThemeMode.light;
+  }
+
   Color get separator => _mode == ThemeMode.dark || _mode == ThemeMode.system ? Colors.white.withOpacity(0.2) : Colors.black.withOpacity(0.1);
 
   Color get buttonBar => _mode == ThemeMode.dark || _mode == ThemeMode.system ? Colors.black.withOpacity(0.2) : Colors.white;
