@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pactus/screens/dashboard_screen.dart';
 import 'package:pactus/screens/init_screen.dart';
 import 'package:pactus/screens/welcome_screen.dart';
 
@@ -37,6 +38,15 @@ final goRouterProvider = Provider<GoRouter>((ref) {
               context: context,
               state: state,
               child: const InitialScreen(),
+            ),
+          ),
+          GoRoute(
+            path: 'dashboard',
+            name: DashboardScreen.route,
+            pageBuilder: (context, state) => fadeRouteTransition<void>(
+              context: context,
+              state: state,
+              child: const DashboardScreen(),
             ),
           ),
         ],

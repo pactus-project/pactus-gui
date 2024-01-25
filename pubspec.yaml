@@ -23,6 +23,7 @@ dependencies:
   google_fonts: ^6.1.0
   bip39_mnemonic: ^3.0.6
   collection: ^1.18.0
+  file_picker: ^6.1.1
 
 dev_dependencies:
   flutter_test:

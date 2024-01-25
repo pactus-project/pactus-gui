@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pactus/screen_wrapper/wrapper_screen.dart';
+import 'package:pactus/screens/dashboard_screen.dart';
 import 'package:pactus/screens/init_screen.dart';
 import 'package:pactus/support/app_sizes.dart';
 

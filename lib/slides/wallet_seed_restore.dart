@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pactus/provider/button_control_provider.dart';
-import 'package:pactus/provider/seed_provider.dart';
 import 'package:pactus/provider/theme_provider.dart';
 import 'package:pactus/support/app_sizes.dart';
 import 'package:pactus/support/extensions.dart';
