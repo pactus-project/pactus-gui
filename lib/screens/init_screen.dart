@@ -1,5 +1,6 @@
+import 'dart:io';
+
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -96,6 +97,36 @@ class _HomePageState extends ConsumerState<InitialScreen> {
           }
         });
       });
+      _runDaemon();
+    });
+  }
+
+  _runDaemon() async {
+    print(Platform.environment['HOME']);
+    String mainPath = Platform.resolvedExecutable;
+    mainPath = mainPath.substring(0, mainPath.lastIndexOf("/"));
+    mainPath = mainPath.substring(0, mainPath.lastIndexOf("/"));
+    mainPath = "$mainPath/Resources";
+    Directory directoryExe = Directory(mainPath);
+    List<FileSystemEntity> files = directoryExe.listSync();
+    ProcessResult? res;
+    for (FileSystemEntity file in files) {
+      if (file.path.contains("pactus-daemon")) {
+        // res = await Process.run(file.path, ["init", "-w", "${Platform.environment['HOME']!}/wallet",
+        //   "--restore", "rate twin faculty success rather crucial parrot output toy quiz reason tumble", "--val-num", "7", "-p", "12345678"]);
+        res = await Process.run(file.path, ["start", "-w", "${Platform.environment['HOME']!}/wallet", "-p", "12345678"]);
+        print(res.stdout);
+      }
+    }
+
+    Future.delayed(const Duration(seconds: 15), (){
+      try {
+        int pid= int.parse(res!.pid.toString());
+        Process.killPid(pid);
+        print("Killed");
+      } catch (e) {
+        print(e);
+      }
     });
   }
 
@@ -113,160 +144,160 @@ class _HomePageState extends ConsumerState<InitialScreen> {
           children: [
             Expanded(
                 child: Row(
-              children: [
-                //list
-                Padding(
-                  padding: EdgeInsets.only(top:35.0.w),
-                  child: SizedBox(
-                    width: 240.w,
-                    child: ListView.builder(
-                      padding: EdgeInsets.zero,
-                      itemCount: restore ? listRestore.length : listEntries.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Container(
-                          height: 40.h,
-                          width: 240.w,
-                          padding: EdgeInsetsDirectional.symmetric(horizontal: 20.w, vertical: 12.0.h),
-                          decoration: BoxDecoration(
-                            color: index <= slideIndex ? theme.isLightTheme(context) ? Colors.white : const Color(0xFF323232) : Colors.transparent,
-                          ),
-                          child: ListEntry(
-                            title: restore ? listRestore[index] : listEntries[index],
-                            selected: index <= slideIndex,
-                            bold: index == slideIndex,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-                Container(
-                  height: height,
-                  width: 1,
-                  color: theme.separator,
-                ),
-                // Content
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding:  EdgeInsetsDirectional.symmetric(horizontal: 30.0.w, vertical: 30.0.h),
-                          child: PageView.builder(
-                            controller: pageController,
-                            itemCount: restore ? slidesRestore.length : slides.length,
-                            onPageChanged: (int index) {
-                              ref.read(slideProvider.notifier).state = index;
-                            },
-                            itemBuilder: (context, index) {
-                              return restore ? slidesRestore[index] : slides[index];
-                            },
-                          ),
+                  children: [
+                    //list
+                    Padding(
+                      padding: EdgeInsets.only(top:35.0.w),
+                      child: SizedBox(
+                        width: 240.w,
+                        child: ListView.builder(
+                          padding: EdgeInsets.zero,
+                          itemCount: restore ? listRestore.length : listEntries.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Container(
+                              height: 40.h,
+                              width: 240.w,
+                              padding: EdgeInsetsDirectional.symmetric(horizontal: 20.w, vertical: 12.0.h),
+                              decoration: BoxDecoration(
+                                color: index <= slideIndex ? theme.isLightTheme(context) ? Colors.white : const Color(0xFF323232) : Colors.transparent,
+                              ),
+                              child: ListEntry(
+                                title: restore ? listRestore[index] : listEntries[index],
+                                selected: index <= slideIndex,
+                                bold: index == slideIndex,
+                              ),
+                            );
+                          },
                         ),
                       ),
-                      Visibility(
-                        visible: restore? slideIndex != 5 :slideIndex != 6,
-                        child: Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Container(
-                              width: double.infinity,
-                              height: 80.h,
-                              decoration: BoxDecoration(
-                            color: theme.buttonBar,
-                                border: Border(
-                                  top: BorderSide(
-                                    color: theme.separator.withOpacity(0.08),
-                                    width: 1,
-                                  ),
-                                ),
+                    ),
+                    Container(
+                      height: height,
+                      width: 1,
+                      color: theme.separator,
+                    ),
+                    // Content
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding:  EdgeInsetsDirectional.symmetric(horizontal: 30.0.w, vertical: 30.0.h),
+                              child: PageView.builder(
+                                controller: pageController,
+                                itemCount: restore ? slidesRestore.length : slides.length,
+                                onPageChanged: (int index) {
+                                  ref.read(slideProvider.notifier).state = index;
+                                },
+                                itemBuilder: (context, index) {
+                                  return restore ? slidesRestore[index] : slides[index];
+                                },
                               ),
-                              padding: const EdgeInsetsDirectional.symmetric(horizontal: 20.0, vertical: 20.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  slideIndex == 0
-                                      ? const SizedBox()
-                                      : SizedBox(
-                                          width: 96.w,
-                                          child: Button(
-                                            onPressed: () {
-                                              if (slideIndex == 0) {
-                                                context.go(WelcomeScreen.route);
-                                              } else {
-                                                setState(() {
-                                                  ref.read(nextButtonDisableProvider.notifier).state = false;
-                                                });
-                                                goBack(ref, pageController);
-                                              }
-                                            },
-                                            child: const Text('Back'),
-                                          ),
-                                        ),
-                                  //skip button
-                                  Row(
+                            ),
+                          ),
+                          Visibility(
+                            visible: restore? slideIndex != 5 :slideIndex != 6,
+                            child: Align(
+                                alignment: Alignment.bottomLeft,
+                                child: Container(
+                                  width: double.infinity,
+                                  height: 80.h,
+                                  decoration: BoxDecoration(
+                                    color: theme.buttonBar,
+                                    border: Border(
+                                      top: BorderSide(
+                                        color: theme.separator.withOpacity(0.08),
+                                        width: 1,
+                                      ),
+                                    ),
+                                  ),
+                                  padding: const EdgeInsetsDirectional.symmetric(horizontal: 20.0, vertical: 20.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
-                                      if (slideIndex == 3 && radioValue == 0)
-                                        Button(
-                                          style: ButtonStyle(
-                                            backgroundColor:  ButtonState.resolveWith((states) {
-                                              if (buttonControl) {
-                                                return Colors.grey.withOpacity(0.2);
-                                              }
-                                              if (states.contains(ButtonStates.hovering)) {
-                                                return Colors.grey.withOpacity(0.05);
-                                              }
-                                              return Colors.transparent;
-                                            }),
-                                            foregroundColor: ButtonState.all<Color>(Colors.blue),
-                                            shape: ButtonState.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
-                                          ),
-                                          onPressed: () {
-                                            // ref.read(slideProvider.notifier).state++;
-                                            ref.read(nextButtonDisableProvider.notifier).state = false;
-                                            goForward(ref, pageController);
-                                          },
-                                          child: const Text('Skip'),
-                                        ),
-                                      gapW16,
-                                      SizedBox(
+                                      slideIndex == 0
+                                          ? const SizedBox()
+                                          : SizedBox(
                                         width: 96.w,
                                         child: Button(
-                                          onPressed: buttonControl
-                                              ? null
-                                              : () {
-                                                  goForward(ref, pageController);
-                                                },
-                                          style: ButtonStyle(
-                                            // backgroundColor: ButtonState.all<Color>(buttonControl ? Colors.grey.withOpacity(0.1) : Colors.blue),
-                                            backgroundColor: ButtonState.resolveWith((states) {
-                                              if (buttonControl) {
-                                                return Colors.grey.withOpacity(0.1);
-                                              }
-                                              if (states.contains(ButtonStates.hovering)) {
-                                                return Colors.blue.lightest;
-                                              }
-                                              return Colors.blue;
-                                            }),
-                                            foregroundColor: ButtonState.all<Color>(buttonControl ? Colors.black.withOpacity(0.1) : Colors.white),
-                                          ),
-                                          child: const Text('Next'),
+                                          onPressed: () {
+                                            if (slideIndex == 0) {
+                                              context.go(WelcomeScreen.route);
+                                            } else {
+                                              setState(() {
+                                                ref.read(nextButtonDisableProvider.notifier).state = false;
+                                              });
+                                              goBack(ref, pageController);
+                                            }
+                                          },
+                                          child: const Text('Back'),
                                         ),
                                       ),
-                                    ],
-                                    ),
+                                      //skip button
+                                      Row(
+                                        children: [
+                                          if (slideIndex == 3 && radioValue == 0)
+                                            Button(
+                                              style: ButtonStyle(
+                                                backgroundColor:  ButtonState.resolveWith((states) {
+                                                  if (buttonControl) {
+                                                    return Colors.grey.withOpacity(0.2);
+                                                  }
+                                                  if (states.contains(ButtonStates.hovering)) {
+                                                    return Colors.grey.withOpacity(0.05);
+                                                  }
+                                                  return Colors.transparent;
+                                                }),
+                                                foregroundColor: ButtonState.all<Color>(Colors.blue),
+                                                shape: ButtonState.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+                                              ),
+                                              onPressed: () {
+                                                // ref.read(slideProvider.notifier).state++;
+                                                ref.read(nextButtonDisableProvider.notifier).state = false;
+                                                goForward(ref, pageController);
+                                              },
+                                              child: const Text('Skip'),
+                                            ),
+                                          gapW16,
+                                          SizedBox(
+                                            width: 96.w,
+                                            child: Button(
+                                              onPressed: buttonControl
+                                                  ? null
+                                                  : () {
+                                                goForward(ref, pageController);
+                                              },
+                                              style: ButtonStyle(
+                                                // backgroundColor: ButtonState.all<Color>(buttonControl ? Colors.grey.withOpacity(0.1) : Colors.blue),
+                                                backgroundColor: ButtonState.resolveWith((states) {
+                                                  if (buttonControl) {
+                                                    return Colors.grey.withOpacity(0.1);
+                                                  }
+                                                  if (states.contains(ButtonStates.hovering)) {
+                                                    return Colors.blue.lightest;
+                                                  }
+                                                  return Colors.blue;
+                                                }),
+                                                foregroundColor: ButtonState.all<Color>(buttonControl ? Colors.black.withOpacity(0.1) : Colors.white),
+                                              ),
+                                              child: const Text('Next'),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
 
-                                ],
-                              ),
-                            )),
+                                    ],
+                                  ),
+                                )),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  // Your buttons or gestures to change the slide index
-                )
-              ],
-            ))
+                      // Your buttons or gestures to change the slide index
+                    )
+                  ],
+                ))
           ],
         ));
   }
