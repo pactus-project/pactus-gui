@@ -68,49 +68,54 @@ class _NumberValidatorsSlide extends ConsumerState<NumberValidatorsSlide> {
           "Setting Your Path to Decentralized Consensus with Precision and Scalability",
           style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300, color: theme.textColor.withOpacity(0.5)),
         ),
-        gapH32,
-        Text(
-          "Working directory",
-          style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400, color: theme.textColor.withOpacity(0.5)),
-        ),
-        gapH8,
-        Row(
+        if(!Platform.isMacOS)
+        Column(
           children: [
-            Expanded(
-              child: TextBox(
-                controller: controller,
-                focusNode: FocusNode(),
-                style: const TextStyle(),
-                cursorColor: theme.isLightTheme(context) ? Colors.black : Colors.white,
-                // backgroundCursorColor: theme.isLightTheme(context) ? Colors.white : Colors.white
-              ),
+            gapH32,
+            Text(
+              "Working directory",
+              style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400, color: theme.textColor.withOpacity(0.5)),
             ),
-            gapW8,
-            Button(
-                style: ButtonStyle(
-                  padding: ButtonState.all(EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 8.0.h)),
-                  backgroundColor: ButtonState.resolveWith((states) {
-                    // If the button is pressed, return size 40, otherwise 20
-                    if (states.contains(ButtonStates.hovering)) {
-                      return Colors.blue.withOpacity(0.8);
-                    }
-                    return Colors.blue;
-                  }),
-                  // padding: ButtonState.all(EdgeInsets.symmetric(horizontal: 32.0.w, vertical: 12.0.h)),
+            gapH8,
+            Row(
+              children: [
+                Expanded(
+                  child: TextBox(
+                    controller: controller,
+                    focusNode: FocusNode(),
+                    style: const TextStyle(),
+                    cursorColor: theme.isLightTheme(context) ? Colors.black : Colors.white,
+                    // backgroundCursorColor: theme.isLightTheme(context) ? Colors.white : Colors.white
+                  ),
                 ),
-                child: Text(
-                  'Select folder',
-                  style: TextStyle(color: theme.isLightTheme(context) ? Colors.white : Colors.black, fontSize: 16.sp),
-                ),
-                onPressed: () async {
-                  String? result = await FilePicker.platform.getDirectoryPath();
+                gapW8,
+                Button(
+                    style: ButtonStyle(
+                      padding: ButtonState.all(EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 8.0.h)),
+                      backgroundColor: ButtonState.resolveWith((states) {
+                        // If the button is pressed, return size 40, otherwise 20
+                        if (states.contains(ButtonStates.hovering)) {
+                          return Colors.blue.withOpacity(0.8);
+                        }
+                        return Colors.blue;
+                      }),
+                      // padding: ButtonState.all(EdgeInsets.symmetric(horizontal: 32.0.w, vertical: 12.0.h)),
+                    ),
+                    child: Text(
+                      'Select folder',
+                      style: TextStyle(color: theme.isLightTheme(context) ? Colors.white : Colors.black, fontSize: 16.sp),
+                    ),
+                    onPressed: () async {
+                      String? result = await FilePicker.platform.getDirectoryPath();
 
-                  if (result != null) {
-                    controller.text = result;
-                  } else {
-                    // Do something else...
-                  }
-                }),
+                      if (result != null) {
+                        controller.text = result;
+                      } else {
+                        // Do something else...
+                      }
+                    }),
+              ],
+            ),
           ],
         ),
         gapH32,
