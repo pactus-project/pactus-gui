@@ -28,6 +28,8 @@
 		33CC10F62044A3C60003C045 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CC10F42044A3C60003C045 /* MainMenu.xib */; };
 		33CC11132044BFA00003C045 /* MainFlutterWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CC11122044BFA00003C045 /* MainFlutterWindow.swift */; };
 		4EF50AC0A513361100ADF0B8 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79DA35F9038D891E1D758DF8 /* Pods_Runner.framework */; };
+		546EBC742B6EAE75003FCEA6 /* pactus-daemon in Resources */ = {isa = PBXBuildFile; fileRef = 546EBC6F2B6EAC7F003FCEA6 /* pactus-daemon */; };
+		546EBC752B6EAE75003FCEA6 /* pactus-wallet in Resources */ = {isa = PBXBuildFile; fileRef = 546EBC6E2B6EAC7E003FCEA6 /* pactus-wallet */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,8 @@
 		33E51913231747F40026EE4D /* DebugProfile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DebugProfile.entitlements; sourceTree = "<group>"; };
 		33E51914231749380026EE4D /* Release.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Release.entitlements; sourceTree = "<group>"; };
 		33E5194F232828860026EE4D /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
+		546EBC6E2B6EAC7E003FCEA6 /* pactus-wallet */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "pactus-wallet"; sourceTree = "<group>"; };
+		546EBC6F2B6EAC7F003FCEA6 /* pactus-daemon */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "pactus-daemon"; sourceTree = "<group>"; };
 		79DA35F9038D891E1D758DF8 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
@@ -157,6 +161,8 @@
 		33CC11242044D66E0003C045 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				546EBC6F2B6EAC7F003FCEA6 /* pactus-daemon */,
+				546EBC6E2B6EAC7E003FCEA6 /* pactus-wallet */,
 				33CC10F22044A3C60003C045 /* Assets.xcassets */,
 				33CC10F42044A3C60003C045 /* MainMenu.xib */,
 				33CC10F72044A3C60003C045 /* Info.plist */,
@@ -248,7 +254,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 1510;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					331C80D4294CF70F00263BE5 = {
@@ -303,6 +309,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				546EBC742B6EAE75003FCEA6 /* pactus-daemon in Resources */,
+				546EBC752B6EAE75003FCEA6 /* pactus-wallet in Resources */,
 				33CC10F32044A3C60003C045 /* Assets.xcassets in Resources */,
 				33CC10F62044A3C60003C045 /* MainMenu.xib in Resources */,
 			);

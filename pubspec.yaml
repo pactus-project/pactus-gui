@@ -15,15 +15,16 @@ dependencies:
   fluent_ui: ^4.8.5
   protobuf: ^3.1.0
   cupertino_icons: ^1.0.6
-  window_manager: ^0.3.7
+  window_manager: ^0.3.8
   flutter_acrylic: ^1.1.3
-  go_router: ^13.0.1
-  flutter_riverpod: ^2.4.9
+  go_router: ^13.1.0
+  flutter_riverpod: ^2.4.10
   flutter_screenutil: ^5.9.0
   google_fonts: ^6.1.0
   bip39_mnemonic: ^3.0.6
   collection: ^1.18.0
   file_picker: ^6.1.1
+  path_provider: ^2.1.2
 
 dev_dependencies:
   flutter_test:
