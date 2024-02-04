@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pactus/provider/button_control_provider.dart';
 import 'package:pactus/provider/theme_provider.dart';
+import 'package:pactus/provider/validator_provider.dart';
 import 'package:pactus/support/app_sizes.dart';
 import 'package:pactus/support/extensions.dart';
 
@@ -27,7 +28,16 @@ class _NumberValidatorsSlide extends ConsumerState<NumberValidatorsSlide> {
     controller.text = _homeDirectory() ?? "";
     context.afterBuild(() {
       ref.read(nextButtonDisableProvider.notifier).state = false;
+      controller.addListener(() {
+        ref.read(dataPathProvider.notifier).state = controller.text;
+      });
     });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   String? _homeDirectory() {
@@ -38,7 +48,7 @@ class _NumberValidatorsSlide extends ConsumerState<NumberValidatorsSlide> {
       case 'windows':
         return Platform.environment['USERPROFILE'];
       case 'android':
-      // Probably want internal storage.
+        // Probably want internal storage.
         return '/storage/sdcard0';
       case 'ios':
       // iOS doesn't really have a home directory.
@@ -53,8 +63,8 @@ class _NumberValidatorsSlide extends ConsumerState<NumberValidatorsSlide> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
+    // final height = MediaQuery.of(context).size.height;
+    // final width = MediaQuery.of(context).size.width;
     final theme = ref.watch(appThemeProvider);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,32 +101,33 @@ class _NumberValidatorsSlide extends ConsumerState<NumberValidatorsSlide> {
                 gapW8,
                 Button(
                     style: ButtonStyle(
-                      padding: ButtonState.all(EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 8.0.h)),
-                      backgroundColor: ButtonState.resolveWith((states) {
-                        // If the button is pressed, return size 40, otherwise 20
-                        if (states.contains(ButtonStates.hovering)) {
-                          return Colors.blue.withOpacity(0.8);
-                        }
-                        return Colors.blue;
-                      }),
-                      // padding: ButtonState.all(EdgeInsets.symmetric(horizontal: 32.0.w, vertical: 12.0.h)),
-                    ),
-                    child: Text(
-                      'Select folder',
-                      style: TextStyle(color: theme.isLightTheme(context) ? Colors.white : Colors.black, fontSize: 16.sp),
-                    ),
-                    onPressed: () async {
-                      String? result = await FilePicker.platform.getDirectoryPath();
+                        padding: ButtonState.all(EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 8.0.h)),
+                        backgroundColor: ButtonState.resolveWith((states) {
+                          // If the button is pressed, return size 40, otherwise 20
+                          if (states.contains(ButtonStates.hovering)) {
+                            return Colors.blue.withOpacity(0.8);
+                          }
+                          return Colors.blue;
+                        }),
+                        // padding: ButtonState.all(EdgeInsets.symmetric(horizontal: 32.0.w, vertical: 12.0.h)),
+                      ),
+                      child: Text(
+                        'Select folder',
+                        style: TextStyle(color: theme.isLightTheme(context) ? Colors.white : Colors.black, fontSize: 16.sp),
+                      ),
+                      onPressed: () async {
+                        String? result = await FilePicker.platform.getDirectoryPath();
 
-                      if (result != null) {
-                        controller.text = result;
-                      } else {
-                        // Do something else...
-                      }
-                    }),
-              ],
-            ),
-          ],
+                        if (result != null) {
+                          controller.text = result;
+                          ref.read(dataPathProvider.notifier).state = result;
+                        } else {
+                          // Do something else...
+                        }
+                      }),
+                ],
+              ),
+            ],
         ),
         gapH32,
         Row(
@@ -146,6 +157,7 @@ class _NumberValidatorsSlide extends ConsumerState<NumberValidatorsSlide> {
                             setState(() {
                               defaultDropDown = e;
                             });
+                            ref.read(validatorProvider.notifier).state = e;
                           }))
                       .toList()),
             ),
