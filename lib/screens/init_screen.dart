@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -112,108 +110,11 @@ class _HomePageState extends ConsumerState<InitialScreen> {
           }
         });
       });
-      _runDaemonWindows();
-    });
-  }
-
-  _runDaemonMac() async {
-    print(Platform.environment['HOME']);
-    String mainPath = Platform.resolvedExecutable;
-    mainPath = mainPath.substring(0, mainPath.lastIndexOf("/"));
-    mainPath = mainPath.substring(0, mainPath.lastIndexOf("/"));
-    mainPath = "$mainPath/Resources";
-    Directory directoryExe = Directory(mainPath);
-    List<FileSystemEntity> files = directoryExe.listSync();
-    ProcessResult? res;
-    for (FileSystemEntity file in files) {
-      if (file.path.contains("pactus-daemon")) {
-        // res = await Process.run(file.path, ["init", "-w", "${Platform.environment['HOME']!}/wallet",
-        //   "--restore", "rate twin faculty success rather crucial parrot output toy quiz reason tumble", "--val-num", "7", "-p", "12345678"]);
-        res = await Process.run(file.path, [
-          "start",
-          "-w",
-          "${Platform.environment['HOME']!}/wallet",
-          "-p",
-          "12345678"
-        ]);
-        print(res.stdout);
-      }
-    }
-
-    Future.delayed(const Duration(seconds: 15), () {
-      try {
-        int pid = int.parse(res!.pid.toString());
-        Process.killPid(pid);
-        print("Killed");
-      } catch (e) {
-        print(e);
-      }
-    });
-  }
-
-  _runDaemonWindows() async {
-    print(Platform.environment['USERPROFILE']);
-    String mainPath = Platform.resolvedExecutable;
-    mainPath = mainPath.substring(0, mainPath.lastIndexOf("\\"));
-    Directory directoryExe = Directory(mainPath);
-    List<FileSystemEntity> files = directoryExe.listSync();
-    ProcessResult? res;
-    String? path;
-    for (FileSystemEntity file in files) {
-      if (file.path.contains("pactus-daemon.exe")) {
-        path = file.path;
-        break;
-      }
-    }
-    if (path == null) {
-      return;
-    }
-    //check if the wallet directory exists
-    Directory walletDir =
-        Directory("${Platform.environment['USERPROFILE']!}/pactus-wallet");
-    bool exists = walletDir.existsSync();
-    if (!exists) {
-      print("Creating wallet directory");
-      walletDir.createSync();
-      res = await Process.run(path, [
-        "init",
-        "-w",
-        "${Platform.environment['USERPROFILE']!}/pactus-wallet",
-        "--restore",
-        "rate twin faculty success rather crucial parrot output toy quiz reason tumble",
-        "--val-num",
-        "7",
-        "-p",
-        "12345678"
-      ]);
-      print(res.stdout);
-      await Future.delayed(const Duration(seconds: 2));
-      res = await Process.run(path, [
-        "start",
-        "-w",
-        "${Platform.environment['USERPROFILE']!}/pactus-wallet",
-        "-p",
-        "12345678"
-      ]);
-    }else {
-      res = await Process.run(path, [
-        "start",
-        "-w",
-        "${Platform.environment['USERPROFILE']!}/pactus-wallet",
-        "-p",
-        "12345678"
-      ]);
-      print(res.stdout);
-    }
-
-    Future.delayed(const Duration(seconds: 15), () {
-      try {
-        int pid = int.parse(res!.pid.toString());
-        Process.killPid(pid);
-        print("Killed");
-      } catch (e) {
-        print(e);
-      }
+      ref.watch(nextSlideProvider.notifier).addListener((state) {
+        if (state == 1) {
+          nextSlide();
+        }
+      });
     });
   }
 
@@ -455,6 +356,10 @@ class _HomePageState extends ConsumerState<InitialScreen> {
       );
       ref.read(slideProvider.notifier).state = newIndex;
     }
+  }
+
+  void nextSlide() {
+    goForward(ref, pageController);
   }
 }
 
