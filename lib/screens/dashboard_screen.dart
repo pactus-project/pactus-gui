@@ -1,6 +1,9 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pactus/screen_wrapper/wrapper_screen.dart';
+import 'package:pactus/support/constants.dart';
+import 'package:pactus/support/extensions.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DashboardScreen extends StatefulWidget {
   static const String route = '/dashboard';
@@ -12,6 +15,23 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+    context.afterBuild(() async {
+      final prefs = await SharedPreferences.getInstance();
+      final daemonPath = prefs.getString(Constants.daemonPath);
+      final dataDirPath = prefs.getString(Constants.dataDirPath);
+      if (daemonPath != null && dataDirPath != null) {
+        if (context.mounted) {
+
+        }
+      }
+    });
+  }
+
+
   int paneIndex = 0;
   List<NavigationPaneItem> items = [
     PaneItem(

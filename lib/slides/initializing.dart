@@ -3,14 +3,15 @@ import 'dart:io';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pactus/provider/daemon_path_provider.dart';
 import 'package:pactus/provider/password_provider.dart';
 import 'package:pactus/provider/seed_provider.dart';
 import 'package:pactus/provider/slides_provider.dart';
 import 'package:pactus/provider/theme_provider.dart';
 import 'package:pactus/provider/validator_provider.dart';
 import 'package:pactus/support/app_sizes.dart';
+import 'package:pactus/support/constants.dart';
 import 'package:pactus/support/extensions.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class InitializingSlide extends ConsumerStatefulWidget {
   const InitializingSlide({super.key});
@@ -33,12 +34,33 @@ class _InitializingSlide extends ConsumerState<InitializingSlide> {
     });
   }
 
+  _savePath(String path) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(Constants.daemonPath, path);
+  }
+
+  _saveDataDir(String path) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(Constants.dataDirPath, path);
+  }
+
+  _saveHasPassword(bool has) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(Constants.hasPassword, has);
+  }
+
   List<String> _paramBuilder() {
     String? password = ref.read(confirmPasswordProvider.notifier).state;
     List<String> seed = ref.read(seedProvider.notifier).state;
     List<String> passParam = password != null ? ["-p", password] : ["-p", " "];
+    if (password != null) {
+      _saveHasPassword(true);
+    } else {
+      _saveHasPassword(false);
+    }
     List<String> seedParam = ["--restore", seed.join(" ")];
     String path = Platform.isMacOS ? "${Platform.environment['HOME']!}/wallet" : ref.read(dataPathProvider.notifier).state ?? "";
+    _saveDataDir(path);
     List<String> validatorParam = ["--val-num", ref.read(validatorProvider.notifier).state.toString()];
     return ["-w", path, ...passParam, ...seedParam, ...validatorParam];
   }
@@ -54,7 +76,7 @@ class _InitializingSlide extends ConsumerState<InitializingSlide> {
     for (FileSystemEntity file in files) {
       if (file.path.contains("pactus-daemon")) {
         res = await Process.run(file.path, ["init", ..._paramBuilder()]);
-        ref.read(daemonPathProvider.notifier).state = file.path;
+        await _savePath(file.path);
         break;
       }
     }
@@ -96,7 +118,7 @@ class _InitializingSlide extends ConsumerState<InitializingSlide> {
     for (FileSystemEntity file in files) {
       if (file.path.contains("pactus-daemon.exe")) {
         path = file.path;
-        ref.read(daemonPathProvider.notifier).state = file.path;
+        await _savePath(file.path);
         break;
       }
     }
@@ -119,6 +141,7 @@ class _InitializingSlide extends ConsumerState<InitializingSlide> {
 
 
     Directory walletDir = Directory(ref.read(dataPathProvider.notifier).state ?? "${Platform.environment['USERPROFILE']!}/pactus-wallet");
+
     bool exists = walletDir.existsSync();
     if (!exists) {
       walletDir.createSync();
