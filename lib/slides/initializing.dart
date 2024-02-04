@@ -26,7 +26,7 @@ class _InitializingSlide extends ConsumerState<InitializingSlide> {
   void initState() {
     super.initState();
     context.afterBuild(() {
-      if (Platform.isMacOS) {
+      if (Platform.isMacOS || Platform.isLinux) {
         _runDaemonMac();
       } else if (Platform.isWindows) {
         _runDaemonWindows();
