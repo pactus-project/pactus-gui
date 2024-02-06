@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -26,14 +28,37 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     context.afterBuild(() async {
       final prefs = await SharedPreferences.getInstance();
       final daemonPath = prefs.getString(Constants.daemonPath);
-      final dataDirPath = prefs.getString(Constants.dataDirPath);
-      final hasPassword = prefs.getBool(Constants.hasPassword);
-      if (daemonPath != null && dataDirPath != null) {
-        if (context.mounted) {
-          if (hasPassword != null && hasPassword) {
-            context.go(UnlockScreen.route);
-          } else {
-            context.go(DashboardScreen.route);
+      if (daemonPath != null) {
+        final dataDirPath = prefs.getString(Constants.dataDirPath);
+        print(dataDirPath ?? "");
+        Directory directoryExe = Directory(dataDirPath!);
+        if (!directoryExe.existsSync()) {
+          await prefs.remove(Constants.daemonPath);
+          await prefs.remove(Constants.dataDirPath);
+          await prefs.remove(Constants.hasPassword);
+
+          var alert = ContentDialog(
+            title: const Text("Error"),
+            content: const Text("Data directory does not exist or has been deleted. Please reinitialize the application"),
+            actions: [
+              Button(
+                onPressed: () {
+                  context.go(InitialScreen.route);
+                },
+                child: const Text("OK"),
+              )
+            ],
+          );
+          if(context.mounted) showDialog(context: context, builder: (BuildContext context) => alert);
+        }
+        final hasPassword = prefs.getBool(Constants.hasPassword);
+        if (daemonPath.isNotEmpty && dataDirPath.isNotEmpty) {
+          if (context.mounted) {
+            if (hasPassword != null && hasPassword) {
+              context.go(UnlockScreen.route);
+            } else {
+              context.go(DashboardScreen.route);
+            }
           }
         }
       }
