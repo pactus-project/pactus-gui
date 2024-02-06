@@ -1,0 +1,5 @@
+#!/bin/zsh
+protoc --dart_out=grpc:lib/grpc_gen -Iproto ./proto/network.proto
+protoc --dart_out=grpc:lib/grpc_gen -Iproto ./proto/blockchain.proto
+protoc --dart_out=grpc:lib/grpc_gen -Iproto ./proto/transaction.proto
+protoc --dart_out=grpc:lib/grpc_gen -Iproto ./proto/wallet.proto

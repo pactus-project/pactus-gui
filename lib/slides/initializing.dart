@@ -75,6 +75,8 @@ class _InitializingSlide extends ConsumerState<InitializingSlide> {
     ProcessResult? res;
     for (FileSystemEntity file in files) {
       if (file.path.contains("pactus-daemon")) {
+        List<String> param = _paramBuilder();
+        print(param.toString());
         res = await Process.run(file.path, ["init", ..._paramBuilder()]);
         await _savePath(file.path);
         break;

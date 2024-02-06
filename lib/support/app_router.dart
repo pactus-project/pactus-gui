@@ -56,7 +56,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             pageBuilder: (context, state) => fadeRouteTransition<void>(
               context: context,
               state: state,
-              child: const DashboardScreen(),
+              child: const UnlockScreen(),
             ),
           ),
         ],
