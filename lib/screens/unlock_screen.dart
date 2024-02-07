@@ -36,7 +36,7 @@ class _UnlockScreenState extends ConsumerState<UnlockScreen> {
       String mainPath = Platform.resolvedExecutable;
       mainPath = mainPath.substring(0, mainPath.lastIndexOf("/"));
       mainPath = mainPath.substring(0, mainPath.lastIndexOf("/"));
-      mainPath = "$mainPath/Resources";
+      mainPath = Platform.isMacOS ? "$mainPath/Resources" :"$mainPath/bundle";
       Directory directoryExe = Directory(mainPath);
       List<FileSystemEntity> files = directoryExe.listSync();
       Process? res;
