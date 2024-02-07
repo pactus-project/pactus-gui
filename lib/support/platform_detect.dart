@@ -14,4 +14,12 @@ class PlatformDetect {
       TargetPlatform.windows,
     ].contains(defaultTargetPlatform);
   }
+
+
+static bool get isLinux {
+  if (kIsWeb) return false;
+  return [
+    TargetPlatform.linux,
+  ].contains(defaultTargetPlatform);
+}
 }

@@ -161,18 +161,11 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
     final dataDirPath = prefs.getString(Constants.dataDirPath);
     if (daemonPath != null && dataDirPath != null) {
       if (Platform.isLinux || Platform.isMacOS) {
-        Directory directoryExe = Directory(daemonPath);
-        List<FileSystemEntity> files = directoryExe.listSync();
-        Process? res;
-        for (FileSystemEntity file in files) {
-          if (file.path.contains("pactus-daemon")) {
-            List<String> param = ["-w", dataDirPath];
-            res = await Process.start(file.path, ["start", ...param]);
-            int pid = res.pid;
-            ref.read(pidProvider.notifier).state = pid;
-            ref.read(processProvider.notifier).state = res;
-          }
-        }
+        List<String> param = ["-w", dataDirPath];
+         Process? res = await Process.start(daemonPath, ["start", ...param]);
+        int pid = res.pid;
+        ref.read(pidProvider.notifier).state = pid;
+        ref.read(processProvider.notifier).state = res;
       } else {
         Directory directoryExe = Directory(daemonPath);
         List<FileSystemEntity> files = directoryExe.listSync();

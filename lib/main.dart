@@ -28,7 +28,7 @@ void main() async {
     }
     await WindowManager.instance.ensureInitialized();
     windowManager.waitUntilReadyToShow().then((_) async {
-      await windowManager.setTitleBarStyle(TitleBarStyle.hidden, windowButtonVisibility: PlatformDetect.isMacOS); //Hiding the titlebar
+      await windowManager.setTitleBarStyle(TitleBarStyle.hidden, windowButtonVisibility: PlatformDetect.isMacOS || PlatformDetect.isLinux) ; //Hiding the titlebar
       await windowManager.setMinimumSize(const Size(802, 523));
       await windowManager.show();
       await windowManager.center(animate: false);

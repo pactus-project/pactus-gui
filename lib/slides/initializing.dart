@@ -69,14 +69,13 @@ class _InitializingSlide extends ConsumerState<InitializingSlide> {
     String mainPath = Platform.resolvedExecutable;
     mainPath = mainPath.substring(0, mainPath.lastIndexOf("/"));
     mainPath = mainPath.substring(0, mainPath.lastIndexOf("/"));
-    mainPath = "$mainPath/Resources";
+    mainPath = Platform.isMacOS ? "$mainPath/Resources" :"$mainPath/bundle";
     Directory directoryExe = Directory(mainPath);
     List<FileSystemEntity> files = directoryExe.listSync();
     ProcessResult? res;
     for (FileSystemEntity file in files) {
       if (file.path.contains("pactus-daemon")) {
         List<String> param = _paramBuilder();
-        print(param.toString());
         res = await Process.run(file.path, ["init", ..._paramBuilder()]);
         await _savePath(file.path);
         break;
