@@ -27,7 +27,8 @@ class _UnlockScreenState extends ConsumerState<UnlockScreen> {
   List<String> _paramBuilder(String password) {
     ref.read(confirmPasswordProvider.notifier).state = password;
     List<String> passParam = ["-p", password];
-    String path = Platform.isMacOS || Platform.isLinux ? "${Platform.environment['HOME']!}/wallet" : ref.read(dataPathProvider.notifier).state ?? "${Platform.environment['USERPROFILE']!}/pactus-wallet";
+    String path = Platform.isMacOS || Platform.isLinux ? ref.read(dataPathProvider.notifier).state ?? "${Platform.environment['HOME']!}/wallet"
+        : ref.read(dataPathProvider.notifier).state ?? "${Platform.environment['USERPROFILE']!}/pactus-wallet";
     return ["-w", path, ...passParam];
   }
 
