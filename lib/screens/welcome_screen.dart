@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pactus/provider/validator_provider.dart';
 import 'package:pactus/screen_wrapper/wrapper_screen.dart';
 import 'package:pactus/screens/dashboard_screen.dart';
 import 'package:pactus/screens/init_screen.dart';
@@ -12,16 +14,16 @@ import 'package:pactus/support/constants.dart';
 import 'package:pactus/support/extensions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class WelcomeScreen extends StatefulWidget {
+class WelcomeScreen extends ConsumerStatefulWidget {
   static const String route = '/';
 
   const WelcomeScreen({super.key});
 
   @override
-  State<WelcomeScreen> createState() => _WelcomeScreenState();
+  ConsumerState<WelcomeScreen> createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> {
+class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
   @override
   void initState() {
     super.initState();
@@ -51,6 +53,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           );
           if(context.mounted) showDialog(context: context, builder: (BuildContext context) => alert);
         }
+        ref.read(dataPathProvider.notifier).state = dataDirPath;
         final hasPassword = prefs.getBool(Constants.hasPassword);
         if (daemonPath.isNotEmpty && dataDirPath.isNotEmpty) {
           if (context.mounted) {
