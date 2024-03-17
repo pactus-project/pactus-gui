@@ -1,5 +1,6 @@
 class Constants {
-  static String daemonPath = "daemonPath";
-  static String dataDirPath = "dataDirPath";
-  static String hasPassword = "hasPassword";
+  Constants._();
+  static String daemonPath = 'daemonPath';
+  static String dataDirPath = 'dataDirPath';
+  static String hasPassword = 'hasPassword';
 }

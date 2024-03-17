@@ -25,15 +25,12 @@ class _FinishSlide extends ConsumerState<FinishSlide> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
     final theme = ref.watch(appThemeProvider);
     return Padding(
       padding: EdgeInsets.only(top: 40.0.h),
       child: Flex(
         direction: Axis.horizontal,
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
         children: [
           Expanded(
             flex: 5,
@@ -41,12 +38,16 @@ class _FinishSlide extends ConsumerState<FinishSlide> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Your Journey Finalized, Your Success on the Horizon",
-                  style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700, color: theme.textColor.withOpacity(0.7)),
+                  'Your Journey Finalized, Your Success on the Horizon',
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w700,
+                    color: theme.textColor.withOpacity(0.7),
+                  ),
                 ),
                 gapH16,
                 Text(
-                  """Venturing into the realm of blockchain technology, Pactus heralds an era of uncompromised
+                  '''Venturing into the realm of blockchain technology, Pactus heralds an era of uncompromised
 decentralization that stands in contrast to its contemporaries. It eschews traditional power 
 hierarchies, parting ways with delegated proof-of-stake systems and mining operations that 
 could lead to power concentration. By doing so, Pactus lowers its ramparts, inviting participants 
@@ -60,45 +61,60 @@ Pactus chain boasts a simple yet sophisticated graphical user interface (GUI) th
 process of running a node. The elegance lies in its simplicity - a clear, approachable design that 
 veils the robust and intricate mechanics beneath, allowing users, regardless of their technical 
 prowess, to participate as validator clients. This move towards inclusivity transforms users from 
-mere participants to guardians of the blockchain, an essential facet of the Pactus ecosystem.""",
-                  style: TextStyle(fontSize: 13.sp, color: theme.textColor.withOpacity(0.6), fontWeight: FontWeight.w400, height: 2.2.sp),
+mere participants to guardians of the blockchain, an essential facet of the Pactus ecosystem.''',
+                  style: TextStyle(
+                    fontSize: 13.sp,
+                    color: theme.textColor.withOpacity(0.6),
+                    fontWeight: FontWeight.w400,
+                    height: 2.2.sp,
+                  ),
                   textAlign: TextAlign.start,
                 ),
                 gapH64,
                 Center(
                   child: Button(
-                      style: ButtonStyle(
-                        padding: ButtonState.all(EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 8.0.h)),
-                        backgroundColor: ButtonState.resolveWith((states) {
-                          // If the button is pressed, return size 40, otherwise 20
-                          if (states.contains(ButtonStates.hovering)) {
-                            return Colors.blue.withOpacity(0.8);
-                          }
-                          return const Color(0xFF0066B4);
-                        }),
-                        // padding: ButtonState.all(EdgeInsets.symmetric(horizontal: 32.0.w, vertical: 12.0.h)),
+                    style: ButtonStyle(
+                      padding: ButtonState.all(
+                        EdgeInsets.symmetric(
+                          horizontal: 24.0.w,
+                          vertical: 8.0.h,
+                        ),
                       ),
-                      child: Text(
-                        'Go to dashboard',
-                        style: TextStyle(color: theme.isLightTheme(context) ? Colors.white : Colors.black, fontSize: 16.sp),
-                      ),
-                      onPressed: () {
-                        context.go(DashboardScreen.route);
+                      backgroundColor: ButtonState.resolveWith((states) {
+                        if (states.contains(ButtonStates.hovering)) {
+                          return Colors.blue.withOpacity(0.8);
+                        }
+                        return const Color(0xFF0066B4);
                       }),
+                    ),
+                    child: Text(
+                      'Go to dashboard',
+                      style: TextStyle(
+                        color: theme.isLightTheme(context)
+                            ? Colors.white
+                            : Colors.black,
+                        fontSize: 16.sp,
+                      ),
+                    ),
+                    onPressed: () {
+                      context.go(DashboardScreen.route);
+                    },
+                  ),
                 ),
               ],
             ),
           ),
           Expanded(
-              flex: 3,
-              child: Padding(
-                padding: EdgeInsets.only(top: 60.0.h),
-                child: Image.asset(
-                  "assets/images/gift.png",
-                  filterQuality: FilterQuality.high,
-                  fit: BoxFit.fitWidth,
-                ),
-              )),
+            flex: 3,
+            child: Padding(
+              padding: EdgeInsets.only(top: 60.0.h),
+              child: Image.asset(
+                'assets/images/gift.png',
+                filterQuality: FilterQuality.high,
+                fit: BoxFit.fitWidth,
+              ),
+            ),
+          ),
         ],
       ),
     );

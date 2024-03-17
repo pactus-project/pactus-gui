@@ -9,7 +9,9 @@ final grpcChannelProvider = Provider<ClientChannel>((ref) {
   return ClientChannel(
     '127.0.0.1', // Change to the actual server IP if necessary.
     port: 50051,
-    options: const ChannelOptions(credentials: ChannelCredentials.insecure()), // Use secure for production.
+    options: const ChannelOptions(
+        credentials:
+            ChannelCredentials.insecure()), // Use secure for production.
   );
 });
 
@@ -20,47 +22,49 @@ final clientProvider = Provider<NetworkClient>((ref) {
 });
 
 // Provider for NetworkInfoNotifier
-final networkInfoProvider = StateNotifierProvider<NetworkInfoNotifier, AsyncValue<GetNetworkInfoResponse>>((ref) {
+final networkInfoProvider = StateNotifierProvider<NetworkInfoNotifier,
+    AsyncValue<GetNetworkInfoResponse>>((ref) {
   final client = ref.watch(clientProvider);
   return NetworkInfoNotifier(client);
 });
 
-class NetworkInfoNotifier extends StateNotifier<AsyncValue<GetNetworkInfoResponse>> {
-  final NetworkClient client;
-
+class NetworkInfoNotifier
+    extends StateNotifier<AsyncValue<GetNetworkInfoResponse>> {
   NetworkInfoNotifier(this.client) : super(const AsyncValue.loading());
+  final NetworkClient client;
 
   Future<void> fetchNetworkInfo() async {
     debugPrint('Fetching network info');
     try {
       state = const AsyncValue.loading();
-      GetNetworkInfoRequest request = GetNetworkInfoRequest();
+      final request = GetNetworkInfoRequest();
       final response = await client.getNetworkInfo(request);
       state = AsyncValue.data(response);
-    } catch (e, st) {
+    } on Exception catch (e, st) {
       debugPrint(e.toString());
       state = AsyncValue.error(e, st);
     }
   }
 }
 
-final nodeInfoProvider = StateNotifierProvider<NodeInfoNotifier, AsyncValue<GetNodeInfoResponse>>((ref) {
+final nodeInfoProvider =
+    StateNotifierProvider<NodeInfoNotifier, AsyncValue<GetNodeInfoResponse>>(
+        (ref) {
   final client = ref.watch(clientProvider);
   return NodeInfoNotifier(client);
 });
 
 class NodeInfoNotifier extends StateNotifier<AsyncValue<GetNodeInfoResponse>> {
-  final NetworkClient client;
-
   NodeInfoNotifier(this.client) : super(const AsyncValue.loading());
+  final NetworkClient client;
 
   Future<void> fetchNetworkInfo() async {
     try {
       state = const AsyncValue.loading();
-      GetNodeInfoRequest request = GetNodeInfoRequest();
+      final request = GetNodeInfoRequest();
       final response = await client.getNodeInfo(request);
       state = AsyncValue.data(response);
-    } catch (e, st) {
+    } on Exception catch (e, st) {
       debugPrint(e.toString());
       state = AsyncValue.error(e, st);
     }
