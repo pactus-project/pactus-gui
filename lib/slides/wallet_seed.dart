@@ -17,7 +17,7 @@ class WalletSeedSlide extends ConsumerStatefulWidget {
 
 class _WalletSeedSlideState extends ConsumerState<WalletSeedSlide> {
   List<String> mnemonic = [];
-  String mnemonicString = "";
+  String mnemonicString = '';
   List<int> dropDown = [24, 12];
   int defaultDropDown = 24;
 
@@ -42,43 +42,56 @@ class _WalletSeedSlideState extends ConsumerState<WalletSeedSlide> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Your wallet generation seed",
-                  style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w600),
+                  'Your wallet generation seed',
+                  style:
+                      TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w600),
                 ),
                 gapH8,
                 Text(
-                  "Initialize Your Cryptographic journey with confidence",
-                  style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300, color: theme.textColor.withOpacity(0.5)),
+                  'Initialize Your Cryptographic journey with confidence',
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w300,
+                    color: theme.textColor.withOpacity(0.5),
+                  ),
                 ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 8.0),
+              padding: const EdgeInsets.only(right: 8),
               child: DropDownButton(
                 closeAfterClick: false,
-                  title: Text(
-                    "$defaultDropDown words",
-                    style: TextStyle(color: theme.textColor.withOpacity(0.4)),
-                  ),
-                  items: dropDown
-                      .map((e) => MenuFlyoutItem(
-                          text: Text(
-                            "${e}word",
-                            style: TextStyle(color: theme.textColor.withOpacity(0.4)),
+                title: Text(
+                  '$defaultDropDown words',
+                  style: TextStyle(color: theme.textColor.withOpacity(0.4)),
+                ),
+                items: dropDown
+                    .map(
+                      (e) => MenuFlyoutItem(
+                        text: Text(
+                          '${e}word',
+                          style: TextStyle(
+                            color: theme.textColor.withOpacity(
+                              0.4,
+                            ),
                           ),
-                          onPressed: () {
-                            setState(() {
-                              defaultDropDown = e;
-                              _generateWords(e);
-                            });
-                          }))
-                      .toList()),
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            defaultDropDown = e;
+                            _generateWords(e);
+                          });
+                        },
+                      ),
+                    )
+                    .toList(),
+              ),
             ),
           ],
         ),
         gapH32,
         Container(
-          height:mnemonic.length == 12 ? 120.h : 200.h,
+          height: mnemonic.length == 12 ? 120.h : 200.h,
           margin: EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 6.0.h),
           padding: EdgeInsets.all(12.0.sp),
           decoration: BoxDecoration(
@@ -88,35 +101,47 @@ class _WalletSeedSlideState extends ConsumerState<WalletSeedSlide> {
           width: MediaQuery.sizeOf(context).width,
           child: Center(
             child: GridView.builder(
-                shrinkWrap: false,
-                itemCount: mnemonic.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 6, // number of items in each row
-                  mainAxisSpacing: 17.h, // spacing between rows
-                  crossAxisSpacing: 4.0.w, // spacing between columns
-                  mainAxisExtent: 30.0.h, // row height
-                ),
-                itemBuilder: (ctx, index) {
-                  return Container(
-                    key: Key(mnemonic[index]),
-                      padding: const EdgeInsets.only(left: 8.0),
-                      decoration: const BoxDecoration(
-                        color: Colors.transparent,
+              itemCount: mnemonic.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 6, // number of items in each row
+                mainAxisSpacing: 17.h, // spacing between rows
+                crossAxisSpacing: 4.0.w, // spacing between columns
+                mainAxisExtent: 30.0.h, // row height
+              ),
+              itemBuilder: (ctx, index) {
+                return Container(
+                  key: Key(mnemonic[index]),
+                  padding: const EdgeInsets.only(
+                    left: 8,
+                  ),
+                  decoration: const BoxDecoration(
+                    color: Colors.transparent,
+                  ),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16.0.w,
+                        vertical: 4.h,
                       ),
-                      child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 4.h),
-                              decoration: BoxDecoration(
-                                color: theme.mnemonicWords,
-                                borderRadius: BorderRadius.circular(32.0.r),
-                              ),
-                              child: Text(
-                                "${index +1}. ${mnemonic[index]}",
-                                textAlign: TextAlign.start,
-                                style: TextStyle(color: theme.mnemonicText, fontSize: 20.sp, fontWeight: FontWeight.w500),
-                              ))));
-                }),
+                      decoration: BoxDecoration(
+                        color: theme.mnemonicWords,
+                        borderRadius: BorderRadius.circular(32.0.r),
+                      ),
+                      child: Text(
+                        '${index + 1}. ${mnemonic[index]}',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          color: theme.mnemonicText,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
           ),
         ),
         gapH8,
@@ -127,16 +152,25 @@ class _WalletSeedSlideState extends ConsumerState<WalletSeedSlide> {
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
                 onTap: () {
-                  ClipboardData data = ClipboardData(text: mnemonicString);
+                  final data = ClipboardData(text: mnemonicString);
                   Clipboard.setData(data);
                 },
                 child: Row(
                   children: [
-                    Image.asset("assets/icons/clipboard.png", height: 24.h, width: 24.w, filterQuality: FilterQuality.high, color: theme.clipBoardText,),
+                    Image.asset(
+                      'assets/icons/clipboard.png',
+                      height: 24.h,
+                      width: 24.w,
+                      filterQuality: FilterQuality.high,
+                      color: theme.clipBoardText,
+                    ),
                     gapW8,
                     Text(
-                      "Copy to clipboard",
-                      style: TextStyle(color: theme.clipBoardText, fontSize: 16.sp),
+                      'Copy to clipboard',
+                      style: TextStyle(
+                        color: theme.clipBoardText,
+                        fontSize: 16.sp,
+                      ),
                     ),
                   ],
                 ),
@@ -150,44 +184,68 @@ class _WalletSeedSlideState extends ConsumerState<WalletSeedSlide> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Please write these $defaultDropDown words on paper",
-              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w300, color: theme.textColor.withOpacity(0.5)),
+              'Please write these $defaultDropDown words on paper',
+              style: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w300,
+                color: theme.textColor.withOpacity(0.5),
+              ),
             ),
             gapH4,
             Text(
-             "This seed will allow you to recover your wallet in case of computer failure",
-              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w300, color: theme.textColor.withOpacity(0.5)),
+              'This seed will allow you to recover your wallet in case of computer failure',
+              style: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w300,
+                color: theme.textColor.withOpacity(0.5),
+              ),
             ),
-    gapH16,
+            gapH16,
             Text(
-              "Warning",
-              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w900, color: theme.textColor.withOpacity(0.8)),
-            ),
-            gapH4,
-            Text(
-              "- Never disclose your seed",
-              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w300, color: theme.textColor.withOpacity(0.5)),
-            ),
-            gapH4,
-            Text(
-              "- Never type it on website",
-              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w300, color: theme.textColor.withOpacity(0.5)),
+              'Warning',
+              style: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w900,
+                color: theme.textColor.withOpacity(0.8),
+              ),
             ),
             gapH4,
             Text(
-              "- Do not store electronically",
-              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w300, color: theme.textColor.withOpacity(0.5)),
+              '- Never disclose your seed',
+              style: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w300,
+                color: theme.textColor.withOpacity(0.5),
+              ),
+            ),
+            gapH4,
+            Text(
+              '- Never type it on website',
+              style: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w300,
+                color: theme.textColor.withOpacity(0.5),
+              ),
+            ),
+            gapH4,
+            Text(
+              '- Do not store electronically',
+              style: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w300,
+                color: theme.textColor.withOpacity(0.5),
+              ),
             ),
           ],
-        )
+        ),
       ],
     );
   }
 
-  _generateWords(int length) {
-    var m = Mnemonic.generate(
+  void _generateWords(int length) {
+    final m = Mnemonic.generate(
       Language.english,
-      passphrase: "yrGG=T3Yy}-vqJpW",
+      passphrase: 'yrGG=T3Yy}-vqJpW',
       entropyLength: length == 24 ? 256 : 128, //24 words
     );
     mnemonic = m.words;
@@ -197,6 +255,5 @@ class _WalletSeedSlideState extends ConsumerState<WalletSeedSlide> {
       ref.read(seedProvider.notifier).state = mnemonic;
       setState(() {});
     });
-
   }
 }

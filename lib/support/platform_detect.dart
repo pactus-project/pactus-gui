@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 class PlatformDetect {
+  PlatformDetect._();
   static bool get isMacOS {
     if (kIsWeb) return false;
     return [
@@ -15,11 +16,10 @@ class PlatformDetect {
     ].contains(defaultTargetPlatform);
   }
 
-
-static bool get isLinux {
-  if (kIsWeb) return false;
-  return [
-    TargetPlatform.linux,
-  ].contains(defaultTargetPlatform);
-}
+  static bool get isLinux {
+    if (kIsWeb) return false;
+    return [
+      TargetPlatform.linux,
+    ].contains(defaultTargetPlatform);
+  }
 }

@@ -46,14 +46,25 @@ SizedBox gapH128 = SizedBox(height: Sizes.p128.h);
 SizedBox gapH192 = SizedBox(height: Sizes.p192.h);
 SizedBox gapH256 = SizedBox(height: Sizes.p256.h);
 
-gapSizeH(double height) => SizedBox(height: height.h);
-gapSizeW(double width) => SizedBox(width: width.w);
+SizedBox gapSizeH(double height) => SizedBox(height: height.h);
+SizedBox gapSizeW(double width) => SizedBox(width: width.w);
 
 /// Variable gap widths and heights
-gap({int? height, int? width}) {
-  if (height == null && width == null) return const SizedBox.shrink();
-  if (height == null) return SizedBox(width: width!.toDouble());
-  if (width == null)  return SizedBox(height: height.toDouble());
+SizedBox gap({int? height, int? width}) {
+  if (height == null && width == null) {
+    return const SizedBox.shrink();
+  }
+  if (height == null) {
+    return SizedBox(width: width!.toDouble());
+  }
+  if (width == null) {
+    return SizedBox(height: height.toDouble());
+  }
+
+  return SizedBox(
+    width: width.toDouble(),
+    height: height.toDouble(),
+  );
 }
 
 extension CustomSizedBox on double {

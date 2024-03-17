@@ -22,9 +22,9 @@ import '../screen_wrapper/wrapper_screen.dart';
 enum TransitionDirection { forward, backward }
 
 class InitialScreen extends ConsumerStatefulWidget {
-  static const String route = '/init';
-
   const InitialScreen({super.key});
+
+  static const String route = '/init';
 
   @override
   ConsumerState<InitialScreen> createState() => _HomePageState();
@@ -38,7 +38,7 @@ class _HomePageState extends ConsumerState<InitialScreen> {
     'Master password',
     'Validator Config',
     'Initialization',
-    'Finish'
+    'Finish',
   ];
   final List<String> listRestore = <String>[
     'Initialize mode',
@@ -46,11 +46,11 @@ class _HomePageState extends ConsumerState<InitialScreen> {
     'Master password',
     'Validator Config',
     'Initialization',
-    'Finish'
+    'Finish',
   ];
 
   final pageController = PageController();
-  var restore = false;
+  bool restore = false;
 
   List<Widget> slides = [
     const InitializeModeSlide(
@@ -120,18 +120,18 @@ class _HomePageState extends ConsumerState<InitialScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
+    // final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final theme = ref.watch(appThemeProvider);
-    var slideIndex = ref.watch(slideProvider);
-    var buttonControl = ref.watch(nextButtonDisableProvider);
+    final slideIndex = ref.watch(slideProvider);
+    final buttonControl = ref.watch(nextButtonDisableProvider);
     final radioValue = ref.watch(radioButtonProvider);
     return WrapperPage(
-        title: "Pactus",
-        content: Column(
-          children: [
-            Expanded(
-                child: Row(
+      title: 'Pactus',
+      content: Column(
+        children: [
+          Expanded(
+            child: Row(
               children: [
                 //list
                 Padding(
@@ -147,7 +147,9 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                           height: 40.h,
                           width: 240.w,
                           padding: EdgeInsetsDirectional.symmetric(
-                              horizontal: 20.w, vertical: 12.0.h),
+                            horizontal: 20.w,
+                            vertical: 12.0.h,
+                          ),
                           decoration: BoxDecoration(
                             color: index <= slideIndex
                                 ? theme.isLightTheme(context)
@@ -175,12 +177,13 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                 // Content
                 Expanded(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Expanded(
                         child: Padding(
                           padding: EdgeInsetsDirectional.symmetric(
-                              horizontal: 30.0.w, vertical: 30.0.h),
+                            horizontal: 30.0.w,
+                            vertical: 30.0.h,
+                          ),
                           child: PageView.builder(
                             controller: pageController,
                             itemCount:
@@ -199,137 +202,141 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                       Visibility(
                         visible: restore ? slideIndex != 5 : slideIndex != 6,
                         child: Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Container(
-                              width: double.infinity,
-                              height: 80.h,
-                              decoration: BoxDecoration(
-                                color: theme.buttonBar,
-                                border: Border(
-                                  top: BorderSide(
-                                    color: theme.separator.withOpacity(0.08),
-                                    width: 1,
-                                  ),
+                          alignment: Alignment.bottomLeft,
+                          child: Container(
+                            width: double.infinity,
+                            height: 80.h,
+                            decoration: BoxDecoration(
+                              color: theme.buttonBar,
+                              border: Border(
+                                top: BorderSide(
+                                  color: theme.separator.withOpacity(0.08),
                                 ),
                               ),
-                              padding: const EdgeInsetsDirectional.symmetric(
-                                  horizontal: 20.0, vertical: 20.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  slideIndex == 0
-                                      ? const SizedBox()
-                                      : SizedBox(
-                                          width: 96.w,
-                                          child: Button(
-                                            onPressed: () {
-                                              if (slideIndex == 0) {
-                                                context.go(WelcomeScreen.route);
-                                              } else {
-                                                setState(() {
-                                                  ref
-                                                      .read(
-                                                          nextButtonDisableProvider
-                                                              .notifier)
-                                                      .state = false;
-                                                });
-                                                goBack(ref, pageController);
-                                              }
-                                            },
-                                            child: const Text('Back'),
-                                          ),
-                                        ),
-                                  //skip button
-                                  Row(
-                                    children: [
-                                      if (slideIndex == 3 && radioValue == 0)
-                                        Button(
-                                          style: ButtonStyle(
-                                            backgroundColor:
-                                                ButtonState.resolveWith(
-                                                    (states) {
-                                              if (buttonControl) {
-                                                return Colors.grey
-                                                    .withOpacity(0.2);
-                                              }
-                                              if (states.contains(
-                                                  ButtonStates.hovering)) {
-                                                return Colors.grey
-                                                    .withOpacity(0.05);
-                                              }
-                                              return Colors.transparent;
-                                            }),
-                                            foregroundColor:
-                                                ButtonState.all<Color>(
-                                                    Colors.blue),
-                                            shape: ButtonState.all<
-                                                    RoundedRectangleBorder>(
-                                                RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8))),
-                                          ),
-                                          onPressed: () {
-                                            // ref.read(slideProvider.notifier).state++;
-                                            ref
-                                                .read(nextButtonDisableProvider
-                                                    .notifier)
-                                                .state = false;
-                                            goForward(ref, pageController);
-                                          },
-                                          child: const Text('Skip'),
-                                        ),
-                                      gapW16,
-                                      SizedBox(
+                            ),
+                            padding: const EdgeInsetsDirectional.symmetric(
+                                horizontal: 20, vertical: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                slideIndex == 0
+                                    ? const SizedBox()
+                                    : SizedBox(
                                         width: 96.w,
                                         child: Button(
-                                          onPressed: buttonControl
-                                              ? null
-                                              : () {
-                                                  goForward(
-                                                      ref, pageController);
-                                                },
-                                          style: ButtonStyle(
-                                            // backgroundColor: ButtonState.all<Color>(buttonControl ? Colors.grey.withOpacity(0.1) : Colors.blue),
-                                            backgroundColor:
-                                                ButtonState.resolveWith(
-                                                    (states) {
-                                              if (buttonControl) {
-                                                return Colors.grey
-                                                    .withOpacity(0.1);
-                                              }
-                                              if (states.contains(
-                                                  ButtonStates.hovering)) {
-                                                return Colors.blue.lightest;
-                                              }
-                                              return Colors.blue;
-                                            }),
-                                            foregroundColor:
-                                                ButtonState.all<Color>(
-                                                    buttonControl
-                                                        ? Colors.black
-                                                            .withOpacity(0.1)
-                                                        : Colors.white),
-                                          ),
-                                          child: const Text('Next'),
+                                          onPressed: () {
+                                            if (slideIndex == 0) {
+                                              context.go(WelcomeScreen.route);
+                                            } else {
+                                              setState(() {
+                                                ref
+                                                    .read(
+                                                      nextButtonDisableProvider
+                                                          .notifier,
+                                                    )
+                                                    .state = false;
+                                              });
+                                              goBack(ref, pageController);
+                                            }
+                                          },
+                                          child: const Text('Back'),
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            )),
+                                //skip button
+                                Row(
+                                  children: [
+                                    if (slideIndex == 3 && radioValue == 0)
+                                      Button(
+                                        style: ButtonStyle(
+                                          backgroundColor:
+                                              ButtonState.resolveWith((states) {
+                                            if (buttonControl) {
+                                              return Colors.grey
+                                                  .withOpacity(0.2);
+                                            }
+                                            if (states.contains(
+                                              ButtonStates.hovering,
+                                            )) {
+                                              return Colors.grey
+                                                  .withOpacity(0.05);
+                                            }
+                                            return Colors.transparent;
+                                          }),
+                                          foregroundColor:
+                                              ButtonState.all<Color>(
+                                            Colors.blue,
+                                          ),
+                                          shape: ButtonState.all<
+                                              RoundedRectangleBorder>(
+                                            RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                8,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          ref
+                                              .read(
+                                                nextButtonDisableProvider
+                                                    .notifier,
+                                              )
+                                              .state = false;
+                                          goForward(ref, pageController);
+                                        },
+                                        child: const Text('Skip'),
+                                      ),
+                                    gapW16,
+                                    SizedBox(
+                                      width: 96.w,
+                                      child: Button(
+                                        onPressed: buttonControl
+                                            ? null
+                                            : () {
+                                                goForward(ref, pageController);
+                                              },
+                                        style: ButtonStyle(
+                                          backgroundColor:
+                                              ButtonState.resolveWith((states) {
+                                            if (buttonControl) {
+                                              return Colors.grey
+                                                  .withOpacity(0.1);
+                                            }
+                                            if (states.contains(
+                                              ButtonStates.hovering,
+                                            )) {
+                                              return Colors.blue.lightest;
+                                            }
+                                            return Colors.blue;
+                                          }),
+                                          foregroundColor:
+                                              ButtonState.all<Color>(
+                                            buttonControl
+                                                ? Colors.black.withOpacity(0.1)
+                                                : Colors.white,
+                                          ),
+                                        ),
+                                        child: const Text('Next'),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
                   // Your buttons or gestures to change the slide index
-                )
+                ),
               ],
-            ))
-          ],
-        ));
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   void goBack(WidgetRef ref, PageController pageController, {int? page}) {
@@ -364,28 +371,35 @@ class _HomePageState extends ConsumerState<InitialScreen> {
 }
 
 class ListEntry extends StatelessWidget {
+  const ListEntry({
+    super.key,
+    required this.title,
+    this.selected = false,
+    this.bold = false,
+  });
+
   final String title;
   final bool selected;
   final bool bold;
-
-  const ListEntry(
-      {super.key,
-      required this.title,
-      this.selected = false,
-      this.bold = false});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 40.h,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+        ),
         child: Opacity(
-            opacity: selected ? 1.0 : 0.2,
-            child: Text(title,
-                style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: bold ? FontWeight.w600 : FontWeight.w400))),
+          opacity: selected ? 1.0 : 0.2,
+          child: Text(
+            title,
+            style: TextStyle(
+              fontSize: 16.sp,
+              fontWeight: bold ? FontWeight.w600 : FontWeight.w400,
+            ),
+          ),
+        ),
       ),
     );
   }

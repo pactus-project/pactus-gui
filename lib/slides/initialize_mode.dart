@@ -21,13 +21,17 @@ class _InitializeModeState extends ConsumerState<InitializeModeSlide> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "How to create you wallet?",
+          'How to create you wallet?',
           style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w600),
         ),
         gapH8,
         Text(
-          "If you running a node for first time, choose the first options",
-          style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300, color: theme.textColor.withOpacity(0.5)),
+          'If you running a node for first time, choose the first options',
+          style: TextStyle(
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w300,
+            color: theme.textColor.withOpacity(0.5),
+          ),
         ),
         gapH32,
         Padding(
@@ -46,12 +50,19 @@ class _InitializeModeState extends ConsumerState<InitializeModeSlide> {
                 ),
                 gapW12,
                 GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        ref.read(radioButtonProvider.notifier).state = 0;
-                      });
-                    },
-                    child: Text("Create new wallet from scratch", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300)))
+                  onTap: () {
+                    setState(() {
+                      ref.read(radioButtonProvider.notifier).state = 0;
+                    });
+                  },
+                  child: Text(
+                    'Create new wallet from scratch',
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -73,12 +84,17 @@ class _InitializeModeState extends ConsumerState<InitializeModeSlide> {
                 ),
                 gapW12,
                 GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        ref.read(radioButtonProvider.notifier).state = 1;
-                      });
-                    },
-                    child: Text("Restore a wallet from seed phrase", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300)))
+                  onTap: () {
+                    setState(() {
+                      ref.read(radioButtonProvider.notifier).state = 1;
+                    });
+                  },
+                  child: Text(
+                    'Restore a wallet from seed phrase',
+                    style:
+                        TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300),
+                  ),
+                ),
               ],
             ),
           ),

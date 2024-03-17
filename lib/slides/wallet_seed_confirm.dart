@@ -15,19 +15,20 @@ class WalletSeedConfirmSlide extends ConsumerStatefulWidget {
   const WalletSeedConfirmSlide({super.key});
 
   @override
-  ConsumerState<WalletSeedConfirmSlide> createState() => _WalletSeedConfirmSlide();
+  ConsumerState<WalletSeedConfirmSlide> createState() =>
+      _WalletSeedConfirmSlide();
 }
 
 class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
   List<String> words = [];
-  String mnemonicString = "";
+  String mnemonicString = '';
   List<FocusNode?> focusNodes = [];
   List<TextEditingController> controllers = [];
   List<int> focusNodeSet = [];
   List<bool> errorNodes = [];
   List<bool> failNodes = [];
   int focusIndex = 0;
-  var error = false;
+  bool error = false;
 
   @override
   void initState() {
@@ -37,18 +38,16 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
 
   @override
   void dispose() {
-    for (int i = 0; i < words.length; i++) {
+    for (var i = 0; i < words.length; i++) {
       focusNodes[i]?.dispose();
       controllers[i].dispose();
     }
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     final theme = ref.watch(appThemeProvider);
-    final seed = ref.watch(seedProvider);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -59,13 +58,18 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Confirm your wallet generation seed",
-                  style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w600),
+                  'Confirm your wallet generation seed',
+                  style:
+                      TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w600),
                 ),
                 gapH8,
                 Text(
-                  "Embark with Assurance, your gateway to secure seed generation",
-                  style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300, color: theme.textColor.withOpacity(0.5)),
+                  'Embark with Assurance, your gateway to secure seed generation',
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w300,
+                    color: theme.textColor.withOpacity(0.5),
+                  ),
                 ),
               ],
             ),
@@ -83,82 +87,110 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
           width: MediaQuery.sizeOf(context).width,
           child: Center(
             child: GridView.builder(
-                shrinkWrap: true,
-                itemCount: focusNodes.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 6, // number of items in each row
-                  mainAxisSpacing: 17.h, // spacing between rows
-                  crossAxisSpacing: 4.0.w, // spacing between columns
-                  mainAxisExtent: 30.0.h, // row height
-                ),
-                itemBuilder: (ctx, index) {
-                  if (words[index] == "") {
-                    return Container(
-                      padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 2.h),
-                      decoration: BoxDecoration(
-                        color: errorNodes[index] == true
-                                ? Colors.red.withOpacity(0.5)
-                                : theme.mnemonicWords,
-                        borderRadius: BorderRadius.circular(32.0.r),
-                      ),
-                      child: Row(
-                        children: [
-                          Text("${index + 1}. ", style: TextStyle(color: theme.mnemonicText, fontSize: 18.sp, fontWeight: FontWeight.w500)),
-                          gapW4,
-                          Expanded(
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: EditableText(
-                                contentInsertionConfiguration: ContentInsertionConfiguration(
-                                  onContentInserted: (text) {
-                                    controllers[index].clear();
-                                  },
-                                ),
-                                cursorColor: theme.cursorColor,
-                                backgroundCursorColor: Colors.grey.withOpacity(0.5),
-                                focusNode: focusNodes[index]!,
-                                expands: false,
-                                minLines: 1,
-                                maxLines: 1,
-                                style: TextStyle(color: theme.mnemonicText, fontSize: 13.h, fontWeight: FontWeight.w500),
-                                controller: controllers[index],
-                                onChanged: (text) {
-                                  if (text.length >= 3 && (text.endsWith(' ') || text.endsWith('\n')) ) {
-                                    validateInput(index);
-                                    requestNextFocus(index);
-                                  }
+              shrinkWrap: true,
+              itemCount: focusNodes.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 6, // number of items in each row
+                mainAxisSpacing: 17.h, // spacing between rows
+                crossAxisSpacing: 4.0.w, // spacing between columns
+                mainAxisExtent: 30.0.h, // row height
+              ),
+              itemBuilder: (ctx, index) {
+                if (words[index] == '') {
+                  return Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 16.0.w,
+                      vertical: 2.h,
+                    ),
+                    decoration: BoxDecoration(
+                      color: errorNodes[index]
+                          ? Colors.red.withOpacity(0.5)
+                          : theme.mnemonicWords,
+                      borderRadius: BorderRadius.circular(32.0.r),
+                    ),
+                    child: Row(
+                      children: [
+                        Text(
+                          '${index + 1}. ',
+                          style: TextStyle(
+                            color: theme.mnemonicText,
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        gapW4,
+                        Expanded(
+                          child: Align(
+                            child: EditableText(
+                              contentInsertionConfiguration:
+                                  ContentInsertionConfiguration(
+                                onContentInserted: (text) {
+                                  controllers[index].clear();
                                 },
                               ),
+                              cursorColor: theme.cursorColor,
+                              backgroundCursorColor:
+                                  Colors.grey.withOpacity(0.5),
+                              focusNode: focusNodes[index]!,
+                              minLines: 1,
+                              style: TextStyle(
+                                color: theme.mnemonicText,
+                                fontSize: 13.h,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              controller: controllers[index],
+                              onChanged: (text) {
+                                if (text.length >= 3 &&
+                                    (text.endsWith(' ') ||
+                                        text.endsWith('\n'))) {
+                                  validateInput(index);
+                                  requestNextFocus(index);
+                                }
+                              },
                             ),
                           ),
-                        ],
-                      ),
-                    );
-                  } else {
-                    return Container(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        decoration: const BoxDecoration(
-                          color: Colors.transparent,
                         ),
-                        child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Container(
-                                padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 4.h),
-                                decoration: BoxDecoration(
-                                  color:  focusNodeSet.firstWhereOrNull(
+                      ],
+                    ),
+                  );
+                } else {
+                  return Container(
+                    padding: const EdgeInsets.only(left: 8),
+                    decoration: const BoxDecoration(
+                      color: Colors.transparent,
+                    ),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 16.0.w,
+                          vertical: 4.h,
+                        ),
+                        decoration: BoxDecoration(
+                          color: focusNodeSet.firstWhereOrNull(
                                         (i) => i == index,
-                                  ) != null && failNodes[index] == false
-                                      ? theme.successWords
-                                      : theme.mnemonicWords,
-                                  borderRadius: BorderRadius.circular(32.0.r),
-                                ),
-                                child: Text(
-                                  "${index + 1}. ${words[index]}",
-                                  textAlign: TextAlign.start,
-                                  style: TextStyle(color: theme.mnemonicText, fontSize: 20.sp, fontWeight: FontWeight.w500),
-                                ))));
-                  }
-                }),
+                                      ) !=
+                                      null &&
+                                  !failNodes[index]
+                              ? theme.successWords
+                              : theme.mnemonicWords,
+                          borderRadius: BorderRadius.circular(32.0.r),
+                        ),
+                        child: Text(
+                          '${index + 1}. ${words[index]}',
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            color: theme.mnemonicText,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }
+              },
+            ),
           ),
         ),
         gapH8,
@@ -173,16 +205,22 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
                   cursor: SystemMouseCursors.click,
                   child: GestureDetector(
                     onTap: () {
-                      ClipboardData data = ClipboardData(text: mnemonicString);
+                      final data = ClipboardData(text: mnemonicString);
                       Clipboard.setData(data);
                     },
                     child: Row(
                       children: [
-                        Icon(FluentIcons.check_mark, color: Colors.green.light,),
+                        Icon(
+                          FluentIcons.check_mark,
+                          color: Colors.green.light,
+                        ),
                         gapW4,
                         Text(
-                          "Seed is correct".hardcoded,
-                          style: TextStyle(color: Colors.green.light, fontSize: 16.sp),
+                          'Seed is correct'.hardcoded,
+                          style: TextStyle(
+                            color: Colors.green.light,
+                            fontSize: 16.sp,
+                          ),
                         ),
                       ],
                     ),
@@ -212,7 +250,7 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
         error = false;
       });
       words[index] = controllers[index].text.trim();
-      var nulls = words.where((element) => element == "").toList();
+      final nulls = words.where((element) => element == '').toList();
       if (nulls.isEmpty) {
         _checkMnemonic(seed, words);
       }
@@ -220,7 +258,7 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
   }
 
   void _checkMnemonic(List<String> ogSeed, List<String> newSeed) {
-    const DeepCollectionEquality equality = DeepCollectionEquality();
+    const equality = DeepCollectionEquality();
 
     if (equality.equals(ogSeed, newSeed)) {
       ref.read(nextButtonDisableProvider.notifier).state = false;
@@ -232,8 +270,8 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
   }
 
   void requestNextFocus(int currentIndex) {
-    int? nextIndex = focusNodeSet.firstWhereOrNull(
-          (index) => index > currentIndex,
+    final nextIndex = focusNodeSet.firstWhereOrNull(
+      (index) => index > currentIndex,
     );
 
     if (nextIndex != null && nextIndex < focusNodes.length) {
@@ -241,29 +279,28 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
     }
   }
 
-
   void _refresh() {
     context.afterBuild(() {
       ref.read(nextButtonDisableProvider.notifier).state = true;
-      var stuff = ref.read(seedProvider.notifier).state;
+      final stuff = ref.read(seedProvider.notifier).state;
       final random = Random();
       final indicesToHide = <int>{};
-      for (int i = 0; i < stuff.length; i++) {
+      for (var i = 0; i < stuff.length; i++) {
         words.add(stuff[i]);
       }
-      var number = stuff.length == 12 ? 4 : 8;
+      final number = stuff.length == 12 ? 4 : 8;
 
       while (indicesToHide.length < number) {
-        int index = random.nextInt(stuff.length);
+        final index = random.nextInt(stuff.length);
         indicesToHide.add(index);
       }
 
-      for (int index in indicesToHide) {
-        words[index] = "";
+      for (final index in indicesToHide) {
+        words[index] = '';
       }
 
-      for (int i = 0; i < words.length; i++) {
-        FocusNode focusNode = FocusNode();
+      for (var i = 0; i < words.length; i++) {
+        final focusNode = FocusNode();
         focusNode.addListener(() {
           if (!focusNode.hasFocus) {
             validateInput(i);
@@ -273,7 +310,7 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
         controllers.add(TextEditingController());
         errorNodes.add(false);
         failNodes.add(true);
-        if (words[i] == "") {
+        if (words[i] == '') {
           focusNodeSet.add(i);
         }
       }

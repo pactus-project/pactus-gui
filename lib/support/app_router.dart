@@ -10,13 +10,13 @@ CustomTransitionPage fadeRouteTransition<T>({
   required BuildContext context,
   required GoRouterState state,
   required Widget child,
-}) {
-  return CustomTransitionPage<T>(
-    key: state.pageKey,
-    child: child,
-    transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(opacity: animation, child: child),
-  );
-}
+}) =>
+    CustomTransitionPage<T>(
+      key: state.pageKey,
+      child: child,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+          FadeTransition(opacity: animation, child: child),
+    );
 
 final goRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
