@@ -4,8 +4,10 @@ import 'dart:io';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pactus/dash_screens/log_dash_screen.dart';
 import 'package:pactus/provider/grpc_provider.dart';
 import 'package:pactus/provider/pid_provider.dart';
+import 'package:pactus/provider/process_provider.dart';
 import 'package:pactus/screen_wrapper/wrapper_screen.dart';
 import 'package:pactus/support/app_sizes.dart';
 import 'package:pactus/support/constants.dart';
@@ -28,13 +30,8 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
   void initState() {
     super.initState();
     context.afterBuild(() async {
-      final pid = ref.read(pidProvider.notifier).state;
-      final p = ref.read(processProvider.notifier).state;
-      if (pid == null || p == null) {
-        await _restartDaemon();
-      } else {
-        context.afterBuild(_init);
-      }
+      ref.read(processManagerProvider.notifier).isRunning(); //TODO
+      unawaited(_init());
     });
   }
 
@@ -155,6 +152,11 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                 icon: const Icon(FluentIcons.album),
                 title: const Text('Wallet'),
                 body: const Placeholder(),
+              ),
+              PaneItem(
+                icon: const Icon(FluentIcons.album),
+                title: const Text('Node Logs'),
+                body: const LogDashScreen(),
               ),
             ],
             footerItems: [

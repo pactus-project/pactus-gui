@@ -1,14 +1,9 @@
-import 'dart:async';
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pactus/provider/password_provider.dart';
-import 'package:pactus/provider/pid_provider.dart';
-import 'package:pactus/provider/validator_provider.dart';
+import 'package:pactus/provider/process_provider.dart';
 import 'package:pactus/screen_wrapper/wrapper_screen.dart';
 import 'package:pactus/screens/dashboard_screen.dart';
 import 'package:pactus/support/app_sizes.dart';
@@ -23,156 +18,6 @@ class UnlockScreen extends ConsumerStatefulWidget {
 }
 
 class _UnlockScreenState extends ConsumerState<UnlockScreen> {
-  List<String> _paramBuilder(String password) {
-    ref.read(confirmPasswordProvider.notifier).state = password;
-    final passParam = <String>['-p', password];
-    final path = Platform.isMacOS || Platform.isLinux
-        ? ref.read(dataPathProvider.notifier).state ??
-            "${Platform.environment['HOME']!}/wallet"
-        : ref.read(dataPathProvider.notifier).state ??
-            "${Platform.environment['USERPROFILE']!}/pactus-wallet";
-    return ['-w', path, ...passParam];
-  }
-
-  Future<void> _runDaemonMac(String pass) async {
-    try {
-      var mainPath = Platform.resolvedExecutable;
-      mainPath = mainPath.substring(0, mainPath.lastIndexOf('/'));
-      mainPath = mainPath.substring(0, mainPath.lastIndexOf('/'));
-      mainPath = Platform.isMacOS ? '$mainPath/Resources' : '$mainPath/bundle';
-      final directoryExe = Directory(mainPath);
-      final files = directoryExe.listSync();
-      Process? res;
-      for (final file in files) {
-        if (file.path.contains('pactus-daemon')) {
-          final param = _paramBuilder(pass);
-          res = await Process.start(file.path, ['start', ...param]);
-          final pid = res.pid;
-          await _readFromProcess(res).then((value) {
-            if (_checkForInvalid(value, pid)) {
-              ref.read(pidProvider.notifier).state = pid;
-              ref.read(processProvider.notifier).state = res;
-              context.go(DashboardScreen.route);
-            } else {
-              final alert = ContentDialog(
-                title: const Text('Password Invalid'),
-                content: const Text(
-                  'The password you entered is invalid, please try again',
-                ),
-                actions: [
-                  Button(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text('OK'),
-                  ),
-                ],
-              );
-              showDialog(context: context, builder: (context) => alert);
-            }
-          });
-          break;
-        }
-      }
-    } on Exception catch (e) {
-      final alert = ContentDialog(
-        title: const Text('Daemon Not Found'),
-        content: Text('There was an error starting daemon$e'),
-        actions: [
-          Button(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const Text('OK'),
-          ),
-        ],
-      );
-      await showDialog(context: context, builder: (context) => alert);
-    }
-  }
-
-  Future<void> _runDaemonWin(String pass) async {
-    var mainPath = Platform.resolvedExecutable;
-    mainPath = mainPath.substring(0, mainPath.lastIndexOf('\\'));
-    final directoryExe = Directory(mainPath);
-    final files = directoryExe.listSync();
-    Process? res;
-    for (final file in files) {
-      if (file.path.contains('pactus-daemon.exe')) {
-        final param = _paramBuilder(pass);
-        res = await Process.start(file.path, ['start', ...param]);
-        final pid = res.pid;
-        await _readFromProcess(res).then((value) {
-          if (_checkForInvalid(value, pid)) {
-            ref.read(pidProvider.notifier).state = pid;
-            ref.read(processProvider.notifier).state = res;
-            context.go(DashboardScreen.route);
-          } else {
-            final alert = ContentDialog(
-              title: const Text('Password Invalid'),
-              content: const Text(
-                'The password you entered is invalid, please try again',
-              ),
-              actions: [
-                Button(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Text('OK'),
-                ),
-              ],
-            );
-            showDialog(context: context, builder: (context) => alert);
-          }
-        });
-        break;
-      }
-    }
-  }
-
-  Future<String> _readFromProcess(Process process) async {
-    final completer = Completer<String>();
-    final subscription = process.stdout.transform(utf8.decoder).listen((data) {
-      if (!completer.isCompleted) {
-        completer
-            .complete(data); // Complete with the first chunk of data received
-      }
-    });
-    Future.delayed(const Duration(seconds: 1), () {
-      if (!completer.isCompleted) {
-        completer.complete(''); // Complete with empty string after 1 second
-      }
-    });
-    final output = await completer.future;
-    await subscription.cancel();
-    return output;
-  }
-
-  bool _checkForInvalid(String stdout, int pid) {
-    if (stdout.trim() == 'invalid password') {
-      Process.killPid(pid);
-      final alert = ContentDialog(
-        title: const Text('Invalid Password'),
-        content:
-            const Text('The password you entered is invalid, please try again'),
-        actions: [
-          Button(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const Text('OK'),
-          ),
-        ],
-      );
-      if (context.mounted) {
-        showDialog(context: context, builder: (context) => alert);
-      }
-      return false;
-    } else {
-      return true;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -221,13 +66,22 @@ class _UnlockScreenState extends ConsumerState<UnlockScreen> {
                   return Colors.blue;
                 }),
               ),
-              onPressed: () {
-                final pass = ref.read(passwordProvider.notifier).state;
-                if (pass != null && pass.isNotEmpty) {
-                  if (Platform.isMacOS || Platform.isLinux) {
-                    _runDaemonMac(pass);
-                  } else {
-                    _runDaemonWin(pass);
+              onPressed: () async {
+                final password = ref.read(passwordProvider.notifier).state;
+                if (password != null && password.isNotEmpty) {
+                  try {
+                    await ref
+                        .read(processManagerProvider.notifier)
+                        .startDaemonWithPassword(password);
+                    if (context.mounted) {
+                      context.go(DashboardScreen.route);
+                    }
+                  } on Exception catch (e) {
+                    // Handle errors, e.g., invalid password or daemon not found
+                    // Show appropriate dialog based on the exception
+                    if (context.mounted) {
+                      _showErrorDialog(context, e.toString());
+                    }
                   }
                 }
               },
@@ -246,5 +100,23 @@ class _UnlockScreenState extends ConsumerState<UnlockScreen> {
       ),
       title: '',
     );
+  }
+
+  void _showErrorDialog(BuildContext context, String message) {
+    final alert = ContentDialog(
+      title: const Text('Password Invalid'),
+      content: const Text(
+        'The password you entered is invalid, please try again',
+      ),
+      actions: [
+        Button(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('OK'),
+        ),
+      ],
+    );
+    showDialog(context: context, builder: (context) => alert);
   }
 }
