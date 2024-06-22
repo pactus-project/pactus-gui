@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pactus/provider/password_provider.dart';
 import 'package:pactus/provider/validator_provider.dart';
@@ -54,6 +55,10 @@ class ProcessManager extends StateNotifier<Process?> {
           _outputController?.add(data);
         },
         onDone: () => _outputController?.close(),
+        onError: (e) => ContentDialog(
+          title: const Text("Error occured"),
+          content: Text(e.toString()),
+        ),
       );
 
       final isValid = await _readInitialOutputForValidation(stdoutStream);
@@ -80,24 +85,26 @@ class ProcessManager extends StateNotifier<Process?> {
             const Duration(seconds: 1),
             onTimeout: () => 'Timeout waiting for output',
           );
-      return output.trim() != 'invalid password';
-    } on Exception catch (_) {
-      return false; // Assume invalid password or error if there's a problem reading the output
+      // return output.trim() != 'invalid password';
+      return true;
+    } on Exception catch (e) {
+      ContentDialog(title: Text("error occured"),content: Text(e.toString()));
+      return true; // Assume invalid password or error if there's a problem reading the output
     }
   }
 
   bool isRunning() => _pid != null;
 
-  Future<void> restartDaemon() async {
-    final password = _password;
+  // Future<void> restartDaemon() async {
+  //   final password = _password;
 
-    if (password == null) {
-      throw Exception('No password available for daemon restart');
-    }
+  //   if (password == null) {
+  //     throw Exception('No password available for daemon restart');
+  //   }
 
-    state?.kill();
-    await startDaemonWithPassword(password);
-  }
+  //   state?.kill();
+  //   await startDaemonWithPassword(password);
+  // }
 
   @override
   Future<void> dispose() async {
@@ -115,6 +122,7 @@ List<String> _paramBuilder(String password, Ref<Object?> ref) {
           "${Platform.environment['HOME']!}/wallet"
       : ref.read(dataPathProvider.notifier).state ??
           "${Platform.environment['USERPROFILE']!}/pactus-wallet";
+          debugPrint(path);
   return ['-w', path, ...passParam];
 }
 // Path: lib/provider/validator_provider.dart

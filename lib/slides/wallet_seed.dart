@@ -44,13 +44,13 @@ class _WalletSeedSlideState extends ConsumerState<WalletSeedSlide> {
                 Text(
                   'Your wallet generation seed',
                   style:
-                      TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w600),
+                      TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
                 ),
                 gapH8,
                 Text(
                   'Initialize Your Cryptographic journey with confidence',
                   style: TextStyle(
-                    fontSize: 16.sp,
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w300,
                     color: theme.textColor.withOpacity(0.5),
                   ),
@@ -128,13 +128,15 @@ class _WalletSeedSlideState extends ConsumerState<WalletSeedSlide> {
                         color: theme.mnemonicWords,
                         borderRadius: BorderRadius.circular(32.0.r),
                       ),
-                      child: Text(
-                        '${index + 1}. ${mnemonic[index]}',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          color: theme.mnemonicText,
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.w500,
+                      child: FittedBox(
+                        child: Text(
+                          '${index + 1}. ${mnemonic[index]}',
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            color: theme.mnemonicText,
+                            fontSize: 17.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                     ),
@@ -169,7 +171,7 @@ class _WalletSeedSlideState extends ConsumerState<WalletSeedSlide> {
                       'Copy to clipboard',
                       style: TextStyle(
                         color: theme.clipBoardText,
-                        fontSize: 16.sp,
+                        fontSize: 12.sp,
                       ),
                     ),
                   ],
@@ -180,63 +182,69 @@ class _WalletSeedSlideState extends ConsumerState<WalletSeedSlide> {
           ],
         ),
         const Spacer(),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Please write these $defaultDropDown words on paper',
-              style: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w300,
-                color: theme.textColor.withOpacity(0.5),
+        Flexible(
+          child: Container(width: double.infinity,
+            child: SingleChildScrollView(
+              child: Column(mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Please write these $defaultDropDown words on paper',
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w300,
+                      color: theme.textColor.withOpacity(0.5),
+                    ),
+                  ),
+                  gapH4,
+                  Text(
+                    'This seed will allow you to recover your wallet in case of computer failure',
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w300,
+                      color: theme.textColor.withOpacity(0.5),
+                    ),
+                  ),
+                  gapH16,
+                  Text(
+                    'Warning',
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w900,
+                      color: theme.textColor.withOpacity(0.8),
+                    ),
+                  ),
+                  gapH4,
+                  Text(
+                    '- Never disclose your seed',
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w300,
+                      color: theme.textColor.withOpacity(0.5),
+                    ),
+                  ),
+                  gapH4,
+                  Text(
+                    '- Never type it on website',
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w300,
+                      color: theme.textColor.withOpacity(0.5),
+                    ),
+                  ),
+                  gapH4,
+                  Text(
+                    '- Do not store electronically',
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w300,
+                      color: theme.textColor.withOpacity(0.5),
+                    ),
+                  ),
+                ],
               ),
             ),
-            gapH4,
-            Text(
-              'This seed will allow you to recover your wallet in case of computer failure',
-              style: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w300,
-                color: theme.textColor.withOpacity(0.5),
-              ),
-            ),
-            gapH16,
-            Text(
-              'Warning',
-              style: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w900,
-                color: theme.textColor.withOpacity(0.8),
-              ),
-            ),
-            gapH4,
-            Text(
-              '- Never disclose your seed',
-              style: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w300,
-                color: theme.textColor.withOpacity(0.5),
-              ),
-            ),
-            gapH4,
-            Text(
-              '- Never type it on website',
-              style: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w300,
-                color: theme.textColor.withOpacity(0.5),
-              ),
-            ),
-            gapH4,
-            Text(
-              '- Do not store electronically',
-              style: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w300,
-                color: theme.textColor.withOpacity(0.5),
-              ),
-            ),
-          ],
+          ),
         ),
       ],
     );

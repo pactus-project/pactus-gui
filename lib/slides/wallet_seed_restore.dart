@@ -49,209 +49,259 @@ class _WalletSeedRestoreSlide extends ConsumerState<WalletSeedRestoreSlide> {
   @override
   Widget build(BuildContext context) {
     final theme = ref.watch(appThemeProvider);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return SingleChildScrollView(
+      child: Container(
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.of(context).size.height,
+          maxWidth: MediaQuery.of(context).size.height,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Restoration Seed',
-                  style:
-                      TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w600),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Restoration Seed',
+                      style: TextStyle(
+                          fontSize: 22.sp, fontWeight: FontWeight.w600),
+                    ),
+                    gapH8,
+                    Text(
+                      'Restoration Seed, Your Key to Digital Resilience and Recovery',
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w300,
+                        color: theme.textColor.withOpacity(0.5),
+                      ),
+                    ),
+                  ],
                 ),
-                gapH8,
-                Text(
-                  'Restoration Seed, Your Key to Digital Resilience and Recovery',
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w300,
-                    color: theme.textColor.withOpacity(0.5),
+                Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: DropDownButton(
+                    closeAfterClick: false,
+                    title: Text(
+                      '$defaultDropDown words',
+                      style: TextStyle(color: theme.textColor.withOpacity(0.4)),
+                    ),
+                    items: dropDown
+                        .map(
+                          (e) => MenuFlyoutItem(
+                            text: Text(
+                              '${e}word',
+                              style: TextStyle(
+                                color: theme.textColor.withOpacity(0.4),
+                              ),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                defaultDropDown = e;
+                                _refresh(e);
+                              });
+                            },
+                          ),
+                        )
+                        .toList(),
                   ),
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(right: 8),
-              child: DropDownButton(
-                closeAfterClick: false,
-                title: Text(
-                  '$defaultDropDown words',
-                  style: TextStyle(color: theme.textColor.withOpacity(0.4)),
-                ),
-                items: dropDown
-                    .map(
-                      (e) => MenuFlyoutItem(
-                        text: Text(
-                          '${e}word',
-                          style: TextStyle(
-                            color: theme.textColor.withOpacity(0.4),
+            gapH32,
+            Container(
+              height: words.length == 12 ? 120.h : 250.h,
+              margin: EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 6.0.h),
+              padding: EdgeInsets.all(12.0.sp),
+              decoration: BoxDecoration(
+                color: theme.fieldBackground,
+                borderRadius: BorderRadius.circular(8.0.r),
+              ),
+              width: MediaQuery.sizeOf(context).width,
+              child: Center(
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  itemCount: focusNodes.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 6, // number of items in each row
+                    mainAxisSpacing: 17.h, // spacing between rows
+                    crossAxisSpacing: 4.0.w, // spacing between columns
+                    mainAxisExtent: 30.0.h, // row height
+                  ),
+                  itemBuilder: (ctx, index) {
+                    if (words[index] == '') {
+                      return Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 16.0.w, vertical: 2.h),
+                        decoration: BoxDecoration(
+                          color: errorNodes[index]
+                              ? Colors.red.withOpacity(0.5)
+                              : theme.mnemonicWords,
+                          borderRadius: BorderRadius.circular(32.0.r),
+                        ),
+                        child: Row(
+                          children: [
+                            FittedBox(
+                              child: Text(
+                                '${index + 1}. ',
+                                style: TextStyle(
+                                  color: theme.mnemonicText,
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ),
+                            gapW4,
+                            Expanded(
+                              child: Align(
+                                child: Flexible(
+                                  child: EditableText(
+                                    focusNode: focusNodes[index]!,
+                                    inputFormatters: [
+                                      FilteringTextInputFormatter.allow(
+                                        RegExp('[a-z A-Z \n \t \v]'),
+                                      ),
+                                    ],
+                                    // enabled: failNodes[index],
+                                    expands: true,
+                                    maxLines: null,
+                                    // highlightColor: Colors.transparent,
+                                    style: TextStyle(
+                                      color: theme.mnemonicText,
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                    controller: controllers[index],
+                                    onChanged: (text) {
+                                      if (text.length >= 3 &&
+                                          (text.endsWith(' ') ||
+                                              text.endsWith('\n'))) {
+                                        validateInput(index);
+                                        requestNextFocus(index);
+                                      }
+                                    },
+                                    cursorColor: theme.cursorColor,
+                                    backgroundCursorColor:
+                                        Colors.grey.withOpacity(0.5),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    } else {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            // errorNodes[index] = true;
+                            failNodes[index] = true;
+                          });
+                          controllers[index].clear();
+                          words[index] = '';
+                          focusNodeSet.add(index);
+                          focusNodes[index]?.requestFocus();
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.only(left: 8),
+                          decoration: const BoxDecoration(
+                            color: Colors.transparent,
+                          ),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 16.0.w,
+                                vertical: 4.h,
+                              ),
+                              decoration: BoxDecoration(
+                                color: focusNodeSet.firstWhereOrNull(
+                                              (i) => i == index,
+                                            ) !=
+                                            null &&
+                                        !failNodes[index]
+                                    ? theme.successWords
+                                    : theme.mnemonicWords,
+                                borderRadius: BorderRadius.circular(32.0.r),
+                              ),
+                              child: FittedBox(
+                                child: Text(
+                                  '${index + 1}. ${words[index]}',
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    color: theme.mnemonicText,
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                        onPressed: () {
-                          setState(() {
-                            defaultDropDown = e;
-                            _refresh(e);
-                          });
-                        },
-                      ),
-                    )
-                    .toList(),
+                      );
+                    }
+                  },
+                ),
               ),
             ),
-          ],
-        ),
-        gapH32,
-        Container(
-          height: words.length == 12 ? 120.h : 250.h,
-          margin: EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 6.0.h),
-          padding: EdgeInsets.all(12.0.sp),
-          decoration: BoxDecoration(
-            color: theme.fieldBackground,
-            borderRadius: BorderRadius.circular(8.0.r),
-          ),
-          width: MediaQuery.sizeOf(context).width,
-          child: Center(
-            child: GridView.builder(
-              shrinkWrap: true,
-              itemCount: focusNodes.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 6, // number of items in each row
-                mainAxisSpacing: 17.h, // spacing between rows
-                crossAxisSpacing: 4.0.w, // spacing between columns
-                mainAxisExtent: 30.0.h, // row height
-              ),
-              itemBuilder: (ctx, index) {
-                if (words[index] == '') {
-                  return Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 2.h),
-                    decoration: BoxDecoration(
-                      color: errorNodes[index]
-                          ? Colors.red.withOpacity(0.5)
-                          : theme.mnemonicWords,
-                      borderRadius: BorderRadius.circular(32.0.r),
+            gapH8,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 12.0.w),
+                  child: Text(
+                    'Please confirm your entry by pressing enter or spacebar'
+                        .hardcoded,
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w300,
+                      color: theme.textColor.withOpacity(0.5),
                     ),
-                    child: Row(
-                      children: [
-                        Text(
-                          '${index + 1}. ',
-                          style: TextStyle(
-                            color: theme.mnemonicText,
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                        gapW4,
-                        Expanded(
-                          child: Align(
-                            child: EditableText(
-                              focusNode: focusNodes[index]!,
-                              inputFormatters: [
-                                FilteringTextInputFormatter.allow(
-                                  RegExp('[a-z A-Z \n \t \v]'),
+                  ),
+                ),
+                Visibility(
+                  visible: error,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 14.0.w),
+                        child: MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () {
+                              final data = ClipboardData(text: mnemonicString);
+                              Clipboard.setData(data);
+                            },
+                            child: Row(
+                              children: [
+                                Icon(
+                                  FluentIcons.error,
+                                  color: Colors.red.light,
+                                ),
+                                gapW4,
+                                Text(
+                                  'Seed is incorrect'.hardcoded,
+                                  style: TextStyle(
+                                    color: Colors.red.light,
+                                    fontSize: 16.sp,
+                                  ),
                                 ),
                               ],
-                              // enabled: failNodes[index],
-                              expands: true,
-                              maxLines: null,
-                              // highlightColor: Colors.transparent,
-                              style: TextStyle(
-                                color: theme.mnemonicText,
-                                fontSize: 13.h,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              controller: controllers[index],
-                              onChanged: (text) {
-                                if (text.length >= 3 &&
-                                    (text.endsWith(' ') ||
-                                        text.endsWith('\n'))) {
-                                  validateInput(index);
-                                  requestNextFocus(index);
-                                }
-                              },
-                              cursorColor: theme.cursorColor,
-                              backgroundCursorColor:
-                                  Colors.grey.withOpacity(0.5),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                } else {
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        // errorNodes[index] = true;
-                        failNodes[index] = true;
-                      });
-                      controllers[index].clear();
-                      words[index] = '';
-                      focusNodeSet.add(index);
-                      focusNodes[index]?.requestFocus();
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.only(left: 8),
-                      decoration: const BoxDecoration(
-                        color: Colors.transparent,
-                      ),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 16.0.w,
-                            vertical: 4.h,
-                          ),
-                          decoration: BoxDecoration(
-                            color: focusNodeSet.firstWhereOrNull(
-                                          (i) => i == index,
-                                        ) !=
-                                        null &&
-                                    !failNodes[index]
-                                ? theme.successWords
-                                : theme.mnemonicWords,
-                            borderRadius: BorderRadius.circular(32.0.r),
-                          ),
-                          child: Text(
-                            '${index + 1}. ${words[index]}',
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              color: theme.mnemonicText,
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.w900,
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  );
-                }
-              },
-            ),
-          ),
-        ),
-        gapH8,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(left: 12.0.w),
-              child: Text(
-                'Please confirm your entry by pressing enter or spacebar'
-                    .hardcoded,
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w300,
-                  color: theme.textColor.withOpacity(0.5),
+                    ],
+                  ),
                 ),
-              ),
+              ],
             ),
             Visibility(
-              visible: error,
+              visible: !ref.watch(nextButtonDisableProvider.notifier).state,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -267,14 +317,14 @@ class _WalletSeedRestoreSlide extends ConsumerState<WalletSeedRestoreSlide> {
                         child: Row(
                           children: [
                             Icon(
-                              FluentIcons.error,
-                              color: Colors.red.light,
+                              FluentIcons.check_mark,
+                              color: Colors.green.light,
                             ),
                             gapW4,
                             Text(
-                              'Seed is incorrect'.hardcoded,
+                              'Seed is correct'.hardcoded,
                               style: TextStyle(
-                                color: Colors.red.light,
+                                color: Colors.green.light,
                                 fontSize: 16.sp,
                               ),
                             ),
@@ -286,47 +336,11 @@ class _WalletSeedRestoreSlide extends ConsumerState<WalletSeedRestoreSlide> {
                 ],
               ),
             ),
+            gapW12,
+            const Spacer(),
           ],
         ),
-        Visibility(
-          visible: !ref.watch(nextButtonDisableProvider.notifier).state,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 14.0.w),
-                child: MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    onTap: () {
-                      final data = ClipboardData(text: mnemonicString);
-                      Clipboard.setData(data);
-                    },
-                    child: Row(
-                      children: [
-                        Icon(
-                          FluentIcons.check_mark,
-                          color: Colors.green.light,
-                        ),
-                        gapW4,
-                        Text(
-                          'Seed is correct'.hardcoded,
-                          style: TextStyle(
-                            color: Colors.green.light,
-                            fontSize: 16.sp,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        gapW12,
-        const Spacer(),
-      ],
+      ),
     );
   }
 

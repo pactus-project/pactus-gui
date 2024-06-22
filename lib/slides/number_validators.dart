@@ -73,15 +73,17 @@ class _NumberValidatorsSlide extends ConsumerState<NumberValidatorsSlide> {
           ),
         ),
         if (!Platform.isMacOS)
-          Column(
+          Column(crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               gapH32,
               Text(
                 'Working directory',
+                textAlign: TextAlign.left,
                 style: TextStyle(
-                  fontSize: 16.sp,
+                  fontSize: 14.sp,
+                  
                   fontWeight: FontWeight.w400,
-                  color: theme.textColor.withOpacity(0.5),
+                  color: theme.textColor.withOpacity(0.7),
                 ),
               ),
               gapH8,
@@ -102,8 +104,8 @@ class _NumberValidatorsSlide extends ConsumerState<NumberValidatorsSlide> {
                     style: ButtonStyle(
                       padding: ButtonState.all(
                         EdgeInsets.symmetric(
-                          horizontal: 24.0.w,
-                          vertical: 8.0.h,
+                          horizontal: 20.0.w,
+                          vertical: 6.0.h,
                         ),
                       ),
                       backgroundColor: ButtonState.resolveWith((states) {
@@ -117,9 +119,9 @@ class _NumberValidatorsSlide extends ConsumerState<NumberValidatorsSlide> {
                       'Select folder',
                       style: TextStyle(
                         color: theme.isLightTheme(context)
-                            ? Colors.white
-                            : Colors.black,
-                        fontSize: 16.sp,
+                            ? Colors.black
+                            : Colors.white,
+                        fontSize: 14.sp,
                       ),
                     ),
                     onPressed: () async {
@@ -144,7 +146,7 @@ class _NumberValidatorsSlide extends ConsumerState<NumberValidatorsSlide> {
             Text(
               'Number of validators',
               style: TextStyle(
-                fontSize: 16.sp,
+                fontSize: 14.sp,
                 fontWeight: FontWeight.w400,
                 color: theme.textColor.withOpacity(0.5),
               ),

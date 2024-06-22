@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pactus/provider/validator_provider.dart';
 import 'package:pactus/screen_wrapper/wrapper_screen.dart';
-import 'package:pactus/screens/dashboard_screen.dart';
+import 'package:pactus/screens/dashboard_wrapper.dart';
 import 'package:pactus/screens/init_screen.dart';
 import 'package:pactus/screens/unlock_screen.dart';
 import 'package:pactus/support/app_sizes.dart';
@@ -65,7 +65,7 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
             if (hasPassword != null && hasPassword) {
               context.go(UnlockScreen.route);
             } else {
-              context.go(DashboardScreen.route);
+              context.go(DashboardScreenWrapper.route);
             }
           }
         }
@@ -98,7 +98,8 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
             Text(
               'Welcome to the Future of Blockchain with Pactus!',
               style: FluentTheme.of(context).typography.bodyLarge!.copyWith(
-                    fontWeight: FontWeight.w900,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 18.sp,
                   ),
             ),
             gapH24,
@@ -112,8 +113,8 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
             ),
             gapH24,
             SizedBox(
-              width: 200.w,
-              height: 40.h,
+              width: 170.w,
+              height: 35.h,
               child: MouseRegion(
                 cursor: SystemMouseCursors.click,
                 child: Button(
@@ -132,8 +133,8 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
                     child: Text(
                       'Get Started',
                       style: FluentTheme.of(context).typography.body!.copyWith(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w800,
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w500,
                             color: Colors.white,
                           ),
                     ),

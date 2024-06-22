@@ -64,6 +64,7 @@ class GetTransactionRequest extends $pb.GeneratedMessage {
   static GetTransactionRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetTransactionRequest>(create);
   static GetTransactionRequest? _defaultInstance;
 
+  /// Transaction ID.
   @$pb.TagNumber(1)
   $core.List<$core.int> get id => $_getN(0);
   @$pb.TagNumber(1)
@@ -73,6 +74,7 @@ class GetTransactionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearId() => clearField(1);
 
+  /// Verbosity level for transaction details.
   @$pb.TagNumber(2)
   TransactionVerbosity get verbosity => $_getN(1);
   @$pb.TagNumber(2)
@@ -86,19 +88,19 @@ class GetTransactionRequest extends $pb.GeneratedMessage {
 /// Response message containing details of a transaction.
 class GetTransactionResponse extends $pb.GeneratedMessage {
   factory GetTransactionResponse({
-    TransactionInfo? transaction,
     $core.int? blockHeight,
     $core.int? blockTime,
+    TransactionInfo? transaction,
   }) {
     final $result = create();
-    if (transaction != null) {
-      $result.transaction = transaction;
-    }
     if (blockHeight != null) {
       $result.blockHeight = blockHeight;
     }
     if (blockTime != null) {
       $result.blockTime = blockTime;
+    }
+    if (transaction != null) {
+      $result.transaction = transaction;
     }
     return $result;
   }
@@ -107,9 +109,9 @@ class GetTransactionResponse extends $pb.GeneratedMessage {
   factory GetTransactionResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetTransactionResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'pactus'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'blockHeight', $pb.PbFieldType.OU3)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'blockTime', $pb.PbFieldType.OU3)
     ..aOM<TransactionInfo>(3, _omitFieldNames ? '' : 'transaction', subBuilder: TransactionInfo.create)
-    ..a<$core.int>(12, _omitFieldNames ? '' : 'blockHeight', $pb.PbFieldType.OU3)
-    ..a<$core.int>(13, _omitFieldNames ? '' : 'blockTime', $pb.PbFieldType.OU3)
     ..hasRequiredFields = false
   ;
 
@@ -134,34 +136,37 @@ class GetTransactionResponse extends $pb.GeneratedMessage {
   static GetTransactionResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetTransactionResponse>(create);
   static GetTransactionResponse? _defaultInstance;
 
+  /// Height of the block containing the transaction.
+  @$pb.TagNumber(1)
+  $core.int get blockHeight => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set blockHeight($core.int v) { $_setUnsignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasBlockHeight() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearBlockHeight() => clearField(1);
+
+  /// Time of the block containing the transaction.
+  @$pb.TagNumber(2)
+  $core.int get blockTime => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set blockTime($core.int v) { $_setUnsignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasBlockTime() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearBlockTime() => clearField(2);
+
+  /// Information about the transaction.
   @$pb.TagNumber(3)
-  TransactionInfo get transaction => $_getN(0);
+  TransactionInfo get transaction => $_getN(2);
   @$pb.TagNumber(3)
   set transaction(TransactionInfo v) { setField(3, v); }
   @$pb.TagNumber(3)
-  $core.bool hasTransaction() => $_has(0);
+  $core.bool hasTransaction() => $_has(2);
   @$pb.TagNumber(3)
   void clearTransaction() => clearField(3);
   @$pb.TagNumber(3)
-  TransactionInfo ensureTransaction() => $_ensure(0);
-
-  @$pb.TagNumber(12)
-  $core.int get blockHeight => $_getIZ(1);
-  @$pb.TagNumber(12)
-  set blockHeight($core.int v) { $_setUnsignedInt32(1, v); }
-  @$pb.TagNumber(12)
-  $core.bool hasBlockHeight() => $_has(1);
-  @$pb.TagNumber(12)
-  void clearBlockHeight() => clearField(12);
-
-  @$pb.TagNumber(13)
-  $core.int get blockTime => $_getIZ(2);
-  @$pb.TagNumber(13)
-  set blockTime($core.int v) { $_setUnsignedInt32(2, v); }
-  @$pb.TagNumber(13)
-  $core.bool hasBlockTime() => $_has(2);
-  @$pb.TagNumber(13)
-  void clearBlockTime() => clearField(13);
+  TransactionInfo ensureTransaction() => $_ensure(2);
 }
 
 /// Request message for calculating transaction fee.
@@ -169,6 +174,7 @@ class CalculateFeeRequest extends $pb.GeneratedMessage {
   factory CalculateFeeRequest({
     $fixnum.Int64? amount,
     PayloadType? payloadType,
+    $core.bool? fixedAmount,
   }) {
     final $result = create();
     if (amount != null) {
@@ -176,6 +182,9 @@ class CalculateFeeRequest extends $pb.GeneratedMessage {
     }
     if (payloadType != null) {
       $result.payloadType = payloadType;
+    }
+    if (fixedAmount != null) {
+      $result.fixedAmount = fixedAmount;
     }
     return $result;
   }
@@ -185,7 +194,8 @@ class CalculateFeeRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CalculateFeeRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'pactus'), createEmptyInstance: create)
     ..aInt64(1, _omitFieldNames ? '' : 'amount')
-    ..e<PayloadType>(2, _omitFieldNames ? '' : 'payloadType', $pb.PbFieldType.OE, protoName: 'payloadType', defaultOrMaker: PayloadType.UNKNOWN, valueOf: PayloadType.valueOf, enumValues: PayloadType.values)
+    ..e<PayloadType>(2, _omitFieldNames ? '' : 'payloadType', $pb.PbFieldType.OE, defaultOrMaker: PayloadType.UNKNOWN, valueOf: PayloadType.valueOf, enumValues: PayloadType.values)
+    ..aOB(3, _omitFieldNames ? '' : 'fixedAmount')
     ..hasRequiredFields = false
   ;
 
@@ -210,6 +220,7 @@ class CalculateFeeRequest extends $pb.GeneratedMessage {
   static CalculateFeeRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CalculateFeeRequest>(create);
   static CalculateFeeRequest? _defaultInstance;
 
+  /// Transaction amount in NanoPAC.
   @$pb.TagNumber(1)
   $fixnum.Int64 get amount => $_getI64(0);
   @$pb.TagNumber(1)
@@ -219,6 +230,7 @@ class CalculateFeeRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearAmount() => clearField(1);
 
+  /// Type of transaction payload.
   @$pb.TagNumber(2)
   PayloadType get payloadType => $_getN(1);
   @$pb.TagNumber(2)
@@ -227,14 +239,28 @@ class CalculateFeeRequest extends $pb.GeneratedMessage {
   $core.bool hasPayloadType() => $_has(1);
   @$pb.TagNumber(2)
   void clearPayloadType() => clearField(2);
+
+  /// Indicates that amount should be fixed and includes the fee.
+  @$pb.TagNumber(3)
+  $core.bool get fixedAmount => $_getBF(2);
+  @$pb.TagNumber(3)
+  set fixedAmount($core.bool v) { $_setBool(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasFixedAmount() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearFixedAmount() => clearField(3);
 }
 
 /// Response message containing the calculated transaction fee.
 class CalculateFeeResponse extends $pb.GeneratedMessage {
   factory CalculateFeeResponse({
+    $fixnum.Int64? amount,
     $fixnum.Int64? fee,
   }) {
     final $result = create();
+    if (amount != null) {
+      $result.amount = amount;
+    }
     if (fee != null) {
       $result.fee = fee;
     }
@@ -245,7 +271,8 @@ class CalculateFeeResponse extends $pb.GeneratedMessage {
   factory CalculateFeeResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CalculateFeeResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'pactus'), createEmptyInstance: create)
-    ..aInt64(1, _omitFieldNames ? '' : 'fee')
+    ..aInt64(1, _omitFieldNames ? '' : 'amount')
+    ..aInt64(2, _omitFieldNames ? '' : 'fee')
     ..hasRequiredFields = false
   ;
 
@@ -270,14 +297,25 @@ class CalculateFeeResponse extends $pb.GeneratedMessage {
   static CalculateFeeResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CalculateFeeResponse>(create);
   static CalculateFeeResponse? _defaultInstance;
 
+  /// Calculated amount in NanoPAC.
   @$pb.TagNumber(1)
-  $fixnum.Int64 get fee => $_getI64(0);
+  $fixnum.Int64 get amount => $_getI64(0);
   @$pb.TagNumber(1)
-  set fee($fixnum.Int64 v) { $_setInt64(0, v); }
+  set amount($fixnum.Int64 v) { $_setInt64(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasFee() => $_has(0);
+  $core.bool hasAmount() => $_has(0);
   @$pb.TagNumber(1)
-  void clearFee() => clearField(1);
+  void clearAmount() => clearField(1);
+
+  /// Calculated transaction fee in NanoPAC.
+  @$pb.TagNumber(2)
+  $fixnum.Int64 get fee => $_getI64(1);
+  @$pb.TagNumber(2)
+  set fee($fixnum.Int64 v) { $_setInt64(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasFee() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearFee() => clearField(2);
 }
 
 /// Request message for broadcasting a signed transaction.
@@ -321,6 +359,7 @@ class BroadcastTransactionRequest extends $pb.GeneratedMessage {
   static BroadcastTransactionRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BroadcastTransactionRequest>(create);
   static BroadcastTransactionRequest? _defaultInstance;
 
+  /// Signed raw transaction data.
   @$pb.TagNumber(1)
   $core.List<$core.int> get signedRawTransaction => $_getN(0);
   @$pb.TagNumber(1)
@@ -347,7 +386,7 @@ class BroadcastTransactionResponse extends $pb.GeneratedMessage {
   factory BroadcastTransactionResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'BroadcastTransactionResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'pactus'), createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(2, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OY)
     ..hasRequiredFields = false
   ;
 
@@ -372,14 +411,15 @@ class BroadcastTransactionResponse extends $pb.GeneratedMessage {
   static BroadcastTransactionResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BroadcastTransactionResponse>(create);
   static BroadcastTransactionResponse? _defaultInstance;
 
-  @$pb.TagNumber(2)
+  /// Transaction ID.
+  @$pb.TagNumber(1)
   $core.List<$core.int> get id => $_getN(0);
-  @$pb.TagNumber(2)
+  @$pb.TagNumber(1)
   set id($core.List<$core.int> v) { $_setBytes(0, v); }
-  @$pb.TagNumber(2)
+  @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
-  @$pb.TagNumber(2)
-  void clearId() => clearField(2);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
 }
 
 /// Request message for retrieving raw details of a transfer transaction.
@@ -448,6 +488,8 @@ class GetRawTransferTransactionRequest extends $pb.GeneratedMessage {
   static GetRawTransferTransactionRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetRawTransferTransactionRequest>(create);
   static GetRawTransferTransactionRequest? _defaultInstance;
 
+  /// Lock time for the transaction.
+  /// If not explicitly set, it sets to the last block height.
   @$pb.TagNumber(1)
   $core.int get lockTime => $_getIZ(0);
   @$pb.TagNumber(1)
@@ -457,6 +499,7 @@ class GetRawTransferTransactionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearLockTime() => clearField(1);
 
+  /// Sender's account address.
   @$pb.TagNumber(2)
   $core.String get sender => $_getSZ(1);
   @$pb.TagNumber(2)
@@ -466,6 +509,7 @@ class GetRawTransferTransactionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearSender() => clearField(2);
 
+  /// Receiver's account address.
   @$pb.TagNumber(3)
   $core.String get receiver => $_getSZ(2);
   @$pb.TagNumber(3)
@@ -475,6 +519,8 @@ class GetRawTransferTransactionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   void clearReceiver() => clearField(3);
 
+  /// Transfer amount in NanoPAC.
+  /// It should be greater than 0.
   @$pb.TagNumber(4)
   $fixnum.Int64 get amount => $_getI64(3);
   @$pb.TagNumber(4)
@@ -484,6 +530,8 @@ class GetRawTransferTransactionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   void clearAmount() => clearField(4);
 
+  /// Transaction fee in NanoPAC.
+  /// If not explicitly set, it is calculated based on the amount.
   @$pb.TagNumber(5)
   $fixnum.Int64 get fee => $_getI64(4);
   @$pb.TagNumber(5)
@@ -493,6 +541,7 @@ class GetRawTransferTransactionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   void clearFee() => clearField(5);
 
+  /// Transaction memo.
   @$pb.TagNumber(6)
   $core.String get memo => $_getSZ(5);
   @$pb.TagNumber(6)
@@ -574,6 +623,8 @@ class GetRawBondTransactionRequest extends $pb.GeneratedMessage {
   static GetRawBondTransactionRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetRawBondTransactionRequest>(create);
   static GetRawBondTransactionRequest? _defaultInstance;
 
+  /// Lock time for the transaction.
+  /// If not explicitly set, it sets to the last block height.
   @$pb.TagNumber(1)
   $core.int get lockTime => $_getIZ(0);
   @$pb.TagNumber(1)
@@ -583,6 +634,7 @@ class GetRawBondTransactionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearLockTime() => clearField(1);
 
+  /// Sender's account address.
   @$pb.TagNumber(2)
   $core.String get sender => $_getSZ(1);
   @$pb.TagNumber(2)
@@ -592,6 +644,7 @@ class GetRawBondTransactionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearSender() => clearField(2);
 
+  /// Receiver's validator address.
   @$pb.TagNumber(3)
   $core.String get receiver => $_getSZ(2);
   @$pb.TagNumber(3)
@@ -601,6 +654,8 @@ class GetRawBondTransactionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   void clearReceiver() => clearField(3);
 
+  /// Stake amount in NanoPAC.
+  /// It should be greater than 0.
   @$pb.TagNumber(4)
   $fixnum.Int64 get stake => $_getI64(3);
   @$pb.TagNumber(4)
@@ -610,6 +665,7 @@ class GetRawBondTransactionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   void clearStake() => clearField(4);
 
+  /// Public key of the validator.
   @$pb.TagNumber(5)
   $core.String get publicKey => $_getSZ(4);
   @$pb.TagNumber(5)
@@ -619,6 +675,8 @@ class GetRawBondTransactionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   void clearPublicKey() => clearField(5);
 
+  /// Transaction fee in NanoPAC.
+  /// If not explicitly set, it is calculated based on the stake.
   @$pb.TagNumber(6)
   $fixnum.Int64 get fee => $_getI64(5);
   @$pb.TagNumber(6)
@@ -628,6 +686,7 @@ class GetRawBondTransactionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(6)
   void clearFee() => clearField(6);
 
+  /// Transaction memo.
   @$pb.TagNumber(7)
   $core.String get memo => $_getSZ(6);
   @$pb.TagNumber(7)
@@ -639,8 +698,8 @@ class GetRawBondTransactionRequest extends $pb.GeneratedMessage {
 }
 
 /// Request message for retrieving raw details of an unbond transaction.
-class GetRawUnBondTransactionRequest extends $pb.GeneratedMessage {
-  factory GetRawUnBondTransactionRequest({
+class GetRawUnbondTransactionRequest extends $pb.GeneratedMessage {
+  factory GetRawUnbondTransactionRequest({
     $core.int? lockTime,
     $core.String? validatorAddress,
     $core.String? memo,
@@ -657,11 +716,11 @@ class GetRawUnBondTransactionRequest extends $pb.GeneratedMessage {
     }
     return $result;
   }
-  GetRawUnBondTransactionRequest._() : super();
-  factory GetRawUnBondTransactionRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GetRawUnBondTransactionRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  GetRawUnbondTransactionRequest._() : super();
+  factory GetRawUnbondTransactionRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetRawUnbondTransactionRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetRawUnBondTransactionRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'pactus'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetRawUnbondTransactionRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'pactus'), createEmptyInstance: create)
     ..a<$core.int>(1, _omitFieldNames ? '' : 'lockTime', $pb.PbFieldType.OU3)
     ..aOS(3, _omitFieldNames ? '' : 'validatorAddress')
     ..aOS(4, _omitFieldNames ? '' : 'memo')
@@ -672,23 +731,25 @@ class GetRawUnBondTransactionRequest extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  GetRawUnBondTransactionRequest clone() => GetRawUnBondTransactionRequest()..mergeFromMessage(this);
+  GetRawUnbondTransactionRequest clone() => GetRawUnbondTransactionRequest()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  GetRawUnBondTransactionRequest copyWith(void Function(GetRawUnBondTransactionRequest) updates) => super.copyWith((message) => updates(message as GetRawUnBondTransactionRequest)) as GetRawUnBondTransactionRequest;
+  GetRawUnbondTransactionRequest copyWith(void Function(GetRawUnbondTransactionRequest) updates) => super.copyWith((message) => updates(message as GetRawUnbondTransactionRequest)) as GetRawUnbondTransactionRequest;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static GetRawUnBondTransactionRequest create() => GetRawUnBondTransactionRequest._();
-  GetRawUnBondTransactionRequest createEmptyInstance() => create();
-  static $pb.PbList<GetRawUnBondTransactionRequest> createRepeated() => $pb.PbList<GetRawUnBondTransactionRequest>();
+  static GetRawUnbondTransactionRequest create() => GetRawUnbondTransactionRequest._();
+  GetRawUnbondTransactionRequest createEmptyInstance() => create();
+  static $pb.PbList<GetRawUnbondTransactionRequest> createRepeated() => $pb.PbList<GetRawUnbondTransactionRequest>();
   @$core.pragma('dart2js:noInline')
-  static GetRawUnBondTransactionRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetRawUnBondTransactionRequest>(create);
-  static GetRawUnBondTransactionRequest? _defaultInstance;
+  static GetRawUnbondTransactionRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetRawUnbondTransactionRequest>(create);
+  static GetRawUnbondTransactionRequest? _defaultInstance;
 
+  /// Lock time for the transaction.
+  /// If not explicitly set, it sets to the last block height.
   @$pb.TagNumber(1)
   $core.int get lockTime => $_getIZ(0);
   @$pb.TagNumber(1)
@@ -698,6 +759,7 @@ class GetRawUnBondTransactionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearLockTime() => clearField(1);
 
+  /// Address of the validator to unbond from.
   @$pb.TagNumber(3)
   $core.String get validatorAddress => $_getSZ(1);
   @$pb.TagNumber(3)
@@ -707,6 +769,7 @@ class GetRawUnBondTransactionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   void clearValidatorAddress() => clearField(3);
 
+  /// Transaction memo.
   @$pb.TagNumber(4)
   $core.String get memo => $_getSZ(2);
   @$pb.TagNumber(4)
@@ -723,8 +786,8 @@ class GetRawWithdrawTransactionRequest extends $pb.GeneratedMessage {
     $core.int? lockTime,
     $core.String? validatorAddress,
     $core.String? accountAddress,
-    $fixnum.Int64? fee,
     $fixnum.Int64? amount,
+    $fixnum.Int64? fee,
     $core.String? memo,
   }) {
     final $result = create();
@@ -737,11 +800,11 @@ class GetRawWithdrawTransactionRequest extends $pb.GeneratedMessage {
     if (accountAddress != null) {
       $result.accountAddress = accountAddress;
     }
-    if (fee != null) {
-      $result.fee = fee;
-    }
     if (amount != null) {
       $result.amount = amount;
+    }
+    if (fee != null) {
+      $result.fee = fee;
     }
     if (memo != null) {
       $result.memo = memo;
@@ -756,8 +819,8 @@ class GetRawWithdrawTransactionRequest extends $pb.GeneratedMessage {
     ..a<$core.int>(1, _omitFieldNames ? '' : 'lockTime', $pb.PbFieldType.OU3)
     ..aOS(2, _omitFieldNames ? '' : 'validatorAddress')
     ..aOS(3, _omitFieldNames ? '' : 'accountAddress')
-    ..aInt64(4, _omitFieldNames ? '' : 'fee')
-    ..aInt64(5, _omitFieldNames ? '' : 'amount')
+    ..aInt64(4, _omitFieldNames ? '' : 'amount')
+    ..aInt64(5, _omitFieldNames ? '' : 'fee')
     ..aOS(6, _omitFieldNames ? '' : 'memo')
     ..hasRequiredFields = false
   ;
@@ -783,6 +846,8 @@ class GetRawWithdrawTransactionRequest extends $pb.GeneratedMessage {
   static GetRawWithdrawTransactionRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetRawWithdrawTransactionRequest>(create);
   static GetRawWithdrawTransactionRequest? _defaultInstance;
 
+  /// Lock time for the transaction.
+  /// If not explicitly set, it sets to the last block height.
   @$pb.TagNumber(1)
   $core.int get lockTime => $_getIZ(0);
   @$pb.TagNumber(1)
@@ -792,6 +857,7 @@ class GetRawWithdrawTransactionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearLockTime() => clearField(1);
 
+  /// Address of the validator to withdraw from.
   @$pb.TagNumber(2)
   $core.String get validatorAddress => $_getSZ(1);
   @$pb.TagNumber(2)
@@ -801,6 +867,7 @@ class GetRawWithdrawTransactionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearValidatorAddress() => clearField(2);
 
+  /// Address of the account to withdraw to.
   @$pb.TagNumber(3)
   $core.String get accountAddress => $_getSZ(2);
   @$pb.TagNumber(3)
@@ -810,24 +877,29 @@ class GetRawWithdrawTransactionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   void clearAccountAddress() => clearField(3);
 
+  /// Withdrawal amount in NanoPAC.
+  /// It should be greater than 0.
   @$pb.TagNumber(4)
-  $fixnum.Int64 get fee => $_getI64(3);
+  $fixnum.Int64 get amount => $_getI64(3);
   @$pb.TagNumber(4)
-  set fee($fixnum.Int64 v) { $_setInt64(3, v); }
+  set amount($fixnum.Int64 v) { $_setInt64(3, v); }
   @$pb.TagNumber(4)
-  $core.bool hasFee() => $_has(3);
+  $core.bool hasAmount() => $_has(3);
   @$pb.TagNumber(4)
-  void clearFee() => clearField(4);
+  void clearAmount() => clearField(4);
 
+  /// Transaction fee in NanoPAC.
+  /// If not explicitly set, it is calculated based on the amount.
   @$pb.TagNumber(5)
-  $fixnum.Int64 get amount => $_getI64(4);
+  $fixnum.Int64 get fee => $_getI64(4);
   @$pb.TagNumber(5)
-  set amount($fixnum.Int64 v) { $_setInt64(4, v); }
+  set fee($fixnum.Int64 v) { $_setInt64(4, v); }
   @$pb.TagNumber(5)
-  $core.bool hasAmount() => $_has(4);
+  $core.bool hasFee() => $_has(4);
   @$pb.TagNumber(5)
-  void clearAmount() => clearField(5);
+  void clearFee() => clearField(5);
 
+  /// Transaction memo.
   @$pb.TagNumber(6)
   $core.String get memo => $_getSZ(5);
   @$pb.TagNumber(6)
@@ -879,6 +951,7 @@ class GetRawTransactionResponse extends $pb.GeneratedMessage {
   static GetRawTransactionResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetRawTransactionResponse>(create);
   static GetRawTransactionResponse? _defaultInstance;
 
+  /// Raw transaction data.
   @$pb.TagNumber(1)
   $core.List<$core.int> get rawTransaction => $_getN(0);
   @$pb.TagNumber(1)
@@ -940,6 +1013,7 @@ class PayloadTransfer extends $pb.GeneratedMessage {
   static PayloadTransfer getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PayloadTransfer>(create);
   static PayloadTransfer? _defaultInstance;
 
+  /// Sender's address.
   @$pb.TagNumber(1)
   $core.String get sender => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -949,6 +1023,7 @@ class PayloadTransfer extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearSender() => clearField(1);
 
+  /// Receiver's address.
   @$pb.TagNumber(2)
   $core.String get receiver => $_getSZ(1);
   @$pb.TagNumber(2)
@@ -958,6 +1033,7 @@ class PayloadTransfer extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearReceiver() => clearField(2);
 
+  /// Transaction amount in NanoPAC.
   @$pb.TagNumber(3)
   $fixnum.Int64 get amount => $_getI64(2);
   @$pb.TagNumber(3)
@@ -1019,6 +1095,7 @@ class PayloadBond extends $pb.GeneratedMessage {
   static PayloadBond getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PayloadBond>(create);
   static PayloadBond? _defaultInstance;
 
+  /// Sender's address.
   @$pb.TagNumber(1)
   $core.String get sender => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -1028,6 +1105,7 @@ class PayloadBond extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearSender() => clearField(1);
 
+  /// Receiver's address.
   @$pb.TagNumber(2)
   $core.String get receiver => $_getSZ(1);
   @$pb.TagNumber(2)
@@ -1037,6 +1115,7 @@ class PayloadBond extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearReceiver() => clearField(2);
 
+  /// Stake amount in NanoPAC.
   @$pb.TagNumber(3)
   $fixnum.Int64 get stake => $_getI64(2);
   @$pb.TagNumber(3)
@@ -1093,6 +1172,7 @@ class PayloadSortition extends $pb.GeneratedMessage {
   static PayloadSortition getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PayloadSortition>(create);
   static PayloadSortition? _defaultInstance;
 
+  /// Address associated with the sortition.
   @$pb.TagNumber(1)
   $core.String get address => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -1102,6 +1182,7 @@ class PayloadSortition extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearAddress() => clearField(1);
 
+  /// Proof for the sortition.
   @$pb.TagNumber(2)
   $core.List<$core.int> get proof => $_getN(1);
   @$pb.TagNumber(2)
@@ -1153,6 +1234,7 @@ class PayloadUnbond extends $pb.GeneratedMessage {
   static PayloadUnbond getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PayloadUnbond>(create);
   static PayloadUnbond? _defaultInstance;
 
+  /// Address of the validator to unbond from.
   @$pb.TagNumber(1)
   $core.String get validator => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -1214,6 +1296,7 @@ class PayloadWithdraw extends $pb.GeneratedMessage {
   static PayloadWithdraw getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PayloadWithdraw>(create);
   static PayloadWithdraw? _defaultInstance;
 
+  /// Address to withdraw from.
   @$pb.TagNumber(1)
   $core.String get from => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -1223,6 +1306,7 @@ class PayloadWithdraw extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearFrom() => clearField(1);
 
+  /// Address to withdraw to.
   @$pb.TagNumber(2)
   $core.String get to => $_getSZ(1);
   @$pb.TagNumber(2)
@@ -1232,6 +1316,7 @@ class PayloadWithdraw extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearTo() => clearField(2);
 
+  /// Withdrawal amount in NanoPAC.
   @$pb.TagNumber(3)
   $fixnum.Int64 get amount => $_getI64(2);
   @$pb.TagNumber(3)
@@ -1338,7 +1423,7 @@ class TransactionInfo extends $pb.GeneratedMessage {
     ..a<$core.int>(4, _omitFieldNames ? '' : 'lockTime', $pb.PbFieldType.OU3)
     ..aInt64(5, _omitFieldNames ? '' : 'value')
     ..aInt64(6, _omitFieldNames ? '' : 'fee')
-    ..e<PayloadType>(7, _omitFieldNames ? '' : 'payloadType', $pb.PbFieldType.OE, protoName: 'payloadType', defaultOrMaker: PayloadType.UNKNOWN, valueOf: PayloadType.valueOf, enumValues: PayloadType.values)
+    ..e<PayloadType>(7, _omitFieldNames ? '' : 'payloadType', $pb.PbFieldType.OE, defaultOrMaker: PayloadType.UNKNOWN, valueOf: PayloadType.valueOf, enumValues: PayloadType.values)
     ..aOS(8, _omitFieldNames ? '' : 'memo')
     ..aOS(9, _omitFieldNames ? '' : 'publicKey')
     ..a<$core.List<$core.int>>(10, _omitFieldNames ? '' : 'signature', $pb.PbFieldType.OY)
@@ -1374,6 +1459,7 @@ class TransactionInfo extends $pb.GeneratedMessage {
   TransactionInfo_Payload whichPayload() => _TransactionInfo_PayloadByTag[$_whichOneof(0)]!;
   void clearPayload() => clearField($_whichOneof(0));
 
+  /// Transaction ID.
   @$pb.TagNumber(1)
   $core.List<$core.int> get id => $_getN(0);
   @$pb.TagNumber(1)
@@ -1383,6 +1469,7 @@ class TransactionInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearId() => clearField(1);
 
+  /// Transaction data.
   @$pb.TagNumber(2)
   $core.List<$core.int> get data => $_getN(1);
   @$pb.TagNumber(2)
@@ -1392,6 +1479,7 @@ class TransactionInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearData() => clearField(2);
 
+  /// Transaction version.
   @$pb.TagNumber(3)
   $core.int get version => $_getIZ(2);
   @$pb.TagNumber(3)
@@ -1401,6 +1489,7 @@ class TransactionInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   void clearVersion() => clearField(3);
 
+  /// Lock time for the transaction.
   @$pb.TagNumber(4)
   $core.int get lockTime => $_getIZ(3);
   @$pb.TagNumber(4)
@@ -1410,6 +1499,7 @@ class TransactionInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   void clearLockTime() => clearField(4);
 
+  /// Transaction value in NanoPAC.
   @$pb.TagNumber(5)
   $fixnum.Int64 get value => $_getI64(4);
   @$pb.TagNumber(5)
@@ -1419,6 +1509,7 @@ class TransactionInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   void clearValue() => clearField(5);
 
+  /// Transaction fee in NanoPAC.
   @$pb.TagNumber(6)
   $fixnum.Int64 get fee => $_getI64(5);
   @$pb.TagNumber(6)
@@ -1428,6 +1519,7 @@ class TransactionInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(6)
   void clearFee() => clearField(6);
 
+  /// Type of transaction payload.
   @$pb.TagNumber(7)
   PayloadType get payloadType => $_getN(6);
   @$pb.TagNumber(7)
@@ -1437,6 +1529,7 @@ class TransactionInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(7)
   void clearPayloadType() => clearField(7);
 
+  /// Transaction memo.
   @$pb.TagNumber(8)
   $core.String get memo => $_getSZ(7);
   @$pb.TagNumber(8)
@@ -1446,6 +1539,7 @@ class TransactionInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(8)
   void clearMemo() => clearField(8);
 
+  /// Public key associated with the transaction.
   @$pb.TagNumber(9)
   $core.String get publicKey => $_getSZ(8);
   @$pb.TagNumber(9)
@@ -1455,6 +1549,7 @@ class TransactionInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(9)
   void clearPublicKey() => clearField(9);
 
+  /// Transaction signature.
   @$pb.TagNumber(10)
   $core.List<$core.int> get signature => $_getN(9);
   @$pb.TagNumber(10)
@@ -1464,6 +1559,7 @@ class TransactionInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(10)
   void clearSignature() => clearField(10);
 
+  /// Transfer payload.
   @$pb.TagNumber(30)
   PayloadTransfer get transfer => $_getN(10);
   @$pb.TagNumber(30)
@@ -1475,6 +1571,7 @@ class TransactionInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(30)
   PayloadTransfer ensureTransfer() => $_ensure(10);
 
+  /// Bond payload.
   @$pb.TagNumber(31)
   PayloadBond get bond => $_getN(11);
   @$pb.TagNumber(31)
@@ -1486,6 +1583,7 @@ class TransactionInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(31)
   PayloadBond ensureBond() => $_ensure(11);
 
+  /// Sortition payload.
   @$pb.TagNumber(32)
   PayloadSortition get sortition => $_getN(12);
   @$pb.TagNumber(32)
@@ -1497,6 +1595,7 @@ class TransactionInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(32)
   PayloadSortition ensureSortition() => $_ensure(12);
 
+  /// Unbond payload.
   @$pb.TagNumber(33)
   PayloadUnbond get unbond => $_getN(13);
   @$pb.TagNumber(33)
@@ -1508,6 +1607,7 @@ class TransactionInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(33)
   PayloadUnbond ensureUnbond() => $_ensure(13);
 
+  /// Withdraw payload.
   @$pb.TagNumber(34)
   PayloadWithdraw get withdraw => $_getN(14);
   @$pb.TagNumber(34)

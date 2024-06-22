@@ -97,7 +97,7 @@ class AppTheme extends ChangeNotifier {
     _locale = locale;
     notifyListeners();
   }
-  Color get backgroungColor => _mode == ThemeMode.light ? const Color(0xFFFAFAFA) : Colors.black.withOpacity(0.1);
+  Color get backgroungColor => _mode == ThemeMode.light ? const Color(0xFFFAFAFA) : Colors.black.withOpacity(0.9);
 
   Color get navigationBarBackground {
     return _mode == ThemeMode.dark

@@ -147,9 +147,14 @@ class _InitializingSlide extends ConsumerState<InitializingSlide> {
     }
 
     final walletDir = Directory(
-      ref.read(dataPathProvider.notifier).state ??
+      ref.read(dataPathProvider.notifier).state.toString()+"/pactus-wallet" ??
           '${Platform.environment['USERPROFILE']!}/pactus-wallet',
     );
+    debugPrint(ref.read(dataPathProvider.notifier).state.toString());
+    debugPrint(walletDir.path);
+    debugPrint(walletDir.absolute.toString());
+    debugPrint(walletDir.uri.toString());
+    
 
     final exists = walletDir.existsSync();
     if (!exists) {

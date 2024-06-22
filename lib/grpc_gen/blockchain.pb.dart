@@ -60,6 +60,7 @@ class GetAccountRequest extends $pb.GeneratedMessage {
   static GetAccountRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetAccountRequest>(create);
   static GetAccountRequest? _defaultInstance;
 
+  /// Address of the account.
   @$pb.TagNumber(1)
   $core.String get address => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -111,6 +112,7 @@ class GetAccountResponse extends $pb.GeneratedMessage {
   static GetAccountResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetAccountResponse>(create);
   static GetAccountResponse? _defaultInstance;
 
+  /// Account information.
   @$pb.TagNumber(1)
   AccountInfo get account => $_getN(0);
   @$pb.TagNumber(1)
@@ -197,6 +199,7 @@ class GetValidatorAddressesResponse extends $pb.GeneratedMessage {
   static GetValidatorAddressesResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetValidatorAddressesResponse>(create);
   static GetValidatorAddressesResponse? _defaultInstance;
 
+  /// List of validator addresses.
   @$pb.TagNumber(1)
   $core.List<$core.String> get addresses => $_getList(0);
 }
@@ -242,6 +245,7 @@ class GetValidatorRequest extends $pb.GeneratedMessage {
   static GetValidatorRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetValidatorRequest>(create);
   static GetValidatorRequest? _defaultInstance;
 
+  /// Address of the validator.
   @$pb.TagNumber(1)
   $core.String get address => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -293,6 +297,7 @@ class GetValidatorByNumberRequest extends $pb.GeneratedMessage {
   static GetValidatorByNumberRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetValidatorByNumberRequest>(create);
   static GetValidatorByNumberRequest? _defaultInstance;
 
+  /// Validator number.
   @$pb.TagNumber(1)
   $core.int get number => $_getIZ(0);
   @$pb.TagNumber(1)
@@ -344,6 +349,7 @@ class GetValidatorResponse extends $pb.GeneratedMessage {
   static GetValidatorResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetValidatorResponse>(create);
   static GetValidatorResponse? _defaultInstance;
 
+  /// Validator information.
   @$pb.TagNumber(1)
   ValidatorInfo get validator => $_getN(0);
   @$pb.TagNumber(1)
@@ -397,6 +403,7 @@ class GetPublicKeyRequest extends $pb.GeneratedMessage {
   static GetPublicKeyRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetPublicKeyRequest>(create);
   static GetPublicKeyRequest? _defaultInstance;
 
+  /// Address for which public key is requested.
   @$pb.TagNumber(1)
   $core.String get address => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -448,6 +455,7 @@ class GetPublicKeyResponse extends $pb.GeneratedMessage {
   static GetPublicKeyResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetPublicKeyResponse>(create);
   static GetPublicKeyResponse? _defaultInstance;
 
+  /// Public key of the account.
   @$pb.TagNumber(1)
   $core.String get publicKey => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -504,6 +512,7 @@ class GetBlockRequest extends $pb.GeneratedMessage {
   static GetBlockRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetBlockRequest>(create);
   static GetBlockRequest? _defaultInstance;
 
+  /// Height of the block.
   @$pb.TagNumber(1)
   $core.int get height => $_getIZ(0);
   @$pb.TagNumber(1)
@@ -513,6 +522,7 @@ class GetBlockRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearHeight() => clearField(1);
 
+  /// Verbosity level for block information.
   @$pb.TagNumber(2)
   BlockVerbosity get verbosity => $_getN(1);
   @$pb.TagNumber(2)
@@ -594,6 +604,7 @@ class GetBlockResponse extends $pb.GeneratedMessage {
   static GetBlockResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetBlockResponse>(create);
   static GetBlockResponse? _defaultInstance;
 
+  /// Height of the block.
   @$pb.TagNumber(1)
   $core.int get height => $_getIZ(0);
   @$pb.TagNumber(1)
@@ -603,6 +614,7 @@ class GetBlockResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearHeight() => clearField(1);
 
+  /// Hash of the block.
   @$pb.TagNumber(2)
   $core.List<$core.int> get hash => $_getN(1);
   @$pb.TagNumber(2)
@@ -612,6 +624,7 @@ class GetBlockResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearHash() => clearField(2);
 
+  /// Block data, only available if the verbosity level is set to BLOCK_DATA.
   @$pb.TagNumber(3)
   $core.List<$core.int> get data => $_getN(2);
   @$pb.TagNumber(3)
@@ -621,6 +634,7 @@ class GetBlockResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   void clearData() => clearField(3);
 
+  /// Block timestamp.
   @$pb.TagNumber(4)
   $core.int get blockTime => $_getIZ(3);
   @$pb.TagNumber(4)
@@ -630,6 +644,7 @@ class GetBlockResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   void clearBlockTime() => clearField(4);
 
+  /// Block header information.
   @$pb.TagNumber(5)
   BlockHeaderInfo get header => $_getN(4);
   @$pb.TagNumber(5)
@@ -641,6 +656,7 @@ class GetBlockResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   BlockHeaderInfo ensureHeader() => $_ensure(4);
 
+  /// Certificate information of the previous block.
   @$pb.TagNumber(6)
   CertificateInfo get prevCert => $_getN(5);
   @$pb.TagNumber(6)
@@ -652,6 +668,8 @@ class GetBlockResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(6)
   CertificateInfo ensurePrevCert() => $_ensure(5);
 
+  /// List of transactions in the block.
+  /// Transaction information is available when the verbosity level is set to BLOCK_TRANSACTIONS.
   @$pb.TagNumber(7)
   $core.List<$0.TransactionInfo> get txs => $_getList(6);
 }
@@ -697,6 +715,7 @@ class GetBlockHashRequest extends $pb.GeneratedMessage {
   static GetBlockHashRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetBlockHashRequest>(create);
   static GetBlockHashRequest? _defaultInstance;
 
+  /// Height of the block.
   @$pb.TagNumber(1)
   $core.int get height => $_getIZ(0);
   @$pb.TagNumber(1)
@@ -748,6 +767,7 @@ class GetBlockHashResponse extends $pb.GeneratedMessage {
   static GetBlockHashResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetBlockHashResponse>(create);
   static GetBlockHashResponse? _defaultInstance;
 
+  /// Hash of the block.
   @$pb.TagNumber(1)
   $core.List<$core.int> get hash => $_getN(0);
   @$pb.TagNumber(1)
@@ -799,6 +819,7 @@ class GetBlockHeightRequest extends $pb.GeneratedMessage {
   static GetBlockHeightRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetBlockHeightRequest>(create);
   static GetBlockHeightRequest? _defaultInstance;
 
+  /// Hash of the block.
   @$pb.TagNumber(1)
   $core.List<$core.int> get hash => $_getN(0);
   @$pb.TagNumber(1)
@@ -850,6 +871,7 @@ class GetBlockHeightResponse extends $pb.GeneratedMessage {
   static GetBlockHeightResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetBlockHeightResponse>(create);
   static GetBlockHeightResponse? _defaultInstance;
 
+  /// Height of the block.
   @$pb.TagNumber(1)
   $core.int get height => $_getIZ(0);
   @$pb.TagNumber(1)
@@ -964,6 +986,7 @@ class GetBlockchainInfoResponse extends $pb.GeneratedMessage {
   static GetBlockchainInfoResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetBlockchainInfoResponse>(create);
   static GetBlockchainInfoResponse? _defaultInstance;
 
+  /// Height of the last block.
   @$pb.TagNumber(1)
   $core.int get lastBlockHeight => $_getIZ(0);
   @$pb.TagNumber(1)
@@ -973,6 +996,7 @@ class GetBlockchainInfoResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearLastBlockHeight() => clearField(1);
 
+  /// Hash of the last block.
   @$pb.TagNumber(2)
   $core.List<$core.int> get lastBlockHash => $_getN(1);
   @$pb.TagNumber(2)
@@ -982,6 +1006,7 @@ class GetBlockchainInfoResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearLastBlockHash() => clearField(2);
 
+  /// Total number of accounts.
   @$pb.TagNumber(3)
   $core.int get totalAccounts => $_getIZ(2);
   @$pb.TagNumber(3)
@@ -991,6 +1016,7 @@ class GetBlockchainInfoResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   void clearTotalAccounts() => clearField(3);
 
+  /// Total number of validators.
   @$pb.TagNumber(4)
   $core.int get totalValidators => $_getIZ(3);
   @$pb.TagNumber(4)
@@ -1000,6 +1026,7 @@ class GetBlockchainInfoResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   void clearTotalValidators() => clearField(4);
 
+  /// Total power in the blockchain.
   @$pb.TagNumber(5)
   $fixnum.Int64 get totalPower => $_getI64(4);
   @$pb.TagNumber(5)
@@ -1009,6 +1036,7 @@ class GetBlockchainInfoResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   void clearTotalPower() => clearField(5);
 
+  /// Power of the committee.
   @$pb.TagNumber(6)
   $fixnum.Int64 get committeePower => $_getI64(5);
   @$pb.TagNumber(6)
@@ -1018,6 +1046,7 @@ class GetBlockchainInfoResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(6)
   void clearCommitteePower() => clearField(6);
 
+  /// List of committee validators.
   @$pb.TagNumber(7)
   $core.List<ValidatorInfo> get committeeValidators => $_getList(6);
 }
@@ -1096,6 +1125,7 @@ class GetConsensusInfoResponse extends $pb.GeneratedMessage {
   static GetConsensusInfoResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetConsensusInfoResponse>(create);
   static GetConsensusInfoResponse? _defaultInstance;
 
+  /// List of consensus instances.
   @$pb.TagNumber(1)
   $core.List<ConsensusInfo> get instances => $_getList(0);
 }
@@ -1186,6 +1216,7 @@ class ValidatorInfo extends $pb.GeneratedMessage {
   static ValidatorInfo getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ValidatorInfo>(create);
   static ValidatorInfo? _defaultInstance;
 
+  /// Hash of the validator.
   @$pb.TagNumber(1)
   $core.List<$core.int> get hash => $_getN(0);
   @$pb.TagNumber(1)
@@ -1195,6 +1226,7 @@ class ValidatorInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearHash() => clearField(1);
 
+  /// Validator data.
   @$pb.TagNumber(2)
   $core.List<$core.int> get data => $_getN(1);
   @$pb.TagNumber(2)
@@ -1204,6 +1236,7 @@ class ValidatorInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearData() => clearField(2);
 
+  /// Public key of the validator.
   @$pb.TagNumber(3)
   $core.String get publicKey => $_getSZ(2);
   @$pb.TagNumber(3)
@@ -1213,6 +1246,7 @@ class ValidatorInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   void clearPublicKey() => clearField(3);
 
+  /// Validator number.
   @$pb.TagNumber(4)
   $core.int get number => $_getIZ(3);
   @$pb.TagNumber(4)
@@ -1222,6 +1256,7 @@ class ValidatorInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   void clearNumber() => clearField(4);
 
+  /// Validator stake in NanoPAC.
   @$pb.TagNumber(5)
   $fixnum.Int64 get stake => $_getI64(4);
   @$pb.TagNumber(5)
@@ -1231,6 +1266,7 @@ class ValidatorInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   void clearStake() => clearField(5);
 
+  /// Last bonding height.
   @$pb.TagNumber(6)
   $core.int get lastBondingHeight => $_getIZ(5);
   @$pb.TagNumber(6)
@@ -1240,6 +1276,7 @@ class ValidatorInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(6)
   void clearLastBondingHeight() => clearField(6);
 
+  /// Last sortition height.
   @$pb.TagNumber(7)
   $core.int get lastSortitionHeight => $_getIZ(6);
   @$pb.TagNumber(7)
@@ -1249,6 +1286,7 @@ class ValidatorInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(7)
   void clearLastSortitionHeight() => clearField(7);
 
+  /// Unbonding height.
   @$pb.TagNumber(8)
   $core.int get unbondingHeight => $_getIZ(7);
   @$pb.TagNumber(8)
@@ -1258,6 +1296,7 @@ class ValidatorInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(8)
   void clearUnbondingHeight() => clearField(8);
 
+  /// Address of the validator.
   @$pb.TagNumber(9)
   $core.String get address => $_getSZ(8);
   @$pb.TagNumber(9)
@@ -1267,6 +1306,7 @@ class ValidatorInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(9)
   void clearAddress() => clearField(9);
 
+  /// Availability score of the validator.
   @$pb.TagNumber(10)
   $core.double get availabilityScore => $_getN(9);
   @$pb.TagNumber(10)
@@ -1338,6 +1378,7 @@ class AccountInfo extends $pb.GeneratedMessage {
   static AccountInfo getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AccountInfo>(create);
   static AccountInfo? _defaultInstance;
 
+  /// Hash of the account.
   @$pb.TagNumber(1)
   $core.List<$core.int> get hash => $_getN(0);
   @$pb.TagNumber(1)
@@ -1347,6 +1388,7 @@ class AccountInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearHash() => clearField(1);
 
+  /// Account data.
   @$pb.TagNumber(2)
   $core.List<$core.int> get data => $_getN(1);
   @$pb.TagNumber(2)
@@ -1356,6 +1398,7 @@ class AccountInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearData() => clearField(2);
 
+  /// Account number.
   @$pb.TagNumber(3)
   $core.int get number => $_getIZ(2);
   @$pb.TagNumber(3)
@@ -1365,6 +1408,7 @@ class AccountInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   void clearNumber() => clearField(3);
 
+  /// Account balance in NanoPAC.
   @$pb.TagNumber(4)
   $fixnum.Int64 get balance => $_getI64(3);
   @$pb.TagNumber(4)
@@ -1374,6 +1418,7 @@ class AccountInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   void clearBalance() => clearField(4);
 
+  /// Address of the account.
   @$pb.TagNumber(5)
   $core.String get address => $_getSZ(4);
   @$pb.TagNumber(5)
@@ -1445,6 +1490,7 @@ class BlockHeaderInfo extends $pb.GeneratedMessage {
   static BlockHeaderInfo getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BlockHeaderInfo>(create);
   static BlockHeaderInfo? _defaultInstance;
 
+  /// Block version.
   @$pb.TagNumber(1)
   $core.int get version => $_getIZ(0);
   @$pb.TagNumber(1)
@@ -1454,6 +1500,7 @@ class BlockHeaderInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearVersion() => clearField(1);
 
+  /// Hash of the previous block.
   @$pb.TagNumber(2)
   $core.List<$core.int> get prevBlockHash => $_getN(1);
   @$pb.TagNumber(2)
@@ -1463,6 +1510,7 @@ class BlockHeaderInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearPrevBlockHash() => clearField(2);
 
+  /// State root of the block.
   @$pb.TagNumber(3)
   $core.List<$core.int> get stateRoot => $_getN(2);
   @$pb.TagNumber(3)
@@ -1472,6 +1520,7 @@ class BlockHeaderInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   void clearStateRoot() => clearField(3);
 
+  /// Sortition seed of the block.
   @$pb.TagNumber(4)
   $core.List<$core.int> get sortitionSeed => $_getN(3);
   @$pb.TagNumber(4)
@@ -1481,6 +1530,7 @@ class BlockHeaderInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   void clearSortitionSeed() => clearField(4);
 
+  /// Address of the proposer of the block.
   @$pb.TagNumber(5)
   $core.String get proposerAddress => $_getSZ(4);
   @$pb.TagNumber(5)
@@ -1552,6 +1602,7 @@ class CertificateInfo extends $pb.GeneratedMessage {
   static CertificateInfo getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CertificateInfo>(create);
   static CertificateInfo? _defaultInstance;
 
+  /// Hash of the certificate.
   @$pb.TagNumber(1)
   $core.List<$core.int> get hash => $_getN(0);
   @$pb.TagNumber(1)
@@ -1561,6 +1612,7 @@ class CertificateInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearHash() => clearField(1);
 
+  /// Round of the certificate.
   @$pb.TagNumber(2)
   $core.int get round => $_getIZ(1);
   @$pb.TagNumber(2)
@@ -1570,12 +1622,15 @@ class CertificateInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearRound() => clearField(2);
 
+  /// List of committers in the certificate.
   @$pb.TagNumber(3)
   $core.List<$core.int> get committers => $_getList(2);
 
+  /// List of absentees in the certificate.
   @$pb.TagNumber(4)
   $core.List<$core.int> get absentees => $_getList(3);
 
+  /// Certificate signature.
   @$pb.TagNumber(5)
   $core.List<$core.int> get signature => $_getN(4);
   @$pb.TagNumber(5)
@@ -1652,6 +1707,7 @@ class VoteInfo extends $pb.GeneratedMessage {
   static VoteInfo getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<VoteInfo>(create);
   static VoteInfo? _defaultInstance;
 
+  /// Type of the vote.
   @$pb.TagNumber(1)
   VoteType get type => $_getN(0);
   @$pb.TagNumber(1)
@@ -1661,6 +1717,7 @@ class VoteInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearType() => clearField(1);
 
+  /// Voter's address.
   @$pb.TagNumber(2)
   $core.String get voter => $_getSZ(1);
   @$pb.TagNumber(2)
@@ -1670,6 +1727,7 @@ class VoteInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearVoter() => clearField(2);
 
+  /// Hash of the block being voted on.
   @$pb.TagNumber(3)
   $core.List<$core.int> get blockHash => $_getN(2);
   @$pb.TagNumber(3)
@@ -1679,6 +1737,7 @@ class VoteInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   void clearBlockHash() => clearField(3);
 
+  /// Round of the vote.
   @$pb.TagNumber(4)
   $core.int get round => $_getIZ(3);
   @$pb.TagNumber(4)
@@ -1688,6 +1747,7 @@ class VoteInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   void clearRound() => clearField(4);
 
+  /// Consensus round of the vote.
   @$pb.TagNumber(5)
   $core.int get cpRound => $_getIZ(4);
   @$pb.TagNumber(5)
@@ -1697,6 +1757,7 @@ class VoteInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   void clearCpRound() => clearField(5);
 
+  /// Consensus value of the vote.
   @$pb.TagNumber(6)
   $core.int get cpValue => $_getIZ(5);
   @$pb.TagNumber(6)
@@ -1768,6 +1829,7 @@ class ConsensusInfo extends $pb.GeneratedMessage {
   static ConsensusInfo getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ConsensusInfo>(create);
   static ConsensusInfo? _defaultInstance;
 
+  /// Address of the consensus instance.
   @$pb.TagNumber(1)
   $core.String get address => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -1777,6 +1839,7 @@ class ConsensusInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearAddress() => clearField(1);
 
+  /// Whether the consensus instance is active.
   @$pb.TagNumber(2)
   $core.bool get active => $_getBF(1);
   @$pb.TagNumber(2)
@@ -1786,6 +1849,7 @@ class ConsensusInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearActive() => clearField(2);
 
+  /// Height of the consensus instance.
   @$pb.TagNumber(3)
   $core.int get height => $_getIZ(2);
   @$pb.TagNumber(3)
@@ -1795,6 +1859,7 @@ class ConsensusInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   void clearHeight() => clearField(3);
 
+  /// Round of the consensus instance.
   @$pb.TagNumber(4)
   $core.int get round => $_getIZ(3);
   @$pb.TagNumber(4)
@@ -1804,6 +1869,7 @@ class ConsensusInfo extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   void clearRound() => clearField(4);
 
+  /// List of votes in the consensus instance.
   @$pb.TagNumber(5)
   $core.List<VoteInfo> get votes => $_getList(4);
 }

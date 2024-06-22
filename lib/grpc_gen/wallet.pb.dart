@@ -11,14 +11,487 @@
 
 import 'dart:core' as $core;
 
+import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-/// Request message for creating a new wallet.
-class CreateWalletRequest extends $pb.GeneratedMessage {
-  factory CreateWalletRequest({
+import 'wallet.pbenum.dart';
+
+export 'wallet.pbenum.dart';
+
+/// Message of address information.
+class AddressInfo extends $pb.GeneratedMessage {
+  factory AddressInfo({
+    $core.String? address,
+    $core.String? publicKey,
+    $core.String? label,
+    $core.String? path,
+  }) {
+    final $result = create();
+    if (address != null) {
+      $result.address = address;
+    }
+    if (publicKey != null) {
+      $result.publicKey = publicKey;
+    }
+    if (label != null) {
+      $result.label = label;
+    }
+    if (path != null) {
+      $result.path = path;
+    }
+    return $result;
+  }
+  AddressInfo._() : super();
+  factory AddressInfo.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory AddressInfo.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AddressInfo', package: const $pb.PackageName(_omitMessageNames ? '' : 'pactus'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'address')
+    ..aOS(2, _omitFieldNames ? '' : 'publicKey')
+    ..aOS(3, _omitFieldNames ? '' : 'label')
+    ..aOS(4, _omitFieldNames ? '' : 'path')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  AddressInfo clone() => AddressInfo()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  AddressInfo copyWith(void Function(AddressInfo) updates) => super.copyWith((message) => updates(message as AddressInfo)) as AddressInfo;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static AddressInfo create() => AddressInfo._();
+  AddressInfo createEmptyInstance() => create();
+  static $pb.PbList<AddressInfo> createRepeated() => $pb.PbList<AddressInfo>();
+  @$core.pragma('dart2js:noInline')
+  static AddressInfo getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AddressInfo>(create);
+  static AddressInfo? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get address => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set address($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasAddress() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearAddress() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get publicKey => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set publicKey($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasPublicKey() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPublicKey() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get label => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set label($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasLabel() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearLabel() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get path => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set path($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasPath() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearPath() => clearField(4);
+}
+
+/// Message of address history information.
+class HistoryInfo extends $pb.GeneratedMessage {
+  factory HistoryInfo({
+    $core.String? transactionId,
+    $core.int? time,
+    $core.String? payloadType,
+    $core.String? description,
+    $fixnum.Int64? amount,
+  }) {
+    final $result = create();
+    if (transactionId != null) {
+      $result.transactionId = transactionId;
+    }
+    if (time != null) {
+      $result.time = time;
+    }
+    if (payloadType != null) {
+      $result.payloadType = payloadType;
+    }
+    if (description != null) {
+      $result.description = description;
+    }
+    if (amount != null) {
+      $result.amount = amount;
+    }
+    return $result;
+  }
+  HistoryInfo._() : super();
+  factory HistoryInfo.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory HistoryInfo.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'HistoryInfo', package: const $pb.PackageName(_omitMessageNames ? '' : 'pactus'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'transactionId')
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'time', $pb.PbFieldType.OU3)
+    ..aOS(3, _omitFieldNames ? '' : 'payloadType')
+    ..aOS(4, _omitFieldNames ? '' : 'description')
+    ..aInt64(5, _omitFieldNames ? '' : 'amount')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  HistoryInfo clone() => HistoryInfo()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  HistoryInfo copyWith(void Function(HistoryInfo) updates) => super.copyWith((message) => updates(message as HistoryInfo)) as HistoryInfo;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static HistoryInfo create() => HistoryInfo._();
+  HistoryInfo createEmptyInstance() => create();
+  static $pb.PbList<HistoryInfo> createRepeated() => $pb.PbList<HistoryInfo>();
+  @$core.pragma('dart2js:noInline')
+  static HistoryInfo getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<HistoryInfo>(create);
+  static HistoryInfo? _defaultInstance;
+
+  /// Hash of transaction.
+  @$pb.TagNumber(1)
+  $core.String get transactionId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set transactionId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasTransactionId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTransactionId() => clearField(1);
+
+  /// transaction timestamp.
+  @$pb.TagNumber(2)
+  $core.int get time => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set time($core.int v) { $_setUnsignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasTime() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearTime() => clearField(2);
+
+  /// payload type of transaction.
+  @$pb.TagNumber(3)
+  $core.String get payloadType => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set payloadType($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasPayloadType() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearPayloadType() => clearField(3);
+
+  /// description of transaction.
+  @$pb.TagNumber(4)
+  $core.String get description => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set description($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasDescription() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearDescription() => clearField(4);
+
+  /// amount of transaction.
+  @$pb.TagNumber(5)
+  $fixnum.Int64 get amount => $_getI64(4);
+  @$pb.TagNumber(5)
+  set amount($fixnum.Int64 v) { $_setInt64(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasAmount() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearAmount() => clearField(5);
+}
+
+/// Request message to get an address transaction history.
+class GetAddressHistoryRequest extends $pb.GeneratedMessage {
+  factory GetAddressHistoryRequest({
+    $core.String? walletName,
+    $core.String? address,
+  }) {
+    final $result = create();
+    if (walletName != null) {
+      $result.walletName = walletName;
+    }
+    if (address != null) {
+      $result.address = address;
+    }
+    return $result;
+  }
+  GetAddressHistoryRequest._() : super();
+  factory GetAddressHistoryRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetAddressHistoryRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetAddressHistoryRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'pactus'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'walletName')
+    ..aOS(2, _omitFieldNames ? '' : 'address')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GetAddressHistoryRequest clone() => GetAddressHistoryRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GetAddressHistoryRequest copyWith(void Function(GetAddressHistoryRequest) updates) => super.copyWith((message) => updates(message as GetAddressHistoryRequest)) as GetAddressHistoryRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GetAddressHistoryRequest create() => GetAddressHistoryRequest._();
+  GetAddressHistoryRequest createEmptyInstance() => create();
+  static $pb.PbList<GetAddressHistoryRequest> createRepeated() => $pb.PbList<GetAddressHistoryRequest>();
+  @$core.pragma('dart2js:noInline')
+  static GetAddressHistoryRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetAddressHistoryRequest>(create);
+  static GetAddressHistoryRequest? _defaultInstance;
+
+  /// Name of the wallet.
+  @$pb.TagNumber(1)
+  $core.String get walletName => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set walletName($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasWalletName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearWalletName() => clearField(1);
+
+  /// Address to get the transaction history of it.
+  @$pb.TagNumber(2)
+  $core.String get address => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set address($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasAddress() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearAddress() => clearField(2);
+}
+
+/// Response message to get an address transaction history.
+class GetAddressHistoryResponse extends $pb.GeneratedMessage {
+  factory GetAddressHistoryResponse({
+    $core.Iterable<HistoryInfo>? historyInfo,
+  }) {
+    final $result = create();
+    if (historyInfo != null) {
+      $result.historyInfo.addAll(historyInfo);
+    }
+    return $result;
+  }
+  GetAddressHistoryResponse._() : super();
+  factory GetAddressHistoryResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetAddressHistoryResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetAddressHistoryResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'pactus'), createEmptyInstance: create)
+    ..pc<HistoryInfo>(1, _omitFieldNames ? '' : 'historyInfo', $pb.PbFieldType.PM, subBuilder: HistoryInfo.create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GetAddressHistoryResponse clone() => GetAddressHistoryResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GetAddressHistoryResponse copyWith(void Function(GetAddressHistoryResponse) updates) => super.copyWith((message) => updates(message as GetAddressHistoryResponse)) as GetAddressHistoryResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GetAddressHistoryResponse create() => GetAddressHistoryResponse._();
+  GetAddressHistoryResponse createEmptyInstance() => create();
+  static $pb.PbList<GetAddressHistoryResponse> createRepeated() => $pb.PbList<GetAddressHistoryResponse>();
+  @$core.pragma('dart2js:noInline')
+  static GetAddressHistoryResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetAddressHistoryResponse>(create);
+  static GetAddressHistoryResponse? _defaultInstance;
+
+  /// Array of address history and activities.
+  @$pb.TagNumber(1)
+  $core.List<HistoryInfo> get historyInfo => $_getList(0);
+}
+
+/// Request message for generating a new address.
+class GetNewAddressRequest extends $pb.GeneratedMessage {
+  factory GetNewAddressRequest({
+    $core.String? walletName,
+    AddressType? addressType,
+    $core.String? label,
+  }) {
+    final $result = create();
+    if (walletName != null) {
+      $result.walletName = walletName;
+    }
+    if (addressType != null) {
+      $result.addressType = addressType;
+    }
+    if (label != null) {
+      $result.label = label;
+    }
+    return $result;
+  }
+  GetNewAddressRequest._() : super();
+  factory GetNewAddressRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetNewAddressRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetNewAddressRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'pactus'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'walletName')
+    ..e<AddressType>(2, _omitFieldNames ? '' : 'addressType', $pb.PbFieldType.OE, defaultOrMaker: AddressType.ADDRESS_TYPE_TREASURY, valueOf: AddressType.valueOf, enumValues: AddressType.values)
+    ..aOS(3, _omitFieldNames ? '' : 'label')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GetNewAddressRequest clone() => GetNewAddressRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GetNewAddressRequest copyWith(void Function(GetNewAddressRequest) updates) => super.copyWith((message) => updates(message as GetNewAddressRequest)) as GetNewAddressRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GetNewAddressRequest create() => GetNewAddressRequest._();
+  GetNewAddressRequest createEmptyInstance() => create();
+  static $pb.PbList<GetNewAddressRequest> createRepeated() => $pb.PbList<GetNewAddressRequest>();
+  @$core.pragma('dart2js:noInline')
+  static GetNewAddressRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetNewAddressRequest>(create);
+  static GetNewAddressRequest? _defaultInstance;
+
+  /// Name of the wallet for which the new address is requested.
+  @$pb.TagNumber(1)
+  $core.String get walletName => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set walletName($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasWalletName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearWalletName() => clearField(1);
+
+  /// Address type for the new address.
+  @$pb.TagNumber(2)
+  AddressType get addressType => $_getN(1);
+  @$pb.TagNumber(2)
+  set addressType(AddressType v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasAddressType() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearAddressType() => clearField(2);
+
+  /// Label for the new address.
+  @$pb.TagNumber(3)
+  $core.String get label => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set label($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasLabel() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearLabel() => clearField(3);
+}
+
+/// Response message containing the new address.
+class GetNewAddressResponse extends $pb.GeneratedMessage {
+  factory GetNewAddressResponse({
+    $core.String? walletName,
+    AddressInfo? addressInfo,
+  }) {
+    final $result = create();
+    if (walletName != null) {
+      $result.walletName = walletName;
+    }
+    if (addressInfo != null) {
+      $result.addressInfo = addressInfo;
+    }
+    return $result;
+  }
+  GetNewAddressResponse._() : super();
+  factory GetNewAddressResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetNewAddressResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetNewAddressResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'pactus'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'walletName')
+    ..aOM<AddressInfo>(2, _omitFieldNames ? '' : 'addressInfo', subBuilder: AddressInfo.create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GetNewAddressResponse clone() => GetNewAddressResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GetNewAddressResponse copyWith(void Function(GetNewAddressResponse) updates) => super.copyWith((message) => updates(message as GetNewAddressResponse)) as GetNewAddressResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GetNewAddressResponse create() => GetNewAddressResponse._();
+  GetNewAddressResponse createEmptyInstance() => create();
+  static $pb.PbList<GetNewAddressResponse> createRepeated() => $pb.PbList<GetNewAddressResponse>();
+  @$core.pragma('dart2js:noInline')
+  static GetNewAddressResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetNewAddressResponse>(create);
+  static GetNewAddressResponse? _defaultInstance;
+
+  /// Name of the wallet.
+  @$pb.TagNumber(1)
+  $core.String get walletName => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set walletName($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasWalletName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearWalletName() => clearField(1);
+
+  /// Address information.
+  @$pb.TagNumber(2)
+  AddressInfo get addressInfo => $_getN(1);
+  @$pb.TagNumber(2)
+  set addressInfo(AddressInfo v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasAddressInfo() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearAddressInfo() => clearField(2);
+  @$pb.TagNumber(2)
+  AddressInfo ensureAddressInfo() => $_ensure(1);
+}
+
+/// Request message for restoring an existing wallet.
+class RestoreWalletRequest extends $pb.GeneratedMessage {
+  factory RestoreWalletRequest({
     $core.String? walletName,
     $core.String? mnemonic,
-    $core.String? language,
     $core.String? password,
   }) {
     final $result = create();
@@ -28,8 +501,135 @@ class CreateWalletRequest extends $pb.GeneratedMessage {
     if (mnemonic != null) {
       $result.mnemonic = mnemonic;
     }
-    if (language != null) {
-      $result.language = language;
+    if (password != null) {
+      $result.password = password;
+    }
+    return $result;
+  }
+  RestoreWalletRequest._() : super();
+  factory RestoreWalletRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory RestoreWalletRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RestoreWalletRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'pactus'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'walletName')
+    ..aOS(2, _omitFieldNames ? '' : 'mnemonic')
+    ..aOS(3, _omitFieldNames ? '' : 'password')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  RestoreWalletRequest clone() => RestoreWalletRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  RestoreWalletRequest copyWith(void Function(RestoreWalletRequest) updates) => super.copyWith((message) => updates(message as RestoreWalletRequest)) as RestoreWalletRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static RestoreWalletRequest create() => RestoreWalletRequest._();
+  RestoreWalletRequest createEmptyInstance() => create();
+  static $pb.PbList<RestoreWalletRequest> createRepeated() => $pb.PbList<RestoreWalletRequest>();
+  @$core.pragma('dart2js:noInline')
+  static RestoreWalletRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RestoreWalletRequest>(create);
+  static RestoreWalletRequest? _defaultInstance;
+
+  /// Name of the wallet to restore.
+  @$pb.TagNumber(1)
+  $core.String get walletName => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set walletName($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasWalletName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearWalletName() => clearField(1);
+
+  /// Menomic for wallet recovery.
+  @$pb.TagNumber(2)
+  $core.String get mnemonic => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set mnemonic($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasMnemonic() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearMnemonic() => clearField(2);
+
+  /// Password for securing the wallet.
+  @$pb.TagNumber(3)
+  $core.String get password => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set password($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasPassword() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearPassword() => clearField(3);
+}
+
+/// Response message containing the name of the restored wallet.
+class RestoreWalletResponse extends $pb.GeneratedMessage {
+  factory RestoreWalletResponse({
+    $core.String? walletName,
+  }) {
+    final $result = create();
+    if (walletName != null) {
+      $result.walletName = walletName;
+    }
+    return $result;
+  }
+  RestoreWalletResponse._() : super();
+  factory RestoreWalletResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory RestoreWalletResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RestoreWalletResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'pactus'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'walletName')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  RestoreWalletResponse clone() => RestoreWalletResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  RestoreWalletResponse copyWith(void Function(RestoreWalletResponse) updates) => super.copyWith((message) => updates(message as RestoreWalletResponse)) as RestoreWalletResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static RestoreWalletResponse create() => RestoreWalletResponse._();
+  RestoreWalletResponse createEmptyInstance() => create();
+  static $pb.PbList<RestoreWalletResponse> createRepeated() => $pb.PbList<RestoreWalletResponse>();
+  @$core.pragma('dart2js:noInline')
+  static RestoreWalletResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RestoreWalletResponse>(create);
+  static RestoreWalletResponse? _defaultInstance;
+
+  /// Name of the restored wallet.
+  @$pb.TagNumber(1)
+  $core.String get walletName => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set walletName($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasWalletName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearWalletName() => clearField(1);
+}
+
+/// Request message for creating a new wallet.
+class CreateWalletRequest extends $pb.GeneratedMessage {
+  factory CreateWalletRequest({
+    $core.String? walletName,
+    $core.String? password,
+  }) {
+    final $result = create();
+    if (walletName != null) {
+      $result.walletName = walletName;
     }
     if (password != null) {
       $result.password = password;
@@ -42,8 +642,6 @@ class CreateWalletRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CreateWalletRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'pactus'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'walletName')
-    ..aOS(2, _omitFieldNames ? '' : 'mnemonic')
-    ..aOS(3, _omitFieldNames ? '' : 'language')
     ..aOS(4, _omitFieldNames ? '' : 'password')
     ..hasRequiredFields = false
   ;
@@ -69,6 +667,7 @@ class CreateWalletRequest extends $pb.GeneratedMessage {
   static CreateWalletRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CreateWalletRequest>(create);
   static CreateWalletRequest? _defaultInstance;
 
+  /// Name of the new wallet.
   @$pb.TagNumber(1)
   $core.String get walletName => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -78,30 +677,13 @@ class CreateWalletRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearWalletName() => clearField(1);
 
-  @$pb.TagNumber(2)
-  $core.String get mnemonic => $_getSZ(1);
-  @$pb.TagNumber(2)
-  set mnemonic($core.String v) { $_setString(1, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasMnemonic() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearMnemonic() => clearField(2);
-
-  @$pb.TagNumber(3)
-  $core.String get language => $_getSZ(2);
-  @$pb.TagNumber(3)
-  set language($core.String v) { $_setString(2, v); }
-  @$pb.TagNumber(3)
-  $core.bool hasLanguage() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearLanguage() => clearField(3);
-
+  /// Password for securing the wallet.
   @$pb.TagNumber(4)
-  $core.String get password => $_getSZ(3);
+  $core.String get password => $_getSZ(1);
   @$pb.TagNumber(4)
-  set password($core.String v) { $_setString(3, v); }
+  set password($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(4)
-  $core.bool hasPassword() => $_has(3);
+  $core.bool hasPassword() => $_has(1);
   @$pb.TagNumber(4)
   void clearPassword() => clearField(4);
 }
@@ -109,11 +691,11 @@ class CreateWalletRequest extends $pb.GeneratedMessage {
 /// Response message containing the name of the created wallet.
 class CreateWalletResponse extends $pb.GeneratedMessage {
   factory CreateWalletResponse({
-    $core.String? walletName,
+    $core.String? mnemonic,
   }) {
     final $result = create();
-    if (walletName != null) {
-      $result.walletName = walletName;
+    if (mnemonic != null) {
+      $result.mnemonic = mnemonic;
     }
     return $result;
   }
@@ -122,7 +704,7 @@ class CreateWalletResponse extends $pb.GeneratedMessage {
   factory CreateWalletResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CreateWalletResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'pactus'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'walletName')
+    ..aOS(2, _omitFieldNames ? '' : 'mnemonic')
     ..hasRequiredFields = false
   ;
 
@@ -147,14 +729,15 @@ class CreateWalletResponse extends $pb.GeneratedMessage {
   static CreateWalletResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CreateWalletResponse>(create);
   static CreateWalletResponse? _defaultInstance;
 
-  @$pb.TagNumber(1)
-  $core.String get walletName => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set walletName($core.String v) { $_setString(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasWalletName() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearWalletName() => clearField(1);
+  /// Menomic for wallet recovery.
+  @$pb.TagNumber(2)
+  $core.String get mnemonic => $_getSZ(0);
+  @$pb.TagNumber(2)
+  set mnemonic($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasMnemonic() => $_has(0);
+  @$pb.TagNumber(2)
+  void clearMnemonic() => clearField(2);
 }
 
 /// Request message for loading an existing wallet.
@@ -198,6 +781,7 @@ class LoadWalletRequest extends $pb.GeneratedMessage {
   static LoadWalletRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LoadWalletRequest>(create);
   static LoadWalletRequest? _defaultInstance;
 
+  /// Name of the wallet to load.
   @$pb.TagNumber(1)
   $core.String get walletName => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -249,6 +833,7 @@ class LoadWalletResponse extends $pb.GeneratedMessage {
   static LoadWalletResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LoadWalletResponse>(create);
   static LoadWalletResponse? _defaultInstance;
 
+  /// Name of the loaded wallet.
   @$pb.TagNumber(1)
   $core.String get walletName => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -300,6 +885,7 @@ class UnloadWalletRequest extends $pb.GeneratedMessage {
   static UnloadWalletRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UnloadWalletRequest>(create);
   static UnloadWalletRequest? _defaultInstance;
 
+  /// Name of the wallet to unload.
   @$pb.TagNumber(1)
   $core.String get walletName => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -351,6 +937,7 @@ class UnloadWalletResponse extends $pb.GeneratedMessage {
   static UnloadWalletResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UnloadWalletResponse>(create);
   static UnloadWalletResponse? _defaultInstance;
 
+  /// Name of the unloaded wallet.
   @$pb.TagNumber(1)
   $core.String get walletName => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -361,109 +948,8 @@ class UnloadWalletResponse extends $pb.GeneratedMessage {
   void clearWalletName() => clearField(1);
 }
 
-/// Request message for locking a currently loaded wallet.
-class LockWalletRequest extends $pb.GeneratedMessage {
-  factory LockWalletRequest({
-    $core.String? walletName,
-  }) {
-    final $result = create();
-    if (walletName != null) {
-      $result.walletName = walletName;
-    }
-    return $result;
-  }
-  LockWalletRequest._() : super();
-  factory LockWalletRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory LockWalletRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'LockWalletRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'pactus'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'walletName')
-    ..hasRequiredFields = false
-  ;
-
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  LockWalletRequest clone() => LockWalletRequest()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  LockWalletRequest copyWith(void Function(LockWalletRequest) updates) => super.copyWith((message) => updates(message as LockWalletRequest)) as LockWalletRequest;
-
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static LockWalletRequest create() => LockWalletRequest._();
-  LockWalletRequest createEmptyInstance() => create();
-  static $pb.PbList<LockWalletRequest> createRepeated() => $pb.PbList<LockWalletRequest>();
-  @$core.pragma('dart2js:noInline')
-  static LockWalletRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LockWalletRequest>(create);
-  static LockWalletRequest? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get walletName => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set walletName($core.String v) { $_setString(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasWalletName() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearWalletName() => clearField(1);
-}
-
-/// Response message containing the name of the locked wallet.
-class LockWalletResponse extends $pb.GeneratedMessage {
-  factory LockWalletResponse({
-    $core.String? walletName,
-  }) {
-    final $result = create();
-    if (walletName != null) {
-      $result.walletName = walletName;
-    }
-    return $result;
-  }
-  LockWalletResponse._() : super();
-  factory LockWalletResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory LockWalletResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'LockWalletResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'pactus'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'walletName')
-    ..hasRequiredFields = false
-  ;
-
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  LockWalletResponse clone() => LockWalletResponse()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  LockWalletResponse copyWith(void Function(LockWalletResponse) updates) => super.copyWith((message) => updates(message as LockWalletResponse)) as LockWalletResponse;
-
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static LockWalletResponse create() => LockWalletResponse._();
-  LockWalletResponse createEmptyInstance() => create();
-  static $pb.PbList<LockWalletResponse> createRepeated() => $pb.PbList<LockWalletResponse>();
-  @$core.pragma('dart2js:noInline')
-  static LockWalletResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LockWalletResponse>(create);
-  static LockWalletResponse? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get walletName => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set walletName($core.String v) { $_setString(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasWalletName() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearWalletName() => clearField(1);
-}
-
-/// Request message for obtaining the validator address associated with a public key.
+/// Request message for obtaining the validator address associated with a public
+/// key.
 class GetValidatorAddressRequest extends $pb.GeneratedMessage {
   factory GetValidatorAddressRequest({
     $core.String? publicKey,
@@ -504,6 +990,7 @@ class GetValidatorAddressRequest extends $pb.GeneratedMessage {
   static GetValidatorAddressRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetValidatorAddressRequest>(create);
   static GetValidatorAddressRequest? _defaultInstance;
 
+  /// Public key for which the validator address is requested.
   @$pb.TagNumber(1)
   $core.String get publicKey => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -514,7 +1001,8 @@ class GetValidatorAddressRequest extends $pb.GeneratedMessage {
   void clearPublicKey() => clearField(1);
 }
 
-/// Response message containing the validator address corresponding to a public key.
+/// Response message containing the validator address corresponding to a public
+/// key.
 class GetValidatorAddressResponse extends $pb.GeneratedMessage {
   factory GetValidatorAddressResponse({
     $core.String? address,
@@ -555,6 +1043,7 @@ class GetValidatorAddressResponse extends $pb.GeneratedMessage {
   static GetValidatorAddressResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetValidatorAddressResponse>(create);
   static GetValidatorAddressResponse? _defaultInstance;
 
+  /// Validator address associated with the public key.
   @$pb.TagNumber(1)
   $core.String get address => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -563,136 +1052,6 @@ class GetValidatorAddressResponse extends $pb.GeneratedMessage {
   $core.bool hasAddress() => $_has(0);
   @$pb.TagNumber(1)
   void clearAddress() => clearField(1);
-}
-
-/// Request message for unlocking a wallet.
-class UnlockWalletRequest extends $pb.GeneratedMessage {
-  factory UnlockWalletRequest({
-    $core.String? walletName,
-    $core.String? password,
-    $core.int? timeout,
-  }) {
-    final $result = create();
-    if (walletName != null) {
-      $result.walletName = walletName;
-    }
-    if (password != null) {
-      $result.password = password;
-    }
-    if (timeout != null) {
-      $result.timeout = timeout;
-    }
-    return $result;
-  }
-  UnlockWalletRequest._() : super();
-  factory UnlockWalletRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory UnlockWalletRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UnlockWalletRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'pactus'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'walletName')
-    ..aOS(2, _omitFieldNames ? '' : 'password')
-    ..a<$core.int>(3, _omitFieldNames ? '' : 'timeout', $pb.PbFieldType.O3)
-    ..hasRequiredFields = false
-  ;
-
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  UnlockWalletRequest clone() => UnlockWalletRequest()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  UnlockWalletRequest copyWith(void Function(UnlockWalletRequest) updates) => super.copyWith((message) => updates(message as UnlockWalletRequest)) as UnlockWalletRequest;
-
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static UnlockWalletRequest create() => UnlockWalletRequest._();
-  UnlockWalletRequest createEmptyInstance() => create();
-  static $pb.PbList<UnlockWalletRequest> createRepeated() => $pb.PbList<UnlockWalletRequest>();
-  @$core.pragma('dart2js:noInline')
-  static UnlockWalletRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UnlockWalletRequest>(create);
-  static UnlockWalletRequest? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get walletName => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set walletName($core.String v) { $_setString(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasWalletName() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearWalletName() => clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.String get password => $_getSZ(1);
-  @$pb.TagNumber(2)
-  set password($core.String v) { $_setString(1, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasPassword() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearPassword() => clearField(2);
-
-  @$pb.TagNumber(3)
-  $core.int get timeout => $_getIZ(2);
-  @$pb.TagNumber(3)
-  set timeout($core.int v) { $_setSignedInt32(2, v); }
-  @$pb.TagNumber(3)
-  $core.bool hasTimeout() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearTimeout() => clearField(3);
-}
-
-/// Response message containing the name of the unlocked wallet.
-class UnlockWalletResponse extends $pb.GeneratedMessage {
-  factory UnlockWalletResponse({
-    $core.String? walletName,
-  }) {
-    final $result = create();
-    if (walletName != null) {
-      $result.walletName = walletName;
-    }
-    return $result;
-  }
-  UnlockWalletResponse._() : super();
-  factory UnlockWalletResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory UnlockWalletResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UnlockWalletResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'pactus'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'walletName')
-    ..hasRequiredFields = false
-  ;
-
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  UnlockWalletResponse clone() => UnlockWalletResponse()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  UnlockWalletResponse copyWith(void Function(UnlockWalletResponse) updates) => super.copyWith((message) => updates(message as UnlockWalletResponse)) as UnlockWalletResponse;
-
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static UnlockWalletResponse create() => UnlockWalletResponse._();
-  UnlockWalletResponse createEmptyInstance() => create();
-  static $pb.PbList<UnlockWalletResponse> createRepeated() => $pb.PbList<UnlockWalletResponse>();
-  @$core.pragma('dart2js:noInline')
-  static UnlockWalletResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UnlockWalletResponse>(create);
-  static UnlockWalletResponse? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get walletName => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set walletName($core.String v) { $_setString(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasWalletName() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearWalletName() => clearField(1);
 }
 
 /// Request message for signing a raw transaction.
@@ -746,6 +1105,7 @@ class SignRawTransactionRequest extends $pb.GeneratedMessage {
   static SignRawTransactionRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SignRawTransactionRequest>(create);
   static SignRawTransactionRequest? _defaultInstance;
 
+  /// Name of the wallet used for signing.
   @$pb.TagNumber(1)
   $core.String get walletName => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -755,6 +1115,7 @@ class SignRawTransactionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearWalletName() => clearField(1);
 
+  /// Raw transaction data to be signed.
   @$pb.TagNumber(2)
   $core.List<$core.int> get rawTransaction => $_getN(1);
   @$pb.TagNumber(2)
@@ -764,6 +1125,7 @@ class SignRawTransactionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearRawTransaction() => clearField(2);
 
+  /// Password for unlocking the wallet for signing.
   @$pb.TagNumber(3)
   $core.String get password => $_getSZ(2);
   @$pb.TagNumber(3)
@@ -820,6 +1182,7 @@ class SignRawTransactionResponse extends $pb.GeneratedMessage {
   static SignRawTransactionResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SignRawTransactionResponse>(create);
   static SignRawTransactionResponse? _defaultInstance;
 
+  /// ID of the signed transaction.
   @$pb.TagNumber(1)
   $core.List<$core.int> get transactionId => $_getN(0);
   @$pb.TagNumber(1)
@@ -829,6 +1192,7 @@ class SignRawTransactionResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearTransactionId() => clearField(1);
 
+  /// Signed raw transaction data.
   @$pb.TagNumber(2)
   $core.List<$core.int> get signedRawTransaction => $_getN(1);
   @$pb.TagNumber(2)
@@ -837,6 +1201,125 @@ class SignRawTransactionResponse extends $pb.GeneratedMessage {
   $core.bool hasSignedRawTransaction() => $_has(1);
   @$pb.TagNumber(2)
   void clearSignedRawTransaction() => clearField(2);
+}
+
+/// Request message for obtaining the available balance of a wallet.
+class GetTotalBalanceRequest extends $pb.GeneratedMessage {
+  factory GetTotalBalanceRequest({
+    $core.String? walletName,
+  }) {
+    final $result = create();
+    if (walletName != null) {
+      $result.walletName = walletName;
+    }
+    return $result;
+  }
+  GetTotalBalanceRequest._() : super();
+  factory GetTotalBalanceRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetTotalBalanceRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetTotalBalanceRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'pactus'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'walletName')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GetTotalBalanceRequest clone() => GetTotalBalanceRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GetTotalBalanceRequest copyWith(void Function(GetTotalBalanceRequest) updates) => super.copyWith((message) => updates(message as GetTotalBalanceRequest)) as GetTotalBalanceRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GetTotalBalanceRequest create() => GetTotalBalanceRequest._();
+  GetTotalBalanceRequest createEmptyInstance() => create();
+  static $pb.PbList<GetTotalBalanceRequest> createRepeated() => $pb.PbList<GetTotalBalanceRequest>();
+  @$core.pragma('dart2js:noInline')
+  static GetTotalBalanceRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetTotalBalanceRequest>(create);
+  static GetTotalBalanceRequest? _defaultInstance;
+
+  /// Name of the wallet.
+  @$pb.TagNumber(1)
+  $core.String get walletName => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set walletName($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasWalletName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearWalletName() => clearField(1);
+}
+
+/// Response message containing the available balance of the wallet.
+class GetTotalBalanceResponse extends $pb.GeneratedMessage {
+  factory GetTotalBalanceResponse({
+    $core.String? walletName,
+    $fixnum.Int64? totalBalance,
+  }) {
+    final $result = create();
+    if (walletName != null) {
+      $result.walletName = walletName;
+    }
+    if (totalBalance != null) {
+      $result.totalBalance = totalBalance;
+    }
+    return $result;
+  }
+  GetTotalBalanceResponse._() : super();
+  factory GetTotalBalanceResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetTotalBalanceResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetTotalBalanceResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'pactus'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'walletName')
+    ..aInt64(2, _omitFieldNames ? '' : 'totalBalance')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GetTotalBalanceResponse clone() => GetTotalBalanceResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GetTotalBalanceResponse copyWith(void Function(GetTotalBalanceResponse) updates) => super.copyWith((message) => updates(message as GetTotalBalanceResponse)) as GetTotalBalanceResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GetTotalBalanceResponse create() => GetTotalBalanceResponse._();
+  GetTotalBalanceResponse createEmptyInstance() => create();
+  static $pb.PbList<GetTotalBalanceResponse> createRepeated() => $pb.PbList<GetTotalBalanceResponse>();
+  @$core.pragma('dart2js:noInline')
+  static GetTotalBalanceResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetTotalBalanceResponse>(create);
+  static GetTotalBalanceResponse? _defaultInstance;
+
+  /// Name of the wallet.
+  @$pb.TagNumber(1)
+  $core.String get walletName => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set walletName($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasWalletName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearWalletName() => clearField(1);
+
+  /// The total balance of the wallet in NanoPAC.
+  @$pb.TagNumber(2)
+  $fixnum.Int64 get totalBalance => $_getI64(1);
+  @$pb.TagNumber(2)
+  set totalBalance($fixnum.Int64 v) { $_setInt64(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasTotalBalance() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearTotalBalance() => clearField(2);
 }
 
 
