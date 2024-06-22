@@ -114,7 +114,7 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
                           '${index + 1}. ',
                           style: TextStyle(
                             color: theme.mnemonicText,
-                            fontSize: 18.sp,
+                            fontSize: 13.sp,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -176,13 +176,15 @@ class _WalletSeedConfirmSlide extends ConsumerState<WalletSeedConfirmSlide> {
                               : theme.mnemonicWords,
                           borderRadius: BorderRadius.circular(32.0.r),
                         ),
-                        child: Text(
-                          '${index + 1}. ${words[index]}',
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                            color: theme.mnemonicText,
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.w500,
+                        child: FittedBox(
+                          child: Text(
+                            '${index + 1}. ${words[index]}',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              color: theme.mnemonicText,
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                       ),

@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:pactus/provider/password_provider.dart';
 import 'package:pactus/provider/process_provider.dart';
 import 'package:pactus/screen_wrapper/wrapper_screen.dart';
-import 'package:pactus/screens/dashboard_screen.dart';
+import 'package:pactus/screens/dashboard_wrapper.dart';
 import 'package:pactus/support/app_sizes.dart';
 
 class UnlockScreen extends ConsumerStatefulWidget {
@@ -74,7 +74,7 @@ class _UnlockScreenState extends ConsumerState<UnlockScreen> {
                         .read(processManagerProvider.notifier)
                         .startDaemonWithPassword(password);
                     if (context.mounted) {
-                      context.go(DashboardScreen.route);
+                      context.go(DashboardScreenWrapper.route);
                     }
                   } on Exception catch (e) {
                     // Handle errors, e.g., invalid password or daemon not found

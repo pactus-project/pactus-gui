@@ -1,5 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_acrylic/flutter_acrylic.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -7,8 +8,8 @@ import 'package:pactus/provider/theme_provider.dart';
 import 'package:pactus/support/app_router.dart';
 import 'package:pactus/support/extensions.dart';
 import 'package:pactus/support/platform_detect.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:window_manager/window_manager.dart';
-import 'package:flutter_acrylic/flutter_acrylic.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,16 +21,17 @@ void main() async {
   //     ].contains(defaultTargetPlatform)) {
   //   SystemTheme.accentColor.load();
   // }
-
+// var sp=await SharedPreferences.getInstance();
+//     sp.clear();
   if (isDesktop) {
     await Window.initialize();
     if (defaultTargetPlatform == TargetPlatform.windows) {
       await Window.hideWindowControls();
     }
     await WindowManager.instance.ensureInitialized();
-    windowManager.waitUntilReadyToShow().then((_) async {
+    await windowManager.waitUntilReadyToShow().then((_) async {
       await windowManager.setTitleBarStyle(TitleBarStyle.hidden, windowButtonVisibility: PlatformDetect.isMacOS || PlatformDetect.isLinux) ; //Hiding the titlebar
-      await windowManager.setMinimumSize(const Size(802, 523));
+      await windowManager.setMinimumSize(const Size(1043, 552));
       await windowManager.show();
       await windowManager.center(animate: false);
       await windowManager.setPreventClose(false);
@@ -83,15 +85,17 @@ class _MyAppState extends ConsumerState<MyApp> {
   }
   @override
   Widget build(BuildContext context) {
+    
     final router = ref.watch(goRouterProvider);
     final appTheme = ref.watch(appThemeProvider);
     return FluentApp.router(
-      title: "appTitle",
+      title: "Pactus",
       themeMode: appTheme.mode,
       debugShowCheckedModeBanner: false,
       color: appTheme.color,
       darkTheme: FluentThemeData(
-        fontFamily: 'Inter',
+        scaffoldBackgroundColor: isDarkMode() ? Color(0xFF1D1E20) : Colors.grey.withOpacity(0.1),
+        fontFamily: 'Lexend',
         brightness: Brightness.dark,
         accentColor: appTheme.color,
         // micaBackgroundColor: appTheme.backgroungColor,
@@ -102,7 +106,9 @@ class _MyAppState extends ConsumerState<MyApp> {
         ),
       ),
       theme: FluentThemeData(
-        fontFamily: 'Inter',
+        
+        fontFamily: 'Lexend',
+        brightness: Brightness.light,
         // accentColor: appTheme.color,
         // inactiveBackgroundColor: appTheme.backgroungColor,
         visualDensity: VisualDensity.standard,
@@ -118,7 +124,7 @@ class _MyAppState extends ConsumerState<MyApp> {
             data: NavigationPaneThemeData(
               backgroundColor: appTheme.windowEffect != WindowEffect.disabled ? Colors.transparent : null,
             ),
-            child: ScreenUtilInit(minTextAdapt: true, splitScreenMode: true, designSize: const Size(1366, 800), child: child!),
+            child: ScreenUtilInit(minTextAdapt: true, splitScreenMode: true, designSize: const Size(1043, 552), child: child!),
           ),
         );
       },

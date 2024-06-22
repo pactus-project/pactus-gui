@@ -185,6 +185,7 @@ class _HomePageState extends ConsumerState<InitialScreen> {
                             vertical: 30.0.h,
                           ),
                           child: PageView.builder(
+                            physics:const NeverScrollableScrollPhysics(),
                             controller: pageController,
                             itemCount:
                                 restore ? slidesRestore.length : slides.length,

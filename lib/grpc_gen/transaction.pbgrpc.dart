@@ -41,9 +41,9 @@ class TransactionClient extends $grpc.Client {
       '/pactus.Transaction/GetRawBondTransaction',
       ($0.GetRawBondTransactionRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.GetRawTransactionResponse.fromBuffer(value));
-  static final _$getRawUnBondTransaction = $grpc.ClientMethod<$0.GetRawUnBondTransactionRequest, $0.GetRawTransactionResponse>(
-      '/pactus.Transaction/GetRawUnBondTransaction',
-      ($0.GetRawUnBondTransactionRequest value) => value.writeToBuffer(),
+  static final _$getRawUnbondTransaction = $grpc.ClientMethod<$0.GetRawUnbondTransactionRequest, $0.GetRawTransactionResponse>(
+      '/pactus.Transaction/GetRawUnbondTransaction',
+      ($0.GetRawUnbondTransactionRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.GetRawTransactionResponse.fromBuffer(value));
   static final _$getRawWithdrawTransaction = $grpc.ClientMethod<$0.GetRawWithdrawTransactionRequest, $0.GetRawTransactionResponse>(
       '/pactus.Transaction/GetRawWithdrawTransaction',
@@ -76,8 +76,8 @@ class TransactionClient extends $grpc.Client {
     return $createUnaryCall(_$getRawBondTransaction, request, options: options);
   }
 
-  $grpc.ResponseFuture<$0.GetRawTransactionResponse> getRawUnBondTransaction($0.GetRawUnBondTransactionRequest request, {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$getRawUnBondTransaction, request, options: options);
+  $grpc.ResponseFuture<$0.GetRawTransactionResponse> getRawUnbondTransaction($0.GetRawUnbondTransactionRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$getRawUnbondTransaction, request, options: options);
   }
 
   $grpc.ResponseFuture<$0.GetRawTransactionResponse> getRawWithdrawTransaction($0.GetRawWithdrawTransactionRequest request, {$grpc.CallOptions? options}) {
@@ -125,12 +125,12 @@ abstract class TransactionServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $0.GetRawBondTransactionRequest.fromBuffer(value),
         ($0.GetRawTransactionResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.GetRawUnBondTransactionRequest, $0.GetRawTransactionResponse>(
-        'GetRawUnBondTransaction',
-        getRawUnBondTransaction_Pre,
+    $addMethod($grpc.ServiceMethod<$0.GetRawUnbondTransactionRequest, $0.GetRawTransactionResponse>(
+        'GetRawUnbondTransaction',
+        getRawUnbondTransaction_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $0.GetRawUnBondTransactionRequest.fromBuffer(value),
+        ($core.List<$core.int> value) => $0.GetRawUnbondTransactionRequest.fromBuffer(value),
         ($0.GetRawTransactionResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.GetRawWithdrawTransactionRequest, $0.GetRawTransactionResponse>(
         'GetRawWithdrawTransaction',
@@ -161,8 +161,8 @@ abstract class TransactionServiceBase extends $grpc.Service {
     return getRawBondTransaction(call, await request);
   }
 
-  $async.Future<$0.GetRawTransactionResponse> getRawUnBondTransaction_Pre($grpc.ServiceCall call, $async.Future<$0.GetRawUnBondTransactionRequest> request) async {
-    return getRawUnBondTransaction(call, await request);
+  $async.Future<$0.GetRawTransactionResponse> getRawUnbondTransaction_Pre($grpc.ServiceCall call, $async.Future<$0.GetRawUnbondTransactionRequest> request) async {
+    return getRawUnbondTransaction(call, await request);
   }
 
   $async.Future<$0.GetRawTransactionResponse> getRawWithdrawTransaction_Pre($grpc.ServiceCall call, $async.Future<$0.GetRawWithdrawTransactionRequest> request) async {
@@ -174,6 +174,6 @@ abstract class TransactionServiceBase extends $grpc.Service {
   $async.Future<$0.BroadcastTransactionResponse> broadcastTransaction($grpc.ServiceCall call, $0.BroadcastTransactionRequest request);
   $async.Future<$0.GetRawTransactionResponse> getRawTransferTransaction($grpc.ServiceCall call, $0.GetRawTransferTransactionRequest request);
   $async.Future<$0.GetRawTransactionResponse> getRawBondTransaction($grpc.ServiceCall call, $0.GetRawBondTransactionRequest request);
-  $async.Future<$0.GetRawTransactionResponse> getRawUnBondTransaction($grpc.ServiceCall call, $0.GetRawUnBondTransactionRequest request);
+  $async.Future<$0.GetRawTransactionResponse> getRawUnbondTransaction($grpc.ServiceCall call, $0.GetRawUnbondTransactionRequest request);
   $async.Future<$0.GetRawTransactionResponse> getRawWithdrawTransaction($grpc.ServiceCall call, $0.GetRawWithdrawTransactionRequest request);
 }

@@ -25,6 +25,10 @@ class WalletClient extends $grpc.Client {
       '/pactus.Wallet/CreateWallet',
       ($1.CreateWalletRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $1.CreateWalletResponse.fromBuffer(value));
+  static final _$restoreWallet = $grpc.ClientMethod<$1.RestoreWalletRequest, $1.RestoreWalletResponse>(
+      '/pactus.Wallet/RestoreWallet',
+      ($1.RestoreWalletRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $1.RestoreWalletResponse.fromBuffer(value));
   static final _$loadWallet = $grpc.ClientMethod<$1.LoadWalletRequest, $1.LoadWalletResponse>(
       '/pactus.Wallet/LoadWallet',
       ($1.LoadWalletRequest value) => value.writeToBuffer(),
@@ -33,14 +37,10 @@ class WalletClient extends $grpc.Client {
       '/pactus.Wallet/UnloadWallet',
       ($1.UnloadWalletRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $1.UnloadWalletResponse.fromBuffer(value));
-  static final _$lockWallet = $grpc.ClientMethod<$1.LockWalletRequest, $1.LockWalletResponse>(
-      '/pactus.Wallet/LockWallet',
-      ($1.LockWalletRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.LockWalletResponse.fromBuffer(value));
-  static final _$unlockWallet = $grpc.ClientMethod<$1.UnlockWalletRequest, $1.UnlockWalletResponse>(
-      '/pactus.Wallet/UnlockWallet',
-      ($1.UnlockWalletRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.UnlockWalletResponse.fromBuffer(value));
+  static final _$getTotalBalance = $grpc.ClientMethod<$1.GetTotalBalanceRequest, $1.GetTotalBalanceResponse>(
+      '/pactus.Wallet/GetTotalBalance',
+      ($1.GetTotalBalanceRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $1.GetTotalBalanceResponse.fromBuffer(value));
   static final _$signRawTransaction = $grpc.ClientMethod<$1.SignRawTransactionRequest, $1.SignRawTransactionResponse>(
       '/pactus.Wallet/SignRawTransaction',
       ($1.SignRawTransactionRequest value) => value.writeToBuffer(),
@@ -49,6 +49,14 @@ class WalletClient extends $grpc.Client {
       '/pactus.Wallet/GetValidatorAddress',
       ($1.GetValidatorAddressRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $1.GetValidatorAddressResponse.fromBuffer(value));
+  static final _$getNewAddress = $grpc.ClientMethod<$1.GetNewAddressRequest, $1.GetNewAddressResponse>(
+      '/pactus.Wallet/GetNewAddress',
+      ($1.GetNewAddressRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $1.GetNewAddressResponse.fromBuffer(value));
+  static final _$getAddressHistory = $grpc.ClientMethod<$1.GetAddressHistoryRequest, $1.GetAddressHistoryResponse>(
+      '/pactus.Wallet/GetAddressHistory',
+      ($1.GetAddressHistoryRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $1.GetAddressHistoryResponse.fromBuffer(value));
 
   WalletClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -60,6 +68,10 @@ class WalletClient extends $grpc.Client {
     return $createUnaryCall(_$createWallet, request, options: options);
   }
 
+  $grpc.ResponseFuture<$1.RestoreWalletResponse> restoreWallet($1.RestoreWalletRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$restoreWallet, request, options: options);
+  }
+
   $grpc.ResponseFuture<$1.LoadWalletResponse> loadWallet($1.LoadWalletRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$loadWallet, request, options: options);
   }
@@ -68,12 +80,8 @@ class WalletClient extends $grpc.Client {
     return $createUnaryCall(_$unloadWallet, request, options: options);
   }
 
-  $grpc.ResponseFuture<$1.LockWalletResponse> lockWallet($1.LockWalletRequest request, {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$lockWallet, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.UnlockWalletResponse> unlockWallet($1.UnlockWalletRequest request, {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$unlockWallet, request, options: options);
+  $grpc.ResponseFuture<$1.GetTotalBalanceResponse> getTotalBalance($1.GetTotalBalanceRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$getTotalBalance, request, options: options);
   }
 
   $grpc.ResponseFuture<$1.SignRawTransactionResponse> signRawTransaction($1.SignRawTransactionRequest request, {$grpc.CallOptions? options}) {
@@ -82,6 +90,14 @@ class WalletClient extends $grpc.Client {
 
   $grpc.ResponseFuture<$1.GetValidatorAddressResponse> getValidatorAddress($1.GetValidatorAddressRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$getValidatorAddress, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$1.GetNewAddressResponse> getNewAddress($1.GetNewAddressRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$getNewAddress, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$1.GetAddressHistoryResponse> getAddressHistory($1.GetAddressHistoryRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$getAddressHistory, request, options: options);
   }
 }
 
@@ -97,6 +113,13 @@ abstract class WalletServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $1.CreateWalletRequest.fromBuffer(value),
         ($1.CreateWalletResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$1.RestoreWalletRequest, $1.RestoreWalletResponse>(
+        'RestoreWallet',
+        restoreWallet_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $1.RestoreWalletRequest.fromBuffer(value),
+        ($1.RestoreWalletResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$1.LoadWalletRequest, $1.LoadWalletResponse>(
         'LoadWallet',
         loadWallet_Pre,
@@ -111,20 +134,13 @@ abstract class WalletServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $1.UnloadWalletRequest.fromBuffer(value),
         ($1.UnloadWalletResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$1.LockWalletRequest, $1.LockWalletResponse>(
-        'LockWallet',
-        lockWallet_Pre,
+    $addMethod($grpc.ServiceMethod<$1.GetTotalBalanceRequest, $1.GetTotalBalanceResponse>(
+        'GetTotalBalance',
+        getTotalBalance_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $1.LockWalletRequest.fromBuffer(value),
-        ($1.LockWalletResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$1.UnlockWalletRequest, $1.UnlockWalletResponse>(
-        'UnlockWallet',
-        unlockWallet_Pre,
-        false,
-        false,
-        ($core.List<$core.int> value) => $1.UnlockWalletRequest.fromBuffer(value),
-        ($1.UnlockWalletResponse value) => value.writeToBuffer()));
+        ($core.List<$core.int> value) => $1.GetTotalBalanceRequest.fromBuffer(value),
+        ($1.GetTotalBalanceResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$1.SignRawTransactionRequest, $1.SignRawTransactionResponse>(
         'SignRawTransaction',
         signRawTransaction_Pre,
@@ -139,10 +155,28 @@ abstract class WalletServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $1.GetValidatorAddressRequest.fromBuffer(value),
         ($1.GetValidatorAddressResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$1.GetNewAddressRequest, $1.GetNewAddressResponse>(
+        'GetNewAddress',
+        getNewAddress_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $1.GetNewAddressRequest.fromBuffer(value),
+        ($1.GetNewAddressResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$1.GetAddressHistoryRequest, $1.GetAddressHistoryResponse>(
+        'GetAddressHistory',
+        getAddressHistory_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $1.GetAddressHistoryRequest.fromBuffer(value),
+        ($1.GetAddressHistoryResponse value) => value.writeToBuffer()));
   }
 
   $async.Future<$1.CreateWalletResponse> createWallet_Pre($grpc.ServiceCall call, $async.Future<$1.CreateWalletRequest> request) async {
     return createWallet(call, await request);
+  }
+
+  $async.Future<$1.RestoreWalletResponse> restoreWallet_Pre($grpc.ServiceCall call, $async.Future<$1.RestoreWalletRequest> request) async {
+    return restoreWallet(call, await request);
   }
 
   $async.Future<$1.LoadWalletResponse> loadWallet_Pre($grpc.ServiceCall call, $async.Future<$1.LoadWalletRequest> request) async {
@@ -153,12 +187,8 @@ abstract class WalletServiceBase extends $grpc.Service {
     return unloadWallet(call, await request);
   }
 
-  $async.Future<$1.LockWalletResponse> lockWallet_Pre($grpc.ServiceCall call, $async.Future<$1.LockWalletRequest> request) async {
-    return lockWallet(call, await request);
-  }
-
-  $async.Future<$1.UnlockWalletResponse> unlockWallet_Pre($grpc.ServiceCall call, $async.Future<$1.UnlockWalletRequest> request) async {
-    return unlockWallet(call, await request);
+  $async.Future<$1.GetTotalBalanceResponse> getTotalBalance_Pre($grpc.ServiceCall call, $async.Future<$1.GetTotalBalanceRequest> request) async {
+    return getTotalBalance(call, await request);
   }
 
   $async.Future<$1.SignRawTransactionResponse> signRawTransaction_Pre($grpc.ServiceCall call, $async.Future<$1.SignRawTransactionRequest> request) async {
@@ -169,11 +199,21 @@ abstract class WalletServiceBase extends $grpc.Service {
     return getValidatorAddress(call, await request);
   }
 
+  $async.Future<$1.GetNewAddressResponse> getNewAddress_Pre($grpc.ServiceCall call, $async.Future<$1.GetNewAddressRequest> request) async {
+    return getNewAddress(call, await request);
+  }
+
+  $async.Future<$1.GetAddressHistoryResponse> getAddressHistory_Pre($grpc.ServiceCall call, $async.Future<$1.GetAddressHistoryRequest> request) async {
+    return getAddressHistory(call, await request);
+  }
+
   $async.Future<$1.CreateWalletResponse> createWallet($grpc.ServiceCall call, $1.CreateWalletRequest request);
+  $async.Future<$1.RestoreWalletResponse> restoreWallet($grpc.ServiceCall call, $1.RestoreWalletRequest request);
   $async.Future<$1.LoadWalletResponse> loadWallet($grpc.ServiceCall call, $1.LoadWalletRequest request);
   $async.Future<$1.UnloadWalletResponse> unloadWallet($grpc.ServiceCall call, $1.UnloadWalletRequest request);
-  $async.Future<$1.LockWalletResponse> lockWallet($grpc.ServiceCall call, $1.LockWalletRequest request);
-  $async.Future<$1.UnlockWalletResponse> unlockWallet($grpc.ServiceCall call, $1.UnlockWalletRequest request);
+  $async.Future<$1.GetTotalBalanceResponse> getTotalBalance($grpc.ServiceCall call, $1.GetTotalBalanceRequest request);
   $async.Future<$1.SignRawTransactionResponse> signRawTransaction($grpc.ServiceCall call, $1.SignRawTransactionRequest request);
   $async.Future<$1.GetValidatorAddressResponse> getValidatorAddress($grpc.ServiceCall call, $1.GetValidatorAddressRequest request);
+  $async.Future<$1.GetNewAddressResponse> getNewAddress($grpc.ServiceCall call, $1.GetNewAddressRequest request);
+  $async.Future<$1.GetAddressHistoryResponse> getAddressHistory($grpc.ServiceCall call, $1.GetAddressHistoryRequest request);
 }

@@ -21,14 +21,14 @@ class _InitializeModeState extends ConsumerState<InitializeModeSlide> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'How to create you wallet?',
-          style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w600),
+          'How to create your wallet?',
+          style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600),
         ),
         gapH8,
         Text(
           'If you running a node for first time, choose the first options',
           style: TextStyle(
-            fontSize: 16.sp,
+            fontSize: 14.sp,
             fontWeight: FontWeight.w300,
             color: theme.textColor.withOpacity(0.5),
           ),
@@ -58,7 +58,7 @@ class _InitializeModeState extends ConsumerState<InitializeModeSlide> {
                   child: Text(
                     'Create new wallet from scratch',
                     style: TextStyle(
-                      fontSize: 16.sp,
+                      fontSize: 15.sp,
                       fontWeight: FontWeight.w300,
                     ),
                   ),
@@ -92,7 +92,7 @@ class _InitializeModeState extends ConsumerState<InitializeModeSlide> {
                   child: Text(
                     'Restore a wallet from seed phrase',
                     style:
-                        TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300),
+                        TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w300),
                   ),
                 ),
               ],
