@@ -22,50 +22,6 @@ class _TransactionScreenState extends ConsumerState<TransactionScreen> {
   @override
   Widget build(BuildContext context) {
     final isDarkModelEnabled = fi.FluentTheme.of(context).brightness.isDark;
-    Widget stepsBuilder(int stepIndex, StepState stepState) {
-      if (stepIndex == 0) {
-        return Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
-            border: Border.all(
-              color: isDarkModelEnabled
-                  ? Colors.grey.shade200
-                  : Colors.grey.shade800,
-            ),
-          ),
-          padding: const EdgeInsets.all(10),
-          child: Icon(Iconsax.note, size: 26.spMin),
-        );
-      }
-      if (stepIndex == 1) {
-        return Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
-            border: Border.all(
-              color: isDarkModelEnabled
-                  ? Colors.grey.shade200
-                  : Colors.grey.shade800,
-            ),
-          ),
-          padding: const EdgeInsets.all(10),
-          child: Icon(Iconsax.note, size: 26.spMin),
-        );
-      } else {
-        return Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
-            border: Border.all(
-              color: isDarkModelEnabled
-                  ? Colors.grey.shade200
-                  : Colors.grey.shade800,
-            ),
-          ),
-          padding: const EdgeInsets.all(10),
-          child: Icon(Iconsax.note, size: 26.spMin),
-        );
-      }
-    }
-
     final TextStyle headerTextStyle = GoogleFonts.lexend(
       fontSize: 13.spMin,
       fontWeight: FontWeight.w600,

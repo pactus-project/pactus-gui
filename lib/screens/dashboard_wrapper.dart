@@ -2,7 +2,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:pactus/dash_screens/log_dash_screen.dart';
+import 'package:pactus/screens/panel_screens/nodelogs/nodelogs_screen.dart';
 import 'package:pactus/screen_wrapper/wrapper_screen.dart';
 import 'package:pactus/screens/panel_screens/dashboard/dashboard_screen.dart';
 import 'package:pactus/screens/panel_screens/transactions/transactions_screen.dart';
@@ -88,7 +88,7 @@ class _DashboardScreenWrapperState extends State<DashboardScreenWrapper> {
                 size: 18,
               ),
               title: const Text('Node Logs'),
-              body: const LogDashScreen(),
+              body: const NodeLogsScreen(),
             ),
           ],
           footerItems: [

@@ -54,15 +54,15 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool isDarkModelEnabled = fi.FluentTheme.of(context).brightness.isDark;
+    final isDarkModelEnabled = fi.FluentTheme.of(context).brightness.isDark;
     final network = ref.watch(networkInfoProvider);
     final node = ref.watch(nodeInfoProvider);
     final blockchain = ref.watch(blockchainInfoProvider);
-    TextStyle headerTextStyle =
+    final headerTextStyle =
         GoogleFonts.lexend(fontSize: 12.spMin, fontWeight: FontWeight.w600);
-    TextStyle rowTextStyle =
+    final rowTextStyle =
         GoogleFonts.lexend(fontSize: 11.spMin, fontWeight: FontWeight.w400);
-    GetNetworkInfoResponse getNetworkInfoResponse = network.isLoading
+    final getNetworkInfoResponse = network.isLoading
         ? GetNetworkInfoResponse()
         : network.value! as GetNetworkInfoResponse;
     return Scaffold(
@@ -83,26 +83,26 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                     children: [
                       TopCard(
                         isDark: isDarkModelEnabled,
-                        title: "Committee Validators",
+                        title: 'Committee Validators',
                         subtitle: data.committeeValidators.length,
                         iconData: Iconsax.people,
                       ),
                       // ),
                       TopCard(
                         isDark: isDarkModelEnabled,
-                        title: "Total Validators",
+                        title: 'Total Validators',
                         subtitle: data.totalValidators,
                         iconData: Iconsax.category_2,
                       ),
                       TopCard(
                         isDark: isDarkModelEnabled,
-                        title: "Committee Power",
+                        title: 'Committee Power',
                         subtitle: data.committeePower,
                         iconData: Iconsax.box_2,
                       ),
                       TopCard(
                         isDark: isDarkModelEnabled,
-                        title: "Total Power",
+                        title: 'Total Power',
                         subtitle: data.totalPower,
                         iconData: Iconsax.crown_1,
                       ),
@@ -121,14 +121,11 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                   );
                 },
               ),
-              SizedBox(
-                height: 40.sp,
-              ),
+              SizedBox(height: 40.sp),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // Flexible(child: Container()),
-                  Expanded(
+                  Flexible(
                     flex: 2,
                     child: Container(
                       margin: EdgeInsets.only(right: 10.sp),
@@ -363,7 +360,6 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                           },
                         )),
                   ),
-                  // Flexible(child: Container()),
                 ],
               ),
               SizedBox(height: 20.sp),

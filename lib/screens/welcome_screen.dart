@@ -61,13 +61,13 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
         ref.read(dataPathProvider.notifier).state = dataDirPath;
         final hasPassword = prefs.getBool(Constants.hasPassword);
         if (daemonPath.isNotEmpty && dataDirPath.isNotEmpty) {
-          if (context.mounted) {
-            if (hasPassword != null && hasPassword) {
-              context.go(UnlockScreen.route);
-            } else {
+          // if (context.mounted) {
+          //   if (hasPassword != null && hasPassword) {
+              // context.go(UnlockScreen.route);
+            // } else {
               context.go(DashboardScreenWrapper.route);
-            }
-          }
+            // }
+          // }
         }
       }
     });
