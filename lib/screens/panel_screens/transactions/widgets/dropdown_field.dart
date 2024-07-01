@@ -7,6 +7,7 @@ class TransactionDropDownField extends StatefulWidget {
   List<Map<String, String>> items;
   FocusNode fn;
   bool isDark;
+  Function setter;
   String hint;
   TransactionDropDownField({
     super.key,
@@ -15,6 +16,7 @@ class TransactionDropDownField extends StatefulWidget {
     required this.fn,
     required this.isDark,
     required this.hint,
+    required this.setter,
   });
 
   @override
@@ -36,7 +38,7 @@ class _TransactionDropDownFieldState extends State<TransactionDropDownField> {
         ),
         child: DropdownButton(
           focusNode: widget.fn,
-          value: widget.value == ''? null : widget.value,
+          value: widget.value == '' ? null : widget.value,
           padding: EdgeInsets.symmetric(horizontal: 8.spMin),
           elevation: 0,
           style: GoogleFonts.lexend(
@@ -53,10 +55,11 @@ class _TransactionDropDownFieldState extends State<TransactionDropDownField> {
                     : Colors.grey.shade800),
           ),
           icon: const Icon(Icons.keyboard_arrow_down_outlined),
-          onChanged: (val) => {
-            setState(() {
-              widget.value = val;
-            })
+          onChanged: (val) {
+            debugPrint(val.toString());
+            widget.value = val.toString().toLowerCase();
+            widget.setter(val);
+            setState(() {});
           },
           isExpanded: true,
           dropdownColor: widget.isDark

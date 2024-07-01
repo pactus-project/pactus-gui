@@ -85,8 +85,8 @@ class ProcessManager extends StateNotifier<Process?> {
             const Duration(seconds: 1),
             onTimeout: () => 'Timeout waiting for output',
           );
-      // return output.trim() != 'invalid password';
-      return true;
+      return output.trim() != 'invalid password';
+      // return true;
     } on Exception catch (e) {
       ContentDialog(title: Text("error occured"),content: Text(e.toString()));
       return true; // Assume invalid password or error if there's a problem reading the output
@@ -95,16 +95,16 @@ class ProcessManager extends StateNotifier<Process?> {
 
   bool isRunning() => _pid != null;
 
-  // Future<void> restartDaemon() async {
-  //   final password = _password;
+  Future<void> restartDaemon() async {
+    final password = _password;
 
-  //   if (password == null) {
-  //     throw Exception('No password available for daemon restart');
-  //   }
+    if (password == null) {
+      throw Exception('No password available for daemon restart');
+    }
 
-  //   state?.kill();
-  //   await startDaemonWithPassword(password);
-  // }
+    state?.kill();
+    await startDaemonWithPassword(password);
+  }
 
   @override
   Future<void> dispose() async {
@@ -122,7 +122,6 @@ List<String> _paramBuilder(String password, Ref<Object?> ref) {
           "${Platform.environment['HOME']!}/wallet"
       : ref.read(dataPathProvider.notifier).state ??
           "${Platform.environment['USERPROFILE']!}/pactus-wallet";
-          debugPrint(path);
   return ['-w', path, ...passParam];
 }
 // Path: lib/provider/validator_provider.dart

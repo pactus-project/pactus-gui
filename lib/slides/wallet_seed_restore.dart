@@ -53,7 +53,7 @@ class _WalletSeedRestoreSlide extends ConsumerState<WalletSeedRestoreSlide> {
       child: Container(
         constraints: BoxConstraints(
           maxHeight: MediaQuery.of(context).size.height,
-          maxWidth: MediaQuery.of(context).size.height,
+          maxWidth: MediaQuery.of(context).size.width,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -142,22 +142,22 @@ class _WalletSeedRestoreSlide extends ConsumerState<WalletSeedRestoreSlide> {
                           borderRadius: BorderRadius.circular(32.0.r),
                         ),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            FittedBox(
+                            Flexible(
                               child: Text(
                                 '${index + 1}. ',
                                 style: TextStyle(
                                   color: theme.mnemonicText,
                                   fontSize: 12.sp,
-                                  fontWeight: FontWeight.w700,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
                             gapW4,
                             Expanded(
-                              child: Align(
-                                child: Flexible(
-                                  child: EditableText(
+                              child:Align(
+                                child: EditableText(
                                     focusNode: focusNodes[index]!,
                                     inputFormatters: [
                                       FilteringTextInputFormatter.allow(
@@ -186,8 +186,8 @@ class _WalletSeedRestoreSlide extends ConsumerState<WalletSeedRestoreSlide> {
                                     backgroundCursorColor:
                                         Colors.grey.withOpacity(0.5),
                                   ),
-                                ),
                               ),
+                              
                             ),
                           ],
                         ),
