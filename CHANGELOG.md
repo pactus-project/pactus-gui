@@ -1,3 +1,8 @@
+# 1.1.0+2
+
+- Rewriting Project and Upgrading to Flutter 3.24.5
+    - feat: remove old project files and match code with flutter version `3.24.5` [#28](https://github.com/pactus-project/pactus-gui/pull/28)
+
 # 1.0.0+1
 - refactor(dashboard): refactor dashboard and transaction screen
 - feat(dashboard): add dashboard and transaction screens; adjust font sizes
