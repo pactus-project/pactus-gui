@@ -1,43 +1,22 @@
-name: pactus
+name: gui
 description: "Pactus Flutter GUI"
-
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.2.0 <4.0.0'
-
+  sdk: ^3.5.3
 
 dependencies:
+  cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
-  fluent_ui: ^4.8.6
-  protobuf: ^3.1.0
-  grpc: ^3.2.4
-  cupertino_icons: ^1.0.6
-  window_manager: ^0.3.8
-  flutter_acrylic: ^1.1.3
-  go_router: ^13.2.1
-  flutter_riverpod: ^2.5.1
-  flutter_screenutil: ^5.9.0
-  google_fonts: ^6.2.1
-  bip39_mnemonic: ^3.0.6
-  collection: ^1.18.0
-  file_picker: ^6.2.0
-  path_provider: ^2.1.2
-  shared_preferences: ^2.2.2
-  iconsax: ^0.0.8
-  fl_chart: ^0.68.0
 
 dev_dependencies:
+  flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
 
-  pedantic_mono: any
-
 flutter:
-
   uses-material-design: true
 
   assets:
@@ -62,4 +41,3 @@ flutter:
           weight: 700
         - asset: assets/fonts/Inter-ExtraBold.ttf
           weight: 800
-
