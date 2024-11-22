@@ -1,0 +1,30 @@
+name: Linting & Tests Validation
+on:
+  pull_request:
+    branches:
+      - develop
+jobs:
+  lint_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.5'
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Run Flutter Analyze
+        run: flutter analyze
+      - name: Run tests
+        run: flutter test
+  merge_check:
+    runs-on: ubuntu-latest
+    needs: lint_and_test
+    if: ${{ success() }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Merge Pull Request
+        run: echo "Linting and tests passed successfully.Merge request is ready for merge"
