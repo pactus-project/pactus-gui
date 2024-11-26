@@ -15,6 +15,8 @@ jobs:
           flutter-version: '3.24.5'
       - name: Install dependencies
         run: flutter pub get
+      - name: Generate Localization Files
+        run: flutter gen-l10n
       - name: Run Flutter Analyze
         run: flutter analyze
       - name: Run tests

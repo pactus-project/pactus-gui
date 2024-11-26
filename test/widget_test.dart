@@ -1,23 +1,57 @@
-import 'package:flutter/material.dart';
+import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:gui/main.dart';
+import 'package:gui/data/model/language_model.dart';
+import 'package:gui/presentation/bloc/language_bloc/language_bloc.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  late LanguageBloc languageBloc;
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  setUp(() {
+    languageBloc = LanguageBloc();
   });
+
+  tearDown(() {
+    languageBloc.close();
+  });
+  test('initial state is LanguageState with default language', () {
+    // Verify the initial state is LanguageState, not LanguageInitial directly
+    expect(languageBloc.state, isA<LanguageState>());
+
+    // Verify that the initial language is English (Language.english)
+    expect(languageBloc.state.selectedLanguage, Language.english);
+  });
+
+  blocTest<LanguageBloc, LanguageState>(
+    'emits changeLanguage to es',
+    build: () => languageBloc,
+    act: (bloc) {
+      // Change language to Spanish
+      bloc.add(ChangeLanguage(selectedLanguage: Language.spanish));
+    },
+    expect: () => [
+      // Expect the new state with the updated language (Spanish)
+      isA<LanguageState>().having(
+        (state) => state.selectedLanguage,
+        'selectedLanguage',
+        Language.spanish, // Expect the selected language to be Spanish
+      ),
+    ],
+  );
+
+  blocTest<LanguageBloc, LanguageState>(
+    'emits changeLanguage to Fr',
+    build: () => languageBloc,
+    act: (bloc) {
+      // Change language to Spanish
+      bloc.add(ChangeLanguage(selectedLanguage: Language.french));
+    },
+    expect: () => [
+      // Expect the new state with the updated language (Spanish)
+      isA<LanguageState>().having(
+        (state) => state.selectedLanguage,
+        'selectedLanguage',
+        Language.french, // Expect the selected language to be Spanish
+      ),
+    ],
+  );
 }
