@@ -11,7 +11,6 @@ void main() {
       // Reset any necessary test state
     });
 
-
     test('Route paths should match enum values', () {
       expect(AppRoute.splash.path, '/');
       expect(AppRoute.home.path, '/home');
@@ -34,7 +33,7 @@ void main() {
 
       // Wait for splash screen delay
       await tester.pump(const Duration(seconds: 2));
-      
+
       // Pump frames until navigation completes
       await tester.pumpAndSettle();
 

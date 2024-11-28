@@ -5,7 +5,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/router/app_router.dart';
 import 'src/features/main/language/presentation/bloc/language_bloc.dart';
 
-
 void main() {
   runApp(
     MultiBlocProvider(
@@ -26,8 +25,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LanguageBloc, LanguageState>(
       builder: (context, state) {
-        return MaterialApp.router(  // Changed to MaterialApp.router
-          routerConfig: routerConfig,  // Added router configuration
+        return MaterialApp.router(
+          // Changed to MaterialApp.router
+          routerConfig: routerConfig, // Added router configuration
           title: 'Flutter Demo',
           locale: state.selectedLanguage.value,
           localizationsDelegates: const [
