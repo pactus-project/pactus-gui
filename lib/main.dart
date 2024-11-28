@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'core/router/app_router.dart';
 import 'src/features/main/language/presentation/bloc/language_bloc.dart';
-import 'src/features/splash_screen/presentation/screen/home_page.dart';
+
 
 void main() {
   runApp(
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LanguageBloc, LanguageState>(
       builder: (context, state) {
-        return MaterialApp(
+        return MaterialApp.router(  // Changed to MaterialApp.router
+          routerConfig: routerConfig,  // Added router configuration
           title: 'Flutter Demo',
           locale: state.selectedLanguage.value,
           localizationsDelegates: const [
@@ -35,11 +37,11 @@ class MyApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: const [
-            Locale('en'), // English
-            Locale('es'), // Spanish
-            Locale('fr'), // French
+            Locale('en'),
+            Locale('es'),
+            Locale('fr'),
           ],
-          home: const MyHomePage(),
+          // Removed 'home' property as it's handled by the router
         );
       },
     );
