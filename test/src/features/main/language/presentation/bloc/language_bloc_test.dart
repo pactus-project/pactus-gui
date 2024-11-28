@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gui/data/model/language_model.dart';
-import 'package:gui/presentation/bloc/language_bloc/language_bloc.dart';
+import 'package:gui/src/features/main/language/data/language_model.dart';
+import 'package:gui/src/features/main/language/presentation/bloc/language_bloc.dart';
 
 void main() {
   late LanguageBloc languageBloc;

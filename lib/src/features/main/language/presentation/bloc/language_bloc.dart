@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import '../../../data/model/language_model.dart';
+import 'package:gui/src/features/main/language/data/language_model.dart';
 part 'language_event.dart';
 part 'language_state.dart';
 

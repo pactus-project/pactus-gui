@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'presentation/bloc/language_bloc/language_bloc.dart';
-import 'presentation/homescreen/home_page.dart';
+import 'src/features/main/language/presentation/bloc/language_bloc.dart';
+import 'src/features/splash_screen/presentation/screen/home_page.dart';
 
 void main() {
   runApp(

@@ -8,7 +8,6 @@ abstract class LanguageEvent extends Equatable {
 }
 
 class ChangeLanguage extends LanguageEvent {
-
   const ChangeLanguage({
     required this.selectedLanguage,
   });

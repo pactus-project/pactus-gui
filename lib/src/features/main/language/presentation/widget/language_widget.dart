@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../data/model/language_model.dart';
-import '../bloc/language_bloc/language_bloc.dart';
+import 'package:gui/src/features/main/language/data/language_model.dart';
+import 'package:gui/src/features/main/language/presentation/bloc/language_bloc.dart';
 
 class LanguageSelector extends StatelessWidget {
   const LanguageSelector({super.key});
