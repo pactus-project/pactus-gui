@@ -1,3 +1,13 @@
+# 1.3.0+4
+
+- Implement Theme Management
+  - feature(features:main:theme): add theme manager for switch between dark and light themes [#33](https://github.com/pactus-project/pactus-gui/pull/33)
+
+# 1.2.0+3
+
+- Implement Localization Management
+  - feat(localization): integrate l10n_flutter with Bloc for language management [#30](https://github.com/pactus-project/pactus-gui/pull/30)
+
 # 1.1.0+2
 
 - Rewriting Project and Upgrading to Flutter 3.24.5
