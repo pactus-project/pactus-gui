@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gui/core/router/route_name.dart';
+import 'package:gui/src/core/router/route_name.dart';
 
 void main() {
   group('AppRouter Tests', () {
