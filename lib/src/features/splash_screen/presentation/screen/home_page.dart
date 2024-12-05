@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:gui/src/core/common/widgets/toolbar_logo.dart';
 import 'package:gui/src/features/main/language/presentation/widget/language_widget.dart';
 import 'package:gui/src/features/main/theme/presentation/widgets/theme_selector.dart';
 import 'package:gui/src/features/main/theme/theme_data/pallets/on_surface_pallet.dart';
@@ -23,6 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
+        actions: [ToolbarLogo()],
         backgroundColor: theme.colorScheme.inversePrimary,
         title: Text(AppLocalizations.of(context)!.title),
       ),
