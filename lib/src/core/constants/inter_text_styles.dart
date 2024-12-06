@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart' show TextStyle, FontWeight;
+
 /// ## [InterTextStyles] Documentation
 ///
 /// The `InterTextStyles` class provides a collection of predefined text styles
@@ -116,7 +117,6 @@ import 'package:flutter/material.dart' show TextStyle, FontWeight;
 /// - These styles can be used across the app for consistency in text presentation.
 /// - You can combine different font weights, sizes, and line heights as per the design requirements.
 
-
 class InterTextStyles {
   InterTextStyles._();
 
@@ -128,8 +128,6 @@ class InterTextStyles {
   static const interSemiBold = 'Inter-SemiBold';
   static const interBold = 'Inter-Bold';
   static const interExtraBold = 'Inter-ExtraBold';
-
-
 
   // InterExtraLight Text Styles
   static const TextStyle extraLight4 = TextStyle(
@@ -202,7 +200,6 @@ class InterTextStyles {
     fontWeight: FontWeight.w300,
     height: 1.33, // Equivalent to 24/18
   );
-
 
   // InterRegular Text Styles
   static const TextStyle regular8 = TextStyle(
@@ -397,4 +394,3 @@ class InterTextStyles {
     height: 2.0, // Equivalent to 28/14
   );
 }
-
