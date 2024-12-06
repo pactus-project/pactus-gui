@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart' show TextStyle, FontWeight;
+import 'package:flutter/material.dart' show FontWeight, TextStyle;
 
 /// ## [InterTextStyles] Documentation
 ///
@@ -17,13 +17,17 @@ import 'package:flutter/material.dart' show TextStyle, FontWeight;
 /// - **Inter-Bold**
 /// - **Inter-ExtraBold**
 ///
-/// These styles are defined with different font sizes, line heights, and font weights
-/// that provide flexibility in handling various UI elements such as headings, body text,
+/// These styles are defined with different font sizes,
+/// line heights, and font weights
+/// that provide flexibility in handling various UI elements such as headings,
+/// body text,
 /// labels, and buttons.
 ///
 /// ### Class Structure:
-/// The `InterTextStyles` class defines static `TextStyle` constants for each combination of
-/// font family and font weight. The styles are categorized by font weight for easier use:
+/// The `InterTextStyles` class defines static `TextStyle`
+/// constants for each combination of
+/// font family and font weight. The styles are categorized
+/// by font weight for easier use:
 /// - **InterExtraLight**
 /// - **InterLight**
 /// - **InterRegular**
@@ -32,10 +36,13 @@ import 'package:flutter/material.dart' show TextStyle, FontWeight;
 /// - **InterBold**
 ///
 /// Each text style defines the following properties:
-/// - **fontFamily**: The font family set to the corresponding weight of "Inter".
+/// - **fontFamily**: The font family set to the corresponding
+/// weight of "Inter".
 /// - **fontSize**: The size of the text (in logical pixels).
-/// - **fontWeight**: The weight of the text (e.g., `FontWeight.w300`, `FontWeight.w400`).
-/// - **height**: The line height used for the text, expressed as a multiplier of the font size.
+/// - **fontWeight**: The weight of the text
+/// (e.g., `FontWeight.w300`, `FontWeight.w400`).
+/// - **height**: The line height used for the text,
+/// expressed as a multiplier of the font size.
 ///
 /// ### Example Usage:
 /// You can easily apply these text styles to `Text` widgets like so:
@@ -49,7 +56,8 @@ import 'package:flutter/material.dart' show TextStyle, FontWeight;
 /// ### Example Breakdown of Key Styles:
 ///
 /// #### 1. **InterExtraLight Text Styles**:
-/// - **extraLight4**: A very thin text style with a font size of 4 and a height of 2.5.
+/// - **extraLight4**: A very thin text style
+/// with a font size of 4 and a height of 2.5.
 ///   ```dart
 ///   static const TextStyle extraLight4 = TextStyle(
 ///     fontFamily: interExtraLight,
@@ -69,7 +77,8 @@ import 'package:flutter/material.dart' show TextStyle, FontWeight;
 ///   ```
 
 /// #### 2. **InterRegular Text Styles**:
-/// - **regular10H1**: A regular-weight text style with a font size of 10 and a height of 1.6.
+/// - **regular10H1**: A regular-weight text style with
+/// a font size of 10 and a height of 1.6.
 ///   ```dart
 ///   static const TextStyle regular10H1 = TextStyle(
 ///     fontFamily: interRegular,
@@ -91,7 +100,8 @@ import 'package:flutter/material.dart' show TextStyle, FontWeight;
 ///   ```
 
 /// #### 4. **InterSemiBold Text Styles**:
-/// - **semiBold16**: A semi-bold text style with a font size of 16 and a height of 1.5.
+/// - **semiBold16**: A semi-bold text style with
+/// a font size of 16 and a height of 1.5.
 ///   ```dart
 ///   static const TextStyle semiBold16 = TextStyle(
 ///     fontFamily: interSemiBold,
@@ -102,7 +112,8 @@ import 'package:flutter/material.dart' show TextStyle, FontWeight;
 ///   ```
 
 /// #### 5. **InterMedium Text Styles**:
-/// - **medium14**: A medium-weight text style with a font size of 14 and a height of 1.43.
+/// - **medium14**: A medium-weight text style with
+/// a font size of 14 and a height of 1.43.
 ///   ```dart
 ///   static const TextStyle medium14 = TextStyle(
 ///     fontFamily: interMedium,
@@ -113,9 +124,12 @@ import 'package:flutter/material.dart' show TextStyle, FontWeight;
 ///   ```
 
 /// ### Notes:
-/// - Ensure that the "Inter" font family is included in your `pubspec.yaml` and is available in the app.
-/// - These styles can be used across the app for consistency in text presentation.
-/// - You can combine different font weights, sizes, and line heights as per the design requirements.
+/// - Ensure that the "Inter" font family is included
+/// in your `pubspec.yaml` and is available in the app.
+/// - These styles can be used across the app for
+/// consistency in text presentation.
+/// - You can combine different font weights, sizes,
+/// and line heights as per the design requirements.
 
 class InterTextStyles {
   InterTextStyles._();
@@ -148,7 +162,7 @@ class InterTextStyles {
     fontFamily: interExtraLight,
     fontSize: 14,
     fontWeight: FontWeight.w200,
-    height: 2.0, // Equivalent to 28/14
+    height: 2, // Equivalent to 28/14
   );
 
   static const TextStyle extraLight15 = TextStyle(
@@ -177,7 +191,7 @@ class InterTextStyles {
     fontFamily: interLight,
     fontSize: 10,
     fontWeight: FontWeight.w300,
-    height: 2.0, // Equivalent to 20/10
+    height: 2, // Equivalent to 20/10
   );
 
   static const TextStyle light14 = TextStyle(
@@ -220,7 +234,7 @@ class InterTextStyles {
     fontFamily: interRegular,
     fontSize: 10,
     fontWeight: FontWeight.w400,
-    height: 2.0, // Equivalent to 20/10
+    height: 2, // Equivalent to 20/10
   );
 
   static const TextStyle regular11H1 = TextStyle(
@@ -313,7 +327,7 @@ class InterTextStyles {
     fontFamily: interSemiBold,
     fontSize: 10,
     fontWeight: FontWeight.w600,
-    height: 2.0, // Equivalent to 20/10
+    height: 2, // Equivalent to 20/10
   );
 
   static const TextStyle semiBold14H1 = TextStyle(
@@ -341,7 +355,7 @@ class InterTextStyles {
     fontFamily: interSemiBold,
     fontSize: 14,
     fontWeight: FontWeight.w600,
-    height: 2.0, // Equivalent to 28/14
+    height: 2, // Equivalent to 28/14
   );
 
   static const TextStyle semiBold16 = TextStyle(
@@ -370,7 +384,7 @@ class InterTextStyles {
     fontFamily: interBold,
     fontSize: 10,
     fontWeight: FontWeight.w700,
-    height: 2.0, // Equivalent to 20/10
+    height: 2, // Equivalent to 20/10
   );
 
   static const TextStyle bold12 = TextStyle(
@@ -391,6 +405,6 @@ class InterTextStyles {
     fontFamily: interBold,
     fontSize: 14,
     fontWeight: FontWeight.w700,
-    height: 2.0, // Equivalent to 28/14
+    height: 2, // Equivalent to 28/14
   );
 }
