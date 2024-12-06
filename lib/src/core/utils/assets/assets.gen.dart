@@ -16,6 +16,12 @@ class $AssetsIconsGen {
   AssetGenImage get clipboard =>
       const AssetGenImage('assets/icons/clipboard.png');
 
+  /// File path: assets/icons/ic_dark_mode.svg
+  String get icDarkMode => 'assets/icons/ic_dark_mode.svg';
+
+  /// File path: assets/icons/ic_light_mode.svg
+  String get icLightMode => 'assets/icons/ic_light_mode.svg';
+
   /// File path: assets/icons/ic_logo_dark.svg
   String get icLogoDark => 'assets/icons/ic_logo_dark.svg';
 
@@ -28,15 +34,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/icons/logo.png');
 
-  /// File path: assets/icons/moon.png
-  AssetGenImage get moon => const AssetGenImage('assets/icons/moon.png');
-
-  /// File path: assets/icons/sun.png
-  AssetGenImage get sun => const AssetGenImage('assets/icons/sun.png');
-
   /// List of all assets
   List<dynamic> get values =>
-      [clipboard, icLogoDark, icLogoLight, lock, logo, moon, sun];
+      [clipboard, icDarkMode, icLightMode, icLogoDark, icLogoLight, lock, logo];
 }
 
 class $AssetsImagesGen {
