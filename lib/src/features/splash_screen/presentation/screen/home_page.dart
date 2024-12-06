@@ -25,7 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        actions: [ToolbarLogo(),ThemeSwitcher()],
+        actions: [ToolbarLogo(), ThemeSwitcher()],
         backgroundColor: theme.colorScheme.inversePrimary,
         title: Text(AppLocalizations.of(context)!.title),
       ),

@@ -7,11 +7,11 @@ import 'package:gui/src/core/utils/assets/assets.gen.dart';
 import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
 
 /// ### [ThemeSwitcher] Documentation
-/// A widget that toggles between light and dark themes using an animated switch.
+/// A widget that toggles between light and dark themes using a animated switch.
 ///
 /// - Uses `Theme.of(context)` to determine the current theme.
 /// - Displays different icons for light and dark modes with animations.
-/// - Provides a switch that triggers a theme change via `ThemeBloc` when tapped.
+/// - Provides a switch that triggers a theme change by `ThemeBloc` when tapped.
 ///
 class ThemeSwitcher extends StatelessWidget {
   const ThemeSwitcher({super.key});

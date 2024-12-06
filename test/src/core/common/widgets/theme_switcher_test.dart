@@ -5,9 +5,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:gui/src/core/common/widgets/theme_switcher.dart';
 import 'package:gui/src/core/utils/assets/assets.gen.dart';
 
-
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
   /// Checks if the asset exists by attempting to load it.
   Future<bool> isAssetValid(String assetPath) async {
     try {
@@ -18,17 +18,24 @@ void main() {
       return false;
     }
   }
+
   group('Asset Validation Tests', () {
     test('Light mode asset exists', () async {
       final assetPath = Assets.icons.icLightMode;
-      expect(await isAssetValid(assetPath), isTrue,
-        reason: 'The light mode asset should exist in the project assets.',);
+      expect(
+        await isAssetValid(assetPath),
+        isTrue,
+        reason: 'The light mode asset should exist in the project assets.',
+      );
     });
 
     test('Dark mode asset exists', () async {
       final assetPath = Assets.icons.icDarkMode;
-      expect(await isAssetValid(assetPath), isTrue,
-        reason: 'The dark mode asset should exist in the project assets.',);
+      expect(
+        await isAssetValid(assetPath),
+        isTrue,
+        reason: 'The dark mode asset should exist in the project assets.',
+      );
     });
   });
   group('ThemeSwitcher Tests', () {
