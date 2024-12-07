@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
         return BlocBuilder<ThemeBloc, ThemeState>(
           builder: (context, themeState) {
             return MaterialApp(
+              debugShowCheckedModeBanner: false,
               title: 'Flutter Demo',
               theme: themeState.themeData,
               locale: languageState.selectedLanguage.value,

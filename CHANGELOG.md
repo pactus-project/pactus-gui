@@ -1,3 +1,8 @@
+# 1.4.0+5
+
+- Implement `ToolbarLogo` and `ThemeSwitcher` 
+  - feat: added `ToolbarLogo` and `ThemeSwitcher` as reusable components with UI implementation, tests, and documentation [#35](https://github.com/pactus-project/pactus-gui/pull/36)
+
 # 1.3.0+4
 
 - Implement Theme Management
