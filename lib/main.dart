@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
         return BlocBuilder<ThemeBloc, ThemeState>(
           builder: (context, themeState) {
             return MaterialApp.router(
+              debugShowCheckedModeBanner: false,
               routerConfig: routerConfig,
               title: 'Flutter Demo',
               locale: languageState.selectedLanguage.value,
