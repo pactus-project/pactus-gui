@@ -48,6 +48,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/gift.png
   AssetGenImage get gift => const AssetGenImage('assets/images/gift.png');
 
+  /// File path: assets/images/logo_name.png
+  AssetGenImage get logoName =>
+      const AssetGenImage('assets/images/logo_name.png');
+
   /// File path: assets/images/master_password.png
   AssetGenImage get masterPassword =>
       const AssetGenImage('assets/images/master_password.png');
@@ -56,7 +60,8 @@ class $AssetsImagesGen {
   AssetGenImage get splash => const AssetGenImage('assets/images/splash.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [gears, gift, masterPassword, splash];
+  List<AssetGenImage> get values =>
+      [gears, gift, logoName, masterPassword, splash];
 }
 
 class $AssetsTranslationsGen {
