@@ -24,7 +24,7 @@ class WelcomePage extends StatelessWidget {
               onPressed: () {
                 context.goNamed(AppRoute.initializeMode.name);
               },
-              child: const Text('Continue'),
+              child: Text('Navigate to ${AppRoute.initializeMode.name}'),
             ),
           ],
         ),

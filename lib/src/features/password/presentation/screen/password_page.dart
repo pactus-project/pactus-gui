@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/router/route_name.dart';
 
 class PasswordPage extends StatelessWidget {
-  const PasswordPage({super.key});
-
+  const PasswordPage({super.key, required this.fromRegistrationRoute});
+  final bool fromRegistrationRoute;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,15 +15,23 @@ class PasswordPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            MaterialButton(
-              onPressed: () {
-                context.goNamed(AppRoute.basicDashboard.name);
-              },
-              child: Text(
-                'Navigate to ${AppRoute.basicDashboard.name}',
-                style: TextStyle(fontSize: 24),
-              ),
-            ),
+            fromRegistrationRoute
+                ? MaterialButton(
+                    onPressed: () {
+                      context.goNamed(AppRoute.dashboard.name);
+                    },
+                    child: Text(
+                      'Navigate to ${AppRoute.dashboard.name}',
+                    ),
+                  )
+                : MaterialButton(
+                    onPressed: () {
+                      context.goNamed(AppRoute.basicDashboard.name);
+                    },
+                    child: Text(
+                      'Navigate to ${AppRoute.basicDashboard.name}',
+                    ),
+                  ),
             const SizedBox(height: 20),
           ],
         ),

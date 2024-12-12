@@ -13,53 +13,78 @@ import 'route_name.dart';
 
 final List<GoRoute> registrationRoutes = [
   GoRoute(
-    path: AppRoute.welcome.path,
+    path: AppRoute.welcome.fullPath,
     name: AppRoute.welcome.name,
     builder: (context, state) => const WelcomePage(),
-  ),
-  GoRoute(
-    path: AppRoute.initializeMode.path,
-    name: AppRoute.initializeMode.name,
-    builder: (context, state) => const InitializeModePage(),
-  ),
-  GoRoute(
-    path: AppRoute.restorationSeed.path,
-    name: AppRoute.restorationSeed.name,
-    builder: (context, state) => const RestorationSeedPage(),
-  ),
-  GoRoute(
-    path: AppRoute.confirmationSeed.path,
-    name: AppRoute.confirmationSeed.name,
-    builder: (context, state) => const ConfirmationSeedPage(),
-  ),
-  GoRoute(
-    path: AppRoute.masterPassword.path,
-    name: AppRoute.masterPassword.name,
-    builder: (context, state) => const MasterPasswordPage(),
-  ),
-  GoRoute(
-    path: AppRoute.validatorConfig.path,
-    name: AppRoute.validatorConfig.name,
-    builder: (context, state) => const ValidatorConfigPage(),
-  ),
-  GoRoute(
-    path: AppRoute.initializing.path,
-    name: AppRoute.initializing.name,
-    builder: (context, state) => const InitializingPage(),
-  ),
-  GoRoute(
-    path: AppRoute.finish.path,
-    name: AppRoute.finish.name,
-    builder: (context, state) => const FinishPage(),
-  ),
-  GoRoute(
-    path: AppRoute.password.path,
-    name: AppRoute.password.name,
-    builder: (context, state) => const PasswordPage(),
-  ),
-  GoRoute(
-    path: AppRoute.dashboard.path,
-    name: AppRoute.dashboard.name,
-    builder: (context, state) => const DashboardPage(),
+    routes: [
+      GoRoute(
+        path: AppRoute.initializeMode.path,
+        name: AppRoute.initializeMode.name,
+        builder: (context, state) => const InitializeModePage(),
+        routes: [
+          GoRoute(
+            path: AppRoute.restorationSeed.path,
+            name: AppRoute.restorationSeed.name,
+            builder: (context, state) => const RestorationSeedPage(),
+            routes: [
+              GoRoute(
+                path: AppRoute.confirmationSeed.path,
+                name: AppRoute.confirmationSeed.name,
+                builder: (context, state) => const ConfirmationSeedPage(),
+                routes: [
+                  GoRoute(
+                    path: AppRoute.masterPassword.path,
+                    name: AppRoute.masterPassword.name,
+                    builder: (context, state) => const MasterPasswordPage(),
+                    routes: [
+                      GoRoute(
+                        path: AppRoute.validatorConfig.path,
+                        name: AppRoute.validatorConfig.name,
+                        builder: (context, state) =>
+                            const ValidatorConfigPage(),
+                        routes: [
+                          GoRoute(
+                            path: AppRoute.initializing.path,
+                            name: AppRoute.initializing.name,
+                            builder: (context, state) =>
+                                const InitializingPage(),
+                            routes: [
+                              GoRoute(
+                                path: AppRoute.finish.path,
+                                name: AppRoute.finish.name,
+                                builder: (context, state) => const FinishPage(),
+                                routes: [
+                                  GoRoute(
+                                    path: AppRoute.password.path,
+                                    name: AppRoute.password.name,
+                                    builder: (context, state) => PasswordPage(
+                                      fromRegistrationRoute: state
+                                          .matchedLocation
+                                          .contains(AppRoute.finish.name),
+                                    ),
+                                    routes: [
+                                      GoRoute(
+                                        path: AppRoute.dashboard.path,
+                                        name: AppRoute.dashboard.name,
+                                        builder: (context, state) =>
+                                            const DashboardPage(),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+    ],
   ),
 ];

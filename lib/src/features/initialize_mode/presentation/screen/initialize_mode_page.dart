@@ -12,21 +12,11 @@ class InitializeModePage extends StatelessWidget {
         title: const Text('Initialize Mode'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'Welcome to the Initialize Mode!',
-              style: TextStyle(fontSize: 24),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                context.goNamed(AppRoute.welcome.name);
-              },
-              child: const Text('back'),
-            ),
-          ],
+        child: ElevatedButton(
+          onPressed: () {
+            context.goNamed(AppRoute.restorationSeed.name);
+          },
+          child: Text('Navigate to ${AppRoute.restorationSeed.name}'),
         ),
       ),
     );

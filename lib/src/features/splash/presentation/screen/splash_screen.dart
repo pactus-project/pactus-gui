@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _initializeApp() async {
     await Future<void>.delayed(_splashDuration);
     if (mounted) {
-      context.goNamed(AppRoute.basicPassword.name);
+      context.goNamed(AppRoute.welcome.name);
     }
   }
 

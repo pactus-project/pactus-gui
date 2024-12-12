@@ -13,5 +13,6 @@ enum AppRoute {
   basicPassword,
   basicDashboard;
 
-  String get path => '/$name';
+  String get fullPath => '/$name';
+  String get path => name;
 }

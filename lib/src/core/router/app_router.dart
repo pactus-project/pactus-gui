@@ -4,6 +4,7 @@ import 'basic_routes.dart';
 import 'registration_routes.dart';
 
 final GoRouter routerConfig = GoRouter(
+  debugLogDiagnostics: true,
   routes: [
     GoRoute(
       path: '/',
