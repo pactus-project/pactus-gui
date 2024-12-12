@@ -5,12 +5,12 @@ import 'route_name.dart';
 
 final List<GoRoute> basicRoutes = [
   GoRoute(
-    path: AppRoute.basicPassword.routePath,
+    path: AppRoute.basicPassword.path,
     name: AppRoute.basicPassword.name,
     builder: (context, state) => const PasswordPage(),
   ),
   GoRoute(
-    path: AppRoute.basicDashboard.routePath,
+    path: AppRoute.basicDashboard.path,
     name: AppRoute.basicDashboard.name,
     builder: (context, state) => const DashboardPage(),
   ),

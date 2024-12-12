@@ -13,52 +13,52 @@ import 'route_name.dart';
 
 final List<GoRoute> registrationRoutes = [
   GoRoute(
-    path: AppRoute.welcome.routePath,
+    path: AppRoute.welcome.path,
     name: AppRoute.welcome.name,
     builder: (context, state) => const WelcomePage(),
   ),
   GoRoute(
-    path: AppRoute.initializeMode.routePath,
+    path: AppRoute.initializeMode.path,
     name: AppRoute.initializeMode.name,
     builder: (context, state) => const InitializeModePage(),
   ),
   GoRoute(
-    path: AppRoute.restorationSeed.routePath,
+    path: AppRoute.restorationSeed.path,
     name: AppRoute.restorationSeed.name,
     builder: (context, state) => const RestorationSeedPage(),
   ),
   GoRoute(
-    path: AppRoute.confirmationSeed.routePath,
+    path: AppRoute.confirmationSeed.path,
     name: AppRoute.confirmationSeed.name,
     builder: (context, state) => const ConfirmationSeedPage(),
   ),
   GoRoute(
-    path: AppRoute.masterPassword.routePath,
+    path: AppRoute.masterPassword.path,
     name: AppRoute.masterPassword.name,
     builder: (context, state) => const MasterPasswordPage(),
   ),
   GoRoute(
-    path: AppRoute.validatorConfig.routePath,
+    path: AppRoute.validatorConfig.path,
     name: AppRoute.validatorConfig.name,
     builder: (context, state) => const ValidatorConfigPage(),
   ),
   GoRoute(
-    path: AppRoute.initializing.routePath,
+    path: AppRoute.initializing.path,
     name: AppRoute.initializing.name,
     builder: (context, state) => const InitializingPage(),
   ),
   GoRoute(
-    path: AppRoute.finish.routePath,
+    path: AppRoute.finish.path,
     name: AppRoute.finish.name,
     builder: (context, state) => const FinishPage(),
   ),
   GoRoute(
-    path: AppRoute.password.routePath,
+    path: AppRoute.password.path,
     name: AppRoute.password.name,
     builder: (context, state) => const PasswordPage(),
   ),
   GoRoute(
-    path: AppRoute.dashboard.routePath,
+    path: AppRoute.dashboard.path,
     name: AppRoute.dashboard.name,
     builder: (context, state) => const DashboardPage(),
   ),
