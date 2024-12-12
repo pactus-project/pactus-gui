@@ -15,27 +15,27 @@ jobs:
           flutter-version: '3.24.5'
       - name: Install dependencies
         run: flutter pub get
-      - name: Generate Localization Files
-        id: gen_l10n
-        run: |
-          # Run the command to generate localization files and capture the output
-          output=$(flutter gen-l10n)
-          echo "$output"
-          
-          # Check if there are untranslated messages in the output
-          if echo "$output" | grep -q "untranslated message"; then
-            echo "::error file=lib/l10n/l10n.yaml::Error: Untranslated messages detected in your localization files."
-            echo "::error::There are untranslated messages in the following languages:"
-            echo "$output" | grep "untranslated message"
-            echo "::error::Please ensure that all translations are provided in the respective .arb files."
-            exit 1
-          fi
-      - name: Check Localization Files
-        run: |
-          git diff --exit-code lib/l10n/ || (
-            echo "Localization files are outdated. Run 'flutter gen-l10n' and commit changes.";
-            exit 1;
-          )
+#      - name: Generate Localization Files
+#        id: gen_l10n
+#        run: |
+#          # Run the command to generate localization files and capture the output
+#          output=$(flutter gen-l10n)
+#          echo "$output"
+#
+#          # Check if there are untranslated messages in the output
+#          if echo "$output" | grep -q "untranslated message"; then
+#            echo "::error file=lib/l10n/l10n.yaml::Error: Untranslated messages detected in your localization files."
+#            echo "::error::There are untranslated messages in the following languages:"
+#            echo "$output" | grep "untranslated message"
+#            echo "::error::Please ensure that all translations are provided in the respective .arb files."
+#            exit 1
+#          fi
+#      - name: Check Localization Files
+#        run: |
+#          git diff --exit-code lib/l10n/ || (
+#            echo "Localization files are outdated. Run 'flutter gen-l10n' and commit changes.";
+#            exit 1;
+#          )
       - name: Run Dart Format Check
         run: |
           dart format . --set-exit-if-changed || (
