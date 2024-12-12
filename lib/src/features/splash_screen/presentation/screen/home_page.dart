@@ -1,7 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gui/src/core/common/widgets/theme_switcher.dart';
 import 'package:gui/src/core/common/widgets/toolbar_logo.dart';
+import 'package:gui/src/core/utils/gen/localization/locale_keys.g.dart';
 import 'package:gui/src/features/main/language/presentation/widget/language_widget.dart';
 import 'package:gui/src/features/main/theme/presentation/widgets/theme_selector.dart';
 import 'package:gui/src/features/main/theme/theme_data/pallets/on_surface_pallet.dart';
@@ -27,14 +28,14 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         actions: [ToolbarLogo(), ThemeSwitcher()],
         backgroundColor: theme.colorScheme.inversePrimary,
-        title: Text(AppLocalizations.of(context)!.title),
+        title: Text(LocaleKeys.title.tr()),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              AppLocalizations.of(context)!.subtitle,
+              LocaleKeys.subtitle.tr(),
               style: theme.textTheme.titleMedium!.copyWith(
                 color: theme.extension<OnSurfacePallet>()!.onSurface3,
               ),

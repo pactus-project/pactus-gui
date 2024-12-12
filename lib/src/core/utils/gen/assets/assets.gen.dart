@@ -59,11 +59,28 @@ class $AssetsImagesGen {
   List<AssetGenImage> get values => [gears, gift, masterPassword, splash];
 }
 
+class $AssetsTranslationsGen {
+  const $AssetsTranslationsGen();
+
+  /// File path: assets/translations/en.json
+  String get en => 'assets/translations/en.json';
+
+  /// File path: assets/translations/es.json
+  String get es => 'assets/translations/es.json';
+
+  /// File path: assets/translations/fr.json
+  String get fr => 'assets/translations/fr.json';
+
+  /// List of all assets
+  List<String> get values => [en, es, fr];
+}
+
 class Assets {
   Assets._();
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
 }
 
 class AssetGenImage {

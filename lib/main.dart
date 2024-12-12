@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -6,7 +7,8 @@ import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
 import 'src/features/main/language/presentation/bloc/language_bloc.dart';
 import 'src/features/splash_screen/presentation/screen/home_page.dart';
 
-void main() {
+void main() async {
+ await EasyLocalization.ensureInitialized();
   runApp(
     MultiBlocProvider(
       providers: [
