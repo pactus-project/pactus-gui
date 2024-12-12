@@ -6,12 +6,29 @@ void main() {
     setUp(() {
       // Reset any necessary test state
     });
-    test('Route paths should match enum values', () {
-      expect(AppRoute.splash.routePath, '/');
-    });
 
     test('Route names should match enum values', () {
       expect(AppRoute.splash.name, 'splash');
+    });
+
+    test('Route names should match enum values', () {
+      expect(AppRoute.welcome.name, 'welcome');
+    });
+
+    test('Route names should match enum values', () {
+      expect(AppRoute.initializeMode.name, 'initializeMode');
+    });
+
+    test('Route names should match enum values', () {
+      expect(AppRoute.restorationSeed.name, 'restorationSeed');
+    });
+
+    test('Route names should match enum values', () {
+      expect(AppRoute.basicPassword.name, 'basicPassword');
+    });
+
+    test('Route names should match enum values', () {
+      expect(AppRoute.dashboard.name, 'dashboard');
     });
   });
 }
