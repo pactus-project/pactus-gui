@@ -8,10 +8,13 @@ final List<GoRoute> basicRoutes = [
     path: AppRoute.basicPassword.path,
     name: AppRoute.basicPassword.name,
     builder: (context, state) => const PasswordPage(),
+    routes:[
+      GoRoute(
+        path: AppRoute.basicDashboard.path,
+        name: AppRoute.basicDashboard.name,
+        builder: (context, state) => const DashboardPage(),
+      ),
+    ]
   ),
-  GoRoute(
-    path: AppRoute.basicDashboard.path,
-    name: AppRoute.basicDashboard.name,
-    builder: (context, state) => const DashboardPage(),
-  ),
+
 ];
