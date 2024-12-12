@@ -8,7 +8,7 @@ import 'src/features/main/language/presentation/bloc/language_bloc.dart';
 import 'src/features/splash_screen/presentation/screen/home_page.dart';
 
 void main() async {
- await EasyLocalization.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   runApp(
     MultiBlocProvider(
       providers: [

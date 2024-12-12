@@ -6,7 +6,7 @@ import 'dart:ui';
 
 import 'package:easy_localization/easy_localization.dart' show AssetLoader;
 
-class CodegenLoader extends AssetLoader{
+class CodegenLoader extends AssetLoader {
   const CodegenLoader();
 
   @override
@@ -14,24 +14,27 @@ class CodegenLoader extends AssetLoader{
     return Future.value(mapLocales[locale.toString()]);
   }
 
-  static const Map<String,dynamic> en = {
-  "title": "Hello, World!",
-  "subtitle": "Welcome to Localization",
-  "description": "You have pushed the button this many times:",
-  "switchLanguage": "Switch language",
-};
-static const Map<String,dynamic> es = {
-  "title": "¡Hola, Mundo!",
-  "subtitle": "Bienvenido a Localización",
-  "description": "Has pulsado el botón tantas veces:",
-  "switchLanguage": "Cambiar idioma",
-};
-static const Map<String,dynamic> fr = {
-  "title": "Bonjour",
-  "subtitle": "Bienvenue dans Localisation",
-  "description": "Vous avez appuyé sur le bouton autant de fois :",
-  "switchLanguage": "Changer de langue",
-};
-static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "es": es,
-  "fr": fr,};
+  static const Map<String, dynamic> en = {
+    "title": "Hello, World!",
+    "subtitle": "Welcome to Localization",
+    "description": "You have pushed the button this many times:",
+    "switchLanguage": "Switch language",
+  };
+  static const Map<String, dynamic> es = {
+    "title": "¡Hola, Mundo!",
+    "subtitle": "Bienvenido a Localización",
+    "description": "Has pulsado el botón tantas veces:",
+    "switchLanguage": "Cambiar idioma",
+  };
+  static const Map<String, dynamic> fr = {
+    "title": "Bonjour",
+    "subtitle": "Bienvenue dans Localisation",
+    "description": "Vous avez appuyé sur le bouton autant de fois :",
+    "switchLanguage": "Changer de langue",
+  };
+  static const Map<String, Map<String, dynamic>> mapLocales = {
+    "en": en,
+    "es": es,
+    "fr": fr,
+  };
 }
