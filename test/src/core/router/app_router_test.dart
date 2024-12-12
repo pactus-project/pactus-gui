@@ -6,9 +6,8 @@ void main() {
     setUp(() {
       // Reset any necessary test state
     });
-
     test('Route paths should match enum values', () {
-      expect(AppRoute.splash.path, '/');
+      expect(AppRoute.splash.routePath, '/');
     });
 
     test('Route names should match enum values', () {

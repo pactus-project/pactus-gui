@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:gap/gap.dart'; // Add this import
 import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/assets/assets.gen.dart';
@@ -47,13 +48,13 @@ class _SplashScreenState extends State<SplashScreen> {
                   height: _logoSize,
                   fit: BoxFit.contain,
                 ),
-                const SizedBox(height: _spacingBetweenElements),
+                Gap(_spacingBetweenElements),
                 Assets.images.logoName.image(
                   width: _logoNameWidth,
                   height: _logoNameHeight,
                   fit: BoxFit.contain,
                 ),
-                const SizedBox(height: _spacingBetweenElements),
+                Gap(_spacingBetweenElements),
                 Text(
                   AppLocalizations.of(context)!.applications,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(

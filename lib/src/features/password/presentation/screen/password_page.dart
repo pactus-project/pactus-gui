@@ -5,9 +5,21 @@ class PasswordPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Password'),
+      ),
       body: Center(
-        child: Text('Password Page'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Password Page',
+              style: TextStyle(fontSize: 24),
+            ),
+            const SizedBox(height: 20),
+          ],
+        ),
       ),
     );
   }
