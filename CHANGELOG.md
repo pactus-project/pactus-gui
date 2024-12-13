@@ -1,3 +1,9 @@
+# 1.8.0+9
+
+- Implement or replace the Easy Localization package for efficient localization management
+  - feat(app): add inter text styles to app [#37](https://github.com/pactus-project/pactus-gui/pull/37)
+  - update(app): update font weight in `pubspec.yaml`
+
 # 1.7.0+8
 
 - Implement or replace the Easy Localization package for efficient localization management
