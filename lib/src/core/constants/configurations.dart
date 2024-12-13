@@ -13,4 +13,5 @@ class AppConfigs {
     enLocale,
     esLocale,
     frLocale,
-  ];}
+  ];
+}
