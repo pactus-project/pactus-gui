@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gui/src/core/enums/theme_modes.dart';
-import 'package:gui/src/core/utils/assets/fonts.gen.dart';
+import 'package:gui/src/core/utils/gen/assets/fonts.gen.dart';
 import 'package:gui/src/features/main/theme/theme_data/pallets/on_surface_pallet.dart';
 import 'package:gui/src/features/main/theme/theme_data/pallets/surface_pallet.dart';
 

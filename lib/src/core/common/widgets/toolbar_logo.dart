@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gui/src/core/utils/assets/assets.gen.dart';
+import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 
 /// # [ToolbarLogo] Documentation
 /// A stateless widget that displays the app's toolbar logo.

@@ -1,5 +1,9 @@
 include: package:flutter_lints/flutter.yaml
 analyzer:
+  exclude:
+    - "**/*.g.dart" # Exclude all .g.dart files
+    - "**/*.freezed.dart" # Exclude all freezed-generated files
+
   errors:
     missing_required_param: warning
     missing_return: warning
