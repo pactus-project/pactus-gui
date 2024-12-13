@@ -1,10 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:gap/gap.dart'; // Add this import
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/router/route_name.dart';
-import 'package:gui/src/core/utils/assets/assets.gen.dart';
-import '../../../../core/common/colors/app_colors.dart';
+import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
+import 'package:gui/src/core/utils/gen/localization/locale_keys.g.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -56,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
                 Gap(_spacingBetweenElements),
                 Text(
-                  AppLocalizations.of(context)!.applications,
+                  LocaleKeys.applications.tr(),
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: Colors.white,
                       ),
