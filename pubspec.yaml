@@ -1,7 +1,7 @@
 name: gui
 description: "Pactus Flutter GUI"
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 1.6.0+7
+version: 1.8.0+9
 
 environment:
   sdk: ^3.5.3
@@ -53,7 +53,7 @@ flutter:
         - asset: assets/fonts/Inter-Thin.ttf
           weight: 100
         - asset: assets/fonts/Inter-ExtraLight.ttf
-          weight: 100
+          weight: 200
         - asset: assets/fonts/Inter-Light.ttf
           weight: 300
         - asset: assets/fonts/Inter-Regular.ttf

@@ -1,3 +1,22 @@
+# 1.8.0+9
+
+- Implement or replace the Easy Localization package for efficient localization management
+  - feat(app): add inter text styles to app [#37](https://github.com/pactus-project/pactus-gui/pull/37)
+  - update(app): update font weight in `pubspec.yaml`
+
+# 1.7.0+8
+
+- Implement or replace the Easy Localization package for efficient localization management
+  - feat: add easy localization package to project [#40](https://github.com/pactus-project/pactus-gui/pull/40)
+  - feat: reformat codes with dart reformat command
+  - update: remove `l10n` from project
+  - fix: fix translation files for `applications` text in `es` & `fr`
+  - fix: fix configurations for `EasyLocalization` in `main.dart` file
+  - fix: fix `applications` text in `SplashScreen` page
+  - chore: update analyzer configuration to ignore generated files
+  - ci: update `ci` for checking assets & translation files
+
+
 # 1.6.0+7
 
 - Implement `GoRouter` navigation system
