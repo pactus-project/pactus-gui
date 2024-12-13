@@ -16,20 +16,27 @@ class $AssetsIconsGen {
   AssetGenImage get clipboard =>
       const AssetGenImage('assets/icons/clipboard.png');
 
+  /// File path: assets/icons/ic_dark_mode.svg
+  String get icDarkMode => 'assets/icons/ic_dark_mode.svg';
+
+  /// File path: assets/icons/ic_light_mode.svg
+  String get icLightMode => 'assets/icons/ic_light_mode.svg';
+
+  /// File path: assets/icons/ic_logo_dark.svg
+  String get icLogoDark => 'assets/icons/ic_logo_dark.svg';
+
+  /// File path: assets/icons/ic_logo_light.svg
+  String get icLogoLight => 'assets/icons/ic_logo_light.svg';
+
   /// File path: assets/icons/lock.png
   AssetGenImage get lock => const AssetGenImage('assets/icons/lock.png');
 
   /// File path: assets/icons/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/icons/logo.png');
 
-  /// File path: assets/icons/moon.png
-  AssetGenImage get moon => const AssetGenImage('assets/icons/moon.png');
-
-  /// File path: assets/icons/sun.png
-  AssetGenImage get sun => const AssetGenImage('assets/icons/sun.png');
-
   /// List of all assets
-  List<AssetGenImage> get values => [clipboard, lock, logo, moon, sun];
+  List<dynamic> get values =>
+      [clipboard, icDarkMode, icLightMode, icLogoDark, icLogoLight, lock, logo];
 }
 
 class $AssetsImagesGen {
@@ -41,6 +48,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/gift.png
   AssetGenImage get gift => const AssetGenImage('assets/images/gift.png');
 
+  /// File path: assets/images/logo_name.png
+  AssetGenImage get logoName =>
+      const AssetGenImage('assets/images/logo_name.png');
+
   /// File path: assets/images/master_password.png
   AssetGenImage get masterPassword =>
       const AssetGenImage('assets/images/master_password.png');
@@ -49,7 +60,24 @@ class $AssetsImagesGen {
   AssetGenImage get splash => const AssetGenImage('assets/images/splash.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [gears, gift, masterPassword, splash];
+  List<AssetGenImage> get values =>
+      [gears, gift, logoName, masterPassword, splash];
+}
+
+class $AssetsTranslationsGen {
+  const $AssetsTranslationsGen();
+
+  /// File path: assets/translations/en.json
+  String get en => 'assets/translations/en.json';
+
+  /// File path: assets/translations/es.json
+  String get es => 'assets/translations/es.json';
+
+  /// File path: assets/translations/fr.json
+  String get fr => 'assets/translations/fr.json';
+
+  /// List of all assets
+  List<String> get values => [en, es, fr];
 }
 
 class Assets {
@@ -57,6 +85,7 @@ class Assets {
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
 }
 
 class AssetGenImage {

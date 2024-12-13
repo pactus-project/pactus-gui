@@ -1,3 +1,23 @@
+# 1.6.0+7
+
+- Implement `GoRouter` navigation system
+  - feat: add `easy localization` package to project [#40](https://github.com/pactus-project/pactus-gui/pull/40)
+  - feat: reformat codes with dart reformat command
+  - update: remove `l10n` from project
+
+# 1.5.0+6
+
+- Implement `GoRouter` navigation system
+  - feat(router): implement GoRouter navigation system  [#32](https://github.com/pactus-project/pactus-gui/pull/32)
+  - update(core:router): changing AppRoute get method's
+  - fix(core:router): fix basic routes for correctly action of back button
+  - fix(router/features): fix register routes for correctly action of back button
+
+# 1.4.0+5
+
+- Implement `ToolbarLogo` and `ThemeSwitcher` 
+  - feat: added `ToolbarLogo` and `ThemeSwitcher` as reusable components with UI implementation, tests, and documentation [#35](https://github.com/pactus-project/pactus-gui/pull/36)
+
 # 1.3.0+4
 
 - Implement Theme Management
