@@ -15,35 +15,45 @@ jobs:
           flutter-version: '3.24.5'
       - name: Install dependencies
         run: flutter pub get
-#      - name: Generate Localization Files
-#        id: gen_l10n
-#        run: |
-#          # Run the command to generate localization files and capture the output
-#          output=$(flutter gen-l10n)
-#          echo "$output"
-#
-#          # Check if there are untranslated messages in the output
-#          if echo "$output" | grep -q "untranslated message"; then
-#            echo "::error file=lib/l10n/l10n.yaml::Error: Untranslated messages detected in your localization files."
-#            echo "::error::There are untranslated messages in the following languages:"
-#            echo "$output" | grep "untranslated message"
-#            echo "::error::Please ensure that all translations are provided in the respective .arb files."
-#            exit 1
-#          fi
-#      - name: Check Localization Files
-#        run: |
-#          git diff --exit-code lib/l10n/ || (
-#            echo "Localization files are outdated. Run 'flutter gen-l10n' and commit changes.";
-#            exit 1;
-#          )
-      - name: Run Dart Format Check
+      - name: Run Dart Format Check (Efficient)
         run: |
-          dart format . --set-exit-if-changed || (
+          dart format . --set-exit-if-changed --output none || (
             echo "Code formatting issues detected. Run 'dart format .' and commit the changes.";
             exit 1;
           )
       - name: Run Flutter Analyze
         run: flutter analyze
+      - name: Generate Localization Files (Easy Localization)
+        run: |
+          # Generate locale keys
+          dart run easy_localization:generate -f keys -o locale_keys.g.dart --source-dir=assets/translations --output-dir=lib/src/core/utils/gen/localization || (
+            echo "Error: Failed to generate locale keys.";
+            exit 1;
+          )
+      - name: Run Dart Format and Check Localization Files Changes
+        run: |
+          # Run dart format without failing the step
+          dart format . || echo "dart format completed with warnings, but continuing pipeline."
+      
+          # Check if there are changes in the localization files after generation
+          git diff --exit-code lib/src/core/utils/gen/localization || (
+            echo "Error: Localization files are outdated. Run the generation command and commit the changes.";
+            exit 1;
+          )
+      - name: Generate Assets Files
+        run: |
+          # Command to rebuild asset files
+          dart run build_runner build --delete-conflicting-outputs --build-filter="lib/src/core/utils/gen/assets/*.dart" || (
+            echo "Error: Failed to generate asset files.";
+            exit 1;
+          )
+      - name: Check Asset Files Changes
+        run: |
+          # Check if there are changes after generating asset files
+          git diff --exit-code lib/src/core/utils/gen/assets || (
+            echo "Error: Asset files are outdated. Run the generation command and commit the changes.";
+            exit 1;
+          )
       - name: Run tests
         run: flutter test
   merge_check:
