@@ -5,10 +5,27 @@ import 'package:gui/src/core/constants/configurations.dart';
 import 'package:gui/src/core/router/app_router.dart';
 import 'package:gui/src/core/utils/gen/localization/codegen_loader.g.dart';
 import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
+import 'package:window_manager/window_manager.dart';
 import 'src/features/main/language/presentation/bloc/language_bloc.dart';
 
-void main() async {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   await EasyLocalization.ensureInitialized();
+
+  await windowManager.ensureInitialized();
+  final windowOptions = WindowOptions(
+    size: Size(800, 600),
+    center: true,
+    backgroundColor: Colors.transparent,
+    skipTaskbar: false,
+    titleBarStyle: TitleBarStyle.hidden,
+  );
+  await windowManager.waitUntilReadyToShow(windowOptions, () async {
+    await windowManager.show();
+    await windowManager.startDragging();
+  });
+
   runApp(
     MultiBlocProvider(
       providers: [
@@ -41,6 +58,11 @@ class MyApp extends StatelessWidget {
           return BlocBuilder<ThemeBloc, ThemeState>(
             builder: (context, themeState) {
               return MaterialApp.router(
+                // builder: (context,child){
+                //   return ClipRRect(
+                //       borderRadius: BorderRadius.circular(20),
+                //       child: child!);
+                // },
                 debugShowCheckedModeBanner: false,
                 routerConfig: routerConfig,
                 title: 'Flutter Demo',
