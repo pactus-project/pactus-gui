@@ -3,6 +3,7 @@
   "subtitle": "Bienvenido a Localización",
   "description": "Has pulsado el botón tantas veces:",
   "switchLanguage": "Cambiar idioma",
-  "applications": "Applications"
+  "applications": "Applications",
+  "enter_master_password_to_unlock": "Introduzca la contraseña maestra para desbloquear"
 
 }
