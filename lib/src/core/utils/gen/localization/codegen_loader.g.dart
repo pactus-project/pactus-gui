@@ -14,30 +14,35 @@ class CodegenLoader extends AssetLoader {
     return Future.value(mapLocales[locale.toString()]);
   }
 
-  static const Map<String, dynamic> fr = {
-    "title": "Bonjour",
-    "subtitle": "Bienvenue dans Localisation",
-    "description": "Vous avez appuyé sur le bouton autant de fois :",
-    "switchLanguage": "Changer de langue",
-    "applications": "Applications"
+  static const Map<String, dynamic> en = {
+    "title": "Hello, World!",
+    "subtitle": "Welcome to Localization",
+    "description": "You have pushed the button this many times:",
+    "switch_language": "Switch language",
+    "applications": "Applications",
+    "enter_master_password_to_unlock": "Enter the master password to unlock"
   };
   static const Map<String, dynamic> es = {
     "title": "¡Hola, Mundo!",
     "subtitle": "Bienvenido a Localización",
     "description": "Has pulsado el botón tantas veces:",
     "switchLanguage": "Cambiar idioma",
-    "applications": "Applications"
+    "applications": "Applications",
+    "enter_master_password_to_unlock":
+        "Introduzca la contraseña maestra para desbloquear"
   };
-  static const Map<String, dynamic> en = {
-    "title": "Hello, World!",
-    "subtitle": "Welcome to Localization",
-    "description": "You have pushed the button this many times:",
-    "switch_language": "Switch language",
-    "applications": "Applications"
+  static const Map<String, dynamic> fr = {
+    "title": "Bonjour",
+    "subtitle": "Bienvenue dans Localisation",
+    "description": "Vous avez appuyé sur le bouton autant de fois :",
+    "switchLanguage": "Changer de langue",
+    "applications": "Applications",
+    "enter_master_password_to_unlock":
+        "Entrez le mot de passe principal pour déverrouiller"
   };
   static const Map<String, Map<String, dynamic>> mapLocales = {
-    "fr": fr,
+    "en": en,
     "es": es,
-    "en": en
+    "fr": fr
   };
 }
