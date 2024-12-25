@@ -5,21 +5,26 @@ import 'package:gui/src/core/constants/configurations.dart';
 import 'package:gui/src/core/router/app_router.dart';
 import 'package:gui/src/core/utils/gen/localization/codegen_loader.g.dart';
 import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
+import 'src/core/services/shared_preferences_service.dart';
 import 'src/features/main/language/presentation/bloc/language_bloc.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+
+  final sharedPreferencesService = await SharedPreferencesService.initialize();
+
   runApp(
     MultiBlocProvider(
       providers: [
         BlocProvider<LanguageBloc>(
-          create: (_) => LanguageBloc(),
+          create: (_) => LanguageBloc(sharedPreferencesService),
         ),
         BlocProvider<ThemeBloc>(
           create: (_) => ThemeBloc(),
         ),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
@@ -38,6 +43,11 @@ class MyApp extends StatelessWidget {
       assetLoader: const CodegenLoader(),
       child: BlocBuilder<LanguageBloc, LanguageState>(
         builder: (context, languageState) {
+          if (context.locale != languageState.selectedLanguage.value) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              context.setLocale(languageState.selectedLanguage.value);
+            });
+          }
           return BlocBuilder<ThemeBloc, ThemeState>(
             builder: (context, themeState) {
               return MaterialApp.router(
