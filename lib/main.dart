@@ -1,5 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/constants/configurations.dart';
 import 'package:gui/src/core/router/app_router.dart';
@@ -19,13 +19,13 @@ void main() async {
           create: (_) => ThemeBloc(),
         ),
       ],
-      child: MyApp(),
+      child: PactusGuiApp(),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class PactusGuiApp extends StatelessWidget {
+  const PactusGuiApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +40,10 @@ class MyApp extends StatelessWidget {
         builder: (context, languageState) {
           return BlocBuilder<ThemeBloc, ThemeState>(
             builder: (context, themeState) {
-              return MaterialApp.router(
+              return FluentApp.router(
                 debugShowCheckedModeBanner: false,
                 routerConfig: routerConfig,
-                title: 'Flutter Demo',
+                title: 'Pactus Gui App',
                 theme: themeState.themeData,
                 localizationsDelegates: context.localizationDelegates,
                 supportedLocales: AppConfigs.supportedLocales,
