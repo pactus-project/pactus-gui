@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/core/enums/theme_modes.dart';
 import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
+import 'package:gui/src/features/main/theme/bloc/theme_state.dart';
 import 'package:gui/src/features/main/theme/theme_data/pallets/on_surface_pallet.dart';
 
 class ThemeSelector extends StatelessWidget {
@@ -17,8 +17,8 @@ class ThemeSelector extends StatelessWidget {
         ElevatedButton(
           onPressed: () {
             context.read<ThemeBloc>().add(
-                  ThemeChanged(
-                    theme: isLightTheme ? ThemeModes.dark : ThemeModes.light,
+                  ChangeTheme(
+                    isLightTheme ? ThemeState.darkTheme : ThemeState.lightTheme,
                   ),
                 );
           },

@@ -5,6 +5,7 @@ import 'package:gui/src/core/constants/configurations.dart';
 import 'package:gui/src/core/router/app_router.dart';
 import 'package:gui/src/core/utils/gen/localization/codegen_loader.g.dart';
 import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
+import 'package:gui/src/features/main/theme/bloc/theme_state.dart';
 import 'src/core/services/shared_preferences_service.dart';
 import 'src/features/main/language/presentation/bloc/language_bloc.dart';
 
@@ -21,7 +22,7 @@ void main() async {
           create: (_) => LanguageBloc(sharedPreferencesService),
         ),
         BlocProvider<ThemeBloc>(
-          create: (_) => ThemeBloc(),
+          create: (_) => ThemeBloc(sharedPreferencesService),
         ),
       ],
       child: const MyApp(),

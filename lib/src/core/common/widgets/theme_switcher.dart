@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
-import 'package:gui/src/core/enums/theme_modes.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
+import 'package:gui/src/features/main/theme/bloc/theme_state.dart';
 
 /// ### [ThemeSwitcher] Documentation
 /// A widget that toggles between light and dark themes using a animated switch.
@@ -36,8 +36,8 @@ class ThemeSwitcher extends StatelessWidget {
         GestureDetector(
           onTap: () {
             context.read<ThemeBloc>().add(
-                  ThemeChanged(
-                    theme: isLightTheme ? ThemeModes.dark : ThemeModes.light,
+                  ChangeTheme(
+                    isLightTheme ? ThemeState.darkTheme : ThemeState.lightTheme,
                   ),
                 );
           },
