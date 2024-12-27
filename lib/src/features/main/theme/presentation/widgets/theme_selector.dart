@@ -17,7 +17,7 @@ class ThemeSelector extends StatelessWidget {
         ElevatedButton(
           onPressed: () {
             context.read<ThemeBloc>().add(
-                  ChangeTheme(
+                  ThemeChanged(
                     isLightTheme ? ThemeState.darkTheme : ThemeState.lightTheme,
                   ),
                 );

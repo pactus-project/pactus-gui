@@ -36,7 +36,7 @@ class ThemeSwitcher extends StatelessWidget {
         GestureDetector(
           onTap: () {
             context.read<ThemeBloc>().add(
-                  ChangeTheme(
+                  ThemeChanged(
                     isLightTheme ? ThemeState.darkTheme : ThemeState.lightTheme,
                   ),
                 );

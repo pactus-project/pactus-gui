@@ -10,12 +10,12 @@ abstract class ThemeEvent extends Equatable {
 
 class InitializeThemeEvent extends ThemeEvent {}
 
-class ChangeTheme extends ThemeEvent {
-  const ChangeTheme(this.themeData);
-  final ThemeData themeData;
+class ThemeChanged extends ThemeEvent {
+  const ThemeChanged(this.theme);
+  final FluentThemeData theme;
 
   @override
-  List<Object> get props => [themeData];
+  List<Object> get props => [theme];
 }
 
 class SystemThemeChanged extends ThemeEvent {}

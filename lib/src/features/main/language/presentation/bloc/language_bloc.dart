@@ -41,6 +41,7 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
     await _sharedPreferencesService.saveSelectedLanguage(
       event.selectedLanguage.code,
     );
+
     emit(state.copyWith(selectedLanguage: event.selectedLanguage));
   }
 }

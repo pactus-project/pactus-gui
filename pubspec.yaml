@@ -1,7 +1,7 @@
 name: gui
 description: "Pactus Flutter GUI"
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 1.8.0+9
+version: 1.9.0+10
 
 environment:
   sdk: ^3.5.3
@@ -12,6 +12,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   easy_localization: ^3.0.7
   equatable: ^2.0.7
+  fluent_ui: ^4.9.2
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.0
@@ -26,8 +27,8 @@ dependencies:
   go_router: ^14.6.1
   intl: ^0.19.0
   json_annotation: ^4.9.0
+  mocktail: ^1.0.4
   shared_preferences: ^2.3.4
-
 dev_dependencies:
   build_runner:
   easy_localization_generator: ^0.3.3
