@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:window_manager/window_manager.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -17,31 +19,28 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         height: preferredSize.height,
         padding: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
-          color: Colors.grey[900],
+          color: Colors.grey,
         ),
         child: Row(
           children: [
             Expanded(
               child: Align(
                 alignment: AlignmentDirectional.centerStart,
-                child: Text(
-                  'Linux-like AppBar',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
+                child:  SvgPicture.asset(
+                  Assets.icons.icLogoLight,
                 ),
               ),
             ),
             Row(
               children: [
-                _AppBarButton(
-                  icon: Icons.remove,
-                  color: Colors.yellow,
+                _FluentAppBarButton(
+                  icon: "Assets.icons.icClose",
                   onPressed: () async {
                     await windowManager.minimize();
                   },
                 ),
-                _AppBarButton(
-                  icon: Icons.crop_square,
-                  color: Colors.green,
+                _FluentAppBarButton(
+                  icon: 'FluentIcons.chrome_restore',
                   onPressed: () async {
                     final isMaximized = await windowManager.isMaximized();
                     if (isMaximized) {
@@ -51,9 +50,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     }
                   },
                 ),
-                _AppBarButton(
-                  icon: Icons.close,
-                  color: Colors.red,
+                _FluentAppBarButton(
+                  icon: 'FluentIcons.chrome_close',
                   onPressed: () async {
                     await windowManager.close();
                   },
@@ -67,23 +65,37 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 }
 
-class _AppBarButton extends StatelessWidget {
-  const _AppBarButton({
+class _FluentAppBarButton extends StatelessWidget {
+  const _FluentAppBarButton({
     required this.icon,
-    required this.color,
     required this.onPressed,
   });
-  final IconData icon;
-  final Color color;
+
+  final String icon;
   final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      icon: Icon(icon, size: 16),
-      color: color,
-      onPressed: onPressed,
-      splashRadius: 20,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4),
+      child: HoverButton(
+        onPressed: onPressed,
+        builder: (context, states) {
+          final color = states.isHovered
+              ? Colors.red
+              : Colors.transparent;
+          return Container(
+            height: 48,
+            width: 48,
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: SvgPicture.asset(icon,),
+          );
+        },
+      ),
     );
   }
 }
+
