@@ -2,7 +2,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:gui/src/core/enums/theme_modes.dart';
 import 'package:gui/src/features/main/theme/bloc/theme_state.dart';
 import '../../../../core/services/shared_preferences_service.dart';
 
