@@ -68,20 +68,28 @@ class AppThemeData {
 
   static final darkTypography = Typography.raw(
     caption: InterTextStyles.caption.copyWith(
-        color: OnSurfacePallet.dark.onSurface4,),
+      color: OnSurfacePallet.dark.onSurface4,
+    ),
     body: InterTextStyles.body.copyWith(
-        color: OnSurfacePallet.dark.onSurface4,),
+      color: OnSurfacePallet.dark.onSurface4,
+    ),
     subtitle: InterTextStyles.subtitle.copyWith(
-        color: OnSurfacePallet.dark.onSurface4,),
+      color: OnSurfacePallet.dark.onSurface4,
+    ),
     title: InterTextStyles.title.copyWith(
-        color: OnSurfacePallet.dark.onSurface4,),
+      color: OnSurfacePallet.dark.onSurface4,
+    ),
     titleLarge: InterTextStyles.titleLarge.copyWith(
-        color: OnSurfacePallet.dark.onSurface4,),
+      color: OnSurfacePallet.dark.onSurface4,
+    ),
     display: InterTextStyles.display.copyWith(
-        color: OnSurfacePallet.dark.onSurface4,),
+      color: OnSurfacePallet.dark.onSurface4,
+    ),
     bodyLarge: InterTextStyles.bodyLarge.copyWith(
-        color: OnSurfacePallet.dark.onSurface4,),
+      color: OnSurfacePallet.dark.onSurface4,
+    ),
     bodyStrong: InterTextStyles.bodyStrong.copyWith(
-        color: OnSurfacePallet.dark.onSurface4,),
+      color: OnSurfacePallet.dark.onSurface4,
+    ),
   );
 }
