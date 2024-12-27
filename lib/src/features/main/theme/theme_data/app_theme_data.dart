@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:gui/src/core/constants/inter_text_styles.dart';
 import 'package:gui/src/core/enums/theme_modes.dart';
 import 'package:gui/src/core/utils/gen/assets/fonts.gen.dart';
 import 'package:gui/src/features/main/theme/theme_data/pallets/on_surface_pallet.dart';
@@ -54,9 +55,33 @@ class AppThemeData {
     ),
   };
 
-  // TODO(Esmaeil): Update this part based on the new text style in the Figma.
-  static final lightTypography = Typography.raw();
+  static final lightTypography = Typography.raw(
+    caption: InterTextStyles.caption,
+    body: InterTextStyles.body,
+    subtitle: InterTextStyles.subtitle,
+    title: InterTextStyles.title,
+    titleLarge: InterTextStyles.titleLarge,
+    display: InterTextStyles.display,
+    bodyLarge: InterTextStyles.bodyLarge,
+    bodyStrong: InterTextStyles.bodyStrong,
+  );
 
-  // TODO(Esmaeil): Update this part based on the new text style in the Figma.
-  static final darkTypography = Typography.raw();
+  static final darkTypography = Typography.raw(
+    caption: InterTextStyles.caption.copyWith(
+        color: OnSurfacePallet.dark.onSurface4,),
+    body: InterTextStyles.body.copyWith(
+        color: OnSurfacePallet.dark.onSurface4,),
+    subtitle: InterTextStyles.subtitle.copyWith(
+        color: OnSurfacePallet.dark.onSurface4,),
+    title: InterTextStyles.title.copyWith(
+        color: OnSurfacePallet.dark.onSurface4,),
+    titleLarge: InterTextStyles.titleLarge.copyWith(
+        color: OnSurfacePallet.dark.onSurface4,),
+    display: InterTextStyles.display.copyWith(
+        color: OnSurfacePallet.dark.onSurface4,),
+    bodyLarge: InterTextStyles.bodyLarge.copyWith(
+        color: OnSurfacePallet.dark.onSurface4,),
+    bodyStrong: InterTextStyles.bodyStrong.copyWith(
+        color: OnSurfacePallet.dark.onSurface4,),
+  );
 }
