@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gui/src/core/enums/theme_modes.dart';
 import 'package:gui/src/core/utils/gen/assets/fonts.gen.dart';
 import 'package:gui/src/features/main/theme/theme_data/pallets/on_surface_pallet.dart';
@@ -6,278 +6,57 @@ import 'package:gui/src/features/main/theme/theme_data/pallets/surface_pallet.da
 
 /// ## [AppThemeData] Documentation
 ///
-/// The [AppThemeData] class provides theming configurations for the
-/// application.
-/// It contains a static map that holds the `ThemeData` for both light and dark
-/// modes, allowing for easy theme management based on the user's preference.
+/// The `AppThemeData` class provides theming configs for the application,
+/// supporting both light and dark themes.
 ///
+/// ### Properties
+///
+/// - **`themeDataModes`**: A static map containing theme configurations for:
+///   - **Light Theme**: Configured with `lightTypography` and light palette.
+///   - **Dark Theme**: Configured with `darkTypography` and dark palette.
+///
+/// - **`lightTypography`**: The typography config used for the light theme.
+///
+/// - **`darkTypography`**: The typography config used for the dark theme.
+///
+/// ### Example Usage
+///
+/// ```dart
+/// final theme = AppThemeData.themeDataModes[ThemeModes.light];
+/// ```
 class AppThemeData {
   const AppThemeData._();
-  static final Map<ThemeModes, ThemeData> themeDataModes = {
+
+  static final Map<ThemeModes, FluentThemeData> themeDataModes = {
     // light ThemeData.
-    ThemeModes.light: ThemeData(
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: SurfacePallet.light.surface3,
-      ),
+    ThemeModes.light: FluentThemeData(
+      fontFamily: FontFamily.inter,
       scaffoldBackgroundColor: SurfacePallet.light.surface3,
       brightness: Brightness.light,
-      dividerColor: OnSurfacePallet.light.onSurface1,
-      textTheme: lightTextTheme,
+      typography: lightTypography,
       cardColor: SurfacePallet.light.surface3,
       extensions: const <ThemeExtension<dynamic>>[
         OnSurfacePallet.light,
         SurfacePallet.light,
       ],
     ),
-
     // dark ThemeData.
-    ThemeModes.dark: ThemeData(
+    ThemeModes.dark: FluentThemeData(
+      fontFamily: FontFamily.inter,
+      scaffoldBackgroundColor: SurfacePallet.dark.surface3,
       brightness: Brightness.dark,
-      textTheme: darkTextTheme,
-      extensions: <ThemeExtension<dynamic>>[
+      typography: Typography.raw(),
+      cardColor: SurfacePallet.dark.surface3,
+      extensions: const <ThemeExtension<dynamic>>[
         OnSurfacePallet.dark,
         SurfacePallet.dark,
       ],
     ),
   };
 
-  static final lightTextTheme = TextTheme(
-    displaySmall: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: SurfacePallet.light.surface3,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w700,
-      fontSize: 16,
-      height: 24 / 12,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    headlineLarge: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: SurfacePallet.light.surface3,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w300,
-      fontSize: 36,
-      height: 52 / 36,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    headlineMedium: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: SurfacePallet.light.surface3,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w400,
-      fontSize: 32,
-      height: 44 / 32,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    headlineSmall: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: SurfacePallet.light.surface3,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w700,
-      fontSize: 24,
-      height: 36 / 24,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    titleLarge: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: SurfacePallet.light.surface3,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w300,
-      fontSize: 20,
-      height: 28 / 20,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    titleMedium: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: SurfacePallet.light.surface3,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w400,
-      fontSize: 16,
-      height: 24 / 16,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    titleSmall: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: SurfacePallet.light.surface3,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w400,
-      fontSize: 12,
-      height: 16 / 12,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    bodyLarge: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: SurfacePallet.light.surface3,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w300,
-      fontSize: 16,
-      height: 24 / 16,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    bodyMedium: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: SurfacePallet.light.surface3,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w400,
-      fontSize: 14,
-      height: 20 / 14,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    bodySmall: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: SurfacePallet.light.surface3,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w400,
-      fontSize: 12,
-      height: 18 / 12,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    labelLarge: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: SurfacePallet.light.surface3,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w400,
-      fontSize: 16,
-      height: 20 / 16,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    labelMedium: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: SurfacePallet.light.surface3,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w500,
-      fontSize: 14,
-      height: 20 / 14,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    labelSmall: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: SurfacePallet.light.surface3,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w500,
-      fontSize: 10,
-      height: 16 / 10,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-  );
+  // TODO(Esmaeil): Update this part based on the new text style in the Figma.
+  static final lightTypography = Typography.raw();
 
-  static final darkTextTheme = TextTheme(
-    displaySmall: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: SurfacePallet.light.surface3,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w700,
-      fontSize: 16,
-      height: 24 / 12,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    headlineLarge: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: OnSurfacePallet.light.onSurface4,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w300,
-      fontSize: 36,
-      height: 52 / 36,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    headlineMedium: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: OnSurfacePallet.light.onSurface4,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w400,
-      fontSize: 32,
-      height: 44 / 32,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    headlineSmall: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: OnSurfacePallet.light.onSurface4,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w700,
-      fontSize: 24,
-      height: 36 / 24,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    titleLarge: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: OnSurfacePallet.light.onSurface4,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w300,
-      fontSize: 20,
-      height: 28 / 20,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    titleMedium: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: OnSurfacePallet.light.onSurface4,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w400,
-      fontSize: 16,
-      height: 24 / 16,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    titleSmall: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: OnSurfacePallet.light.onSurface4,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w400,
-      fontSize: 12,
-      height: 16 / 12,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    bodyLarge: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: OnSurfacePallet.light.onSurface4,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w300,
-      fontSize: 16,
-      height: 24 / 16,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    bodyMedium: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: OnSurfacePallet.light.onSurface4,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w400,
-      fontSize: 14,
-      height: 20 / 14,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    bodySmall: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: OnSurfacePallet.light.onSurface4,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w400,
-      fontSize: 12,
-      height: 18 / 12,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    labelLarge: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: OnSurfacePallet.light.onSurface4,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w400,
-      fontSize: 16,
-      height: 20 / 16,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    labelMedium: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: OnSurfacePallet.light.onSurface4,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w500,
-      fontSize: 14,
-      height: 20 / 14,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-    labelSmall: TextStyle(
-      fontFamily: FontFamily.inter,
-      color: OnSurfacePallet.light.onSurface4,
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w500,
-      fontSize: 10,
-      height: 16 / 10,
-      leadingDistribution: TextLeadingDistribution.even,
-    ),
-  );
+  // TODO(Esmaeil): Update this part based on the new text style in the Figma.
+  static final darkTypography = Typography.raw();
 }

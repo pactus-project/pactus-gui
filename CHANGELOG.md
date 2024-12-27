@@ -1,3 +1,8 @@
+# 1.9.0+10
+
+- Migrate to `Fluent UI` Framework/DesignSystem
+  - feat: add some changes on theme configurations for using fluent_ui package [#45](https://github.com/pactus-project/pactus-gui/pull/45)
+
 # 1.8.0+9
 
 - Implement or replace the Easy Localization package for efficient localization management
