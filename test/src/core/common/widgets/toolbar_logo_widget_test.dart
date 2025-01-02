@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gui/src/core/common/widgets/toolbar_logo.dart';
+import 'package:gui/presentation/widgets/toolbar_logo/toolbar_logo_widget.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 
 void main() {
