@@ -4,7 +4,33 @@ import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:window_manager/window_manager.dart';
 
 import 'app_bar_button.dart';
-
+/// ## [CustomAppBar] Class Documentation
+///
+/// The `CustomAppBar` class represents a custom application bar (AppBar)
+/// that provides
+/// window management controls (minimize, maximize, and close) along with
+/// an optional theme toggle.
+/// It is designed to be used with the `fluent_ui` and `flutter_svg` packages
+/// and includes custom buttons
+/// for window operations, integrated with the `window_manager` package.
+///
+/// ### Usage:
+///
+/// This widget provides a custom AppBar for an application, including:
+/// - An SVG logo on the left.
+/// - A toggle switch for changing themes (currently commented out).
+/// - Window control buttons for minimizing, maximizing, and closing the window.
+///
+/// ### Properties:
+///
+/// - **[preferredSize]**:
+///   - Returns a fixed size for the AppBar, specifically `48` pixels in height.
+///
+/// ### Methods:
+///
+/// - **[build(BuildContext context)]**:
+///   - Builds the UI of the custom AppBar, including window controls and layout
+///   management.
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
 
@@ -38,6 +64,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ToggleSwitch(
               checked: true,
               onChanged: (bool value) {
+                /// to-do #42 : uncomment this part after resolving confilcts
+                /// between theme & Fluent UI by Pouria
                 // context.read<ThemeBloc>().add(
                 //   ThemeChanged(
                 //     theme: isLightTheme ? ThemeModes.dark : ThemeModes.light,
