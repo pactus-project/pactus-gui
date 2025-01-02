@@ -1,5 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_svg/svg.dart';
+
 /// ## [FluentAppBarButton] Class Documentation
 ///
 /// The `FluentAppBarButton` class represents a custom button widget with an icon

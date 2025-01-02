@@ -4,6 +4,7 @@ import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:window_manager/window_manager.dart';
 
 import 'app_bar_button.dart';
+
 /// ## [CustomAppBar] Class Documentation
 ///
 /// The `CustomAppBar` class represents a custom application bar (AppBar)
