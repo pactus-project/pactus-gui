@@ -1,6 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
 
-@immutable
 class OnSurfacePallet extends ThemeExtension<OnSurfacePallet> {
   const OnSurfacePallet({
     required this.onSurface4,
