@@ -1,3 +1,8 @@
+# 1.10.0+12
+
+- [Feature] : Implement `UI` of password unlock screen using `fluent_ui` package (#41)
+  - feat: impl widgets of `MasterPassword` screen [#44](https://github.com/pactus-project/pactus-gui/pull/44)
+
 # 1.9.1+11
 
 - [Feature] : CI/CD Integration for Automated Release Builds and Notifications (#50)
