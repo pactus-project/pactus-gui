@@ -1,6 +1,10 @@
 import 'package:flutter/foundation.dart'
     show TargetPlatform, defaultTargetPlatform, kIsWeb;
 
+/// Documentation for the [Os] Enum
+/// Enum representing the supported operating systems and platforms.
+///
+/// Used to identify the current runtime platform in a Flutter application.
 enum Os {
   web,
   android,
@@ -11,39 +15,35 @@ enum Os {
   fuchsia,
 }
 
+/// Documentation for the [Platform] class
+/// Utility class for detecting the current platform or operating system.
+///
+/// Provides static properties to determine whether the application is running -
+/// on web, mobile, or desktop platforms.
+///
 class Platform {
   const Platform._();
 
   static bool get isWeb => os == Os.web;
 
-  /// Platform is Android.
   static bool get isAndroid => os == Os.android;
 
-  /// Platform is IOS.
   static bool get isIOS => os == Os.ios;
 
-  /// Platform is Fuchsia.
   static bool get isFuchsia => os == Os.fuchsia;
 
-  /// Platform is Linux.
   static bool get isLinux => os == Os.linux;
 
-  /// Platform is MacOS.
   static bool get isMacOS => os == Os.macOS;
 
-  /// Platform is Windows.
   static bool get isWindows => os == Os.windows;
 
-  /// Platform is Android or IOS.
   static bool get isMobile => isAndroid || isIOS;
 
-  /// Platform is Android or IOS or Fuchsia.
   static bool get isFullMobile => isMobile || isFuchsia;
 
-  /// Platform is Linux or Windows or MacOS.
   static bool get isDesktop => isLinux || isWindows || isMacOS;
 
-  /// Getting the os name.
   static Os get os {
     if (kIsWeb) {
       return Os.web;
