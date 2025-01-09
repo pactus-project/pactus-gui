@@ -7,7 +7,6 @@ import 'package:gui/src/features/main/language/presentation/widget/language_widg
 import 'package:gui/src/features/main/theme/presentation/widgets/theme_selector.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
-
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
   @override
