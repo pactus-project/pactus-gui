@@ -8,10 +8,10 @@ environment:
 
 dependencies:
   pactus_gui_widgetbook:
-    path: ../pactus-gui-widgetbook
-#    git:
-#      url: https://github.com/pactus-project/pactus-gui-widgetbook.git
-#      ref: main
+#    path: ../pactus-gui-widgetbook
+    git:
+      url: https://github.com/pactus-project/pactus-gui-widgetbook.git
+      ref: main
   bloc: ^8.1.0
   bloc_test: ^9.1.7
   cupertino_icons: ^1.0.8
