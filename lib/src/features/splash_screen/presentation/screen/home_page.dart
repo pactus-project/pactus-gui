@@ -5,7 +5,8 @@ import 'package:gui/src/core/common/widgets/toolbar_logo.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.g.dart';
 import 'package:gui/src/features/main/language/presentation/widget/language_widget.dart';
 import 'package:gui/src/features/main/theme/presentation/widgets/theme_selector.dart';
-import 'package:gui/src/features/main/theme/theme_data/pallets/on_surface_pallet.dart';
+import 'package:pactus_gui_widgetbook/app_styles.dart';
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -36,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text(
               LocaleKeys.subtitle.tr(),
-              style: theme.textTheme.titleMedium!.copyWith(
+              style: InterTextStyles.title.copyWith(
                 color: theme.extension<OnSurfacePallet>()!.onSurface3,
               ),
             ),

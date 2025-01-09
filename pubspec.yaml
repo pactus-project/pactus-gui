@@ -7,6 +7,11 @@ environment:
   sdk: ^3.5.3
 
 dependencies:
+  pactus_gui_widgetbook:
+    path: ../pactus-gui-widgetbook
+#    git:
+#      url: https://github.com/pactus-project/pactus-gui-widgetbook.git
+#      ref: main
   bloc: ^8.1.0
   bloc_test: ^9.1.7
   cupertino_icons: ^1.0.8
@@ -48,22 +53,3 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/translations/
-  fonts:
-    - family: Inter
-      fonts:
-        - asset: assets/fonts/Inter-Thin.ttf
-          weight: 100
-        - asset: assets/fonts/Inter-ExtraLight.ttf
-          weight: 200
-        - asset: assets/fonts/Inter-Light.ttf
-          weight: 300
-        - asset: assets/fonts/Inter-Regular.ttf
-          weight: 400
-        - asset: assets/fonts/Inter-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Inter-SemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/Inter-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/Inter-ExtraBold.ttf
-          weight: 800

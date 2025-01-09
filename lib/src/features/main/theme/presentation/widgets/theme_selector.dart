@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/enums/theme_modes.dart';
 import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
-import 'package:gui/src/features/main/theme/theme_data/pallets/on_surface_pallet.dart';
+import 'package:pactus_gui_widgetbook/app_styles.dart';
+
 
 class ThemeSelector extends StatelessWidget {
   const ThemeSelector({super.key});
