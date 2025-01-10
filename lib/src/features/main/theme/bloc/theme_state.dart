@@ -1,10 +1,12 @@
 part of 'theme_bloc.dart';
 
 class ThemeState {
-  ThemeState._({required this.themeData});
+  ThemeState._({
+    required this.themeMode,
+  });
 
-  factory ThemeState.initial(FluentThemeData themeData) {
-    return ThemeState._(themeData: themeData);
+  factory ThemeState.initial(ThemeMode themeMode) {
+    return ThemeState._(themeMode: themeMode);
   }
-  final FluentThemeData themeData;
+  final ThemeMode themeMode;
 }

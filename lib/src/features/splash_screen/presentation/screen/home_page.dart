@@ -4,7 +4,6 @@ import 'package:gui/src/core/common/widgets/theme_switcher.dart';
 import 'package:gui/src/core/common/widgets/toolbar_logo.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.g.dart';
 import 'package:gui/src/features/main/language/presentation/widget/language_widget.dart';
-import 'package:gui/src/features/main/theme/presentation/widgets/theme_selector.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -47,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             const SizedBox(height: 20),
-            const ThemeSelector(),
+            const ThemeSwitcher(),
             const SizedBox(height: 20),
             const LanguageSelector(), // Add the language selector here
           ],
