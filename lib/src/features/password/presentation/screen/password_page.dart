@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gui/src/core/common/widgets/theme_switcher.dart';
 import 'package:gui/src/core/router/route_name.dart';
 
 class PasswordPage extends StatelessWidget {
@@ -15,6 +16,7 @@ class PasswordPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            ThemeSwitcher(),
             fromRegistrationRoute
                 ? MaterialButton(
                     onPressed: () {

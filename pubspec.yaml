@@ -1,7 +1,7 @@
 name: gui
 description: "Pactus Flutter GUI"
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 1.9.1+11
+version: 1.10.0+12
 
 environment:
   sdk: ^3.5.3
@@ -27,6 +27,11 @@ dependencies:
   go_router: ^14.6.1
   intl: ^0.19.0
   json_annotation: ^4.9.0
+  pactus_gui_widgetbook:
+    #    path: ../pactus-gui-widgetbook
+    git:
+      url: https://github.com/pactus-project/pactus-gui-widgetbook.git
+      ref: main
 
 dev_dependencies:
   build_runner:
@@ -48,22 +53,3 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/translations/
-  fonts:
-    - family: Inter
-      fonts:
-        - asset: assets/fonts/Inter-Thin.ttf
-          weight: 100
-        - asset: assets/fonts/Inter-ExtraLight.ttf
-          weight: 200
-        - asset: assets/fonts/Inter-Light.ttf
-          weight: 300
-        - asset: assets/fonts/Inter-Regular.ttf
-          weight: 400
-        - asset: assets/fonts/Inter-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Inter-SemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/Inter-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/Inter-ExtraBold.ttf
-          weight: 800

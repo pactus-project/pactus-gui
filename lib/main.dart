@@ -5,6 +5,7 @@ import 'package:gui/src/core/constants/configurations.dart';
 import 'package:gui/src/core/router/app_router.dart';
 import 'package:gui/src/core/utils/gen/localization/codegen_loader.g.dart';
 import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
+import 'package:pactus_gui_widgetbook/app_styles.dart';
 import 'src/features/main/language/presentation/bloc/language_bloc.dart';
 
 void main() async {
@@ -44,7 +45,15 @@ class PactusGuiApp extends StatelessWidget {
                 debugShowCheckedModeBanner: false,
                 routerConfig: routerConfig,
                 title: 'Pactus Gui App',
-                theme: themeState.themeData,
+                theme: FluentThemeData.light().copyWith(
+                  extensions: AppThemeData.lightExtensions,
+                  typography: AppThemeData.typography,
+                ),
+                themeMode: themeState.themeMode,
+                darkTheme: FluentThemeData.dark().copyWith(
+                  extensions: AppThemeData.darkExtensions,
+                  typography: AppThemeData.typography,
+                ),
                 localizationsDelegates: context.localizationDelegates,
                 supportedLocales: AppConfigs.supportedLocales,
                 locale: languageState.selectedLanguage.value,

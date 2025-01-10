@@ -4,5 +4,5 @@ abstract class ThemeEvent {}
 
 class ThemeChanged extends ThemeEvent {
   ThemeChanged({required this.theme});
-  final ThemeModes theme;
+  final ThemeMode theme;
 }
