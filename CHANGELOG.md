@@ -1,23 +1,36 @@
+# 1.10.0+12
+
+- [Refactor] : Migrate styles to `pactus-gui-widgetbook` package for consistency and maintainability. [#56](https://github.com/pactus-project/pactus-gui/pull/56)
+  - Removed `InterTextStyles` and replaced with styles from the package.
+  - Eliminated `surface` and `on_surface` palettes, adopting those from the package.
+  - Removed fonts bundled in this project, utilizing package-provided fonts.
+  - Updated all color palette references across the project.
+  - Added `pactus-gui-widgetbook` to project dependencies.
+
+- [Update] : Changed `pactus_gui_widgetbook` package URL to the updated repository location. [#56](https://github.com/pactus-project/pactus-gui/pull/56)
+
+- [Fix] : Resolved theme-switching functionality issues after migration to `pactus-gui-widgetbook`. [#56](https://github.com/pactus-project/pactus-gui/pull/56)
+
 # 1.9.1+11
 
-- [Feature] : CI/CD Integration for Automated Release Builds and Notifications (#50)
-  - feat: add some changes on theme configurations for using fluent_ui package [#45](https://github.com/pactus-project/pactus-gui/pull/45)
+- [Feature] : CI/CD Integration for Automated Release Builds and Notifications [#45](https://github.com/pactus-project/pactus-gui/pull/45)
+  - feat: add some changes on theme configurations for using fluent_ui package 
 
 # 1.9.0+10
 
-- [Feature] : Migrate to `Fluent UI` Framework/DesignSystem
-  - feat: add some changes on theme configurations for using fluent_ui package [#45](https://github.com/pactus-project/pactus-gui/pull/45)
+- [Feature] : Migrate to `Fluent UI` Framework/DesignSystem [#45](https://github.com/pactus-project/pactus-gui/pull/45)
+  - feat: add some changes on theme configurations for using fluent_ui package 
 
 # 1.8.0+9
 
-- [Feature] : Implement or replace the Easy Localization package for efficient localization management
-  - feat(app): add inter text styles to app [#37](https://github.com/pactus-project/pactus-gui/pull/37)
+- [Feature] : Implement or replace the Easy Localization package for efficient localization management [#37](https://github.com/pactus-project/pactus-gui/pull/37)
+  - feat(app): add inter text styles to app 
   - update(app): update font weight in `pubspec.yaml`
 
 # 1.7.0+8
 
-- [Feature] : Implement or replace the Easy Localization package for efficient localization management
-  - feat: add easy localization package to project [#40](https://github.com/pactus-project/pactus-gui/pull/40)
+- [Feature] : Implement or replace the Easy Localization package for efficient localization management [#40](https://github.com/pactus-project/pactus-gui/pull/40)
+  - feat: add easy localization package to project 
   - feat: reformat codes with dart reformat command
   - update: remove `l10n` from project
   - fix: fix translation files for `applications` text in `es` & `fr`
@@ -29,38 +42,38 @@
 
 # 1.6.0+7
 
-- [Feature] : Implement `GoRouter` navigation system
-  - feat: add `easy localization` package to project [#40](https://github.com/pactus-project/pactus-gui/pull/40)
+- [Feature] : Implement `GoRouter` navigation system [#40](https://github.com/pactus-project/pactus-gui/pull/40)
+  - feat: add `easy localization` package to project 
   - feat: reformat codes with dart reformat command
   - update: remove `l10n` from project
 
 # 1.5.0+6
 
-- [Feature] : Implement `GoRouter` navigation system
-  - feat(router): implement GoRouter navigation system  [#32](https://github.com/pactus-project/pactus-gui/pull/32)
+- [Feature] : Implement `GoRouter` navigation system [#32](https://github.com/pactus-project/pactus-gui/pull/32)
+  - feat(router): implement GoRouter navigation system  
   - update(core:router): changing AppRoute get method's
   - fix(core:router): fix basic routes for correctly action of back button
   - fix(router/features): fix register routes for correctly action of back button
 
 # 1.4.0+5
 
-- [Feature] : Implement `ToolbarLogo` and `ThemeSwitcher` 
-  - feat: added `ToolbarLogo` and `ThemeSwitcher` as reusable components with UI implementation, tests, and documentation [#35](https://github.com/pactus-project/pactus-gui/pull/36)
+- [Feature] : Implement `ToolbarLogo` and `ThemeSwitcher` [#35](https://github.com/pactus-project/pactus-gui/pull/36)
+  - feat: added `ToolbarLogo` and `ThemeSwitcher` as reusable components with UI implementation, tests, and documentation 
 
 # 1.3.0+4
 
-- [Feature] : Implement Theme Management
-  - feature(features:main:theme): add theme manager for switch between dark and light themes [#33](https://github.com/pactus-project/pactus-gui/pull/33)
+- [Feature] : Implement Theme Management [#33](https://github.com/pactus-project/pactus-gui/pull/33)
+  - feature(features:main:theme): add theme manager for switch between dark and light themes 
 
 # 1.2.0+3
 
-- [Feature] : Implement Localization Management
-  - feat(localization): integrate l10n_flutter with Bloc for language management [#30](https://github.com/pactus-project/pactus-gui/pull/30)
+- [Feature] : Implement Localization Management [#30](https://github.com/pactus-project/pactus-gui/pull/30)
+  - feat(localization): integrate l10n_flutter with Bloc for language management 
 
 # 1.1.0+2
 
-- [Feature] : Rewriting Project and Upgrading to Flutter 3.24.5
-    - feat: remove old project files and match code with flutter version `3.24.5` [#28](https://github.com/pactus-project/pactus-gui/pull/28)
+- [Feature] : Rewriting Project and Upgrading to Flutter 3.24.5 [#28](https://github.com/pactus-project/pactus-gui/pull/28)
+    - feat: remove old project files and match code with flutter version `3.24.5` 
 
 # 1.0.0+1
 
