@@ -1,3 +1,13 @@
+# 1.10.0+13
+
+- [Update] : Replaced *.json translation files with *.arb and edited contents. [#60](https://github.com/pactus-project/pactus-gui/pull/60)
+
+- [Chore] : Removed `easy_localization` from project dependencies. [#60](https://github.com/pactus-project/pactus-gui/pull/60)
+
+- [Feat] : Added new structure for building translations and switching themes. [#60](https://github.com/pactus-project/pactus-gui/pull/60)
+
+- [Update] : Updated `build_runner.sh` file for generating translation files. [#60](https://github.com/pactus-project/pactus-gui/pull/60)
+
 # 1.10.0+12
 
 - [Refactor] : Migrate styles to `pactus-gui-widgetbook` package for consistency and maintainability. [#56](https://github.com/pactus-project/pactus-gui/pull/56)
