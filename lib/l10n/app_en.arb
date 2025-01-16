@@ -1,5 +1,6 @@
 {
-  "title": "Hello, World!",
+  "@@locale": "en",
+  "title": "Hello, World  !",
   "subtitle": "Welcome to Localization",
   "description": "You have pushed the button this many times:",
   "switch_language": "Switch language",

@@ -1,8 +1,8 @@
 {
-  "title": "¡Hola, Mundo!",
+  "@@locale": "es",
+  "title": "¡Hola, Mundo  !",
   "subtitle": "Bienvenido a Localización",
   "description": "Has pulsado el botón tantas veces:",
   "switchLanguage": "Cambiar idioma",
   "applications": "Applications"
-
 }
