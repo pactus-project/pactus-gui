@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:gui/src/features/main/language/core/language_constants.dart';
 import 'package:gui/src/features/main/language/data/language_model.dart';
 import 'package:gui/src/features/main/language/presentation/bloc/language_bloc.dart';
 
@@ -18,7 +19,7 @@ void main() {
     expect(languageBloc.state, isA<LanguageState>());
 
     // Verify that the initial language is English (Language.english)
-    expect(languageBloc.state.selectedLanguage, Language.english);
+    expect(languageBloc.state.selectedLanguage, LanguageConstants.enUS);
   });
 
   blocTest<LanguageBloc, LanguageState>(
@@ -26,7 +27,7 @@ void main() {
     build: () => languageBloc,
     act: (bloc) {
       // Change language to Spanish
-      bloc.add(ChangeLanguage(selectedLanguage: Language.spanish));
+      bloc.add(ChangeLanguage(selectedLanguage: LanguageConstants.esES));
     },
     expect: () => [
       // Expect the new state with the updated language (Spanish)
@@ -43,7 +44,7 @@ void main() {
     build: () => languageBloc,
     act: (bloc) {
       // Change language to Spanish
-      bloc.add(ChangeLanguage(selectedLanguage: Language.french));
+      bloc.add(ChangeLanguage(selectedLanguage: LanguageConstants.frFR));
     },
     expect: () => [
       // Expect the new state with the updated language (Spanish)
