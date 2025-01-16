@@ -1,144 +1,135 @@
-import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gui/src/core/common/widgets/theme_switcher.dart';
 import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
-import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 void main() {
-  group('ThemeBloc Tests with FluentApp', () {
-    late ThemeBloc themeBloc;
+  group('ThemeSwitcher Widget Tests', () {
+    late AppThemeCubit themeCubit;
 
-    // Set up the ThemeBloc before each test
+    // Set up the ThemeCubit before each test
     setUp(() {
-      themeBloc = ThemeBloc();
+      themeCubit = AppThemeCubit();
     });
 
-    // Close the ThemeBloc after each test
+    // Close the ThemeCubit after each test
     tearDown(() {
-      themeBloc.close();
+      themeCubit.close();
     });
 
     // Helper method to build the widget tree with BlocProvider
     Widget buildTestableWidget(Widget child) {
       return BlocProvider.value(
-        value: themeBloc,
+        value: themeCubit,
         child: MaterialApp(
-          home: BlocBuilder<ThemeBloc, ThemeState>(
-            bloc: themeBloc,
-            builder: (context, themeState) {
-              return FluentApp(
-                title: 'Pactus Gui App',
-                theme: FluentThemeData.light().copyWith(
-                  extensions: AppThemeData.lightExtensions,
-                  typography: AppThemeData.typography,
-                ),
-                themeMode: themeState.themeMode,
-                darkTheme: FluentThemeData.dark().copyWith(
-                  extensions: AppThemeData.darkExtensions,
-                  typography: AppThemeData.typography,
-                ),
-                home: Scaffold(body: child),
-              );
-            },
-          ),
+          home: Scaffold(body: child),
         ),
       );
     }
 
-    // Test: Ensure the initial theme is light
-    testWidgets('Initial state should be light theme', (tester) async {
-      // Build the widget tree
-      await tester.pumpWidget(buildTestableWidget(ThemeSwitcher()));
+    testWidgets('Initial state shows light theme UI elements', (tester) async {
+      // Arrange: Build the widget tree
+      await tester.pumpWidget(buildTestableWidget(const ThemeSwitcher()));
 
-      // Check that the theme is initially light
-      expect(themeBloc.state.themeMode, ThemeMode.light);
-    });
+      // Act: Pump to ensure animations settle
+      await tester.pumpAndSettle();
 
-    // Test: Ensure theme changes to dark
-    // when ThemeChanged event is triggered
-    testWidgets('Should emit dark theme when ThemeChanged event is added',
-        (tester) async {
-      // Arrange: Set up the event to change theme to dark
-      final darkThemeEvent = ThemeChanged(theme: ThemeMode.dark);
+      // Assert: Check that the light mode icon is visible
+      final lightIconOpacity = tester.widget<AnimatedOpacity>(
+        find.byType(AnimatedOpacity).last,
+      );
+      expect(lightIconOpacity.opacity, 1.0);
 
-      // Build the widget tree
-      await tester.pumpWidget(buildTestableWidget(ThemeSwitcher()));
-
-      // Act: Add the event to change the theme to dark
-      themeBloc.add(darkThemeEvent);
-
-      // Rebuild the widget tree to reflect the state change
-      await tester.pump();
-
-      // Assert: Verify the theme is now dark
-      expect(themeBloc.state.themeMode, ThemeMode.dark);
-    });
-
-    // Test: Ensure theme changes back to light
-    // when ThemeChanged event is triggered from dark
-    testWidgets(
-        'Should emit light theme when ThemeChanged event is added from dark',
-        (tester) async {
-      // Arrange: First, change the theme to dark
-      themeBloc.add(ThemeChanged(theme: ThemeMode.dark));
-
-      // Build the widget tree and wait for the state change
-      await tester.pumpWidget(buildTestableWidget(ThemeSwitcher()));
-
-      // Wait for the dark theme to apply
-      await tester.pump();
-
-      // Act: Change the theme back to light
-      final lightThemeEvent = ThemeChanged(theme: ThemeMode.light);
-      themeBloc.add(lightThemeEvent);
-
-      // Rebuild the widget tree
-      await tester.pump();
-
-      // Assert: Verify the theme is now light
-      expect(themeBloc.state.themeMode, ThemeMode.light);
-    });
-
-    // Test: Alignment should change based on light theme
-    testWidgets('Alignment should change based on light theme', (tester) async {
-      // Act: Change the theme to dark
-      themeBloc.add(ThemeChanged(theme: ThemeMode.light));
-      // Rebuild the widget tree to reflect the theme change
-      await tester.pump(Duration(seconds: 1));
-
-      // Build the widget tree with the initial theme (light)
-      await tester.pumpWidget(buildTestableWidget(ThemeSwitcher()));
-
-      // Find the AnimatedAlign widget
+      // Assert: Alignment should be for light theme
       final animatedAlignFinder = find.byType(AnimatedAlign);
-
-      // Check that the alignment is initially to the right (light theme)
-      final animatedAlignWidget =
-          tester.widget<AnimatedAlign>(animatedAlignFinder);
-
-      expect(animatedAlignWidget.alignment, Alignment.centerRight);
+      expect(
+        tester.widget<AnimatedAlign>(animatedAlignFinder).alignment,
+        Alignment.centerRight,
+      );
     });
 
-    // Test: Alignment should change based on dark theme
-    testWidgets('Alignment should change based on dark theme', (tester) async {
-      // Act: Change the theme to dark
-      themeBloc.add(ThemeChanged(theme: ThemeMode.dark));
-      // Rebuild the widget tree to reflect the theme change
-      await tester.pump(Duration(seconds: 1));
+    testWidgets('Tapping switch toggles to dark theme', (tester) async {
+      // Arrange: Build the widget tree
+      await tester.pumpWidget(buildTestableWidget(const ThemeSwitcher()));
 
-      // Build the widget tree with the initial theme (light)
-      await tester.pumpWidget(buildTestableWidget(ThemeSwitcher()));
+      // Act: Tap the switch to toggle the theme
+      final switchFinder = find.byType(GestureDetector);
+      await tester.tap(switchFinder);
+      await tester.pumpAndSettle();
 
-      // Find the AnimatedAlign widget
+      // Assert: Check that the dark mode icon is visible
+      final darkIconOpacity = tester.widget<AnimatedOpacity>(
+        find.byType(AnimatedOpacity).first,
+      );
+      expect(darkIconOpacity.opacity, 1.0);
+
+      // Assert: Alignment should be for dark theme
       final animatedAlignFinder = find.byType(AnimatedAlign);
+      expect(
+        tester.widget<AnimatedAlign>(animatedAlignFinder).alignment,
+        Alignment.centerLeft,
+      );
 
-      // Check that the alignment is initially to the right (light theme)
-      final animatedAlignWidget =
-          tester.widget<AnimatedAlign>(animatedAlignFinder);
+      // Assert: Verify the Cubit's state is updated to dark theme
+      expect(themeCubit.state, true);
+    });
 
-      expect(animatedAlignWidget.alignment, Alignment.centerLeft);
+    testWidgets('Toggling back switches to light theme', (tester) async {
+      // Arrange: Build the widget tree
+      await tester.pumpWidget(buildTestableWidget(const ThemeSwitcher()));
+
+      // Act: Toggle to dark theme
+      final switchFinder = find.byType(GestureDetector);
+      await tester.tap(switchFinder);
+      await tester.pumpAndSettle();
+
+      // Act: Toggle back to light theme
+      await tester.tap(switchFinder);
+      await tester.pumpAndSettle();
+
+      // Assert: Check that the light mode icon is visible again
+      final lightIconOpacity = tester.widget<AnimatedOpacity>(
+        find.byType(AnimatedOpacity).last,
+      );
+      expect(lightIconOpacity.opacity, 1.0);
+
+      // Assert: Alignment should be for light theme
+      final animatedAlignFinder = find.byType(AnimatedAlign);
+      expect(
+        tester.widget<AnimatedAlign>(animatedAlignFinder).alignment,
+        Alignment.centerRight,
+      );
+
+      // Assert: Verify the Cubit's state is updated to light theme
+      expect(themeCubit.state, false);
+    });
+
+    testWidgets('Switch animations and UI respond to Cubit state changes',
+        (tester) async {
+      // Arrange: Set Cubit's state to dark theme
+      themeCubit.setDarkTheme();
+
+      // Build the widget tree
+      await tester.pumpWidget(buildTestableWidget(const ThemeSwitcher()));
+      await tester.pumpAndSettle();
+
+      // Assert: Dark mode icon should be visible
+      expect(
+        tester
+            .widget<AnimatedOpacity>(
+              find.byType(AnimatedOpacity).first,
+            )
+            .opacity,
+        1.0,
+      );
+
+      // Assert: Alignment should be for dark theme
+      final animatedAlignFinder = find.byType(AnimatedAlign);
+      expect(
+        tester.widget<AnimatedAlign>(animatedAlignFinder).alignment,
+        Alignment.centerLeft,
+      );
     });
   });
 }

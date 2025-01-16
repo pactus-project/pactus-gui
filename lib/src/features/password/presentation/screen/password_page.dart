@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/common/widgets/theme_switcher.dart';
 import 'package:gui/src/core/router/route_name.dart';
+import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:gui/src/features/main/language/core/localization_extension.dart';
+import 'package:gui/src/features/main/language/presentation/widget/language_widget.dart';
 
 class PasswordPage extends StatelessWidget {
   const PasswordPage({super.key, required this.fromRegistrationRoute});
@@ -16,6 +19,8 @@ class PasswordPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(context.tr(LocaleKeys.title)),
+            LanguageSelector(),
             ThemeSwitcher(),
             fromRegistrationRoute
                 ? MaterialButton(

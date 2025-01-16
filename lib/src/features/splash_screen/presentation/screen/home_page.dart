@@ -1,8 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gui/src/core/common/widgets/theme_switcher.dart';
 import 'package:gui/src/core/common/widgets/toolbar_logo.dart';
-import 'package:gui/src/core/utils/gen/localization/locale_keys.g.dart';
+import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/language/presentation/widget/language_widget.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
@@ -27,14 +27,14 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         actions: [ToolbarLogo(), ThemeSwitcher()],
         backgroundColor: theme.colorScheme.inversePrimary,
-        title: Text(LocaleKeys.title.tr()),
+        title: Text(context.tr(LocaleKeys.title)),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              LocaleKeys.subtitle.tr(),
+              context.tr(LocaleKeys.subtitle),
               style: InterTextStyles.title.copyWith(
                 color: theme.extension<OnSurfacePallet>()!.onSurface3,
               ),

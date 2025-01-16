@@ -1,62 +1,51 @@
 #!/bin/bash
 
-# Welcome message
+# Displaying a welcome message to the user
 echo "Welcome to the Build Runner Wizard!"
 
-# Display options to the user
+# Showing the available options to the user
 echo "Please select an option:"
 echo "1. Automatic Execution"
-echo "2. Manual Execution"
-echo "3. Re-Build Translation Files"
-echo "4. Re-Generate Asset Files"
+echo "2. Re-Generate Asset Files"
 
-# Read user input
-read -p "Enter your choice (1, 2, 3, or 4): " choice
+# Reading the user's input for their choice
+read -p "Enter your choice (1 or 2): " choice
 
-# Check selected option and execute corresponding commands
+# Handling the user's choice with a case statement
 case $choice in
     1)
+        # User selected Automatic Execution
         echo "* You selected Automatic Execution."
-        # Automatic execution
 
-        # Rebuild translation files
-        dart run easy_localization:generate --source-dir=assets/translations --output-dir=lib/src/core/utils/gen/localization
-        dart run easy_localization:generate -f keys -o locale_keys.g.dart --source-dir=assets/translations --output-dir=lib/src/core/utils/gen/localization
-        dart run build_runner build --delete-conflicting-outputs --build-filter="lib\src\core\constants\localization\*.dart"
+        # Step 1: Rebuilding translation files using the l10n package
+        # This command generates localization files from ARB files located in assets/translations.
+        flutter gen-l10n --output-dir=lib/l10n --arb-dir=lib/l10n
 
-        # Execute automatic build runner command
+        # Step 2: Running custom translation utilities
+        # Executes the custom logic defined in translations_utils.dart (used for post-processing translations if needed).
+        echo "* Running custom translations utilities from lib/src/core/utils/gen/localization/translations_utils.dart"
+        dart lib/src/core/utils/gen/localization/translations_utils.dart
+
+        # Step 3: Running build_runner to generate code for localization and other assets
+        # This builds the project and deletes any conflicting outputs that may cause issues.
         dart run build_runner build --delete-conflicting-outputs
+
+        # Step 4: flutter pub get for update l10n dependency
+        flutter pub get
         ;;
     2)
-        echo "* You selected Manual Execution."
-        # Read user input text
-        read -p "Enter your text (comma-separated list for multiple items): " text
-
-        # Convert input text to an array using ',' as a delimiter
-        IFS=',' read -r -a text_array <<< "$text"
-
-        # Loop through each item in the array and execute the command
-        for item in "${text_array[@]}"
-        do
-            # Replace '/' with '\' in the input text
-            text_with_backslashes=$(echo "$item" | sed 's/\//\\/g')
-            # Replace the desired text in the command and execute it
-            dart run build_runner build --delete-conflicting-outputs --build-filter="$text_with_backslashes\*.dart"
-        done
-        ;;
-    3)
-        echo "* You selected Re-Build Translation Files."
-        # Execute commands for rebuilding translation files
-        dart run easy_localization:generate --source-dir=assets/translations --output-dir=lib/src/core/utils/gen/localization
-        dart run easy_localization:generate -f keys -o locale_keys.g.dart --source-dir=assets/translations --output-dir=lib/src/core/utils/gen/localization
-        dart run build_runner build --delete-conflicting-outputs --build-filter="lib\src\core\constants\localization\*.dart"
-        ;;
-    4)
+        # User selected Re-Generate Asset Files
         echo "* You selected Re-Generate Asset Files."
-        # Execute commands for rebuilding asset files
-        dart run build_runner build --delete-conflicting-outputs --build-filter="lib\src\core\utils\gen\assets\*.dart"
+
+        # Re-running build_runner to regenerate asset files
+        # This specifically handles assets located in the 'assets' folder.
+        dart run build_runner build --delete-conflicting-outputs --build-filter="lib/src/core/utils/gen/assets\*.dart"
         ;;
     *)
-        echo "* Invalid choice. Please enter 1, 2, 3, or 4."
+        # Invalid choice entered by the user
+        echo "* Invalid choice. Please enter 1 or 2"
         ;;
 esac
+
+# Pausing for 3 seconds before exiting to give the user a chance to read the output
+sleep 3s ;

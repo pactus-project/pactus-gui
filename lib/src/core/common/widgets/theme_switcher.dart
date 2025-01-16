@@ -42,10 +42,9 @@ class ThemeSwitcher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ThemeBloc, ThemeState>(
-      builder: (context, themeState) {
+    return BlocBuilder<AppThemeCubit, bool>(
+      builder: (context, isDarkTheme) {
         const duration = Duration(milliseconds: 200);
-        final isLightTheme = themeState.themeMode == ThemeMode.light;
 
         return Row(
           mainAxisSize: MainAxisSize.min,
@@ -53,7 +52,7 @@ class ThemeSwitcher extends StatelessWidget {
             // Dark mode icon
             AnimatedOpacity(
               curve: Curves.easeIn,
-              opacity: isLightTheme ? 0.0 : 1.0,
+              opacity: isDarkTheme ? 1.0 : 0.0,
               duration: duration,
               child: SvgPicture.asset(
                 Assets.icons.icLightMode,
@@ -62,11 +61,7 @@ class ThemeSwitcher extends StatelessWidget {
             // Switch
             GestureDetector(
               onTap: () {
-                context.read<ThemeBloc>().add(
-                      ThemeChanged(
-                        theme: isLightTheme ? ThemeMode.dark : ThemeMode.light,
-                      ),
-                    );
+                context.read<AppThemeCubit>().toggleTheme();
               },
               child: AnimatedContainer(
                 margin: const EdgeInsets.symmetric(horizontal: 4),
@@ -84,9 +79,9 @@ class ThemeSwitcher extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 3),
                   child: AnimatedAlign(
                     duration: const Duration(milliseconds: 100),
-                    alignment: isLightTheme
-                        ? Alignment.centerRight
-                        : Alignment.centerLeft,
+                    alignment: isDarkTheme
+                        ? Alignment.centerLeft
+                        : Alignment.centerRight,
                     child: Container(
                       width: 14,
                       height: 14,
@@ -102,7 +97,7 @@ class ThemeSwitcher extends StatelessWidget {
             // Light mode icon
             AnimatedOpacity(
               curve: Curves.easeIn,
-              opacity: isLightTheme ? 1.0 : 0.0,
+              opacity: isDarkTheme ? 0.0 : 1.0,
               duration: duration,
               child: SvgPicture.asset(
                 Assets.icons.icDarkMode,
