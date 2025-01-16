@@ -11,7 +11,7 @@ class ChangeLanguage extends LanguageEvent {
   const ChangeLanguage({
     required this.selectedLanguage,
   });
-  final Language selectedLanguage;
+  final LanguageCase selectedLanguage;
 
   @override
   List<Object> get props => [selectedLanguage];
