@@ -89,9 +89,10 @@ Future<void> _generateAppLocalesClass() async {
   // Generate constants for each locale
   for (final locale in languageCases) {
     final localeConstName = '${locale.language}${locale.country}Locale';
-    final localeString = '\'${locale.language}\', \'${locale.country}\'';
+    final localeString =
+        '    \'${locale.language}\',\n    \'${locale.country}\'';
     buffer.writeln(
-      '  static const $localeConstName = Locale($localeString,);',
+      '  static const $localeConstName = Locale(\n$localeString,\n  );',
     );
   }
 
