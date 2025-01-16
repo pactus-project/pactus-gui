@@ -1,70 +1,67 @@
-import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
 
 void main() {
-  group('ThemeBloc Tests', () {
-    late ThemeBloc themeBloc;
+  group('AppThemeCubit Tests', () {
+    late AppThemeCubit themeCubit;
 
-    // Set up the ThemeBloc before each test
+    // Set up the ThemeCubit before each test
     setUp(() {
-      themeBloc = ThemeBloc();
+      themeCubit = AppThemeCubit();
     });
 
-    // Close the ThemeBloc after each test
+    // Close the ThemeCubit after each test
     tearDown(() {
-      themeBloc.close();
+      themeCubit.close();
     });
 
     // Test: Ensure the initial theme is light
     test('Initial state should be light theme', () {
-      expect(themeBloc.state.themeMode, ThemeMode.light);
+      expect(themeCubit.state, false); // false indicates light theme
     });
 
-    // Test: Ensure theme changes to dark when ThemeChanged event is triggered
-    test('Should emit dark theme when ThemeChanged event is added', () async {
-      // Arrange: Set up the event to change theme to dark
-      final darkThemeEvent = ThemeChanged(theme: ThemeMode.dark);
+    // Test: Ensure theme toggles to dark when toggleTheme is called
+    test('Should toggle to dark theme when toggleTheme is called', () {
+      // Act: Toggle theme to dark
+      themeCubit.toggleTheme();
 
-      // Act: Add the event to the bloc
-      themeBloc.add(darkThemeEvent);
-
-      // Assert: Verify the emitted state is dark
-      await expectLater(
-        themeBloc.stream,
-        emitsInOrder([
-          predicate<ThemeState>((state) => state.themeMode == ThemeMode.dark),
-        ]),
-      );
+      // Assert: The state should now be dark (true indicates dark theme)
+      expect(themeCubit.state, true);
     });
 
-    // Test: Ensure theme changes back to light when ThemeChanged event is
-    // triggered from dark
-    test('Should emit light theme when ThemeChanged event is added from dark',
-        () async {
-      // Arrange: First, change the theme to dark
-      themeBloc.add(ThemeChanged(theme: ThemeMode.dark));
+    // Test: Ensure theme toggles back to light after dark theme is set
+    test('Should toggle back to light theme after dark theme is set', () async {
+      // Arrange: First, toggle to dark theme
+      themeCubit
+        ..toggleTheme()
 
-      // Wait for the state to potentially update
-      await Future.delayed(
-        const Duration(
-          milliseconds: 500,
-        ),
-        () {},
-      );
+        // Act: Toggle back to light theme
+        ..toggleTheme();
 
-      // Act: Change the theme back to light
-      final lightThemeEvent = ThemeChanged(theme: ThemeMode.light);
-      themeBloc.add(lightThemeEvent);
+      // Assert: The state should now be light again (false for light theme)
+      expect(themeCubit.state, false);
+    });
 
-      // Assert: Verify the emitted state is light
-      await expectLater(
-        themeBloc.stream,
-        emitsInOrder([
-          predicate<ThemeState>((state) => state.themeMode == ThemeMode.light),
-        ]),
-      );
+    // Test: Ensure theme changes to dark when setDarkTheme is called
+    test('Should set dark theme when setDarkTheme is called', () {
+      // Act: Call setDarkTheme
+      themeCubit.setDarkTheme();
+
+      // Assert: The state should be dark (true indicates dark theme)
+      expect(themeCubit.state, true);
+    });
+
+    // Test: Ensure theme changes to light when setLightTheme is called
+    test('Should set light theme when setLightTheme is called', () {
+      // Arrange: First, set the theme to dark
+      themeCubit
+        ..setDarkTheme()
+
+        // Act: Call setLightTheme
+        ..setLightTheme();
+
+      // Assert: The state should be light (false indicates light theme)
+      expect(themeCubit.state, false);
     });
   });
 }
