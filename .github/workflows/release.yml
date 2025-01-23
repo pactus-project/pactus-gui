@@ -1,5 +1,11 @@
 name: Desktop Release Build
 
+# Add environment variables at the top level
+env:
+  LINUX_ASSETS_URL: "https://github.com/pactus-project/pactus/releases/download/v1.6.4/pactus-cli_1.6.4_linux_amd64.tar.gz"
+  WINDOWS_ASSETS_URL: "https://github.com/pactus-project/pactus/releases/download/v1.6.4/pactus-cli_1.6.4_windows_amd64.zip"
+  MACOS_ASSETS_URL: "https://github.com/pactus-project/pactus/releases/download/v1.6.4/pactus-cli_1.6.4_darwin_arm64.tar.gz"
+
 permissions:
   contents: write
   pull-requests: read
@@ -34,22 +40,28 @@ jobs:
           sudo apt-get install -y cmake pkg-config
           sudo apt-get install -y libblkid-dev
           sudo apt-get install -y liblzma-dev
+          sudo apt-get install -y unzip
 
       - name: Enable Linux desktop
         run: flutter config --enable-linux-desktop
 
       - name: Get dependencies
-        run: flutter pub get
+        run: flutter pub get        
+
+      - name: Fetch and Extract File
+        run: |
+          curl -L -o file.tar.gz ${{ env.LINUX_ASSETS_URL }}
+          mkdir -p lib/src/core/common/files/
+          tar -xzf file.tar.gz -C lib/src/core/common/files/
 
       - name: Build application
         run: flutter build linux --release
 
       - name: Archive Release
-        uses: thedoctor0/zip-release@master
-        with:
-          type: 'zip'
-          filename: 'linux-build.zip'
-          directory: build/linux/x64/release/bundle
+        run: |
+          cp -r $GITHUB_WORKSPACE/lib/src/core/common/files/* build/linux/x64/release/bundle/
+          cd build/linux/x64/release/bundle
+          zip -r linux-build.zip ./*
 
       - name: Create Linux Release
         id: create_linux_release
@@ -135,6 +147,13 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
+      - name: Fetch and Extract File
+        shell: pwsh
+        run: |
+          New-Item -Path "$GITHUB_WORKSPACE/lib/src/core/common/files" -ItemType Directory -Force
+          Invoke-WebRequest -Uri ${{ env.WINDOWS_ASSETS_URL }} -OutFile "file.zip"
+          Expand-Archive -Path "file.zip" -DestinationPath "$GITHUB_WORKSPACE/lib/src/core/common/files" -Force
+
       - name: Build application
         run: |
           flutter doctor -v
@@ -152,10 +171,11 @@ jobs:
           }
 
       - name: Archive Release
-        shell: bash
+        shell: pwsh
         run: |
           cd build/windows/x64/runner/Release
-          7z a -tzip windows-build.zip ./*
+          Copy-Item -Path "$GITHUB_WORKSPACE/lib/src/core/common/files/*" -Destination "." -Recurse -Force
+          Compress-Archive -Path * -DestinationPath windows-build.zip -Force
 
       - name: Create Windows Release
         id: create_windows_release
@@ -208,7 +228,7 @@ jobs:
           args: |
             🚀 **Windows Release Published!**
             
-            📦 Version: Windows Release ${{ github.run_number }}
+                    📦 Version: Windows Release ${{ github.run_number }}
             🔄 PR: #${{ github.event.pull_request.number }} - ${{ github.event.pull_request.title }}
             👤 Requested by: ${{ github.event.pull_request.user.login }}
             ✅ Merged by: ${{ github.event.pull_request.merged_by.login }}
@@ -241,6 +261,12 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
+      - name: Fetch and Extract File
+        run: |
+          mkdir -p lib/src/core/common/files/
+          curl -L -o file.tar.gz ${{ env.MACOS_ASSETS_URL }}
+          tar -xzf file.tar.gz -C lib/src/core/common/files/
+
       - name: Build application
         run: |
           flutter doctor -v
@@ -260,7 +286,8 @@ jobs:
       - name: Archive Release
         run: |
           cd build/macos/Build/Products/Release
-          zip -r macos-build.zip *.app
+          cp -r $GITHUB_WORKSPACE/lib/src/core/common/files/* .
+          zip -r macos-build.zip ./*
 
       - name: Create macOS Release
         id: create_macos_release
