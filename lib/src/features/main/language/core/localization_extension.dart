@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gui/src/core/utils/gen/localization/codegen_loader.dart';
 
 /// [LocalizationExtension] documentation:

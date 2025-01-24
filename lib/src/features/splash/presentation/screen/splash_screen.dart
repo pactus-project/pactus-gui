@@ -1,15 +1,14 @@
-import 'package:flutter/material.dart';
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
-
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -36,9 +35,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.splashBackground,
-      body: Stack(
+    return ScaffoldPage(
+      content: Stack(
         children: [
           Center(
             child: Column(
@@ -58,8 +56,10 @@ class _SplashScreenState extends State<SplashScreen> {
                 Gap(_spacingBetweenElements),
                 Text(
                   context.tr(LocaleKeys.applications),
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: Colors.white,
+                  style: FluentTheme.of(context).typography.title?.copyWith(
+                        color: AppTheme.of(context)
+                            .extension<OnSurfacePallet>()!
+                            .onSurface4,
                       ),
                 ),
               ],

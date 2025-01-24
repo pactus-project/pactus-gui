@@ -1,17 +1,25 @@
-import 'package:flutter/material.dart';
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/router/route_name.dart';
+import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Welcome'),
+    return NavigationView(
+      appBar: NavigationAppBar(
+        title: Text(
+          'Validator Config Page',
+          style: FluentTheme.of(context).typography.body!.copyWith(
+                color: AppTheme.of(context)
+                    .extension<OnSurfacePallet>()!
+                    .onSurface4,
+              ),
+        ),
       ),
-      body: Center(
+      content: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -20,7 +28,7 @@ class WelcomePage extends StatelessWidget {
               style: TextStyle(fontSize: 24),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
+            Button(
               onPressed: () {
                 context.goNamed(AppRoute.initializeMode.name);
               },

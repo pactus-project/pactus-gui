@@ -1,18 +1,26 @@
-import 'package:flutter/material.dart';
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/router/route_name.dart';
+import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class InitializeModePage extends StatelessWidget {
   const InitializeModePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Initialize Mode'),
+    return NavigationView(
+      appBar: NavigationAppBar(
+        title: Text(
+          'InitializeModePage',
+          style: FluentTheme.of(context).typography.body!.copyWith(
+                color: AppTheme.of(context)
+                    .extension<OnSurfacePallet>()!
+                    .onSurface4,
+              ),
+        ),
       ),
-      body: Center(
-        child: ElevatedButton(
+      content: Center(
+        child: Button(
           onPressed: () {
             context.goNamed(AppRoute.restorationSeed.name);
           },
