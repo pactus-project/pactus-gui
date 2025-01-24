@@ -1,4 +1,12 @@
-# 1.10.0+13
+# 1.12.0+14
+
+- [Fix] : Resolved conflicts between `fluent_ui.dart` and `material.dart` imports. [#66](https://github.com/pactus-project/pactus-gui/pull/66)
+
+- [Update] : Upgraded Flutter version to `3.27.3`. [#66](https://github.com/pactus-project/pactus-gui/pull/66)
+
+- [Refactor] : Replaced `fluent_ui` widgets in `customized_widget/screens` for better compatibility. [#65](https://github.com/pactus-project/pactus-gui/pull/66)
+
+# 1.11.0+13
 
 - [Update] : Replaced *.json translation files with *.arb and edited contents. [#60](https://github.com/pactus-project/pactus-gui/pull/60)
 
