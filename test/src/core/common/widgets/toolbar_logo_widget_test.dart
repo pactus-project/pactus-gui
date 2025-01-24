@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -42,10 +42,10 @@ void main() {
   group('Theme Switching Tests', () {
     testWidgets('Displays light logo in light theme', (tester) async {
       await tester.pumpWidget(
-        MaterialApp(
-          theme: ThemeData.light(),
-          home: const Scaffold(
-            body: ToolbarLogo(),
+        FluentApp(
+          theme: FluentThemeData(brightness: Brightness.light),
+          home: const ScaffoldPage(
+            content: ToolbarLogo(),
           ),
         ),
       );
@@ -65,10 +65,10 @@ void main() {
 
     testWidgets('Displays dark logo in dark theme', (tester) async {
       await tester.pumpWidget(
-        MaterialApp(
-          theme: ThemeData.dark(),
-          home: const Scaffold(
-            body: ToolbarLogo(),
+        FluentApp(
+          theme: FluentThemeData(brightness: Brightness.dark),
+          home: const ScaffoldPage(
+            content: ToolbarLogo(),
           ),
         ),
       );
