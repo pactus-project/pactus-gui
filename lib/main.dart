@@ -43,28 +43,35 @@ class PactusGuiApp extends StatelessWidget {
                     extensions: AppThemeData.lightExtensions,
                     typography: AppThemeData.typography,
                   );
-            return FluentApp.router(
-              debugShowCheckedModeBanner: false,
-              routerConfig: routerConfig,
-              title: 'Pactus Gui App',
-              themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,
-              theme: theme,
-              localizationsDelegates: [
-                AppLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: AppConfigs.supportedLocales,
-              locale: languageState.selectedLanguage == null
-                  ? Locale(
-                      LanguageConstants.enUS.language,
-                      LanguageConstants.enUS.country,
-                    )
-                  : Locale(
-                      languageState.selectedLanguage!.language,
-                      languageState.selectedLanguage!.country,
-                    ),
+            return Builder(
+              builder: (context) {
+                return AppTheme(
+                  themeData: theme,
+                  child: FluentApp.router(
+                    debugShowCheckedModeBanner: false,
+                    routerConfig: routerConfig,
+                    title: 'Pactus Gui App',
+                    themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,
+                    theme: theme,
+                    localizationsDelegates: [
+                      AppLocalizations.delegate,
+                      GlobalMaterialLocalizations.delegate,
+                      GlobalWidgetsLocalizations.delegate,
+                      GlobalCupertinoLocalizations.delegate,
+                    ],
+                    supportedLocales: AppConfigs.supportedLocales,
+                    locale: languageState.selectedLanguage == null
+                        ? Locale(
+                            LanguageConstants.enUS.language,
+                            LanguageConstants.enUS.country,
+                          )
+                        : Locale(
+                            languageState.selectedLanguage!.language,
+                            languageState.selectedLanguage!.country,
+                          ),
+                  ),
+                );
+              },
             );
           },
         );

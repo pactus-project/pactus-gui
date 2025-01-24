@@ -58,10 +58,6 @@ analysis_benchmark.json
 .pub-preload-cache/
 .pub-cache/
 .pub/
-lib/src/core/native_resources
-lib/src/core/native_resources/windows
-lib/src/core/native_resources/macos
-lib/src/core/native_resources/linux
 build/
 flutter_*.png
 linked_*.ds

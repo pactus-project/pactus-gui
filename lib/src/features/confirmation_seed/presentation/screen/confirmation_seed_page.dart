@@ -1,18 +1,26 @@
-import 'package:flutter/material.dart';
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/router/route_name.dart';
+import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class ConfirmationSeedPage extends StatelessWidget {
   const ConfirmationSeedPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Confirmation Seed Page'),
+    return NavigationView(
+      appBar: NavigationAppBar(
+        title: Text(
+          'ConfirmationSeedPage',
+          style: FluentTheme.of(context).typography.body!.copyWith(
+                color: AppTheme.of(context)
+                    .extension<OnSurfacePallet>()!
+                    .onSurface4,
+              ),
+        ),
       ),
-      body: Center(
-        child: ElevatedButton(
+      content: Center(
+        child: Button(
           onPressed: () {
             context.goNamed(AppRoute.masterPassword.name);
           },

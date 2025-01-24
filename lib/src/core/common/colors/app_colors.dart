@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart' show Color;
+import 'package:fluent_ui/fluent_ui.dart';
 
 class AppColors {
   AppColors._();
