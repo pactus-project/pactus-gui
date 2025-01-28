@@ -23,9 +23,13 @@ class WelcomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
+            Text(
               'Welcome to the App!',
-              style: TextStyle(fontSize: 24),
+              style: FluentTheme.of(context).typography.titleLarge!.copyWith(
+                    color: AppTheme.of(context)
+                        .extension<OnSurfacePallet>()!
+                        .onSurface4,
+                  ),
             ),
             const SizedBox(height: 20),
             Button(
