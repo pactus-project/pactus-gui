@@ -28,6 +28,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_logo_light.svg
   String get icLogoLight => 'assets/icons/ic_logo_light.svg';
 
+  /// File path: assets/icons/ic_welcome_pactus.svg
+  String get icWelcomePactus => 'assets/icons/ic_welcome_pactus.svg';
+
   /// File path: assets/icons/lock.png
   AssetGenImage get lock => const AssetGenImage('assets/icons/lock.png');
 
@@ -35,8 +38,16 @@ class $AssetsIconsGen {
   AssetGenImage get logo => const AssetGenImage('assets/icons/logo.png');
 
   /// List of all assets
-  List<dynamic> get values =>
-      [clipboard, icDarkMode, icLightMode, icLogoDark, icLogoLight, lock, logo];
+  List<dynamic> get values => [
+        clipboard,
+        icDarkMode,
+        icLightMode,
+        icLogoDark,
+        icLogoLight,
+        icWelcomePactus,
+        lock,
+        logo
+      ];
 }
 
 class $AssetsImagesGen {
@@ -59,9 +70,24 @@ class $AssetsImagesGen {
   /// File path: assets/images/splash.png
   AssetGenImage get splash => const AssetGenImage('assets/images/splash.png');
 
+  /// File path: assets/images/welcome_pic.png
+  AssetGenImage get welcomePic =>
+      const AssetGenImage('assets/images/welcome_pic.png');
+
+  /// File path: assets/images/welcome_screen_pic.png
+  AssetGenImage get welcomeScreenPic =>
+      const AssetGenImage('assets/images/welcome_screen_pic.png');
+
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [gears, gift, logoName, masterPassword, splash];
+  List<AssetGenImage> get values => [
+        gears,
+        gift,
+        logoName,
+        masterPassword,
+        splash,
+        welcomePic,
+        welcomeScreenPic
+      ];
 }
 
 class Assets {

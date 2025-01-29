@@ -4,5 +4,8 @@
   "subtitle": "Welcome to Localization",
   "description": "You have pushed the button this many times:",
   "switch_language": "Switch language",
-  "applications": "Applications"
+  "applications": "Applications",
+  "welcome_title": "Welcome to the Future of Blockchain with Pactus!",
+  "welcome_description": "Where the future of blockchain unfolds with trust and transparency in every transaction. Join us in shaping a decentralized revolution!",
+  "start_button_text": "Get Started"
 }

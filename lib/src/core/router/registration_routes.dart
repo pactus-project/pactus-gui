@@ -8,14 +8,14 @@ import 'package:gui/src/features/master_password/presentation/screen/master_pass
 import 'package:gui/src/features/password/presentation/screen/password_page.dart';
 import 'package:gui/src/features/restoration_seed/presentation/screen/restoration_seed_page.dart';
 import 'package:gui/src/features/validator_config/presentation/screen/validator_config_page.dart';
-import 'package:gui/src/features/welcome/presentation/screen/welcome_page.dart';
+import 'package:gui/src/features/welcome/presentation/screen/welcome_screen.dart';
 import 'route_name.dart';
 
 final List<GoRoute> registrationRoutes = [
   GoRoute(
     path: AppRoute.welcome.fullPath,
     name: AppRoute.welcome.name,
-    builder: (context, state) => const WelcomePage(),
+    builder: (context, state) => const WelcomeScreen(),
     routes: [
       GoRoute(
         path: AppRoute.initializeMode.path,
