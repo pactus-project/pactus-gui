@@ -4,7 +4,7 @@ import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/confirmation_seed/presentation/screen/confirmation_seed_page.dart';
 import 'package:gui/src/features/finish/presentation/screen/finish_page.dart';
-import 'package:gui/src/features/initialize_mode/presentation/screen/initialize_mode_page.dart';
+import 'package:gui/src/features/initialize_mode/presentation/screen/initialize_mode_screen.dart';
 import 'package:gui/src/features/initializing/presentation/screen/initializing_page.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
@@ -44,7 +44,7 @@ class InitializingNavigationPane extends StatelessWidget {
                     AppColors.navigationPanelDisableColor,
                   ),
                 ),
-                body: InitializeModePage(),
+                body: InitializeModeScreen(),
               ),
               PaneItem(
                 icon: const SizedBox(),
