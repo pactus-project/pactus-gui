@@ -30,9 +30,10 @@ class WelcomePage extends StatelessWidget {
             const SizedBox(height: 20),
             Button(
               onPressed: () {
-                context.goNamed(AppRoute.initializeMode.name);
+                context.goNamed(AppRoute.initializingNavigationPane.name);
               },
-              child: Text('Navigate to ${AppRoute.initializeMode.name}'),
+              child: Text('Navigate to '
+                  '${AppRoute.initializingNavigationPane.name}'),
             ),
           ],
         ),

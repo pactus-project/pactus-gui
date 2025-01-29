@@ -4,5 +4,12 @@
   "subtitle": "Bienvenue dans Localisation",
   "description": "Vous avez appuyé sur le bouton autant de fois :",
   "switch_language": "Changer de langue",
-  "applications": "Applications"
+  "applications": "Applications",
+  "initialize_mode": "Mode dinitialisation",
+  "wallet_seed": "Graine de portefeuille",
+  "confirm_seed": "Confirmer la graine",
+  "master_password": "Confirmer le mot de passe principal",
+  "validator_config": "Configuration du validateur",
+  "initializing": "Initialisation",
+  "finish": "Terminer"
 }

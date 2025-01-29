@@ -4,5 +4,12 @@
   "subtitle": "Welcome to Localization",
   "description": "You have pushed the button this many times:",
   "switch_language": "Switch language",
-  "applications": "Applications"
+  "applications": "Applications",
+  "initialize_mode": "Initialize mode",
+  "wallet_seed": "Wallet seed",
+  "confirm_seed": "Confirm seed",
+  "master_password": "Confirm seed",
+  "validator_config": "Validator config",
+  "initializing": "Initializing",
+  "finish": "Finish"
 }
