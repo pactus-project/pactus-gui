@@ -8,6 +8,7 @@ import 'package:gui/src/core/utils/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+
 /// ### [WelcomeScreen] Widget Documentation
 ///
 /// The `WelcomeScreen` is a stateless widget that serves as the introductory
@@ -77,7 +78,8 @@ class WelcomeScreen extends StatelessWidget {
               style: InterTextStyles.smallRegular.copyWith(
                 color: AppColors.primaryDark,
               ),
-              softWrap: true,textAlign: TextAlign.center,
+              softWrap: true,
+              textAlign: TextAlign.center,
             ),
             const Gap(16),
             CustomFilledButton(

@@ -2,6 +2,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+
 /// ## [CustomFilledButton] Class Documentation
 ///
 /// The `CustomFilledButton` class represents a custom styled filled button
@@ -54,7 +55,6 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 /// specific padding, background color, and rounded shape.
 
 class CustomFilledButton extends StatelessWidget {
-
   const CustomFilledButton({
     super.key,
     required this.text,
@@ -79,20 +79,24 @@ class CustomFilledButton extends StatelessWidget {
       onPressed: onPressed,
       autofocus: autofocus,
       focusNode: focusNode,
-      style: style ?? ButtonStyle(
-        padding: WidgetStateProperty.all<EdgeInsetsDirectional?>(
-          const EdgeInsetsDirectional.symmetric(horizontal: 24, vertical: 4),
-        ),
-        backgroundColor: WidgetStateProperty.all(const Color(0xFF0066B4)),
-        shape: WidgetStateProperty.all(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(4),
+      style: style ??
+          ButtonStyle(
+            padding: WidgetStateProperty.all<EdgeInsetsDirectional?>(
+              const EdgeInsetsDirectional.symmetric(
+                horizontal: 24,
+                vertical: 4,
+              ),
+            ),
+            backgroundColor: WidgetStateProperty.all(const Color(0xFF0066B4)),
+            shape: WidgetStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
           ),
-        ),
-      ),
       child: Padding(
-        padding: padding ??
-            const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        padding:
+            padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
