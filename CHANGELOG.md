@@ -1,3 +1,13 @@
+# 1.13.0+15
+
+- [Feat] : impl `WelcomeScreen` according to Figma design. [#70](https://github.com/pactus-project/pactus-gui/pull/70)
+  - add some variables to arb files & generated translation files
+  - rename `WelcomePage` to `WelcomeScreen` & update where it is used
+  - impl `WelcomeScreen` widgets
+  - add `primaryLight` color to AppColors
+  - add some welcomeScreen png to project source
+  - add/create `CustomFilledButton`
+
 # 1.12.0+14
 
 - [Fix] : Resolved conflicts between `fluent_ui.dart` and `material.dart` imports. [#66](https://github.com/pactus-project/pactus-gui/pull/66)
