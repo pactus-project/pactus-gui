@@ -1,8 +1,11 @@
 import 'dart:io';
 import 'package:file_selector/file_selector.dart';
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/router/route_name.dart';
+import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class ValidatorConfigPage extends StatefulWidget {
@@ -14,6 +17,7 @@ class ValidatorConfigPage extends StatefulWidget {
 
 class _ValidatorConfigPageState extends State<ValidatorConfigPage> {
   TextEditingController directoryController = TextEditingController();
+  TextEditingController validatorQtyController = TextEditingController();
   String saveMessage = '';
 
   Future<void> _chooseDirectory() async {
@@ -28,52 +32,20 @@ class _ValidatorConfigPageState extends State<ValidatorConfigPage> {
     }
   }
 
-  Future<void> _saveFile() async {
-    final path = directoryController.text;
+  Future<bool> _isNotEmptyDirectory() async {
+    final directory = Directory(directoryController.text);
 
-    if (path.isEmpty) {
-      setState(() {
-        saveMessage = 'Please enter or select a directory!';
-      });
-      return;
-    }
-
-    final directory = Directory(path);
-
-    // Check if the directory exists; if not, create it
     if (!directory.existsSync()) {
       try {
         await directory.create(recursive: true);
-      } on Exception catch (e) {
-        setState(() {
-          saveMessage = 'Failed to create directory: $e';
-        });
-        return;
-      }
+      } on Exception catch (_) {}
     }
 
-    // Check if the directory is empty
     final directoryContents = directory.listSync();
     if (directoryContents.isNotEmpty) {
-      setState(() {
-        saveMessage =
-            'The directory is not empty. Please select an empty folder.';
-      });
-      return;
-    }
-
-    // Create and write the file
-    final file = File('${directory.path}/example.txt');
-
-    try {
-      await file.writeAsString('This is an example file created in $path.');
-      setState(() {
-        saveMessage = 'File successfully saved at: ${file.path}';
-      });
-    } on Exception catch (e) {
-      setState(() {
-        saveMessage = 'Failed to save file: $e';
-      });
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -114,24 +86,37 @@ class _ValidatorConfigPageState extends State<ValidatorConfigPage> {
                 ),
               ),
               const SizedBox(height: 20),
-              Button(
-                onPressed: _saveFile,
-                child: const Text('Save File in Directory'),
-              ),
-              const SizedBox(height: 20),
-              Text(
-                saveMessage,
-                style: TextStyle(
-                  color: saveMessage.contains('successfully')
-                      ? Colors.green
-                      : Colors.red,
-                  fontWeight: FontWeight.bold,
+              ExcludeSemantics(
+                child: TextBox(
+                  maxLength: 2,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  controller: validatorQtyController,
+                  placeholder: 'Validator Qty',
+                  decoration: WidgetStateProperty.all(
+                    BoxDecoration(
+                      border: Border.all(),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
                 ),
               ),
               Center(
                 child: Button(
-                  onPressed: () {
-                    context.goNamed(AppRoute.initializing.name);
+                  onPressed: () async {
+                    final isNotEmptyDirectory = await _isNotEmptyDirectory();
+                    if (isNotEmptyDirectory) {
+                      if (context.mounted) {
+                        showFluentAlert(context);
+                      }
+                    } else {
+                      NodeConfigData.instance.validatorQty =
+                          validatorQtyController.text;
+                      NodeConfigData.instance.workingDirectory =
+                          directoryController.text;
+                      if (context.mounted) {
+                        context.goNamed(AppRoute.initializing.name);
+                      }
+                    }
                   },
                   child: Text('Navigate to ${AppRoute.initializing.name}'),
                 ),
@@ -142,4 +127,27 @@ class _ValidatorConfigPageState extends State<ValidatorConfigPage> {
       ),
     );
   }
+}
+
+void showFluentAlert(BuildContext context) {
+  displayInfoBar(
+    context,
+    builder: (context, close) {
+      return InfoBar(
+        title: Text(
+          'Error',
+          style: TextStyle(color: AppColors.primaryDark),
+        ),
+        content: Text(
+          'Directory is not empty. need empty directory to continue',
+          style: TextStyle(color: AppColors.primaryDark),
+        ),
+        action: Button(
+          onPressed: close,
+          child: const Text('OK'), // Close the InfoBar
+        ),
+        severity: InfoBarSeverity.error, // Makes it a warning message
+      );
+    },
+  );
 }
