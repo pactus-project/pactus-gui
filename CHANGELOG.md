@@ -1,4 +1,4 @@
-# 1.13.0+15
+# 1.14.0+16
 
 - [Feat] : impl `WelcomeScreen` according to Figma design. [#70](https://github.com/pactus-project/pactus-gui/pull/70)
   - add some variables to arb files & generated translation files
@@ -7,6 +7,27 @@
   - add `primaryLight` color to AppColors
   - add some welcomeScreen png to project source
   - add/create `CustomFilledButton`
+
+# 1.13.0+15
+
+- [Fix] : Fix conflicts between `fluent_ui.dart` and `material.dart` imports. [#67](https://github.com/pactus-project/pactus-gui/pull/67)
+  - Flutter version upgraded to `3.27.3`.
+  - Refactor `customized_widget/screens` by replacing `fluent_ui` widgets.
+  - Remove duplicate folder `splash_screen`.
+
+- [Feat] : Create `SeedGenerator` tools for generating secure and random seeds. [#67](https://github.com/pactus-project/pactus-gui/pull/67)
+
+- [Update] : Modify `RestorationSeedPage` to include sample seed generation. [#67](https://github.com/pactus-project/pactus-gui/pull/67)
+  - Fix color of text in `WelcomePage`.
+  - Add 12 & 24 seed generation modes to `RestorationSeedPage`.
+  - Modify `ValidatorConfigPage` to add directory selector for initial node address setup.
+
+- [Chore] : Add some packages/libraries. [#67](https://github.com/pactus-project/pactus-gui/pull/67)
+  - `file_selector` for file and folder selection via native UI.
+  - `bip39_mnemonic` for wallet seed generation.
+  - `crypto`, `bcrypt`, and `convert` for secure layer.
+  - `process_run` for running commands on daemon files.
+  - Add `native_resources` directory to `.gitignore`.
 
 # 1.12.0+14
 
