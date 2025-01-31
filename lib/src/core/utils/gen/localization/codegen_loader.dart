@@ -11,6 +11,7 @@ import 'dart:ui' show Locale;
 /// - `frFR`: French translations.
 /// - `esES`: Spanish translations.
 ///
+// ignore_for_file: lines_longer_than_80_chars
 class CodegenLoader {
   const CodegenLoader();
 
