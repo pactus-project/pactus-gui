@@ -1,3 +1,36 @@
+# 1.15.0+17
+
+- [Feat] : Implement `InitializingNavigationPane` for handling Pactus initializing panel. [#71](https://github.com/pactus-project/pactus-gui/pull/71)
+  - Add/create `InitializingNavigationPane` and integrate each `panItem` for tabs based on Figma design.
+  - Implement `NavigationPaneCubit` for managing selected tab index.
+  - Add `dashboard_navigation_pane.dart` for future dashboard navigation panel integration.
+  - Update `registrationRoutes` for proper navigation.
+  - Provide `NavigationPaneCubit` in `main.dart`.
+  - Add new variables in `.arb` files and generate updated translation files.
+  - Add `navigationPanelEnableColor` & `navigationPanelDisableColor` to `AppColors`.
+
+- [Feat] : Implement widgets of `InitializeModeScreen`. [#71](https://github.com/pactus-project/pactus-gui/pull/71)
+  - Add/create `CustomInputWidget` component for text fields.
+  - Add/create `CustomRadioButton` and `RadioButtonGroup` components.
+  - Add new colors to `AppColors` for widget styling.
+  - Update `InitializeModeScreen` for new widget integration.
+
+- [Feat] : Add/create `CustomExpandableWidget` component. [#71](https://github.com/pactus-project/pactus-gui/pull/71)
+  - Update `InitializeModeScreen` for better UI flow.
+
+- [Update] : Fix stack issue for navigation in `InitializeModeScreen`. [#71](https://github.com/pactus-project/pactus-gui/pull/71)
+  - Add/create `RemoteNodeSection` and `RadioButtonCubit` for handling remote node selection.
+  - Update `RadioButtonGroup`, `CustomRadioButton`, `CustomInputRow`, and `CustomExpandableWidget`.
+  - Add multi-language translation files for the new text.
+
+- [Fix] : Resolve daemon config issue related to initialization on "Next" button click. [#71](https://github.com/pactus-project/pactus-gui/pull/71)
+  - Update `FinishPage`.
+  - Update `InitializeModeScreen`.
+  - Update `MasterPasswordPage`.
+  - Update `RestorationSeedPage`.
+  - Update `ValidatorConfigPage`.
+
+
 # 1.14.0+16
 
 - [Feat] : impl `WelcomeScreen` according to Figma design. [#70](https://github.com/pactus-project/pactus-gui/pull/70)
