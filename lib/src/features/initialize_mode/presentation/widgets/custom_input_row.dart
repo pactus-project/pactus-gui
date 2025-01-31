@@ -2,6 +2,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/common/widgets/custom_input_widget.dart';
+import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class CustomInputRow extends StatelessWidget {
@@ -11,20 +12,21 @@ class CustomInputRow extends StatelessWidget {
     required this.controller,
     required this.placeholder,
     this.obscureText = false,
-    super.key,
+    super.key, required this.spacing,
   });
   final String label;
   final TextEditingController controller;
   final String placeholder;
   final bool obscureText;
+  final double spacing;
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      spacing: 16,
+      spacing: spacing,
       children: [
         Text(
-          label,
+          context.tr(label),
           style: InterTextStyles.captionMedium.copyWith(
             color: AppColors.primaryGray,
           ),

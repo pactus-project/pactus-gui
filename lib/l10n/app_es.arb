@@ -11,5 +11,15 @@
   "master_password": "Confirmar contraseña maestra",
   "validator_config": "Configuración del validador",
   "initializing": "Inicializando",
-  "finish": "Finalizar"
+  "finish": "Finalizar",
+  "initiate_your_node": "Iniciar tu nodo",
+  "initiate_your_node_for_first_time": "Iniciar tu nodo por primera vez",
+  "create_local_node_from_scrache": "Crear nodo local desde cero",
+  "restore_local_node_from_seed_pharse": "Restaurar nodo local desde la frase semilla",
+  "connect_to_remote_node": "Conectar a nodo remoto",
+  "remote_address": "Dirección remota",
+  "auth_method": "Método de autenticación",
+  "username": "Nombre de usuario",
+  "password": "Contraseña",
+  "basic_auth": "Autenticación básica"
 }

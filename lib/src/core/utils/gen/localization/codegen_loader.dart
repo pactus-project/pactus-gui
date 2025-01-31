@@ -39,6 +39,16 @@ class CodegenLoader {
     'validator_config': 'Validator config',
     'initializing': 'Initializing',
     'finish': 'Finish',
+    'initiate_your_node': 'Initiate your node',
+    'initiate_your_node_for_first_time': 'Initiate your node for first time',
+    'create_local_node_from_scrache': 'Create local node from scrache',
+    'restore_local_node_from_seed_pharse': 'Restore local node from seed pharse',
+    'connect_to_remote_node': 'Connect to remote node',
+    'remote_address': 'Remote Address',
+    'auth_method': 'Auth Method',
+    'username': 'Username',
+    'password': 'Password',
+    'basic_auth': 'Basic Auth',
   };
   static const Map<String, dynamic> frFR = {
     'title': 'Bonjour le monde  !',
@@ -53,6 +63,16 @@ class CodegenLoader {
     'validator_config': 'Configuration du validateur',
     'initializing': 'Initialisation',
     'finish': 'Terminer',
+    'initiate_your_node': 'Initier votre nœud',
+    'initiate_your_node_for_first_time': 'Initier votre nœud pour la première fois',
+    'create_local_node_from_scrache': 'Créer un nœud local à partir de zéro',
+    'restore_local_node_from_seed_pharse': 'Restaurer un nœud local à partir de la phrase de récupération',
+    'connect_to_remote_node': 'Se connecter à un nœud distant',
+    'remote_address': 'Adresse distante',
+    'auth_method': 'Méthode dauthentification',
+    'username': 'Nom dutilisateur',
+    'password': 'Mot de passe',
+    'basic_auth': 'Authentification de base',
   };
   static const Map<String, dynamic> esES = {
     'title': '¡Hola, Mundo  !',
@@ -67,6 +87,16 @@ class CodegenLoader {
     'validator_config': 'Configuración del validador',
     'initializing': 'Inicializando',
     'finish': 'Finalizar',
+    'initiate_your_node': 'Iniciar tu nodo',
+    'initiate_your_node_for_first_time': 'Iniciar tu nodo por primera vez',
+    'create_local_node_from_scrache': 'Crear nodo local desde cero',
+    'restore_local_node_from_seed_pharse': 'Restaurar nodo local desde la frase semilla',
+    'connect_to_remote_node': 'Conectar a nodo remoto',
+    'remote_address': 'Dirección remota',
+    'auth_method': 'Método de autenticación',
+    'username': 'Nombre de usuario',
+    'password': 'Contraseña',
+    'basic_auth': 'Autenticación básica',
   };
 
   static const Map<String, Map<String, dynamic>> mapLocales = {

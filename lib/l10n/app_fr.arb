@@ -11,5 +11,15 @@
   "master_password": "Confirmer le mot de passe principal",
   "validator_config": "Configuration du validateur",
   "initializing": "Initialisation",
-  "finish": "Terminer"
+  "finish": "Terminer",
+  "initiate_your_node": "Initier votre nœud",
+  "initiate_your_node_for_first_time": "Initier votre nœud pour la première fois",
+  "create_local_node_from_scrache": "Créer un nœud local à partir de zéro",
+  "restore_local_node_from_seed_pharse": "Restaurer un nœud local à partir de la phrase de récupération",
+  "connect_to_remote_node": "Se connecter à un nœud distant",
+  "remote_address": "Adresse distante",
+  "auth_method": "Méthode dauthentification",
+  "username": "Nom dutilisateur",
+  "password": "Mot de passe",
+  "basic_auth": "Authentification de base"
 }
