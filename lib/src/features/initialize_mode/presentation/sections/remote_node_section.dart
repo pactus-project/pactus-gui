@@ -5,6 +5,38 @@ import 'package:gui/src/core/common/widgets/custom_expandable_widget.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/initialize_mode/presentation/widgets/custom_input_row.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+/// ## [RemoteNodeSection] Class Documentation
+///
+/// The `RemoteNodeSection` provides a UI section for
+/// configuring remote node settings.
+///
+/// ### Properties:
+///
+/// - **Text Controllers:**
+///   - `_remoteAddressController`: Manages input for the remote node address.
+///   - `_usernameController`: Manages input for the username.
+///   - `_passwordController`: Manages input for the password.
+///
+/// ### UI Components:
+///
+/// - **Remote Address Input:**
+///   - Uses `CustomInputRow` to capture the remote node address.
+///
+/// - **Authentication Method Selection:**
+///   - Displays `LocaleKeys.auth_method` label.
+///   - Provides an expandable menu (`CustomExpandableWidget`)
+///   for authentication options.
+///
+/// - **Username and Password Fields:**
+///   - Uses `CustomInputRow` for entering credentials.
+///   - Password input supports `obscureText` for security.
+///
+/// ### Important Notes:
+///
+/// - Uses `Fluent UI` components for styling consistency.
+/// - `CustomExpandableWidget` provides expandable authentication
+/// method selection.
+/// - Spacing and layout are adjusted for proper alignment.
 
 class RemoteNodeSection extends StatefulWidget {
   const RemoteNodeSection({super.key});

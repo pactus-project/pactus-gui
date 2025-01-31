@@ -10,6 +10,40 @@ import 'package:gui/src/features/main/language/core/localization_extension.dart'
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/main/radio_button_cubit/presentation/radio_button_cubit.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+/// ## [InitializeModeScreen] Class Documentation
+///
+/// The `InitializeModeScreen` provides an interface for users to
+/// initiate their node for the first time.
+///
+/// ### Properties:
+///
+/// - **Uses [BlocProvider]** to manage the state of `RadioButtonCubit`.
+/// - **Uses [BlocBuilder]** to listen for state changes in
+/// `NavigationPaneCubit` and `RadioButtonCubit`.
+///
+/// ### UI Components:
+///
+/// - **Header Section:**
+///   - Displays the main title and a brief description.
+///   - Localized using `context.tr(LocaleKeys.initiate_your_node)`.
+///
+/// - **Radio Button Group:**
+///   - Uses `RadioButtonGroup` to allow users to select an initialization mode.
+///   - When a selection changes, the `RadioButtonCubit` updates the state.
+///
+/// - **Remote Node Section:**
+///   - Conditionally displayed when the selected radio button value is `2`.
+///
+/// - **Bottom Navigation Button:**
+///   - Custom-styled `CustomFilledButton` for proceeding to the next step.
+///   - Calls `setSelectedIndex` on `NavigationPaneCubit` to navigate forward.
+///
+/// ### Important Notes:
+///
+/// - Supports navigation using `NavigationPaneCubit`.
+/// - Uses Fluent UI components for consistency with the application's theme.
+/// - Ensures responsiveness with
+/// `SingleChildScrollView` and `Positioned` elements.
 
 class InitializeModeScreen extends StatelessWidget {
   const InitializeModeScreen({super.key});

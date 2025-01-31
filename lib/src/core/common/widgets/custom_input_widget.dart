@@ -1,6 +1,70 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+/// ## [CustomInputWidget] Class Documentation
+///
+/// The `CustomInputWidget` is a customizable text input field
+/// that supports various configurations, including password hiding,
+/// placeholder text, and dynamic styling.
+///
+/// ### Properties:
+///
+/// - **[controller]** (`TextEditingController`)
+///   - Manages the text input value.
+///
+/// - **[placeholder]** (`String`)
+///   - Placeholder text displayed when the input is empty.
+///
+/// - **[onChanged]** (`ValueChanged<String>?`)
+///   - Callback triggered when text is modified.
+///
+/// - **[onSubmitted]** (`ValueChanged<String>?`)
+///   - Callback triggered when the user submits the input.
+///
+/// - **[obscureText]** (`bool`)
+///   - Determines whether text should be obscured (for passwords).
+///   - Defaults to `false`.
+///
+/// - **[maxLines]** (`int?`)
+///   - Maximum number of lines for the text input.
+///   - Defaults to `1`.
+///
+/// - **[minLines]** (`int?`)
+///   - Minimum number of lines for the text input.
+///   - Optional.
+///
+/// - **[readOnly]** (`bool`)
+///   - Determines whether the field is read-only.
+///   - Defaults to `false`.
+///
+/// - **[autofocus]** (`bool`)
+///   - Determines whether the field receives focus automatically.
+///   - Defaults to `false`.
+///
+/// - **[textStyle]** (`TextStyle?`)
+///   - Custom style for the text input.
+///
+/// - **[backgroundColor]** (`Color?`)
+///   - Background color of the input field.
+///
+/// - **[borderRadius]** (`BorderRadius?`)
+///   - Defines the border radius of the input field.
+///
+/// - **[width]** (`double?`)
+///   - Custom width for the input field.
+///
+/// ### Constructor:
+///
+/// - `CustomInputWidget
+/// ({required this.controller, required this.placeholder, ...})`
+///   - Initializes the input field with customizable properties.
+///
+/// ### Important Notes:
+///
+/// - Uses `TextBox` for a Fluent UI-style text input.
+/// - Implements a toggle for password visibility if `obscureText` is `true`.
+/// - Dynamically adjusts border and background color based on the focus state.
+
 ///to-do #71 : add actual colors according to theme after there are defining
 /// in widget book by Pouria
 class CustomInputWidget extends StatefulWidget {

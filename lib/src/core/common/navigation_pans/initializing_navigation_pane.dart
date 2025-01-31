@@ -12,6 +12,40 @@ import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/n
 import 'package:gui/src/features/master_password/presentation/screen/master_password_page.dart';
 import 'package:gui/src/features/restoration_seed/presentation/screen/restoration_seed_page.dart';
 import 'package:gui/src/features/validator_config/presentation/screen/validator_config_page.dart';
+/// ## [InitializingNavigationPane] Class Documentation
+///
+/// The `InitializingNavigationPane` class represents a navigation pane for
+/// managing the initialization process of the application.
+/// It uses `NavigationView` and `NavigationPane` to organize different setup
+/// steps.
+///
+/// ### Properties:
+///
+/// - **[selectedIndex]** (`int`)
+///   - Manages the currently selected navigation index.
+///   - Controlled by `NavigationPaneCubit`.
+///
+/// - **[pane]** (`NavigationPane`)
+///   - Contains navigation items for different initialization steps.
+///   - Ensures step-by-step progression by limiting selection jumps.
+///
+/// - **[items]** (`List<PaneItem>`)
+///   - Defines individual navigation steps, each associated
+///   with a corresponding screen.
+///   - Includes screens like `InitializeModeScreen`,
+///   `RestorationSeedPage`, `ConfirmationSeedPage`, etc.
+///
+/// ### Constructor:
+///
+/// - `InitializingNavigationPane({super.key})`
+///   - Initializes the navigation pane as a `StatelessWidget`.
+///   - Uses `BlocBuilder` to track and update the selected index dynamically.
+///
+/// ### Important Notes:
+///
+/// - Implements `NavigationPaneSize` for UI consistency.
+/// - Uses `MultiBlocProvider` to inject dependencies in the final step.
+/// - Prevents skipping steps by allowing only sequential navigation.
 
 class InitializingNavigationPane extends StatelessWidget {
   const InitializingNavigationPane({super.key});

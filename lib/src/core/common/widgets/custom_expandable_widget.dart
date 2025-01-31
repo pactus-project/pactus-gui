@@ -2,6 +2,60 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+/// ## [CustomExpandableWidget] Class Documentation
+///
+/// The `CustomExpandableWidget` is a customizable collapsible container
+/// that expands or collapses when the header is tapped.
+///
+/// ### Properties:
+///
+/// - **[header]** (`String`)
+///   - The title displayed in the header section.
+///
+/// - **[headerStyle]** (`TextStyle?`)
+///   - Custom styling for the header text.
+///
+/// - **[body]** (`Widget`)
+///   - The widget displayed when expanded.
+///
+/// - **[headerColor]** (`Color`)
+///   - The background color of the header section.
+///   - Defaults to `Color(0xFF0078D4)`.
+///
+/// - **[expandedColor]** (`Color`)
+///   - The background color when expanded.
+///   - Defaults to `Color(0xFFE6F0FB)`.
+///
+/// - **[padding]** (`EdgeInsetsGeometry`)
+///   - The padding inside the container.
+///   - Defaults to `EdgeInsets.all(10)`.
+///
+/// - **[initiallyExpanded]** (`bool`)
+///   - Determines whether the widget starts expanded.
+///   - Defaults to `false`.
+///
+/// - **[animationDuration]** (`double`)
+///   - Duration of the expand/collapse animation in milliseconds.
+///   - Defaults to `300.0`.
+///
+/// - **[width]** (`double`)
+///   - The width of the widget.
+///   - Defaults to `double.infinity`.
+///
+/// - **[maxHeight]** (`double?`)
+///   - The maximum height of the expanded body.
+///   - Optional.
+///
+/// ### Constructor:
+///
+/// - `CustomExpandableWidget({required this.header, required this.body, ...})`
+///   - Initializes the widget with customizable properties.
+///
+/// ### Important Notes:
+///
+/// - Uses `GestureDetector` to handle tap interactions.
+/// - Implements `AnimatedCrossFade` for smooth expand/collapse transitions.
+/// - Adapts colors and text styles dynamically based on the theme.
 
 class CustomExpandableWidget extends StatefulWidget {
 
