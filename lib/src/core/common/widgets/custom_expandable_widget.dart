@@ -2,6 +2,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+
 /// ## [CustomExpandableWidget] Class Documentation
 ///
 /// The `CustomExpandableWidget` is a customizable collapsible container
@@ -58,7 +59,6 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 /// - Adapts colors and text styles dynamically based on the theme.
 
 class CustomExpandableWidget extends StatefulWidget {
-
   const CustomExpandableWidget({
     super.key,
     required this.header,
@@ -102,9 +102,7 @@ class CustomExpandableWidgetState extends State<CustomExpandableWidget> {
       width: widget.width,
       padding: widget.padding,
       decoration: BoxDecoration(
-        color: AppTheme.of(context)
-            .extension<SurfacePallet>()!
-            .surface3,
+        color: AppTheme.of(context).extension<SurfacePallet>()!.surface3,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
@@ -120,10 +118,11 @@ class CustomExpandableWidgetState extends State<CustomExpandableWidget> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                 context.tr(widget.header),
-                  style: widget.headerStyle ?? InterTextStyles.
-                  captionMedium.copyWith(
-                      color: AppColors.primaryGray,),
+                  context.tr(widget.header),
+                  style: widget.headerStyle ??
+                      InterTextStyles.captionMedium.copyWith(
+                        color: AppColors.primaryGray,
+                      ),
                 ),
                 Icon(
                   _isExpanded

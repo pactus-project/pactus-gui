@@ -53,88 +53,90 @@ class _ValidatorConfigPageState extends State<ValidatorConfigPage> {
   Widget build(BuildContext context) {
     return BlocBuilder<NavigationPaneCubit, int>(
       builder: (context, selectedIndex) {
-    return NavigationView(
-      content: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Button(
-                onPressed: _chooseDirectory,
-                child: const Text('Choose Directory'),
-              ),
-              const SizedBox(height: 20),
-              ExcludeSemantics(
-                child: TextBox(
-                  controller: directoryController,
-                  placeholder: 'Selected Directory',
-                  decoration: WidgetStateProperty.all(
-                    BoxDecoration(
-                      border: Border.all(),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              ExcludeSemantics(
-                child: TextBox(
-                  maxLength: 2,
-                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                  controller: validatorQtyController,
-                  placeholder: 'Validator Qty',
-                  decoration: WidgetStateProperty.all(
-                    BoxDecoration(
-                      border: Border.all(),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  ),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+        return NavigationView(
+          content: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (selectedIndex > 0)
-                    Button(
-                      child: const Text('Previous'),
-                      onPressed: () {
-                        context.read<NavigationPaneCubit>()
-                            .setSelectedIndex(selectedIndex - 1);
-                      },
+                  Button(
+                    onPressed: _chooseDirectory,
+                    child: const Text('Choose Directory'),
+                  ),
+                  const SizedBox(height: 20),
+                  ExcludeSemantics(
+                    child: TextBox(
+                      controller: directoryController,
+                      placeholder: 'Selected Directory',
+                      decoration: WidgetStateProperty.all(
+                        BoxDecoration(
+                          border: Border.all(),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
                     ),
-                  const SizedBox(width: 20),
-                  if (selectedIndex < 6)
-                    Button(
-                      child: const Text('Next'),
-                      onPressed: () async {
-                        final isNotEmptyDirectory =
-                        await _isNotEmptyDirectory();
-                        if (isNotEmptyDirectory) {
-                          if (context.mounted) {
-                            showFluentAlert(context);
-                          }
-                        } else {
-                          NodeConfigData.instance.validatorQty =
-                              validatorQtyController.text;
-                          NodeConfigData.instance.workingDirectory =
-                              directoryController.text;
-                          if (context.mounted) {
-                            context.read<NavigationPaneCubit>()
-                                .setSelectedIndex(selectedIndex + 1);
-                          }
-                        }
-                      },
+                  ),
+                  const SizedBox(height: 20),
+                  ExcludeSemantics(
+                    child: TextBox(
+                      maxLength: 2,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      controller: validatorQtyController,
+                      placeholder: 'Validator Qty',
+                      decoration: WidgetStateProperty.all(
+                        BoxDecoration(
+                          border: Border.all(),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
                     ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      if (selectedIndex > 0)
+                        Button(
+                          child: const Text('Previous'),
+                          onPressed: () {
+                            context
+                                .read<NavigationPaneCubit>()
+                                .setSelectedIndex(selectedIndex - 1);
+                          },
+                        ),
+                      const SizedBox(width: 20),
+                      if (selectedIndex < 6)
+                        Button(
+                          child: const Text('Next'),
+                          onPressed: () async {
+                            final isNotEmptyDirectory =
+                                await _isNotEmptyDirectory();
+                            if (isNotEmptyDirectory) {
+                              if (context.mounted) {
+                                showFluentAlert(context);
+                              }
+                            } else {
+                              NodeConfigData.instance.validatorQty =
+                                  validatorQtyController.text;
+                              NodeConfigData.instance.workingDirectory =
+                                  directoryController.text;
+                              if (context.mounted) {
+                                context
+                                    .read<NavigationPaneCubit>()
+                                    .setSelectedIndex(selectedIndex + 1);
+                              }
+                            }
+                          },
+                        ),
+                    ],
+                  ),
                 ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
-  },
-);
   }
 }
 

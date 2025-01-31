@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gui/src/core/common/widgets/custom_radio_button.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+
 /// ## [RadioButtonGroup] Class Documentation
 ///
 /// The `RadioButtonGroup` widget is a custom group of radio buttons,
@@ -29,7 +30,6 @@ import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 /// spacing between them.
 
 class RadioButtonGroup extends StatelessWidget {
-
   const RadioButtonGroup({
     required this.selectedValue,
     required this.onChanged,

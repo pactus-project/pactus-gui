@@ -18,67 +18,69 @@ class _MasterPasswordPageState extends State<MasterPasswordPage> {
   Widget build(BuildContext context) {
     return BlocBuilder<NavigationPaneCubit, int>(
       builder: (context, selectedIndex) {
-    return NavigationView(
-      appBar: NavigationAppBar(
-        title: Text(
-          'MasterPasswordPage',
-          style: FluentTheme.of(context).typography.body!.copyWith(
-                color: AppTheme.of(context)
-                    .extension<OnSurfacePallet>()!
-                    .onSurface4,
-              ),
-        ),
-      ),
-      content: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          spacing: 16,
-          children: [
-            SizedBox(
-              width: 220,
-              child: ExcludeSemantics(
-                child: TextBox(
-                  controller: directoryController,
-                  placeholder: 'Password',
-                  autofocus: true,
-                  decoration: WidgetStateProperty.all(
-                    BoxDecoration(
-                      border: Border.all(),
-                      borderRadius: BorderRadius.circular(5),
+        return NavigationView(
+          appBar: NavigationAppBar(
+            title: Text(
+              'MasterPasswordPage',
+              style: FluentTheme.of(context).typography.body!.copyWith(
+                    color: AppTheme.of(context)
+                        .extension<OnSurfacePallet>()!
+                        .onSurface4,
+                  ),
+            ),
+          ),
+          content: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 16,
+              children: [
+                SizedBox(
+                  width: 220,
+                  child: ExcludeSemantics(
+                    child: TextBox(
+                      controller: directoryController,
+                      placeholder: 'Password',
+                      autofocus: true,
+                      decoration: WidgetStateProperty.all(
+                        BoxDecoration(
+                          border: Border.all(),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if (selectedIndex > 0)
-                  Button(
-                    child: const Text('Previous'),
-                    onPressed: () {
-                      context.read<NavigationPaneCubit>()
-                          .setSelectedIndex(selectedIndex - 1);
-                    },
-                  ),
-                const SizedBox(width: 20),
-                if (selectedIndex < 6)
-                  Button(
-                    child: const Text('Next'),
-                    onPressed: () {
-                      NodeConfigData.instance.password =
-                          directoryController.text;
-                      context.read<NavigationPaneCubit>()
-                          .setSelectedIndex(selectedIndex + 1);
-                    },
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if (selectedIndex > 0)
+                      Button(
+                        child: const Text('Previous'),
+                        onPressed: () {
+                          context
+                              .read<NavigationPaneCubit>()
+                              .setSelectedIndex(selectedIndex - 1);
+                        },
+                      ),
+                    const SizedBox(width: 20),
+                    if (selectedIndex < 6)
+                      Button(
+                        child: const Text('Next'),
+                        onPressed: () {
+                          NodeConfigData.instance.password =
+                              directoryController.text;
+                          context
+                              .read<NavigationPaneCubit>()
+                              .setSelectedIndex(selectedIndex + 1);
+                        },
+                      ),
+                  ],
+                ),
               ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
-  },
-);
   }
 }

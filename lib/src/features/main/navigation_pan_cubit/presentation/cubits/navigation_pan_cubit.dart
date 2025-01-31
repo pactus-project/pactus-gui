@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 /// ## [NavigationPaneCubit] Class Documentation
 ///
 /// The `NavigationPaneCubit` class manages the state of

@@ -13,101 +13,102 @@ class FinishPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NavigationPaneCubit, int>(
       builder: (context, selectedIndex) {
-    return NavigationView(
-      content: Center(
-        child: Column(
-          children: [
-            Text(
-              'password: ${NodeConfigData.instance.password}',
-              style: TextStyle(color: AppColors.primaryDark),
-            ),
-            Text(
-              'validatorQty: ${NodeConfigData.instance.validatorQty}',
-              style: TextStyle(color: AppColors.primaryDark),
-            ),
-            Text(
-              'workingDirectory:${NodeConfigData.instance.workingDirectory}',
-              style: TextStyle(color: AppColors.primaryDark),
-            ),
-            Text(
-              'restorationSeed: ${NodeConfigData.instance.restorationSeed}',
-              style: TextStyle(color: AppColors.primaryDark),
-            ),
-            Button(
-              onPressed: () async {
-                final daemonCubit = context.read<DaemonCubit>();
-
-                await daemonCubit.runPactusDaemon(
-                  command: './pactus-daemon',
-                  arguments: [
-                    'init',
-                    '--working-dir',
-                    NodeConfigData.instance.workingDirectory,
-                    '--restore',
-                    NodeConfigData.instance.restorationSeed,
-                    '--password',
-                    NodeConfigData.instance.password,
-                    '--val-num',
-                    NodeConfigData.instance.validatorQty,
-                  ],
-                );
-              },
-              child: Text('Run Node'),
-            ),
-            SizedBox(
-              height: 150,
-              child: BlocBuilder<DaemonCubit, DaemonState>(
-                builder: (context, state) {
-                  if (state is DaemonLoading) {
-                    return Center(child: ProgressRing());
-                  } else if (state is DaemonSuccess) {
-                    return SingleChildScrollView(
-                      child: Text(
-                        state.output,
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    );
-                  } else if (state is DaemonError) {
-                    return SingleChildScrollView(
-                      child: Text(
-                        state.error,
-                        style: TextStyle(fontSize: 16, color: Colors.red),
-                      ),
-                    );
-                  } else {
-                    return Center(
-                      child: Text('Press the button to run the daemon.'),
-                    );
-                  }
-                },
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+        return NavigationView(
+          content: Center(
+            child: Column(
               children: [
-                if (selectedIndex > 0)
-                  Button(
-                    child: const Text('Previous'),
-                    onPressed: () {
-                      context.read<NavigationPaneCubit>()
-                          .setSelectedIndex(selectedIndex - 1);
-                    },
-                  ),
-                const SizedBox(width: 20),
+                Text(
+                  'password: ${NodeConfigData.instance.password}',
+                  style: TextStyle(color: AppColors.primaryDark),
+                ),
+                Text(
+                  'validatorQty: ${NodeConfigData.instance.validatorQty}',
+                  style: TextStyle(color: AppColors.primaryDark),
+                ),
+                Text(
+                  'workingDirectory:'
+                  '${NodeConfigData.instance.workingDirectory}',
+                  style: TextStyle(color: AppColors.primaryDark),
+                ),
+                Text(
+                  'restorationSeed: ${NodeConfigData.instance.restorationSeed}',
+                  style: TextStyle(color: AppColors.primaryDark),
+                ),
+                Button(
+                  onPressed: () async {
+                    final daemonCubit = context.read<DaemonCubit>();
 
-                  Button(
-                    child: const Text('Finish'),
-                    onPressed: () {
-             ///to-do : navigate to dashboard navigation pane here
+                    await daemonCubit.runPactusDaemon(
+                      command: './pactus-daemon',
+                      arguments: [
+                        'init',
+                        '--working-dir',
+                        NodeConfigData.instance.workingDirectory,
+                        '--restore',
+                        NodeConfigData.instance.restorationSeed,
+                        '--password',
+                        NodeConfigData.instance.password,
+                        '--val-num',
+                        NodeConfigData.instance.validatorQty,
+                      ],
+                    );
+                  },
+                  child: Text('Run Node'),
+                ),
+                SizedBox(
+                  height: 150,
+                  child: BlocBuilder<DaemonCubit, DaemonState>(
+                    builder: (context, state) {
+                      if (state is DaemonLoading) {
+                        return Center(child: ProgressRing());
+                      } else if (state is DaemonSuccess) {
+                        return SingleChildScrollView(
+                          child: Text(
+                            state.output,
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        );
+                      } else if (state is DaemonError) {
+                        return SingleChildScrollView(
+                          child: Text(
+                            state.error,
+                            style: TextStyle(fontSize: 16, color: Colors.red),
+                          ),
+                        );
+                      } else {
+                        return Center(
+                          child: Text('Press the button to run the daemon.'),
+                        );
+                      }
                     },
                   ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if (selectedIndex > 0)
+                      Button(
+                        child: const Text('Previous'),
+                        onPressed: () {
+                          context
+                              .read<NavigationPaneCubit>()
+                              .setSelectedIndex(selectedIndex - 1);
+                        },
+                      ),
+                    const SizedBox(width: 20),
+                    Button(
+                      child: const Text('Finish'),
+                      onPressed: () {
+                        ///to-do : navigate to dashboard navigation pane here
+                      },
+                    ),
+                  ],
+                ),
               ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
-  },
-);
   }
 }

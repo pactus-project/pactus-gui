@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+
 /// ## [CustomInputWidget] Class Documentation
 ///
 /// The `CustomInputWidget` is a customizable text input field
@@ -129,9 +130,10 @@ class _CustomInputWidgetState extends State<CustomInputWidget> {
           TextBox(
             controller: widget.controller,
             placeholder: widget.placeholder,
-            placeholderStyle: TextStyle(color: AppTheme.of(context)
-                .extension<OnSurfacePallet>()!
-                .onSurface3,),
+            placeholderStyle: TextStyle(
+              color:
+                  AppTheme.of(context).extension<OnSurfacePallet>()!.onSurface3,
+            ),
             onChanged: widget.onChanged,
             onSubmitted: widget.onSubmitted,
             obscureText: isObscured,
@@ -139,9 +141,14 @@ class _CustomInputWidgetState extends State<CustomInputWidget> {
             readOnly: widget.readOnly,
             autofocus: widget.autofocus,
             textAlignVertical: TextAlignVertical.center,
+
             ///to-do #71 : there is no text style for place holder
             /// in Figma design. replace it after issue resolved by Pouria
-            style: widget.textStyle ?? TextStyle(fontSize: 14, height: 1,),
+            style: widget.textStyle ??
+                TextStyle(
+                  fontSize: 14,
+                  height: 1,
+                ),
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
             decoration: WidgetStateProperty.resolveWith((states) {
               final isFocused = states.isFocused;

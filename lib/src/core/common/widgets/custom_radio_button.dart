@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+
 /// ## [CustomRadioButton] Class Documentation
 ///
 /// The `CustomRadioButton` is a stylized radio button widget
@@ -68,29 +69,32 @@ class CustomRadioButton<T> extends StatelessWidget {
             height: 16,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(color: AppColors.radioButtonActiveColor,
-                  width: 2,),
+              border: Border.all(
+                color: AppColors.radioButtonActiveColor,
+                width: 2,
+              ),
               color: Colors.white,
             ),
             child: isSelected
                 ? Center(
-              child: Container(
-                width: 8,
-                height: 8,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.radioButtonActiveColor,
-                ),
-              ),
-            )
+                    child: Container(
+                      width: 8,
+                      height: 8,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.radioButtonActiveColor,
+                      ),
+                    ),
+                  )
                 : null,
           ),
           const Gap(16),
           Text(
             context.tr(label),
-            style: textStyle ?? InterTextStyles.smallRegular.copyWith(
-          color: AppColors.primaryGray,
-          ),
+            style: textStyle ??
+                InterTextStyles.smallRegular.copyWith(
+                  color: AppColors.primaryGray,
+                ),
           ),
         ],
       ),

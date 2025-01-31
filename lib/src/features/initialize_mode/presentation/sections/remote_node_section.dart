@@ -5,6 +5,7 @@ import 'package:gui/src/core/common/widgets/custom_expandable_widget.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/initialize_mode/presentation/widgets/custom_input_row.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+
 /// ## [RemoteNodeSection] Class Documentation
 ///
 /// The `RemoteNodeSection` provides a UI section for
@@ -47,7 +48,7 @@ class RemoteNodeSection extends StatefulWidget {
 
 class _RemoteNodeSectionState extends State<RemoteNodeSection> {
   final TextEditingController _remoteAddressController =
-  TextEditingController();
+      TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   @override
@@ -57,7 +58,8 @@ class _RemoteNodeSectionState extends State<RemoteNodeSection> {
         CustomInputRow(
           label: LocaleKeys.remote_address,
           controller: _remoteAddressController,
-          placeholder: 'pactus.example.com:1234', spacing: 13,
+          placeholder: 'pactus.example.com:1234',
+          spacing: 13,
         ),
         const Gap(28),
         Row(
@@ -65,7 +67,7 @@ class _RemoteNodeSectionState extends State<RemoteNodeSection> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-    LocaleKeys.auth_method,
+              LocaleKeys.auth_method,
               style: InterTextStyles.captionMedium.copyWith(
                 color: AppColors.primaryGray,
               ),
@@ -89,12 +91,10 @@ class _RemoteNodeSectionState extends State<RemoteNodeSection> {
                   ),
                 ],
               ),
-              headerColor: AppTheme.of(context)
-                  .extension<SurfacePallet>()!
-                  .surface3!,
-              expandedColor: AppTheme.of(context)
-                  .extension<SurfacePallet>()!
-                  .surface3!,
+              headerColor:
+                  AppTheme.of(context).extension<SurfacePallet>()!.surface3!,
+              expandedColor:
+                  AppTheme.of(context).extension<SurfacePallet>()!.surface3!,
               padding: EdgeInsets.all(8),
               animationDuration: 400,
               width: 125,
@@ -106,14 +106,16 @@ class _RemoteNodeSectionState extends State<RemoteNodeSection> {
         CustomInputRow(
           label: LocaleKeys.username,
           controller: _usernameController,
-          placeholder: 'pactus', spacing: 49,
+          placeholder: 'pactus',
+          spacing: 49,
         ),
         const Gap(28),
         CustomInputRow(
           label: LocaleKeys.password,
           controller: _passwordController,
           placeholder: '12345678',
-          obscureText: true, spacing: 51,
+          obscureText: true,
+          spacing: 51,
         ),
       ],
     );

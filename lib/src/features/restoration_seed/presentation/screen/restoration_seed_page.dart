@@ -12,85 +12,87 @@ class RestorationSeedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NavigationPaneCubit, int>(
       builder: (context, selectedIndex) {
-    return NavigationView(
-      appBar: NavigationAppBar(
-        title: Text(
-          'Restoration Seed Page',
-          style: FluentTheme.of(context).typography.body!.copyWith(
-                color: AppTheme.of(context)
-                    .extension<OnSurfacePallet>()!
-                    .onSurface4,
-              ),
-        ),
-      ),
-      content: Center(
-        child: SizedBox(
-          width: 320,
-          child: Column(
-            spacing: 16,
-            children: [
-              Text(
-                '12 seeds:',
-                style: FluentTheme.of(context).typography.body!.copyWith(
-                      color: AppTheme.of(context)
-                          .extension<OnSurfacePallet>()!
-                          .onSurface4,
-                    ),
-              ),
-              Text(
-                '${SeedGenerator().generateSeed(12)?.sentence}',
-                style: FluentTheme.of(context).typography.body!.copyWith(
-                      color: AppTheme.of(context)
-                          .extension<OnSurfacePallet>()!
-                          .onSurface4,
-                    ),
-              ),
-              Text(
-                '24 seeds:',
-                style: FluentTheme.of(context).typography.body!.copyWith(
-                      color: AppTheme.of(context)
-                          .extension<OnSurfacePallet>()!
-                          .onSurface4,
-                    ),
-              ),
-              Text(
-                '${SeedGenerator().generateSeed(24)?.sentence}',
-                style: FluentTheme.of(context).typography.body!.copyWith(
-                      color: AppTheme.of(context)
-                          .extension<OnSurfacePallet>()!
-                          .onSurface4,
-                    ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+        return NavigationView(
+          appBar: NavigationAppBar(
+            title: Text(
+              'Restoration Seed Page',
+              style: FluentTheme.of(context).typography.body!.copyWith(
+                    color: AppTheme.of(context)
+                        .extension<OnSurfacePallet>()!
+                        .onSurface4,
+                  ),
+            ),
+          ),
+          content: Center(
+            child: SizedBox(
+              width: 320,
+              child: Column(
+                spacing: 16,
                 children: [
-                  if (selectedIndex > 0)
-                    Button(
-                      child: const Text('Previous'),
-                      onPressed: () {
-                        context.read<NavigationPaneCubit>()
-                            .setSelectedIndex(selectedIndex - 1);
-                      },
-                    ),
-                  const SizedBox(width: 20),
-                  if (selectedIndex < 6)
-                    Button(
-                      child: const Text('Next'),
-                      onPressed: () {
-                        NodeConfigData.instance.restorationSeed =
-                        '${SeedGenerator().generateSeed(12)?.sentence}';
-                        context.read<NavigationPaneCubit>()
-                            .setSelectedIndex(selectedIndex + 1);
-                      },
-                    ),
+                  Text(
+                    '12 seeds:',
+                    style: FluentTheme.of(context).typography.body!.copyWith(
+                          color: AppTheme.of(context)
+                              .extension<OnSurfacePallet>()!
+                              .onSurface4,
+                        ),
+                  ),
+                  Text(
+                    '${SeedGenerator().generateSeed(12)?.sentence}',
+                    style: FluentTheme.of(context).typography.body!.copyWith(
+                          color: AppTheme.of(context)
+                              .extension<OnSurfacePallet>()!
+                              .onSurface4,
+                        ),
+                  ),
+                  Text(
+                    '24 seeds:',
+                    style: FluentTheme.of(context).typography.body!.copyWith(
+                          color: AppTheme.of(context)
+                              .extension<OnSurfacePallet>()!
+                              .onSurface4,
+                        ),
+                  ),
+                  Text(
+                    '${SeedGenerator().generateSeed(24)?.sentence}',
+                    style: FluentTheme.of(context).typography.body!.copyWith(
+                          color: AppTheme.of(context)
+                              .extension<OnSurfacePallet>()!
+                              .onSurface4,
+                        ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      if (selectedIndex > 0)
+                        Button(
+                          child: const Text('Previous'),
+                          onPressed: () {
+                            context
+                                .read<NavigationPaneCubit>()
+                                .setSelectedIndex(selectedIndex - 1);
+                          },
+                        ),
+                      const SizedBox(width: 20),
+                      if (selectedIndex < 6)
+                        Button(
+                          child: const Text('Next'),
+                          onPressed: () {
+                            NodeConfigData.instance.restorationSeed =
+                                '${SeedGenerator().generateSeed(12)?.sentence}';
+                            context
+                                .read<NavigationPaneCubit>()
+                                .setSelectedIndex(selectedIndex + 1);
+                          },
+                        ),
+                    ],
+                  ),
                 ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
-  },
-);
   }
 }

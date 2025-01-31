@@ -10,6 +10,7 @@ import 'package:gui/src/features/main/language/core/localization_extension.dart'
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/main/radio_button_cubit/presentation/radio_button_cubit.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+
 /// ## [InitializeModeScreen] Class Documentation
 ///
 /// The `InitializeModeScreen` provides an interface for users to
@@ -73,8 +74,9 @@ class InitializeModeScreen extends StatelessWidget {
                           ),
                           const Gap(8),
                           Text(
-                            context.
-                            tr(LocaleKeys.initiate_your_node_for_first_time),
+                            context.tr(
+                              LocaleKeys.initiate_your_node_for_first_time,
+                            ),
                             style: InterTextStyles.smallRegular.copyWith(
                               color: AppColors.primaryGray,
                             ),
@@ -85,7 +87,8 @@ class InitializeModeScreen extends StatelessWidget {
                               return RadioButtonGroup(
                                 selectedValue: selectedValue,
                                 onChanged: (value) {
-                                  context.read<RadioButtonCubit>()
+                                  context
+                                      .read<RadioButtonCubit>()
                                       .changeValue(value);
                                 },
                               );
@@ -94,8 +97,9 @@ class InitializeModeScreen extends StatelessWidget {
                           const Gap(30),
                           BlocBuilder<RadioButtonCubit, int>(
                             builder: (context, selectedValue) {
-                              return selectedValue == 2 ? RemoteNodeSection() :
-                              const SizedBox();
+                              return selectedValue == 2
+                                  ? RemoteNodeSection()
+                                  : const SizedBox();
                             },
                           ),
                         ],
@@ -118,8 +122,9 @@ class InitializeModeScreen extends StatelessWidget {
                       child: CustomFilledButton(
                         text: 'Next',
                         onPressed: () {
-                          context.read<NavigationPaneCubit>().
-                          setSelectedIndex(selectedIndex + 1);
+                          context
+                              .read<NavigationPaneCubit>()
+                              .setSelectedIndex(selectedIndex + 1);
                         },
                         style: ButtonStyle(
                           backgroundColor: WidgetStatePropertyAll(

@@ -9,33 +9,35 @@ class ConfirmationSeedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NavigationPaneCubit, int>(
       builder: (context, selectedIndex) {
-    return NavigationView(
-      content: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (selectedIndex > 0)
-              Button(
-                child: const Text('Previous'),
-                onPressed: () {
-                  context.read<NavigationPaneCubit>()
-                      .setSelectedIndex(selectedIndex - 1);
-                },
-              ),
-            const SizedBox(width: 20),
-            if (selectedIndex < 6)
-              Button(
-                child: const Text('Next'),
-                onPressed: () {
-                  context.read<NavigationPaneCubit>()
-                      .setSelectedIndex(selectedIndex + 1);
-                },
-              ),
-          ],
-        ),
-      ),
+        return NavigationView(
+          content: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (selectedIndex > 0)
+                  Button(
+                    child: const Text('Previous'),
+                    onPressed: () {
+                      context
+                          .read<NavigationPaneCubit>()
+                          .setSelectedIndex(selectedIndex - 1);
+                    },
+                  ),
+                const SizedBox(width: 20),
+                if (selectedIndex < 6)
+                  Button(
+                    child: const Text('Next'),
+                    onPressed: () {
+                      context
+                          .read<NavigationPaneCubit>()
+                          .setSelectedIndex(selectedIndex + 1);
+                    },
+                  ),
+              ],
+            ),
+          ),
+        );
+      },
     );
-  },
-);
   }
 }

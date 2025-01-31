@@ -12,6 +12,7 @@ import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/n
 import 'package:gui/src/features/master_password/presentation/screen/master_password_page.dart';
 import 'package:gui/src/features/restoration_seed/presentation/screen/restoration_seed_page.dart';
 import 'package:gui/src/features/validator_config/presentation/screen/validator_config_page.dart';
+
 /// ## [InitializingNavigationPane] Class Documentation
 ///
 /// The `InitializingNavigationPane` class represents a navigation pane for
@@ -21,15 +22,15 @@ import 'package:gui/src/features/validator_config/presentation/screen/validator_
 ///
 /// ### Properties:
 ///
-/// - **[selectedIndex]** (`int`)
+/// - **selectedIndex** (`int`)
 ///   - Manages the currently selected navigation index.
 ///   - Controlled by `NavigationPaneCubit`.
 ///
-/// - **[pane]** (`NavigationPane`)
+/// - **pane** (`NavigationPane`)
 ///   - Contains navigation items for different initialization steps.
 ///   - Ensures step-by-step progression by limiting selection jumps.
 ///
-/// - **[items]** (`List<PaneItem>`)
+/// - **items** (`List<PaneItem>`)
 ///   - Defines individual navigation steps, each associated
 ///   with a corresponding screen.
 ///   - Includes screens like `InitializeModeScreen`,
@@ -74,9 +75,9 @@ class InitializingNavigationPane extends StatelessWidget {
                 title: Text(
                   context.tr(LocaleKeys.initialize_mode),
                   style: TextStyle(
-                    color: selectedIndex == 0 ?
-                    AppColors.navigationPanelEnableColor :
-                    AppColors.navigationPanelDisableColor,
+                    color: selectedIndex == 0
+                        ? AppColors.navigationPanelEnableColor
+                        : AppColors.navigationPanelDisableColor,
                   ),
                 ),
                 body: InitializeModeScreen(),
@@ -86,9 +87,9 @@ class InitializingNavigationPane extends StatelessWidget {
                 title: Text(
                   context.tr(LocaleKeys.wallet_seed),
                   style: TextStyle(
-                    color: selectedIndex == 1 ?
-                    AppColors.navigationPanelEnableColor :
-                    AppColors.navigationPanelDisableColor,
+                    color: selectedIndex == 1
+                        ? AppColors.navigationPanelEnableColor
+                        : AppColors.navigationPanelDisableColor,
                   ),
                 ),
                 body: RestorationSeedPage(),
@@ -98,9 +99,9 @@ class InitializingNavigationPane extends StatelessWidget {
                 title: Text(
                   context.tr(LocaleKeys.confirm_seed),
                   style: TextStyle(
-                    color: selectedIndex == 2 ?
-                    AppColors.navigationPanelEnableColor :
-                    AppColors.navigationPanelDisableColor,
+                    color: selectedIndex == 2
+                        ? AppColors.navigationPanelEnableColor
+                        : AppColors.navigationPanelDisableColor,
                   ),
                 ),
                 body: ConfirmationSeedPage(),
@@ -110,9 +111,9 @@ class InitializingNavigationPane extends StatelessWidget {
                 title: Text(
                   context.tr(LocaleKeys.master_password),
                   style: TextStyle(
-                    color: selectedIndex == 3 ?
-                    AppColors.navigationPanelEnableColor :
-                    AppColors.navigationPanelDisableColor,
+                    color: selectedIndex == 3
+                        ? AppColors.navigationPanelEnableColor
+                        : AppColors.navigationPanelDisableColor,
                   ),
                 ),
                 body: MasterPasswordPage(),
@@ -122,9 +123,9 @@ class InitializingNavigationPane extends StatelessWidget {
                 title: Text(
                   context.tr(LocaleKeys.validator_config),
                   style: TextStyle(
-                    color: selectedIndex == 4 ?
-                    AppColors.navigationPanelEnableColor :
-                    AppColors.navigationPanelDisableColor,
+                    color: selectedIndex == 4
+                        ? AppColors.navigationPanelEnableColor
+                        : AppColors.navigationPanelDisableColor,
                   ),
                 ),
                 body: ValidatorConfigPage(),
@@ -134,9 +135,9 @@ class InitializingNavigationPane extends StatelessWidget {
                 title: Text(
                   context.tr(LocaleKeys.initializing),
                   style: TextStyle(
-                    color: selectedIndex == 5 ?
-                    AppColors.navigationPanelEnableColor :
-                    AppColors.navigationPanelDisableColor,
+                    color: selectedIndex == 5
+                        ? AppColors.navigationPanelEnableColor
+                        : AppColors.navigationPanelDisableColor,
                   ),
                 ),
                 body: InitializingPage(),
@@ -146,9 +147,9 @@ class InitializingNavigationPane extends StatelessWidget {
                 title: Text(
                   context.tr(LocaleKeys.finish),
                   style: TextStyle(
-                    color: selectedIndex == 6 ?
-                    AppColors.navigationPanelEnableColor :
-                    AppColors.navigationPanelDisableColor,
+                    color: selectedIndex == 6
+                        ? AppColors.navigationPanelEnableColor
+                        : AppColors.navigationPanelDisableColor,
                   ),
                 ),
                 body: MultiBlocProvider(
