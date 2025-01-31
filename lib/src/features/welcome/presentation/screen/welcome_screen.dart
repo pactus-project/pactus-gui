@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
 import 'package:gui/src/core/router/route_name.dart';
-import 'package:gui/src/core/utils/assets/assets.gen.dart';
+import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';

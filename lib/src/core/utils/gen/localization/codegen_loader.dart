@@ -33,9 +33,8 @@ class CodegenLoader {
     'switch_language': 'Switch language',
     'applications': 'Applications',
     'welcome_title': 'Welcome to the Future of Blockchain with Pactus!',
-    'welcome_description': 'Where the future of blockchain unfolds with trust'
-        ' and transparency in every transaction. Join us in shaping'
-        ' a decentralized revolution!',
+    'welcome_description':
+        'Where the future of blockchain unfolds with trust and transparency in every transaction. Join us in shaping a decentralized revolution!',
     'start_button_text': 'Get Started',
   };
   static const Map<String, dynamic> frFR = {
@@ -45,9 +44,8 @@ class CodegenLoader {
     'switch_language': 'Changer de langue',
     'applications': 'Applications',
     'welcome_title': 'Bienvenue dans le futur de la Blockchain avec Pactus!',
-    'welcome_description': 'Là où lavenir de la blockchain se dévoile avec'
-        ' confiance et transparence dans chaque transaction. Rejoignez-nous'
-        ' pour façonner une révolution décentralisée!',
+    'welcome_description':
+        'Là où lavenir de la blockchain se dévoile avec confiance et transparence dans chaque transaction. Rejoignez-nous pour façonner une révolution décentralisée!',
     'start_button_text': 'Commencer',
   };
   static const Map<String, dynamic> esES = {
@@ -57,9 +55,8 @@ class CodegenLoader {
     'switch_language': 'Cambiar idioma',
     'applications': 'Applications',
     'welcome_title': 'Bienvenido al futuro de la cadena de bloques con Pactus!',
-    'welcome_description': 'Donde el futuro de la cadena de bloques'
-        ' se desarrolla con confianza y transparencia en cada transacción.'
-        ' Únase a nosotros para dar forma a una revolución descentralizada!',
+    'welcome_description':
+        'Donde el futuro de la cadena de bloques se desarrolla con confianza y transparencia en cada transacción. Únase a nosotros para dar forma a una revolución descentralizada!',
     'start_button_text': 'Empezar',
   };
 
