@@ -4,5 +4,8 @@
   "subtitle": "Bienvenido a Localización",
   "description": "Has pulsado el botón tantas veces:",
   "switch_language": "Cambiar idioma",
-  "applications": "Applications"
+  "applications": "Applications",
+  "welcome_title": "Bienvenido al futuro de la cadena de bloques con Pactus!",
+  "welcome_description": "Donde el futuro de la cadena de bloques se desarrolla con confianza y transparencia en cada transacción. Únase a nosotros para dar forma a una revolución descentralizada!",
+  "start_button_text": "Empezar"
 }

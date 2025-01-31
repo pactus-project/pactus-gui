@@ -203,6 +203,7 @@ Future<void> _generateCodegenLoaderFile(
     ..writeln('/// - `frFR`: French translations.')
     ..writeln('/// - `esES`: Spanish translations.')
     ..writeln('///')
+    ..writeln('// ignore_for_file: lines_longer_than_80_chars')
     ..writeln('class CodegenLoader {')
     ..writeln('  const CodegenLoader();')
     ..writeln()
