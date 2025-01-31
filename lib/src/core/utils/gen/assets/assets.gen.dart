@@ -59,25 +59,13 @@ class $AssetsImagesGen {
   /// File path: assets/images/splash.png
   AssetGenImage get splash => const AssetGenImage('assets/images/splash.png');
 
+  /// File path: assets/images/welcome_pic.png
+  AssetGenImage get welcomePic =>
+      const AssetGenImage('assets/images/welcome_pic.png');
+
   /// List of all assets
   List<AssetGenImage> get values =>
-      [gears, gift, logoName, masterPassword, splash];
-}
-
-class $AssetsTranslationsGen {
-  const $AssetsTranslationsGen();
-
-  /// File path: assets/translations/en.json
-  String get en => 'assets/translations/en.json';
-
-  /// File path: assets/translations/es.json
-  String get es => 'assets/translations/es.json';
-
-  /// File path: assets/translations/fr.json
-  String get fr => 'assets/translations/fr.json';
-
-  /// List of all assets
-  List<String> get values => [en, es, fr];
+      [gears, gift, logoName, masterPassword, splash, welcomePic];
 }
 
 class Assets {
@@ -85,7 +73,6 @@ class Assets {
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
-  static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
 }
 
 class AssetGenImage {

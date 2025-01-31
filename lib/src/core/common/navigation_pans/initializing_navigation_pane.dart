@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
+import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/confirmation_seed/presentation/screen/confirmation_seed_page.dart';
 import 'package:gui/src/features/finish/presentation/screen/finish_page.dart';
@@ -116,7 +117,14 @@ class InitializingNavigationPane extends StatelessWidget {
                     AppColors.navigationPanelDisableColor,
                   ),
                 ),
-                body: FinishPage(),
+                body: MultiBlocProvider(
+                  providers: [
+                    BlocProvider<DaemonCubit>(
+                      create: (_) => DaemonCubit(),
+                    ),
+                  ],
+                  child: const FinishPage(),
+                ),
               ),
             ],
           ),

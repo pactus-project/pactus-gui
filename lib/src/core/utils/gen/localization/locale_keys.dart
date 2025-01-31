@@ -5,6 +5,9 @@ abstract class LocaleKeys {
   static const String description = 'description';
   static const String switch_language = 'switch_language';
   static const String applications = 'applications';
+  static const String welcome_title = 'welcome_title';
+  static const String welcome_description = 'welcome_description';
+  static const String start_button_text = 'start_button_text';
   static const String initialize_mode = 'initialize_mode';
   static const String wallet_seed = 'wallet_seed';
   static const String confirm_seed = 'confirm_seed';

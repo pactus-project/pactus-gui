@@ -11,6 +11,7 @@ import 'dart:ui' show Locale;
 /// - `frFR`: French translations.
 /// - `esES`: Spanish translations.
 ///
+// ignore_for_file: lines_longer_than_80_chars
 class CodegenLoader {
   const CodegenLoader();
 
@@ -32,6 +33,9 @@ class CodegenLoader {
     'description': 'You have pushed the button this many times:',
     'switch_language': 'Switch language',
     'applications': 'Applications',
+    'welcome_title': 'Welcome to the Future of Blockchain with Pactus!',
+    'welcome_description': 'Where the future of blockchain unfolds with trust and transparency in every transaction. Join us in shaping a decentralized revolution!',
+    'start_button_text': 'Get Started',
     'initialize_mode': 'Initialize mode',
     'wallet_seed': 'Wallet seed',
     'confirm_seed': 'Confirm seed',
@@ -56,6 +60,9 @@ class CodegenLoader {
     'description': 'Vous avez appuyé sur le bouton autant de fois :',
     'switch_language': 'Changer de langue',
     'applications': 'Applications',
+    'welcome_title': 'Bienvenue dans le futur de la Blockchain avec Pactus!',
+    'welcome_description': 'Là où lavenir de la blockchain se dévoile avec confiance et transparence dans chaque transaction. Rejoignez-nous pour façonner une révolution décentralisée!',
+    'start_button_text': 'Commencer',
     'initialize_mode': 'Mode dinitialisation',
     'wallet_seed': 'Graine de portefeuille',
     'confirm_seed': 'Confirmer la graine',
@@ -80,6 +87,9 @@ class CodegenLoader {
     'description': 'Has pulsado el botón tantas veces:',
     'switch_language': 'Cambiar idioma',
     'applications': 'Applications',
+    'welcome_title': 'Bienvenido al futuro de la cadena de bloques con Pactus!',
+    'welcome_description': 'Donde el futuro de la cadena de bloques se desarrolla con confianza y transparencia en cada transacción. Únase a nosotros para dar forma a una revolución descentralizada!',
+    'start_button_text': 'Empezar',
     'initialize_mode': 'Modo de inicialización',
     'wallet_seed': 'Semilla de billetera',
     'confirm_seed': 'Confirmar semilla',
