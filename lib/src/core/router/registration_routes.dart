@@ -1,4 +1,6 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:gui/src/features/confirmation_seed/presentation/screen/confirmation_seed_page.dart';
 import 'package:gui/src/features/dashboard/presentation/screen/dashboard_page.dart';
 import 'package:gui/src/features/finish/presentation/screen/finish_page.dart';
@@ -52,7 +54,14 @@ final List<GoRoute> registrationRoutes = [
                               GoRoute(
                                 path: AppRoute.finish.path,
                                 name: AppRoute.finish.name,
-                                builder: (context, state) => const FinishPage(),
+                                builder: (context, state) => MultiBlocProvider(
+                                  providers: [
+                                    BlocProvider<DaemonCubit>(
+                                      create: (_) => DaemonCubit(),
+                                    ),
+                                  ],
+                                  child: const FinishPage(),
+                                ),
                                 routes: [
                                   GoRoute(
                                     path: AppRoute.password.path,
