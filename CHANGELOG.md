@@ -8,6 +8,10 @@
   - add some welcomeScreen png to project source
   - add/create `CustomFilledButton`
 
+- [Update] : fix issue on pipeline about file generations [#70](https://github.com/pactus-project/pactus-gui/pull/70)
+  - fix issue on pipeline about CodegenLoader class and file generations
+  - fix issue on pipeline about assets file generations
+
 # 1.13.0+15
 
 - [Fix] : Fix conflicts between `fluent_ui.dart` and `material.dart` imports. [#67](https://github.com/pactus-project/pactus-gui/pull/67)
