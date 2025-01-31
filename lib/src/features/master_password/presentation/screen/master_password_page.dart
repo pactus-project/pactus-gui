@@ -1,7 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
@@ -52,13 +50,6 @@ class _MasterPasswordPageState extends State<MasterPasswordPage> {
                 ),
               ),
             ),
-            Button(
-              onPressed: () {
-                NodeConfigData.instance.password = directoryController.text;
-                context.goNamed(AppRoute.validatorConfig.name);
-              },
-              child: Text('Navigate to ${AppRoute.validatorConfig.name}'),
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -75,6 +66,8 @@ class _MasterPasswordPageState extends State<MasterPasswordPage> {
                   Button(
                     child: const Text('Next'),
                     onPressed: () {
+                      NodeConfigData.instance.password =
+                          directoryController.text;
                       context.read<NavigationPaneCubit>()
                           .setSelectedIndex(selectedIndex + 1);
                     },

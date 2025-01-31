@@ -1,13 +1,10 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
-import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_state.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
-import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class FinishPage extends StatelessWidget {
   const FinishPage({super.key});
@@ -17,16 +14,6 @@ class FinishPage extends StatelessWidget {
     return BlocBuilder<NavigationPaneCubit, int>(
       builder: (context, selectedIndex) {
     return NavigationView(
-      appBar: NavigationAppBar(
-        title: Text(
-          'InitializingPage',
-          style: FluentTheme.of(context).typography.body!.copyWith(
-                color: AppTheme.of(context)
-                    .extension<OnSurfacePallet>()!
-                    .onSurface4,
-              ),
-        ),
-      ),
       content: Center(
         child: Column(
           children: [
@@ -95,12 +82,6 @@ class FinishPage extends StatelessWidget {
                 },
               ),
             ),
-            Button(
-              onPressed: () {
-                context.goNamed(AppRoute.password.name);
-              },
-              child: Text('Navigate to ${AppRoute.password.name}'),
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -113,12 +94,11 @@ class FinishPage extends StatelessWidget {
                     },
                   ),
                 const SizedBox(width: 20),
-                if (selectedIndex < 6)
+
                   Button(
-                    child: const Text('Next'),
+                    child: const Text('Finish'),
                     onPressed: () {
-                      context.read<NavigationPaneCubit>()
-                          .setSelectedIndex(selectedIndex + 1);
+             ///to-do : navigate to dashboard navigation pane here
                     },
                   ),
               ],

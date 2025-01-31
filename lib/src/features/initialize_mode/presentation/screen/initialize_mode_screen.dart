@@ -2,6 +2,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
+import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/initialize_mode/presentation/sections/remote_node_section.dart';
 import 'package:gui/src/features/initialize_mode/presentation/widgets/radio_button_group_widget.dart';
@@ -38,8 +39,8 @@ class InitializeModeScreen extends StatelessWidget {
                           ),
                           const Gap(8),
                           Text(
-                            context.tr
-                              (LocaleKeys.initiate_your_node_for_first_time),
+                            context.
+                            tr(LocaleKeys.initiate_your_node_for_first_time),
                             style: InterTextStyles.smallRegular.copyWith(
                               color: AppColors.primaryGray,
                             ),
@@ -80,28 +81,18 @@ class InitializeModeScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 46),
                     child: Align(
                       alignment: Alignment.centerRight,
-                      child: SizedBox(
-                        height: 32,
-                        child: Button(
-                          style: ButtonStyle(
-                            backgroundColor: WidgetStatePropertyAll(
-                              AppColors.radioButtonActiveColor,
-                            ),
-                            padding: WidgetStatePropertyAll(
-                              const EdgeInsets.symmetric(horizontal: 16),
-                            ),
+                      child: CustomFilledButton(
+                        text: 'Next',
+                        onPressed: () {
+                          context.read<NavigationPaneCubit>().
+                          setSelectedIndex(selectedIndex + 1);
+                        },
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStatePropertyAll(
+                            AppColors.radioButtonActiveColor,
                           ),
-                          onPressed: () {
-                            context.read<NavigationPaneCubit>()
-                                .setSelectedIndex(selectedIndex + 1);
-                          },
-                          child: Text(
-                            'Next',
-                            style: InterTextStyles.bodyBold.copyWith(
-                              color: AppTheme.of(context)
-                                  .extension<SurfacePallet>()!
-                                  .surface3,
-                            ),
+                          padding: WidgetStatePropertyAll(
+                            const EdgeInsets.symmetric(horizontal: 16),
                           ),
                         ),
                       ),
@@ -116,4 +107,3 @@ class InitializeModeScreen extends StatelessWidget {
     );
   }
 }
-

@@ -1,7 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/core/utils/daemon_manager/seed_generator.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
@@ -63,14 +61,6 @@ class RestorationSeedPage extends StatelessWidget {
                           .onSurface4,
                     ),
               ),
-              Button(
-                onPressed: () {
-                  NodeConfigData.instance.restorationSeed =
-                      '${SeedGenerator().generateSeed(12)?.sentence}';
-                  context.goNamed(AppRoute.confirmationSeed.name);
-                },
-                child: Text('Navigate to ${AppRoute.confirmationSeed.name}'),
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -87,6 +77,8 @@ class RestorationSeedPage extends StatelessWidget {
                     Button(
                       child: const Text('Next'),
                       onPressed: () {
+                        NodeConfigData.instance.restorationSeed =
+                        '${SeedGenerator().generateSeed(12)?.sentence}';
                         context.read<NavigationPaneCubit>()
                             .setSelectedIndex(selectedIndex + 1);
                       },

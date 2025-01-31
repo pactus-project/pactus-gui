@@ -4,12 +4,9 @@ import 'package:file_selector/file_selector.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
-import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
-import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class ValidatorConfigPage extends StatefulWidget {
   const ValidatorConfigPage({super.key});
@@ -57,16 +54,6 @@ class _ValidatorConfigPageState extends State<ValidatorConfigPage> {
     return BlocBuilder<NavigationPaneCubit, int>(
       builder: (context, selectedIndex) {
     return NavigationView(
-      appBar: NavigationAppBar(
-        title: Text(
-          'Validator Config Page',
-          style: FluentTheme.of(context).typography.body!.copyWith(
-                color: AppTheme.of(context)
-                    .extension<OnSurfacePallet>()!
-                    .onSurface4,
-              ),
-        ),
-      ),
       content: Center(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -105,27 +92,6 @@ class _ValidatorConfigPageState extends State<ValidatorConfigPage> {
                   ),
                 ),
               ),
-              Center(
-                child: Button(
-                  onPressed: () async {
-                    final isNotEmptyDirectory = await _isNotEmptyDirectory();
-                    if (isNotEmptyDirectory) {
-                      if (context.mounted) {
-                        showFluentAlert(context);
-                      }
-                    } else {
-                      NodeConfigData.instance.validatorQty =
-                          validatorQtyController.text;
-                      NodeConfigData.instance.workingDirectory =
-                          directoryController.text;
-                      if (context.mounted) {
-                        context.goNamed(AppRoute.initializing.name);
-                      }
-                    }
-                  },
-                  child: Text('Navigate to ${AppRoute.initializing.name}'),
-                ),
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -141,9 +107,23 @@ class _ValidatorConfigPageState extends State<ValidatorConfigPage> {
                   if (selectedIndex < 6)
                     Button(
                       child: const Text('Next'),
-                      onPressed: () {
-                        context.read<NavigationPaneCubit>()
-                            .setSelectedIndex(selectedIndex + 1);
+                      onPressed: () async {
+                        final isNotEmptyDirectory =
+                        await _isNotEmptyDirectory();
+                        if (isNotEmptyDirectory) {
+                          if (context.mounted) {
+                            showFluentAlert(context);
+                          }
+                        } else {
+                          NodeConfigData.instance.validatorQty =
+                              validatorQtyController.text;
+                          NodeConfigData.instance.workingDirectory =
+                              directoryController.text;
+                          if (context.mounted) {
+                            context.read<NavigationPaneCubit>()
+                                .setSelectedIndex(selectedIndex + 1);
+                          }
+                        }
                       },
                     ),
                 ],
