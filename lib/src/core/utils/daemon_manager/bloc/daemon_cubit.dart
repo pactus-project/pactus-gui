@@ -28,7 +28,8 @@ import 'package:path/path.dart' show dirname, join;
 class DaemonCubit extends Cubit<DaemonState> {
   DaemonCubit() : super(DaemonInitial());
 
-  /// Gets the appropriate native resources directory based on the operating system
+  /// Gets the appropriate native resources directory
+  /// based on the operating system
   String _getNativeResourcesPath(String scriptDir) {
     final platform = Platform.operatingSystem;
     final nativeDir = join(scriptDir, 'lib', 'src', 'core', 'native_resources');
@@ -38,6 +39,8 @@ class DaemonCubit extends Cubit<DaemonState> {
         return join(nativeDir, 'linux');
       case 'macos':
         return join(nativeDir, 'macos');
+      case 'windows':
+        return join(nativeDir, 'windows');
       default:
         throw UnsupportedError('Unsupported operating system: $platform');
     }
@@ -59,17 +62,19 @@ class DaemonCubit extends Cubit<DaemonState> {
 
   /// Ensures the daemon executable has proper permissions
   void _ensureExecutablePermissions(String executablePath) {
+    // Skip permission setting on Windows since it's not required
+    if (Platform.isWindows) {
+      return;
+    }
     if (!Platform.isMacOS) {
       return;
     }
 
     try {
-      // Check if file exists
       if (!File(executablePath).existsSync()) {
         throw FileSystemException('Executable not found at: $executablePath');
       }
 
-      // Make the file executable using chmod +x
       Process.runSync('chmod', ['+x', executablePath]);
     } catch (e) {
       throw FileSystemException(
@@ -100,19 +105,26 @@ class DaemonCubit extends Cubit<DaemonState> {
 
       _ensureDirectoryExists(targetPath);
 
-      final executablePath = join(targetPath, command);
+      final executablePath =
+          join(targetPath, Platform.isWindows ? '$command.exe' : command);
       _ensureExecutablePermissions(executablePath);
+
+      // Prepare environment variables based on platform
+      final environment = <String, String>{};
+      if (Platform.isMacOS) {
+        environment['PATH'] = Platform.environment['PATH'] ?? '';
+        environment['HOME'] = Platform.environment['HOME'] ?? '';
+      } else if (Platform.isWindows) {
+        environment['PATH'] = Platform.environment['PATH'] ?? '';
+        environment['USERPROFILE'] = Platform.environment['USERPROFILE'] ?? '';
+        environment['APPDATA'] = Platform.environment['APPDATA'] ?? '';
+      }
 
       final result = await Process.run(
         executablePath,
         arguments,
         workingDirectory: targetPath,
-        environment: Platform.isMacOS
-            ? {
-                'PATH': Platform.environment['PATH'] ?? '',
-                'HOME': Platform.environment['HOME'] ?? '',
-              }
-            : null,
+        environment: environment.isEmpty ? null : environment,
       );
 
       if (result.exitCode == 0) {
