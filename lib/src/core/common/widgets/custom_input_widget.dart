@@ -127,45 +127,47 @@ class _CustomInputWidgetState extends State<CustomInputWidget> {
       child: Stack(
         alignment: Alignment.centerRight,
         children: [
-          TextBox(
-            controller: widget.controller,
-            placeholder: widget.placeholder,
-            placeholderStyle: TextStyle(
-              color:
-                  AppTheme.of(context).extension<OnSurfacePallet>()!.onSurface3,
-            ),
-            onChanged: widget.onChanged,
-            onSubmitted: widget.onSubmitted,
-            obscureText: isObscured,
-            minLines: 1,
-            readOnly: widget.readOnly,
-            autofocus: widget.autofocus,
-            textAlignVertical: TextAlignVertical.center,
+          ExcludeSemantics(
+            child: TextBox(
+              controller: widget.controller,
+              placeholder: widget.placeholder,
+              placeholderStyle: TextStyle(
+                color:
+                    AppTheme.of(context).extension<OnSurfacePallet>()!.onSurface3,
+              ),
+              onChanged: widget.onChanged,
+              onSubmitted: widget.onSubmitted,
+              obscureText: isObscured,
+              minLines: 1,
+              readOnly: widget.readOnly,
+              autofocus: widget.autofocus,
+              textAlignVertical: TextAlignVertical.center,
 
-            ///to-do #71 : there is no text style for place holder
-            /// in Figma design. replace it after issue resolved by Pouria
-            style: widget.textStyle ??
-                TextStyle(
-                  fontSize: 14,
-                  height: 1,
-                ),
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-            decoration: WidgetStateProperty.resolveWith((states) {
-              final isFocused = states.isFocused;
-              return BoxDecoration(
-                color: widget.backgroundColor ??
-                    AppTheme.of(context).extension<SurfacePallet>()!.surface3,
-                borderRadius: widget.borderRadius ?? BorderRadius.circular(4),
-                border: Border(
-                  bottom: BorderSide(
-                    color: isFocused
-                        ? AppColors.inputActiveColor
-                        : Colors.transparent,
-                    width: 2,
+              ///to-do #71 : there is no text style for place holder
+              /// in Figma design. replace it after issue resolved by Pouria
+              style: widget.textStyle ??
+                  TextStyle(
+                    fontSize: 14,
+                    height: 1,
                   ),
-                ),
-              );
-            }),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+              decoration: WidgetStateProperty.resolveWith((states) {
+                final isFocused = states.isFocused;
+                return BoxDecoration(
+                  color: widget.backgroundColor ??
+                      AppTheme.of(context).extension<SurfacePallet>()!.surface3,
+                  borderRadius: widget.borderRadius ?? BorderRadius.circular(4),
+                  border: Border(
+                    bottom: BorderSide(
+                      color: isFocused
+                          ? AppColors.inputActiveColor
+                          : Colors.transparent,
+                      width: 2,
+                    ),
+                  ),
+                );
+              }),
+            ),
           ),
           if (widget.obscureText)
             Padding(
