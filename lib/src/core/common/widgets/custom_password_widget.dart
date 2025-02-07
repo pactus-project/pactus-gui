@@ -2,11 +2,11 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
-/// ## [CustomInputWidget] Class Documentation
+/// ## [CustomPasswordWidget] Class Documentation
 ///
-/// The `CustomInputWidget` is a customizable text input field
-/// that supports various configurations, including password hiding,
-/// placeholder text, and dynamic styling.
+/// The `CustomPasswordWidget` is a customizable password input field
+/// that supports various configurations, including placeholder text,
+/// dynamic styling, and focus behavior.
 ///
 /// ### Properties:
 ///
@@ -15,14 +15,6 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 ///
 /// - **[onChanged]** (`ValueChanged<String>?`)
 ///   - Callback triggered when text is modified.
-///
-/// - **[maxLines]** (`int?`)
-///   - Maximum number of lines for the text input.
-///   - Defaults to `1`.
-///
-/// - **[minLines]** (`int?`)
-///   - Minimum number of lines for the text input.
-///   - Optional.
 ///
 /// - **[readOnly]** (`bool`)
 ///   - Determines whether the field is read-only.
@@ -34,34 +26,35 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 ///
 /// - **[textStyle]** (`TextStyle?`)
 ///   - Custom style for the text input.
+///   - If not provided, defaults to a font size of `14` and height of `1`.
 ///
 /// - **[backgroundColor]** (`Color?`)
 ///   - Background color of the input field.
+///   - If not specified, it defaults to `surface3` from `SurfacePallet`.
 ///
 /// - **[borderRadius]** (`BorderRadius?`)
 ///   - Defines the border radius of the input field.
+///   - Defaults to `BorderRadius.circular(4)`.
 ///
 /// - **[width]** (`double?`)
 ///   - Custom width for the input field.
 ///
 /// ### Constructor:
 ///
-/// - `CustomInputWidget
-/// ({required this.placeholder, ...})`
+/// - `CustomPasswordWidget({required this.placeholder, ...})`
 ///   - Initializes the input field with customizable properties.
 ///
 /// ### Important Notes:
 ///
-/// - Uses `TextBox` for a Fluent UI-style text input.
-/// - Implements a toggle for password visibility if `obscureText` is `true`.
+/// - Uses `PasswordBox` from Fluent UI.
+/// - Applies custom styling for placeholder text.
 /// - Dynamically adjusts border and background color based on the focus state.
-class CustomInputWidget extends StatelessWidget {
-  const CustomInputWidget({
+/// - A bottom border appears when the field is focused.
+class CustomPasswordWidget extends StatelessWidget {
+  const CustomPasswordWidget({
     super.key,
     required this.placeholder,
     this.onChanged,
-    this.maxLines = 1,
-    this.minLines,
     this.readOnly = false,
     this.autofocus = false,
     this.textStyle,
@@ -72,8 +65,7 @@ class CustomInputWidget extends StatelessWidget {
 
   final String placeholder;
   final ValueChanged<String>? onChanged;
-  final int? maxLines;
-  final int? minLines;
+
   final bool readOnly;
   final bool autofocus;
   final TextStyle? textStyle;
@@ -87,15 +79,13 @@ class CustomInputWidget extends StatelessWidget {
       width: width,
       height: 38,
       child: ExcludeSemantics(
-        child: TextBox(
+        child: PasswordBox(
           placeholder: placeholder,
           placeholderStyle: TextStyle(
             color:
                 AppTheme.of(context).extension<OnSurfacePallet>()!.onSurface3,
           ),
           onChanged: onChanged,
-          maxLines: maxLines,
-          minLines: 1,
           readOnly: readOnly,
           autofocus: autofocus,
           textAlignVertical: TextAlignVertical.center,
