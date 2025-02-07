@@ -5,12 +5,12 @@ import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/confirmation_seed/presentation/screen/confirmation_seed_page.dart';
 import 'package:gui/src/features/finish/presentation/screen/finish_page.dart';
+import 'package:gui/src/features/generation_seed/presentation/screens/generation_seed_screen.dart';
 import 'package:gui/src/features/initialize_mode/presentation/screen/initialize_mode_screen.dart';
 import 'package:gui/src/features/initializing/presentation/screen/initializing_page.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/master_password/presentation/screen/master_password_page.dart';
-import 'package:gui/src/features/restoration_seed/presentation/screen/restoration_seed_page.dart';
 import 'package:gui/src/features/validator_config/presentation/screen/validator_config_page.dart';
 
 /// ## [InitializingNavigationPane] Class Documentation
@@ -92,7 +92,7 @@ class InitializingNavigationPane extends StatelessWidget {
                         : AppColors.navigationPanelDisableColor,
                   ),
                 ),
-                body: RestorationSeedPage(),
+                body: GenerationSeedScreen(),
               ),
               PaneItem(
                 icon: const SizedBox(),
