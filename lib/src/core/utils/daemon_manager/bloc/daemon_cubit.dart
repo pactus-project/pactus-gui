@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_state.dart';
 import 'package:path/path.dart' show dirname, join;
+import 'daemon_state.dart';
 
 /// [DaemonCubit] Documentation:
 /// `DaemonCubit` manages the execution of the Pactus daemon process.
@@ -46,41 +46,48 @@ class DaemonCubit extends Cubit<DaemonState> {
     }
   }
 
-  /// Creates the native resources directory if it doesn't exist
-  void _ensureDirectoryExists(String path) {
-    final directory = Directory(path);
-    if (!directory.existsSync()) {
-      try {
-        directory.createSync(recursive: true);
-      } on FileSystemException catch (e) {
-        emit(DaemonError('Failed to create directory: ${e.message}'));
-      } on Exception catch (e) {
-        emit(DaemonError('Error creating directory: $e'));
-      }
-    }
-  }
-
   /// Ensures the daemon executable has proper permissions
   void _ensureExecutablePermissions(String executablePath) {
-    // Skip permission setting on Windows since it's not required
     if (Platform.isWindows) {
-      return;
-    }
-    if (!Platform.isMacOS) {
       return;
     }
 
     try {
-      if (!File(executablePath).existsSync()) {
+      final file = File(executablePath);
+      if (!file.existsSync()) {
         throw FileSystemException('Executable not found at: $executablePath');
       }
 
-      Process.runSync('chmod', ['+x', executablePath]);
-    } catch (e) {
-      throw FileSystemException(
-        'Failed to set executable permissions: $e',
-        executablePath,
-      );
+      if (file.statSync().mode & 0x111 == 0) {
+        Process.runSync('chmod', ['+x', executablePath]);
+      }
+    } on FileSystemException {
+      rethrow;
+    }
+  }
+
+  /// Prepares environment variables based on platform
+  Map<String, String> _prepareEnvironment() {
+    final environment = <String, String>{};
+
+    if (Platform.isMacOS) {
+      environment['PATH'] = Platform.environment['PATH'] ?? '';
+      environment['HOME'] = Platform.environment['HOME'] ?? '';
+    } else if (Platform.isWindows) {
+      environment['PATH'] = Platform.environment['PATH'] ?? '';
+      environment['USERPROFILE'] = Platform.environment['USERPROFILE'] ?? '';
+      environment['APPDATA'] = Platform.environment['APPDATA'] ?? '';
+    }
+
+    return environment;
+  }
+
+  /// Handles process execution result
+  void _handleProcessResult(ProcessResult result) {
+    if (result.exitCode == 0) {
+      emit(DaemonSuccess('${result.stdout}'));
+    } else {
+      emit(DaemonError('${result.stderr}'));
     }
   }
 
@@ -101,37 +108,24 @@ class DaemonCubit extends Cubit<DaemonState> {
 
     try {
       final scriptDir = dirname(Platform.script.toFilePath());
-      final targetPath = _getNativeResourcesPath(scriptDir);
+      final sourcePath = _getNativeResourcesPath(scriptDir);
 
-      _ensureDirectoryExists(targetPath);
+      final executablePath = join(
+        sourcePath,
+        Platform.isWindows ? '$command.exe' : command,
+      );
 
-      final executablePath =
-          join(targetPath, Platform.isWindows ? '$command.exe' : command);
       _ensureExecutablePermissions(executablePath);
-
-      // Prepare environment variables based on platform
-      final environment = <String, String>{};
-      if (Platform.isMacOS) {
-        environment['PATH'] = Platform.environment['PATH'] ?? '';
-        environment['HOME'] = Platform.environment['HOME'] ?? '';
-      } else if (Platform.isWindows) {
-        environment['PATH'] = Platform.environment['PATH'] ?? '';
-        environment['USERPROFILE'] = Platform.environment['USERPROFILE'] ?? '';
-        environment['APPDATA'] = Platform.environment['APPDATA'] ?? '';
-      }
+      final environment = _prepareEnvironment();
 
       final result = await Process.run(
         executablePath,
         arguments,
-        workingDirectory: targetPath,
+        workingDirectory: sourcePath,
         environment: environment.isEmpty ? null : environment,
       );
 
-      if (result.exitCode == 0) {
-        emit(DaemonSuccess('${result.stdout}'));
-      } else {
-        emit(DaemonError('${result.stderr}'));
-      }
+      _handleProcessResult(result);
     } on FileSystemException catch (e) {
       emit(DaemonError('File system error: ${e.message}'));
     } on ProcessException catch (e) {
