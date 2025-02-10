@@ -10,6 +10,8 @@ class RestorationSeedPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final th12words = SeedGenerator().generateSeed(12);
+    final th24words = SeedGenerator().generateSeed(24);
     return NavigationView(
       appBar: NavigationAppBar(
         title: Text(
@@ -36,7 +38,7 @@ class RestorationSeedPage extends StatelessWidget {
                     ),
               ),
               Text(
-                '${SeedGenerator().generateSeed(12)?.sentence}',
+                '${th12words?.sentence}',
                 style: FluentTheme.of(context).typography.body!.copyWith(
                       color: AppTheme.of(context)
                           .extension<OnSurfacePallet>()!
@@ -52,7 +54,7 @@ class RestorationSeedPage extends StatelessWidget {
                     ),
               ),
               Text(
-                '${SeedGenerator().generateSeed(24)?.sentence}',
+                '${th24words?.sentence}',
                 style: FluentTheme.of(context).typography.body!.copyWith(
                       color: AppTheme.of(context)
                           .extension<OnSurfacePallet>()!
@@ -62,8 +64,11 @@ class RestorationSeedPage extends StatelessWidget {
               Button(
                 onPressed: () {
                   NodeConfigData.instance.restorationSeed =
-                      '${SeedGenerator().generateSeed(12)?.sentence}';
-                  context.goNamed(AppRoute.confirmationSeed.name);
+                      '${th12words?.sentence}';
+                  context.goNamed(
+                    AppRoute.confirmationSeed.name,
+                    extra: th24words?.words,
+                  );
                 },
                 child: Text('Navigate to ${AppRoute.confirmationSeed.name}'),
               ),

@@ -1,7 +1,15 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/router/route_name.dart';
+import 'package:gui/src/features/confirmation_seed/data/models/seed_item_data.dart';
+import 'package:gui/src/features/confirmation_seed/presentation/bloc/confitmation_seed_cubit.dart';
+import 'package:gui/src/features/validator_config/presentation/screen/validator_config_page.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+
+import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 
 class ConfirmationSeedPage extends StatelessWidget {
   const ConfirmationSeedPage({super.key});
@@ -11,21 +19,127 @@ class ConfirmationSeedPage extends StatelessWidget {
     return NavigationView(
       appBar: NavigationAppBar(
         title: Text(
-          'ConfirmationSeedPage',
-          style: FluentTheme.of(context).typography.body!.copyWith(
-                color: AppTheme.of(context)
-                    .extension<OnSurfacePallet>()!
-                    .onSurface4,
-              ),
+          'Confirm Your Seed Phrase',
+          style: FluentTheme.of(context).typography.body,
         ),
       ),
-      content: Center(
-        child: Button(
-          onPressed: () {
-            context.goNamed(AppRoute.masterPassword.name);
-          },
-          child: Text('Navigate to ${AppRoute.masterPassword.name}'),
+      content: Column(
+        children: [
+          Expanded(
+            child: BlocBuilder<ConfirmationSeedCubit, ConfirmationSeedState>(
+              builder: (context, state) {
+                if (state.words.isEmpty) return const Center(child: ProgressRing());
+
+                return Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      final crossAxisCount = (constraints.maxWidth / 160).floor().clamp(2, 6);
+
+                      return GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: crossAxisCount,
+                          crossAxisSpacing: 12,
+                          mainAxisSpacing: 12,
+                          mainAxisExtent: 48,
+                        ),
+                        itemCount: state.words.length,
+                        padding: EdgeInsets.zero,
+                        itemBuilder: (context, index) {
+                          final item = state.words[index];
+
+                          if (!item.isNeedConfirmation) {
+                            return Container(
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: FluentTheme.of(context).micaBackgroundColor,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              child: Text(
+                                item.word,
+                                textAlign: TextAlign.center,
+                                style: FluentTheme.of(context)
+                                    .typography
+                                    .bodyStrong!
+                                    .copyWith(color: Colors.black),
+                              ),
+                            );
+                          }
+
+                          final isCorrect = state.validationResults[index];
+                          final color = (isCorrect ?? false) ? Colors.green : Colors.red;
+
+                          return ChipTextBox(
+                            backgroundColor: color,
+                            placeholder: '',
+                            onChanged: (value) {
+                              context.read<ConfirmationSeedCubit>().updateValidation(index, value);
+                            },
+                          );
+                        },
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: BlocBuilder<ConfirmationSeedCubit, ConfirmationSeedState>(
+              builder: (context, state) {
+                return Button(
+                  child: Text('Check', style: TextStyle(color: Colors.black)),
+                  onPressed: () {
+                    final isValidated = context.read<ConfirmationSeedCubit>().isAllValid();
+                    final text = isValidated ? 'Valid' : 'Invalid';
+
+                    displayInfoBar(
+                      context,
+                      builder: (context, close) {
+                        return InfoBar(
+                          title: Text(text, style: TextStyle(color: Colors.black)),
+                          severity: isValidated ? InfoBarSeverity.success : InfoBarSeverity.error,
+                        );
+                      },
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+class ChipTextBox extends StatelessWidget {
+  const ChipTextBox({
+    super.key,
+    required this.backgroundColor,
+    required this.onChanged,
+    this.placeholder,
+  });
+  final Color backgroundColor;
+  final String? placeholder;
+  final ValueChanged<String> onChanged;
+  @override
+  Widget build(BuildContext context) {
+    return ExcludeSemantics(
+      child: TextBox(
+        padding: EdgeInsets.zero,
+        placeholder: placeholder,
+        decoration: WidgetStateProperty.all(
+          BoxDecoration(
+            borderRadius: BorderRadius.circular(64),
+            color: backgroundColor,
+          ),
         ),
+        textAlign: TextAlign.center,
+        onChanged: onChanged,
       ),
     );
   }
