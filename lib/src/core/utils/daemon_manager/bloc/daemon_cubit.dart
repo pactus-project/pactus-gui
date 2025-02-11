@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger/logger.dart';
 import 'package:path/path.dart' show dirname, join;
 import 'daemon_state.dart';
 
@@ -27,6 +29,7 @@ import 'daemon_state.dart';
 /// - Handles exceptions and errors gracefully.
 class DaemonCubit extends Cubit<DaemonState> {
   DaemonCubit() : super(DaemonInitial());
+  final Logger _logger = Logger();
 
   /// Gets the appropriate native resources directory
   /// based on the operating system
@@ -66,31 +69,6 @@ class DaemonCubit extends Cubit<DaemonState> {
     }
   }
 
-  /// Prepares environment variables based on platform
-  Map<String, String> _prepareEnvironment() {
-    final environment = <String, String>{};
-
-    if (Platform.isMacOS) {
-      environment['PATH'] = Platform.environment['PATH'] ?? '';
-      environment['HOME'] = Platform.environment['HOME'] ?? '';
-    } else if (Platform.isWindows) {
-      environment['PATH'] = Platform.environment['PATH'] ?? '';
-      environment['USERPROFILE'] = Platform.environment['USERPROFILE'] ?? '';
-      environment['APPDATA'] = Platform.environment['APPDATA'] ?? '';
-    }
-
-    return environment;
-  }
-
-  /// Handles process execution result
-  void _handleProcessResult(ProcessResult result) {
-    if (result.exitCode == 0) {
-      emit(DaemonSuccess('${result.stdout}'));
-    } else {
-      emit(DaemonError('${result.stderr}'));
-    }
-  }
-
   /// Runs the Pactus daemon process.
   ///
   /// - [command]: The command to execute (e.g., "pactusd").
@@ -105,32 +83,63 @@ class DaemonCubit extends Cubit<DaemonState> {
     required List<String> arguments,
   }) async {
     emit(DaemonLoading());
+    _logger.i('Starting daemon process with command: $command $arguments');
 
     try {
       final scriptDir = dirname(Platform.script.toFilePath());
-      final sourcePath = _getNativeResourcesPath(scriptDir);
+      final executableDir = _getNativeResourcesPath(scriptDir);
+      _logger.d('Native resources path: $executableDir');
 
       final executablePath = join(
-        sourcePath,
+        executableDir,
         Platform.isWindows ? '$command.exe' : command,
       );
+      _logger.d('Executable path: $executablePath');
 
+      // Ensure executable permissions (skips on Windows)
       _ensureExecutablePermissions(executablePath);
-      final environment = _prepareEnvironment();
 
-      final result = await Process.run(
+      // Start the process with platform-specific command
+      _logger.d('Starting process...');
+      // final process = await Process.start(
+      //   Platform.isWindows ? 'cmd.exe' : executablePath,
+      //   Platform.isWindows ? ['/c', executablePath, ...arguments] : arguments,
+      //   workingDirectory: executableDir,
+      // );
+
+      final process = await Process.start(
         executablePath,
         arguments,
-        workingDirectory: sourcePath,
-        environment: environment.isEmpty ? null : environment,
+        workingDirectory: executableDir,
       );
 
-      _handleProcessResult(result);
+      _logger.d('Process started with PID: ${process.pid}');
+
+      // Handle process output
+      process.stdout.transform<String>(utf8.decoder).listen((data) {
+        _logger.i('Daemon stdout: $data');
+        emit(DaemonSuccess(data));
+      });
+
+      process.stderr.transform<String>(utf8.decoder).listen((data) {
+        _logger.i('Daemon stderr: $data');
+        emit(DaemonError(data));
+      });
+
+      await process.exitCode.then((code) {
+        _logger.i('Process exited with code: $code');
+        if (code != 0) {
+          emit(DaemonError('Process exited with code: $code'));
+        }
+      });
     } on FileSystemException catch (e) {
+      _logger.e('File system error: ${e.message}');
       emit(DaemonError('File system error: ${e.message}'));
     } on ProcessException catch (e) {
+      _logger.e('Process execution error: ${e.message}');
       emit(DaemonError('Process error: ${e.message}'));
     } on Exception catch (e) {
+      _logger.e('Unexpected error: $e');
       emit(DaemonError('Exception occurred: $e'));
     }
   }
