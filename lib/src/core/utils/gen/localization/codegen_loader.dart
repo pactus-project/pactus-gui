@@ -37,14 +37,14 @@ class CodegenLoader {
     'title': 'Bonjour le monde  !',
     'subtitle': 'Bienvenue dans Localisation',
     'description': 'Vous avez appuyé sur le bouton autant de fois :',
-    'switchLanguage': 'Changer de langue',
+    'switch_language': 'Changer de langue',
     'applications': 'Applications',
   };
   static const Map<String, dynamic> esES = {
     'title': '¡Hola, Mundo  !',
     'subtitle': 'Bienvenido a Localización',
     'description': 'Has pulsado el botón tantas veces:',
-    'switchLanguage': 'Cambiar idioma',
+    'switch_language': 'Cambiar idioma',
     'applications': 'Applications',
   };
 
