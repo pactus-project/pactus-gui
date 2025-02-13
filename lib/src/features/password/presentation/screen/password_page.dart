@@ -17,9 +17,7 @@ class PasswordPage extends StatelessWidget {
         title: Text(
           'PasswordPage',
           style: FluentTheme.of(context).typography.body!.copyWith(
-                color: AppTheme.of(context)
-                    .extension<DarkPallet>()!
-                    .dark900,
+                color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
               ),
         ),
       ),
@@ -30,9 +28,8 @@ class PasswordPage extends StatelessWidget {
             Text(
               context.tr(LocaleKeys.title),
               style: FluentTheme.of(context).typography.title?.copyWith(
-                    color: AppTheme.of(context)
-                        .extension<DarkPallet>()!
-                        .dark900,
+                    color:
+                        AppTheme.of(context).extension<DarkPallet>()!.dark900,
                   ),
             ),
             LanguageSelector(),

@@ -13,9 +13,7 @@ class InitializingPage extends StatelessWidget {
         title: Text(
           'InitializingPage',
           style: FluentTheme.of(context).typography.body!.copyWith(
-                color: AppTheme.of(context)
-                    .extension<DarkPallet>()!
-                    .dark900,
+                color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
               ),
         ),
       ),
