@@ -134,11 +134,11 @@ void showFluentAlert(BuildContext context) {
       return InfoBar(
         title: Text(
           'Error',
-          style: TextStyle(color: AppColors.primaryDark),
+          style: TextStyle(color: AppTheme.of(context).extension<DarkPallet>()!.dark900),
         ),
         content: Text(
           'Directory is not empty. need empty directory to continue',
-          style: TextStyle(color: AppColors.primaryDark),
+          style: TextStyle(color: AppTheme.of(context).extension<DarkPallet>()!.dark900),
         ),
         action: Button(
           onPressed: close,

@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
+import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 /// ### [ThemeSwitcher] Widget documentation
 ///
@@ -72,7 +73,8 @@ class ThemeSwitcher extends StatelessWidget {
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                    color: AppColors.primaryDark,
+                    color:
+                        AppTheme.of(context).extension<DarkPallet>()!.dark900!,
                   ),
                 ),
                 child: Padding(
@@ -86,7 +88,9 @@ class ThemeSwitcher extends StatelessWidget {
                       width: 14,
                       height: 14,
                       decoration: BoxDecoration(
-                        color: AppColors.primaryDark,
+                        color: AppTheme.of(context)
+                            .extension<DarkPallet>()!
+                            .dark900,
                         borderRadius: BorderRadius.circular(7),
                       ),
                     ),
