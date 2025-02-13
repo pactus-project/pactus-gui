@@ -1,3 +1,17 @@
+# 1.16.0+18
+
+- [Feat] : Implement macOS support for Daemon Execution.[#73](https://github.com/pactus-project/pactus-gui/pull/78)
+- [Update] : Implement daemon execution support for Windows systems.[#73](https://github.com/pactus-project/pactus-gui/pull/78)
+- [Update] : Move to run daemon by subprocess to get real-time stdout and stderr.[#73](https://github.com/pactus-project/pactus-gui/pull/78)
+- [Fix] : Resolve build issue.[#73](https://github.com/pactus-project/pactus-gui/pull/78)
+
+# 1.15.0+17
+
+- [Feat] : CI Pipeline Integration for Platform-Specific Release Files from ZIP Extraction. [#59](https://github.com/pactus-project/pactus-gui/pull/62)
+- [Update] : Support running the platform-specific scripts.[#59](https://github.com/pactus-project/pactus-gui/pull/62)
+- [Update] : Add bash script to support local execution.[#59](https://github.com/pactus-project/pactus-gui/pull/62)
+- [Fix] : Resolve build issue.[#59](https://github.com/pactus-project/pactus-gui/pull/62)
+
 # 1.14.0+16
 
 - [Feat] : impl `WelcomeScreen` according to Figma design. [#70](https://github.com/pactus-project/pactus-gui/pull/70)
