@@ -13,9 +13,7 @@ class ConfirmationSeedPage extends StatelessWidget {
         title: Text(
           'ConfirmationSeedPage',
           style: FluentTheme.of(context).typography.body!.copyWith(
-                color: AppTheme.of(context)
-                    .extension<OnSurfacePallet>()!
-                    .onSurface4,
+                color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
               ),
         ),
       ),

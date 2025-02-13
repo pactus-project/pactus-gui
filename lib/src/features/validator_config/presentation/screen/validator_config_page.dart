@@ -3,7 +3,6 @@ import 'package:file_selector/file_selector.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
@@ -56,9 +55,7 @@ class _ValidatorConfigPageState extends State<ValidatorConfigPage> {
         title: Text(
           'Validator Config Page',
           style: FluentTheme.of(context).typography.body!.copyWith(
-                color: AppTheme.of(context)
-                    .extension<OnSurfacePallet>()!
-                    .onSurface4,
+                color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
               ),
         ),
       ),
@@ -136,11 +133,15 @@ void showFluentAlert(BuildContext context) {
       return InfoBar(
         title: Text(
           'Error',
-          style: TextStyle(color: AppColors.primaryDark),
+          style: TextStyle(
+            color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
+          ),
         ),
         content: Text(
           'Directory is not empty. need empty directory to continue',
-          style: TextStyle(color: AppColors.primaryDark),
+          style: TextStyle(
+            color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
+          ),
         ),
         action: Button(
           onPressed: close,

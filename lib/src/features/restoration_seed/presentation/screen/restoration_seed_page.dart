@@ -15,9 +15,7 @@ class RestorationSeedPage extends StatelessWidget {
         title: Text(
           'Restoration Seed Page',
           style: FluentTheme.of(context).typography.body!.copyWith(
-                color: AppTheme.of(context)
-                    .extension<OnSurfacePallet>()!
-                    .onSurface4,
+                color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
               ),
         ),
       ),
@@ -30,33 +28,29 @@ class RestorationSeedPage extends StatelessWidget {
               Text(
                 '12 seeds:',
                 style: FluentTheme.of(context).typography.body!.copyWith(
-                      color: AppTheme.of(context)
-                          .extension<OnSurfacePallet>()!
-                          .onSurface4,
+                      color:
+                          AppTheme.of(context).extension<DarkPallet>()!.dark900,
                     ),
               ),
               Text(
                 '${SeedGenerator().generateSeed(12)?.sentence}',
                 style: FluentTheme.of(context).typography.body!.copyWith(
-                      color: AppTheme.of(context)
-                          .extension<OnSurfacePallet>()!
-                          .onSurface4,
+                      color:
+                          AppTheme.of(context).extension<DarkPallet>()!.dark900,
                     ),
               ),
               Text(
                 '24 seeds:',
                 style: FluentTheme.of(context).typography.body!.copyWith(
-                      color: AppTheme.of(context)
-                          .extension<OnSurfacePallet>()!
-                          .onSurface4,
+                      color:
+                          AppTheme.of(context).extension<DarkPallet>()!.dark900,
                     ),
               ),
               Text(
                 '${SeedGenerator().generateSeed(24)?.sentence}',
                 style: FluentTheme.of(context).typography.body!.copyWith(
-                      color: AppTheme.of(context)
-                          .extension<OnSurfacePallet>()!
-                          .onSurface4,
+                      color:
+                          AppTheme.of(context).extension<DarkPallet>()!.dark900,
                     ),
               ),
               Button(

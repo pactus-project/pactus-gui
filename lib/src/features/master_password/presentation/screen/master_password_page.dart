@@ -21,9 +21,7 @@ class _MasterPasswordPageState extends State<MasterPasswordPage> {
         title: Text(
           'MasterPasswordPage',
           style: FluentTheme.of(context).typography.body!.copyWith(
-                color: AppTheme.of(context)
-                    .extension<OnSurfacePallet>()!
-                    .onSurface4,
+                color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
               ),
         ),
       ),
