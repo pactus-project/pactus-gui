@@ -14,8 +14,8 @@ class ConfirmationSeedPage extends StatelessWidget {
           'ConfirmationSeedPage',
           style: FluentTheme.of(context).typography.body!.copyWith(
                 color: AppTheme.of(context)
-                    .extension<OnSurfacePallet>()!
-                    .onSurface4,
+                    .extension<DarkPallet>()!
+                    .dark900,
               ),
         ),
       ),

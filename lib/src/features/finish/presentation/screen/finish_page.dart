@@ -19,8 +19,8 @@ class FinishPage extends StatelessWidget {
           'InitializingPage',
           style: FluentTheme.of(context).typography.body!.copyWith(
                 color: AppTheme.of(context)
-                    .extension<OnSurfacePallet>()!
-                    .onSurface4,
+                    .extension<DarkPallet>()!
+                    .dark900,
               ),
         ),
       ),

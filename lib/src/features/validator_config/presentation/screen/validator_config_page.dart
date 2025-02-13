@@ -57,8 +57,8 @@ class _ValidatorConfigPageState extends State<ValidatorConfigPage> {
           'Validator Config Page',
           style: FluentTheme.of(context).typography.body!.copyWith(
                 color: AppTheme.of(context)
-                    .extension<OnSurfacePallet>()!
-                    .onSurface4,
+                    .extension<DarkPallet>()!
+                    .dark900,
               ),
         ),
       ),

@@ -18,8 +18,8 @@ class PasswordPage extends StatelessWidget {
           'PasswordPage',
           style: FluentTheme.of(context).typography.body!.copyWith(
                 color: AppTheme.of(context)
-                    .extension<OnSurfacePallet>()!
-                    .onSurface4,
+                    .extension<DarkPallet>()!
+                    .dark900,
               ),
         ),
       ),
@@ -31,8 +31,8 @@ class PasswordPage extends StatelessWidget {
               context.tr(LocaleKeys.title),
               style: FluentTheme.of(context).typography.title?.copyWith(
                     color: AppTheme.of(context)
-                        .extension<OnSurfacePallet>()!
-                        .onSurface4,
+                        .extension<DarkPallet>()!
+                        .dark900,
                   ),
             ),
             LanguageSelector(),
@@ -46,8 +46,8 @@ class PasswordPage extends StatelessWidget {
                       'Navigate to ${AppRoute.dashboard.name}',
                       style: FluentTheme.of(context).typography.title?.copyWith(
                             color: AppTheme.of(context)
-                                .extension<OnSurfacePallet>()!
-                                .onSurface4,
+                                .extension<DarkPallet>()!
+                                .dark900,
                           ),
                     ),
                   )
