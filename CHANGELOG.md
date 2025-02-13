@@ -1,35 +1,49 @@
-# 1.15.0+17
+# 1.17.0+19
 
 - [Feat] : Implement `InitializingNavigationPane` for handling Pactus initializing panel. [#71](https://github.com/pactus-project/pactus-gui/pull/71)
-  - Add/create `InitializingNavigationPane` and integrate each `panItem` for tabs based on Figma design.
-  - Implement `NavigationPaneCubit` for managing selected tab index.
-  - Add `dashboard_navigation_pane.dart` for future dashboard navigation panel integration.
-  - Update `registrationRoutes` for proper navigation.
-  - Provide `NavigationPaneCubit` in `main.dart`.
-  - Add new variables in `.arb` files and generate updated translation files.
-  - Add `navigationPanelEnableColor` & `navigationPanelDisableColor` to `AppColors`.
+    - Add/create `InitializingNavigationPane` and integrate each `panItem` for tabs based on Figma design.
+    - Implement `NavigationPaneCubit` for managing selected tab index.
+    - Add `dashboard_navigation_pane.dart` for future dashboard navigation panel integration.
+    - Update `registrationRoutes` for proper navigation.
+    - Provide `NavigationPaneCubit` in `main.dart`.
+    - Add new variables in `.arb` files and generate updated translation files.
+    - Add `navigationPanelEnableColor` & `navigationPanelDisableColor` to `AppColors`.
 
 - [Feat] : Implement widgets of `InitializeModeScreen`. [#71](https://github.com/pactus-project/pactus-gui/pull/71)
-  - Add/create `CustomInputWidget` component for text fields.
-  - Add/create `CustomRadioButton` and `RadioButtonGroup` components.
-  - Add new colors to `AppColors` for widget styling.
-  - Update `InitializeModeScreen` for new widget integration.
+    - Add/create `CustomInputWidget` component for text fields.
+    - Add/create `CustomRadioButton` and `RadioButtonGroup` components.
+    - Add new colors to `AppColors` for widget styling.
+    - Update `InitializeModeScreen` for new widget integration.
 
 - [Feat] : Add/create `CustomExpandableWidget` component. [#71](https://github.com/pactus-project/pactus-gui/pull/71)
-  - Update `InitializeModeScreen` for better UI flow.
+    - Update `InitializeModeScreen` for better UI flow.
 
 - [Update] : Fix stack issue for navigation in `InitializeModeScreen`. [#71](https://github.com/pactus-project/pactus-gui/pull/71)
-  - Add/create `RemoteNodeSection` and `RadioButtonCubit` for handling remote node selection.
-  - Update `RadioButtonGroup`, `CustomRadioButton`, `CustomInputRow`, and `CustomExpandableWidget`.
-  - Add multi-language translation files for the new text.
+    - Add/create `RemoteNodeSection` and `RadioButtonCubit` for handling remote node selection.
+    - Update `RadioButtonGroup`, `CustomRadioButton`, `CustomInputRow`, and `CustomExpandableWidget`.
+    - Add multi-language translation files for the new text.
 
 - [Fix] : Resolve daemon config issue related to initialization on "Next" button click. [#71](https://github.com/pactus-project/pactus-gui/pull/71)
-  - Update `FinishPage`.
-  - Update `InitializeModeScreen`.
-  - Update `MasterPasswordPage`.
-  - Update `RestorationSeedPage`.
-  - Update `ValidatorConfigPage`.
+    - Update `FinishPage`.
+    - Update `InitializeModeScreen`.
+    - Update `MasterPasswordPage`.
+    - Update `RestorationSeedPage`.
+    - Update `ValidatorConfigPage`.
 
+# 1.16.0+18
+
+- [Feat] : Implement macOS support for Daemon Execution.[#73](https://github.com/pactus-project/pactus-gui/pull/78)
+- [Update] : Implement daemon execution support for Windows systems.[#73](https://github.com/pactus-project/pactus-gui/pull/78)
+- [Update] : Move to run daemon by subprocess to get real-time stdout and stderr.[#73](https://github.com/pactus-project/pactus-gui/pull/78)
+- [Fix] : Resolve build issue.[#73](https://github.com/pactus-project/pactus-gui/pull/78)
+- [Update] : Replace pallet colors , from `onLightPallet` to `DarkPallet`. [#73](https://github.com/pactus-project/pactus-gui/pull/78)
+
+# 1.15.0+17
+
+- [Feat] : CI Pipeline Integration for Platform-Specific Release Files from ZIP Extraction. [#59](https://github.com/pactus-project/pactus-gui/pull/62)
+- [Update] : Support running the platform-specific scripts.[#59](https://github.com/pactus-project/pactus-gui/pull/62)
+- [Update] : Add bash script to support local execution.[#59](https://github.com/pactus-project/pactus-gui/pull/62)
+- [Fix] : Resolve build issue.[#59](https://github.com/pactus-project/pactus-gui/pull/62)
 
 # 1.14.0+16
 

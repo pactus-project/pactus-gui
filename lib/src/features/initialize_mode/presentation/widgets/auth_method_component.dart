@@ -19,7 +19,7 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 ///   - Uses `CustomExpandableWidget` to provide a dropdown menu.
 ///   - Header displays `LocaleKeys.basic_auth`.
 ///   - Body contains authentication method options. example(`Item 1`, `Item 2`)
-///   - Styled with `surface3` color from `SurfacePallet`.
+///   - Styled with `light900` color from `LightPallet`.
 ///
 class AuthMethodComponent extends StatelessWidget {
   const AuthMethodComponent({
@@ -58,9 +58,9 @@ class AuthMethodComponent extends StatelessWidget {
             ],
           ),
           headerColor:
-          AppTheme.of(context).extension<SurfacePallet>()!.surface3!,
+          AppTheme.of(context).extension<LightPallet>()!.light900!,
           expandedColor:
-          AppTheme.of(context).extension<SurfacePallet>()!.surface3!,
+          AppTheme.of(context).extension<LightPallet>()!.light900!,
           padding: EdgeInsets.all(8),
           animationDuration: 400,
           width: 125,

@@ -30,7 +30,7 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 ///
 /// - **[backgroundColor]** (`Color?`)
 ///   - Background color of the input field.
-///   - If not specified, it defaults to `surface3` from `SurfacePallet`.
+///   - If not specified, it defaults to `light900` from `LightPallet`.
 ///
 /// - **[borderRadius]** (`BorderRadius?`)
 ///   - Defines the border radius of the input field.
@@ -83,7 +83,7 @@ class CustomPasswordWidget extends StatelessWidget {
           placeholder: placeholder,
           placeholderStyle: TextStyle(
             color:
-                AppTheme.of(context).extension<OnSurfacePallet>()!.onSurface3,
+                AppTheme.of(context).extension<DarkPallet>()!.dark900,
           ),
           onChanged: onChanged,
           readOnly: readOnly,
@@ -101,7 +101,7 @@ class CustomPasswordWidget extends StatelessWidget {
             final isFocused = states.isFocused;
             return BoxDecoration(
               color: backgroundColor ??
-                  AppTheme.of(context).extension<SurfacePallet>()!.surface3,
+                  AppTheme.of(context).extension<LightPallet>()!.light900,
               borderRadius: borderRadius ?? BorderRadius.circular(4),
               border: Border(
                 bottom: BorderSide(

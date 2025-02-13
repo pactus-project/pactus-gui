@@ -114,8 +114,8 @@ class InitializeModeScreen extends StatelessWidget {
                   child: Container(
                     height: 89,
                     color: AppTheme.of(context)
-                        .extension<SurfacePallet>()!
-                        .surface3,
+                        .extension<LightPallet>()!
+                        .light900,
                     padding: const EdgeInsets.only(right: 46),
                     child: Align(
                       alignment: Alignment.centerRight,
