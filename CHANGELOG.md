@@ -4,7 +4,8 @@
 - [Update] : Implement daemon execution support for Windows systems.[#73](https://github.com/pactus-project/pactus-gui/pull/78)
 - [Update] : Move to run daemon by subprocess to get real-time stdout and stderr.[#73](https://github.com/pactus-project/pactus-gui/pull/78)
 - [Fix] : Resolve build issue.[#73](https://github.com/pactus-project/pactus-gui/pull/78)
-
+- [Update] : Replace pallet colors , from `onSurfacePallet` to `DarkPallet`. [#73](https://github.com/pactus-project/pactus-gui/pull/78)
+ 
 # 1.15.0+17
 
 - [Feat] : CI Pipeline Integration for Platform-Specific Release Files from ZIP Extraction. [#59](https://github.com/pactus-project/pactus-gui/pull/62)
