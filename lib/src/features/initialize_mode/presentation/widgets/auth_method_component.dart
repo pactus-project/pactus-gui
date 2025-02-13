@@ -13,7 +13,7 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 ///
 /// - **Authentication Method Label:**
 ///   - Displays the text from `LocaleKeys.auth_method`.
-///   - Styled using `InterTextStyles.captionMedium` with `AppColors.primaryGray`
+///   - Styled use `InterTextStyles.captionMedium` with `AppColors.primaryGray`
 ///
 /// - **Expandable Authentication Options:**
 ///   - Uses `CustomExpandableWidget` to provide a dropdown menu.
@@ -57,10 +57,9 @@ class AuthMethodComponent extends StatelessWidget {
               ),
             ],
           ),
-          headerColor:
-          AppTheme.of(context).extension<LightPallet>()!.light900!,
+          headerColor: AppTheme.of(context).extension<LightPallet>()!.light900!,
           expandedColor:
-          AppTheme.of(context).extension<LightPallet>()!.light900!,
+              AppTheme.of(context).extension<LightPallet>()!.light900!,
           padding: EdgeInsets.all(8),
           animationDuration: 400,
           width: 125,

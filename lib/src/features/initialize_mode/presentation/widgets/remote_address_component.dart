@@ -7,7 +7,8 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 /// ## [RemoteAddressComponent] Class Documentation
 ///
-/// The `RemoteAddressComponent` provides a UI section for entering a remote address.
+/// The `RemoteAddressComponent` provides a UI section for entering a remote -
+/// address.
 ///
 /// ### UI Components:
 ///

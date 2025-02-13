@@ -82,8 +82,7 @@ class CustomPasswordWidget extends StatelessWidget {
         child: PasswordBox(
           placeholder: placeholder,
           placeholderStyle: TextStyle(
-            color:
-                AppTheme.of(context).extension<DarkPallet>()!.dark900,
+            color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
           ),
           onChanged: onChanged,
           readOnly: readOnly,
