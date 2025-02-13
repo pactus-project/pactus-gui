@@ -69,7 +69,9 @@ class InitializeModeScreen extends StatelessWidget {
                           Text(
                             context.tr(LocaleKeys.initiate_your_node),
                             style: InterTextStyles.bodyBold.copyWith(
-                              color: AppColors.primaryDark,
+                              color: AppTheme.of(context)
+                                  .extension<DarkPallet>()!
+                                  .dark900,
                             ),
                           ),
                           const Gap(8),
