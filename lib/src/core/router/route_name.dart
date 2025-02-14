@@ -11,7 +11,9 @@ enum AppRoute {
   password,
   dashboard,
   basicPassword,
-  basicDashboard;
+  basicDashboard,
+  initializingNavigationPane,
+  dashboardNavigationPane;
 
   String get fullPath => '/$name';
   String get path => name;

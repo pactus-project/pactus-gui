@@ -8,6 +8,7 @@ import 'package:gui/src/features/main/language/core/language_constants.dart';
 import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 import 'src/features/main/language/presentation/bloc/language_bloc.dart';
+import 'src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 
 void main() {
   runApp(
@@ -18,6 +19,9 @@ void main() {
         ),
         BlocProvider<AppThemeCubit>(
           create: (_) => AppThemeCubit(),
+        ),
+        BlocProvider<NavigationPaneCubit>(
+          create: (_) => NavigationPaneCubit(),
         ),
       ],
       child: PactusGuiApp(),
