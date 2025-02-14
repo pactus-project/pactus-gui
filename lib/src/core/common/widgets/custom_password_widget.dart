@@ -83,7 +83,7 @@ class CustomPasswordWidget extends StatelessWidget {
           placeholder: placeholder,
           placeholderStyle: TextStyle(
             color:
-                AppTheme.of(context).extension<OnSurfacePallet>()!.onSurface3,
+                AppTheme.of(context).extension<LightPallet>()!.light900,
           ),
           onChanged: onChanged,
           readOnly: readOnly,
@@ -101,7 +101,7 @@ class CustomPasswordWidget extends StatelessWidget {
             final isFocused = states.isFocused;
             return BoxDecoration(
               color: backgroundColor ??
-                  AppTheme.of(context).extension<SurfacePallet>()!.surface3,
+                  AppTheme.of(context).extension<LightPallet>()!.light900,
               borderRadius: borderRadius ?? BorderRadius.circular(4),
               border: Border(
                 bottom: BorderSide(

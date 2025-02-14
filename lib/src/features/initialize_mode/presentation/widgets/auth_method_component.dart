@@ -58,9 +58,9 @@ class AuthMethodComponent extends StatelessWidget {
             ],
           ),
           headerColor:
-          AppTheme.of(context).extension<SurfacePallet>()!.surface3!,
+          AppTheme.of(context).extension<LightPallet>()!.light900!,
           expandedColor:
-          AppTheme.of(context).extension<SurfacePallet>()!.surface3!,
+          AppTheme.of(context).extension<LightPallet>()!.light900!,
           padding: EdgeInsets.all(8),
           animationDuration: 400,
           width: 125,
