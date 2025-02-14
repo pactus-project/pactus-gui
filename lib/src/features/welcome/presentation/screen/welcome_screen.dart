@@ -84,7 +84,7 @@ class WelcomeScreen extends StatelessWidget {
             CustomFilledButton(
               text: LocaleKeys.start_button_text,
               onPressed: () {
-                context.goNamed(AppRoute.initializeMode.name);
+                context.goNamed(AppRoute.initializingNavigationPane.name);
               },
               style: ButtonStyle(
                 padding: WidgetStateProperty.all<EdgeInsetsDirectional?>(

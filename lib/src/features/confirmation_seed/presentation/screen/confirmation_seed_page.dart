@@ -1,30 +1,43 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:go_router/go_router.dart';
-import 'package:gui/src/core/router/route_name.dart';
-import 'package:pactus_gui_widgetbook/app_styles.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 
 class ConfirmationSeedPage extends StatelessWidget {
   const ConfirmationSeedPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return NavigationView(
-      appBar: NavigationAppBar(
-        title: Text(
-          'ConfirmationSeedPage',
-          style: FluentTheme.of(context).typography.body!.copyWith(
-                color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
-              ),
-        ),
-      ),
-      content: Center(
-        child: Button(
-          onPressed: () {
-            context.goNamed(AppRoute.masterPassword.name);
-          },
-          child: Text('Navigate to ${AppRoute.masterPassword.name}'),
-        ),
-      ),
+    return BlocBuilder<NavigationPaneCubit, int>(
+      builder: (context, selectedIndex) {
+        return NavigationView(
+          content: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (selectedIndex > 0)
+                  Button(
+                    child: const Text('Previous'),
+                    onPressed: () {
+                      context
+                          .read<NavigationPaneCubit>()
+                          .setSelectedIndex(selectedIndex - 1);
+                    },
+                  ),
+                const SizedBox(width: 20),
+                if (selectedIndex < 6)
+                  Button(
+                    child: const Text('Next'),
+                    onPressed: () {
+                      context
+                          .read<NavigationPaneCubit>()
+                          .setSelectedIndex(selectedIndex + 1);
+                    },
+                  ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

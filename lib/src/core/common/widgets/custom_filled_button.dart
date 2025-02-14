@@ -104,7 +104,9 @@ class CustomFilledButton extends StatelessWidget {
             if (icon != null) const SizedBox(width: 8),
             Text(
               context.tr(text),
+              textAlign: TextAlign.center,
               style: InterTextStyles.bodyBold.copyWith(
+                height: 0,
                 color: AppColors.primaryLight,
               ),
             ),
