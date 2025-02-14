@@ -11,7 +11,8 @@ import 'package:gui/src/features/main/language/core/localization_extension.dart'
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/master_password/presentation/screen/master_password_page.dart';
 import 'package:gui/src/features/restoration_seed/presentation/screen/restoration_seed_page.dart';
-import 'package:gui/src/features/validator_config/presentation/screen/validator_config_page.dart';
+import 'package:gui/src/features/validator_config/presentation/cubits/validator_qty_cubit.dart';
+import 'package:gui/src/features/validator_config/presentation/screen/validator_config_screen.dart';
 
 /// ## [InitializingNavigationPane] Class Documentation
 ///
@@ -128,7 +129,10 @@ class InitializingNavigationPane extends StatelessWidget {
                         : AppColors.navigationPanelDisableColor,
                   ),
                 ),
-                body: ValidatorConfigPage(),
+                body: BlocProvider(
+                  create: (context) => ValidatorQtyCubit(),
+                  child: ValidatorConfigScreen(),
+                ),
               ),
               PaneItem(
                 icon: const SizedBox(),
