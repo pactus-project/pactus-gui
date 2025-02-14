@@ -1,34 +1,74 @@
+# 1.18.0+20
+
+- [Feat]: Implement `InitializingNavigationPane` for handling Pactus initializing panel. [#69](https://github.com/pactus-project/pactus-gui/pull/71)
+  - Add/create `InitializingNavigationPane` and integrate each `panItem` for tabs based on Figma design.
+  - Implement `NavigationPaneCubit` for managing selected tab index.
+  - Add `dashboard_navigation_pane.dart` for future dashboard navigation panel integration.
+  - Update `registrationRoutes` for proper navigation.
+  - Provide `NavigationPaneCubit` in `main.dart`.
+  - Add new variables in `.arb` files and generate updated translation files.
+  - Add `navigationPanelEnableColor` & `navigationPanelDisableColor` to `AppColors`.
+
+- [Feat]: Implement widgets of `InitializeModeScreen`. [#69](https://github.com/pactus-project/pactus-gui/pull/71)
+  - Add/create `CustomInputWidget` component for text fields.
+  - Add/create `CustomRadioButton` and `RadioButtonGroup` components.
+  - Add new colors to `AppColors` for widget styling.
+  - Update `InitializeModeScreen` for new widget integration.
+
+- [Feat]: Add/create `CustomExpandableWidget` component. [#69](https://github.com/pactus-project/pactus-gui/pull/71)
+  - Update `InitializeModeScreen` for better UI flow.
+
+- [Update]: Fix stack issue for navigation in `InitializeModeScreen`. [#69](https://github.com/pactus-project/pactus-gui/pull/71)
+  - Add/create `RemoteNodeSection` and `RadioButtonCubit` for handling remote node selection.
+  - Update `RadioButtonGroup`, `CustomRadioButton`, `CustomInputRow`, and `CustomExpandableWidget`.
+  - Add multi-language translation files for the new text.
+
+- [Fix]: Resolve daemon config issue related to initialization on "Next" button click. [#69](https://github.com/pactus-project/pactus-gui/pull/71)
+  - Update `FinishPage`.
+  - Update `InitializeModeScreen`.
+  - Update `MasterPasswordPage`.
+  - Update `RestorationSeedPage`.
+  - Update `ValidatorConfigPage`.
+
+- [Fix]: Fix button height inconsistency. [#69](https://github.com/pactus-project/pactus-gui/pull/71)
+
+- [Fix]: Resolve Linux-specific bugs related to `TextBox` widget. [#69](https://github.com/pactus-project/pactus-gui/pull/71)
+
+- [Refactor]: Improve `RemoteNodeSection` by separating concerns. [#69](https://github.com/pactus-project/pactus-gui/pull/71)
+
+- [Fix]: Adjust color values in `TextStyle` to align with new palette. [#69](https://github.com/pactus-project/pactus-gui/pull/71)
+
 # 1.17.0+19
 
 - [Feat] : Implement `InitializingNavigationPane` for handling Pactus initializing panel. [#71](https://github.com/pactus-project/pactus-gui/pull/71)
-    - Add/create `InitializingNavigationPane` and integrate each `panItem` for tabs based on Figma design.
-    - Implement `NavigationPaneCubit` for managing selected tab index.
-    - Add `dashboard_navigation_pane.dart` for future dashboard navigation panel integration.
-    - Update `registrationRoutes` for proper navigation.
-    - Provide `NavigationPaneCubit` in `main.dart`.
-    - Add new variables in `.arb` files and generate updated translation files.
-    - Add `navigationPanelEnableColor` & `navigationPanelDisableColor` to `AppColors`.
+  - Add/create `InitializingNavigationPane` and integrate each `panItem` for tabs based on Figma design.
+  - Implement `NavigationPaneCubit` for managing selected tab index.
+  - Add `dashboard_navigation_pane.dart` for future dashboard navigation panel integration.
+  - Update `registrationRoutes` for proper navigation.
+  - Provide `NavigationPaneCubit` in `main.dart`.
+  - Add new variables in `.arb` files and generate updated translation files.
+  - Add `navigationPanelEnableColor` & `navigationPanelDisableColor` to `AppColors`.
 
 - [Feat] : Implement widgets of `InitializeModeScreen`. [#71](https://github.com/pactus-project/pactus-gui/pull/71)
-    - Add/create `CustomInputWidget` component for text fields.
-    - Add/create `CustomRadioButton` and `RadioButtonGroup` components.
-    - Add new colors to `AppColors` for widget styling.
-    - Update `InitializeModeScreen` for new widget integration.
+  - Add/create `CustomInputWidget` component for text fields.
+  - Add/create `CustomRadioButton` and `RadioButtonGroup` components.
+  - Add new colors to `AppColors` for widget styling.
+  - Update `InitializeModeScreen` for new widget integration.
 
 - [Feat] : Add/create `CustomExpandableWidget` component. [#71](https://github.com/pactus-project/pactus-gui/pull/71)
-    - Update `InitializeModeScreen` for better UI flow.
+  - Update `InitializeModeScreen` for better UI flow.
 
 - [Update] : Fix stack issue for navigation in `InitializeModeScreen`. [#71](https://github.com/pactus-project/pactus-gui/pull/71)
-    - Add/create `RemoteNodeSection` and `RadioButtonCubit` for handling remote node selection.
-    - Update `RadioButtonGroup`, `CustomRadioButton`, `CustomInputRow`, and `CustomExpandableWidget`.
-    - Add multi-language translation files for the new text.
+  - Add/create `RemoteNodeSection` and `RadioButtonCubit` for handling remote node selection.
+  - Update `RadioButtonGroup`, `CustomRadioButton`, `CustomInputRow`, and `CustomExpandableWidget`.
+  - Add multi-language translation files for the new text.
 
 - [Fix] : Resolve daemon config issue related to initialization on "Next" button click. [#71](https://github.com/pactus-project/pactus-gui/pull/71)
-    - Update `FinishPage`.
-    - Update `InitializeModeScreen`.
-    - Update `MasterPasswordPage`.
-    - Update `RestorationSeedPage`.
-    - Update `ValidatorConfigPage`.
+  - Update `FinishPage`.
+  - Update `InitializeModeScreen`.
+  - Update `MasterPasswordPage`.
+  - Update `RestorationSeedPage`.
+  - Update `ValidatorConfigPage`.
 
 # 1.16.0+18
 
@@ -114,23 +154,23 @@
 # 1.9.1+11
 
 - [Feature] : CI/CD Integration for Automated Release Builds and Notifications [#45](https://github.com/pactus-project/pactus-gui/pull/45)
-  - feat: add some changes on theme configurations for using fluent_ui package 
+  - feat: add some changes on theme configurations for using fluent_ui package
 
 # 1.9.0+10
 
 - [Feature] : Migrate to `Fluent UI` Framework/DesignSystem [#45](https://github.com/pactus-project/pactus-gui/pull/45)
-  - feat: add some changes on theme configurations for using fluent_ui package 
+  - feat: add some changes on theme configurations for using fluent_ui package
 
 # 1.8.0+9
 
 - [Feature] : Implement or replace the Easy Localization package for efficient localization management [#37](https://github.com/pactus-project/pactus-gui/pull/37)
-  - feat(app): add inter text styles to app 
+  - feat(app): add inter text styles to app
   - update(app): update font weight in `pubspec.yaml`
 
 # 1.7.0+8
 
 - [Feature] : Implement or replace the Easy Localization package for efficient localization management [#40](https://github.com/pactus-project/pactus-gui/pull/40)
-  - feat: add easy localization package to project 
+  - feat: add easy localization package to project
   - feat: reformat codes with dart reformat command
   - update: remove `l10n` from project
   - fix: fix translation files for `applications` text in `es` & `fr`
@@ -143,14 +183,14 @@
 # 1.6.0+7
 
 - [Feature] : Implement `GoRouter` navigation system [#40](https://github.com/pactus-project/pactus-gui/pull/40)
-  - feat: add `easy localization` package to project 
+  - feat: add `easy localization` package to project
   - feat: reformat codes with dart reformat command
   - update: remove `l10n` from project
 
 # 1.5.0+6
 
 - [Feature] : Implement `GoRouter` navigation system [#32](https://github.com/pactus-project/pactus-gui/pull/32)
-  - feat(router): implement GoRouter navigation system  
+  - feat(router): implement GoRouter navigation system
   - update(core:router): changing AppRoute get method's
   - fix(core:router): fix basic routes for correctly action of back button
   - fix(router/features): fix register routes for correctly action of back button
@@ -158,22 +198,22 @@
 # 1.4.0+5
 
 - [Feature] : Implement `ToolbarLogo` and `ThemeSwitcher` [#35](https://github.com/pactus-project/pactus-gui/pull/36)
-  - feat: added `ToolbarLogo` and `ThemeSwitcher` as reusable components with UI implementation, tests, and documentation 
+  - feat: added `ToolbarLogo` and `ThemeSwitcher` as reusable components with UI implementation, tests, and documentation
 
 # 1.3.0+4
 
 - [Feature] : Implement Theme Management [#33](https://github.com/pactus-project/pactus-gui/pull/33)
-  - feature(features:main:theme): add theme manager for switch between dark and light themes 
+  - feature(features:main:theme): add theme manager for switch between dark and light themes
 
 # 1.2.0+3
 
 - [Feature] : Implement Localization Management [#30](https://github.com/pactus-project/pactus-gui/pull/30)
-  - feat(localization): integrate l10n_flutter with Bloc for language management 
+  - feat(localization): integrate l10n_flutter with Bloc for language management
 
 # 1.1.0+2
 
 - [Feature] : Rewriting Project and Upgrading to Flutter 3.24.5 [#28](https://github.com/pactus-project/pactus-gui/pull/28)
-    - feat: remove old project files and match code with flutter version `3.24.5` 
+  - feat: remove old project files and match code with flutter version `3.24.5`
 
 # 1.0.0+1
 
