@@ -15,6 +15,11 @@ Pactus GUI aims to democratize access to blockchain technology by providing an i
 ## Key Features
 Pactus GUI offers a comprehensive suite of features designed to meet the needs of both casual users and blockchain enthusiasts:
 
+### Platform Support
+- **Windows**: Fully supported with native Windows UI/UX
+- **macOS**: Optimized for Apple's ecosystem with native look and feel
+- **Linux**: Compatible with major Linux distributions
+
 ### Core Functionality
 - **Wallet Management**:
   - Create and manage multiple wallets with secure seed phrase backup
