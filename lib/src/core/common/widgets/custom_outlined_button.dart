@@ -2,7 +2,37 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
-
+/// ## [CustomOutlinedButton] Class Documentation
+///
+/// The [CustomOutlinedButton] is a customizable outlined button
+/// that supports icons, padding, and custom styles.
+///
+/// ### Properties:
+///
+/// - **[text]** (String):
+///   - The button's label text.
+///
+/// - **[onPressed]** (VoidCallback):
+///   - Function to execute when the button is pressed.
+///
+/// - **[style]** (ButtonStyle?):
+///   - Custom button style.
+///
+/// - **[icon]** (Widget?):
+///   - Optional leading icon for the button.
+///
+/// - **[autofocus]** (bool):
+///   - If true, the button will request focus on initialization.
+///
+/// - **[focusNode]** (FocusNode?):
+///   - Focus node for managing focus state.
+///
+/// - **[padding]** (EdgeInsetsGeometry?):
+///   - Padding inside the button.
+///
+/// - **[borderColor]** (Color):
+///   - The color of the button border.
+///
 class CustomOutlinedButton extends StatelessWidget {
   const CustomOutlinedButton({
     super.key,

@@ -2,6 +2,48 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+/// ## [CustomExpandableWidget] Class Documentation
+///
+/// The [CustomExpandableWidget] is a UI component for creating
+/// expandable and collapsible sections.
+///
+/// ### Properties:
+///
+/// - **[header]** (String):
+///   - The title displayed in the header.
+///
+/// - **[headerStyle]** (TextStyle?):
+///   - Optional text style for the header.
+///
+/// - **[body]** (Widget):
+///   - The content displayed when expanded.
+///
+/// - **[headerColor]** (Color?):
+///   - Background color for the header.
+///
+/// - **[expandedColor]** (Color?):
+///   - Background color when expanded.
+///
+/// - **[borderHighlightColor]** (Color?):
+///   - Border color when expanded.
+///
+/// - **[padding]** (EdgeInsetsGeometry):
+///   - Padding inside the widget, defaults to [EdgeInsets.all(10)].
+///
+/// - **[isExpanded]** (bool):
+///   - Determines if the widget is expanded.
+///
+/// - **[animationDuration]** (double):
+///   - Duration of the expansion animation.
+///
+/// - **[width]** (double):
+///   - Width of the widget.
+///
+/// - **[maxHeight]** (double?):
+///   - Maximum height of the expanded content.
+///
+/// - **[onTap]** (VoidCallback?):
+///   - Callback function for toggling expansion.
 
 class CustomExpandableWidget extends StatelessWidget {
   const CustomExpandableWidget({

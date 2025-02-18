@@ -15,7 +15,35 @@ import 'package:gui/src/features/validator_config/presentation/cubits/validator_
 import 'package:gui/src/features/validator_config/presentation/sections/validator_config_title_section.dart';
 import 'package:gui/src/features/validator_config/presentation/sections/validator_qty_selector_section.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
-
+/// ## [ValidatorConfigScreen] Class Documentation
+///
+/// The `ValidatorConfigScreen` class represents the screen where the user
+/// configures the validator settings.
+/// It provides functionality to choose a working directory and select the
+/// validator quantity, with various interactions for navigation.
+///
+/// ### Usage:
+///
+/// This screen allows the user to:
+/// - Select a working directory via the "Select Folder" button.
+/// - Choose the validator quantity from a predefined set of options.
+/// - Navigate between sections using the navigation pane.
+///
+///
+/// ### Methods:
+///
+/// - **[_chooseDirectory()]**:
+///   - Opens a directory picker dialog to allow the user to select a directory.
+///   - If a directory is selected, it updates the `directoryController` with
+///   the selected path.
+///
+/// ### Notes:
+///
+/// - The screen uses a `BlocBuilder` to manage state and respond to changes
+/// in the selected index of the navigation pane.
+/// - The `NavigationFooterSection` is used for navigation and includes logic
+/// for the "Next" and "Back" buttons.
+///
 /// to-do #81: correct colors after identifying in Figma design by Pouria
 class ValidatorConfigScreen extends StatefulWidget {
   const ValidatorConfigScreen({super.key});
