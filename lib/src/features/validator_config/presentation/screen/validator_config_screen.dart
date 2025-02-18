@@ -14,7 +14,7 @@ import 'package:gui/src/features/validator_config/presentation/sections/validato
 import 'package:gui/src/features/validator_config/presentation/sections/validator_qty_selector_section.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
-/// todo #81: correct colors after identifying in Figma design by Pouria
+/// to-do #81: correct colors after identifying in Figma design by Pouria
 class ValidatorConfigScreen extends StatefulWidget {
   const ValidatorConfigScreen({super.key});
 
@@ -51,7 +51,7 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
                       children: [
                         ValidatorConfigTitleSection(),
                         const Gap(28),
-                        ///todo #81: work on improve Working Directory
+                        ///to-do #81: work on improve Working Directory
                         /// section by Pouria
                         Text(
                           'Working Directory',
@@ -80,7 +80,7 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
                             CustomFilledButton(
                               text: 'Select Folder',
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 8, vertical: 4),
+                                  horizontal: 8, vertical: 4,),
                               onPressed: _chooseDirectory,
                             ),
                           ],
@@ -100,24 +100,29 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
               child: NavigationFooterSection(
                 selectedIndex: selectedIndex,
                 onNextPressed: () async {
-                  final x =
-                      await isNotEmptyDirectory(text: directoryController.text);
-                  if (x) {
-                    if (context.mounted) {
-                      showFluentAlert(context);
-                    }
+                  final directoryStatus = await isNotEmptyDirectory
+                    (text: directoryController.text);
+
+                  if (!context.mounted) {
+                    return;
+                  }
+
+                  if (directoryStatus) {
+                    showFluentAlert(context);
                   } else {
                     final selectedQty = context.read<ValidatorQtyCubit>().state;
                     NodeConfigData.instance.validatorQty = selectedQty;
                     NodeConfigData.instance.workingDirectory =
                         directoryController.text;
+
                     if (context.mounted) {
-                      context
-                          .read<NavigationPaneCubit>()
+                      context.read<NavigationPaneCubit>()
                           .setSelectedIndex(selectedIndex + 1);
                     }
                   }
                 },
+
+
                 onBackPressed: () {
                   context
                       .read<NavigationPaneCubit>()
@@ -128,6 +133,6 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
           ],
         ),
       );
-    });
+    },);
   }
 }

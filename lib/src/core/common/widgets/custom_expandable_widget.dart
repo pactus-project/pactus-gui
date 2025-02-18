@@ -93,5 +93,3 @@ class CustomExpandableWidget extends StatelessWidget {
     );
   }
 }
-
-

@@ -24,5 +24,3 @@ void showFluentAlert(BuildContext context) {
     },
   );
 }
-
-

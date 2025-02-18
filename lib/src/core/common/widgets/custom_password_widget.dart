@@ -30,7 +30,7 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 ///
 /// - **[backgroundColor]** (`Color?`)
 ///   - Background color of the input field.
-///   - If not specified, it defaults to `surface3` from `SurfacePallet`.
+///   - If not specified, it defaults to `light900` from `LightPallet`.
 ///
 /// - **[borderRadius]** (`BorderRadius?`)
 ///   - Defines the border radius of the input field.

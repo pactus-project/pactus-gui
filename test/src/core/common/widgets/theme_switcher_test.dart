@@ -1,8 +1,10 @@
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gui/src/core/common/widgets/theme_switcher.dart';
 import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
+import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 void main() {
   group('ThemeSwitcher Widget Tests', () {
@@ -22,9 +24,35 @@ void main() {
     Widget buildTestableWidget(Widget child) {
       return BlocProvider.value(
         value: themeCubit,
-        child: MaterialApp(
-          home: Scaffold(body: child),
+        child: BlocBuilder<AppThemeCubit, bool>(
+          builder: (context, isDarkMode) {
+            final theme = isDarkMode
+                ? AppThemeData.darkTheme().copyWith(
+                    extensions: AppThemeData.darkExtensions,
+                    typography: AppThemeData.typography,
+                  )
+                : AppThemeData.lightTheme().copyWith(
+                    extensions: AppThemeData.lightExtensions,
+                    typography: AppThemeData.typography,
+                  );
+            return Builder(
+              builder: (context) {
+                return AppTheme(
+                  themeData: theme,
+                  child: FluentApp(
+                    home: Scaffold(body: child),
+                    debugShowCheckedModeBanner: false,
+                    themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,
+                    theme: theme,
+                  ),
+                );
+              },
+            );
+          },
         ),
+        // child: MaterialApp(
+        //   home: Scaffold(body: child),
+        // ),
       );
     }
 
