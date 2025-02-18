@@ -1,4 +1,5 @@
 import 'dart:io';
+
 /// ## [isNotEmptyDirectory] Function Documentation
 ///
 /// Checks if the given directory is not empty.

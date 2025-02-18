@@ -1,8 +1,8 @@
-
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
+
 /// ## [showFluentAlert] Function Documentation
 ///
 /// Displays an [InfoBar] alert in a Fluent UI application.
@@ -26,7 +26,7 @@ void showFluentAlert(BuildContext context) {
     builder: (context, close) {
       return InfoBar(
         title: Text(
-            context.tr(LocaleKeys.error),
+          context.tr(LocaleKeys.error),
           style: TextStyle(color: AppColors.primaryDark),
         ),
         content: Text(

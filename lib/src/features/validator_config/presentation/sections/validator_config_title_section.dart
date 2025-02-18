@@ -4,6 +4,7 @@ import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+
 /// ## [ValidatorConfigTitleSection] Class Documentation
 ///
 /// The `ValidatorConfigTitleSection` class represents the title
@@ -35,9 +36,7 @@ class ValidatorConfigTitleSection extends StatelessWidget {
         Text(
           context.tr(LocaleKeys.validator_config),
           style: InterTextStyles.bodyBold.copyWith(
-            color: AppTheme.of(context)
-                .extension<DarkPallet>()!
-                .dark900,
+            color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
           ),
         ),
         const Gap(8),

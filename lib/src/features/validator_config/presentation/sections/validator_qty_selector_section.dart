@@ -9,6 +9,7 @@ import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/validator_config/presentation/cubits/validator_qty_cubit.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+
 /// ## [ValidatorQtySelectorSection] Class Documentation
 ///
 /// The `ValidatorQtySelectorSection` class represents the section of the UI
@@ -29,7 +30,7 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 ///
 /// ### Properties:
 ///
-/// - **[selectedQty]**:
+/// - **selectedQty**:
 ///   - A `String` representing the currently selected quantity of
 ///   validators. It is managed by the `ValidatorQtyCubit`.
 ///
@@ -64,14 +65,11 @@ class ValidatorQtySelectorSection extends StatelessWidget {
         BlocBuilder<ValidatorQtyCubit, String>(
           builder: (context, selectedQty) {
             return CustomExpandableWidget(
-              padding: const EdgeInsets.
-              symmetric(horizontal: 10, vertical: 5),
-              expandedColor: AppTheme.of(context)
-                  .extension<LightPallet>()!
-                  .light900,
-              headerColor: AppTheme.of(context)
-                  .extension<LightPallet>()!
-                  .light900,
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              expandedColor:
+                  AppTheme.of(context).extension<LightPallet>()!.light900,
+              headerColor:
+                  AppTheme.of(context).extension<LightPallet>()!.light900,
               borderHighlightColor: Colors.blue,
               width: 112,
               body: Column(
@@ -82,7 +80,7 @@ class ValidatorQtySelectorSection extends StatelessWidget {
                   AppConstants.validators25,
                   AppConstants.validators32,
                 ].map(
-                      (value) {
+                  (value) {
                     return Padding(
                       padding: const EdgeInsets.all(8),
                       child: GestureDetector(
@@ -101,15 +99,10 @@ class ValidatorQtySelectorSection extends StatelessWidget {
                   },
                 ).toList(),
               ),
-
               header: selectedQty,
-              isExpanded: context
-                  .watch<ExpandableStateCubit>()
-                  .state,
+              isExpanded: context.watch<ExpandableStateCubit>().state,
               onTap: () {
-                context
-                    .read<ExpandableStateCubit>()
-                    .toggleExpanded();
+                context.read<ExpandableStateCubit>().toggleExpanded();
               },
             );
           },

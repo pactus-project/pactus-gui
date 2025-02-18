@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 /// ## [ValidatorQtyCubit] Class Documentation
 ///
 /// A [Cubit] that manages the state of a quantity validator.
@@ -9,7 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 /// ### Methods:
 ///
 /// - **[setQty]**(String qty):
-///   - Updates the state with the given [qty].
+///   - Updates the state with the given qty.
 ///
 /// ### Usage:
 /// - Can be used in a [BlocBuilder] to react to quantity changes in a form.

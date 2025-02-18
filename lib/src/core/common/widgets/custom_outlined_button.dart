@@ -2,6 +2,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+
 /// ## [CustomOutlinedButton] Class Documentation
 ///
 /// The [CustomOutlinedButton] is a customizable outlined button
@@ -79,7 +80,7 @@ class CustomOutlinedButton extends StatelessWidget {
           ),
       child: Padding(
         padding:
-        padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [

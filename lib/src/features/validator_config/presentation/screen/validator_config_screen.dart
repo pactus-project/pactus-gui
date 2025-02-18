@@ -15,6 +15,7 @@ import 'package:gui/src/features/validator_config/presentation/cubits/validator_
 import 'package:gui/src/features/validator_config/presentation/sections/validator_config_title_section.dart';
 import 'package:gui/src/features/validator_config/presentation/sections/validator_qty_selector_section.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+
 /// ## [ValidatorConfigScreen] Class Documentation
 ///
 /// The `ValidatorConfigScreen` class represents the screen where the user
@@ -67,103 +68,109 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NavigationPaneCubit, int>(
-        builder: (context, selectedIndex) {
-      return NavigationView(
-        content: Stack(
-          children: [
-            Positioned.fill(
-              child: SingleChildScrollView(
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ValidatorConfigTitleSection(),
-                        const Gap(28),
-                        ///to-do #81: work on improve Working Directory
-                        /// section by Pouria
-                        Text(
-                          context.tr(LocaleKeys.working_directory),
-                          style: InterTextStyles.captionMedium.copyWith(
-                            color: AppColors.primaryGray,
+      builder: (context, selectedIndex) {
+        return NavigationView(
+          content: Stack(
+            children: [
+              Positioned.fill(
+                child: SingleChildScrollView(
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ValidatorConfigTitleSection(),
+                          const Gap(28),
+
+                          ///to-do #81: work on improve Working Directory
+                          /// section by Pouria
+                          Text(
+                            context.tr(LocaleKeys.working_directory),
+                            style: InterTextStyles.captionMedium.copyWith(
+                              color: AppColors.primaryGray,
+                            ),
                           ),
-                        ),
-                        const Gap(8),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: ExcludeSemantics(
-                                child: TextBox(
-                                  controller: directoryController,
-                                  placeholder:   context.tr(LocaleKeys.
-                                  choose_your_directory,),
-                                  decoration: WidgetStateProperty.all(
-                                    BoxDecoration(
-                                      border: Border.all(),
-                                      borderRadius: BorderRadius.circular(5),
+                          const Gap(8),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: ExcludeSemantics(
+                                  child: TextBox(
+                                    controller: directoryController,
+                                    placeholder: context.tr(
+                                      LocaleKeys.choose_your_directory,
+                                    ),
+                                    decoration: WidgetStateProperty.all(
+                                      BoxDecoration(
+                                        border: Border.all(),
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                            const Gap(36),
-                            CustomFilledButton(
-                              text:   context.tr(LocaleKeys.select_folder),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8, vertical: 4,),
-                              onPressed: _chooseDirectory,
-                            ),
-                          ],
-                        ),
-                        const Gap(28),
-                        ValidatorQtySelectorSection(),
-                      ],
+                              const Gap(36),
+                              CustomFilledButton(
+                                text: context.tr(LocaleKeys.select_folder),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 4,
+                                ),
+                                onPressed: _chooseDirectory,
+                              ),
+                            ],
+                          ),
+                          const Gap(28),
+                          ValidatorQtySelectorSection(),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: NavigationFooterSection(
-                selectedIndex: selectedIndex,
-                onNextPressed: () async {
-                  final directoryStatus = await isNotEmptyDirectory
-                    (text: directoryController.text);
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: NavigationFooterSection(
+                  selectedIndex: selectedIndex,
+                  onNextPressed: () async {
+                    final directoryStatus = await isNotEmptyDirectory(
+                      text: directoryController.text,
+                    );
 
-                  if (!context.mounted) {
-                    return;
-                  }
-
-                  if (directoryStatus) {
-                    showFluentAlert(context);
-                  } else {
-                    final selectedQty = context.read<ValidatorQtyCubit>().state;
-                    NodeConfigData.instance.validatorQty = selectedQty;
-                    NodeConfigData.instance.workingDirectory =
-                        directoryController.text;
-
-                    if (context.mounted) {
-                      context.read<NavigationPaneCubit>()
-                          .setSelectedIndex(selectedIndex + 1);
+                    if (!context.mounted) {
+                      return;
                     }
-                  }
-                },
 
+                    if (directoryStatus) {
+                      showFluentAlert(context);
+                    } else {
+                      final selectedQty =
+                          context.read<ValidatorQtyCubit>().state;
+                      NodeConfigData.instance.validatorQty = selectedQty;
+                      NodeConfigData.instance.workingDirectory =
+                          directoryController.text;
 
-                onBackPressed: () {
-                  context
-                      .read<NavigationPaneCubit>()
-                      .setSelectedIndex(selectedIndex - 1);
-                },
+                      if (context.mounted) {
+                        context
+                            .read<NavigationPaneCubit>()
+                            .setSelectedIndex(selectedIndex + 1);
+                      }
+                    }
+                  },
+                  onBackPressed: () {
+                    context
+                        .read<NavigationPaneCubit>()
+                        .setSelectedIndex(selectedIndex - 1);
+                  },
+                ),
               ),
-            ),
-          ],
-        ),
-      );
-    },);
+            ],
+          ),
+        );
+      },
+    );
   }
 }

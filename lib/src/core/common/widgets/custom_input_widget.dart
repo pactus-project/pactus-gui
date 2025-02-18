@@ -90,8 +90,7 @@ class CustomInputWidget extends StatelessWidget {
         child: TextBox(
           placeholder: placeholder,
           placeholderStyle: TextStyle(
-            color:
-                AppTheme.of(context).extension<LightPallet>()!.light900,
+            color: AppTheme.of(context).extension<LightPallet>()!.light900,
           ),
           onChanged: onChanged,
           maxLines: maxLines,

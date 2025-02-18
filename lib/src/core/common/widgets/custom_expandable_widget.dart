@@ -2,6 +2,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+
 /// ## [CustomExpandableWidget] Class Documentation
 ///
 /// The [CustomExpandableWidget] is a UI component for creating
@@ -58,7 +59,8 @@ class CustomExpandableWidget extends StatelessWidget {
     this.animationDuration = 300.0,
     this.width = double.infinity,
     this.maxHeight,
-    this.headerStyle, this.onTap,
+    this.headerStyle,
+    this.onTap,
   });
 
   final String header;
@@ -74,7 +76,6 @@ class CustomExpandableWidget extends StatelessWidget {
   final double? maxHeight;
   final VoidCallback? onTap;
 
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -85,13 +86,17 @@ class CustomExpandableWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: isExpanded
               ? (expandedColor ??
-              AppTheme.of(context).extension<DarkPallet>()!.dark900)
+                  AppTheme.of(context).extension<DarkPallet>()!.dark900)
               : (headerColor ??
-              AppTheme.of(context).extension<DarkPallet>()!.dark900),
+                  AppTheme.of(context).extension<DarkPallet>()!.dark900),
           borderRadius: BorderRadius.circular(8),
           border: isExpanded && borderHighlightColor != null
-              ? Border(bottom: BorderSide(color: borderHighlightColor!,
-            width: 2,),)
+              ? Border(
+                  bottom: BorderSide(
+                    color: borderHighlightColor!,
+                    width: 2,
+                  ),
+                )
               : null,
         ),
         child: Column(
@@ -120,9 +125,7 @@ class CustomExpandableWidget extends StatelessWidget {
               duration: Duration(milliseconds: animationDuration.toInt()),
               firstChild: SizedBox.shrink(),
               secondChild: SizedBox(
-                height: maxHeight != null && isExpanded
-                    ? maxHeight
-                    : null,
+                height: maxHeight != null && isExpanded ? maxHeight : null,
                 child: body,
               ),
               crossFadeState: isExpanded

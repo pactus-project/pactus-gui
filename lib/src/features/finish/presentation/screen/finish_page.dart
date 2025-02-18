@@ -6,7 +6,6 @@ import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_state.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 
-
 class FinishPage extends StatelessWidget {
   const FinishPage({super.key});
 

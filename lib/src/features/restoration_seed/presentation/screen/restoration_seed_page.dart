@@ -17,9 +17,8 @@ class RestorationSeedPage extends StatelessWidget {
             title: Text(
               'Restoration Seed Page',
               style: FluentTheme.of(context).typography.body!.copyWith(
-                    color: AppTheme.of(context)
-                        .extension<DarkPallet>()!
-                        .dark900,
+                    color:
+                        AppTheme.of(context).extension<DarkPallet>()!.dark900,
                   ),
             ),
           ),

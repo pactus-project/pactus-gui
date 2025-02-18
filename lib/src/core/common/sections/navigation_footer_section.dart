@@ -5,7 +5,6 @@ import 'package:gui/src/core/common/widgets/custom_outlined_button.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class NavigationFooterSection extends StatelessWidget {
-
   const NavigationFooterSection({
     super.key,
     required this.selectedIndex,
@@ -40,5 +39,4 @@ class NavigationFooterSection extends StatelessWidget {
       ),
     );
   }
-
 }
