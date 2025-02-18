@@ -1,3 +1,24 @@
+# 1.20.0+22
+
+- [Feat]: Implement required widgets for `ValidatorConfigScreen`. [#81](https://github.com/pactus-project/pactus-gui/pull/81)
+  - Added `ValidatorQtySelectorSection` and `ValidatorQtyCubit` for managing validator selection.
+  - Created `ValidatorConfigTitleSection` and `ValidatorConfigScreen` UI.
+  - Implemented `showFluentAlert` method for displaying system alerts.
+  - Added `NavigationFooterSection` for better navigation flow.
+  - Provided `ExpandableStateCubit` in `main.dart` for managing expand/collapse state.
+  - Implemented `isNotEmptyDirectory` method to validate directory selection.
+  - Updated `InitializingNavigationPane` with new integration.
+  - Created `ExpandableStateCubit` and `CustomOutlinedButton`.
+  - Updated `CustomExpandableWidget` and `AuthMethodComponent` for consistency.
+
+- [Update]: Enable multi-language support using `l10n` package. [#81](https://github.com/pactus-project/pactus-gui/pull/81)
+  - Updated text strings for localization.
+  - Made the number of validators configurable using constant variables.
+
+- [Fix]: Update color palettes used in the project. [#81](https://github.com/pactus-project/pactus-gui/pull/81)
+  - Removed `SurfacePallet` and `OnSurfacePallet`.
+  - Replaced with `DarkPallet` and `LightPallet` for better theme consistency.
+
 # 1.19.0+21
 
 - [Feat]: Implement base structure, logic, and UI for the seed confirmation screen. [#77](https://github.com/pactus-project/pactus-gui/pull/82)
