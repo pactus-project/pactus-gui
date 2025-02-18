@@ -8,7 +8,6 @@
   "welcome_title": "Bienvenido al futuro de la cadena de bloques con Pactus!",
   "welcome_description": "Donde el futuro de la cadena de bloques se desarrolla con confianza y transparencia en cada transacción. Únase a nosotros para dar forma a una revolución descentralizada!",
   "start_button_text": "Empezar",
-  "applications": "Applications",
   "initialize_mode": "Modo de inicialización",
   "wallet_seed": "Semilla de billetera",
   "confirm_seed": "Confirmar semilla",
@@ -25,5 +24,13 @@
   "auth_method": "Método de autenticación",
   "username": "Nombre de usuario",
   "password": "Contraseña",
-  "basic_auth": "Autenticación básica"
+  "basic_auth": "Autenticación básica",
+  "error": "Error",
+  "directory_not_empty": "El directorio no está vacío. Se necesita un directorio vacío para continuar.",
+  "select": "Seleccionar",
+  "working_directory": "Directorio de trabajo",
+  "choose_your_directory": "Elige tu directorio",
+  "select_folder": "Seleccionar carpeta",
+  "validator_config_description": "Estableciendo tu camino hacia un consenso descentralizado con precisión y escalabilidad",
+  "number_of_validators": "Número de validadores"
 }

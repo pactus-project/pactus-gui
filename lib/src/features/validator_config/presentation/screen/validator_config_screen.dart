@@ -6,6 +6,8 @@ import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
 import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
+import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/validator_config/core/utils/methods/is_not_empty_directory_method.dart';
 import 'package:gui/src/features/validator_config/core/utils/methods/show_fluent_alert_method.dart';
@@ -54,7 +56,7 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
                         ///to-do #81: work on improve Working Directory
                         /// section by Pouria
                         Text(
-                          'Working Directory',
+                          context.tr(LocaleKeys.working_directory),
                           style: InterTextStyles.captionMedium.copyWith(
                             color: AppColors.primaryGray,
                           ),
@@ -66,7 +68,8 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
                               child: ExcludeSemantics(
                                 child: TextBox(
                                   controller: directoryController,
-                                  placeholder: 'choose your directory...',
+                                  placeholder:   context.tr(LocaleKeys.
+                                  choose_your_directory,),
                                   decoration: WidgetStateProperty.all(
                                     BoxDecoration(
                                       border: Border.all(),
@@ -78,7 +81,7 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
                             ),
                             const Gap(36),
                             CustomFilledButton(
-                              text: 'Select Folder',
+                              text:   context.tr(LocaleKeys.select_folder),
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 8, vertical: 4,),
                               onPressed: _chooseDirectory,

@@ -28,4 +28,13 @@ abstract class LocaleKeys {
   static const String username = 'username';
   static const String password = 'password';
   static const String basic_auth = 'basic_auth';
+  static const String error = 'error';
+  static const String directory_not_empty = 'directory_not_empty';
+  static const String select = 'select';
+  static const String working_directory = 'working_directory';
+  static const String choose_your_directory = 'choose_your_directory';
+  static const String select_folder = 'select_folder';
+  static const String validator_config_description =
+      'validator_config_description';
+  static const String number_of_validators = 'number_of_validators';
 }
