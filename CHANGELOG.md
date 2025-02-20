@@ -1,3 +1,16 @@
+# 1.19.0+21
+
+- [Feat]: Implement three different navigation panes for the three main flows of the app.
+  - Add/create `CreateLocalNodePane` for flows where the user creates a local node.
+  - Add/create `RestoringNodePane` for flows where the user restores their node.
+  - Add/create `RemoteNodePane` for flows where the user connects to their node on a specific server.
+  - Add/create a module named `GenerationSeedScreen` to generate a seed phrase for the first time.
+  - Remove old navigation panel and its logic.
+  - Provide `RadioButtonCubit` in `main.dart`.
+  - Update `registrationRoutes` with the new changes to the panels.
+  - Add new routes enum to `route name`.
+  - Update navigation in `WelcomeScreen`.
+
 # 1.18.0+20
 
 - [Feat]: Implement `InitializingNavigationPane` for handling Pactus initializing panel. [#69](https://github.com/pactus-project/pactus-gui/pull/71)
