@@ -10,6 +10,35 @@ import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/n
 import 'package:gui/src/features/master_password/presentation/screen/master_password_page.dart';
 import 'package:gui/src/features/restoration_seed/presentation/screen/restoration_seed_page.dart';
 import 'package:gui/src/features/validator_config/presentation/screen/validator_config_page.dart';
+/// ## [RestoringNodePane] Class Documentation
+///
+/// The `RestoringNodePane` class manages the navigation for restoring a node.
+/// It provides a step-by-step flow to restore a wallet and configure the node.
+///
+/// ### Navigation Steps:
+///
+/// - **[RestorationSeedPage]**: Restores the wallet using a seed phrase.
+/// - **[MasterPasswordPage]**: Sets or verifies the master password.
+/// - **[ValidatorConfigPage]**: Configures validator settings.
+/// - **[InitializingPage]**: Initializes the restored node.
+/// - **[FinishPage]**: Completes the restoration process.
+///
+/// ### Properties:
+///
+/// - **selectedIndex**:
+///   - An `int` representing the current navigation index.
+///   - Controlled by `NavigationPaneCubit`.
+///
+/// - **[onChanged(index)]**:
+///   - Moves between steps sequentially.
+///   - Ensures users follow the correct restoration flow.
+///
+/// ### Notes:
+///
+/// - Uses `LocaleKeys` for localization.
+/// - Selected navigation items are visually highlighted with `AppColors`.
+/// - The `FinishPage` is managed by a `DaemonCubit` to handle
+/// node daemon operations.
 
 class RestoringNodePane extends StatelessWidget {
   const RestoringNodePane({super.key});
