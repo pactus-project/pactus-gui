@@ -1,6 +1,6 @@
 # 1.19.0+21
 
-- [Feat]: Implement three different navigation panes for the three main flows of the app.
+- [Feat]: Implement three different navigation panes for the three main flows of the app. [#84](https://github.com/pactus-project/pactus-gui/pull/87)
   - Add/create `CreateLocalNodePane` for flows where the user creates a local node.
   - Add/create `RestoringNodePane` for flows where the user restores their node.
   - Add/create `RemoteNodePane` for flows where the user connects to their node on a specific server.
