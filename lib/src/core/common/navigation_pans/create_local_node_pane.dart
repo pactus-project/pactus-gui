@@ -11,6 +11,7 @@ import 'package:gui/src/features/main/language/core/localization_extension.dart'
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/master_password/presentation/screen/master_password_page.dart';
 import 'package:gui/src/features/validator_config/presentation/screen/validator_config_page.dart';
+
 /// ## [CreateLocalNodePane] Class Documentation
 ///
 /// The `CreateLocalNodePane` class represents the navigation panel for

@@ -48,6 +48,9 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 /// - Ensures responsiveness with
 /// `SingleChildScrollView` and `Positioned` elements.
 
+/// to-do : Currently, no app bar has been designed for this page.
+/// need to wait for the design team to redesign
+/// the page before refactoring it again by Pouria
 class InitializeModeScreen extends StatelessWidget {
   const InitializeModeScreen({super.key});
 
@@ -118,28 +121,28 @@ class InitializeModeScreen extends StatelessWidget {
                   child: Container(
                     height: 89,
                     color:
-                    AppTheme.of(context).extension<LightPallet>()!.light900,
+                        AppTheme.of(context).extension<LightPallet>()!.light900,
                     padding: const EdgeInsets.only(right: 46),
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: BlocBuilder<RadioButtonCubit, int>(
-                      builder: (context, selectedValue) {
+                        builder: (context, selectedValue) {
                           return CustomFilledButton(
                             text: 'Next',
                             onPressed: () {
                               switch (selectedValue) {
                                 case 0:
-                                  context.
-                                  goNamed
-                                    (AppRoute.initializingLocalNodePane.name);
+                                  context.goNamed(
+                                    AppRoute.initializingLocalNodePane.name,
+                                  );
                                 case 1:
-                                  context.
-                                  goNamed
-                                    (AppRoute.restoringNodePane.name);
-                                  case 2:
-                                    context.
-                                    goNamed
-                                      (AppRoute.connectingRemoteNodePane.name);
+                                  context.goNamed(
+                                    AppRoute.restoringNodePane.name,
+                                  );
+                                case 2:
+                                  context.goNamed(
+                                    AppRoute.connectingRemoteNodePane.name,
+                                  );
                               }
                             },
                             style: ButtonStyle(

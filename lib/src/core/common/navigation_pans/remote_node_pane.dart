@@ -7,6 +7,7 @@ import 'package:gui/src/features/finish/presentation/screen/finish_page.dart';
 import 'package:gui/src/features/initializing/presentation/screen/initializing_page.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
+
 /// ## [RemoteNodePane] Class Documentation
 ///
 /// The `RemoteNodePane` class provides a navigation panel for setting up

@@ -10,6 +10,7 @@ import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/n
 import 'package:gui/src/features/master_password/presentation/screen/master_password_page.dart';
 import 'package:gui/src/features/restoration_seed/presentation/screen/restoration_seed_page.dart';
 import 'package:gui/src/features/validator_config/presentation/screen/validator_config_page.dart';
+
 /// ## [RestoringNodePane] Class Documentation
 ///
 /// The `RestoringNodePane` class manages the navigation for restoring a node.
