@@ -128,7 +128,7 @@ class InitializeModeScreen extends StatelessWidget {
                       child: BlocBuilder<RadioButtonCubit, int>(
                         builder: (context, selectedValue) {
                           return CustomFilledButton(
-                            text: 'Next',
+                            text: context.tr(LocaleKeys.next),
                             onPressed: () {
                               switch (selectedValue) {
                                 case 0:

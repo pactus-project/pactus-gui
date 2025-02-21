@@ -54,6 +54,7 @@ class CodegenLoader {
     'auth_method': 'Auth Method',
     'username': 'Username',
     'password': 'Password',
+    'next': 'Next',
     'basic_auth': 'Basic Auth',
   };
   static const Map<String, dynamic> frFR = {
@@ -84,6 +85,7 @@ class CodegenLoader {
     'auth_method': 'Méthode dauthentification',
     'username': 'Nom dutilisateur',
     'password': 'Mot de passe',
+    'next': 'Suivant',
     'basic_auth': 'Authentification de base',
   };
   static const Map<String, dynamic> esES = {
@@ -113,6 +115,7 @@ class CodegenLoader {
     'auth_method': 'Método de autenticación',
     'username': 'Nombre de usuario',
     'password': 'Contraseña',
+    'next': 'Siguiente',
     'basic_auth': 'Autenticación básica',
   };
 
