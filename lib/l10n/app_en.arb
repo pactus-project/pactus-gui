@@ -24,6 +24,7 @@
   "auth_method": "Auth Method",
   "username": "Username",
   "password": "Password",
+  "next": "Next",
   "basic_auth": "Basic Auth",
   "unlock_wallet": "Unlock",
   "unlock_wallet_description": "Enter the master password to unlock",

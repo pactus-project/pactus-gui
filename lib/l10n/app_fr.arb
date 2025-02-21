@@ -24,6 +24,7 @@
   "auth_method": "Méthode dauthentification",
   "username": "Nom dutilisateur",
   "password": "Mot de passe",
+  "next": "Suivant",
   "basic_auth": "Authentification de base",
   "unlock_wallet": "Déverrouiller le portefeuille",
   "unlock_wallet_description": "Entrez le mot de passe principal pour déverrouiller",

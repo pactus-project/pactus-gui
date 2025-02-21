@@ -24,11 +24,12 @@
   "auth_method": "Método de autenticación",
   "username": "Nombre de usuario",
   "password": "Contraseña",
+  "next": "Siguiente",
   "basic_auth": "Autenticación básica",
   "unlock_wallet": "Desbloquear",
   "unlock_wallet_description": "Ingrese la contraseña maestra para desbloquear",
   "enter_your_password": "Ingrese su contraseña",
   "password_cannot_be_empty": "La contraseña no puede estar vacía",
   "incorrect_password": "Contraseña incorrecta",
-  "unlock_failed": "Desbloqueo fallido. Por favor, inténtelo de nuevo." 
+  "unlock_failed": "Desbloqueo fallido. Por favor, inténtelo de nuevo."
 }
