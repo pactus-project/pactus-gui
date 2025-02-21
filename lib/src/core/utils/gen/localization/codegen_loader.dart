@@ -32,11 +32,11 @@ class CodegenLoader {
     'subtitle': 'Welcome to Localization',
     'description': 'You have pushed the button this many times:',
     'switch_language': 'Switch language',
-    'applications': 'Applications',
     'welcome_title': 'Welcome to the Future of Blockchain with Pactus!',
     'welcome_description':
         'Where the future of blockchain unfolds with trust and transparency in every transaction. Join us in shaping a decentralized revolution!',
     'start_button_text': 'Get Started',
+    'applications': 'Applications',
     'initialize_mode': 'Initialize mode',
     'wallet_seed': 'Wallet seed',
     'confirm_seed': 'Confirm seed',
@@ -55,17 +55,23 @@ class CodegenLoader {
     'username': 'Username',
     'password': 'Password',
     'basic_auth': 'Basic Auth',
+    'unlock_wallet': 'Unlock',
+    'unlock_wallet_description': 'Enter the master password to unlock',
+    'enter_your_password': 'Enter your password',
+    'password_cannot_be_empty': 'Password cannot be empty',
+    'incorrect_password': 'Incorrect password',
+    'unlock_failed': 'Unlock failed. Please try again.',
   };
   static const Map<String, dynamic> frFR = {
     'title': 'Bonjour le monde  !',
     'subtitle': 'Bienvenue dans Localisation',
     'description': 'Vous avez appuyé sur le bouton autant de fois :',
     'switch_language': 'Changer de langue',
-    'applications': 'Applications',
     'welcome_title': 'Bienvenue dans le futur de la Blockchain avec Pactus!',
     'welcome_description':
         'Là où lavenir de la blockchain se dévoile avec confiance et transparence dans chaque transaction. Rejoignez-nous pour façonner une révolution décentralisée!',
     'start_button_text': 'Commencer',
+    'applications': 'Applications',
     'initialize_mode': 'Mode dinitialisation',
     'wallet_seed': 'Graine de portefeuille',
     'confirm_seed': 'Confirmer la graine',
@@ -85,17 +91,24 @@ class CodegenLoader {
     'username': 'Nom dutilisateur',
     'password': 'Mot de passe',
     'basic_auth': 'Authentification de base',
+    'unlock_wallet': 'Déverrouiller le portefeuille',
+    'unlock_wallet_description':
+        'Entrez le mot de passe principal pour déverrouiller',
+    'enter_your_password': 'Entrez votre mot de passe',
+    'password_cannot_be_empty': 'Le mot de passe ne peut pas être vide',
+    'incorrect_password': 'Mot de passe incorrect',
+    'unlock_failed': 'Déverrouillage impossible. Veuillez réessayer.',
   };
   static const Map<String, dynamic> esES = {
     'title': '¡Hola, Mundo  !',
     'subtitle': 'Bienvenido a Localización',
     'description': 'Has pulsado el botón tantas veces:',
     'switch_language': 'Cambiar idioma',
-    'applications': 'Applications',
     'welcome_title': 'Bienvenido al futuro de la cadena de bloques con Pactus!',
     'welcome_description':
         'Donde el futuro de la cadena de bloques se desarrolla con confianza y transparencia en cada transacción. Únase a nosotros para dar forma a una revolución descentralizada!',
     'start_button_text': 'Empezar',
+    'applications': 'Applications',
     'initialize_mode': 'Modo de inicialización',
     'wallet_seed': 'Semilla de billetera',
     'confirm_seed': 'Confirmar semilla',
@@ -114,6 +127,13 @@ class CodegenLoader {
     'username': 'Nombre de usuario',
     'password': 'Contraseña',
     'basic_auth': 'Autenticación básica',
+    'unlock_wallet': 'Desbloquear',
+    'unlock_wallet_description':
+        'Ingrese la contraseña maestra para desbloquear',
+    'enter_your_password': 'Ingrese su contraseña',
+    'password_cannot_be_empty': 'La contraseña no puede estar vacía',
+    'incorrect_password': 'Contraseña incorrecta',
+    'unlock_failed': 'Desbloqueo fallido. Por favor, inténtelo de nuevo.',
   };
 
   static const Map<String, Map<String, dynamic>> mapLocales = {

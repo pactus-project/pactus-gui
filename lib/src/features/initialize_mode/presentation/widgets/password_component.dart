@@ -39,7 +39,8 @@ class PasswordComponent extends StatelessWidget {
           ),
         ),
         CustomPasswordWidget(
-          placeholder: '12345678',
+          controller: TextEditingController(),
+          placeholder: context.tr(LocaleKeys.enter_your_password),
           width: 280,
           onChanged: (value) {
             debugPrint('Text changed: $value');

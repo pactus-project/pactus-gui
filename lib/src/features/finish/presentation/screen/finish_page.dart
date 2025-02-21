@@ -1,5 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_state.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
@@ -111,7 +113,7 @@ class FinishPage extends StatelessWidget {
                     Button(
                       child: const Text('Finish'),
                       onPressed: () {
-                        ///to-do : navigate to dashboard navigation pane here
+                        context.goNamed(AppRoute.password.name);
                       },
                     ),
                   ],
