@@ -25,5 +25,6 @@
   "auth_method": "Auth Method",
   "username": "Username",
   "password": "Password",
+  "next": "Next",
   "basic_auth": "Basic Auth"
 }

@@ -58,8 +58,8 @@ class _SplashScreenState extends State<SplashScreen> {
                   context.tr(LocaleKeys.applications),
                   style: FluentTheme.of(context).typography.title?.copyWith(
                         color: AppTheme.of(context)
-                            .extension<OnSurfacePallet>()!
-                            .onSurface4,
+                            .extension<DarkPallet>()!
+                            .dark900,
                       ),
                 ),
               ],

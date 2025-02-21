@@ -1,7 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
 import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
@@ -69,14 +68,14 @@ class WelcomeScreen extends StatelessWidget {
             Text(
               context.tr(LocaleKeys.welcome_title),
               style: InterTextStyles.bodyBold.copyWith(
-                color: AppColors.primaryDark,
+                color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
               ),
             ),
             const Gap(16),
             Text(
               context.tr(LocaleKeys.welcome_description),
               style: InterTextStyles.smallRegular.copyWith(
-                color: AppColors.primaryDark,
+                color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
               ),
               softWrap: true,
               textAlign: TextAlign.center,
@@ -85,7 +84,7 @@ class WelcomeScreen extends StatelessWidget {
             CustomFilledButton(
               text: LocaleKeys.start_button_text,
               onPressed: () {
-                context.goNamed(AppRoute.initializingNavigationPane.name);
+                context.goNamed(AppRoute.initializeMode.name);
               },
               style: ButtonStyle(
                 padding: WidgetStateProperty.all<EdgeInsetsDirectional?>(

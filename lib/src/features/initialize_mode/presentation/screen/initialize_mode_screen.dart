@@ -1,8 +1,10 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
+import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/initialize_mode/presentation/sections/remote_node_section.dart';
 import 'package:gui/src/features/initialize_mode/presentation/widgets/radio_button_group_widget.dart';
@@ -46,6 +48,9 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 /// - Ensures responsiveness with
 /// `SingleChildScrollView` and `Positioned` elements.
 
+/// to-do : Currently, no app bar has been designed for this page.
+/// need to wait for the design team to redesign
+/// the page before refactoring it again by Pouria
 class InitializeModeScreen extends StatelessWidget {
   const InitializeModeScreen({super.key});
 
@@ -69,7 +74,9 @@ class InitializeModeScreen extends StatelessWidget {
                           Text(
                             context.tr(LocaleKeys.initiate_your_node),
                             style: InterTextStyles.bodyBold.copyWith(
-                              color: AppColors.primaryDark,
+                              color: AppTheme.of(context)
+                                  .extension<DarkPallet>()!
+                                  .dark900,
                             ),
                           ),
                           const Gap(8),
@@ -113,27 +120,41 @@ class InitializeModeScreen extends StatelessWidget {
                   right: 0,
                   child: Container(
                     height: 89,
-                    color: AppTheme.of(context)
-                        .extension<SurfacePallet>()!
-                        .surface3,
+                    color:
+                        AppTheme.of(context).extension<LightPallet>()!.light900,
                     padding: const EdgeInsets.only(right: 46),
                     child: Align(
                       alignment: Alignment.centerRight,
-                      child: CustomFilledButton(
-                        text: 'Next',
-                        onPressed: () {
-                          context
-                              .read<NavigationPaneCubit>()
-                              .setSelectedIndex(selectedIndex + 1);
+                      child: BlocBuilder<RadioButtonCubit, int>(
+                        builder: (context, selectedValue) {
+                          return CustomFilledButton(
+                            text: context.tr(LocaleKeys.next),
+                            onPressed: () {
+                              switch (selectedValue) {
+                                case 0:
+                                  context.goNamed(
+                                    AppRoute.initializingLocalNodePane.name,
+                                  );
+                                case 1:
+                                  context.goNamed(
+                                    AppRoute.restoringNodePane.name,
+                                  );
+                                case 2:
+                                  context.goNamed(
+                                    AppRoute.connectingRemoteNodePane.name,
+                                  );
+                              }
+                            },
+                            style: ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(
+                                AppColors.radioButtonActiveColor,
+                              ),
+                              padding: WidgetStatePropertyAll(
+                                const EdgeInsets.symmetric(horizontal: 16),
+                              ),
+                            ),
+                          );
                         },
-                        style: ButtonStyle(
-                          backgroundColor: WidgetStatePropertyAll(
-                            AppColors.radioButtonActiveColor,
-                          ),
-                          padding: WidgetStatePropertyAll(
-                            const EdgeInsets.symmetric(horizontal: 16),
-                          ),
-                        ),
                       ),
                     ),
                   ),

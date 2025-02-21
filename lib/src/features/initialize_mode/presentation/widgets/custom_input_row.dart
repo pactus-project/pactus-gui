@@ -56,16 +56,11 @@ class CustomInputRow extends StatelessWidget {
           ),
         ),
         CustomInputWidget(
-          controller: controller,
           placeholder: placeholder,
           width: 280,
           onChanged: (value) {
             debugPrint('Text changed: $value');
           },
-          onSubmitted: (value) {
-            debugPrint('Text submitted: $value');
-          },
-          obscureText: obscureText,
         ),
       ],
     );

@@ -102,7 +102,7 @@ class CustomExpandableWidgetState extends State<CustomExpandableWidget> {
       width: widget.width,
       padding: widget.padding,
       decoration: BoxDecoration(
-        color: AppTheme.of(context).extension<SurfacePallet>()!.surface3,
+        color: AppTheme.of(context).extension<LightPallet>()!.light900,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(

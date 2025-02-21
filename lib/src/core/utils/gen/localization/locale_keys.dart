@@ -16,16 +16,14 @@ abstract class LocaleKeys {
   static const String initializing = 'initializing';
   static const String finish = 'finish';
   static const String initiate_your_node = 'initiate_your_node';
-  static const String initiate_your_node_for_first_time =
-      'initiate_your_node_for_first_time';
-  static const String create_local_node_from_scrache =
-      'create_local_node_from_scrache';
-  static const String restore_local_node_from_seed_pharse =
-      'restore_local_node_from_seed_pharse';
+  static const String initiate_your_node_for_first_time = 'initiate_your_node_for_first_time';
+  static const String create_local_node_from_scrache = 'create_local_node_from_scrache';
+  static const String restore_local_node_from_seed_pharse = 'restore_local_node_from_seed_pharse';
   static const String connect_to_remote_node = 'connect_to_remote_node';
   static const String remote_address = 'remote_address';
   static const String auth_method = 'auth_method';
   static const String username = 'username';
   static const String password = 'password';
+  static const String next = 'next';
   static const String basic_auth = 'basic_auth';
 }

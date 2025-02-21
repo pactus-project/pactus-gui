@@ -25,5 +25,6 @@
   "auth_method": "Méthode dauthentification",
   "username": "Nom dutilisateur",
   "password": "Mot de passe",
+  "next": "Suivant",
   "basic_auth": "Authentification de base"
 }
