@@ -5,6 +5,33 @@ import 'package:gui/src/core/common/widgets/custom_expandable_widget.dart';
 import 'package:gui/src/features/generation_seed/core/constants/enums/seed_type_enum.dart';
 import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+/// ## [SeedTypeSelectorWidget] Class Documentation
+///
+/// The `SeedTypeSelectorWidget` class is a widget that allows users to select
+/// the type of seed (12 words or 24 words) by expanding a menu and tapping
+/// the respective option. It uses a `BlocBuilder` to listen for state changes
+/// in `SeedTypeCubit` and display the current selection.
+///
+/// ### Properties:
+///
+/// - **[menuExpanded]** (`bool`):
+///   - A flag indicating whether the menu is expanded or not.
+///
+/// - **[onToggle]** (`VoidCallback`):
+///   - A callback function that is triggered when the menu is toggled.
+///
+/// ### Methods:
+///
+/// - **[build]**:
+///   - Builds the widget UI. It shows the current selected seed type and
+///     expands a menu to select between 12 words or 24 words.
+///
+/// ### Notes:
+///
+/// - The widget listens to the `SeedTypeCubit` to get the current seed type
+///   and uses `CustomExpandableWidget` for the expandable menu.
+/// - When a user selects a seed type (12 or 24 words), the corresponding
+///   action is dispatched to `See
 
 class SeedTypeSelectorWidget extends StatelessWidget {
   const SeedTypeSelectorWidget({

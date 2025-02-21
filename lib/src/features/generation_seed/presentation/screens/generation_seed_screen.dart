@@ -15,6 +15,55 @@ import 'package:gui/src/features/generation_seed/presentation/widgets/copy_to_cl
 import 'package:gui/src/features/generation_seed/presentation/widgets/seed_type_selector_widget.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+/// ## [GenerationSeedScreen] Class Documentation
+///
+/// The `GenerationSeedScreen` class is a stateful widget responsible for
+/// displaying and managing the seed generation process.
+///
+/// ### Properties:
+///
+/// - **'_menuExpanded'** (`bool`):
+///   - Determines whether the seed type selector menu is expanded.
+///
+/// ### Behavior:
+///
+/// - Uses `BlocBuilder<SeedTypeCubit, SeedTypeEnum>` to generate seed words
+///   based on the selected seed type (12 or 24 words).
+/// - Displays the generated seed words in a `SeedWordsGridSection`.
+/// - Provides an option to copy the seed words to the clipboard using
+///   `CopyToClipboardButton`.
+/// - Includes a `SeedNotesSection` to show important information about seed
+///   usage.
+/// - Allows the user to navigate forward using an `AdaptiveTextButton`, which:
+///   - Saves the generated seed in `NodeConfigData.instance.restorationSeed`.
+///   - Updates the navigation index in `NavigationPaneCubit`.
+///
+/// ### UI Components:
+///
+/// - **[GenerationSeedTitleSection]**:
+///   - Displays the title for the seed generation screen.
+///
+/// - **[SeedWordsGridSection]**:
+///   - Dynamically adjusts the grid layout based on screen width.
+///
+/// - **[CopyToClipboardButton]**:
+///   - Provides a button to copy generated seed words.
+///
+/// - **[SeedNotesSection]**:
+///   - Displays additional information or warnings about seed words.
+///
+/// - **[SeedTypeSelectorWidget]**:
+///   - Allows users to select between a 12-word or 24-word seed.
+///
+/// - **[AdaptiveTextButton]** (Next Button):
+///   - Moves the user to the next step in the navigation pane.
+///
+/// ### Notes:
+///
+/// - Ensures UI responsiveness by calculating `crossAxisCount` based on screen
+///   width.
+/// - Uses `context.mounted` checks to avoid context-related errors.
+/// - The design may require updates once the UI team finalizes the layout.
 
 class GenerationSeedScreen extends StatefulWidget {
   const GenerationSeedScreen({super.key});
