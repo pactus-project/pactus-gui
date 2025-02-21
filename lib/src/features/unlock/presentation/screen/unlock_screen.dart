@@ -1,7 +1,15 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
+import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+
+import '../../../../core/common/colors/app_colors.dart';
+import '../../../../core/common/widgets/custom_filled_button.dart';
+import '../../../../core/common/widgets/custom_password_widget.dart';
 
 class UnlockScreen extends StatefulWidget {
   const UnlockScreen({super.key});
@@ -12,96 +20,68 @@ class UnlockScreen extends StatefulWidget {
 
 class _UnlockScreenState extends State<UnlockScreen> {
   final TextEditingController _passwordController = TextEditingController();
-  bool _obscureText = true;
+
+  // Constants for layout
+  static const double _maxContentWidth = 400;
+  static const double _lockIconSize = 406;
+  static const double _lockIconContainerSize = 364;
+  static const double _smallLockIconSize = 30;
+  static const double _spacingMedium = 10;
+  static const double _spacingLarge = 20;
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldPage(
+    final theme = FluentTheme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    final colors = AppTheme.of(context).extension<DarkPallet>()!;
+
+    return NavigationView(
+      appBar: NavigationAppBar(
+        title: Text(
+          '',
+          style: theme.typography.body!.copyWith(
+            color: colors.dark900,
+          ),
+        ),
+      ),
       content: Center(
         child: Container(
-          constraints: const BoxConstraints(maxWidth: 400),
+          constraints: const BoxConstraints(maxWidth: _maxContentWidth),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Lock Icon
-              Container(
-                width: 406,
-                height: 364,
-                decoration: BoxDecoration(
-                  color: AppTheme.of(context).extension<DarkPallet>()!.dark100,
-                  shape: BoxShape.circle,
-                ),
-                child: Center(
-                  child: Builder(
-                    builder: (context) {
-                      final isDark = FluentTheme.of(context).brightness !=
-                          Brightness.light;
-                      return SvgPicture.asset(
-                        isDark
-                            ? Assets.images.masterPasswordDark
-                            : Assets.images.masterPasswordLight,
-                        width: 406,
-                        height: 364,
-                      );
-                    },
-                  ),
-                ),
-              ),
+              // Lock Icon Container
+              _buildLockIcon(isDark),
+              const SizedBox(height: _spacingMedium),
 
+              // Small Lock Icon
               Assets.icons.lock.image(
-                width: 30,
-                height: 30,
+                width: _smallLockIconSize,
+                height: _smallLockIconSize,
                 fit: BoxFit.contain,
-                color: AppTheme.of(context).extension<LightPallet>()!.light900,
+                color: isDark ? AppColors.primaryLight : AppColors.primaryDark,
               ),
-              const SizedBox(height: 32),
-
-              // Password Text
+              const SizedBox(height: _spacingMedium),
+              // Instruction Text
               Text(
-                'Enter the master password to unlock',
-                style: FluentTheme.of(context).typography.body,
-              ),
-              const SizedBox(height: 16),
-
-              // Password Input
-              SizedBox(
-                width: 300,
-                child: TextBox(
-                  controller: _passwordController,
-                  placeholder: '••••••••',
-                  obscureText: _obscureText,
-                  suffix: IconButton(
-                    icon: Icon(
-                      _obscureText ? FluentIcons.hide : FluentIcons.red_eye,
-                      size: 20,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        _obscureText = !_obscureText;
-                      });
-                    },
-                  ),
+                context.tr(LocaleKeys.unlock_wallet_description),
+                style: theme.typography.body!.copyWith(
+                  color: colors.dark700,
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: _spacingLarge),
+
+              CustomPasswordWidget(
+                width: 280,
+                placeholder: 'Enter your password',
+                onChanged: (value) {
+                  debugPrint('Text changed: $value');
+                },
+              ),
+              const SizedBox(height: _spacingLarge),
 
               // Unlock Button
-              FilledButton(
-                style: ButtonStyle(
-                  backgroundColor: ButtonState.all(Colors.blue),
-                  padding: ButtonState.all(
-                    const EdgeInsets.symmetric(
-                      horizontal: 48,
-                      vertical: 8,
-                    ),
-                  ),
-                ),
-                onPressed: _handleUnlock,
-                child: const Text(
-                  'Unlock',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
+              _buildUnlockButton(),
             ],
           ),
         ),
@@ -109,35 +89,71 @@ class _UnlockScreenState extends State<UnlockScreen> {
     );
   }
 
-  void _handleUnlock() async {
-    final password = _passwordController.text;
+  Widget _buildLockIcon(bool isDark) {
+    return Container(
+      width: _lockIconSize,
+      height: _lockIconContainerSize,
+      decoration: BoxDecoration(
+        color: AppTheme.of(context).scaffoldBackgroundColor,
+        shape: BoxShape.circle,
+      ),
+      child: Center(
+        child: SvgPicture.asset(
+          isDark
+              ? Assets.images.masterPasswordDark
+              : Assets.images.masterPasswordLight,
+          width: _lockIconSize,
+          height: _lockIconContainerSize,
+        ),
+      ),
+    );
+  }
 
-    // // Get from secure storage
-    // final encryptedVault = NodeConfigData.instance.encryptedVault;
-    // final salt = NodeConfigData.instance.salt;
+  Widget _buildUnlockButton() {
+    return CustomFilledButton(
+      text: LocaleKeys.unlock_wallet,
+      onPressed: () {
+        context.goNamed(AppRoute.dashboard.name);
+      },
+      style: ButtonStyle(
+        padding: WidgetStateProperty.all<EdgeInsetsDirectional?>(
+          EdgeInsetsDirectional.symmetric(horizontal: 24, vertical: 4),
+        ),
+        backgroundColor: WidgetStateProperty.all(Color(0xFF0066B4)),
+        shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(4),
+          ),
+        ),
+      ),
+    );
+  }
 
-    // // Key derivation
-    // final key = await Argon2.hashPasswordString(
-    //   password,
-    //   salt: salt,
-    //   iterations: 4,
-    //   memory: 4096,
-    // );
+  Future<void> _handleUnlock() async {
+    // setState(() => _isLoading = true);
 
-    // // Attempt decryption
     // try {
-    //   final encrypter = Encrypter(AES(Key.fromUtf8(key)));
-    //   final decrypted = encrypter.decrypt64(encryptedVault);
+    //   final password = _passwordController.text;
+    //   if (password.isEmpty) {
+    //     // Show error message
+    //     return;
+    //   }
 
-    //   // If successful, load wallet data from decrypted vault
-    //   _navigateToDashboard(decrypted);
+    //   // TODO: Add actual unlock logic
+    //   await Future.delayed(const Duration(seconds: 1)); // Mock delay
+
+    //   _navigateToDashboard(password);
     // } catch (e) {
-    //   // Show invalid password error
+    //   // Show error to user
+    // } finally {
+    //   if (mounted) {
+    //     setState(() => _isLoading = false);
+    //   }
     // }
   }
 
   void _navigateToDashboard(String decrypted) {
-    // Implementation of _navigateToDashboard method
+    // TODO: Implement navigation logic
   }
 
   @override
