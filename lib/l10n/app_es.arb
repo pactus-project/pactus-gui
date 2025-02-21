@@ -4,7 +4,6 @@
   "subtitle": "Bienvenido a Localización",
   "description": "Has pulsado el botón tantas veces:",
   "switch_language": "Cambiar idioma",
-  "applications": "Applications",
   "welcome_title": "Bienvenido al futuro de la cadena de bloques con Pactus!",
   "welcome_description": "Donde el futuro de la cadena de bloques se desarrolla con confianza y transparencia en cada transacción. Únase a nosotros para dar forma a una revolución descentralizada!",
   "start_button_text": "Empezar",
@@ -26,5 +25,11 @@
   "username": "Nombre de usuario",
   "password": "Contraseña",
   "next": "Siguiente",
-  "basic_auth": "Autenticación básica"
+  "basic_auth": "Autenticación básica",
+  "unlock_wallet": "Desbloquear",
+  "unlock_wallet_description": "Ingrese la contraseña maestra para desbloquear",
+  "enter_your_password": "Ingrese su contraseña",
+  "password_cannot_be_empty": "La contraseña no puede estar vacía",
+  "incorrect_password": "Contraseña incorrecta",
+  "unlock_failed": "Desbloqueo fallido. Por favor, inténtelo de nuevo."
 }

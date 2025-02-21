@@ -1,3 +1,25 @@
+# 1.20.0+22
+
+- [Feat]: Implement unlock password page. [#85](https://github.com/pactus-project/pactus-gui/pull/86)
+  - Added UI for the unlock password page.
+  - Implemented the logic to unlock the wallet using a password.
+
+- [Feat]: Update UI in the unlock page. [#85](https://github.com/pactus-project/pactus-gui/pull/86)
+  - Improved design and layout of the unlock page.
+  - Enhanced user experience with updated styling.
+
+- [Update]: Refactor code and update the flow for the unlock wallet page. [#85](https://github.com/pactus-project/pactus-gui/pull/86)
+  - Improved code structure for better maintainability.
+  - Adjusted the unlocking flow for better usability.
+
+- [Update]: Revert logic in custom password and fix build issues. [#85](https://github.com/pactus-project/pactus-gui/pull/86)
+  - Fixed issues related to custom password handling.
+  - Resolved build errors to ensure stability.
+
+- [Feat]: Check user wallet for password and handle unblock screen. [#85](https://github.com/pactus-project/pactus-gui/pull/86)
+  - Added logic to check if the user's wallet is password-protected.
+  - Implemented handling for the unblock screen based on wallet status.
+
 # 1.19.0+21
 
 - [Feat]: Implement three different navigation panes for the three main flows of the app. [#84](https://github.com/pactus-project/pactus-gui/pull/87)

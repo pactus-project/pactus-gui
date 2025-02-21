@@ -4,10 +4,10 @@ abstract class LocaleKeys {
   static const String subtitle = 'subtitle';
   static const String description = 'description';
   static const String switch_language = 'switch_language';
-  static const String applications = 'applications';
   static const String welcome_title = 'welcome_title';
   static const String welcome_description = 'welcome_description';
   static const String start_button_text = 'start_button_text';
+  static const String applications = 'applications';
   static const String initialize_mode = 'initialize_mode';
   static const String wallet_seed = 'wallet_seed';
   static const String confirm_seed = 'confirm_seed';
@@ -29,4 +29,10 @@ abstract class LocaleKeys {
   static const String password = 'password';
   static const String next = 'next';
   static const String basic_auth = 'basic_auth';
+  static const String unlock_wallet = 'unlock_wallet';
+  static const String unlock_wallet_description = 'unlock_wallet_description';
+  static const String enter_your_password = 'enter_your_password';
+  static const String password_cannot_be_empty = 'password_cannot_be_empty';
+  static const String incorrect_password = 'incorrect_password';
+  static const String unlock_failed = 'unlock_failed';
 }

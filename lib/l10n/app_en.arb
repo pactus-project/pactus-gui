@@ -4,7 +4,6 @@
   "subtitle": "Welcome to Localization",
   "description": "You have pushed the button this many times:",
   "switch_language": "Switch language",
-  "applications": "Applications",
   "welcome_title": "Welcome to the Future of Blockchain with Pactus!",
   "welcome_description": "Where the future of blockchain unfolds with trust and transparency in every transaction. Join us in shaping a decentralized revolution!",
   "start_button_text": "Get Started",
@@ -26,5 +25,11 @@
   "username": "Username",
   "password": "Password",
   "next": "Next",
-  "basic_auth": "Basic Auth"
+  "basic_auth": "Basic Auth",
+  "unlock_wallet": "Unlock",
+  "unlock_wallet_description": "Enter the master password to unlock",
+  "enter_your_password": "Enter your password",
+  "password_cannot_be_empty": "Password cannot be empty",
+  "incorrect_password": "Incorrect password",
+  "unlock_failed": "Unlock failed. Please try again."
 }
