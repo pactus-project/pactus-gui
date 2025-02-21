@@ -1,126 +1,82 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
-import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_state.dart';
-import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
-import 'package:pactus_gui_widgetbook/app_styles.dart';
+
+import '../../../../core/common/widgets/custom_filled_button.dart';
+import '../../../../core/utils/gen/assets/assets.gen.dart';
+import '../../../../core/utils/gen/localization/locale_keys.dart';
 
 class FinishPage extends StatelessWidget {
   const FinishPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NavigationPaneCubit, int>(
-      builder: (context, selectedIndex) {
-        return NavigationView(
-          content: Center(
-            child: Column(
-              children: [
-                Text(
-                  'password: ${NodeConfigData.instance.password}',
-                  style: TextStyle(
-                    color:
-                        AppTheme.of(context).extension<DarkPallet>()!.dark900,
-                  ),
-                ),
-                Text(
-                  'validatorQty: ${NodeConfigData.instance.validatorQty}',
-                  style: TextStyle(
-                    color:
-                        AppTheme.of(context).extension<DarkPallet>()!.dark900,
-                  ),
-                ),
-                Text(
-                  'workingDirectory:'
-                  '${NodeConfigData.instance.workingDirectory}',
-                  style: TextStyle(
-                    color:
-                        AppTheme.of(context).extension<DarkPallet>()!.dark900,
-                  ),
-                ),
-                Text(
-                  'restorationSeed: ${NodeConfigData.instance.restorationSeed}',
-                  style: TextStyle(
-                    color:
-                        AppTheme.of(context).extension<DarkPallet>()!.dark900,
-                  ),
-                ),
-                Button(
-                  onPressed: () async {
-                    final daemonCubit = context.read<DaemonCubit>();
+    final theme = FluentTheme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
 
-                    await daemonCubit.runPactusDaemon(
-                      command: './pactus-daemon',
-                      arguments: [
-                        'init',
-                        '--working-dir',
-                        NodeConfigData.instance.workingDirectory,
-                        '--restore',
-                        NodeConfigData.instance.restorationSeed,
-                        '--password',
-                        NodeConfigData.instance.password,
-                        '--val-num',
-                        NodeConfigData.instance.validatorQty,
-                      ],
-                    );
-                  },
-                  child: Text('Run Node'),
-                ),
-                SizedBox(
-                  height: 150,
-                  child: BlocBuilder<DaemonCubit, DaemonState>(
-                    builder: (context, state) {
-                      if (state is DaemonLoading) {
-                        return Center(child: ProgressRing());
-                      } else if (state is DaemonSuccess) {
-                        return SingleChildScrollView(
-                          child: Text(
-                            state.output,
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        );
-                      } else if (state is DaemonError) {
-                        return SingleChildScrollView(
-                          child: Text(
-                            state.error,
-                            style: TextStyle(fontSize: 16, color: Colors.red),
-                          ),
-                        );
-                      } else {
-                        return Center(
-                          child: Text('Press the button to run the daemon.'),
-                        );
-                      }
-                    },
+    return NavigationView(
+      content: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Row(
+          children: [
+            Expanded(
+              flex: 6, // 60% of the width
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Your journey finalized, your success on the horizon',
+                    style: FluentTheme.of(context).typography.title,
+                    textAlign: TextAlign.left,
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    if (selectedIndex > 0)
-                      Button(
-                        child: const Text('Previous'),
-                        onPressed: () {
-                          context
-                              .read<NavigationPaneCubit>()
-                              .setSelectedIndex(selectedIndex - 1);
-                        },
-                      ),
-                    const SizedBox(width: 20),
-                    Button(
-                      child: const Text('Finish'),
-                      onPressed: () {
-                        ///to-do : navigate to dashboard navigation pane here
-                      },
-                    ),
-                  ],
-                ),
-              ],
+                  const SizedBox(height: 20),
+                  Text(
+                    'Venturing into the realm of blockchain technology, Pactus heralds an era of uncompromised decentralization that stands in contrast to its contemporaries...',
+                    style: FluentTheme.of(context).typography.body,
+                    textAlign: TextAlign.left,
+                  ),
+                  const SizedBox(height: 20),
+                  _buildUnlockButton(),
+                ],
+              ),
             ),
-          ),
-        );
+            Expanded(
+              flex: 4, // 40% of the width
+              child: Center(
+                child: SvgPicture.asset(
+                  isDark
+                      ? Assets.images.bgFinishDark
+                      : Assets.images.bgFinishLight,
+                  height: 400,
+                  width: 400,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildUnlockButton() {
+    return CustomFilledButton(
+      text: LocaleKeys.auth_method,
+      onPressed: () {
+        // Add your navigation logic here
       },
+      style: ButtonStyle(
+        padding: WidgetStateProperty.all<EdgeInsetsDirectional?>(
+          EdgeInsetsDirectional.symmetric(horizontal: 24, vertical: 4),
+        ),
+        backgroundColor: WidgetStateProperty.all(Color(0xFF0066B4)),
+        shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(4),
+          ),
+        ),
+      ),
     );
   }
 }

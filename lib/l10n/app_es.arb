@@ -25,5 +25,14 @@
   "auth_method": "Método de autenticación",
   "username": "Nombre de usuario",
   "password": "Contraseña",
-  "basic_auth": "Autenticación básica"
+  "basic_auth": "Autenticación básica",
+  "unlock_wallet": "Desbloquear",
+  "unlock_wallet_description": "Ingrese la contraseña maestra para desbloquear",
+  "enter_your_password": "Ingrese su contraseña",
+  "password_cannot_be_empty": "La contraseña no puede estar vacía",
+  "incorrect_password": "Contraseña incorrecta",
+  "unlock_failed": "Desbloqueo fallido. Por favor, inténtelo de nuevo.",
+  "your_journey_finalized": "Tu viaje finalizado, tu éxito en el horizonte",
+  "your_success_on_the_horizon": "Adentrándose en el reino de la tecnología blockchain, Pactus anuncia una era de descentralización sin compromisos que se opone a sus contemporáneos. Se separa de los sistemas de prueba de participación delegada y minería que podrían conducir a la concentración de poder. Al hacerlo, Pactus abre sus muros, invitando a participantes de todas las camadas a unirse como iguales en mantener la red. Dentro de este tapiz comunitario, cada usuario tiene la oportunidad de operar como un cliente validador, contribuyendo a la invulnerabilidad de la red ante el control o la censura, asegurando la integridad y la autonomía de la plataforma.",
+  "unlock_button": "Ir al panel de control"
 }

@@ -25,5 +25,14 @@
   "auth_method": "Auth Method",
   "username": "Username",
   "password": "Password",
-  "basic_auth": "Basic Auth"
+  "basic_auth": "Basic Auth",
+  "unlock_wallet": "Unlock",
+  "unlock_wallet_description": "Enter the master password to unlock",
+  "enter_your_password": "Enter your password",
+  "password_cannot_be_empty": "Password cannot be empty",
+  "incorrect_password": "Incorrect password",
+  "unlock_failed": "Unlock failed. Please try again.",
+  "your_journey_finalized": "Your journey finalized, your success on the horizon",
+  "your_success_on_the_horizon": "Venturing into the realm of blockchain technology, Pactus heralds an era of uncompromised decentralization that stands in contrast to its contemporaries. It eschews traditional power hierarchies, parting ways with delegated proof-of-stake systems and mining operations that could lead to power concentration. By doing so, Pactus lowers its ramparts, inviting participants from all walks of life to join as equals in maintaining the network. Within this communal tapestry, every user has the opportunity to operate as a validator client, contributing to the network’s invulnerability to control or censorship, ensuring the platform’s integrity and autonomy.\n\nPactus isn’t just revolutionizing the structure of blockchain governance; it’s also remapping the user experience. Crafted with the conviction that blockchain should be accessible to all, the Pactus chain boasts a simple yet sophisticated graphical user interface (GUI) that demystifies the process of running a node. The elegance lies in its simplicity - a clear, approachable design that veils the robust and intricate mechanics beneath, allowing users, regardless of their technical prowess, to participate as validator clients. This move towards inclusivity transforms users from mere participants to guardians of the blockchain, an essential facet of the Pactus ecosystem.",
+  "unlock_button": "Go to Dashboard"
 }

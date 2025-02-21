@@ -25,5 +25,14 @@
   "auth_method": "Méthode dauthentification",
   "username": "Nom dutilisateur",
   "password": "Mot de passe",
-  "basic_auth": "Authentification de base"
+  "basic_auth": "Authentification de base",
+  "unlock_wallet": "Déverrouiller",
+  "unlock_wallet_description": "Entrez le mot de passe principal pour déverrouiller",
+  "enter_your_password": "Entrez votre mot de passe",
+  "password_cannot_be_empty": "Le mot de passe ne peut pas être vide",
+  "incorrect_password": "Mot de passe incorrect",
+  "unlock_failed": "Déverrouillage impossible. Veuillez réessayer.",
+  "your_journey_finalized": "Votre voyage finalisé, votre succès sur lhorizon",
+  "your_success_on_the_horizon": "Pactus, une blockchain décentralisée sans compromis, s'oppose à ses contemporains. Il s'écarte des systèmes de preuve de participation déléguée et de minage qui pourraient conduire à une concentration de pouvoir. En faisant cela, Pactus abaisse ses remparts, invitant les participants de toutes les couches à se joindre comme égaux pour maintenir le réseau. Dans ce tissu communautaire, chaque utilisateur a la possibilité d'opérer comme un client validateur, contribuant à l'invulnérabilité du réseau face au contrôle ou à la censure, garantissant l'intégrité et l'autonomie de la plateforme.",
+  "unlock_button": "Accéder au tableau de bord"
 }
