@@ -10,6 +10,8 @@
   - Update `registrationRoutes` with the new changes to the panels.
   - Add new routes enum to `route name`.
   - Update navigation in `WelcomeScreen`.
+- [Fix]: Apply theme-aware colors to Pane text style. [#84](https://github.com/pactus-project/pactus-gui/pull/87)
+  - ensure that Pane text colors adjust correctly based on theme switching, providing proper contrast and readability in both light and dark modes.
 
 # 1.18.0+20
 
