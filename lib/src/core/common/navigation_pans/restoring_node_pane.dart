@@ -1,6 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/finish/presentation/screen/finish_page.dart';
@@ -10,6 +9,10 @@ import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/n
 import 'package:gui/src/features/master_password/presentation/screen/master_password_page.dart';
 import 'package:gui/src/features/restoration_seed/presentation/screen/restoration_seed_page.dart';
 import 'package:gui/src/features/validator_config/presentation/screen/validator_config_page.dart';
+import 'package:pactus_gui_widgetbook/core.dart';
+// TODO(esmaeil): this part need correction in widgetbook repo
+// ignore_for_file: implementation_imports
+import 'package:pactus_gui_widgetbook/src/core/enum/pane_text_mode_enum.dart';
 
 /// ## [RestoringNodePane] Class Documentation
 ///
@@ -69,8 +72,8 @@ class RestoringNodePane extends StatelessWidget {
                   context.tr(LocaleKeys.wallet_seed),
                   style: TextStyle(
                     color: selectedIndex == 0
-                        ? AppColors.navigationPanelEnableColor
-                        : AppColors.navigationPanelDisableColor,
+                        ? context.fromPaneTextMode(PaneTextMode.enabled)
+                        : context.fromPaneTextMode(PaneTextMode.disabled),
                   ),
                 ),
                 body: RestorationSeedPage(),
@@ -81,8 +84,8 @@ class RestoringNodePane extends StatelessWidget {
                   context.tr(LocaleKeys.master_password),
                   style: TextStyle(
                     color: selectedIndex == 1
-                        ? AppColors.navigationPanelEnableColor
-                        : AppColors.navigationPanelDisableColor,
+                        ? context.fromPaneTextMode(PaneTextMode.enabled)
+                        : context.fromPaneTextMode(PaneTextMode.disabled),
                   ),
                 ),
                 body: MasterPasswordPage(),
@@ -93,8 +96,8 @@ class RestoringNodePane extends StatelessWidget {
                   context.tr(LocaleKeys.validator_config),
                   style: TextStyle(
                     color: selectedIndex == 2
-                        ? AppColors.navigationPanelEnableColor
-                        : AppColors.navigationPanelDisableColor,
+                        ? context.fromPaneTextMode(PaneTextMode.enabled)
+                        : context.fromPaneTextMode(PaneTextMode.disabled),
                   ),
                 ),
                 body: ValidatorConfigPage(),
@@ -105,8 +108,8 @@ class RestoringNodePane extends StatelessWidget {
                   context.tr(LocaleKeys.initializing),
                   style: TextStyle(
                     color: selectedIndex == 3
-                        ? AppColors.navigationPanelEnableColor
-                        : AppColors.navigationPanelDisableColor,
+                        ? context.fromPaneTextMode(PaneTextMode.enabled)
+                        : context.fromPaneTextMode(PaneTextMode.disabled),
                   ),
                 ),
                 body: InitializingPage(),
@@ -117,8 +120,8 @@ class RestoringNodePane extends StatelessWidget {
                   context.tr(LocaleKeys.finish),
                   style: TextStyle(
                     color: selectedIndex == 4
-                        ? AppColors.navigationPanelEnableColor
-                        : AppColors.navigationPanelDisableColor,
+                        ? context.fromPaneTextMode(PaneTextMode.enabled)
+                        : context.fromPaneTextMode(PaneTextMode.disabled),
                   ),
                 ),
                 body: MultiBlocProvider(

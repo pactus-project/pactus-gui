@@ -1,12 +1,15 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/finish/presentation/screen/finish_page.dart';
 import 'package:gui/src/features/initializing/presentation/screen/initializing_page.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
+import 'package:pactus_gui_widgetbook/core.dart';
+// TODO(esmaeil): this part need correction in widgetbook repo
+// ignore_for_file: implementation_imports
+import 'package:pactus_gui_widgetbook/src/core/enum/pane_text_mode_enum.dart';
 
 /// ## [RemoteNodePane] Class Documentation
 ///
@@ -65,8 +68,8 @@ class RemoteNodePane extends StatelessWidget {
                   context.tr(LocaleKeys.initializing),
                   style: TextStyle(
                     color: selectedIndex == 0
-                        ? AppColors.navigationPanelEnableColor
-                        : AppColors.navigationPanelDisableColor,
+                        ? context.fromPaneTextMode(PaneTextMode.enabled)
+                        : context.fromPaneTextMode(PaneTextMode.disabled),
                   ),
                 ),
                 body: InitializingPage(),
@@ -77,8 +80,8 @@ class RemoteNodePane extends StatelessWidget {
                   context.tr(LocaleKeys.finish),
                   style: TextStyle(
                     color: selectedIndex == 1
-                        ? AppColors.navigationPanelEnableColor
-                        : AppColors.navigationPanelDisableColor,
+                        ? context.fromPaneTextMode(PaneTextMode.enabled)
+                        : context.fromPaneTextMode(PaneTextMode.disabled),
                   ),
                 ),
                 body: MultiBlocProvider(

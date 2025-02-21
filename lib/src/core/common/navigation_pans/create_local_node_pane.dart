@@ -11,6 +11,10 @@ import 'package:gui/src/features/main/language/core/localization_extension.dart'
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/master_password/presentation/screen/master_password_page.dart';
 import 'package:gui/src/features/validator_config/presentation/screen/validator_config_page.dart';
+import 'package:pactus_gui_widgetbook/core.dart';
+// TODO(esmaeil): this part need correction in widgetbook repo
+// ignore_for_file: implementation_imports
+import 'package:pactus_gui_widgetbook/src/core/enum/pane_text_mode_enum.dart';
 
 /// ## [CreateLocalNodePane] Class Documentation
 ///
@@ -78,8 +82,8 @@ class CreateLocalNodePane extends StatelessWidget {
                   context.tr(LocaleKeys.wallet_seed),
                   style: TextStyle(
                     color: selectedIndex == 0
-                        ? AppColors.navigationPanelEnableColor
-                        : AppColors.navigationPanelDisableColor,
+                        ? context.fromPaneTextMode(PaneTextMode.enabled)
+                        : context.fromPaneTextMode(PaneTextMode.disabled),
                   ),
                 ),
                 body: GenerationSeedScreen(),
@@ -90,7 +94,7 @@ class CreateLocalNodePane extends StatelessWidget {
                   context.tr(LocaleKeys.confirm_seed),
                   style: TextStyle(
                     color: selectedIndex == 1
-                        ? AppColors.navigationPanelEnableColor
+                        ? context.fromPalletColor(PalletColors.gray600)
                         : AppColors.navigationPanelDisableColor,
                   ),
                 ),
@@ -102,8 +106,8 @@ class CreateLocalNodePane extends StatelessWidget {
                   context.tr(LocaleKeys.master_password),
                   style: TextStyle(
                     color: selectedIndex == 2
-                        ? AppColors.navigationPanelEnableColor
-                        : AppColors.navigationPanelDisableColor,
+                        ? context.fromPaneTextMode(PaneTextMode.enabled)
+                        : context.fromPaneTextMode(PaneTextMode.disabled),
                   ),
                 ),
                 body: MasterPasswordPage(),
@@ -114,8 +118,8 @@ class CreateLocalNodePane extends StatelessWidget {
                   context.tr(LocaleKeys.validator_config),
                   style: TextStyle(
                     color: selectedIndex == 3
-                        ? AppColors.navigationPanelEnableColor
-                        : AppColors.navigationPanelDisableColor,
+                        ? context.fromPaneTextMode(PaneTextMode.enabled)
+                        : context.fromPaneTextMode(PaneTextMode.disabled),
                   ),
                 ),
                 body: ValidatorConfigPage(),
@@ -126,8 +130,8 @@ class CreateLocalNodePane extends StatelessWidget {
                   context.tr(LocaleKeys.initializing),
                   style: TextStyle(
                     color: selectedIndex == 4
-                        ? AppColors.navigationPanelEnableColor
-                        : AppColors.navigationPanelDisableColor,
+                        ? context.fromPaneTextMode(PaneTextMode.enabled)
+                        : context.fromPaneTextMode(PaneTextMode.disabled),
                   ),
                 ),
                 body: InitializingPage(),
@@ -138,8 +142,8 @@ class CreateLocalNodePane extends StatelessWidget {
                   context.tr(LocaleKeys.finish),
                   style: TextStyle(
                     color: selectedIndex == 5
-                        ? AppColors.navigationPanelEnableColor
-                        : AppColors.navigationPanelDisableColor,
+                        ? context.fromPaneTextMode(PaneTextMode.enabled)
+                        : context.fromPaneTextMode(PaneTextMode.disabled),
                   ),
                 ),
                 body: MultiBlocProvider(
