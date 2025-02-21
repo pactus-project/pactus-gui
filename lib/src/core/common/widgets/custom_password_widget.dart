@@ -39,10 +39,6 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 /// - **[width]** (`double?`)
 ///   - Custom width for the input field.
 ///
-/// - **[obscureText]** (`bool`)
-///   - Determines whether the text is obscured.
-///   - Defaults to `true`.
-///
 /// ### Constructor:
 ///
 /// - `CustomPasswordWidget({required this.placeholder, ...})`
@@ -57,15 +53,24 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 class CustomPasswordWidget extends StatelessWidget {
   const CustomPasswordWidget({
     super.key,
-    required this.width,
     required this.placeholder,
-    required this.controller,
-    required this.onChanged,
+    this.onChanged,
+    this.readOnly = false,
+    this.autofocus = false,
+    this.textStyle,
+    this.backgroundColor,
+    this.borderRadius,
+    this.width,
   });
-  final double width;
+
   final String placeholder;
-  final TextEditingController controller;
-  final ValueChanged<String> onChanged;
+  final ValueChanged<String>? onChanged;
+  final bool readOnly;
+  final bool autofocus;
+  final TextStyle? textStyle;
+  final Color? backgroundColor;
+  final BorderRadius? borderRadius;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
@@ -74,23 +79,26 @@ class CustomPasswordWidget extends StatelessWidget {
       height: 38,
       child: ExcludeSemantics(
         child: PasswordBox(
-          controller: controller,
           placeholder: placeholder,
-          onChanged: onChanged,
           placeholderStyle: TextStyle(
             color: AppTheme.of(context).extension<DarkPallet>()!.dark600,
           ),
+          onChanged: onChanged,
+          readOnly: readOnly,
+          autofocus: autofocus,
           textAlignVertical: TextAlignVertical.center,
-          style: TextStyle(
-            fontSize: 14,
-            height: 1,
-          ),
+          style: textStyle ??
+              TextStyle(
+                fontSize: 14,
+                height: 1,
+              ),
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
           decoration: WidgetStateProperty.resolveWith((states) {
             final isFocused = states.isFocused;
             return BoxDecoration(
-              color: AppTheme.of(context).extension<LightPallet>()!.light900,
-              borderRadius: BorderRadius.circular(4),
+              color: backgroundColor ??
+                  AppTheme.of(context).extension<LightPallet>()!.light900,
+              borderRadius: borderRadius ?? BorderRadius.circular(4),
               border: Border(
                 bottom: BorderSide(
                   color: isFocused

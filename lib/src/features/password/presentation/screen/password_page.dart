@@ -19,8 +19,8 @@ class PasswordPage extends StatefulWidget {
 }
 
 class _PasswordPageState extends State<PasswordPage> {
-  final TextEditingController _passwordController = TextEditingController();
   String? _errorMessage;
+  String _passwordValue = '';
   // Constants for layout
   static const double _maxContentWidth = 400;
   static const double _lockIconSize = 406;
@@ -75,10 +75,10 @@ class _PasswordPageState extends State<PasswordPage> {
               CustomPasswordWidget(
                 width: 280,
                 placeholder: '••••••••',
-                controller: _passwordController,
                 onChanged: (value) {
                   setState(() {
                     _errorMessage = null;
+                    _passwordValue = value;
                   });
                   debugPrint('Password value: $value');
                 },
@@ -149,7 +149,7 @@ class _PasswordPageState extends State<PasswordPage> {
     setState(() {
       _errorMessage = null;
     });
-    final password = _passwordController.text.trim();
+    final password = _passwordValue.trim();
     if (password.isEmpty) {
       setState(() {
         _errorMessage = context.tr(LocaleKeys.password_cannot_be_empty);
@@ -169,7 +169,6 @@ class _PasswordPageState extends State<PasswordPage> {
 
   @override
   void dispose() {
-    _passwordController.dispose();
     super.dispose();
   }
 }
