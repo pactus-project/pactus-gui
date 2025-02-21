@@ -84,7 +84,7 @@ class WelcomeScreen extends StatelessWidget {
             AdaptiveTextButton(
               text: LocaleKeys.start_button_text,
               onPressed: () {
-                context.goNamed(AppRoute.initializeMode.name);
+                context.goNamed(AppRoute.initializingNavigationPane.name);
               },
             ),
             const Gap(50),

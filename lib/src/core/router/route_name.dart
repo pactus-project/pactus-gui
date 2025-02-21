@@ -15,7 +15,8 @@ enum AppRoute {
   initializingLocalNodePane,
   restoringNodePane,
   connectingRemoteNodePane,
-  dashboardNavigationPane;
+  dashboardNavigationPane,
+  initializingNavigationPane;
 
   String get fullPath => '/$name';
   String get path => name;

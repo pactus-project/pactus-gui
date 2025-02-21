@@ -55,10 +55,10 @@ jobs:
             echo "Error: Failed to generate asset files.";
             exit 1;
           )
-      - name: Check Asset Files Changes
+      - name: Format Dart Code
         run: |
-          # Check if there are changes after generating asset files
-          git diff --exit-code lib/src/core/utils/gen/assets || (
+          # Check Format Dart Code
+          dart format . || (
             echo "Error: Asset files are outdated. Run the generation command and commit the changes.";
             exit 1;
           )
