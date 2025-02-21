@@ -1,55 +1,57 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/core/common/colors/app_colors.dart';
+import 'package:gui/src/core/extensions/context_extensions.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/confirmation_seed/presentation/screen/confirmation_seed_page.dart';
 import 'package:gui/src/features/finish/presentation/screen/finish_page.dart';
-import 'package:gui/src/features/initialize_mode/presentation/screen/initialize_mode_screen.dart';
+import 'package:gui/src/features/generation_seed/presentation/screens/generation_seed_screen.dart';
 import 'package:gui/src/features/initializing/presentation/screen/initializing_page.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/master_password/presentation/screen/master_password_page.dart';
-import 'package:gui/src/features/restoration_seed/presentation/screen/restoration_seed_page.dart';
 import 'package:gui/src/features/validator_config/presentation/screen/validator_config_page.dart';
 
-/// ## [InitializingNavigationPane] Class Documentation
+/// ## [CreateLocalNodePane] Class Documentation
 ///
-/// The `InitializingNavigationPane` class represents a navigation pane for
-/// managing the initialization process of the application.
-/// It uses `NavigationView` and `NavigationPane` to organize different setup
-/// steps.
+/// The `CreateLocalNodePane` class represents the navigation panel for
+/// the local node creation process.
+/// It provides a structured flow for setting up a local node by navigating
+/// through different configuration steps.
+///
+/// ### Usage:
+///
+/// This navigation pane consists of multiple steps, each represented by
+/// a `PaneItem`, including:
+/// - **[GenerationSeedScreen]**: Displays the wallet seed generation process.
+/// - **[ConfirmationSeedPage]**: Allows the user to confirm the generated seed.
+/// - **[MasterPasswordPage]**: Provides an interface for setting a master
+/// password.
+/// - **[ValidatorConfigPage]**: Configures validator-related settings.
+/// - **[InitializingPage]**: Handles the node initialization process.
+/// - **[FinishPage]**: Concludes the setup process, including daemon
+/// management.
 ///
 /// ### Properties:
 ///
-/// - **selectedIndex** (`int`)
-///   - Manages the currently selected navigation index.
-///   - Controlled by `NavigationPaneCubit`.
+/// - **selectedIndex**:
+///   - An `int` representing the currently selected navigation index.
+///   - Managed by the `NavigationPaneCubit`.
 ///
-/// - **pane** (`NavigationPane`)
-///   - Contains navigation items for different initialization steps.
-///   - Ensures step-by-step progression by limiting selection jumps.
+/// - **[onChanged(index)]**:
+///   - Updates the selected index when the user navigates forward or backward.
+///   - Ensures only adjacent steps can be selected to maintain a
+///   linear setup flow.
 ///
-/// - **items** (`List<PaneItem>`)
-///   - Defines individual navigation steps, each associated
-///   with a corresponding screen.
-///   - Includes screens like `InitializeModeScreen`,
-///   `RestorationSeedPage`, `ConfirmationSeedPage`, etc.
+/// ### Notes:
 ///
-/// ### Constructor:
+/// - Each navigation item (`PaneItem`) uses localized text from `LocaleKeys`.
+/// - Selected items are visually distinguished using colors from `AppColors`.
+/// - The `FinishPage` is wrapped in a `MultiBlocProvider` to initialize a
+/// `DaemonCubit` for managing the node daemon.
 ///
-/// - `InitializingNavigationPane({super.key})`
-///   - Initializes the navigation pane as a `StatelessWidget`.
-///   - Uses `BlocBuilder` to track and update the selected index dynamically.
-///
-/// ### Important Notes:
-///
-/// - Implements `NavigationPaneSize` for UI consistency.
-/// - Uses `MultiBlocProvider` to inject dependencies in the final step.
-/// - Prevents skipping steps by allowing only sequential navigation.
-
-class InitializingNavigationPane extends StatelessWidget {
-  const InitializingNavigationPane({super.key});
+class CreateLocalNodePane extends StatelessWidget {
+  const CreateLocalNodePane({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -73,35 +75,23 @@ class InitializingNavigationPane extends StatelessWidget {
               PaneItem(
                 icon: const SizedBox(),
                 title: Text(
-                  context.tr(LocaleKeys.initialize_mode),
-                  style: TextStyle(
-                    color: selectedIndex == 0
-                        ? AppColors.navigationPanelEnableColor
-                        : AppColors.navigationPanelDisableColor,
-                  ),
-                ),
-                body: InitializeModeScreen(),
-              ),
-              PaneItem(
-                icon: const SizedBox(),
-                title: Text(
                   context.tr(LocaleKeys.wallet_seed),
                   style: TextStyle(
-                    color: selectedIndex == 1
-                        ? AppColors.navigationPanelEnableColor
-                        : AppColors.navigationPanelDisableColor,
+                    color: context.detectPaneTextColor(
+                      isEnabledTextStyle: selectedIndex == 0,
+                    ),
                   ),
                 ),
-                body: RestorationSeedPage(),
+                body: GenerationSeedScreen(),
               ),
               PaneItem(
                 icon: const SizedBox(),
                 title: Text(
                   context.tr(LocaleKeys.confirm_seed),
                   style: TextStyle(
-                    color: selectedIndex == 2
-                        ? AppColors.navigationPanelEnableColor
-                        : AppColors.navigationPanelDisableColor,
+                    color: context.detectPaneTextColor(
+                      isEnabledTextStyle: selectedIndex == 1,
+                    ),
                   ),
                 ),
                 body: ConfirmationSeedPage(),
@@ -111,9 +101,9 @@ class InitializingNavigationPane extends StatelessWidget {
                 title: Text(
                   context.tr(LocaleKeys.master_password),
                   style: TextStyle(
-                    color: selectedIndex == 3
-                        ? AppColors.navigationPanelEnableColor
-                        : AppColors.navigationPanelDisableColor,
+                    color: context.detectPaneTextColor(
+                      isEnabledTextStyle: selectedIndex == 2,
+                    ),
                   ),
                 ),
                 body: MasterPasswordPage(),
@@ -123,9 +113,9 @@ class InitializingNavigationPane extends StatelessWidget {
                 title: Text(
                   context.tr(LocaleKeys.validator_config),
                   style: TextStyle(
-                    color: selectedIndex == 4
-                        ? AppColors.navigationPanelEnableColor
-                        : AppColors.navigationPanelDisableColor,
+                    color: context.detectPaneTextColor(
+                      isEnabledTextStyle: selectedIndex == 3,
+                    ),
                   ),
                 ),
                 body: ValidatorConfigPage(),
@@ -135,9 +125,9 @@ class InitializingNavigationPane extends StatelessWidget {
                 title: Text(
                   context.tr(LocaleKeys.initializing),
                   style: TextStyle(
-                    color: selectedIndex == 5
-                        ? AppColors.navigationPanelEnableColor
-                        : AppColors.navigationPanelDisableColor,
+                    color: context.detectPaneTextColor(
+                      isEnabledTextStyle: selectedIndex == 4,
+                    ),
                   ),
                 ),
                 body: InitializingPage(),
@@ -147,9 +137,9 @@ class InitializingNavigationPane extends StatelessWidget {
                 title: Text(
                   context.tr(LocaleKeys.finish),
                   style: TextStyle(
-                    color: selectedIndex == 6
-                        ? AppColors.navigationPanelEnableColor
-                        : AppColors.navigationPanelDisableColor,
+                    color: context.detectPaneTextColor(
+                      isEnabledTextStyle: selectedIndex == 5,
+                    ),
                   ),
                 ),
                 body: MultiBlocProvider(
@@ -158,7 +148,7 @@ class InitializingNavigationPane extends StatelessWidget {
                       create: (_) => DaemonCubit(),
                     ),
                   ],
-                  child: const FinishPage(),
+                  child: FinishPage(),
                 ),
               ),
             ],
