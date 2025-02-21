@@ -21,7 +21,7 @@ final List<GoRoute> registrationRoutes = [
             name: AppRoute.password.name,
             builder: (context, state) => UnblockPasswordScreen(
               fromRegistrationRoute:
-              state.matchedLocation.contains(AppRoute.finish.name),
+                  state.matchedLocation.contains(AppRoute.finish.name),
             ),
             routes: [
               GoRoute(
