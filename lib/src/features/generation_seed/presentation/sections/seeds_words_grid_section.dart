@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:pactus_gui_widgetbook/core.dart';
 import 'package:pactus_gui_widgetbook/widgets.dart';
+
 /// ## [SeedWordsGridSection] Class Documentation
 ///
 /// The `SeedWordsGridSection` class displays a grid of seed words, with each

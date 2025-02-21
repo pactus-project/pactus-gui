@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:gui/src/features/generation_seed/core/constants/enums/seed_type_enum.dart';
+
 /// ## [SeedTypeCubit] Class Documentation
 ///
 /// The `SeedTypeCubit` class is a state management cubit that manages the

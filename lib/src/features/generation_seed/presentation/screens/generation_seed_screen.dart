@@ -15,6 +15,7 @@ import 'package:gui/src/features/generation_seed/presentation/widgets/copy_to_cl
 import 'package:gui/src/features/generation_seed/presentation/widgets/seed_type_selector_widget.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+
 /// ## [GenerationSeedScreen] Class Documentation
 ///
 /// The `GenerationSeedScreen` class is a stateful widget responsible for

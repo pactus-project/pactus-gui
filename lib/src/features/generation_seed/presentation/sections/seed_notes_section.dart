@@ -3,6 +3,7 @@ import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+
 /// ## [SeedNotesSection] Class Documentation
 ///
 /// The `SeedNotesSection` class is a stateless widget that displays notes

@@ -34,15 +34,16 @@
 /// - The enum values are used to define and manage seed types in the seed
 ///   generation process.
 library;
+
 enum SeedTypeEnum {
   none(0, 'no words'),
   twelve(1, '12 words'),
   twentyFour(2, '24 words');
 
   const SeedTypeEnum(
-      this.id,
-      this.text,
-      );
+    this.id,
+    this.text,
+  );
   final int id;
   final String text;
 }

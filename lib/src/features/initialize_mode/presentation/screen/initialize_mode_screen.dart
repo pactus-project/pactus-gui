@@ -133,16 +133,18 @@ class InitializeModeScreen extends StatelessWidget {
                               switch (selectedValue) {
                                 case 0:
                                   context.goNamed(
-                                      AppRoute.initializingLocalNodePane.name,);
+                                    AppRoute.initializingLocalNodePane.name,
+                                  );
                                 case 1:
-                                  context
-                                      .goNamed(AppRoute.restoringNodePane.name,);
+                                  context.goNamed(
+                                    AppRoute.restoringNodePane.name,
+                                  );
                                 case 2:
                                   context.goNamed(
-                                      AppRoute.connectingRemoteNodePane.name,);
+                                    AppRoute.connectingRemoteNodePane.name,
+                                  );
                               }
                             },
-
                             style: ButtonStyle(
                               backgroundColor: WidgetStatePropertyAll(
                                 AppColors.radioButtonActiveColor,

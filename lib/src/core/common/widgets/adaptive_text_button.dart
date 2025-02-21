@@ -73,13 +73,19 @@ class AdaptiveTextButton extends StatelessWidget {
       style: style ??
           ButtonStyle(
             padding: WidgetStateProperty.all<EdgeInsetsDirectional?>(
-                const EdgeInsetsDirectional.symmetric(
-                    horizontal: 24, vertical: 4,),),
+              const EdgeInsetsDirectional.symmetric(
+                horizontal: 24,
+                vertical: 4,
+              ),
+            ),
             backgroundColor: WidgetStateProperty.all(
-                isFilled ? const Color(0xFF0066B4) : Colors.transparent,),
+              isFilled ? const Color(0xFF0066B4) : Colors.transparent,
+            ),
             shape: WidgetStateProperty.all(
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(4),
-                ),),
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
           ),
       child: Padding(
         padding:

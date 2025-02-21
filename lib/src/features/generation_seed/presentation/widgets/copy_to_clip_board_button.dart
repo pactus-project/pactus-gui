@@ -5,6 +5,7 @@ import 'package:gui/src/core/common/widgets/adaptive_text_button.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+
 /// ## [CopyToClipboardButton] Class Documentation
 ///
 /// The `CopyToClipboardButton` class is a stateless widget that allows users
@@ -73,11 +74,13 @@ class CopyToClipboardButton extends StatelessWidget {
             builder: (context) => ContentDialog(
               title: Text(
                 context.tr(LocaleKeys.clipboard_dialog_title),
-                style: InterTextStyles.bodyBold.copyWith(color: AppColors.primaryDark),
+                style: InterTextStyles.bodyBold
+                    .copyWith(color: AppColors.primaryDark),
               ),
               content: Text(
                 context.tr(LocaleKeys.clipboard_dialog_content),
-                style: InterTextStyles.captionMedium.copyWith(color: AppColors.primaryDark),
+                style: InterTextStyles.captionMedium
+                    .copyWith(color: AppColors.primaryDark),
               ),
               actions: [
                 AdaptiveTextButton(
@@ -92,7 +95,6 @@ class CopyToClipboardButton extends StatelessWidget {
             ),
           );
         },
-
         isFilled: false,
       ),
     );

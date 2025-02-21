@@ -5,6 +5,7 @@ import 'package:gui/src/core/common/widgets/custom_expandable_widget.dart';
 import 'package:gui/src/features/generation_seed/core/constants/enums/seed_type_enum.dart';
 import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+
 /// ## [SeedTypeSelectorWidget] Class Documentation
 ///
 /// The `SeedTypeSelectorWidget` class is a widget that allows users to select
