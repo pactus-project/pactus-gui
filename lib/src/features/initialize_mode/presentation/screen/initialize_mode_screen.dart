@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
-import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
+import 'package:gui/src/core/common/widgets/adaptive_text_button.dart';
 import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/initialize_mode/presentation/sections/remote_node_section.dart';
@@ -127,24 +127,22 @@ class InitializeModeScreen extends StatelessWidget {
                       alignment: Alignment.centerRight,
                       child: BlocBuilder<RadioButtonCubit, int>(
                         builder: (context, selectedValue) {
-                          return CustomFilledButton(
+                          return AdaptiveTextButton(
                             text: context.tr(LocaleKeys.next),
                             onPressed: () {
                               switch (selectedValue) {
                                 case 0:
                                   context.goNamed(
-                                    AppRoute.initializingLocalNodePane.name,
-                                  );
+                                      AppRoute.initializingLocalNodePane.name,);
                                 case 1:
-                                  context.goNamed(
-                                    AppRoute.restoringNodePane.name,
-                                  );
+                                  context
+                                      .goNamed(AppRoute.restoringNodePane.name,);
                                 case 2:
                                   context.goNamed(
-                                    AppRoute.connectingRemoteNodePane.name,
-                                  );
+                                      AppRoute.connectingRemoteNodePane.name,);
                               }
                             },
+
                             style: ButtonStyle(
                               backgroundColor: WidgetStatePropertyAll(
                                 AppColors.radioButtonActiveColor,

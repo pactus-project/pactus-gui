@@ -1,14 +1,14 @@
 import 'package:bloc/bloc.dart';
+import 'package:gui/src/features/generation_seed/core/constants/enums/seed_type_enum.dart';
 
-enum SeedType { none, twelve, twentyFour }
-
-class SeedTypeCubit extends Cubit<SeedType> {
-  SeedTypeCubit() : super(SeedType.none);
+class SeedTypeCubit extends Cubit<SeedTypeEnum> {
+  SeedTypeCubit() : super(SeedTypeEnum.twelve);
 
   void selectSeed(int wordsCount) {
     emit(
-      wordsCount == 12 ? SeedType.twelve : (wordsCount == 24 ?
-      SeedType.twentyFour : SeedType.none),
+      wordsCount == 12
+          ? SeedTypeEnum.twelve
+          : (wordsCount == 24 ? SeedTypeEnum.twentyFour : SeedTypeEnum.none),
     );
   }
 }

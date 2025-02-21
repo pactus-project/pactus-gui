@@ -26,5 +26,17 @@
   "username": "Username",
   "password": "Password",
   "next": "Next",
-  "basic_auth": "Basic Auth"
+  "basic_auth": "Basic Auth",
+  "generation_seed_title": "Your wallet generation seed",
+  "generation_seed_description": "Initiate your cryptographic journey with confidence",
+  "generation_seed_note1": "Please write these 24 words on paper",
+  "generation_seed_note2": "This seed will allow you to recover your wallet in case of computer failure",
+  "warning": "WARNING",
+  "generation_seed_warning1": "Never disclose your seed",
+  "generation_seed_warning2": "Never type it on a website",
+  "generation_seed_warning3": "Do not store it electronically",
+  "copy_to_clipboard": "Copy to clipboard",
+  "clipboard_dialog_title": "Copy Successful",
+  "clipboard_dialog_content": "Your seed words have been copied to the clipboard",
+  "ok": "ok"
 }
