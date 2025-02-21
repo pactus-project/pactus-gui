@@ -10,15 +10,15 @@ import '../../../../core/common/colors/app_colors.dart';
 import '../../../../core/common/widgets/custom_filled_button.dart';
 import '../../../../core/common/widgets/custom_password_widget.dart';
 
-class PasswordPage extends StatefulWidget {
-  const PasswordPage({super.key, required this.fromRegistrationRoute});
+class UnblockPasswordScreen extends StatefulWidget {
+  const UnblockPasswordScreen({super.key, required this.fromRegistrationRoute});
   final bool fromRegistrationRoute;
 
   @override
-  State<PasswordPage> createState() => _PasswordPageState();
+  State<UnblockPasswordScreen> createState() => _UnblockPasswordScreenState();
 }
 
-class _PasswordPageState extends State<PasswordPage> {
+class _UnblockPasswordScreenState extends State<UnblockPasswordScreen> {
   String? _errorMessage;
   String _passwordValue = '';
   // Constants for layout
