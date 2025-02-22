@@ -13,18 +13,24 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 ///
 /// - **Authentication Method Label:**
 ///   - Displays the text from `LocaleKeys.auth_method`.
-///   - Styled use `InterTextStyles.captionMedium` with `AppColors.primaryGray`
+///   - Styled using `InterTextStyles.captionMedium`
+///   with `AppColors.primaryGray`
 ///
 /// - **Expandable Authentication Options:**
 ///   - Uses `CustomExpandableWidget` to provide a dropdown menu.
 ///   - Header displays `LocaleKeys.basic_auth`.
-///   - Body contains authentication method options. example(`Item 1`, `Item 2`)
+///   - Body contains authentication method options (e.g., `Item 1`, `Item 2`).
 ///   - Styled with `light900` color from `LightPallet`.
 ///
-class AuthMethodComponent extends StatelessWidget {
-  const AuthMethodComponent({
-    super.key,
-  });
+class AuthMethodComponent extends StatefulWidget {
+  const AuthMethodComponent({super.key});
+
+  @override
+  State<AuthMethodComponent> createState() => _AuthMethodComponentState();
+}
+
+class _AuthMethodComponentState extends State<AuthMethodComponent> {
+  bool _isExpanded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +46,12 @@ class AuthMethodComponent extends StatelessWidget {
         ),
         CustomExpandableWidget(
           header: LocaleKeys.basic_auth,
+          isExpanded: _isExpanded,
+          onToggle: () {
+            setState(() {
+              _isExpanded = !_isExpanded;
+            });
+          },
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -60,7 +72,7 @@ class AuthMethodComponent extends StatelessWidget {
           headerColor: AppTheme.of(context).extension<LightPallet>()!.light900!,
           expandedColor:
               AppTheme.of(context).extension<LightPallet>()!.light900!,
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           animationDuration: 400,
           width: 125,
           maxHeight: 200,

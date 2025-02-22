@@ -31,10 +31,6 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 ///   - The padding inside the container.
 ///   - Defaults to `EdgeInsets.all(10)`.
 ///
-/// - **[initiallyExpanded]** (`bool`)
-///   - Determines whether the widget starts expanded.
-///   - Defaults to `false`.
-///
 /// - **[animationDuration]** (`double`)
 ///   - Duration of the expand/collapse animation in milliseconds.
 ///   - Defaults to `300.0`.
@@ -58,49 +54,39 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 /// - Implements `AnimatedCrossFade` for smooth expand/collapse transitions.
 /// - Adapts colors and text styles dynamically based on the theme.
 
-class CustomExpandableWidget extends StatefulWidget {
+class CustomExpandableWidget extends StatelessWidget {
   const CustomExpandableWidget({
     super.key,
     required this.header,
     required this.body,
+    required this.isExpanded,
+    required this.onToggle,
     this.headerColor = const Color(0xFF0078D4),
     this.expandedColor = const Color(0xFFE6F0FB),
     this.padding = const EdgeInsets.all(10),
-    this.initiallyExpanded = false,
     this.animationDuration = 300.0,
     this.width = double.infinity,
     this.maxHeight,
     this.headerStyle,
   });
+
   final String header;
   final TextStyle? headerStyle;
   final Widget body;
+  final bool isExpanded;
+  final VoidCallback onToggle;
   final Color headerColor;
   final Color expandedColor;
   final EdgeInsetsGeometry padding;
-  final bool initiallyExpanded;
   final double animationDuration;
   final double width;
   final double? maxHeight;
 
   @override
-  CustomExpandableWidgetState createState() => CustomExpandableWidgetState();
-}
-
-class CustomExpandableWidgetState extends State<CustomExpandableWidget> {
-  late bool _isExpanded;
-
-  @override
-  void initState() {
-    super.initState();
-    _isExpanded = widget.initiallyExpanded;
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.width,
-      padding: widget.padding,
+      width: width,
+      padding: padding,
       decoration: BoxDecoration(
         color: AppTheme.of(context).extension<LightPallet>()!.light900,
         borderRadius: BorderRadius.circular(8),
@@ -109,23 +95,19 @@ class CustomExpandableWidgetState extends State<CustomExpandableWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GestureDetector(
-            onTap: () {
-              setState(() {
-                _isExpanded = !_isExpanded;
-              });
-            },
+            onTap: onToggle,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  context.tr(widget.header),
-                  style: widget.headerStyle ??
+                  context.tr(header),
+                  style: headerStyle ??
                       InterTextStyles.captionMedium.copyWith(
                         color: AppColors.primaryGray,
                       ),
                 ),
                 Icon(
-                  _isExpanded
+                  isExpanded
                       ? FluentIcons.chevron_up
                       : FluentIcons.chevron_down,
                   color: AppColors.primaryGray,
@@ -135,15 +117,13 @@ class CustomExpandableWidgetState extends State<CustomExpandableWidget> {
             ),
           ),
           AnimatedCrossFade(
-            duration: Duration(milliseconds: widget.animationDuration.toInt()),
-            firstChild: SizedBox.shrink(),
+            duration: Duration(milliseconds: animationDuration.toInt()),
+            firstChild: const SizedBox.shrink(),
             secondChild: SizedBox(
-              height: widget.maxHeight != null && _isExpanded
-                  ? widget.maxHeight
-                  : null,
-              child: widget.body,
+              height: maxHeight != null && isExpanded ? maxHeight : null,
+              child: body,
             ),
-            crossFadeState: _isExpanded
+            crossFadeState: isExpanded
                 ? CrossFadeState.showSecond
                 : CrossFadeState.showFirst,
           ),

@@ -1,14 +1,14 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
+import 'package:gui/src/core/common/widgets/custom_password_widget.dart';
 import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 import '../../../../core/common/colors/app_colors.dart';
-import '../../../../core/common/widgets/custom_filled_button.dart';
-import '../../../../core/common/widgets/custom_password_widget.dart';
 
 class UnblockPasswordScreen extends StatefulWidget {
   const UnblockPasswordScreen({super.key, required this.fromRegistrationRoute});
@@ -28,6 +28,7 @@ class _UnblockPasswordScreenState extends State<UnblockPasswordScreen> {
   static const double _smallLockIconSize = 30;
   static const double _spacingMedium = 10;
   static const double _spacingLarge = 20;
+
   @override
   Widget build(BuildContext context) {
     // If password is not set, show loading indicator

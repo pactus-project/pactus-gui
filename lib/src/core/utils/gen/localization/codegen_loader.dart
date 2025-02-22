@@ -62,9 +62,24 @@ class CodegenLoader {
     'password_cannot_be_empty': 'Password cannot be empty',
     'incorrect_password': 'Incorrect password',
     'unlock_failed': 'Unlock failed. Please try again.',
+    'generation_seed_title': 'Your wallet generation seed',
+    'generation_seed_description':
+        'Initiate your cryptographic journey with confidence',
+    'generation_seed_note1': 'Please write these 24 words on paper',
+    'generation_seed_note2':
+        'This seed will allow you to recover your wallet in case of computer failure',
+    'warning': 'WARNING',
+    'generation_seed_warning1': 'Never disclose your seed',
+    'generation_seed_warning2': 'Never type it on a website',
+    'generation_seed_warning3': 'Do not store it electronically',
+    'copy_to_clipboard': 'Copy to clipboard',
+    'clipboard_dialog_title': 'Copy Successful',
+    'clipboard_dialog_content':
+        'Your seed words have been copied to the clipboard',
+    'ok': 'ok',
   };
   static const Map<String, dynamic> frFR = {
-    'title': 'Bonjour le monde  !',
+    'title': 'Bonjour le monde!',
     'subtitle': 'Bienvenue dans Localisation',
     'description': 'Vous avez appuyé sur le bouton autant de fois :',
     'switch_language': 'Changer de langue',
@@ -92,7 +107,6 @@ class CodegenLoader {
     'username': 'Nom dutilisateur',
     'password': 'Mot de passe',
     'next': 'Suivant',
-    'basic_auth': 'Authentification de base',
     'unlock_wallet': 'Déverrouiller le portefeuille',
     'unlock_wallet_description':
         'Entrez le mot de passe principal pour déverrouiller',
@@ -100,17 +114,33 @@ class CodegenLoader {
     'password_cannot_be_empty': 'Le mot de passe ne peut pas être vide',
     'incorrect_password': 'Mot de passe incorrect',
     'unlock_failed': 'Déverrouillage impossible. Veuillez réessayer.',
+    'basic_auth': 'Authentification de base',
+    'generation_seed_title': 'Votre graine de génération de portefeuille',
+    'generation_seed_description':
+        'Initiez votre voyage cryptographique en toute confiance',
+    'generation_seed_note1': 'Veuillez écrire ces 24 mots sur papier',
+    'generation_seed_note2':
+        'Cette graine vous permettra de récupérer votre portefeuille en cas de panne de lordinateur',
+    'warning': 'AVERTISSEMENT',
+    'generation_seed_warning1': 'Ne révélez jamais votre graine',
+    'generation_seed_warning2': 'Ne la tapez jamais sur un site Web',
+    'generation_seed_warning3': 'Ne la stockez pas électroniquement',
+    'copy_to_clipboard': 'Copier dans le presse-papiers',
+    'clipboard_dialog_title': 'Copie réussie',
+    'clipboard_dialog_content':
+        'Vos mots de récupération ont été copiés dans le presse-papiers',
+    'ok': 'Daccord',
   };
   static const Map<String, dynamic> esES = {
-    'title': '¡Hola, Mundo  !',
+    'title': '¡Hola, Mundo!',
     'subtitle': 'Bienvenido a Localización',
     'description': 'Has pulsado el botón tantas veces:',
     'switch_language': 'Cambiar idioma',
+    'applications': 'Aplicaciones',
     'welcome_title': 'Bienvenido al futuro de la cadena de bloques con Pactus!',
     'welcome_description':
         'Donde el futuro de la cadena de bloques se desarrolla con confianza y transparencia en cada transacción. Únase a nosotros para dar forma a una revolución descentralizada!',
     'start_button_text': 'Empezar',
-    'applications': 'Applications',
     'initialize_mode': 'Modo de inicialización',
     'wallet_seed': 'Semilla de billetera',
     'confirm_seed': 'Confirmar semilla',
@@ -129,7 +159,6 @@ class CodegenLoader {
     'username': 'Nombre de usuario',
     'password': 'Contraseña',
     'next': 'Siguiente',
-    'basic_auth': 'Autenticación básica',
     'unlock_wallet': 'Desbloquear',
     'unlock_wallet_description':
         'Ingrese la contraseña maestra para desbloquear',
@@ -137,6 +166,22 @@ class CodegenLoader {
     'password_cannot_be_empty': 'La contraseña no puede estar vacía',
     'incorrect_password': 'Contraseña incorrecta',
     'unlock_failed': 'Desbloqueo fallido. Por favor, inténtelo de nuevo.',
+    'basic_auth': 'Autenticación básica',
+    'generation_seed_title': 'Tu semilla de generación de billetera',
+    'generation_seed_description':
+        'Inicia tu viaje criptográfico con confianza',
+    'generation_seed_note1': 'Por favor, escribe estas 24 palabras en papel',
+    'generation_seed_note2':
+        'Esta semilla te permitirá recuperar tu billetera en caso de falla del ordenador',
+    'warning': 'ADVERTENCIA',
+    'generation_seed_warning1': 'Nunca reveles tu semilla',
+    'generation_seed_warning2': 'Nunca la escribas en un sitio web',
+    'generation_seed_warning3': 'No la almacenes electrónicamente',
+    'copy_to_clipboard': 'Copiar al portapapeles',
+    'clipboard_dialog_title': 'Copia exitosa',
+    'clipboard_dialog_content':
+        'Tus palabras clave han sido copiadas al portapapeles',
+    'ok': 'Aceptar',
   };
 
   static const Map<String, Map<String, dynamic>> mapLocales = {

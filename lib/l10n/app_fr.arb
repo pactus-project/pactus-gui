@@ -1,6 +1,6 @@
 {
   "@@locale": "fr",
-  "title": "Bonjour le monde  !",
+  "title": "Bonjour le monde!",
   "subtitle": "Bienvenue dans Localisation",
   "description": "Vous avez appuyé sur le bouton autant de fois :",
   "switch_language": "Changer de langue",
@@ -25,11 +25,23 @@
   "username": "Nom dutilisateur",
   "password": "Mot de passe",
   "next": "Suivant",
-  "basic_auth": "Authentification de base",
   "unlock_wallet": "Déverrouiller le portefeuille",
   "unlock_wallet_description": "Entrez le mot de passe principal pour déverrouiller",
   "enter_your_password": "Entrez votre mot de passe",
   "password_cannot_be_empty": "Le mot de passe ne peut pas être vide",
   "incorrect_password": "Mot de passe incorrect",
-  "unlock_failed": "Déverrouillage impossible. Veuillez réessayer."
+  "unlock_failed": "Déverrouillage impossible. Veuillez réessayer.",
+  "basic_auth": "Authentification de base",
+  "generation_seed_title": "Votre graine de génération de portefeuille",
+  "generation_seed_description": "Initiez votre voyage cryptographique en toute confiance",
+  "generation_seed_note1": "Veuillez écrire ces 24 mots sur papier",
+  "generation_seed_note2": "Cette graine vous permettra de récupérer votre portefeuille en cas de panne de lordinateur",
+  "warning": "AVERTISSEMENT",
+  "generation_seed_warning1": "Ne révélez jamais votre graine",
+  "generation_seed_warning2": "Ne la tapez jamais sur un site Web",
+  "generation_seed_warning3": "Ne la stockez pas électroniquement",
+  "copy_to_clipboard": "Copier dans le presse-papiers",
+  "clipboard_dialog_title": "Copie réussie",
+  "clipboard_dialog_content": "Vos mots de récupération ont été copiés dans le presse-papiers",
+  "ok": "Daccord"
 }

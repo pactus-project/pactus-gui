@@ -35,4 +35,17 @@ abstract class LocaleKeys {
   static const String password_cannot_be_empty = 'password_cannot_be_empty';
   static const String incorrect_password = 'incorrect_password';
   static const String unlock_failed = 'unlock_failed';
+  static const String generation_seed_title = 'generation_seed_title';
+  static const String generation_seed_description =
+      'generation_seed_description';
+  static const String generation_seed_note1 = 'generation_seed_note1';
+  static const String generation_seed_note2 = 'generation_seed_note2';
+  static const String warning = 'warning';
+  static const String generation_seed_warning1 = 'generation_seed_warning1';
+  static const String generation_seed_warning2 = 'generation_seed_warning2';
+  static const String generation_seed_warning3 = 'generation_seed_warning3';
+  static const String copy_to_clipboard = 'copy_to_clipboard';
+  static const String clipboard_dialog_title = 'clipboard_dialog_title';
+  static const String clipboard_dialog_content = 'clipboard_dialog_content';
+  static const String ok = 'ok';
 }
