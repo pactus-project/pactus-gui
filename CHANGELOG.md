@@ -1,34 +1,111 @@
+# 1.21.0+23
+
+- [Feat]: Implement `InitializingNavigationPane` for handling Pactus initializing panel. [#76](https://github.com/pactus-project/pactus-gui/pull/79)  
+  - Added `InitializingNavigationPane` and integrated `panItem` for each tab based on Figma design.  
+  - Implemented `NavigationPaneCubit` for managing selected tab index.  
+  - Created `dashboard_navigation_pane.dart` for future dashboard navigation panel integration.  
+  - Updated `registrationRoutes` and provided `NavigationPaneCubit` in `main.dart`.  
+  - Added new variables in `.arb` files and generated translation files.  
+  - Included `navigationPanelEnableColor` & `navigationPanelDisableColor` in `AppColors`.  
+
+- [Feat]: Implement widgets of `InitializeModeScreen`. [#76](https://github.com/pactus-project/pactus-gui/pull/79)  
+  - Created `CustomInputWidget` component for text fields.  
+  - Developed `CustomRadioButton`, `RadioButtonGroup`, and `CustomInputRow`.  
+  - Updated `InitializeModeScreen` to integrate new widgets.  
+  - Added new colors to `AppColors`.  
+
+- [Feat]: Add `CustomExpandableWidget` component. [#76](https://github.com/pactus-project/pactus-gui/pull/79)  
+  - Updated `InitializeModeScreen` to improve UI flow.  
+
+- [Update]: Fix navigation stack issue for the "Next" button. [#76](https://github.com/pactus-project/pactus-gui/pull/79)   
+  - Updated `InitializeModeScreen` to correct navigation flow.  
+  - Added `RemoteNodeSection` and `RadioButtonCubit` for handling remote node selection.  
+  - Updated `CustomRadioButton`, `CustomInputRow`, `CustomExpandableWidget`, and `RadioButtonGroup`.  
+  - Added multi-language translation files.  
+
+- [Fix]: Resolve daemon config issue related to initialization on "Next" button click. [#76](https://github.com/pactus-project/pactus-gui/pull/79)  
+  - Updated `FinishPage`, `InitializeModeScreen`, `MasterPasswordPage`, `RestorationSeedPage`, and `ValidatorConfigPage`.  
+
+- [Feat]: Add sample code for `GenerationSeedScreen`.[#76](https://github.com/pactus-project/pactus-gui/pull/79)  
+  - Created `generation_seed` directory and screen.  
+  - Updated `InitializingNavigationPane`.  
+  - Developed `CustomReadOnlyTextBox` and `SeedTypeCubit`.  
+
+- [Update]: Refactor `GenerationSeedScreen` for wallet in create local node panel. [#76](https://github.com/pactus-project/pactus-gui/pull/79)  
+  - Updated `WelcomeScreen` to use `AdaptiveTextButton`.  
+  - Created `SeedWordsGridSection`, `SeedTypeSelectorWidget`, `SeedNotesSection`, `SeedTypeEnum`, `SeedTypeCubit`, and `GenerationSeedTitleSection`.  
+  - Updated `GenerationSeedScreen` according to Figma design.  
+  - Added `CopyToClipboardButton` and `AdaptiveTextButton` for filled & text buttons.  
+  - Updated `AuthMethodComponent`.  
+
+# 1.20.0+22
+
+- [Feat]: Implement unlock password page. [#85](https://github.com/pactus-project/pactus-gui/pull/86)
+  - Added UI for the unlock password page.
+  - Implemented the logic to unlock the wallet using a password.
+
+- [Feat]: Update UI in the unlock page. [#85](https://github.com/pactus-project/pactus-gui/pull/86)
+  - Improved design and layout of the unlock page.
+  - Enhanced user experience with updated styling.
+
+- [Update]: Refactor code and update the flow for the unlock wallet page. [#85](https://github.com/pactus-project/pactus-gui/pull/86)
+  - Improved code structure for better maintainability.
+  - Adjusted the unlocking flow for better usability.
+
+- [Update]: Revert logic in custom password and fix build issues. [#85](https://github.com/pactus-project/pactus-gui/pull/86)
+  - Fixed issues related to custom password handling.
+  - Resolved build errors to ensure stability.
+
+- [Feat]: Check user wallet for password and handle unblock screen. [#85](https://github.com/pactus-project/pactus-gui/pull/86)
+  - Added logic to check if the user's wallet is password-protected.
+  - Implemented handling for the unblock screen based on wallet status.
+
+# 1.19.0+21
+
+- [Feat]: Implement three different navigation panes for the three main flows of the app. [#84](https://github.com/pactus-project/pactus-gui/pull/87)
+    - Add/create `CreateLocalNodePane` for flows where the user creates a local node.
+    - Add/create `RestoringNodePane` for flows where the user restores their node.
+    - Add/create `RemoteNodePane` for flows where the user connects to their node on a specific server.
+    - Add/create a module named `GenerationSeedScreen` to generate a seed phrase for the first time.
+    - Remove old navigation panel and its logic.
+    - Provide `RadioButtonCubit` in `main.dart`.
+    - Update `registrationRoutes` with the new changes to the panels.
+    - Add new routes enum to `route name`.
+    - Update navigation in `WelcomeScreen`.
+- [Fix]: Apply theme-aware colors to Pane text style. [#84](https://github.com/pactus-project/pactus-gui/pull/87)
+    - ensure that Pane text colors adjust correctly based on theme switching, providing proper contrast and readability in both light and dark modes.
+
 # 1.18.0+20
 
 - [Feat]: Implement `InitializingNavigationPane` for handling Pactus initializing panel. [#69](https://github.com/pactus-project/pactus-gui/pull/71)
-  - Add/create `InitializingNavigationPane` and integrate each `panItem` for tabs based on Figma design.
-  - Implement `NavigationPaneCubit` for managing selected tab index.
-  - Add `dashboard_navigation_pane.dart` for future dashboard navigation panel integration.
-  - Update `registrationRoutes` for proper navigation.
-  - Provide `NavigationPaneCubit` in `main.dart`.
-  - Add new variables in `.arb` files and generate updated translation files.
-  - Add `navigationPanelEnableColor` & `navigationPanelDisableColor` to `AppColors`.
+    - Add/create `InitializingNavigationPane` and integrate each `panItem` for tabs based on Figma design.
+    - Implement `NavigationPaneCubit` for managing selected tab index.
+    - Add `dashboard_navigation_pane.dart` for future dashboard navigation panel integration.
+    - Update `registrationRoutes` for proper navigation.
+    - Provide `NavigationPaneCubit` in `main.dart`.
+    - Add new variables in `.arb` files and generate updated translation files.
+    - Add `navigationPanelEnableColor` & `navigationPanelDisableColor` to `AppColors`.
 
 - [Feat]: Implement widgets of `InitializeModeScreen`. [#69](https://github.com/pactus-project/pactus-gui/pull/71)
-  - Add/create `CustomInputWidget` component for text fields.
-  - Add/create `CustomRadioButton` and `RadioButtonGroup` components.
-  - Add new colors to `AppColors` for widget styling.
-  - Update `InitializeModeScreen` for new widget integration.
+    - Add/create `CustomInputWidget` component for text fields.
+    - Add/create `CustomRadioButton` and `RadioButtonGroup` components.
+    - Add new colors to `AppColors` for widget styling.
+    - Update `InitializeModeScreen` for new widget integration.
 
 - [Feat]: Add/create `CustomExpandableWidget` component. [#69](https://github.com/pactus-project/pactus-gui/pull/71)
-  - Update `InitializeModeScreen` for better UI flow.
+    - Update `InitializeModeScreen` for better UI flow.
 
 - [Update]: Fix stack issue for navigation in `InitializeModeScreen`. [#69](https://github.com/pactus-project/pactus-gui/pull/71)
-  - Add/create `RemoteNodeSection` and `RadioButtonCubit` for handling remote node selection.
-  - Update `RadioButtonGroup`, `CustomRadioButton`, `CustomInputRow`, and `CustomExpandableWidget`.
-  - Add multi-language translation files for the new text.
+    - Add/create `RemoteNodeSection` and `RadioButtonCubit` for handling remote node selection.
+    - Update `RadioButtonGroup`, `CustomRadioButton`, `CustomInputRow`, and `CustomExpandableWidget`.
+    - Add multi-language translation files for the new text.
 
 - [Fix]: Resolve daemon config issue related to initialization on "Next" button click. [#69](https://github.com/pactus-project/pactus-gui/pull/71)
-  - Update `FinishPage`.
-  - Update `InitializeModeScreen`.
-  - Update `MasterPasswordPage`.
-  - Update `RestorationSeedPage`.
-  - Update `ValidatorConfigPage`.
+    - Update `FinishPage`.
+    - Update `InitializeModeScreen`.
+    - Update `MasterPasswordPage`.
+    - Update `RestorationSeedPage`.
+    - Update `ValidatorConfigPage`.
 
 - [Fix]: Fix button height inconsistency. [#69](https://github.com/pactus-project/pactus-gui/pull/71)
 
@@ -39,6 +116,48 @@
 - [Fix]: Adjust color values in `TextStyle` to align with new palette. [#69](https://github.com/pactus-project/pactus-gui/pull/71)
 
 # 1.17.0+19
+
+- [Feat] : Implement `InitializingNavigationPane` for handling Pactus initializing panel. [#71](https://github.com/pactus-project/pactus-gui/pull/71)
+    - Add/create `InitializingNavigationPane` and integrate each `panItem` for tabs based on Figma design.
+    - Implement `NavigationPaneCubit` for managing selected tab index.
+    - Add `dashboard_navigation_pane.dart` for future dashboard navigation panel integration.
+    - Update `registrationRoutes` for proper navigation.
+    - Provide `NavigationPaneCubit` in `main.dart`.
+    - Add new variables in `.arb` files and generate updated translation files.
+    - Add `navigationPanelEnableColor` & `navigationPanelDisableColor` to `AppColors`.
+
+- [Feat] : Implement widgets of `InitializeModeScreen`. [#71](https://github.com/pactus-project/pactus-gui/pull/71)
+    - Add/create `CustomInputWidget` component for text fields.
+    - Add/create `CustomRadioButton` and `RadioButtonGroup` components.
+    - Add new colors to `AppColors` for widget styling.
+    - Update `InitializeModeScreen` for new widget integration.
+
+- [Feat] : Add/create `CustomExpandableWidget` component. [#71](https://github.com/pactus-project/pactus-gui/pull/71)
+    - Update `InitializeModeScreen` for better UI flow.
+
+- [Update] : Fix stack issue for navigation in `InitializeModeScreen`. [#71](https://github.com/pactus-project/pactus-gui/pull/71)
+    - Add/create `RemoteNodeSection` and `RadioButtonCubit` for handling remote node selection.
+    - Update `RadioButtonGroup`, `CustomRadioButton`, `CustomInputRow`, and `CustomExpandableWidget`.
+    - Add multi-language translation files for the new text.
+
+- [Fix] : Resolve daemon config issue related to initialization on "Next" button click. [#71](https://github.com/pactus-project/pactus-gui/pull/71)
+    - Update `FinishPage`.
+    - Update `InitializeModeScreen`.
+    - Update `MasterPasswordPage`.
+    - Update `RestorationSeedPage`.
+    - Update `ValidatorConfigPage`.
+
+# 1.16.0+18
+
+- [Feat] : Implement macOS support for Daemon Execution.[#73](https://github.com/pactus-project/pactus-gui/pull/78)
+- [Update] : Implement daemon execution support for Windows systems.[#73](https://github.com/pactus-project/pactus-gui/pull/78)
+- [Update] : Move to run daemon by subprocess to get real-time stdout and stderr.[#73](https://github.com/pactus-project/pactus-gui/pull/78)
+- [Fix] : Resolve build issue.[#73](https://github.com/pactus-project/pactus-gui/pull/78)
+- [Update] : Replace pallet colors , from `onLightPallet` to `DarkPallet`. [#73](https://github.com/pactus-project/pactus-gui/pull/78)
+
+/// to-do : there is a conflict here with issue 71 & 59 cuase both of them have same version & i accept the one that is done by me & changelog of issue 59 is removed!
+
+# 1.15.0+17
 
 - [Feat] : Implement `InitializingNavigationPane` for handling Pactus initializing panel. [#71](https://github.com/pactus-project/pactus-gui/pull/71)
   - Add/create `InitializingNavigationPane` and integrate each `panItem` for tabs based on Figma design.
@@ -70,20 +189,6 @@
   - Update `RestorationSeedPage`.
   - Update `ValidatorConfigPage`.
 
-# 1.16.0+18
-
-- [Feat] : Implement macOS support for Daemon Execution.[#73](https://github.com/pactus-project/pactus-gui/pull/78)
-- [Update] : Implement daemon execution support for Windows systems.[#73](https://github.com/pactus-project/pactus-gui/pull/78)
-- [Update] : Move to run daemon by subprocess to get real-time stdout and stderr.[#73](https://github.com/pactus-project/pactus-gui/pull/78)
-- [Fix] : Resolve build issue.[#73](https://github.com/pactus-project/pactus-gui/pull/78)
-- [Update] : Replace pallet colors , from `onLightPallet` to `DarkPallet`. [#73](https://github.com/pactus-project/pactus-gui/pull/78)
-
-# 1.15.0+17
-
-- [Feat] : CI Pipeline Integration for Platform-Specific Release Files from ZIP Extraction. [#59](https://github.com/pactus-project/pactus-gui/pull/62)
-- [Update] : Support running the platform-specific scripts.[#59](https://github.com/pactus-project/pactus-gui/pull/62)
-- [Update] : Add bash script to support local execution.[#59](https://github.com/pactus-project/pactus-gui/pull/62)
-- [Fix] : Resolve build issue.[#59](https://github.com/pactus-project/pactus-gui/pull/62)
 
 # 1.14.0+16
 
