@@ -60,12 +60,15 @@ Pactus GUI offers a comprehensive suite of features designed to meet the needs o
 - Regular security updates and patches
 
 ## Figma Design
-Explore our UI/UX design and components in Figma:
-[Figma Design](https://www.figma.com/design/jejFb35BStREUTPhiB9qIU/Pactus-Applications-(Community)?node-id=0-1&p=f&t=XozGWB5eaN68OdVJ-0)
+Explore our UI/UX design and components in Figma :
+- [Pactus Design System](https://www.figma.com/design/bYM5A31xMJCL27VgjV7Yb3/Pactus-Design-System)
+- [Applications-UI-Team (Private view for development team)](https://www.figma.com/design/rHwGwERmYV1Jy73e16x0VS/Applications-UI-Team)
+- [Applications-UI-Team (Public view for community)](https://www.figma.com/design/jejFb35BStREUTPhiB9qIU/Pactus-Applications-(Community)?node-id=0-1&p=f&t=XozGWB5eaN68OdVJ-0)
 
 ## Widget Book
 We use Widget Book for documenting and showcasing our UI components:
-[Widget Book](https://github.com/pactus-project/pactus-gui-widgetbook)
+- [Widget Book Repository](https://github.com/pactus-project/pactus-gui-widgetbook)
+- [Widget Book Live Showcase](https://pactus-project.github.io/pactus-gui-widgetbook)
 
 The Widget Book serves as:
 - A living style guide for the application
@@ -73,8 +76,8 @@ The Widget Book serves as:
 - A visual documentation of all UI elements
 
 ## Requirements
-- [Flutter 3.13.0 or higher](https://docs.flutter.dev/get-started/install)
-- [Dart 3.1.0 or higher](https://dart.dev/get-dart)
+- [Flutter 3.27.3 or higher](https://docs.flutter.dev/get-started/install)
+- [Dart 3.6.1 or higher](https://dart.dev/get-dart)
 - Android Studio/VSCode with Flutter plugin
   - [Android Studio](https://developer.android.com/studio)
   - [Visual Studio Code](https://code.visualstudio.com/)
@@ -129,7 +132,7 @@ We welcome contributions to the Pactus GUI project! Please follow these guidelin
 
 ### Before You Contribute
 1. **Understand the Project**: Familiarize yourself with the project goals and architecture
-2. **Check Figma Design**: Verify if the component or feature you're working on exists in our [Figma Design](https://www.figma.com/design/jejFb35BStREUTPhiB9qIU/Pactus-Applications-(Community)?node-id=0-1&p=f&t=XozGWB5eaN68OdVJ-0)
+2. **Check Figma Design**: Verify if the component or feature you're working on exists in our [Figma Design (Public view for community)](https://www.figma.com/design/jejFb35BStREUTPhiB9qIU/Pactus-Applications-(Community)?node-id=0-1&p=f&t=XozGWB5eaN68OdVJ-0)
 3. **Review Widget Book**: Check our [Widget Book](https://github.com/pactus-project/pactus-gui-widgetbook) for existing components
 
 ### Code Guidelines
