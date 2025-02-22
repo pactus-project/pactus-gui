@@ -27,11 +27,15 @@ void main() {
         child: BlocBuilder<AppThemeCubit, bool>(
           builder: (context, isDarkMode) {
             final theme = isDarkMode
-                ? AppThemeData.darkTheme(AppThemeData.darkAccentColors[0]).copyWith(
+                ? AppThemeData.darkTheme(
+                    AppThemeData.darkAccentColors[0],
+                  ).copyWith(
                     extensions: AppThemeData.darkExtensions,
                     typography: AppThemeData.typography,
                   )
-                : AppThemeData.lightTheme(AppThemeData.lightAccentColors[0]).copyWith(
+                : AppThemeData.lightTheme(
+                    AppThemeData.lightAccentColors[0],
+                  ).copyWith(
                     extensions: AppThemeData.lightExtensions,
                     typography: AppThemeData.typography,
                   );

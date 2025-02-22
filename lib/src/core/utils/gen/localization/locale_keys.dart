@@ -24,6 +24,7 @@ abstract class LocaleKeys {
   static const String auth_method = 'auth_method';
   static const String username = 'username';
   static const String password = 'password';
+  static const String next = 'next';
   static const String basic_auth = 'basic_auth';
   static const String unlock_wallet = 'unlock_wallet';
   static const String unlock_wallet_description = 'unlock_wallet_description';
