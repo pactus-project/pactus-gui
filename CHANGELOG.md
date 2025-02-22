@@ -1,3 +1,43 @@
+# 1.21.0+23
+
+- [Feat]: Implement `InitializingNavigationPane` for handling Pactus initializing panel. [#76](https://github.com/pactus-project/pactus-gui/pull/79)  
+  - Added `InitializingNavigationPane` and integrated `panItem` for each tab based on Figma design.  
+  - Implemented `NavigationPaneCubit` for managing selected tab index.  
+  - Created `dashboard_navigation_pane.dart` for future dashboard navigation panel integration.  
+  - Updated `registrationRoutes` and provided `NavigationPaneCubit` in `main.dart`.  
+  - Added new variables in `.arb` files and generated translation files.  
+  - Included `navigationPanelEnableColor` & `navigationPanelDisableColor` in `AppColors`.  
+
+- [Feat]: Implement widgets of `InitializeModeScreen`. [#76](https://github.com/pactus-project/pactus-gui/pull/79)  
+  - Created `CustomInputWidget` component for text fields.  
+  - Developed `CustomRadioButton`, `RadioButtonGroup`, and `CustomInputRow`.  
+  - Updated `InitializeModeScreen` to integrate new widgets.  
+  - Added new colors to `AppColors`.  
+
+- [Feat]: Add `CustomExpandableWidget` component. [#76](https://github.com/pactus-project/pactus-gui/pull/79)  
+  - Updated `InitializeModeScreen` to improve UI flow.  
+
+- [Update]: Fix navigation stack issue for the "Next" button. [#76](https://github.com/pactus-project/pactus-gui/pull/79)   
+  - Updated `InitializeModeScreen` to correct navigation flow.  
+  - Added `RemoteNodeSection` and `RadioButtonCubit` for handling remote node selection.  
+  - Updated `CustomRadioButton`, `CustomInputRow`, `CustomExpandableWidget`, and `RadioButtonGroup`.  
+  - Added multi-language translation files.  
+
+- [Fix]: Resolve daemon config issue related to initialization on "Next" button click. [#76](https://github.com/pactus-project/pactus-gui/pull/79)  
+  - Updated `FinishPage`, `InitializeModeScreen`, `MasterPasswordPage`, `RestorationSeedPage`, and `ValidatorConfigPage`.  
+
+- [Feat]: Add sample code for `GenerationSeedScreen`.[#76](https://github.com/pactus-project/pactus-gui/pull/79)  
+  - Created `generation_seed` directory and screen.  
+  - Updated `InitializingNavigationPane`.  
+  - Developed `CustomReadOnlyTextBox` and `SeedTypeCubit`.  
+
+- [Update]: Refactor `GenerationSeedScreen` for wallet in create local node panel. [#76](https://github.com/pactus-project/pactus-gui/pull/79)  
+  - Updated `WelcomeScreen` to use `AdaptiveTextButton`.  
+  - Created `SeedWordsGridSection`, `SeedTypeSelectorWidget`, `SeedNotesSection`, `SeedTypeEnum`, `SeedTypeCubit`, and `GenerationSeedTitleSection`.  
+  - Updated `GenerationSeedScreen` according to Figma design.  
+  - Added `CopyToClipboardButton` and `AdaptiveTextButton` for filled & text buttons.  
+  - Updated `AuthMethodComponent`.  
+
 # 1.20.0+22
 
 - [Feat]: Implement unlock password page. [#85](https://github.com/pactus-project/pactus-gui/pull/86)
