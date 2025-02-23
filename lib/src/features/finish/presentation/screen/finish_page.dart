@@ -59,7 +59,7 @@ class FinishPage extends StatelessWidget {
                         '--working-dir',
                         NodeConfigData.instance.workingDirectory,
                         '--restore',
-                        NodeConfigData.instance.restorationSeed,
+                        NodeConfigData.instance.restorationSeed!.sentence,
                         '--password',
                         NodeConfigData.instance.password,
                         '--val-num',
