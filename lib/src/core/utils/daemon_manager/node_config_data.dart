@@ -71,6 +71,8 @@ class NodeConfigData {
 
   // Getters - return empty strings if values are null
   String get workingDirectory => _workingDirectory ?? '';
+
+  // ignore: unnecessary_getters_setters
   Mnemonic? get restorationSeed => _restorationSeed;
   String get password => _password ?? '';
   String get validatorQty => _validatorQty ?? '';

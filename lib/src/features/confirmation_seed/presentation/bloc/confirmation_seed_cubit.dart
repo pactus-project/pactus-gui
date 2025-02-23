@@ -33,7 +33,12 @@ class ConfirmationSeedCubit extends Cubit<ConfirmationSeedState> {
       }
     }
 
-    emit(state.copyWith(words: wordEntryList, validationResults: validationMap));
+    emit(
+      state.copyWith(
+        words: wordEntryList,
+        validationResults: validationMap,
+      ),
+    );
   }
 
   void updateValidation(int index, String input) {
