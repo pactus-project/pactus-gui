@@ -36,7 +36,7 @@ dependencies:
     #    path: ../pactus-gui-widgetbook
     git:
       url: https://github.com/pactus-project/pactus-gui-widgetbook.git
-      ref: feat/implement-chip-textbox-seed-validation
+      ref: main
 
   path: ^1.8.3
   process_run: ^1.2.2+1
