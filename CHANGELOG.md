@@ -1,3 +1,9 @@
+# 1.23.0+25
+- 
+- [Fix]: Fixed copy to clipboard functionality in `GenerationSeedScreen`. [#PR](https://github.com/pactus-project/pactus-gui/pull/)
+  - Resolved the issue where data was not being copied to the clipboard properly.
+  - Ensured the feature works as expected for both 12-word and 24-word seed phrases.
+
 # 1.22.0+24
 
 - [Fix]: Handle missing Node during application launch in `SplashScreen`. [#89](https://github.com/pactus-project/pactus-gui/pull/90)
