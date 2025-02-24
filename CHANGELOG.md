@@ -44,7 +44,7 @@
 - [Fix]: Resolve daemon config issue related to initialization on "Next" button click. [#76](https://github.com/pactus-project/pactus-gui/pull/79)  
   - Updated `FinishPage`, `InitializeModeScreen`, `MasterPasswordPage`, `RestorationSeedPage`, and `ValidatorConfigPage`.  
 
-- [Feat]: Add sample code for `GenerationSeedScreen`.[#76](https://github.com/pactus-project/pactus-gui/pull/79)  
+- [Feat]: Add sample code for `GenerationSeedScreen`. [#76](https://github.com/pactus-project/pactus-gui/pull/79)  
   - Created `generation_seed` directory and screen.  
   - Updated `InitializingNavigationPane`.  
   - Developed `CustomReadOnlyTextBox` and `SeedTypeCubit`.  
