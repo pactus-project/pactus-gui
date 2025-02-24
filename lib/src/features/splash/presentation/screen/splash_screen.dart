@@ -24,6 +24,13 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<DaemonCubit, DaemonState>(
       listener: (ctxListener, state) {
+        if (state is DaemonError) {
+          Future.delayed(_splashDuration, () {
+            if (context.mounted) {
+              context.goNamed(AppRoute.welcome.name);
+            }
+          });
+        }
         if (state is DaemonSuccess) {
           final isUnprotectedNode = state.output.contains('false');
           final isProtectedNode = state.output.contains('true');
@@ -99,7 +106,6 @@ class SplashScreen extends StatelessWidget {
               );
             });
           }
-
           return ScaffoldPage(
             content: Center(
               child: SizedBox(

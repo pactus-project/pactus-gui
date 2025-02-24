@@ -1,7 +1,7 @@
 name: gui
 description: "Pactus Flutter GUI"
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 1.21.0+23
+version: 1.22.0+24
 
 environment:
   sdk: ^3.6.1
@@ -36,7 +36,7 @@ dependencies:
     #    path: ../pactus-gui-widgetbook
     git:
       url: https://github.com/pactus-project/pactus-gui-widgetbook.git
-      ref: feat/implement-chip-textbox-seed-validation
+      ref: main
 
   path: ^1.8.3
   process_run: ^1.2.2+1

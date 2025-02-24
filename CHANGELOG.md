@@ -1,3 +1,15 @@
+# 1.22.0+24
+
+- [Fix]: Handle missing Node during application launch in `SplashScreen`. [#89](https://github.com/pactus-project/pactus-gui/pull/90)
+  - Added handling for `DaemonError` state when using `DaemonCubit` to run `./pactus-wallet info`.
+  - Ensured proper error handling for missing Node during app startup.
+
+- [Update]: Fix dependencies for `pactus_gui_widgetbook` in `SplashScreen`. [#89](https://github.com/pactus-project/pactus-gui/pull/90)
+  - Updated `pactus_gui_widgetbook` dependency to align with the main branch.
+
+- [Fix]: Correct `restorationSeed` value in `GenerationSeedScreen`. [#89](https://github.com/pactus-project/pactus-gui/pull/90)
+  - Fixed the value of `restorationSeed` in `generation_seed_screen.dart` to ensure proper functionality.
+
 # 1.21.0+23
 
 - [Feat]: Implement `InitializingNavigationPane` for handling Pactus initializing panel. [#76](https://github.com/pactus-project/pactus-gui/pull/79)  

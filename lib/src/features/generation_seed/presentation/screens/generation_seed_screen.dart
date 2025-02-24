@@ -154,7 +154,7 @@ class _GenerationSeedScreenState extends State<GenerationSeedScreen> {
                       text: LocaleKeys.next,
                       onPressed: () {
                         NodeConfigData.instance.restorationSeed =
-                            '${SeedGenerator().generateSeed(12)?.sentence}';
+                            SeedGenerator().generateSeed(12);
                         context.read<NavigationPaneCubit>().setSelectedIndex(
                               context.read<NavigationPaneCubit>().state + 1,
                             );
