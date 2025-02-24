@@ -45,7 +45,7 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 /// ### Notes:
 ///
 /// - **Clipboard Operation**:
-///   - The actual copy logic is handled by `copyClipboardFunction`, which should
+///   - The actual copy logic is handled by `copyClipboardFunction`,which should
 ///     use `Clipboard.setData(ClipboardData(text: ...))` or similar.
 ///
 /// - **Context Safety**:
