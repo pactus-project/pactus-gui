@@ -43,5 +43,10 @@
   "copy_to_clipboard": "Copiar al portapapeles",
   "clipboard_dialog_title": "Copia exitosa",
   "clipboard_dialog_content": "Tus palabras clave han sido copiadas al portapapeles",
-  "ok": "Aceptar"
+  "ok": "Aceptar",
+  "node_activation_powering": "Activación de nodo, potenciando el pulso de la cadena de bloques",
+  "initialization_complete": "Inicialización completada",
+  "node_ready": "Nodo listo",
+  "initialization_failed": "Inicialización fallida",
+  "retry": "Reintentar"
 }

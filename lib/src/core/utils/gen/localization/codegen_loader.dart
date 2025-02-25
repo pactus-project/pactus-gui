@@ -77,6 +77,12 @@ class CodegenLoader {
     'clipboard_dialog_content':
         'Your seed words have been copied to the clipboard',
     'ok': 'ok',
+    'node_activation_powering':
+        'Node Activation, Powering the Pulse of the Blockchain',
+    'initialization_complete': 'Initialization Complete',
+    'node_ready': 'Node Ready',
+    'initialization_failed': 'Initialization Failed',
+    'retry': 'Retry',
   };
   static const Map<String, dynamic> frFR = {
     'title': 'Bonjour le monde!',
@@ -130,6 +136,12 @@ class CodegenLoader {
     'clipboard_dialog_content':
         'Vos mots de récupération ont été copiés dans le presse-papiers',
     'ok': 'Daccord',
+    'node_activation_powering':
+        'Activation du nœud, alimentant le pulse de la blockchain',
+    'initialization_complete': 'Initialisation terminée',
+    'node_ready': 'Nœud prêt',
+    'initialization_failed': 'Initialisation impossible',
+    'retry': 'Réessayer',
   };
   static const Map<String, dynamic> esES = {
     'title': '¡Hola, Mundo!',
@@ -182,6 +194,12 @@ class CodegenLoader {
     'clipboard_dialog_content':
         'Tus palabras clave han sido copiadas al portapapeles',
     'ok': 'Aceptar',
+    'node_activation_powering':
+        'Activación de nodo, potenciando el pulso de la cadena de bloques',
+    'initialization_complete': 'Inicialización completada',
+    'node_ready': 'Nodo listo',
+    'initialization_failed': 'Inicialización fallida',
+    'retry': 'Reintentar',
   };
 
   static const Map<String, Map<String, dynamic>> mapLocales = {

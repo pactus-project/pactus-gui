@@ -43,5 +43,10 @@
   "copy_to_clipboard": "Copy to clipboard",
   "clipboard_dialog_title": "Copy Successful",
   "clipboard_dialog_content": "Your seed words have been copied to the clipboard",
-  "ok": "ok"
+  "ok": "ok",
+  "node_activation_powering": "Node Activation, Powering the Pulse of the Blockchain",
+  "initialization_complete": "Initialization Complete",
+  "node_ready": "Node Ready",
+  "initialization_failed": "Initialization Failed",
+  "retry": "Retry"
 }

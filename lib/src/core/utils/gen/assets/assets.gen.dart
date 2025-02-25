@@ -42,6 +42,10 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/background_initializing.svg
+  String get backgroundInitializing =>
+      'assets/images/background_initializing.svg';
+
   /// File path: assets/images/gears.png
   AssetGenImage get gears => const AssetGenImage('assets/images/gears.png');
 
@@ -71,6 +75,7 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<dynamic> get values => [
+        backgroundInitializing,
         gears,
         gift,
         logoName,
@@ -83,7 +88,7 @@ class $AssetsImagesGen {
 }
 
 class Assets {
-  Assets._();
+  const Assets._();
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
@@ -122,7 +127,7 @@ class AssetGenImage {
     bool gaplessPlayback = true,
     bool isAntiAlias = false,
     String? package,
-    FilterQuality filterQuality = FilterQuality.low,
+    FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
   }) {
