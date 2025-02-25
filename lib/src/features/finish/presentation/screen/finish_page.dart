@@ -23,29 +23,29 @@ class FinishPage extends StatelessWidget {
                   'password: ${NodeConfigData.instance.password}',
                   style: TextStyle(
                     color:
-                    AppTheme.of(context).extension<DarkPallet>()!.dark900,
+                        AppTheme.of(context).extension<DarkPallet>()!.dark900,
                   ),
                 ),
                 Text(
                   'validatorQty: ${NodeConfigData.instance.validatorQty}',
                   style: TextStyle(
                     color:
-                    AppTheme.of(context).extension<DarkPallet>()!.dark900,
+                        AppTheme.of(context).extension<DarkPallet>()!.dark900,
                   ),
                 ),
                 Text(
                   'workingDirectory:'
-                      '${NodeConfigData.instance.workingDirectory}',
+                  '${NodeConfigData.instance.workingDirectory}',
                   style: TextStyle(
                     color:
-                    AppTheme.of(context).extension<DarkPallet>()!.dark900,
+                        AppTheme.of(context).extension<DarkPallet>()!.dark900,
                   ),
                 ),
                 Text(
                   'restorationSeed: ${NodeConfigData.instance.restorationSeed}',
                   style: TextStyle(
                     color:
-                    AppTheme.of(context).extension<DarkPallet>()!.dark900,
+                        AppTheme.of(context).extension<DarkPallet>()!.dark900,
                   ),
                 ),
                 Button(
