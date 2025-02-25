@@ -1,7 +1,7 @@
 name: gui
 description: "Pactus Flutter GUI"
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 1.20.0+22
+version: 1.24.0+26
 
 environment:
   sdk: ^3.6.1
@@ -37,6 +37,7 @@ dependencies:
     git:
       url: https://github.com/pactus-project/pactus-gui-widgetbook.git
       ref: main
+
   path: ^1.8.3
   process_run: ^1.2.2+1
 

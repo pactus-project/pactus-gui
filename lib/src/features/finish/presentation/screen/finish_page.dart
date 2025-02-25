@@ -1,10 +1,12 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/core/common/colors/app_colors.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_state.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
+import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class FinishPage extends StatelessWidget {
   const FinishPage({super.key});
@@ -19,20 +21,32 @@ class FinishPage extends StatelessWidget {
               children: [
                 Text(
                   'password: ${NodeConfigData.instance.password}',
-                  style: TextStyle(color: AppColors.primaryDark),
+                  style: TextStyle(
+                    color:
+                    AppTheme.of(context).extension<DarkPallet>()!.dark900,
+                  ),
                 ),
                 Text(
                   'validatorQty: ${NodeConfigData.instance.validatorQty}',
-                  style: TextStyle(color: AppColors.primaryDark),
+                  style: TextStyle(
+                    color:
+                    AppTheme.of(context).extension<DarkPallet>()!.dark900,
+                  ),
                 ),
                 Text(
                   'workingDirectory:'
-                  '${NodeConfigData.instance.workingDirectory}',
-                  style: TextStyle(color: AppColors.primaryDark),
+                      '${NodeConfigData.instance.workingDirectory}',
+                  style: TextStyle(
+                    color:
+                    AppTheme.of(context).extension<DarkPallet>()!.dark900,
+                  ),
                 ),
                 Text(
                   'restorationSeed: ${NodeConfigData.instance.restorationSeed}',
-                  style: TextStyle(color: AppColors.primaryDark),
+                  style: TextStyle(
+                    color:
+                    AppTheme.of(context).extension<DarkPallet>()!.dark900,
+                  ),
                 ),
                 Button(
                   onPressed: () async {
@@ -45,7 +59,7 @@ class FinishPage extends StatelessWidget {
                         '--working-dir',
                         NodeConfigData.instance.workingDirectory,
                         '--restore',
-                        NodeConfigData.instance.restorationSeed,
+                        NodeConfigData.instance.restorationSeed!.sentence,
                         '--password',
                         NodeConfigData.instance.password,
                         '--val-num',
@@ -100,6 +114,7 @@ class FinishPage extends StatelessWidget {
                       child: const Text('Finish'),
                       onPressed: () {
                         ///to-do : navigate to dashboard navigation pane here
+                        context.goNamed(AppRoute.password.name);
                       },
                     ),
                   ],

@@ -27,11 +27,15 @@ void main() {
         child: BlocBuilder<AppThemeCubit, bool>(
           builder: (context, isDarkMode) {
             final theme = isDarkMode
-                ? AppThemeData.darkTheme().copyWith(
+                ? AppThemeData.darkTheme(
+                    AppThemeData.darkAccentColors[0],
+                  ).copyWith(
                     extensions: AppThemeData.darkExtensions,
                     typography: AppThemeData.typography,
                   )
-                : AppThemeData.lightTheme().copyWith(
+                : AppThemeData.lightTheme(
+                    AppThemeData.lightAccentColors[0],
+                  ).copyWith(
                     extensions: AppThemeData.lightExtensions,
                     typography: AppThemeData.typography,
                   );
@@ -50,9 +54,6 @@ void main() {
             );
           },
         ),
-        // child: MaterialApp(
-        //   home: Scaffold(body: child),
-        // ),
       );
     }
 

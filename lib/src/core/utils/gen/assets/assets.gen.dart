@@ -56,6 +56,12 @@ class $AssetsImagesGen {
   AssetGenImage get masterPassword =>
       const AssetGenImage('assets/images/master_password.png');
 
+  /// File path: assets/images/master_password_dark.svg
+  String get masterPasswordDark => 'assets/images/master_password_dark.svg';
+
+  /// File path: assets/images/master_password_light.svg
+  String get masterPasswordLight => 'assets/images/master_password_light.svg';
+
   /// File path: assets/images/splash.png
   AssetGenImage get splash => const AssetGenImage('assets/images/splash.png');
 
@@ -64,12 +70,20 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/welcome_pic.png');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [gears, gift, logoName, masterPassword, splash, welcomePic];
+  List<dynamic> get values => [
+        gears,
+        gift,
+        logoName,
+        masterPassword,
+        masterPasswordDark,
+        masterPasswordLight,
+        splash,
+        welcomePic
+      ];
 }
 
 class Assets {
-  Assets._();
+  const Assets._();
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
@@ -108,7 +122,7 @@ class AssetGenImage {
     bool gaplessPlayback = true,
     bool isAntiAlias = false,
     String? package,
-    FilterQuality filterQuality = FilterQuality.low,
+    FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
   }) {

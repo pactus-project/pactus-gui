@@ -10,6 +10,8 @@ class RestorationSeedPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final seed12 = SeedGenerator().generateSeed(12);
+    final seed24 = SeedGenerator().generateSeed(24);
     return BlocBuilder<NavigationPaneCubit, int>(
       builder: (context, selectedIndex) {
         return NavigationView(
@@ -37,7 +39,7 @@ class RestorationSeedPage extends StatelessWidget {
                         ),
                   ),
                   Text(
-                    '${SeedGenerator().generateSeed(12)?.sentence}',
+                    '${seed12?.sentence}',
                     style: FluentTheme.of(context).typography.body!.copyWith(
                           color: AppTheme.of(context)
                               .extension<DarkPallet>()!
@@ -53,32 +55,39 @@ class RestorationSeedPage extends StatelessWidget {
                         ),
                   ),
                   Text(
-                    '${SeedGenerator().generateSeed(24)?.sentence}',
+                    '${seed24?.sentence}',
                     style: FluentTheme.of(context).typography.body!.copyWith(
                           color: AppTheme.of(context)
                               .extension<DarkPallet>()!
                               .dark900,
                         ),
                   ),
+
+                  // Two separate Next buttons for 12 and 24 seeds
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      if (selectedIndex > 0)
+                      // Button for 12 seeds
+                      if (selectedIndex < 6)
                         Button(
-                          child: const Text('Previous'),
+                          child: const Text('Next 12 Seeds'),
                           onPressed: () {
+                            // Store the 12-seed sentence for navigation
+                            NodeConfigData.instance.restorationSeed = seed12;
                             context
                                 .read<NavigationPaneCubit>()
-                                .setSelectedIndex(selectedIndex - 1);
+                                .setSelectedIndex(selectedIndex + 1);
                           },
                         ),
                       const SizedBox(width: 20),
+
+                      // Button for 24 seeds
                       if (selectedIndex < 6)
                         Button(
-                          child: const Text('Next'),
+                          child: const Text('Next 24 Seeds'),
                           onPressed: () {
-                            NodeConfigData.instance.restorationSeed =
-                                '${SeedGenerator().generateSeed(12)?.sentence}';
+                            // Store the 24-seed sentence for navigation
+                            NodeConfigData.instance.restorationSeed = seed24;
                             context
                                 .read<NavigationPaneCubit>()
                                 .setSelectedIndex(selectedIndex + 1);
