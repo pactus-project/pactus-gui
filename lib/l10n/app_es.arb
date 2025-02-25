@@ -1,6 +1,6 @@
 {
   "@@locale": "es",
-  "title": "¡Hola, Mundo  !",
+  "title": "¡Hola, Mundo!",
   "subtitle": "Bienvenido a Localización",
   "description": "Has pulsado el botón tantas veces:",
   "switch_language": "Cambiar idioma",
@@ -8,7 +8,6 @@
   "welcome_title": "Bienvenido al futuro de la cadena de bloques con Pactus!",
   "welcome_description": "Donde el futuro de la cadena de bloques se desarrolla con confianza y transparencia en cada transacción. Únase a nosotros para dar forma a una revolución descentralizada!",
   "start_button_text": "Empezar",
-  "applications": "Applications",
   "initialize_mode": "Modo de inicialización",
   "wallet_seed": "Semilla de billetera",
   "confirm_seed": "Confirmar semilla",
@@ -25,6 +24,7 @@
   "auth_method": "Método de autenticación",
   "username": "Nombre de usuario",
   "password": "Contraseña",
+  "next": "Siguiente",
   "unlock_wallet": "Desbloquear",
   "unlock_wallet_description": "Ingrese la contraseña maestra para desbloquear",
   "enter_your_password": "Ingrese su contraseña",
@@ -33,9 +33,18 @@
   "unlock_failed": "Desbloqueo fallido. Por favor, inténtelo de nuevo.",
   "your_journey_finalized": "Tu viaje finalizado, tu éxito en el horizonte",
   "unlock_button": "Ir al panel de control",
-  "next": "Siguiente",
-  "basic_auth": "Autenticación básica",
   "your_journey_finalized_description": "Venturing into the realm of blockchain technology, Pactus heralds an era of uncompromised decentralization that stands in contrast to its contemporaries. It eschews traditional power hierarchies, parting ways with delegated proof-of-stake systems and mining operations that could lead to power concentration. By doing so, Pactus lowers its ramparts, inviting participants from all walks of life to join as equals in maintaining the network. Within this communal tapestry, every user has the opportunity to operate as a validator client, contributing to the network#s invulnerability to control or censorship, ensuring the platform#s integrity and autonomy.",
-  "your_journey_finalized_description_last": "Pactus isn#t just revolutionizing the structure of blockchain governance; it#s also remapping the user experience. Crafted with the conviction that blockchain should be accessible to all, the Pactus chain boasts a simple yet sophisticated graphical user interface (GUI) that demystifies the process of running a node. The elegance lies in its simplicity - a clear, approachable design that veils the robust and intricate mechanics beneath, allowing users, regardless of their technical prowess, to participate as validator clients. This move towards inclusivity transforms users from mere participants to guardians of the blockchain, an essential facet of the Pactus ecosystem."
-
+  "your_journey_finalized_description_last": "Pactus isn#t just revolutionizing the structure of blockchain governance; it#s also remapping the user experience. Crafted with the conviction that blockchain should be accessible to all, the Pactus chain boasts a simple yet sophisticated graphical user interface (GUI) that demystifies the process of running a node. The elegance lies in its simplicity - a clear, approachable design that veils the robust and intricate mechanics beneath, allowing users, regardless of their technical prowess, to participate as validator clients. This move towards inclusivity transforms users from mere participants to guardians of the blockchain, an essential facet of the Pactus ecosystem.",
+  "generation_seed_title": "Tu semilla de generación de billetera",
+  "generation_seed_description": "Inicia tu viaje criptográfico con confianza",
+  "generation_seed_note1": "Por favor, escribe estas 24 palabras en papel",
+  "generation_seed_note2": "Esta semilla te permitirá recuperar tu billetera en caso de falla del ordenador",
+  "warning": "ADVERTENCIA",
+  "generation_seed_warning1": "Nunca reveles tu semilla",
+  "generation_seed_warning2": "Nunca la escribas en un sitio web",
+  "generation_seed_warning3": "No la almacenes electrónicamente",
+  "copy_to_clipboard": "Copiar al portapapeles",
+  "clipboard_dialog_title": "Copia exitosa",
+  "clipboard_dialog_content": "Tus palabras clave han sido copiadas al portapapeles",
+  "ok": "Aceptar"
 }

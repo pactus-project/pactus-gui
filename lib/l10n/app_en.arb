@@ -37,5 +37,17 @@
   "next": "Next",
   "basic_auth": "Basic Auth",
   "your_journey_finalized_description": "Venturing into the realm of blockchain technology, Pactus heralds an era of uncompromised decentralization that stands in contrast to its contemporaries. It eschews traditional power hierarchies, parting ways with delegated proof-of-stake systems and mining operations that could lead to power concentration. By doing so, Pactus lowers its ramparts, inviting participants from all walks of life to join as equals in maintaining the network. Within this communal tapestry, every user has the opportunity to operate as a validator client, contributing to the network#s invulnerability to control or censorship, ensuring the platform#s integrity and autonomy.",
-  "your_journey_finalized_description_last": "Pactus isn#t just revolutionizing the structure of blockchain governance; it#s also remapping the user experience. Crafted with the conviction that blockchain should be accessible to all, the Pactus chain boasts a simple yet sophisticated graphical user interface (GUI) that demystifies the process of running a node. The elegance lies in its simplicity - a clear, approachable design that veils the robust and intricate mechanics beneath, allowing users, regardless of their technical prowess, to participate as validator clients. This move towards inclusivity transforms users from mere participants to guardians of the blockchain, an essential facet of the Pactus ecosystem."
+  "your_journey_finalized_description_last": "Pactus isn#t just revolutionizing the structure of blockchain governance; it#s also remapping the user experience. Crafted with the conviction that blockchain should be accessible to all, the Pactus chain boasts a simple yet sophisticated graphical user interface (GUI) that demystifies the process of running a node. The elegance lies in its simplicity - a clear, approachable design that veils the robust and intricate mechanics beneath, allowing users, regardless of their technical prowess, to participate as validator clients. This move towards inclusivity transforms users from mere participants to guardians of the blockchain, an essential facet of the Pactus ecosystem.",
+  "generation_seed_title": "Your wallet generation seed",
+  "generation_seed_description": "Initiate your cryptographic journey with confidence",
+  "generation_seed_note1": "Please write these 24 words on paper",
+  "generation_seed_note2": "This seed will allow you to recover your wallet in case of computer failure",
+  "warning": "WARNING",
+  "generation_seed_warning1": "Never disclose your seed",
+  "generation_seed_warning2": "Never type it on a website",
+  "generation_seed_warning3": "Do not store it electronically",
+  "copy_to_clipboard": "Copy to clipboard",
+  "clipboard_dialog_title": "Copy Successful",
+  "clipboard_dialog_content": "Your seed words have been copied to the clipboard",
+  "ok": "ok"
 }
