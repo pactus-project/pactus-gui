@@ -15,6 +15,12 @@ class _MasterPasswordPageState extends State<MasterPasswordPage> {
   TextEditingController directoryController = TextEditingController();
 
   @override
+  void dispose() {
+    super.dispose();
+    directoryController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<NavigationPaneCubit, int>(
       builder: (context, selectedIndex) {

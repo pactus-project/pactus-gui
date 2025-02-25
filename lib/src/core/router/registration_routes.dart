@@ -52,7 +52,7 @@ import 'package:gui/src/features/initializing/presentation/screen/initializing_p
 import 'package:gui/src/features/master_password/presentation/screen/master_password_page.dart';
 import 'package:gui/src/features/password/presentation/screen/password_page.dart';
 import 'package:gui/src/features/restoration_seed/presentation/screen/restoration_seed_page.dart';
-import 'package:gui/src/features/validator_config/presentation/screen/validator_config_page.dart';
+import 'package:gui/src/features/validator_config/presentation/screen/validator_config_screen.dart';
 import 'package:gui/src/features/welcome/presentation/screen/welcome_screen.dart';
 import 'route_name.dart';
 
@@ -98,7 +98,7 @@ final List<GoRoute> registrationRoutes = [
                         path: AppRoute.validatorConfig.path,
                         name: AppRoute.validatorConfig.name,
                         builder: (context, state) =>
-                            const ValidatorConfigPage(),
+                            const ValidatorConfigScreen(),
                         routes: [
                           GoRoute(
                             path: AppRoute.initializing.path,

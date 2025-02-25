@@ -113,6 +113,7 @@ class FinishPage extends StatelessWidget {
                     Button(
                       child: const Text('Finish'),
                       onPressed: () {
+                        ///to-do : navigate to dashboard navigation pane here
                         context.goNamed(AppRoute.password.name);
                       },
                     ),

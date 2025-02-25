@@ -1,5 +1,29 @@
+# 1.24.0+26
+
+- [Feat]: Implement required widgets for `ValidatorConfigScreen`. [#81](https://github.com/pactus-project/pactus-gui/pull/81)
+    - Added `ValidatorQtySelectorSection` and `ValidatorQtyCubit` for managing validator selection.
+    - Created `ValidatorConfigTitleSection` and `ValidatorConfigScreen` UI.
+    - Implemented `showFluentAlert` method for displaying system alerts.
+    - Added `NavigationFooterSection` for better navigation flow.
+    - Provided `ExpandableStateCubit` in `main.dart` for managing expand/collapse state.
+    - Implemented `isNotEmptyDirectory` method to validate directory selection.
+    - Updated `InitializingNavigationPane` with new integration.
+    - Created `ExpandableStateCubit` and `CustomOutlinedButton`.
+    - Updated `CustomExpandableWidget` and `AuthMethodComponent` for consistency.
+
+- [Update]: Enable multi-language support using `l10n` package. [#81](https://github.com/pactus-project/pactus-gui/pull/81)
+    - Updated text strings for localization.
+    - Made the number of validators configurable using constant variables.
+    - Remove `CustomInputRow` as unused widget.
+
+- [Fix]: Update color palettes used in the project. [#81](https://github.com/pactus-project/pactus-gui/pull/81)
+    - Removed `SurfacePallet` and `OnSurfacePallet`.
+    - Replaced with `DarkPallet` and `LightPallet` for better theme consistency.
+    - Fix memory leak by forget dispose `TextEditingController` in `validatorConfig` feature.
+    - Fix memory leak by forget dispose `TextEditingController` in `masterPassword` feature.
+
 # 1.23.0+25
-- 
+ 
 - [Fix]: Fixed copy to clipboard functionality in `GenerationSeedScreen`. [#PR](https://github.com/pactus-project/pactus-gui/pull/)
   - Resolved the issue where data was not being copied to the clipboard properly.
   - Ensured the feature works as expected for both 12-word and 24-word seed phrases.
@@ -42,7 +66,7 @@
   - Added multi-language translation files.  
 
 - [Fix]: Resolve daemon config issue related to initialization on "Next" button click. [#76](https://github.com/pactus-project/pactus-gui/pull/79)  
-  - Updated `FinishPage`, `InitializeModeScreen`, `MasterPasswordPage`, `RestorationSeedPage`, and `ValidatorConfigPage`.  
+  - Updated `FinishPage`, `InitializeModeScreen`, `MasterPasswordPage`, `RestorationSeedPage`, and `ValidatorConfigScreen`.  
 
 - [Feat]: Add sample code for `GenerationSeedScreen`. [#76](https://github.com/pactus-project/pactus-gui/pull/79)  
   - Created `generation_seed` directory and screen.  
@@ -123,7 +147,7 @@
     - Update `InitializeModeScreen`.
     - Update `MasterPasswordPage`.
     - Update `RestorationSeedPage`.
-    - Update `ValidatorConfigPage`.
+    - Update `ValidatorConfigScreen`.
 
 - [Fix]: Fix button height inconsistency. [#69](https://github.com/pactus-project/pactus-gui/pull/71)
 
@@ -163,7 +187,7 @@
     - Update `InitializeModeScreen`.
     - Update `MasterPasswordPage`.
     - Update `RestorationSeedPage`.
-    - Update `ValidatorConfigPage`.
+    - Update `ValidatorConfigScreen`.
 
 # 1.16.0+18
 
@@ -205,7 +229,7 @@
   - Update `InitializeModeScreen`.
   - Update `MasterPasswordPage`.
   - Update `RestorationSeedPage`.
-  - Update `ValidatorConfigPage`.
+  - Update `ValidatorConfigScreen`.
 
 
 # 1.14.0+16
@@ -234,7 +258,7 @@
 - [Update] : Modify `RestorationSeedPage` to include sample seed generation. [#67](https://github.com/pactus-project/pactus-gui/pull/67)
   - Fix color of text in `WelcomePage`.
   - Add 12 & 24 seed generation modes to `RestorationSeedPage`.
-  - Modify `ValidatorConfigPage` to add directory selector for initial node address setup.
+  - Modify `ValidatorConfigScreen` to add directory selector for initial node address setup.
 
 - [Chore] : Add some packages/libraries. [#67](https://github.com/pactus-project/pactus-gui/pull/67)
   - `file_selector` for file and folder selection via native UI.

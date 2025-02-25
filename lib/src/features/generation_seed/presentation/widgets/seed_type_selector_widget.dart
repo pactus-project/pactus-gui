@@ -58,7 +58,7 @@ class SeedTypeSelectorWidget extends StatelessWidget {
           width: 125,
           header: state.text,
           isExpanded: menuExpanded,
-          onToggle: onToggle,
+          onTap: onToggle,
           body: Column(
             children: [
               GestureDetector(

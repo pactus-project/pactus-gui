@@ -28,13 +28,22 @@ abstract class LocaleKeys {
   static const String username = 'username';
   static const String password = 'password';
   static const String next = 'next';
-  static const String basic_auth = 'basic_auth';
   static const String unlock_wallet = 'unlock_wallet';
   static const String unlock_wallet_description = 'unlock_wallet_description';
   static const String enter_your_password = 'enter_your_password';
   static const String password_cannot_be_empty = 'password_cannot_be_empty';
   static const String incorrect_password = 'incorrect_password';
   static const String unlock_failed = 'unlock_failed';
+  static const String basic_auth = 'basic_auth';
+  static const String error = 'error';
+  static const String select = 'select';
+  static const String working_directory = 'working_directory';
+  static const String choose_your_directory = 'choose_your_directory';
+  static const String select_folder = 'select_folder';
+  static const String validator_config_description =
+      'validator_config_description';
+  static const String number_of_validators = 'number_of_validators';
+  static const String directory_not_empty = 'directory_not_empty';
   static const String generation_seed_title = 'generation_seed_title';
   static const String generation_seed_description =
       'generation_seed_description';
