@@ -14,10 +14,13 @@
 - [Update]: Enable multi-language support using `l10n` package. [#81](https://github.com/pactus-project/pactus-gui/pull/81)
     - Updated text strings for localization.
     - Made the number of validators configurable using constant variables.
+    - Remove `CustomInputRow` as unused widget.
 
 - [Fix]: Update color palettes used in the project. [#81](https://github.com/pactus-project/pactus-gui/pull/81)
     - Removed `SurfacePallet` and `OnSurfacePallet`.
     - Replaced with `DarkPallet` and `LightPallet` for better theme consistency.
+    - Fix memory leak by forget dispose `TextEditingController` in `validatorConfig` feature.
+    - Fix memory leak by forget dispose `TextEditingController` in `masterPassword` feature.
 
 # 1.23.0+25
  
