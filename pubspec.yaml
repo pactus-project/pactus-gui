@@ -37,9 +37,9 @@ dependencies:
     git:
       url: https://github.com/pactus-project/pactus-gui-widgetbook.git
       ref: main
-
   path: ^1.8.3
   process_run: ^1.2.2+1
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   build_runner:
