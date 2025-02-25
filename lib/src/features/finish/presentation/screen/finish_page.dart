@@ -1,11 +1,14 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gui/src/core/router/route_name.dart';
+import 'package:gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 import '../../../../core/common/widgets/custom_filled_button.dart';
 import '../../../../core/utils/gen/assets/assets.gen.dart';
 import '../../../../core/utils/gen/localization/locale_keys.dart';
+import '../../../../core/utils/string_extension.dart';
 
 class FinishPage extends StatelessWidget {
   const FinishPage({super.key});
@@ -17,31 +20,56 @@ class FinishPage extends StatelessWidget {
 
     return NavigationView(
       content: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 50,
+          vertical: 20,
+        ),
         child: Row(
           children: [
             Expanded(
               flex: 6, // 60% of the width
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Your journey finalized, your success on the horizon',
-                    style: FluentTheme.of(context).typography.title,
+                    context.tr(LocaleKeys.your_journey_finalized),
+                    style: FluentTheme.of(context).typography.title?.copyWith(
+                          color: AppTheme.of(context)
+                              .extension<DarkPallet>()!
+                              .dark900,
+                        ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    context
+                        .tr(LocaleKeys.your_journey_finalized_description)
+                        .replaceHashWithSpecialCharacter(),
+                    style: FluentTheme.of(context).typography.body?.copyWith(
+                          color: AppTheme.of(context)
+                              .extension<DarkPallet>()!
+                              .dark900,
+                        ),
                     textAlign: TextAlign.left,
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    'Venturing into the realm of blockchain technology, Pactus heralds an era of uncompromised decentralization that stands in contrast to its contemporaries...',
-                    style: FluentTheme.of(context).typography.body,
+                    context
+                        .tr(LocaleKeys.your_journey_finalized_description_last)
+                        .replaceHashWithSpecialCharacter(),
+                    style: FluentTheme.of(context).typography.body?.copyWith(
+                          color: AppTheme.of(context)
+                              .extension<DarkPallet>()!
+                              .dark900,
+                        ),
                     textAlign: TextAlign.left,
                   ),
                   const SizedBox(height: 20),
-                  _buildUnlockButton(),
+                  _buildDaskBoardButton(context),
                 ],
               ),
             ),
+            Spacer(),
             Expanded(
               flex: 4, // 40% of the width
               child: Center(
@@ -60,23 +88,28 @@ class FinishPage extends StatelessWidget {
     );
   }
 
-  Widget _buildUnlockButton() {
-    return CustomFilledButton(
-      text: LocaleKeys.auth_method,
-      onPressed: () {
-        // Add your navigation logic here
-      },
-      style: ButtonStyle(
-        padding: WidgetStateProperty.all<EdgeInsetsDirectional?>(
-          EdgeInsetsDirectional.symmetric(horizontal: 24, vertical: 4),
-        ),
-        backgroundColor: WidgetStateProperty.all(Color(0xFF0066B4)),
-        shape: WidgetStateProperty.all(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(4),
+  Widget _buildDaskBoardButton(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        CustomFilledButton(
+          text: LocaleKeys.go_to_dashboard,
+          onPressed: () {
+            context.goNamed(AppRoute.password.name);
+          },
+          style: ButtonStyle(
+            padding: WidgetStateProperty.all<EdgeInsetsDirectional?>(
+              EdgeInsetsDirectional.symmetric(horizontal: 24, vertical: 4),
+            ),
+            backgroundColor: WidgetStateProperty.all(Color(0xFF0066B4)),
+            shape: WidgetStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 }
