@@ -56,6 +56,12 @@ class ValidatorConfigScreen extends StatefulWidget {
 class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
   TextEditingController directoryController = TextEditingController();
 
+  @override
+  void dispose() {
+    super.dispose();
+    directoryController.dispose();
+  }
+
   Future<void> _chooseDirectory() async {
     final directoryPath = await getDirectoryPath();
     if (directoryPath != null) {
