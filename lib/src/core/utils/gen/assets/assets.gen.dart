@@ -62,6 +62,12 @@ class $AssetsImagesGen {
   AssetGenImage get masterPassword =>
       const AssetGenImage('assets/images/master_password.png');
 
+  /// File path: assets/images/master_password_dark.svg
+  String get masterPasswordDark => 'assets/images/master_password_dark.svg';
+
+  /// File path: assets/images/master_password_light.svg
+  String get masterPasswordLight => 'assets/images/master_password_light.svg';
+
   /// File path: assets/images/splash.png
   AssetGenImage get splash => const AssetGenImage('assets/images/splash.png');
 
@@ -77,6 +83,8 @@ class $AssetsImagesGen {
         gift,
         logoName,
         masterPassword,
+        masterPasswordDark,
+        masterPasswordLight,
         splash,
         welcomePic
       ];
