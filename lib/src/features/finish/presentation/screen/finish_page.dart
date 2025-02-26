@@ -1,6 +1,8 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gui/src/core/extensions/context_extensions.dart';
 import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/core/utils/storage_utils.dart';
@@ -19,34 +21,9 @@ class FinishPage extends StatefulWidget {
 }
 
 class _FinishPageState extends State<FinishPage> {
-  Future<void> _handleFinish(BuildContext context) async {
-    await StorageUtils.setInstallationFinished(isFinished: true);
-    if (!context.mounted) {
-      return;
-    }
-
-    if (NodeConfigData.instance.password.isNotEmpty) {
-      await StorageUtils.savePasswordIfNotEmpty(
-        NodeConfigData.instance.password,
-      );
-      if (!context.mounted) {
-        return;
-      }
-      context.goNamed(AppRoute.dashboard.name);
-    } else {
-      await StorageUtils.savePasswordIfNotEmpty('');
-      if (!context.mounted) {
-        return;
-      }
-      context.goNamed(AppRoute.password.name);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
-    final theme = FluentTheme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
-
     return NavigationView(
       content: Padding(
         padding: const EdgeInsets.symmetric(
@@ -57,45 +34,70 @@ class _FinishPageState extends State<FinishPage> {
           children: [
             Expanded(
               flex: 6, // 60% of the width
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    context.tr(LocaleKeys.your_journey_finalized),
-                    style: FluentTheme.of(context).typography.title?.copyWith(
-                          color: AppTheme.of(context)
-                              .extension<DarkPallet>()!
-                              .dark900,
+              child: ScrollConfiguration(
+                behavior: ScrollConfiguration.of(context).copyWith(
+                  dragDevices: {
+                    PointerDeviceKind.touch,
+                    PointerDeviceKind.mouse,
+                  },
+                ),
+                child: Stack(
+                  children: [
+                    ListView(
+                      padding: EdgeInsetsDirectional.only(end: 8),
+                      children: [
+                        Text(
+                          context.tr(LocaleKeys.your_journey_finalized),
+                          style: FluentTheme.of(context)
+                              .typography
+                              .title
+                              ?.copyWith(
+                                color: AppTheme.of(context)
+                                    .extension<DarkPallet>()!
+                                    .dark900,
+                              ),
                         ),
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    context
-                        .tr(LocaleKeys.your_journey_finalized_description)
-                        .replaceHashWithSpecialCharacter(),
-                    style: FluentTheme.of(context).typography.body?.copyWith(
-                          color: AppTheme.of(context)
-                              .extension<DarkPallet>()!
-                              .dark900,
+                        const SizedBox(height: 20),
+                        Text(
+                          context
+                              .tr(LocaleKeys.your_journey_finalized_description)
+                              .replaceHashWithSpecialCharacter(),
+                          style:
+                              FluentTheme.of(context).typography.body?.copyWith(
+                                    color: AppTheme.of(context)
+                                        .extension<DarkPallet>()!
+                                        .dark900,
+                                  ),
+                          textAlign: TextAlign.left,
                         ),
-                    textAlign: TextAlign.left,
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    context
-                        .tr(LocaleKeys.your_journey_finalized_description_last)
-                        .replaceHashWithSpecialCharacter(),
-                    style: FluentTheme.of(context).typography.body?.copyWith(
-                          color: AppTheme.of(context)
-                              .extension<DarkPallet>()!
-                              .dark900,
+                        const SizedBox(height: 20),
+                        Text(
+                          context
+                              .tr(
+                                LocaleKeys
+                                    .your_journey_finalized_description_last,
+                              )
+                              .replaceHashWithSpecialCharacter(),
+                          style:
+                              FluentTheme.of(context).typography.body?.copyWith(
+                                    color: AppTheme.of(context)
+                                        .extension<DarkPallet>()!
+                                        .dark900,
+                                  ),
+                          textAlign: TextAlign.left,
                         ),
-                    textAlign: TextAlign.left,
-                  ),
-                  const SizedBox(height: 20),
-                  _buildDaskBoardButton(context),
-                ],
+                        const SizedBox(height: 64),
+                      ],
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional.bottomCenter,
+                      child: CustomFilledButton(
+                        text: LocaleKeys.go_to_dashboard,
+                        onPressed: null,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             Spacer(),
@@ -103,7 +105,7 @@ class _FinishPageState extends State<FinishPage> {
               flex: 4, // 40% of the width
               child: Center(
                 child: SvgPicture.asset(
-                  isDark
+                  context.isDarkTheme()
                       ? Assets.images.bgFinishDark
                       : Assets.images.bgFinishLight,
                   height: 400,
@@ -114,31 +116,6 @@ class _FinishPageState extends State<FinishPage> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildDaskBoardButton(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        CustomFilledButton(
-          text: LocaleKeys.go_to_dashboard,
-          onPressed: () {
-            _handleFinish(context);
-          },
-          style: ButtonStyle(
-            padding: WidgetStateProperty.all<EdgeInsetsDirectional?>(
-              EdgeInsetsDirectional.symmetric(horizontal: 24, vertical: 4),
-            ),
-            backgroundColor: WidgetStateProperty.all(Color(0xFF0066B4)),
-            shape: WidgetStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(4),
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
