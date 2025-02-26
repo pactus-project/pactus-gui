@@ -112,7 +112,8 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
                                       decoration: WidgetStateProperty.all(
                                         BoxDecoration(
                                           border: Border.all(),
-                                          borderRadius: BorderRadius.circular(5),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                         ),
                                       ),
                                     ),

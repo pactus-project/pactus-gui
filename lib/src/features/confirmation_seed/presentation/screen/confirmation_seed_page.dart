@@ -33,8 +33,9 @@ class ConfirmationSeedPage extends StatelessWidget {
                         padding: const EdgeInsets.all(16),
                         child: LayoutBuilder(
                           builder: (context, constraints) {
-                            final crossAxisCount =
-                                (constraints.maxWidth / 160).floor().clamp(2, 6);
+                            final crossAxisCount = (constraints.maxWidth / 160)
+                                .floor()
+                                .clamp(2, 6);
 
                             return GridView.builder(
                               gridDelegate:
@@ -97,8 +98,9 @@ class ConfirmationSeedPage extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          final isValidated =
-                              context.read<ConfirmationSeedCubit>().isAllValid();
+                          final isValidated = context
+                              .read<ConfirmationSeedCubit>()
+                              .isAllValid();
                           final text = isValidated ? 'Valid' : 'Invalid';
 
                           displayInfoBar(

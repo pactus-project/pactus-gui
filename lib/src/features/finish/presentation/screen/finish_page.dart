@@ -21,7 +21,6 @@ class FinishPage extends StatefulWidget {
 }
 
 class _FinishPageState extends State<FinishPage> {
-
   @override
   Widget build(BuildContext context) {
     return NavigationView(
