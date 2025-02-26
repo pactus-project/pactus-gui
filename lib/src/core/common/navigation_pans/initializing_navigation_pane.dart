@@ -167,14 +167,7 @@ class InitializingNavigationPane extends StatelessWidget {
                         : AppColors.navigationPanelDisableColor,
                   ),
                 ),
-                body: MultiBlocProvider(
-                  providers: [
-                    BlocProvider<DaemonCubit>(
-                      create: (_) => DaemonCubit(),
-                    ),
-                  ],
-                  child: const FinishPage(),
-                ),
+                body: const FinishPage(),
               ),
             ],
           ),

@@ -121,14 +121,7 @@ class RestoringNodePane extends StatelessWidget {
                     ),
                   ),
                 ),
-                body: MultiBlocProvider(
-                  providers: [
-                    BlocProvider<DaemonCubit>(
-                      create: (_) => DaemonCubit(),
-                    ),
-                  ],
-                  child: FinishPage(),
-                ),
+                body: FinishPage(),
               ),
             ],
           ),
