@@ -54,9 +54,6 @@ void main() {
             );
           },
         ),
-        // child: MaterialApp(
-        //   home: Scaffold(body: child),
-        // ),
       );
     }
 

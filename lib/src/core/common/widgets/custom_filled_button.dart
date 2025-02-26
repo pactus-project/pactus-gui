@@ -66,7 +66,7 @@ class CustomFilledButton extends StatelessWidget {
     this.padding,
   });
   final String text;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final ButtonStyle? style;
   final Widget? icon;
   final bool autofocus;
@@ -87,7 +87,9 @@ class CustomFilledButton extends StatelessWidget {
                 vertical: 4,
               ),
             ),
-            backgroundColor: WidgetStateProperty.all(const Color(0xFF0066B4)),
+            backgroundColor: onPressed == null
+                ? WidgetStateProperty.all(const Color(0xFF484849))
+                : WidgetStateProperty.all(const Color(0xFF0066B4)),
             shape: WidgetStateProperty.all(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(4),

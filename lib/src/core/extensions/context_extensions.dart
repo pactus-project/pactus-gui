@@ -22,4 +22,16 @@ extension ExtensionOnBoolean on BuildContext {
         ? fromPaneTextMode(PaneTextMode.enabled)
         : fromPaneTextMode(PaneTextMode.disabled);
   }
+
+  /// [isDarkTheme] Documentation
+  /// **[isDarkTheme]** used for detect theme modes and if Theme is dark mode ,
+  /// return true and else return false.
+  ///
+  /// Example:
+  /// ```dart
+  /// Text(context.isDarkTheme?'dark mode':'light mode');
+  /// ```
+  bool isDarkTheme() {
+    return FluentTheme.of(this).brightness == Brightness.dark;
+  }
 }

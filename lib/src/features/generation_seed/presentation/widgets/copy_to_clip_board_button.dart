@@ -1,5 +1,4 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter/services.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/common/widgets/adaptive_text_button.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
@@ -8,46 +7,59 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 /// ## [CopyToClipboardButton] Class Documentation
 ///
-/// The `CopyToClipboardButton` class is a stateless widget that allows users
-/// to copy a list of seed words to the clipboard and displays a confirmation
-/// dialog upon successful copying.
+/// A stateless widget that provides a button to trigger a clipboard copy.
+/// When pressed, it executes `copyClipboardFunction` and shows a confirmation.
 ///
 /// ### Properties:
 ///
-/// - **[seedWords]** (`List<String>`):
-///   - A list of seed words that will be copied to the clipboard when the
-///     button is pressed.
+/// - **`copyClipboardFunction`** (`required`):
+///   - Type: `Future<void> Function()`
+///   - Runs an async function that copies data to the clipboard.
+///
+/// - **`key`**:
+///   - Type: `Key?`
+///   - Optional key to identify this widget in the tree.
 ///
 /// ### Behavior:
 ///
-/// - When pressed, the button:
-///   1. Joins the `seedWords` list into a single space-separated string.
-///   2. Copies the string to the system clipboard.
-///   3. Displays a confirmation dialog with a title and message, indicating
-///      that the text has been copied.
+/// 1. Executes `copyClipboardFunction` asynchronously.
+/// 2. Shows a confirmation dialog upon completion.
+/// 3. If the widget is removed before completion, no dialog is shown.
 ///
 /// ### UI Components:
 ///
-/// - **[AdaptiveTextButton]**:
-///   - Displays a button with an icon (`FluentIcons.copy`) and localized text.
-///   - Uses `AppColors.radioButtonActiveColor` for styling.
+/// - **`AdaptiveTextButton`**:
+///   - Displays a button with:
+///     - Icon (`FluentIcons.copy`).
+///     - Localized text (`LocaleKeys.copy_to_clipboard`).
+///     - Styled using `AppColors.radioButtonActiveColor`.
 ///
-/// - **[ContentDialog]**:
-///   - A dialog that confirms the text has been copied.
-///   - Contains a title and message, both localized using `context.tr(...)`.
-///   - Provides an "OK" button to close the dialog.
+/// - **`ContentDialog`**:
+///   - Confirms the clipboard copy operation.
+///   - Contains:
+///     - **Title** (`LocaleKeys.clipboard_dialog_title`).
+///     - **Message** (`LocaleKeys.clipboard_dialog_content`).
+///     - **"OK" Button** to close the dialog.
+///   - Uses `context.tr(...)` for localization.
 ///
 /// ### Notes:
 ///
-/// - Uses `Clipboard.setData(ClipboardData(text: seedWordsText))` to copy text.
-/// - Checks `context.mounted` before displaying the dialog to avoid errors.
-
+/// - **Clipboard Operation**:
+///   - The actual copy logic is handled by `copyClipboardFunction`,which should
+///     use `Clipboard.setData(ClipboardData(text: ...))` or similar.
+///
+/// - **Context Safety**:
+///   - Checks `context.mounted` before showing the dialog to avoid errors.
+///
+/// - **Localization**:
+///   - All text is localized via `LocaleKeys` and `context.tr(...)`.
+///
 class CopyToClipboardButton extends StatelessWidget {
   const CopyToClipboardButton({
-    required this.seedWords,
+    required this.copyClipboardFunction,
     super.key,
   });
-  final List<String> seedWords;
+  final Future<void> Function() copyClipboardFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +74,7 @@ class CopyToClipboardButton extends StatelessWidget {
         ),
         text: LocaleKeys.copy_to_clipboard,
         onPressed: () async {
-          final seedWordsText = seedWords.join(' ');
-          await Clipboard.setData(ClipboardData(text: seedWordsText));
+          await copyClipboardFunction();
 
           if (!context.mounted) {
             return;

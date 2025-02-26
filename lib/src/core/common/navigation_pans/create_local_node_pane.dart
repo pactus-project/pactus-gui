@@ -1,7 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/extensions/context_extensions.dart';
-import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/confirmation_seed/presentation/screen/confirmation_seed_page.dart';
 import 'package:gui/src/features/finish/presentation/screen/finish_page.dart';
@@ -10,7 +9,7 @@ import 'package:gui/src/features/initializing/presentation/screen/initializing_p
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/master_password/presentation/screen/master_password_page.dart';
-import 'package:gui/src/features/validator_config/presentation/screen/validator_config_page.dart';
+import 'package:gui/src/features/validator_config/presentation/screen/validator_config_screen.dart';
 
 /// ## [CreateLocalNodePane] Class Documentation
 ///
@@ -27,7 +26,7 @@ import 'package:gui/src/features/validator_config/presentation/screen/validator_
 /// - **[ConfirmationSeedPage]**: Allows the user to confirm the generated seed.
 /// - **[MasterPasswordPage]**: Provides an interface for setting a master
 /// password.
-/// - **[ValidatorConfigPage]**: Configures validator-related settings.
+/// - **[ValidatorConfigScreen]**: Configures validator-related settings.
 /// - **[InitializingPage]**: Handles the node initialization process.
 /// - **[FinishPage]**: Concludes the setup process, including daemon
 /// management.
@@ -118,7 +117,7 @@ class CreateLocalNodePane extends StatelessWidget {
                     ),
                   ),
                 ),
-                body: ValidatorConfigPage(),
+                body: ValidatorConfigScreen(),
               ),
               PaneItem(
                 icon: const SizedBox(),
@@ -142,14 +141,7 @@ class CreateLocalNodePane extends StatelessWidget {
                     ),
                   ),
                 ),
-                body: MultiBlocProvider(
-                  providers: [
-                    BlocProvider<DaemonCubit>(
-                      create: (_) => DaemonCubit(),
-                    ),
-                  ],
-                  child: FinishPage(),
-                ),
+                body: FinishPage(),
               ),
             ],
           ),

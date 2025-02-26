@@ -5,98 +5,104 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 /// ## [CustomExpandableWidget] Class Documentation
 ///
-/// The `CustomExpandableWidget` is a customizable collapsible container
-/// that expands or collapses when the header is tapped.
+/// The [CustomExpandableWidget] is a UI component for creating
+/// expandable and collapsible sections.
 ///
 /// ### Properties:
 ///
-/// - **[header]** (`String`)
-///   - The title displayed in the header section.
+/// - **[header]** (String):
+///   - The title displayed in the header.
 ///
-/// - **[headerStyle]** (`TextStyle?`)
-///   - Custom styling for the header text.
+/// - **[headerStyle]** (TextStyle?):
+///   - Optional text style for the header.
 ///
-/// - **[body]** (`Widget`)
-///   - The widget displayed when expanded.
+/// - **[body]** (Widget):
+///   - The content displayed when expanded.
 ///
-/// - **[headerColor]** (`Color`)
-///   - The background color of the header section.
-///   - Defaults to `Color(0xFF0078D4)`.
+/// - **[headerColor]** (Color?):
+///   - Background color for the header.
 ///
-/// - **[expandedColor]** (`Color`)
-///   - The background color when expanded.
-///   - Defaults to `Color(0xFFE6F0FB)`.
+/// - **[expandedColor]** (Color?):
+///   - Background color when expanded.
 ///
-/// - **[padding]** (`EdgeInsetsGeometry`)
-///   - The padding inside the container.
-///   - Defaults to `EdgeInsets.all(10)`.
+/// - **[borderHighlightColor]** (Color?):
+///   - Border color when expanded.
 ///
-/// - **[animationDuration]** (`double`)
-///   - Duration of the expand/collapse animation in milliseconds.
-///   - Defaults to `300.0`.
+/// - **[padding]** (EdgeInsetsGeometry):
+///   - Padding inside the widget, defaults to [EdgeInsets.all(10)].
 ///
-/// - **[width]** (`double`)
-///   - The width of the widget.
-///   - Defaults to `double.infinity`.
+/// - **[isExpanded]** (bool):
+///   - Determines if the widget is expanded.
 ///
-/// - **[maxHeight]** (`double?`)
-///   - The maximum height of the expanded body.
-///   - Optional.
+/// - **[animationDuration]** (double):
+///   - Duration of the expansion animation.
 ///
-/// ### Constructor:
+/// - **[width]** (double):
+///   - Width of the widget.
 ///
-/// - `CustomExpandableWidget({required this.header, required this.body, ...})`
-///   - Initializes the widget with customizable properties.
+/// - **[maxHeight]** (double?):
+///   - Maximum height of the expanded content.
 ///
-/// ### Important Notes:
-///
-/// - Uses `GestureDetector` to handle tap interactions.
-/// - Implements `AnimatedCrossFade` for smooth expand/collapse transitions.
-/// - Adapts colors and text styles dynamically based on the theme.
+/// - **[onTap]** (VoidCallback?):
+///   - Callback function for toggling expansion.
 
 class CustomExpandableWidget extends StatelessWidget {
   const CustomExpandableWidget({
     super.key,
     required this.header,
     required this.body,
-    required this.isExpanded,
-    required this.onToggle,
-    this.headerColor = const Color(0xFF0078D4),
-    this.expandedColor = const Color(0xFFE6F0FB),
+    this.headerColor,
+    this.expandedColor,
+    this.borderHighlightColor,
     this.padding = const EdgeInsets.all(10),
+    required this.isExpanded,
     this.animationDuration = 300.0,
     this.width = double.infinity,
     this.maxHeight,
     this.headerStyle,
+    this.onTap,
   });
 
   final String header;
   final TextStyle? headerStyle;
   final Widget body;
-  final bool isExpanded;
-  final VoidCallback onToggle;
-  final Color headerColor;
-  final Color expandedColor;
+  final Color? headerColor;
+  final Color? expandedColor;
+  final Color? borderHighlightColor;
   final EdgeInsetsGeometry padding;
+  final bool isExpanded;
   final double animationDuration;
   final double width;
   final double? maxHeight;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      padding: padding,
-      decoration: BoxDecoration(
-        color: AppTheme.of(context).extension<LightPallet>()!.light900,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          GestureDetector(
-            onTap: onToggle,
-            child: Row(
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: width,
+        padding: padding,
+        decoration: BoxDecoration(
+          color: isExpanded
+              ? (expandedColor ??
+                  AppTheme.of(context).extension<DarkPallet>()!.dark900)
+              : (headerColor ??
+                  AppTheme.of(context).extension<DarkPallet>()!.dark900),
+          borderRadius: BorderRadius.circular(8),
+          border: isExpanded && borderHighlightColor != null
+              ? Border(
+                  bottom: BorderSide(
+                    color: borderHighlightColor!,
+                    width: 2,
+                  ),
+                )
+              : null,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
@@ -115,19 +121,19 @@ class CustomExpandableWidget extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-          AnimatedCrossFade(
-            duration: Duration(milliseconds: animationDuration.toInt()),
-            firstChild: const SizedBox.shrink(),
-            secondChild: SizedBox(
-              height: maxHeight != null && isExpanded ? maxHeight : null,
-              child: body,
+            AnimatedCrossFade(
+              duration: Duration(milliseconds: animationDuration.toInt()),
+              firstChild: SizedBox.shrink(),
+              secondChild: SizedBox(
+                height: maxHeight != null && isExpanded ? maxHeight : null,
+                child: body,
+              ),
+              crossFadeState: isExpanded
+                  ? CrossFadeState.showSecond
+                  : CrossFadeState.showFirst,
             ),
-            crossFadeState: isExpanded
-                ? CrossFadeState.showSecond
-                : CrossFadeState.showFirst,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

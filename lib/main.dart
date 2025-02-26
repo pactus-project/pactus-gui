@@ -2,8 +2,10 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:gui/src/core/common/cubits/expandable_states_cubit.dart';
 import 'package:gui/src/core/constants/configurations.dart';
 import 'package:gui/src/core/router/app_router.dart';
+import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:gui/src/features/main/language/core/language_constants.dart';
 import 'package:gui/src/features/main/radio_button_cubit/presentation/radio_button_cubit.dart';
 import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
@@ -30,6 +32,12 @@ void main() {
         ),
         BlocProvider<RadioButtonCubit>(
           create: (_) => RadioButtonCubit(),
+        ),
+        BlocProvider<ExpandableStateCubit>(
+          create: (_) => ExpandableStateCubit(),
+        ),
+        BlocProvider<DaemonCubit>(
+          create: (_) => DaemonCubit(),
         ),
       ],
       child: PactusGuiApp(),

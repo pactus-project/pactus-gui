@@ -1,7 +1,60 @@
 import 'package:go_router/go_router.dart';
-import 'package:gui/src/core/common/navigation_pans/initializing_navigation_pane.dart';
+import 'package:gui/src/core/common/navigation_pans/create_local_node_pane.dart';
+import 'package:gui/src/core/common/navigation_pans/remote_node_pane.dart';
+import 'package:gui/src/core/common/navigation_pans/restoring_node_pane.dart';
+import 'package:gui/src/features/initialize_mode/presentation/screen/initialize_mode_screen.dart';
+import 'package:gui/src/features/welcome/presentation/screen/welcome_screen.dart';
+
+import 'route_name.dart';
+
+final List<GoRoute> registrationRoutes = [
+  GoRoute(
+    path: AppRoute.welcome.fullPath,
+    name: AppRoute.welcome.name,
+    builder: (context, state) => const WelcomeScreen(),
+    routes: [
+      GoRoute(
+        path: AppRoute.initializeMode.fullPath,
+        name: AppRoute.initializeMode.name,
+        builder: (context, state) => const InitializeModeScreen(),
+        routes: [
+          GoRoute(
+            path: AppRoute.initializingLocalNodePane.path,
+            name: AppRoute.initializingLocalNodePane.name,
+            builder: (context, state) => const CreateLocalNodePane(),
+          ),
+          GoRoute(
+            path: AppRoute.restoringNodePane.path,
+            name: AppRoute.restoringNodePane.name,
+            builder: (context, state) => const RestoringNodePane(),
+          ),
+          GoRoute(
+            path: AppRoute.connectingRemoteNodePane.path,
+            name: AppRoute.connectingRemoteNodePane.name,
+            builder: (context, state) => const RemoteNodePane(),
+          ),
+        ],
+      ),
+    ],
+  ),
+];
+
+/*
+
+import 'package:flutter/src/widgets/basic.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
+import 'package:gui/src/features/confirmation_seed/presentation/bloc/confirmation_seed_cubit.dart';
+import 'package:gui/src/features/confirmation_seed/presentation/screen/confirmation_seed_page.dart';
 import 'package:gui/src/features/dashboard/presentation/screen/dashboard_page.dart';
-import 'package:gui/src/features/password/presentation/screen/unblock_password_screen.dart';
+import 'package:gui/src/features/finish/presentation/screen/finish_page.dart';
+import 'package:gui/src/features/initialize_mode/presentation/screen/initialize_mode_page.dart';
+import 'package:gui/src/features/initializing/presentation/screen/initializing_page.dart';
+import 'package:gui/src/features/master_password/presentation/screen/master_password_page.dart';
+import 'package:gui/src/features/password/presentation/screen/password_page.dart';
+import 'package:gui/src/features/restoration_seed/presentation/screen/restoration_seed_page.dart';
+import 'package:gui/src/features/validator_config/presentation/screen/validator_config_screen.dart';
 import 'package:gui/src/features/welcome/presentation/screen/welcome_screen.dart';
 import 'route_name.dart';
 
@@ -12,22 +65,87 @@ final List<GoRoute> registrationRoutes = [
     builder: (context, state) => const WelcomeScreen(),
     routes: [
       GoRoute(
-        path: AppRoute.initializingNavigationPane.path,
-        name: AppRoute.initializingNavigationPane.name,
-        builder: (context, state) => const InitializingNavigationPane(),
+        path: AppRoute.initializeMode.path,
+        name: AppRoute.initializeMode.name,
+        builder: (context, state) => const InitializeModePage(),
         routes: [
           GoRoute(
-            path: AppRoute.password.path,
-            name: AppRoute.password.name,
-            builder: (context, state) => UnblockPasswordScreen(
-              fromRegistrationRoute:
-                  state.matchedLocation.contains(AppRoute.finish.name),
-            ),
+            path: AppRoute.restorationSeed.path,
+            name: AppRoute.restorationSeed.name,
+            builder: (context, state) => const RestorationSeedPage(),
             routes: [
               GoRoute(
-                path: AppRoute.dashboard.path,
-                name: AppRoute.dashboard.name,
-                builder: (context, state) => const DashboardPage(),
+                path: AppRoute.confirmationSeed.path,
+                name: AppRoute.confirmationSeed.name,
+                builder: (context, state) {
+                  final words = state.extra as List<String>?;
+                  return MultiBlocProvider(
+                    providers: [
+                      BlocProvider<ConfirmationSeedCubit>(
+                        create: (_) => ConfirmationSeedCubit(
+                          words ?? [],
+                        ),
+                      ),
+                    ],
+                    child: const ConfirmationSeedPage(),
+                  );
+                },
+                routes: [
+                  GoRoute(
+                    path: AppRoute.masterPassword.path,
+                    name: AppRoute.masterPassword.name,
+                    builder: (context, state) => const MasterPasswordPage(),
+                    routes: [
+                      GoRoute(
+                        path: AppRoute.validatorConfig.path,
+                        name: AppRoute.validatorConfig.name,
+                        builder: (context, state) =>
+                            const ValidatorConfigScreen(),
+                        routes: [
+                          GoRoute(
+                            path: AppRoute.initializing.path,
+                            name: AppRoute.initializing.name,
+                            builder: (context, state) =>
+                                const InitializingPage(),
+                            routes: [
+                              GoRoute(
+                                path: AppRoute.finish.path,
+                                name: AppRoute.finish.name,
+                                builder: (context, state) => MultiBlocProvider(
+                                  providers: [
+                                    BlocProvider<DaemonCubit>(
+                                      create: (_) => DaemonCubit(),
+                                    ),
+                                  ],
+                                  child: const FinishPage(),
+                                ),
+                                routes: [
+                                  GoRoute(
+                                    path: AppRoute.password.path,
+                                    name: AppRoute.password.name,
+                                    builder: (context, state) => PasswordPage(
+                                      fromRegistrationRoute: state
+                                          .matchedLocation
+                                          .contains(AppRoute.finish.name),
+                                    ),
+                                    routes: [
+                                      GoRoute(
+                                        path: AppRoute.dashboard.path,
+                                        name: AppRoute.dashboard.name,
+                                        builder: (context, state) =>
+                                            const DashboardPage(),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ],
           ),
@@ -36,3 +154,5 @@ final List<GoRoute> registrationRoutes = [
     ],
   ),
 ];
+
+ */

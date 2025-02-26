@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
@@ -14,7 +15,6 @@ import 'package:gui/src/features/generation_seed/presentation/sections/seeds_wor
 import 'package:gui/src/features/generation_seed/presentation/widgets/copy_to_clip_board_button.dart';
 import 'package:gui/src/features/generation_seed/presentation/widgets/seed_type_selector_widget.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
-import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 /// ## [GenerationSeedScreen] Class Documentation
 ///
@@ -101,14 +101,20 @@ class _GenerationSeedScreenState extends State<GenerationSeedScreen> {
                       BlocBuilder<SeedTypeCubit, SeedTypeEnum>(
                         builder: (context, state) {
                           if (state == SeedTypeEnum.twelve) {
-                            seedWords = SeedGenerator().generateSeed(12)?.words;
+                            final generatedSeed =
+                                SeedGenerator().generateSeed(12);
+                            seedWords = generatedSeed?.words;
+                            NodeConfigData.instance.restorationSeed =
+                                generatedSeed;
                           } else if (state == SeedTypeEnum.twentyFour) {
-                            seedWords = SeedGenerator().generateSeed(24)?.words;
+                            final generatedSeed =
+                                SeedGenerator().generateSeed(24);
+                            seedWords = generatedSeed?.words;
+                            NodeConfigData.instance.restorationSeed =
+                                generatedSeed;
                           }
 
-                          /// to-do : this text is not in design & added by me
-                          /// should replace with correct text after design
-                          /// team fix it by Pouria
+                          // TODO(pouria): this text should replace by UI/UX team
                           if (seedWords!.isEmpty) {
                             return const Center(
                               child: Text('No seed words generated.'),
@@ -120,7 +126,14 @@ class _GenerationSeedScreenState extends State<GenerationSeedScreen> {
                           );
                         },
                       ),
-                      const CopyToClipboardButton(seedWords: []),
+                      CopyToClipboardButton(
+                        copyClipboardFunction: () async {
+                          final seedWordsText = seedWords!.join(' ');
+                          await Clipboard.setData(
+                            ClipboardData(text: seedWordsText),
+                          );
+                        },
+                      ),
                       const Gap(32),
                       const SeedNotesSection(),
                     ],
@@ -145,16 +158,14 @@ class _GenerationSeedScreenState extends State<GenerationSeedScreen> {
                 right: 0,
                 child: Container(
                   height: 89,
-                  color:
-                      AppTheme.of(context).extension<LightPallet>()!.light900,
+                  // color:
+                  //   AppTheme.of(context).extension<LightPallet>()!.light900,
                   padding: const EdgeInsets.only(right: 46),
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: AdaptiveTextButton(
                       text: LocaleKeys.next,
                       onPressed: () {
-                        NodeConfigData.instance.restorationSeed =
-                            '${SeedGenerator().generateSeed(12)?.sentence}';
                         context.read<NavigationPaneCubit>().setSelectedIndex(
                               context.read<NavigationPaneCubit>().state + 1,
                             );
