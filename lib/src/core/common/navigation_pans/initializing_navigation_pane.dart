@@ -1,10 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
-import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
-import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
-import 'package:gui/src/features/confirmation_seed/presentation/bloc/confirmation_seed_cubit.dart';
 import 'package:gui/src/features/confirmation_seed/presentation/screen/confirmation_seed_page.dart';
 import 'package:gui/src/features/finish/presentation/screen/finish_page.dart';
 import 'package:gui/src/features/generation_seed/presentation/screens/generation_seed_screen.dart';
@@ -13,7 +10,6 @@ import 'package:gui/src/features/initializing/presentation/screen/initializing_p
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/master_password/presentation/screen/master_password_page.dart';
-import 'package:gui/src/features/validator_config/presentation/cubits/validator_qty_cubit.dart';
 import 'package:gui/src/features/validator_config/presentation/screen/validator_config_screen.dart';
 
 /// ## [InitializingNavigationPane] Class Documentation
@@ -131,10 +127,7 @@ class InitializingNavigationPane extends StatelessWidget {
                         : AppColors.navigationPanelDisableColor,
                   ),
                 ),
-                body: BlocProvider(
-                  create: (context) => ValidatorQtyCubit(),
-                  child: ValidatorConfigScreen(),
-                ),
+                body: ValidatorConfigScreen(),
               ),
               PaneItem(
                 icon: const SizedBox(),
