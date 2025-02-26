@@ -63,5 +63,8 @@
   "node_ready": "Nœud prêt",
   "initialization_failed": "Initialisation impossible",
   "retry": "Réessayer",
-  "unlock_button": "Accéder au tableau de bord"
+  "unlock_button": "Accéder au tableau de bord",
+  "seed12words": "12 mots",
+  "seed24words": "24 mots"
+
 }

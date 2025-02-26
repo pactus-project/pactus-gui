@@ -21,11 +21,11 @@ class _InitializingPageState extends State<InitializingPage> {
   bool _hasError = false;
   String? _errorMessage;
 
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  //   _initializeDaemon();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    _initializeDaemon();
+  }
 
   Future<void> _initializeDaemon() async {
     try {
@@ -37,7 +37,7 @@ class _InitializingPageState extends State<InitializingPage> {
           '--working-dir',
           NodeConfigData.instance.workingDirectory,
           '--restore',
-          NodeConfigData.instance.restorationSeed,
+          NodeConfigData.instance.restorationSeed!.sentence,
           '--password',
           NodeConfigData.instance.password,
           '--val-num',

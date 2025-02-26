@@ -2,11 +2,13 @@ import 'package:file_selector/file_selector.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:gui/main.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
 import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/validator_config/core/utils/methods/is_not_empty_directory_method.dart';
@@ -74,7 +76,7 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ValidatorQtyCubit(),
+      create: (context) => DropdownCubit<ValidatorQty>(ValidatorQty.one),
       child: BlocBuilder<NavigationPaneCubit, int>(
         builder: (context, selectedIndex) {
           return NavigationView(
@@ -157,8 +159,9 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
                         showFluentAlert(context);
                       } else {
                         final selectedQty =
-                            context.read<ValidatorQtyCubit>().state;
-                        NodeConfigData.instance.validatorQty = selectedQty;
+                            context.read<DropdownCubit<ValidatorQty>>().state;
+                        NodeConfigData.instance.validatorQty =
+                            '${selectedQty.id}';
                         NodeConfigData.instance.workingDirectory =
                             directoryController.text;
 

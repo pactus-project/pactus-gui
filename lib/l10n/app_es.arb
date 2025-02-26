@@ -63,5 +63,7 @@
   "initialization_failed": "Inicialización fallida",
   "retry": "Reintentar",
   "ok": "Aceptar",
-  "unlock_button": "Acceder al tablero"
+  "unlock_button": "Acceder al tablero",
+  "seed12words": "12 palabras",
+  "seed24words": "24 palabras"
 }

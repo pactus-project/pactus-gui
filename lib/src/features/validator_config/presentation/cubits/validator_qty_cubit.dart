@@ -15,10 +15,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 /// ### Usage:
 /// - Can be used in a [BlocBuilder] to react to quantity changes in a form.
 
-class ValidatorQtyCubit extends Cubit<String> {
-  ValidatorQtyCubit() : super('select');
-
-  void setQty(String qty) {
-    emit(qty);
-  }
-}
+// class ValidatorQtyCubit extends Cubit<String> {
+//   ValidatorQtyCubit() : super('select');
+//
+//   void setQty(String qty) {
+//     emit(qty);
+//   }
+// }

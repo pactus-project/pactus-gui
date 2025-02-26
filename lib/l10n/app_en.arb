@@ -63,5 +63,7 @@
   "initialization_complete": "Initialization Complete",
   "node_ready": "Node Ready",
   "initialization_failed": "Initialization Failed",
-  "retry": "Retry"
+  "retry": "Retry",
+  "seed12words": "12 words",
+  "seed24words": "24 words"
 }
