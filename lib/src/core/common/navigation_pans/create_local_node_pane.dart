@@ -10,7 +10,7 @@ import 'package:gui/src/features/initializing/presentation/screen/initializing_p
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/master_password/presentation/screen/master_password_page.dart';
-import 'package:gui/src/features/validator_config/presentation/screen/validator_config_page.dart';
+import 'package:gui/src/features/validator_config/presentation/screen/validator_config_screen.dart';
 
 /// ## [CreateLocalNodePane] Class Documentation
 ///
@@ -27,7 +27,7 @@ import 'package:gui/src/features/validator_config/presentation/screen/validator_
 /// - **[ConfirmationSeedPage]**: Allows the user to confirm the generated seed.
 /// - **[MasterPasswordPage]**: Provides an interface for setting a master
 /// password.
-/// - **[ValidatorConfigPage]**: Configures validator-related settings.
+/// - **[ValidatorConfigScreen]**: Configures validator-related settings.
 /// - **[InitializingPage]**: Handles the node initialization process.
 /// - **[FinishPage]**: Concludes the setup process, including daemon
 /// management.
@@ -118,7 +118,7 @@ class CreateLocalNodePane extends StatelessWidget {
                     ),
                   ),
                 ),
-                body: ValidatorConfigPage(),
+                body: ValidatorConfigScreen(),
               ),
               PaneItem(
                 icon: const SizedBox(),

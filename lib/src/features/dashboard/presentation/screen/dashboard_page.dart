@@ -11,7 +11,7 @@ class DashboardPage extends StatelessWidget {
         title: Text(
           'DashboardPage',
           style: FluentTheme.of(context).typography.body!.copyWith(
-                color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
+                color: AppTheme.of(context).extension<LightPallet>()!.light900,
               ),
         ),
       ),
