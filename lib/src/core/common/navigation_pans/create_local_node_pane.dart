@@ -1,7 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/extensions/context_extensions.dart';
-import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/confirmation_seed/presentation/screen/confirmation_seed_page.dart';
 import 'package:gui/src/features/finish/presentation/screen/finish_page.dart';
@@ -142,14 +141,7 @@ class CreateLocalNodePane extends StatelessWidget {
                     ),
                   ),
                 ),
-                body: MultiBlocProvider(
-                  providers: [
-                    BlocProvider<DaemonCubit>(
-                      create: (_) => DaemonCubit(),
-                    ),
-                  ],
-                  child: FinishPage(),
-                ),
+                body: FinishPage(),
               ),
             ],
           ),

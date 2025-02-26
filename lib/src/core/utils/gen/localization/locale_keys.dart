@@ -4,10 +4,10 @@ abstract class LocaleKeys {
   static const String subtitle = 'subtitle';
   static const String description = 'description';
   static const String switch_language = 'switch_language';
+  static const String applications = 'applications';
   static const String welcome_title = 'welcome_title';
   static const String welcome_description = 'welcome_description';
   static const String start_button_text = 'start_button_text';
-  static const String applications = 'applications';
   static const String initialize_mode = 'initialize_mode';
   static const String wallet_seed = 'wallet_seed';
   static const String confirm_seed = 'confirm_seed';
@@ -44,6 +44,14 @@ abstract class LocaleKeys {
       'validator_config_description';
   static const String number_of_validators = 'number_of_validators';
   static const String directory_not_empty = 'directory_not_empty';
+  static const String your_journey_finalized = 'your_journey_finalized';
+  static const String go_to_dashboard = 'go_to_dashboard';
+  static const String go_to_dashboard_description =
+      'go_to_dashboard_description';
+  static const String your_journey_finalized_description =
+      'your_journey_finalized_description';
+  static const String your_journey_finalized_description_last =
+      'your_journey_finalized_description_last';
   static const String generation_seed_title = 'generation_seed_title';
   static const String generation_seed_description =
       'generation_seed_description';

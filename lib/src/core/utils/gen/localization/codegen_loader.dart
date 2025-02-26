@@ -32,11 +32,11 @@ class CodegenLoader {
     'subtitle': 'Welcome to Localization',
     'description': 'You have pushed the button this many times:',
     'switch_language': 'Switch language',
+    'applications': 'Applications',
     'welcome_title': 'Welcome to the Future of Blockchain with Pactus!',
     'welcome_description':
         'Where the future of blockchain unfolds with trust and transparency in every transaction. Join us in shaping a decentralized revolution!',
     'start_button_text': 'Get Started',
-    'applications': 'Applications',
     'initialize_mode': 'Initialize mode',
     'wallet_seed': 'Wallet seed',
     'confirm_seed': 'Confirm seed',
@@ -72,6 +72,14 @@ class CodegenLoader {
     'number_of_validators': 'Number of Validators',
     'directory_not_empty':
         'Directory is not empty. Need empty directory to continue.',
+    'your_journey_finalized':
+        'Your journey finalized, your success on the horizon',
+    'go_to_dashboard': 'Go to Dashboard',
+    'go_to_dashboard_description': 'Go to dashboard to manage your node',
+    'your_journey_finalized_description':
+        'Venturing into the realm of blockchain technology, Pactus heralds an era of uncompromised decentralization that stands in contrast to its contemporaries. It eschews traditional power hierarchies, parting ways with delegated proof-of-stake systems and mining operations that could lead to power concentration. By doing so, Pactus lowers its ramparts, inviting participants from all walks of life to join as equals in maintaining the network. Within this communal tapestry, every user has the opportunity to operate as a validator client, contributing to the network#s invulnerability to control or censorship, ensuring the platform#s integrity and autonomy.',
+    'your_journey_finalized_description_last':
+        'Pactus isn#t just revolutionizing the structure of blockchain governance; it#s also remapping the user experience. Crafted with the conviction that blockchain should be accessible to all, the Pactus chain boasts a simple yet sophisticated graphical user interface (GUI) that demystifies the process of running a node. The elegance lies in its simplicity - a clear, approachable design that veils the robust and intricate mechanics beneath, allowing users, regardless of their technical prowess, to participate as validator clients. This move towards inclusivity transforms users from mere participants to guardians of the blockchain, an essential facet of the Pactus ecosystem.',
     'generation_seed_title': 'Your wallet generation seed',
     'generation_seed_description':
         'Initiate your cryptographic journey with confidence',
@@ -89,8 +97,8 @@ class CodegenLoader {
     'ok': 'ok',
   };
   static const Map<String, dynamic> frFR = {
-    'title': 'Bonjour le monde!',
-    'subtitle': 'Bienvenue dans Localisation',
+    'title': 'Bonjour, le monde !',
+    'subtitle': 'Bienvenue à la localisation',
     'description': 'Vous avez appuyé sur le bouton autant de fois :',
     'switch_language': 'Changer de langue',
     'welcome_title': 'Bienvenue dans le futur de la Blockchain avec Pactus!',
@@ -101,7 +109,7 @@ class CodegenLoader {
     'initialize_mode': 'Mode d initialisation',
     'wallet_seed': 'Graine de portefeuille',
     'confirm_seed': 'Confirmer la graine',
-    'master_password': 'Confirmer le mot de passe principal',
+    'master_password': 'Confirmer la graine',
     'validator_config': 'Configuration du validateur',
     'initializing': 'Initialisation',
     'finish': 'Terminer',
@@ -116,7 +124,6 @@ class CodegenLoader {
     'auth_method': 'Méthode d authentification',
     'username': 'Nom d utilisateur',
     'password': 'Mot de passe',
-    'next': 'Suivant',
     'unlock_wallet': 'Déverrouiller le portefeuille',
     'unlock_wallet_description':
         'Entrez le mot de passe principal pour déverrouiller',
@@ -124,7 +131,7 @@ class CodegenLoader {
     'password_cannot_be_empty': 'Le mot de passe ne peut pas être vide',
     'incorrect_password': 'Mot de passe incorrect',
     'unlock_failed': 'Déverrouillage impossible. Veuillez réessayer.',
-    'basic_auth': 'Authentification de base',
+    'basic_auth': 'Auth de base',
     'error': 'Erreur',
     'select': 'Sélectionner',
     'working_directory': 'Répertoire de travail',
@@ -135,6 +142,16 @@ class CodegenLoader {
     'number_of_validators': 'Nombre de validateurs',
     'directory_not_empty':
         'Le répertoire n est pas vide. Un répertoire vide est nécessaire pour continuer.',
+    'your_journey_finalized':
+        'Votre voyage est terminé, votre succès à l#horizon',
+    'go_to_dashboard': 'Aller au tableau de bord',
+    'go_to_dashboard_description':
+        'Aller au tableau de bord pour gérer votre nœud',
+    'next': 'Suivant',
+    'your_journey_finalized_description':
+        'Venturing into the realm of blockchain technology, Pactus heralds an era of uncompromised decentralization that stands in contrast to its contemporaries. It eschews traditional power hierarchies, parting ways with delegated proof-of-stake systems and mining operations that could lead to power concentration. By doing so, Pactus lowers its ramparts, inviting participants from all walks of life to join as equals in maintaining the network. Within this communal tapestry, every user has the opportunity to operate as a validator client, contributing to the network#s invulnerability to control or censorship, ensuring the platform#s integrity and autonomy.',
+    'your_journey_finalized_description_last':
+        'Pactus isn#t just revolutionizing the structure of blockchain governance; it#s also remapping the user experience. Crafted with the conviction that blockchain should be accessible to all, the Pactus chain boasts a simple yet sophisticated graphical user interface (GUI) that demystifies the process of running a node. The elegance lies in its simplicity - a clear, approachable design that veils the robust and intricate mechanics beneath, allowing users, regardless of their technical prowess, to participate as validator clients. This move towards inclusivity transforms users from mere participants to guardians of the blockchain, an essential facet of the Pactus ecosystem.',
     'generation_seed_title': 'Votre graine de génération de portefeuille',
     'generation_seed_description':
         'Initiez votre voyage cryptographique en toute confiance',
@@ -152,33 +169,32 @@ class CodegenLoader {
     'ok': 'Daccord',
   };
   static const Map<String, dynamic> esES = {
-    'title': '¡Hola, Mundo  !',
-    'subtitle': 'Bienvenido a Localización',
-    'description': 'Has pulsado el botón tantas veces:',
+    'title': '¡Hola, Mundo !',
+    'subtitle': 'Bienvenido a la Localización',
+    'description': 'Has presionado el botón tantas veces:',
     'switch_language': 'Cambiar idioma',
+    'applications': 'Aplicaciones',
     'welcome_title': 'Bienvenido al futuro de la cadena de bloques con Pactus!',
     'welcome_description':
         'Donde el futuro de la cadena de bloques se desarrolla con confianza y transparencia en cada transacción. Únase a nosotros para dar forma a una revolución descentralizada!',
     'start_button_text': 'Empezar',
-    'applications': 'Applications',
     'initialize_mode': 'Modo de inicialización',
     'wallet_seed': 'Semilla de billetera',
     'confirm_seed': 'Confirmar semilla',
-    'master_password': 'Confirmar contraseña maestra',
+    'master_password': 'Confirmar semilla',
     'validator_config': 'Configuración del validador',
     'initializing': 'Inicializando',
     'finish': 'Finalizar',
-    'initiate_your_node': 'Iniciar tu nodo',
-    'initiate_your_node_for_first_time': 'Iniciar tu nodo por primera vez',
+    'initiate_your_node': 'Inicia tu nodo',
+    'initiate_your_node_for_first_time': 'Inicia tu nodo por primera vez',
     'create_local_node_from_scrache': 'Crear nodo local desde cero',
     'restore_local_node_from_seed_pharse':
-        'Restaurar nodo local desde la frase semilla',
+        'Restaurar nodo local desde frase semilla',
     'connect_to_remote_node': 'Conectar a nodo remoto',
-    'remote_address': 'Dirección remota',
-    'auth_method': 'Método de autenticación',
+    'remote_address': 'Dirección Remota',
+    'auth_method': 'Método de Autenticación',
     'username': 'Nombre de usuario',
     'password': 'Contraseña',
-    'next': 'Siguiente',
     'unlock_wallet': 'Desbloquear',
     'unlock_wallet_description':
         'Ingrese la contraseña maestra para desbloquear',
@@ -186,7 +202,7 @@ class CodegenLoader {
     'password_cannot_be_empty': 'La contraseña no puede estar vacía',
     'incorrect_password': 'Contraseña incorrecta',
     'unlock_failed': 'Desbloqueo fallido. Por favor, inténtelo de nuevo.',
-    'basic_auth': 'Autenticación básica',
+    'basic_auth': 'Autenticación Básica',
     'error': 'Error',
     'select': 'Seleccionar',
     'working_directory': 'Directorio de trabajo',
@@ -197,12 +213,20 @@ class CodegenLoader {
     'number_of_validators': 'Número de validadores',
     'directory_not_empty':
         'El directorio no está vacío. Se necesita un directorio vacío para continuar.',
+    'your_journey_finalized': 'Tu viaje finalizado, tu éxito en el horizonte',
+    'go_to_dashboard': 'Ir al Tablero',
+    'go_to_dashboard_description': 'Ir al tablero para gestionar tu nodo',
+    'next': 'Siguiente',
+    'your_journey_finalized_description':
+        'Venturing into the realm of blockchain technology, Pactus heralds an era of uncompromised decentralization that stands in contrast to its contemporaries. It eschews traditional power hierarchies, parting ways with delegated proof-of-stake systems and mining operations that could lead to power concentration. By doing so, Pactus lowers its ramparts, inviting participants from all walks of life to join as equals in maintaining the network. Within this communal tapestry, every user has the opportunity to operate as a validator client, contributing to the network#s invulnerability to control or censorship, ensuring the platform#s integrity and autonomy.',
+    'your_journey_finalized_description_last':
+        'Pactus isn#t just revolutionizing the structure of blockchain governance; it#s also remapping the user experience. Crafted with the conviction that blockchain should be accessible to all, the Pactus chain boasts a simple yet sophisticated graphical user interface (GUI) that demystifies the process of running a node. The elegance lies in its simplicity - a clear, approachable design that veils the robust and intricate mechanics beneath, allowing users, regardless of their technical prowess, to participate as validator clients. This move towards inclusivity transforms users from mere participants to guardians of the blockchain, an essential facet of the Pactus ecosystem.',
     'generation_seed_title': 'Tu semilla de generación de billetera',
     'generation_seed_description':
         'Inicia tu viaje criptográfico con confianza',
     'generation_seed_note1': 'Por favor, escribe estas 24 palabras en papel',
     'generation_seed_note2':
-        'Esta semilla te permitirá recuperar tu billetera en caso de falla del ordenador',
+        'Esta semilla te permitirá recuperar tu billetera en caso de fallo del ordenador',
     'warning': 'ADVERTENCIA',
     'generation_seed_warning1': 'Nunca reveles tu semilla',
     'generation_seed_warning2': 'Nunca la escribas en un sitio web',
@@ -212,6 +236,7 @@ class CodegenLoader {
     'clipboard_dialog_content':
         'Tus palabras clave han sido copiadas al portapapeles',
     'ok': 'Aceptar',
+    'unlock_button': 'Acceder al tablero',
   };
 
   static const Map<String, Map<String, dynamic>> mapLocales = {

@@ -42,6 +42,12 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/bg_finish_dark.svg
+  String get bgFinishDark => 'assets/images/bg_finish_dark.svg';
+
+  /// File path: assets/images/bg_finish_light.svg
+  String get bgFinishLight => 'assets/images/bg_finish_light.svg';
+
   /// File path: assets/images/gears.png
   AssetGenImage get gears => const AssetGenImage('assets/images/gears.png');
 
@@ -71,6 +77,8 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<dynamic> get values => [
+        bgFinishDark,
+        bgFinishLight,
         gears,
         gift,
         logoName,

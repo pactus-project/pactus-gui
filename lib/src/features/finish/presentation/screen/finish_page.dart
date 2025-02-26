@@ -1,129 +1,116 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:gui/src/core/router/route_name.dart';
-import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
-import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_state.dart';
-import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
-import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
+import 'package:gui/src/core/extensions/context_extensions.dart';
+import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
+import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:gui/src/core/utils/string_extension.dart';
+import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
-class FinishPage extends StatelessWidget {
+class FinishPage extends StatefulWidget {
   const FinishPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<NavigationPaneCubit, int>(
-      builder: (context, selectedIndex) {
-        return NavigationView(
-          content: Center(
-            child: Column(
-              children: [
-                Text(
-                  'password: ${NodeConfigData.instance.password}',
-                  style: TextStyle(
-                    color:
-                        AppTheme.of(context).extension<DarkPallet>()!.dark900,
-                  ),
-                ),
-                Text(
-                  'validatorQty: ${NodeConfigData.instance.validatorQty}',
-                  style: TextStyle(
-                    color:
-                        AppTheme.of(context).extension<DarkPallet>()!.dark900,
-                  ),
-                ),
-                Text(
-                  'workingDirectory:'
-                  '${NodeConfigData.instance.workingDirectory}',
-                  style: TextStyle(
-                    color:
-                        AppTheme.of(context).extension<DarkPallet>()!.dark900,
-                  ),
-                ),
-                Text(
-                  'restorationSeed: ${NodeConfigData.instance.restorationSeed}',
-                  style: TextStyle(
-                    color:
-                        AppTheme.of(context).extension<DarkPallet>()!.dark900,
-                  ),
-                ),
-                Button(
-                  onPressed: () async {
-                    final daemonCubit = context.read<DaemonCubit>();
+  State<FinishPage> createState() => _FinishPageState();
+}
 
-                    await daemonCubit.runPactusDaemon(
-                      command: './pactus-daemon',
-                      arguments: [
-                        'init',
-                        '--working-dir',
-                        NodeConfigData.instance.workingDirectory,
-                        '--restore',
-                        NodeConfigData.instance.restorationSeed!.sentence,
-                        '--password',
-                        NodeConfigData.instance.password,
-                        '--val-num',
-                        NodeConfigData.instance.validatorQty,
-                      ],
-                    );
+class _FinishPageState extends State<FinishPage> {
+  @override
+  Widget build(BuildContext context) {
+    return NavigationView(
+      content: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 50,
+          vertical: 20,
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              flex: 6, // 60% of the width
+              child: ScrollConfiguration(
+                behavior: ScrollConfiguration.of(context).copyWith(
+                  dragDevices: {
+                    PointerDeviceKind.touch,
+                    PointerDeviceKind.mouse,
                   },
-                  child: Text('Run Node'),
                 ),
-                SizedBox(
-                  height: 150,
-                  child: BlocBuilder<DaemonCubit, DaemonState>(
-                    builder: (context, state) {
-                      if (state is DaemonLoading) {
-                        return Center(child: ProgressRing());
-                      } else if (state is DaemonSuccess) {
-                        return SingleChildScrollView(
-                          child: Text(
-                            state.output,
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        );
-                      } else if (state is DaemonError) {
-                        return SingleChildScrollView(
-                          child: Text(
-                            state.error,
-                            style: TextStyle(fontSize: 16, color: Colors.red),
-                          ),
-                        );
-                      } else {
-                        return Center(
-                          child: Text('Press the button to run the daemon.'),
-                        );
-                      }
-                    },
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: Stack(
                   children: [
-                    if (selectedIndex > 0)
-                      Button(
-                        child: const Text('Previous'),
-                        onPressed: () {
+                    ListView(
+                      padding: EdgeInsetsDirectional.only(end: 8),
+                      children: [
+                        Text(
+                          context.tr(LocaleKeys.your_journey_finalized),
+                          style: FluentTheme.of(context)
+                              .typography
+                              .title
+                              ?.copyWith(
+                                color: AppTheme.of(context)
+                                    .extension<DarkPallet>()!
+                                    .dark900,
+                              ),
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
                           context
-                              .read<NavigationPaneCubit>()
-                              .setSelectedIndex(selectedIndex - 1);
-                        },
+                              .tr(LocaleKeys.your_journey_finalized_description)
+                              .replaceHashWithSpecialCharacter(),
+                          style:
+                              FluentTheme.of(context).typography.body?.copyWith(
+                                    color: AppTheme.of(context)
+                                        .extension<DarkPallet>()!
+                                        .dark900,
+                                  ),
+                          textAlign: TextAlign.left,
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          context
+                              .tr(
+                                LocaleKeys
+                                    .your_journey_finalized_description_last,
+                              )
+                              .replaceHashWithSpecialCharacter(),
+                          style:
+                              FluentTheme.of(context).typography.body?.copyWith(
+                                    color: AppTheme.of(context)
+                                        .extension<DarkPallet>()!
+                                        .dark900,
+                                  ),
+                          textAlign: TextAlign.left,
+                        ),
+                        const SizedBox(height: 64),
+                      ],
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional.bottomCenter,
+                      child: CustomFilledButton(
+                        text: LocaleKeys.go_to_dashboard,
+                        onPressed: null,
                       ),
-                    const SizedBox(width: 20),
-                    Button(
-                      child: const Text('Finish'),
-                      onPressed: () {
-                        ///to-do : navigate to dashboard navigation pane here
-                        context.goNamed(AppRoute.password.name);
-                      },
                     ),
                   ],
                 ),
-              ],
+              ),
             ),
-          ),
-        );
-      },
+            Spacer(),
+            Expanded(
+              flex: 4, // 40% of the width
+              child: Center(
+                child: SvgPicture.asset(
+                  context.isDarkTheme()
+                      ? Assets.images.bgFinishDark
+                      : Assets.images.bgFinishLight,
+                  height: 400,
+                  width: 400,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

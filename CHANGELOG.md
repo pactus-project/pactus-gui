@@ -1,3 +1,30 @@
+# 1.25.0+27
+
+- [Fix]: Resolve style conflicts in codebase. [#88](https://github.com/pactus-project/pactus-gui/pull/93)
+  - Re-arranged code styles and imports to ensure consistency.
+  - Cleaned up redundant styles and improved readability.
+
+- [Fix]: Fix BlocProvider in `ConfirmationSeedPage`. [#88](https://github.com/pactus-project/pactus-gui/pull/93)
+  - Corrected issues with `BlocProvider` for better state management.
+
+- [Fix]: Fix BlocProvider in `ValidatorConfigScreen`. [#88](https://github.com/pactus-project/pactus-gui/pull/93)
+  - Resolved issues related to `BlocProvider` in the `ValidatorConfigScreen` for proper dependency injection.
+
+- [Fix]: Fix UI and remove unnecessary functionality in `FinishPage`. [#88](https://github.com/pactus-project/pactus-gui/pull/93)
+  - Fixed scrolling issues.
+  - Removed custom styles for buttons to improve consistency.
+  - Addressed security concerns by removing password saving functionality.
+  - Added disabled style to the `Go to dashboard` button and set it as disabled.
+
+- [Fix]: Provide `DaemonCubit` at the `MaterialApp` level and remove redundant providers. [#88](https://github.com/pactus-project/pactus-gui/pull/93)
+  - Ensured proper initialization of `DaemonCubit` at the top-level to avoid redundancy.
+
+- [Update]: Update generated `assets.gen.dart` file. [#88](https://github.com/pactus-project/pactus-gui/pull/93)
+  - Regenerated assets file after resolving conflicts and updates.
+
+- [Update]: Add asset file and update locale key. [#88](https://github.com/pactus-project/pactus-gui/pull/93)
+  - Added new asset files and updated locale keys for multi-language support.
+
 # 1.24.0+26
 
 - [Feat]: Implement required widgets for `ValidatorConfigScreen`. [#81](https://github.com/pactus-project/pactus-gui/pull/81)
