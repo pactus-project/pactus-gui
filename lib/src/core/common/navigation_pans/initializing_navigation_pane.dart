@@ -107,16 +107,7 @@ class InitializingNavigationPane extends StatelessWidget {
                         : AppColors.navigationPanelDisableColor,
                   ),
                 ),
-                body: Builder(
-                  builder: (context) {
-                    return BlocProvider(
-                      create: (_) => ConfirmationSeedCubit(
-                        NodeConfigData.instance.restorationSeed!.words,
-                      ),
-                      child: ConfirmationSeedPage(),
-                    );
-                  },
-                ),
+                body: ConfirmationSeedPage(),
               ),
               PaneItem(
                 icon: const SizedBox(),
