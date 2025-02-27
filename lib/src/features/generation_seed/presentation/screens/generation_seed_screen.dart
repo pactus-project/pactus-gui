@@ -14,7 +14,6 @@ import 'package:gui/src/features/generation_seed/presentation/sections/generatio
 import 'package:gui/src/features/generation_seed/presentation/sections/seed_notes_section.dart';
 import 'package:gui/src/features/generation_seed/presentation/sections/seeds_words_grid_section.dart';
 import 'package:gui/src/features/generation_seed/presentation/widgets/copy_to_clip_board_button.dart';
-import 'package:gui/src/features/generation_seed/presentation/widgets/seed_type_selector_widget.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 
@@ -123,7 +122,7 @@ class GenerationSeedScreen extends StatelessWidget {
                   child: Container(
                     height: 89,
                     // color:
-                    //   AppTheme.of(context).extension<LightPallet>()!.light900,
+                    // AppTheme.of(context).extension<LightPallet>()!.light900,
                     padding: const EdgeInsets.only(right: 46),
                     child: Align(
                       alignment: Alignment.centerRight,

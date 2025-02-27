@@ -2,10 +2,10 @@ import 'package:file_selector/file_selector.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:gui/main.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
 import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
+import 'package:gui/src/core/enums/app_enums.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
@@ -13,7 +13,6 @@ import 'package:gui/src/features/main/language/core/localization_extension.dart'
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/validator_config/core/utils/methods/is_not_empty_directory_method.dart';
 import 'package:gui/src/features/validator_config/core/utils/methods/show_fluent_alert_method.dart';
-import 'package:gui/src/features/validator_config/presentation/cubits/validator_qty_cubit.dart';
 import 'package:gui/src/features/validator_config/presentation/sections/validator_config_title_section.dart';
 import 'package:gui/src/features/validator_config/presentation/sections/validator_qty_selector_section.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
@@ -76,7 +75,7 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => DropdownCubit<ValidatorQty>(ValidatorQty.one),
+      create: (context) => DropdownCubit<ValidatorQty>(ValidatorQty.seven),
       child: BlocBuilder<NavigationPaneCubit, int>(
         builder: (context, selectedIndex) {
           return NavigationView(
@@ -161,7 +160,7 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
                         final selectedQty =
                             context.read<DropdownCubit<ValidatorQty>>().state;
                         NodeConfigData.instance.validatorQty =
-                            '${selectedQty.id}';
+                            '${selectedQty.qty}';
                         NodeConfigData.instance.workingDirectory =
                             directoryController.text;
 

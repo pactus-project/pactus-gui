@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/router/route_name.dart';
+import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_state.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
@@ -101,9 +102,11 @@ class SplashScreen extends StatelessWidget {
           if (state is DaemonInitial) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               context.read<DaemonCubit>().runPactusDaemon(
-                command: './pactus-wallet',
-                arguments: ['info'],
-              );
+                    cliCommand: CliCommand(
+                      command: './pactus-wallet',
+                      arguments: ['info'],
+                    ),
+                  );
             });
           }
           return ScaffoldPage(

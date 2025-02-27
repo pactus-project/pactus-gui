@@ -20,7 +20,7 @@ import 'package:gui/src/features/validator_config/presentation/screen/validator_
 /// - **[RestorationSeedPage]**: Restores the wallet using a seed phrase.
 /// - **[MasterPasswordPage]**: Sets or verifies the master password.
 /// - **[ValidatorConfigScreen]**: Configures validator settings.
-/// - **[InitializingPage]**: Initializes the restored node.
+/// - **[InitializingScreen]**: Initializes the restored node.
 /// - **[FinishPage]**: Completes the restoration process.
 ///
 /// ### Properties:
@@ -108,7 +108,7 @@ class RestoringNodePane extends StatelessWidget {
                     ),
                   ),
                 ),
-                body: InitializingPage(),
+                body: InitializingScreen(),
               ),
               PaneItem(
                 icon: const SizedBox(),

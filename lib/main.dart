@@ -95,14 +95,3 @@ class PactusGuiApp extends StatelessWidget {
     );
   }
 }
-
-enum ValidatorQty {
-  one(id: 1, name: 'One Validator'),
-  two(id: 2, name: 'Two Validators'),
-  three(id: 3, name: 'Three Validators');
-
-  const ValidatorQty({required this.id, required this.name});
-
-  final int id;
-  final String name;
-}
