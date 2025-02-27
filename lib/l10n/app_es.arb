@@ -66,5 +66,7 @@
   "initialization_success": "Inicialización exitosa",
   "seed12words": "12 palabras",
   "seed24words": "24 palabras",
-  "restoration": "Restauración"
+  "restoration": "Restauración",
+  "restoration_seed_title": "Semilla de Restauración",
+  "restoration_seed_description": "Semilla de restauración, tu clave para la resiliencia y recuperación digital"
 }

@@ -95,6 +95,8 @@ class CodegenLoader {
     'seed12words': '12 words',
     'seed24words': '24 words',
     'restoration': 'Restoration',
+    'restoration_seed_title': 'Restoration Seed',
+    'restoration_seed_description': 'Restoration seed, your key to digital resilience and recovery',
   };
   static const Map<String, dynamic> frFR = {
     'title': 'Bonjour, le monde !',
@@ -164,6 +166,8 @@ class CodegenLoader {
     'seed12words': '12 mots',
     'seed24words': '24 mots',
     'restoration': 'Restauration',
+    'restoration_seed_title': 'Graine de Restauration',
+    'restoration_seed_description': 'Graine de restauration, votre clé pour la résilience et la récupération numériques',
   };
   static const Map<String, dynamic> esES = {
     'title': '¡Hola, Mundo !',
@@ -233,6 +237,8 @@ class CodegenLoader {
     'seed12words': '12 palabras',
     'seed24words': '24 palabras',
     'restoration': 'Restauración',
+    'restoration_seed_title': 'Semilla de Restauración',
+    'restoration_seed_description': 'Semilla de restauración, tu clave para la resiliencia y recuperación digital',
   };
 
   static const Map<String, Map<String, dynamic>> mapLocales = {

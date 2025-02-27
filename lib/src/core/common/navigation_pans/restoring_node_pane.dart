@@ -7,7 +7,7 @@ import 'package:gui/src/features/initializing/presentation/screen/initializing_p
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/master_password/presentation/screen/master_password_page.dart';
-import 'package:gui/src/features/restoration_seed/presentation/screen/restoration_seed_page.dart';
+import 'package:gui/src/features/restoration_seed/presentation/screen/restoration_seed_screen.dart';
 import 'package:gui/src/features/validator_config/presentation/screen/validator_config_screen.dart';
 
 /// ## [RestoringNodePane] Class Documentation
@@ -17,7 +17,7 @@ import 'package:gui/src/features/validator_config/presentation/screen/validator_
 ///
 /// ### Navigation Steps:
 ///
-/// - **[RestorationSeedPage]**: Restores the wallet using a seed phrase.
+/// - **[RestorationSeedScreen]**: Restores the wallet using a seed phrase.
 /// - **[MasterPasswordPage]**: Sets or verifies the master password.
 /// - **[ValidatorConfigScreen]**: Configures validator settings.
 /// - **[InitializingScreen]**: Initializes the restored node.
@@ -72,7 +72,7 @@ class RestoringNodePane extends StatelessWidget {
                     ),
                   ),
                 ),
-                body: RestorationSeedPage(),
+                body: RestorationSeedScreen(),
               ),
               PaneItem(
                 icon: const SizedBox(),

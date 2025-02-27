@@ -67,5 +67,7 @@
   "initialization_success": "Initialisation réussie",
   "seed12words": "12 mots",
   "seed24words": "24 mots",
-  "restoration": "Restauration"
+  "restoration": "Restauration",
+  "restoration_seed_title": "Graine de Restauration",
+  "restoration_seed_description": "Graine de restauration, votre clé pour la résilience et la récupération numériques"
 }

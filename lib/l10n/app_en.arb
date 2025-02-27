@@ -66,5 +66,7 @@
   "invalid_validator_number": "Invalid validator number provided",
   "seed12words": "12 words",
   "seed24words": "24 words",
-  "restoration": "Restoration"
+  "restoration": "Restoration",
+  "restoration_seed_title": "Restoration Seed",
+  "restoration_seed_description": "Restoration seed, your key to digital resilience and recovery"
 }
