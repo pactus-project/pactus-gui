@@ -64,6 +64,11 @@
   "retry": "Reintentar",
   "initialization_success": "Inicialización Exitosa",
   "invalid_validator_number": "Número de validador inválido proporcionado",
-  "seed12words": "12 palabras",
-  "seed24words": "24 palabras"
+  "ok": "Aceptar",
+  "unlock_button": "Acceder al tablero",
+  "seed_twelve_words": "12 palabras",
+  "seed_twenty_four_words": "24 palabras",
+  "restoration": "Restauración",
+  "restoration_seed_title": "Semilla de Restauración",
+  "restoration_seed_description": "Semilla de restauración, tu clave para la resiliencia y recuperación digital"
 }

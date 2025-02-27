@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
 import 'package:logger/logger.dart';
@@ -112,6 +113,19 @@ class DaemonCubit extends Cubit<DaemonState> {
         cliCommand.arguments,
         workingDirectory: executableDir,
       );
+
+      // bypass password-less wallet cli and init node
+      if (cliCommand.command == './pactus-daemon' &&
+          cliCommand.arguments.first == 'init' &&
+          !cliCommand.arguments.contains('--password')) {
+        // Writing password interactively
+        process.stdin.writeln();
+
+        Future.delayed(Duration(seconds: 2), () {
+          // Writing password interactively
+          process.stdin.writeln();
+        });
+      }
 
       _logger.d('Process started with PID: ${process.pid}');
 

@@ -57,6 +57,7 @@
   "clipboard_dialog_title": "Copy Successful",
   "clipboard_dialog_content": "Your seed words have been copied to the clipboard",
   "ok": "ok",
+  "unlock_button": "Unlock Button",
   "node_activation_powering": "Node Activation, Powering the Pulse of the Blockchain",
   "initialization_complete": "Initialization Complete",
   "node_ready": "Node Ready",
@@ -64,6 +65,9 @@
   "retry": "Retry",
   "initialization_success": "Initialization Success",
   "invalid_validator_number": "Invalid validator number provided",
-  "seed12words": "12 words",
-  "seed24words": "24 words"
+  "seed_twelve_words": "12 words",
+  "seed_twenty_four_words": "24 words",
+  "restoration": "Restoration",
+  "restoration_seed_title": "Restoration Seed",
+  "restoration_seed_description": "Restoration seed, your key to digital resilience and recovery"
 }

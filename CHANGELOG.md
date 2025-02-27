@@ -1,3 +1,20 @@
+# 1.27.0+29
+
+- [fix]: Correct navigation pane in restore node flow [#92](https://github.com/pactus-project/pactus-gui/pull/99)
+  - Fixed issues with the navigation pane during the restore node process.
+
+- [fix]: Add/correct some variables in translation files [#92](https://github.com/pactus-project/pactus-gui/pull/99)
+  - Updated translation files by adding and correcting variables for better localization support.
+
+- [feat]: Implement widgets of Restoration Seed screen [#92](https://github.com/pactus-project/pactus-gui/pull/99)
+  - Added a general class `SeedScreenTitleSection` for both restoration and generation seed screens.
+  - Renamed "restoration seed page" to "restoration seed screen".
+  - Created `RestorationSeedWordsGridSection` to generate `ChipTextBox` for users to enter seed words.
+  - Updated the `RestorationSeedScreen` with new features.
+  - Introduced `SeedTextCubit` to store the seed words entered by users.
+  - Enhanced the `GenerationSeedScreen`.
+
+
 # 1.26.0+28
 
 - [Fix]: Fix BlocProviders for drop-down widgets. [#94](https://github.com/pactus-project/pactus-gui/pull/95)

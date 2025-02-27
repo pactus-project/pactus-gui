@@ -3,12 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
+import 'package:gui/src/core/common/widgets/seed_screen_title_section.dart';
 import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/core/utils/daemon_manager/seed_generator.dart';
+import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/generation_seed/core/constants/enums/seed_type_enum.dart';
 import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
-import 'package:gui/src/features/generation_seed/presentation/sections/generation_seed_title_section.dart';
 import 'package:gui/src/features/generation_seed/presentation/sections/seed_notes_section.dart';
 import 'package:gui/src/features/generation_seed/presentation/sections/seeds_words_grid_section.dart';
 import 'package:gui/src/features/generation_seed/presentation/widgets/copy_to_clip_board_button.dart';
@@ -38,7 +39,10 @@ class GenerationSeedScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const GenerationSeedTitleSection(),
+                        const SeedScreenTitleSection(
+                          title: LocaleKeys.generation_seed_title,
+                          description: LocaleKeys.generation_seed_description,
+                        ),
                         const Gap(20),
                         BlocBuilder<DropdownCubit<SeedTypeEnum>, SeedTypeEnum>(
                           builder: (context, state) {
