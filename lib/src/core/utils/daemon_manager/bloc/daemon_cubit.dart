@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
 import 'package:logger/logger.dart';
