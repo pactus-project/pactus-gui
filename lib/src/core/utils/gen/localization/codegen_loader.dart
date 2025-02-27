@@ -54,14 +54,12 @@ class CodegenLoader {
     'auth_method': 'Auth Method',
     'username': 'Username',
     'password': 'Password',
-    'next': 'Next',
     'unlock_wallet': 'Unlock',
     'unlock_wallet_description': 'Enter the master password to unlock',
     'enter_your_password': 'Enter your password',
     'password_cannot_be_empty': 'Password cannot be empty',
     'incorrect_password': 'Incorrect password',
     'unlock_failed': 'Unlock failed. Please try again.',
-    'basic_auth': 'Basic Auth',
     'error': 'Error',
     'select': 'Select',
     'working_directory': 'Working directory',
@@ -76,6 +74,8 @@ class CodegenLoader {
         'Your journey finalized, your success on the horizon',
     'go_to_dashboard': 'Go to Dashboard',
     'go_to_dashboard_description': 'Go to dashboard to manage your node',
+    'next': 'Next',
+    'basic_auth': 'Basic Auth',
     'your_journey_finalized_description':
         'Venturing into the realm of blockchain technology, Pactus heralds an era of uncompromised decentralization that stands in contrast to its contemporaries. It eschews traditional power hierarchies, parting ways with delegated proof-of-stake systems and mining operations that could lead to power concentration. By doing so, Pactus lowers its ramparts, inviting participants from all walks of life to join as equals in maintaining the network. Within this communal tapestry, every user has the opportunity to operate as a validator client, contributing to the network#s invulnerability to control or censorship, ensuring the platform#s integrity and autonomy.',
     'your_journey_finalized_description_last':
@@ -95,14 +95,21 @@ class CodegenLoader {
     'clipboard_dialog_content':
         'Your seed words have been copied to the clipboard',
     'ok': 'ok',
+    'unlock_button': 'Unlock Button',
     'node_activation_powering':
         'Node Activation, Powering the Pulse of the Blockchain',
     'initialization_complete': 'Initialization Complete',
     'node_ready': 'Node Ready',
     'initialization_failed': 'Initialization Failed',
     'retry': 'Retry',
-    'seed12words': '12 words',
-    'seed24words': '24 words',
+    'initialization_success': 'Initialization Success',
+    'invalid_validator_number': 'Invalid validator number provided',
+    'seed_twelve_words': '12 words',
+    'seed_twenty_four_words': '24 words',
+    'restoration': 'Restoration',
+    'restoration_seed_title': 'Restoration Seed',
+    'restoration_seed_description':
+        'Restoration seed, your key to digital resilience and recovery',
   };
   static const Map<String, dynamic> frFR = {
     'title': 'Bonjour, le monde !',
@@ -139,7 +146,7 @@ class CodegenLoader {
     'password_cannot_be_empty': 'Le mot de passe ne peut pas être vide',
     'incorrect_password': 'Mot de passe incorrect',
     'unlock_failed': 'Déverrouillage impossible. Veuillez réessayer.',
-    'basic_auth': 'Auth de base',
+    'basic_auth': 'Authentification de base',
     'error': 'Erreur',
     'select': 'Sélectionner',
     'working_directory': 'Répertoire de travail',
@@ -181,9 +188,15 @@ class CodegenLoader {
     'node_ready': 'Nœud prêt',
     'initialization_failed': 'Initialisation impossible',
     'retry': 'Réessayer',
-    'unlock_button': 'Accéder au tableau de bord',
-    'seed12words': '12 mots',
-    'seed24words': '24 mots',
+    'invalid_validator_number': 'Nombre de validateurs invalide',
+    'unlock_button': 'Déverrouiller',
+    'initialization_success': 'Initialisation réussie',
+    'seed_twelve_words': '12 mots',
+    'seed_twenty_four_words': '24 mots',
+    'restoration': 'Restauration',
+    'restoration_seed_title': 'Graine de Restauration',
+    'restoration_seed_description':
+        'Graine de restauration, votre clé pour la résilience et la récupération numériques',
   };
   static const Map<String, dynamic> esES = {
     'title': '¡Hola, Mundo !',
@@ -219,7 +232,7 @@ class CodegenLoader {
     'password_cannot_be_empty': 'La contraseña no puede estar vacía',
     'incorrect_password': 'Contraseña incorrecta',
     'unlock_failed': 'Desbloqueo fallido. Por favor, inténtelo de nuevo.',
-    'basic_auth': 'Autenticación Básica',
+    'basic_auth': 'Autenticación básica',
     'error': 'Error',
     'select': 'Seleccionar',
     'working_directory': 'Directorio de trabajo',
@@ -259,9 +272,15 @@ class CodegenLoader {
     'initialization_failed': 'Inicialización fallida',
     'retry': 'Reintentar',
     'ok': 'Aceptar',
+    'invalid_validator_number': 'Número de validadores no válido',
     'unlock_button': 'Acceder al tablero',
-    'seed12words': '12 palabras',
-    'seed24words': '24 palabras',
+    'initialization_success': 'Inicialización exitosa',
+    'seed_twelve_words': '12 palabras',
+    'seed_twenty_four_words': '24 palabras',
+    'restoration': 'Restauración',
+    'restoration_seed_title': 'Semilla de Restauración',
+    'restoration_seed_description':
+        'Semilla de restauración, tu clave para la resiliencia y recuperación digital',
   };
 
   static const Map<String, Map<String, dynamic>> mapLocales = {
