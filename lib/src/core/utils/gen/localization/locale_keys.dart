@@ -65,6 +65,7 @@ abstract class LocaleKeys {
   static const String clipboard_dialog_title = 'clipboard_dialog_title';
   static const String clipboard_dialog_content = 'clipboard_dialog_content';
   static const String ok = 'ok';
+  static const String unlock_button = 'unlock_button';
   static const String node_activation_powering = 'node_activation_powering';
   static const String initialization_complete = 'initialization_complete';
   static const String node_ready = 'node_ready';
@@ -72,8 +73,8 @@ abstract class LocaleKeys {
   static const String retry = 'retry';
   static const String initialization_success = 'initialization_success';
   static const String invalid_validator_number = 'invalid_validator_number';
-  static const String seed12words = 'seed12words';
-  static const String seed24words = 'seed24words';
+  static const String seed_twelve_words = 'seed_twelve_words';
+  static const String seed_twenty_four_words = 'seed_twenty_four_words';
   static const String restoration = 'restoration';
   static const String restoration_seed_title = 'restoration_seed_title';
   static const String restoration_seed_description =
