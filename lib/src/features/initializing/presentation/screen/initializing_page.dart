@@ -30,8 +30,9 @@ class _InitializingScreenState extends State<InitializingScreen> {
       NodeConfigData.instance.workingDirectory,
       '--restore',
       NodeConfigData.instance.restorationSeed!.sentence,
-      '--password',
-      NodeConfigData.instance.password,
+      if (NodeConfigData.instance.password.isNotEmpty) '--password',
+      if (NodeConfigData.instance.password.isNotEmpty)
+        NodeConfigData.instance.password, // Add password only if it's not empty
       '--val-num',
       NodeConfigData.instance.validatorQty,
     ],
