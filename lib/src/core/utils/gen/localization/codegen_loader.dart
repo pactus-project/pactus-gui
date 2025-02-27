@@ -90,6 +90,7 @@ class CodegenLoader {
     'node_ready': 'Node Ready',
     'initialization_failed': 'Initialization Failed',
     'retry': 'Retry',
+    'initialization_success': 'Initialization Success',
   };
   static const Map<String, dynamic> frFR = {
     'title': 'Bonjour, le monde !',
@@ -155,6 +156,7 @@ class CodegenLoader {
     'initialization_failed': 'Initialisation impossible',
     'retry': 'Réessayer',
     'unlock_button': 'Accéder au tableau de bord',
+    'initialization_success': 'Initialisation réussie',
   };
   static const Map<String, dynamic> esES = {
     'title': '¡Hola, Mundo !',
@@ -220,6 +222,7 @@ class CodegenLoader {
     'retry': 'Reintentar',
     'ok': 'Aceptar',
     'unlock_button': 'Acceder al tablero',
+    'initialization_success': 'Inicialización exitosa',
   };
 
   static const Map<String, Map<String, dynamic>> mapLocales = {

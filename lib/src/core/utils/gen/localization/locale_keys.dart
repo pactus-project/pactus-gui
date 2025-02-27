@@ -62,4 +62,5 @@ abstract class LocaleKeys {
   static const String node_ready = 'node_ready';
   static const String initialization_failed = 'initialization_failed';
   static const String retry = 'retry';
+  static const String initialization_success = 'initialization_success';
 }
