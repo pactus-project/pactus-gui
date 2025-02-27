@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
 import 'package:logger/logger.dart';
 import 'package:path/path.dart' show dirname, join;
 import 'daemon_state.dart';
@@ -71,19 +72,18 @@ class DaemonCubit extends Cubit<DaemonState> {
 
   /// Runs the Pactus daemon process.
   ///
-  /// - [command]: The command to execute (e.g., "pactusd").
-  /// - [arguments]: A list of arguments to pass to the command.
+  /// - [cliCommand]: An instance of `CliCommand` containing the command
+  ///   and its arguments.
   ///
   /// Emits:
   /// - `DaemonLoading` before execution starts.
   /// - `DaemonSuccess` if the process runs successfully.
   /// - `DaemonError` if an error occurs.
-  Future<void> runPactusDaemon({
-    required String command,
-    required List<String> arguments,
-  }) async {
+  ///
+  Future<void> runPactusDaemon({required CliCommand cliCommand}) async {
     emit(DaemonLoading());
-    _logger.i('Starting daemon process with command: $command $arguments');
+    _logger.i('Starting daemon process with command:'
+        ' ${cliCommand.command} ${cliCommand.arguments}');
 
     try {
       final scriptDir = dirname(Platform.script.toFilePath());
@@ -92,7 +92,7 @@ class DaemonCubit extends Cubit<DaemonState> {
 
       final executablePath = join(
         executableDir,
-        Platform.isWindows ? '$command.exe' : command,
+        Platform.isWindows ? '${cliCommand.command}.exe' : cliCommand.command,
       );
       _logger.d('Executable path: $executablePath');
 
@@ -109,7 +109,7 @@ class DaemonCubit extends Cubit<DaemonState> {
 
       final process = await Process.start(
         executablePath,
-        arguments,
+        cliCommand.arguments,
         workingDirectory: executableDir,
       );
 

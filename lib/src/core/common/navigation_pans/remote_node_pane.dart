@@ -16,7 +16,7 @@ import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/n
 /// ### Usage:
 ///
 /// This navigation pane contains the following steps:
-/// - **[InitializingPage]**: Handles the remote node initialization process.
+/// - **[InitializingScreen]**: Handles the remote node initialization process.
 /// - **[FinishPage]**: Completes the setup and manages the node daemon.
 ///
 /// ### Properties:
@@ -68,7 +68,7 @@ class RemoteNodePane extends StatelessWidget {
                     ),
                   ),
                 ),
-                body: InitializingPage(),
+                body: InitializingScreen(),
               ),
               PaneItem(
                 icon: const SizedBox(),

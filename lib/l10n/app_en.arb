@@ -24,14 +24,12 @@
   "auth_method": "Auth Method",
   "username": "Username",
   "password": "Password",
-  "next": "Next",
   "unlock_wallet": "Unlock",
   "unlock_wallet_description": "Enter the master password to unlock",
   "enter_your_password": "Enter your password",
   "password_cannot_be_empty": "Password cannot be empty",
   "incorrect_password": "Incorrect password",
   "unlock_failed": "Unlock failed. Please try again.",
-  "basic_auth": "Basic Auth",
   "error": "Error",
   "select": "Select",
   "working_directory": "Working directory",
@@ -65,5 +63,7 @@
   "initialization_failed": "Initialization Failed",
   "retry": "Retry",
   "initialization_success": "Initialization Success",
-  "invalid_validator_number": "Invalid validator number provided"
+  "invalid_validator_number": "Invalid validator number provided",
+  "seed12words": "12 words",
+  "seed24words": "24 words"
 }

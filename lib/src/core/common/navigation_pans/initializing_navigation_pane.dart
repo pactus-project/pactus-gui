@@ -139,7 +139,7 @@ class InitializingNavigationPane extends StatelessWidget {
                         : AppColors.navigationPanelDisableColor,
                   ),
                 ),
-                body: InitializingPage(),
+                body: InitializingScreen(),
               ),
               PaneItem(
                 icon: const SizedBox(),

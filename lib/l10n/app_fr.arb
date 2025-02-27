@@ -64,5 +64,7 @@
   "initialization_failed": "Initialisation impossible",
   "retry": "Réessayer",
   "unlock_button": "Accéder au tableau de bord",
-  "initialization_success": "Initialisation réussie"
+  "initialization_success": "Initialisation réussie",
+  "seed12words": "12 mots",
+  "seed24words": "24 mots"
 }
