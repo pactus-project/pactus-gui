@@ -11,7 +11,7 @@
   "initialize_mode": "Initialize mode",
   "wallet_seed": "Wallet seed",
   "confirm_seed": "Confirm seed",
-  "master_password": "Confirm seed",
+  "master_password": "Master Password",
   "validator_config": "Validator config",
   "initializing": "Initializing",
   "finish": "Finish",
@@ -65,5 +65,6 @@
   "initialization_success": "Initialization Success",
   "invalid_validator_number": "Invalid validator number provided",
   "seed12words": "12 words",
-  "seed24words": "24 words"
+  "seed24words": "24 words",
+  "restoration": "Restoration"
 }

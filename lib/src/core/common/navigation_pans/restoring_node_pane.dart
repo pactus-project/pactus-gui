@@ -65,7 +65,7 @@ class RestoringNodePane extends StatelessWidget {
               PaneItem(
                 icon: const SizedBox(),
                 title: Text(
-                  context.tr(LocaleKeys.wallet_seed),
+                  context.tr(LocaleKeys.restoration),
                   style: TextStyle(
                     color: context.detectPaneTextColor(
                       isEnabledTextStyle: selectedIndex == 0,

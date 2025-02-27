@@ -11,7 +11,7 @@
   "initialize_mode": "Modo de inicialización",
   "wallet_seed": "Semilla de billetera",
   "confirm_seed": "Confirmar semilla",
-  "master_password": "Confirmar semilla",
+  "master_password": "contraseña maestra",
   "validator_config": "Configuración del validador",
   "initializing": "Inicializando",
   "finish": "Finalizar",
@@ -65,5 +65,6 @@
   "unlock_button": "Acceder al tablero",
   "initialization_success": "Inicialización exitosa",
   "seed12words": "12 palabras",
-  "seed24words": "24 palabras"
+  "seed24words": "24 palabras",
+  "restoration": "Restauración"
 }

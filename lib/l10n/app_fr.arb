@@ -11,7 +11,7 @@
   "initialize_mode": "Mode d initialisation",
   "wallet_seed": "Graine de portefeuille",
   "confirm_seed": "Confirmer la graine",
-  "master_password": "Confirmer la graine",
+  "master_password": "mot de passe principal",
   "validator_config": "Configuration du validateur",
   "initializing": "Initialisation",
   "finish": "Terminer",
@@ -66,5 +66,6 @@
   "unlock_button": "Accéder au tableau de bord",
   "initialization_success": "Initialisation réussie",
   "seed12words": "12 mots",
-  "seed24words": "24 mots"
+  "seed24words": "24 mots",
+  "restoration": "Restauration"
 }
