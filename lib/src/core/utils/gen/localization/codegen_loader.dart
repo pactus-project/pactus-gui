@@ -54,14 +54,12 @@ class CodegenLoader {
     'auth_method': 'Auth Method',
     'username': 'Username',
     'password': 'Password',
-    'next': 'Next',
     'unlock_wallet': 'Unlock',
     'unlock_wallet_description': 'Enter the master password to unlock',
     'enter_your_password': 'Enter your password',
     'password_cannot_be_empty': 'Password cannot be empty',
     'incorrect_password': 'Incorrect password',
     'unlock_failed': 'Unlock failed. Please try again.',
-    'basic_auth': 'Basic Auth',
     'error': 'Error',
     'select': 'Select',
     'working_directory': 'Working directory',
@@ -76,6 +74,8 @@ class CodegenLoader {
         'Your journey finalized, your success on the horizon',
     'go_to_dashboard': 'Go to Dashboard',
     'go_to_dashboard_description': 'Go to dashboard to manage your node',
+    'next': 'Next',
+    'basic_auth': 'Basic Auth',
     'your_journey_finalized_description':
         'Venturing into the realm of blockchain technology, Pactus heralds an era of uncompromised decentralization that stands in contrast to its contemporaries. It eschews traditional power hierarchies, parting ways with delegated proof-of-stake systems and mining operations that could lead to power concentration. By doing so, Pactus lowers its ramparts, inviting participants from all walks of life to join as equals in maintaining the network. Within this communal tapestry, every user has the opportunity to operate as a validator client, contributing to the network#s invulnerability to control or censorship, ensuring the platform#s integrity and autonomy.',
     'your_journey_finalized_description_last':
@@ -101,6 +101,8 @@ class CodegenLoader {
     'node_ready': 'Node Ready',
     'initialization_failed': 'Initialization Failed',
     'retry': 'Retry',
+    'initialization_success': 'Initialization Success',
+    'invalid_validator_number': 'Invalid validator number provided',
     'seed12words': '12 words',
     'seed24words': '24 words',
   };
@@ -182,6 +184,7 @@ class CodegenLoader {
     'initialization_failed': 'Initialisation impossible',
     'retry': 'Réessayer',
     'unlock_button': 'Accéder au tableau de bord',
+    'initialization_success': 'Initialisation réussie',
     'seed12words': '12 mots',
     'seed24words': '24 mots',
   };
@@ -219,7 +222,7 @@ class CodegenLoader {
     'password_cannot_be_empty': 'La contraseña no puede estar vacía',
     'incorrect_password': 'Contraseña incorrecta',
     'unlock_failed': 'Desbloqueo fallido. Por favor, inténtelo de nuevo.',
-    'basic_auth': 'Autenticación Básica',
+    'basic_auth': 'Autenticación básica',
     'error': 'Error',
     'select': 'Seleccionar',
     'working_directory': 'Directorio de trabajo',
@@ -260,6 +263,7 @@ class CodegenLoader {
     'retry': 'Reintentar',
     'ok': 'Aceptar',
     'unlock_button': 'Acceder al tablero',
+    'initialization_success': 'Inicialización exitosa',
     'seed12words': '12 palabras',
     'seed24words': '24 palabras',
   };

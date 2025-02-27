@@ -27,14 +27,12 @@ abstract class LocaleKeys {
   static const String auth_method = 'auth_method';
   static const String username = 'username';
   static const String password = 'password';
-  static const String next = 'next';
   static const String unlock_wallet = 'unlock_wallet';
   static const String unlock_wallet_description = 'unlock_wallet_description';
   static const String enter_your_password = 'enter_your_password';
   static const String password_cannot_be_empty = 'password_cannot_be_empty';
   static const String incorrect_password = 'incorrect_password';
   static const String unlock_failed = 'unlock_failed';
-  static const String basic_auth = 'basic_auth';
   static const String error = 'error';
   static const String select = 'select';
   static const String working_directory = 'working_directory';
@@ -48,6 +46,8 @@ abstract class LocaleKeys {
   static const String go_to_dashboard = 'go_to_dashboard';
   static const String go_to_dashboard_description =
       'go_to_dashboard_description';
+  static const String next = 'next';
+  static const String basic_auth = 'basic_auth';
   static const String your_journey_finalized_description =
       'your_journey_finalized_description';
   static const String your_journey_finalized_description_last =
@@ -70,6 +70,8 @@ abstract class LocaleKeys {
   static const String node_ready = 'node_ready';
   static const String initialization_failed = 'initialization_failed';
   static const String retry = 'retry';
+  static const String initialization_success = 'initialization_success';
+  static const String invalid_validator_number = 'invalid_validator_number';
   static const String seed12words = 'seed12words';
   static const String seed24words = 'seed24words';
 }

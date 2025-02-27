@@ -10,31 +10,42 @@ class NavigationFooterSection extends StatelessWidget {
     required this.selectedIndex,
     required this.onNextPressed,
     required this.onBackPressed,
+    this.showPrevious = true,
+    this.showNext = true,
   });
   final int selectedIndex;
   final VoidCallback onNextPressed;
   final VoidCallback onBackPressed;
+  final bool showPrevious;
+  final bool showNext;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 89,
       color: AppTheme.of(context).extension<LightPallet>()!.light900,
-      padding: const EdgeInsets.only(right: 46, left: 46),
+      padding: const EdgeInsets.symmetric(horizontal: 46),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          // Always reserve space for Back button
           if (selectedIndex > 0)
             CustomOutlinedButton(
-              text: 'back',
+              text: 'Back',
               onPressed: onBackPressed,
               borderColor: AppColors.primaryGray,
-            ),
+            )
+          else
+            const SizedBox.shrink(),
+
+          // Always reserve space for Next button
           if (selectedIndex < 6)
             CustomFilledButton(
               text: 'Next',
               onPressed: onNextPressed,
-            ),
+            )
+          else
+            const SizedBox.shrink(),
         ],
       ),
     );
