@@ -1,4 +1,4 @@
-### 1.27.0+29
+# 1.27.0+29
 
 - [fix]: Correct navigation pane in restore node flow [#92](https://github.com/pactus-project/pactus-gui/pull/99)
   - Fixed issues with the navigation pane during the restore node process.
