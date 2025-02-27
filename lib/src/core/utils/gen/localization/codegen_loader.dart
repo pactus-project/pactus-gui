@@ -95,6 +95,14 @@ class CodegenLoader {
     'clipboard_dialog_content':
         'Your seed words have been copied to the clipboard',
     'ok': 'ok',
+    'node_activation_powering':
+        'Node Activation, Powering the Pulse of the Blockchain',
+    'initialization_complete': 'Initialization Complete',
+    'node_ready': 'Node Ready',
+    'initialization_failed': 'Initialization Failed',
+    'retry': 'Retry',
+    'seed12words': '12 words',
+    'seed24words': '24 words',
   };
   static const Map<String, dynamic> frFR = {
     'title': 'Bonjour, le monde !',
@@ -167,6 +175,15 @@ class CodegenLoader {
     'clipboard_dialog_content':
         'Vos mots de récupération ont été copiés dans le presse-papiers',
     'ok': 'Daccord',
+    'node_activation_powering':
+        'Activation du nœud, alimentant le pulse de la blockchain',
+    'initialization_complete': 'Initialisation terminée',
+    'node_ready': 'Nœud prêt',
+    'initialization_failed': 'Initialisation impossible',
+    'retry': 'Réessayer',
+    'unlock_button': 'Accéder au tableau de bord',
+    'seed12words': '12 mots',
+    'seed24words': '24 mots',
   };
   static const Map<String, dynamic> esES = {
     'title': '¡Hola, Mundo !',
@@ -235,8 +252,16 @@ class CodegenLoader {
     'clipboard_dialog_title': 'Copia exitosa',
     'clipboard_dialog_content':
         'Tus palabras clave han sido copiadas al portapapeles',
+    'node_activation_powering':
+        'Activación de nodo, potenciando el pulso de la cadena de bloques',
+    'initialization_complete': 'Inicialización completada',
+    'node_ready': 'Nodo listo',
+    'initialization_failed': 'Inicialización fallida',
+    'retry': 'Reintentar',
     'ok': 'Aceptar',
     'unlock_button': 'Acceder al tablero',
+    'seed12words': '12 palabras',
+    'seed24words': '24 palabras',
   };
 
   static const Map<String, Map<String, dynamic>> mapLocales = {

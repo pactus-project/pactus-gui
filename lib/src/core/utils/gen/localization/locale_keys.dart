@@ -65,4 +65,11 @@ abstract class LocaleKeys {
   static const String clipboard_dialog_title = 'clipboard_dialog_title';
   static const String clipboard_dialog_content = 'clipboard_dialog_content';
   static const String ok = 'ok';
+  static const String node_activation_powering = 'node_activation_powering';
+  static const String initialization_complete = 'initialization_complete';
+  static const String node_ready = 'node_ready';
+  static const String initialization_failed = 'initialization_failed';
+  static const String retry = 'retry';
+  static const String seed12words = 'seed12words';
+  static const String seed24words = 'seed24words';
 }

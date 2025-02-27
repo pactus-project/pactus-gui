@@ -57,5 +57,14 @@
   "copy_to_clipboard": "Copier dans le presse-papiers",
   "clipboard_dialog_title": "Copie réussie",
   "clipboard_dialog_content": "Vos mots de récupération ont été copiés dans le presse-papiers",
-  "ok": "Daccord"
+  "ok": "Daccord",
+  "node_activation_powering": "Activation du nœud, alimentant le pulse de la blockchain",
+  "initialization_complete": "Initialisation terminée",
+  "node_ready": "Nœud prêt",
+  "initialization_failed": "Initialisation impossible",
+  "retry": "Réessayer",
+  "unlock_button": "Accéder au tableau de bord",
+  "initialization_success": "Initialisation réussie",
+  "seed12words": "12 mots",
+  "seed24words": "24 mots"
 }

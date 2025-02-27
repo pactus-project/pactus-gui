@@ -27,7 +27,7 @@ import 'package:gui/src/features/validator_config/presentation/screen/validator_
 /// - **[MasterPasswordPage]**: Provides an interface for setting a master
 /// password.
 /// - **[ValidatorConfigScreen]**: Configures validator-related settings.
-/// - **[InitializingPage]**: Handles the node initialization process.
+/// - **[InitializingScreen]**: Handles the node initialization process.
 /// - **[FinishPage]**: Concludes the setup process, including daemon
 /// management.
 ///
@@ -129,7 +129,7 @@ class CreateLocalNodePane extends StatelessWidget {
                     ),
                   ),
                 ),
-                body: InitializingPage(),
+                body: InitializingScreen(),
               ),
               PaneItem(
                 icon: const SizedBox(),
