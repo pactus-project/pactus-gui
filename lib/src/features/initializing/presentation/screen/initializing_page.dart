@@ -1,6 +1,8 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
+import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_state.dart';
@@ -11,8 +13,6 @@ import 'package:gui/src/features/main/language/core/localization_extension.dart'
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:logger/logger.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
-import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
-import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
 
 class InitializingScreen extends StatefulWidget {
   const InitializingScreen({super.key});

@@ -12,12 +12,16 @@ class NavigationFooterSection extends StatelessWidget {
     required this.onBackPressed,
     this.showPrevious = true,
     this.showNext = true,
+    this.showSkipButton = false,
+    this.onSkipPressed,
   });
   final int selectedIndex;
   final VoidCallback onNextPressed;
   final VoidCallback onBackPressed;
   final bool showPrevious;
   final bool showNext;
+  final bool showSkipButton;
+  final VoidCallback? onSkipPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -32,20 +36,33 @@ class NavigationFooterSection extends StatelessWidget {
           if (selectedIndex > 0)
             CustomOutlinedButton(
               text: 'Back',
-              onPressed: onBackPressed,
+              onPressed: () => {},
               borderColor: AppColors.primaryGray,
             )
           else
-            const SizedBox.shrink(),
-
-          // Always reserve space for Next button
-          if (selectedIndex < 6)
             CustomFilledButton(
-              text: 'Next',
-              onPressed: onNextPressed,
-            )
-          else
-            const SizedBox.shrink(),
+              text: 'Back',
+              onPressed: null,
+            ),
+
+          // Modified Next button section with optional Skip
+          Row(
+            children: [
+              if (showSkipButton) ...[
+                CustomOutlinedButton(
+                  text: 'Skip',
+                  onPressed: onSkipPressed,
+                  borderColor: Colors.transparent,
+                  textColor: Color(0xFF0066B4),
+                ),
+                const SizedBox(width: 10),
+              ],
+              CustomFilledButton(
+                text: 'Next',
+                onPressed: selectedIndex < 6 ? onNextPressed : null,
+              ),
+            ],
+          ),
         ],
       ),
     );

@@ -44,6 +44,7 @@ class _MasterPasswordPageState extends State<MasterPasswordPage> {
           ),
           footer: NavigationFooterSection(
             selectedIndex: selectedIndex,
+            showSkipButton: true,
             onNextPressed: () {
               NodeConfigData.instance.password = _passwordController.text;
               context
