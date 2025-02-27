@@ -1,3 +1,22 @@
+# 1.26.0+28
+
+- [Fix]: Fix BlocProviders for drop-down widgets. [#94](https://github.com/pactus-project/pactus-gui/pull/95)
+  - Resolved issues with BlocProviders in drop-down widgets to improve functionality.
+
+- [Update]: Fix some features related to the initializing screen. [#94](https://github.com/pactus-project/pactus-gui/pull/95)
+  - Fixed validator drop-down widget behavior.
+  - Improved functionality in `InitializingScreen`.
+  - Enhanced `DaemonCubit` integration and set commands.
+  - Optimized drop-down widget functionality using Fluent UI’s `ComboBox`.
+  - Streamlined state management by introducing a general object to support all drop-down widgets.
+
+- [Feat]: Implement initializing page. [#94](https://github.com/pactus-project/pactus-gui/pull/95)
+
+- [Update]: Update README.md file for Pactus GUI.  [#94](https://github.com/pactus-project/pactus-gui/pull/95)
+
+- [Update]: Add `AppThemeData` to fix build issue.  [#94](https://github.com/pactus-project/pactus-gui/pull/95)
+
+
 # 1.25.0+27
 
 - [Fix]: Resolve style conflicts in codebase. [#88](https://github.com/pactus-project/pactus-gui/pull/93)
