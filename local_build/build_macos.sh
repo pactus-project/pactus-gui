@@ -1,0 +1,80 @@
+#!/bin/bash
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+# Get version from pubspec.yaml
+PACTUS_VERSION="1.6.4"
+BUILD_NUMBER=$(grep 'version:' pubspec.yaml | awk '{print $2}' | cut -d+ -f2)
+
+# Function to check if a command exists
+check_command() {
+    if ! command -v $1 &> /dev/null; then
+        echo -e "${RED}Error: $1 is not installed${NC}"
+        exit 1
+    fi
+}
+
+# Check required tools
+check_command "flutter"
+check_command "curl"
+check_command "zip"
+check_command "unzip"
+
+# Clean previous builds
+echo -e "${BLUE}Cleaning previous builds...${NC}"
+flutter clean
+
+# Get Flutter dependencies
+echo -e "${BLUE}Getting Flutter dependencies...${NC}"
+flutter pub get
+
+# Generate localization files
+echo -e "${BLUE}Generating localization files...${NC}"
+flutter gen-l10n --output-dir=lib/l10n --arb-dir=lib/l10n
+
+# Run translation utilities
+echo -e "${BLUE}Running translation utilities...${NC}"
+dart lib/src/core/utils/gen/localization/translations_utils.dart
+
+# Run build_runner
+echo -e "${BLUE}Running build_runner...${NC}"
+dart run build_runner build --delete-conflicting-outputs
+dart run build_runner build --delete-conflicting-outputs --build-filter="lib/src/core/utils/gen/assets\*.dart"
+
+# Prompt for architecture
+echo "Select macOS architecture:"
+echo "1) arm64 (Apple Silicon)"
+echo "2) amd64 (Intel)"
+read -p "Enter choice (1-2): " choice
+case $choice in
+    1) ARCH="arm64" ;;
+    2) ARCH="amd64" ;;
+    *) echo "Invalid choice, defaulting to arm64"; ARCH="arm64" ;;
+esac
+
+# Create directory for assets
+rm -rf lib/src/core/native_resources/macos/
+mkdir -p lib/src/core/native_resources/macos/
+
+# Download and extract Pactus CLI
+echo -e "${BLUE}Downloading macOS assets...${NC}"
+curl -L -o file.tar.gz "https://github.com/pactus-project/pactus/releases/download/v${PACTUS_VERSION}/pactus-cli_${PACTUS_VERSION}_darwin_${ARCH}.tar.gz"
+tar -xzf file.tar.gz --strip-components=1 -C lib/src/core/native_resources/macos/
+rm file.tar.gz
+
+# Build Flutter application
+echo -e "${BLUE}Building macOS application...${NC}"
+flutter config --enable-macos-desktop
+flutter build macos --release
+
+# Package the build
+echo -e "${BLUE}Packaging macOS build...${NC}"
+cd build/macos/Build/Products/Release
+cp -r ../../../../../lib/src/core/native_resources/macos/* .
+zip -r macos-build-${BUILD_NUMBER}.zip ./*
+
+echo -e "${GREEN}macOS build completed: build/macos/Build/Products/Release/macos-build-${BUILD_NUMBER}.zip${NC}" 

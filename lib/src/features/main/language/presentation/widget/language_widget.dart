@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/features/main/language/data/language_model.dart';
+import 'package:gui/src/features/main/language/core/language_constants.dart';
 import 'package:gui/src/features/main/language/presentation/bloc/language_bloc.dart';
 
 class LanguageSelector extends StatelessWidget {
@@ -11,28 +11,28 @@ class LanguageSelector extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        ElevatedButton(
+        Button(
           onPressed: () {
             context.read<LanguageBloc>().add(
-                  ChangeLanguage(selectedLanguage: Language.english),
+                  ChangeLanguage(selectedLanguage: LanguageConstants.enUS),
                 );
           },
           child: const Text('English'),
         ),
         const SizedBox(width: 8),
-        ElevatedButton(
+        Button(
           onPressed: () {
             context.read<LanguageBloc>().add(
-                  ChangeLanguage(selectedLanguage: Language.spanish),
+                  ChangeLanguage(selectedLanguage: LanguageConstants.esES),
                 );
           },
           child: const Text('Español'),
         ),
         const SizedBox(width: 8),
-        ElevatedButton(
+        Button(
           onPressed: () {
             context.read<LanguageBloc>().add(
-                  ChangeLanguage(selectedLanguage: Language.french),
+                  ChangeLanguage(selectedLanguage: LanguageConstants.frFR),
                 );
           },
           child: const Text('Français'),

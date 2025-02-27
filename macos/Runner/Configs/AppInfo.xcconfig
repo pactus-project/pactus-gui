@@ -11,4 +11,4 @@ PRODUCT_NAME = gui
 PRODUCT_BUNDLE_IDENTIFIER = org.pactus.gui
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2024 org.pactus. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2025 org.pactus. All rights reserved.

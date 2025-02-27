@@ -1,5 +1,13 @@
 name: Desktop Release Build
 
+# Add environment variables at the top level
+env:
+  LINUX_ASSETS_URL: "https://github.com/pactus-project/pactus/releases/download/v1.6.4/pactus-cli_1.6.4_linux_amd64.tar.gz"
+  WINDOWS_AMD64_ASSETS_URL: "https://github.com/pactus-project/pactus/releases/download/v1.6.4/pactus-cli_1.6.4_windows_amd64.zip"
+  WINDOWS_386_ASSETS_URL: "https://github.com/pactus-project/pactus/releases/download/v1.6.4/pactus-cli_1.6.4_windows_386.zip"
+  MACOS_ARM64_ASSETS_URL: "https://github.com/pactus-project/pactus/releases/download/v1.6.4/pactus-cli_1.6.4_darwin_arm64.tar.gz"
+  MACOS_AMD64_ASSETS_URL: "https://github.com/pactus-project/pactus/releases/download/v1.6.4/pactus-cli_1.6.4_darwin_amd64.tar.gz"
+
 permissions:
   contents: write
   pull-requests: read
@@ -23,7 +31,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.5'
+          flutter-version: '3.27.3'
           channel: 'stable'
           cache: true
 
@@ -34,22 +42,28 @@ jobs:
           sudo apt-get install -y cmake pkg-config
           sudo apt-get install -y libblkid-dev
           sudo apt-get install -y liblzma-dev
+          sudo apt-get install -y unzip
 
       - name: Enable Linux desktop
         run: flutter config --enable-linux-desktop
 
       - name: Get dependencies
-        run: flutter pub get
+        run: flutter pub get        
+
+      - name: Fetch and Extract File
+        run: |
+          curl -L -o file.tar.gz ${{ env.LINUX_ASSETS_URL }}
+          mkdir -p lib/src/core/native_resources/linux/
+          tar -xzf file.tar.gz --strip-components=1 -C lib/src/core/native_resources/linux/
 
       - name: Build application
         run: flutter build linux --release
 
       - name: Archive Release
-        uses: thedoctor0/zip-release@master
-        with:
-          type: 'zip'
-          filename: 'linux-build.zip'
-          directory: build/linux/x64/release/bundle
+        run: |
+          cp -r $GITHUB_WORKSPACE/lib/src/core/native_resources/linux/* build/linux/x64/release/bundle/
+          cd build/linux/x64/release/bundle
+          zip -r linux-build.zip ./*
 
       - name: Create Linux Release
         id: create_linux_release
@@ -115,8 +129,11 @@ jobs:
   build-and-release-windows:
     if: github.event.pull_request.merged == true
     runs-on: windows-latest
+    strategy:
+      matrix:
+        arch: [amd64, 386]
     outputs:
-      release_tag: windows-release-${{ github.run_number }}
+      release_tag: windows-${{ matrix.arch }}-release-${{ github.run_number }}
       platform: Windows
     steps:
       - name: Checkout code
@@ -125,7 +142,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.5'
+          flutter-version: '3.27.3'
           channel: 'stable'
           cache: true
 
@@ -134,6 +151,14 @@ jobs:
 
       - name: Get dependencies
         run: flutter pub get
+
+      - name: Fetch and Extract File
+        shell: pwsh
+        run: |
+          New-Item -Path "$GITHUB_WORKSPACE/lib/src/core/native_resources/windows" -ItemType Directory -Force
+          $assetsUrl = if ("${{ matrix.arch }}" -eq "amd64") { "${{ env.WINDOWS_AMD64_ASSETS_URL }}" } else { "${{ env.WINDOWS_386_ASSETS_URL }}" }
+          Invoke-WebRequest -Uri $assetsUrl -OutFile "file.zip"
+          Expand-Archive -Path "file.zip" -DestinationPath "$GITHUB_WORKSPACE/lib/src/core/native_resources/windows" -Force
 
       - name: Build application
         run: |
@@ -152,10 +177,11 @@ jobs:
           }
 
       - name: Archive Release
-        shell: bash
+        shell: pwsh
         run: |
           cd build/windows/x64/runner/Release
-          7z a -tzip windows-build.zip ./*
+          Copy-Item -Path "$GITHUB_WORKSPACE/lib/src/core/native_resources/windows/*" -Destination "." -Recurse -Force
+          Compress-Archive -Path * -DestinationPath windows-${{ matrix.arch }}-build.zip -Force
 
       - name: Create Windows Release
         id: create_windows_release
@@ -163,10 +189,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: windows-release-${{ github.run_number }}
-          release_name: Windows Release ${{ github.run_number }}
+          tag_name: windows-${{ matrix.arch }}-release-${{ github.run_number }}
+          release_name: Windows ${{ matrix.arch }} Release ${{ github.run_number }}
           body: |
-            Windows release from merged PR #${{ github.event.pull_request.number }}
+            Windows ${{ matrix.arch }} release from merged PR #${{ github.event.pull_request.number }}
             ${{ github.event.pull_request.title }}
           draft: false
           prerelease: false
@@ -174,8 +200,8 @@ jobs:
       - name: Upload Windows Release Asset
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: windows-release-${{ github.run_number }}
-          files: build/windows/x64/runner/Release/windows-build.zip
+          tag_name: windows-${{ matrix.arch }}-release-${{ github.run_number }}
+          files: build/windows/x64/runner/Release/windows-${{ matrix.arch }}-build.zip
 
   notify-windows:
     needs: build-and-release-windows
@@ -196,9 +222,9 @@ jobs:
             ✅ Merged by: ${{ github.event.pull_request.merged_by.login }}
             
             📥 *Download Link:*
-            [Windows Build](https://github.com/${{ github.repository }}/releases/download/windows-release-${{ github.run_number }}/windows-build.zip)
+            [Windows Build](https://github.com/${{ github.repository }}/releases/download/windows-${{ matrix.arch }}-release-${{ github.run_number }}/windows-${{ matrix.arch }}-build.zip)
             
-            🔍 [View Release](https://github.com/${{ github.repository }}/releases/tag/windows-release-${{ github.run_number }})
+            🔍 [View Release](https://github.com/${{ github.repository }}/releases/tag/windows-${{ matrix.arch }}-release-${{ github.run_number }})
 
       - name: Send Discord Notification
         uses: Ilshidur/action-discord@master
@@ -208,21 +234,24 @@ jobs:
           args: |
             🚀 **Windows Release Published!**
             
-            📦 Version: Windows Release ${{ github.run_number }}
+                    📦 Version: Windows Release ${{ github.run_number }}
             🔄 PR: #${{ github.event.pull_request.number }} - ${{ github.event.pull_request.title }}
             👤 Requested by: ${{ github.event.pull_request.user.login }}
             ✅ Merged by: ${{ github.event.pull_request.merged_by.login }}
             
             📥 *Download Link:*
-            [Windows Build](https://github.com/${{ github.repository }}/releases/download/windows-release-${{ github.run_number }}/windows-build.zip)
+            [Windows Build](https://github.com/${{ github.repository }}/releases/download/windows-${{ matrix.arch }}-release-${{ github.run_number }}/windows-${{ matrix.arch }}-build.zip)
             
-            🔍 [View Release](https://github.com/${{ github.repository }}/releases/tag/windows-release-${{ github.run_number }})
+            🔍 [View Release](https://github.com/${{ github.repository }}/releases/tag/windows-${{ matrix.arch }}-release-${{ github.run_number }})
 
   build-and-release-macos:
     if: github.event.pull_request.merged == true
     runs-on: macos-latest
+    strategy:
+      matrix:
+        arch: [arm64, amd64]
     outputs:
-      release_tag: macos-release-${{ github.run_number }}
+      release_tag: macos-${{ matrix.arch }}-release-${{ github.run_number }}
       platform: macOS
     steps:
       - name: Checkout code
@@ -231,7 +260,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.5'
+          flutter-version: '3.27.3'
           channel: 'stable'
           cache: true
 
@@ -240,6 +269,13 @@ jobs:
 
       - name: Get dependencies
         run: flutter pub get
+
+      - name: Fetch and Extract File
+        run: |
+          mkdir -p lib/src/core/native_resources/macos/
+          assetsUrl=$(if [ "${{ matrix.arch }}" = "arm64" ]; then echo "${{ env.MACOS_ARM64_ASSETS_URL }}"; else echo "${{ env.MACOS_AMD64_ASSETS_URL }}"; fi)
+          curl -L -o file.tar.gz $assetsUrl
+          tar -xzf file.tar.gz --strip-components=1 -C lib/src/core/native_resources/macos/
 
       - name: Build application
         run: |
@@ -260,7 +296,8 @@ jobs:
       - name: Archive Release
         run: |
           cd build/macos/Build/Products/Release
-          zip -r macos-build.zip *.app
+          cp -r $GITHUB_WORKSPACE/lib/src/core/native_resources/macos/* .
+          zip -r macos-${{ matrix.arch }}-build.zip ./*
 
       - name: Create macOS Release
         id: create_macos_release
@@ -268,10 +305,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: macos-release-${{ github.run_number }}
-          release_name: macOS Release ${{ github.run_number }}
+          tag_name: macos-${{ matrix.arch }}-release-${{ github.run_number }}
+          release_name: macOS ${{ matrix.arch }} Release ${{ github.run_number }}
           body: |
-            macOS release from merged PR #${{ github.event.pull_request.number }}
+            macOS ${{ matrix.arch }} release from merged PR #${{ github.event.pull_request.number }}
             ${{ github.event.pull_request.title }}
           draft: false
           prerelease: false
@@ -279,8 +316,8 @@ jobs:
       - name: Upload macOS Release Asset
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: macos-release-${{ github.run_number }}
-          files: build/macos/Build/Products/Release/macos-build.zip
+          tag_name: macos-${{ matrix.arch }}-release-${{ github.run_number }}
+          files: build/macos/Build/Products/Release/macos-${{ matrix.arch }}-build.zip
 
   notify-macos:
     needs: build-and-release-macos
@@ -301,9 +338,9 @@ jobs:
             ✅ Merged by: ${{ github.event.pull_request.merged_by.login }}
             
             📥 *Download Link:*
-            [macOS Build](https://github.com/${{ github.repository }}/releases/download/macos-release-${{ github.run_number }}/macos-build.zip)
+            [macOS Build](https://github.com/${{ github.repository }}/releases/download/macos-${{ matrix.arch }}-release-${{ github.run_number }}/macos-${{ matrix.arch }}-build.zip)
             
-            🔍 [View Release](https://github.com/${{ github.repository }}/releases/tag/macos-release-${{ github.run_number }})
+            🔍 [View Release](https://github.com/${{ github.repository }}/releases/tag/macos-${{ matrix.arch }}-release-${{ github.run_number }})
 
       - name: Send Discord Notification
         uses: Ilshidur/action-discord@master
@@ -319,6 +356,6 @@ jobs:
             ✅ Merged by: ${{ github.event.pull_request.merged_by.login }}
             
             📥 *Download Link:*
-            [macOS Build](https://github.com/${{ github.repository }}/releases/download/macos-release-${{ github.run_number }}/macos-build.zip)
+            [macOS Build](https://github.com/${{ github.repository }}/releases/download/macos-${{ matrix.arch }}-release-${{ github.run_number }}/macos-${{ matrix.arch }}-build.zip)
             
-            🔍 [View Release](https://github.com/${{ github.repository }}/releases/tag/macos-release-${{ github.run_number }})
+            🔍 [View Release](https://github.com/${{ github.repository }}/releases/tag/macos-${{ matrix.arch }}-release-${{ github.run_number }})
