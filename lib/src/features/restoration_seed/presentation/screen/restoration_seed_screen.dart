@@ -11,6 +11,7 @@ import 'package:gui/src/features/main/language/core/localization_extension.dart'
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/restoration_seed/presentation/cubits/restoration_seed_cubit.dart';
 import 'package:gui/src/features/restoration_seed/presentation/sections/restoration_seed_words_grid_section.dart';
+
 /// ## [RestorationSeedScreen] Class Documentation
 ///
 /// The `RestorationSeedScreen` class represents a screen for restoring
@@ -47,8 +48,8 @@ class RestorationSeedScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (context) =>
-                DropdownCubit<SeedTypeEnum>(SeedTypeEnum.twelve),),
+          create: (context) => DropdownCubit<SeedTypeEnum>(SeedTypeEnum.twelve),
+        ),
         BlocProvider(create: (context) => SeedTextCubit(SeedTypeEnum.twelve)),
       ],
       child: NavigationView(
@@ -114,8 +115,10 @@ class RestorationSeedScreen extends StatelessWidget {
                         onPressed: () {
                           context.read<NavigationPaneCubit>().setSelectedIndex(
                                 context.read<NavigationPaneCubit>().state + 1,
-                            /// to-do : add logic of restoration here to store
-                            /// restoration eed words that user entered
+
+                                /// to-do : add logic of restoration here
+                                /// to store
+                                /// restoration eed words that user entered
                               );
                         },
                         style: ButtonStyle(

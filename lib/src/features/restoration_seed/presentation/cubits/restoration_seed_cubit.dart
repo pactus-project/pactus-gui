@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:gui/src/features/generation_seed/core/constants/enums/seed_type_enum.dart';
+
 /// ## [SeedTextCubit] Class Documentation
 ///
 /// The `SeedTextCubit` class manages the state of the seed words in a list.

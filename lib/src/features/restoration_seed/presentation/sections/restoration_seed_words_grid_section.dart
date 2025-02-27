@@ -4,6 +4,7 @@ import 'package:gui/src/features/generation_seed/core/constants/enums/seed_type_
 import 'package:gui/src/features/restoration_seed/presentation/cubits/restoration_seed_cubit.dart';
 import 'package:pactus_gui_widgetbook/core.dart';
 import 'package:pactus_gui_widgetbook/widgets.dart';
+
 /// ## [RestorationSeedWordsGridSection] Class Documentation
 ///
 /// The `RestorationSeedWordsGridSection` class represents a section of
@@ -34,7 +35,8 @@ import 'package:pactus_gui_widgetbook/widgets.dart';
 ///   when modified by the user.
 
 class RestorationSeedWordsGridSection extends StatelessWidget {
-  const RestorationSeedWordsGridSection({super.key,
+  const RestorationSeedWordsGridSection({
+    super.key,
     required this.crossAxisCount,
     required this.state,
   });

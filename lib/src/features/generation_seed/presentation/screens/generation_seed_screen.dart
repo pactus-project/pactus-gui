@@ -47,7 +47,8 @@ class GenerationSeedScreen extends StatelessWidget {
                       children: [
                         const SeedScreenTitleSection(
                           title: LocaleKeys.generation_seed_title,
-                          description: LocaleKeys.generation_seed_description,),
+                          description: LocaleKeys.generation_seed_description,
+                        ),
                         BlocBuilder<DropdownCubit<SeedTypeEnum>, SeedTypeEnum>(
                           builder: (context, state) {
                             if (state == SeedTypeEnum.twelve) {
