@@ -11,6 +11,33 @@ import 'package:gui/src/features/main/language/core/localization_extension.dart'
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/restoration_seed/presentation/cubits/restoration_seed_cubit.dart';
 import 'package:gui/src/features/restoration_seed/presentation/sections/restoration_seed_words_grid_section.dart';
+/// ## [RestorationSeedScreen] Class Documentation
+///
+/// The `RestorationSeedScreen` class represents a screen for restoring
+/// a seed, with options for selecting
+/// the type of seed and displaying a grid of restoration seed words.
+///
+/// This screen uses multiple BLoC providers to manage the state of seed
+/// type selection and seed words list.
+/// It also incorporates various widgets, such as dropdowns and buttons,
+/// for user interaction.
+///
+/// ### Properties:
+///
+/// - **[DropdownCubit<SeedTypeEnum>]**:
+///   - Manages the selected seed type, initialized with `SeedTypeEnum.twelve`.
+///
+/// - **[SeedTextCubit]**:
+///   - Manages the list of seed words, initialized with `SeedTypeEnum.twelve`.
+///
+/// ### Methods:
+///
+/// - **[build(BuildContext context)]**:
+///   - Builds the UI of the screen, which includes a layout with
+///   a scrollable column containing a title,
+///     description, and a grid of seed words, along with
+///     a dropdown to select the seed type.
+///
 
 class RestorationSeedScreen extends StatelessWidget {
   const RestorationSeedScreen({super.key});
