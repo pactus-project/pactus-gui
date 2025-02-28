@@ -24,10 +24,10 @@ class _FinishPageState extends State<FinishPage> {
   void handleNextAction(BuildContext context) {
     StorageUtils.setInstallationFinished(isFinished: true);
     if (NodeConfigData.instance.password.isNotEmpty) {
-      StorageUtils.savePasswordIfNotEmpty(true);
+      StorageUtils.savePasswordIfNotEmpty(hasPassword: true);
       context.goNamed(AppRoute.basicPassword.name);
     } else {
-      StorageUtils.savePasswordIfNotEmpty(false);
+      StorageUtils.savePasswordIfNotEmpty(hasPassword: false);
       context.goNamed(AppRoute.dashboard.name);
     }
   }

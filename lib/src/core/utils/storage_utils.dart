@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StorageUtils {
@@ -27,7 +25,8 @@ class StorageUtils {
 
   /// Saves a flag indicating whether a password exists.
   /// If password is not empty, saves true, otherwise saves false.
-  static Future<void> savePasswordIfNotEmpty(bool hasPassword) async {
+  static Future<void> savePasswordIfNotEmpty(
+      {required bool hasPassword,}) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_hasPasswordKey, hasPassword);
   }
