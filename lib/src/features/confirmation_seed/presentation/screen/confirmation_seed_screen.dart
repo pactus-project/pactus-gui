@@ -25,13 +25,13 @@ class ConfirmationSeedScreen extends StatelessWidget {
           return StandardPageLayout(
             content: BlocBuilder<ConfirmationSeedCubit, ConfirmationSeedState>(
               builder: (BuildContext context,
-                  ConfirmationSeedState confirmationSeedState) {
+                  ConfirmationSeedState confirmationSeedState,) {
                 if (confirmationSeedState.words.isEmpty) {
                   return const Center(child: ProgressRing());
                 }
                 context.read<StepValidationCubit>().setStepValid(
                     stepIndex: selectedIndex,
-                    isValid: confirmationSeedState.areAllWordsConfirmed);
+                    isValid: confirmationSeedState.areAllWordsConfirmed,);
 
                 return Padding(
                   padding: EdgeInsets.zero,
@@ -49,7 +49,7 @@ class ConfirmationSeedScreen extends StatelessWidget {
                         ),
                         child: LayoutBuilder(
                           builder: (context, constraints) {
-                            final crossAxisCount = (constraints.maxWidth / 160)
+                            final crossAxisCount = (constraints.maxWidth / 150)
                                 .floor()
                                 .clamp(2, 6);
                             return ConfirmationSeedWordsGridSection(

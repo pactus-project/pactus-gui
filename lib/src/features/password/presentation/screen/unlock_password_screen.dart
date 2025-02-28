@@ -47,16 +47,17 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                 // Lock Icon Container
                 _buildLockIcon(isDark),
                 const SizedBox(height: _spacingMedium),
-        
+
                 // Small Lock Icon
                 Assets.icons.lock.image(
                   width: _smallLockIconSize,
                   height: _smallLockIconSize,
                   fit: BoxFit.contain,
-                  color: isDark ? AppColors.primaryLight : AppColors.primaryDark,
+                  color:
+                      isDark ? AppColors.primaryLight : AppColors.primaryDark,
                 ),
                 const SizedBox(height: _spacingMedium),
-        
+
                 // Instruction Text
                 Text(
                   context.tr(LocaleKeys.unlock_wallet_description),
@@ -85,14 +86,14 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                     child: Text(
                       _errorMessage!,
                       style: theme.typography.body!.copyWith(
-                        color: AppTheme.of(context).
-                        extension<RedPallet>()!.red500,
+                        color:
+                            AppTheme.of(context).extension<RedPallet>()!.red500,
                       ),
                     ),
                   ),
-        
+
                 const SizedBox(height: _spacingLarge),
-        
+
                 // Unlock Button
                 _buildUnlockButton(),
               ],

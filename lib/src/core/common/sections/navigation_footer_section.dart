@@ -47,7 +47,7 @@ class NavigationFooterSection extends StatelessWidget {
           else
             CustomOutlinedButton(
               text: context.tr(LocaleKeys.back),
-              onPressed: (){
+              onPressed: () {
                 context.goNamed(AppRoute.initializeMode.name);
               },
               borderColor: AppColors.primaryGray,
@@ -58,9 +58,9 @@ class NavigationFooterSection extends StatelessWidget {
             children: [
               if (showSkipButton) ...[
                 AdaptiveTextButton(
-                    text: context.tr(LocaleKeys.skip),
-                    onPressed: onSkipPressed!,
-                textColor: AppColors.inputActiveColor,
+                  text: context.tr(LocaleKeys.skip),
+                  onPressed: onSkipPressed!,
+                  textColor: AppColors.inputActiveColor,
                 ),
                 const SizedBox(width: 10),
               ],

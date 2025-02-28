@@ -84,7 +84,7 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
           isDirectoryValid = directoryController.text.isNotEmpty;
           context.read<StepValidationCubit>().setStepValid(
               stepIndex: context.read<NavigationPaneCubit>().state,
-              isValid: isDirectoryValid);
+              isValid: isDirectoryValid,);
           return StandardPageLayout(
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

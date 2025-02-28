@@ -17,8 +17,7 @@ class ConfirmationSeedWordsGridSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      gridDelegate:
-      SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount,
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
@@ -29,31 +28,30 @@ class ConfirmationSeedWordsGridSection extends StatelessWidget {
       itemBuilder: (context, index) {
         final item = confirmationSeedState.words[index];
         final wordID = index + 1;
-        final chipTextMode = confirmationSeedState
-            .validationResults[index]
+        final chipTextMode = confirmationSeedState.validationResults[index]
             .detectChipTextModeOnBoolean();
 
         return item.isNeedConfirmation
             ? ChipTextBox(
-          prefixText: '$wordID.',
-          chipTextMode: chipTextMode,
-          onChanged: (value) {
-            context
-                .read<ConfirmationSeedCubit>()
-                .updateValidation(index, value);
-          },
-        )
+              prefixText: '$wordID.',
+              chipTextMode: chipTextMode,
+              onChanged: (value) {
+                context
+                    .read<ConfirmationSeedCubit>()
+                    .updateValidation(index, value);
+              },
+            )
             : ChipTextBox(
-          prefixText: '$wordID.',
-          isReadOnly: true,
-          chipTextMode: ChipTextMode.normal,
-          placeholder: item.word,
-          onChanged: (value) {
-            context
-                .read<ConfirmationSeedCubit>()
-                .updateValidation(index, value);
-          },
-        );
+              prefixText: '$wordID.',
+              isReadOnly: true,
+              chipTextMode: ChipTextMode.normal,
+              placeholder: item.word,
+              onChanged: (value) {
+                context
+                    .read<ConfirmationSeedCubit>()
+                    .updateValidation(index, value);
+              },
+            );
       },
     );
   }

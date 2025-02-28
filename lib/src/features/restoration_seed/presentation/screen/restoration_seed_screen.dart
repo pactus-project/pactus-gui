@@ -58,7 +58,8 @@ class RestorationSeedScreen extends StatelessWidget {
           return StandardPageLayout(
             content: LayoutBuilder(
               builder: (context, constraints) {
-                final crossAxisCount = (constraints.maxWidth / 150).floor().clamp(2, 6);
+                final crossAxisCount =
+                    (constraints.maxWidth / 150).floor().clamp(2, 6);
                 return Stack(
                   children: [
                     SingleChildScrollView(
@@ -73,16 +74,24 @@ class RestorationSeedScreen extends StatelessWidget {
                           children: [
                             const ScreenHeaderWidget(
                               title: LocaleKeys.restoration_seed_title,
-                              description: LocaleKeys.restoration_seed_description,
+                              description:
+                                  LocaleKeys.restoration_seed_description,
                             ),
-                            BlocBuilder<DropdownCubit<SeedTypeEnum>, SeedTypeEnum>(
+                            BlocBuilder<DropdownCubit<SeedTypeEnum>,
+                                SeedTypeEnum>(
                               builder: (context, state) {
                                 return BlocBuilder<SeedTextCubit, List<String>>(
                                   builder: (context, words) {
-                                    context.read<StepValidationCubit>().setStepValid(
-                                      stepIndex: context.read<NavigationPaneCubit>().state,
-                                      isValid: context.read<SeedTextCubit>().areAllWordsEntered(),
-                                    );
+                                    context
+                                        .read<StepValidationCubit>()
+                                        .setStepValid(
+                                          stepIndex: context
+                                              .read<NavigationPaneCubit>()
+                                              .state,
+                                          isValid: context
+                                              .read<SeedTextCubit>()
+                                              .areAllWordsEntered(),
+                                        );
                                     return RestorationSeedWordsGridSection(
                                       crossAxisCount: crossAxisCount,
                                       state: state,
@@ -98,7 +107,8 @@ class RestorationSeedScreen extends StatelessWidget {
                     Positioned(
                       top: 47,
                       right: 47,
-                      child: BlocBuilder<DropdownCubit<SeedTypeEnum>, SeedTypeEnum>(
+                      child: BlocBuilder<DropdownCubit<SeedTypeEnum>,
+                          SeedTypeEnum>(
                         builder: (context, state) {
                           return CustomDropdownWidget<SeedTypeEnum>(
                             items: SeedTypeEnum.values,
@@ -115,17 +125,19 @@ class RestorationSeedScreen extends StatelessWidget {
               builder: (context, words) {
                 return NavigationFooterSection(
                   selectedIndex: selectedIndex,
-                  onNextPressed: context.read<SeedTextCubit>().areAllWordsEntered()
+                  onNextPressed: context
+                          .read<SeedTextCubit>()
+                          .areAllWordsEntered()
                       ? () {
-                    context.read<NavigationPaneCubit>().setSelectedIndex(
-                      selectedIndex + 1,
-                    );
-                  }
+                          context.read<NavigationPaneCubit>().setSelectedIndex(
+                                selectedIndex + 1,
+                              );
+                        }
                       : null,
                   onBackPressed: () {
                     context.read<NavigationPaneCubit>().setSelectedIndex(
-                      selectedIndex - 1,
-                    );
+                          selectedIndex - 1,
+                        );
                   },
                 );
               },

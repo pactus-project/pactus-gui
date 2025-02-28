@@ -42,15 +42,18 @@ class _InitializingScreenState extends State<InitializingScreen> {
   void initState() {
     super.initState();
     context.read<DaemonCubit>().runPactusDaemon(
-      cliCommand: cliCommand,
-    );
-    logger..i(
-      '--working-dir ${NodeConfigData.instance.workingDirectory}',
-    )..i(
-      '--password ${NodeConfigData.instance.password}',
-    )..i(
-      '--val-num ${NodeConfigData.instance.validatorQty}',
-    );
+          cliCommand: cliCommand,
+        );
+    logger
+      ..i(
+        '--working-dir ${NodeConfigData.instance.workingDirectory}',
+      )
+      ..i(
+        '--password ${NodeConfigData.instance.password}',
+      )
+      ..i(
+        '--val-num ${NodeConfigData.instance.validatorQty}',
+      );
   }
 
   @override
@@ -58,18 +61,16 @@ class _InitializingScreenState extends State<InitializingScreen> {
     final theme = FluentTheme.of(context);
     final colors = AppTheme.of(context).extension<DarkPallet>()!;
     final bluePallet = AppTheme.of(context).extension<BluePallet>()!;
-
+    final cubit = context.read<NavigationPaneCubit>();
+    final newIndex = cubit.state + 1;
     return BlocConsumer<DaemonCubit, DaemonState>(
       listener: (context, state) {
-        final cubit = context.read<NavigationPaneCubit>();
-        final newIndex = cubit.state + 1;
         if (state is DaemonLoading) {
           logger.i('DaemonState is DaemonLoading \n\n please wait \n\n');
         }
 
         if (state is DaemonSuccess) {
           logger.i('DaemonState is DaemonSuccess');
-
 
           Future.delayed(const Duration(seconds: 2), () {
             if (mounted) {
@@ -81,15 +82,12 @@ class _InitializingScreenState extends State<InitializingScreen> {
         if (state is DaemonError) {
           logger.i('DaemonState is DaemonError');
         }
-        context
-            .read<StepValidationCubit>()
-            .setStepValid(stepIndex: newIndex,
-            isValid:
-            (state is DaemonSuccess) ? true : false,
-        );
-
       },
       builder: (context, daemonState) {
+        context.read<StepValidationCubit>().setStepValid(
+              stepIndex: newIndex,
+              isValid: daemonState is DaemonSuccess,
+            );
         return BlocBuilder<NavigationPaneCubit, int>(
           builder: (context, selectedIndex) {
             return StandardPageLayout(
@@ -145,11 +143,13 @@ class _InitializingScreenState extends State<InitializingScreen> {
                               .read<NavigationPaneCubit>()
                               .setSelectedIndex(selectedIndex - 1);
                         },
-                        onNextPressed: (state is DaemonSuccess) ? () {
-                          context
-                              .read<NavigationPaneCubit>()
-                              .setSelectedIndex(selectedIndex + 1);
-                        } : null ,
+                        onNextPressed: (state is DaemonSuccess)
+                            ? () {
+                                context
+                                    .read<NavigationPaneCubit>()
+                                    .setSelectedIndex(selectedIndex + 1);
+                              }
+                            : null,
                       );
                     },
                   ),

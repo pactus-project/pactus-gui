@@ -27,4 +27,3 @@ class ConfirmationSeedState {
     return validationResults.values.every((isConfirmed) => isConfirmed);
   }
 }
-

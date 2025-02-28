@@ -1,12 +1,13 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
+import 'package:gui/src/core/constants/app_constants.dart';
 import 'package:gui/src/core/extensions/context_extensions.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/confirmation_seed/presentation/screen/confirmation_seed_screen.dart';
-import 'package:gui/src/features/finish/presentation/screen/finish_page.dart';
+import 'package:gui/src/features/finish/presentation/screen/finish_screen.dart';
 import 'package:gui/src/features/generation_seed/presentation/screens/generation_seed_screen.dart';
-import 'package:gui/src/features/initializing/presentation/screen/initializing_page.dart';
+import 'package:gui/src/features/initializing/presentation/screen/initializing_screen.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/master_password/presentation/screen/master_password_screen.dart';
@@ -29,15 +30,19 @@ class CreateLocalNodePane extends StatelessWidget {
               final stepValidationCubit = context.read<StepValidationCubit>();
               final navigationCubit = context.read<NavigationPaneCubit>();
 
-              // Check if moving forward is allowed only if the current step is valid
-              final canGoForward = index == selectedIndex + 1 && stepValidationCubit.isStepValid(selectedIndex);
+              // Check if moving forward is allowed only if
+              // the current step is valid
+              final canGoForward = index == selectedIndex + 1 &&
+                  stepValidationCubit.isStepValid(selectedIndex);
 
               // Allow moving backward only if you're not at the last page
-              final canGoBack = index == selectedIndex - 1 && selectedIndex < 5 && navigationCubit.canGoBack();
+              final canGoBack = index == selectedIndex - 1 &&
+                  selectedIndex < AppConstants.createLocalNodeMaxIndex;
 
               // If you've reached the last page, you won't be able to go back
               if (selectedIndex == 5) {
-                // If you've reached the last page, going backward is not allowed
+                // If you've reached the last page, going backward
+                // is not allowed
                 if (index == selectedIndex - 1) {
                   return;
                 }
@@ -120,7 +125,7 @@ class CreateLocalNodePane extends StatelessWidget {
                     ),
                   ),
                 ),
-                body: FinishPage(),
+                body: FinishScreen(),
               ),
             ],
           ),
