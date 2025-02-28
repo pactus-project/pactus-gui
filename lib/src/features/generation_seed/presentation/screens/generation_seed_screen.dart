@@ -81,8 +81,9 @@ class GenerationSeedScreen extends StatelessWidget {
                                 context
                                     .read<StepValidationCubit>()
                                     .setStepValid(
-                                        stepIndex: selectedIndex,
-                                        isValid: true,);
+                                      stepIndex: selectedIndex,
+                                      isValid: true,
+                                    );
                                 return Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [

@@ -52,7 +52,7 @@ class RestorationSeedWordsGridSection extends StatelessWidget {
         crossAxisCount: crossAxisCount,
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
-        childAspectRatio: 141/30,
+        childAspectRatio: 141 / 30,
       ),
       itemCount: state.qty,
       itemBuilder: (context, index) {

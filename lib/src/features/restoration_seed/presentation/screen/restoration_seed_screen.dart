@@ -1,5 +1,5 @@
-import 'package:bip39_mnemonic/bip39_mnemonic.dart';
 import 'package:bip39/bip39.dart' as bip39;
+import 'package:bip39_mnemonic/bip39_mnemonic.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -135,39 +135,48 @@ class RestorationSeedScreen extends StatelessWidget {
                           .read<SeedTextCubit>()
                           .areAllWordsEntered()
                       ? () {
-                    final seeds = context.read<SeedTextCubit>().state;
+                          final seeds = context.read<SeedTextCubit>().state;
 
-                    final seedQty =
-                        context.read<DropdownCubit<SeedTypeEnum>>().state.qty;
+                          final seedQty = context
+                              .read<DropdownCubit<SeedTypeEnum>>()
+                              .state
+                              .qty;
 
-                    final isValidSeedQuantity =
-                        seeds.where((item) => item.trim().isNotEmpty).length == seedQty;
+                          final isValidSeedQuantity = seeds
+                                  .where((item) => item.trim().isNotEmpty)
+                                  .length ==
+                              seedQty;
 
-                    final isValidateMnemonic = bip39.validateMnemonic(seeds.join(' '));
+                          final isValidateMnemonic =
+                              bip39.validateMnemonic(seeds.join(' '));
 
-                    if (isValidSeedQuantity) {
-                      if (isValidateMnemonic) {
-                        NodeConfigData.instance.restorationSeed = Mnemonic.generate(
-                          Language.english,
-                          passphrase: seeds.join(' '),
-                        );
+                          if (isValidSeedQuantity) {
+                            if (isValidateMnemonic) {
+                              NodeConfigData.instance.restorationSeed =
+                                  Mnemonic.generate(
+                                Language.english,
+                                passphrase: seeds.join(' '),
+                              );
 
-                        context.read<NavigationPaneCubit>().setSelectedIndex(
-                          context.read<NavigationPaneCubit>().state + 1,
-                        );
-                      } else {
-                        showFluentAlert(
-                          context,
-                          'Invalid seeds.',
-                        );
-                      }
-                    } else {
-                      showFluentAlert(
-                        context,
-                        'All seeds must be filled in.',
-                      );
-                    }
-                  }
+                              context
+                                  .read<NavigationPaneCubit>()
+                                  .setSelectedIndex(
+                                    context.read<NavigationPaneCubit>().state +
+                                        1,
+                                  );
+                            } else {
+                              showFluentAlert(
+                                context,
+                                'Invalid seeds.',
+                              );
+                            }
+                          } else {
+                            showFluentAlert(
+                              context,
+                              'All seeds must be filled in.',
+                            );
+                          }
+                        }
                       : null,
                   onBackPressed: () {
                     context.goNamed(AppRoute.initializeMode.name);

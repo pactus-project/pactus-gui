@@ -33,25 +33,25 @@ class ConfirmationSeedWordsGridSection extends StatelessWidget {
 
         return item.isNeedConfirmation
             ? ChipTextBox(
-              prefixText: '$wordID.',
-              chipTextMode: chipTextMode,
-              onChanged: (value) {
-                context
-                    .read<ConfirmationSeedCubit>()
-                    .updateValidation(index, value);
-              },
-            )
+                prefixText: '$wordID.',
+                chipTextMode: chipTextMode,
+                onChanged: (value) {
+                  context
+                      .read<ConfirmationSeedCubit>()
+                      .updateValidation(index, value);
+                },
+              )
             : ChipTextBox(
-              prefixText: '$wordID.',
-              isReadOnly: true,
-              chipTextMode: ChipTextMode.normal,
-              placeholder: item.word,
-              onChanged: (value) {
-                context
-                    .read<ConfirmationSeedCubit>()
-                    .updateValidation(index, value);
-              },
-            );
+                prefixText: '$wordID.',
+                isReadOnly: true,
+                chipTextMode: ChipTextMode.normal,
+                placeholder: item.word,
+                onChanged: (value) {
+                  context
+                      .read<ConfirmationSeedCubit>()
+                      .updateValidation(index, value);
+                },
+              );
       },
     );
   }

@@ -90,7 +90,7 @@ class _InitializingScreenState extends State<InitializingScreen> {
         }
       },
       builder: (context, daemonState) {
-        /// TODO(esmaeil): check performance cost
+        /// to-do(esmaeil): check performance cost
         context.read<StepValidationCubit>().setStepValid(
               stepIndex: newIndex,
               isValid: daemonState is DaemonSuccess,
