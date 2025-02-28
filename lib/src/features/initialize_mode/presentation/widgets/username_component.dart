@@ -22,10 +22,25 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 ///   - Triggers `onChanged` callback on text change, logging the value for
 ///   debugging purposes.
 ///
-class UserNameComponent extends StatelessWidget {
+///
+class UserNameComponent extends StatefulWidget {
   const UserNameComponent({
     super.key,
   });
+
+  @override
+  UserNameComponentState createState() => UserNameComponentState();
+}
+
+class UserNameComponentState extends State<UserNameComponent> {
+  String _usernameValue = 'pactus';
+  bool isValid = false;
+
+  bool validate() {
+    final isValid = _usernameValue.isNotEmpty;
+    setState(() => this.isValid = isValid);
+    return isValid;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +57,7 @@ class UserNameComponent extends StatelessWidget {
           placeholder: 'pactus',
           width: 280,
           onChanged: (value) {
-            debugPrint('Text changed: $value');
+            _usernameValue = value;
           },
         ),
       ],

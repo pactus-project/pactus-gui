@@ -1,6 +1,8 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
+import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_state.dart';
@@ -26,10 +28,9 @@ class _InitializingScreenState extends State<InitializingScreen> {
       'init',
       '--working-dir',
       NodeConfigData.instance.workingDirectory,
-      '--restore',
-      NodeConfigData.instance.restorationSeed!.sentence,
-      '--password',
-      NodeConfigData.instance.password,
+      if (NodeConfigData.instance.password.isNotEmpty) '--password',
+      if (NodeConfigData.instance.password.isNotEmpty)
+        NodeConfigData.instance.password, // Add password only if it's not empty
       '--val-num',
       NodeConfigData.instance.validatorQty,
     ],
@@ -46,7 +47,6 @@ class _InitializingScreenState extends State<InitializingScreen> {
       ..i(
         '--working-dir ${NodeConfigData.instance.workingDirectory}',
       )
-      ..i('--restore${NodeConfigData.instance.restorationSeed!.sentence}')
       ..i(
         '--password ${NodeConfigData.instance.password}',
       )
@@ -85,54 +85,66 @@ class _InitializingScreenState extends State<InitializingScreen> {
       builder: (context, daemonState) {
         return BlocBuilder<NavigationPaneCubit, int>(
           builder: (context, selectedIndex) {
-            return NavigationView(
-              content: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 40,
-                  vertical: 20,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      context.tr(LocaleKeys.initialization_complete),
-                      style: theme.typography.title!.copyWith(
-                        color: colors.dark900,
-                      ),
+            return StandardPageLayout(
+              content: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    context.tr(LocaleKeys.initialization_complete),
+                    style: theme.typography.title!.copyWith(
+                      color: colors.dark900,
                     ),
-                    const SizedBox(height: 10),
-                    Text(
-                      context.tr(LocaleKeys.node_activation_powering),
-                      style: theme.typography.body!.copyWith(
-                        color: colors.dark500,
-                      ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    context.tr(LocaleKeys.node_activation_powering),
+                    style: theme.typography.body!.copyWith(
+                      color: colors.dark500,
                     ),
-                    const SizedBox(height: 60),
-                    Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            Assets.images.backgroundInitializing,
-                            width: 480,
-                            height: 360,
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 60),
-                    Center(
-                      child: SizedBox(
-                        width: 700,
-                        height: 4,
-                        child: ProgressBar(
-                          activeColor: bluePallet.blue400,
-                          backgroundColor: colors.dark100,
+                  ),
+                  const SizedBox(height: 60),
+                  Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          Assets.images.backgroundInitializing,
+                          width: 480,
+                          height: 360,
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
+              ),
+              footer: Column(
+                children: [
+                  const SizedBox(height: 60),
+                  SizedBox(
+                    width: 700,
+                    height: 4,
+                    child: ProgressBar(
+                      activeColor: bluePallet.blue400,
+                      backgroundColor: colors.dark100,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  NavigationFooterSection(
+                    selectedIndex: selectedIndex,
+                    onBackPressed: () {
+                      context
+                          .read<NavigationPaneCubit>()
+                          .setSelectedIndex(selectedIndex - 1);
+                    },
+                    onNextPressed: () {
+                      context
+                          .read<NavigationPaneCubit>()
+                          .setSelectedIndex(selectedIndex + 1);
+                    },
+                    showPrevious: false,
+                    showNext: false,
+                  ),
+                ],
               ),
             );
           },

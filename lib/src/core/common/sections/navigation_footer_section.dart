@@ -10,31 +10,59 @@ class NavigationFooterSection extends StatelessWidget {
     required this.selectedIndex,
     required this.onNextPressed,
     required this.onBackPressed,
+    this.showPrevious = true,
+    this.showNext = true,
+    this.showSkipButton = false,
+    this.onSkipPressed,
   });
   final int selectedIndex;
   final VoidCallback onNextPressed;
   final VoidCallback onBackPressed;
+  final bool showPrevious;
+  final bool showNext;
+  final bool showSkipButton;
+  final VoidCallback? onSkipPressed;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 89,
       color: AppTheme.of(context).extension<LightPallet>()!.light900,
-      padding: const EdgeInsets.only(right: 46, left: 46),
+      padding: const EdgeInsets.symmetric(horizontal: 46),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          // Always reserve space for Back button
           if (selectedIndex > 0)
             CustomOutlinedButton(
-              text: 'back',
-              onPressed: onBackPressed,
+              text: 'Back',
+              onPressed: () => {},
               borderColor: AppColors.primaryGray,
-            ),
-          if (selectedIndex < 6)
+            )
+          else
             CustomFilledButton(
-              text: 'Next',
-              onPressed: onNextPressed,
+              text: 'Back',
+              onPressed: null,
             ),
+
+          // Modified Next button section with optional Skip
+          Row(
+            children: [
+              if (showSkipButton) ...[
+                CustomOutlinedButton(
+                  text: 'Skip',
+                  onPressed: onSkipPressed,
+                  borderColor: Colors.transparent,
+                  textColor: Color(0xFF0066B4),
+                ),
+                const SizedBox(width: 10),
+              ],
+              CustomFilledButton(
+                text: 'Next',
+                onPressed: selectedIndex < 6 ? onNextPressed : null,
+              ),
+            ],
+          ),
         ],
       ),
     );

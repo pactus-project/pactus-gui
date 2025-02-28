@@ -13,7 +13,7 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 /// - **[text]** (String):
 ///   - The button's label text.
 ///
-/// - **[onPressed]** (VoidCallback):
+/// - **[onPressed]** (VoidCallback?):
 ///   - Function to execute when the button is pressed.
 ///
 /// - **[style]** (ButtonStyle?):
@@ -38,23 +38,25 @@ class CustomOutlinedButton extends StatelessWidget {
   const CustomOutlinedButton({
     super.key,
     required this.text,
-    required this.onPressed,
+    this.onPressed,
     this.style,
     this.icon,
     this.autofocus = false,
     this.focusNode,
     this.padding,
+    this.textColor,
     required this.borderColor,
   });
 
   final String text;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final ButtonStyle? style;
   final Widget? icon;
   final bool autofocus;
   final FocusNode? focusNode;
   final EdgeInsetsGeometry? padding;
   final Color borderColor;
+  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +93,7 @@ class CustomOutlinedButton extends StatelessWidget {
               textAlign: TextAlign.center,
               style: InterTextStyles.bodyBold.copyWith(
                 height: 0,
-                color: AppColors.primaryDark,
+                color: textColor ?? AppColors.primaryDark,
               ),
             ),
           ],

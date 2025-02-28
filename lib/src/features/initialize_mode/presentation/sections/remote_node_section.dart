@@ -31,21 +31,32 @@ import 'package:gui/src/features/initialize_mode/presentation/widgets/username_c
 ///
 class RemoteNodeSection extends StatefulWidget {
   const RemoteNodeSection({super.key});
-
   @override
-  State<RemoteNodeSection> createState() => _RemoteNodeSectionState();
+  RemoteNodeSectionState createState() => RemoteNodeSectionState();
 }
 
-class _RemoteNodeSectionState extends State<RemoteNodeSection> {
+class RemoteNodeSectionState extends State<RemoteNodeSection> {
+  final _passwordKey = GlobalKey<PasswordComponentState>();
+  final _usernameKey = GlobalKey<UserNameComponentState>();
+  final _remoteAddressKey = GlobalKey<RemoteAddressComponentState>();
+
+  bool validate() {
+    final isPasswordValid = _passwordKey.currentState?.validate() ?? false;
+    final isUsernameValid = _usernameKey.currentState?.validate() ?? false;
+    final isRemoteAddressValid =
+        _remoteAddressKey.currentState?.validate() ?? false;
+    return isPasswordValid && isUsernameValid && isRemoteAddressValid;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       spacing: 28,
       children: [
-        RemoteAddressComponent(),
+        RemoteAddressComponent(key: _remoteAddressKey),
         AuthMethodComponent(),
-        UserNameComponent(),
-        PasswordComponent(),
+        UserNameComponent(key: _usernameKey),
+        PasswordComponent(key: _passwordKey),
       ],
     );
   }

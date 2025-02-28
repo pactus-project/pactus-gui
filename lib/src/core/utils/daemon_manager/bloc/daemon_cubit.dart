@@ -113,6 +113,19 @@ class DaemonCubit extends Cubit<DaemonState> {
         workingDirectory: executableDir,
       );
 
+      // bypass password-less wallet cli and init node
+      if (cliCommand.command == './pactus-daemon' &&
+          cliCommand.arguments.first == 'init' &&
+          !cliCommand.arguments.contains('--password')) {
+        // Writing password interactively
+        process.stdin.writeln();
+
+        Future.delayed(Duration(seconds: 2), () {
+          // Writing password interactively
+          process.stdin.writeln();
+        });
+      }
+
       _logger.d('Process started with PID: ${process.pid}');
 
       // Handle process output

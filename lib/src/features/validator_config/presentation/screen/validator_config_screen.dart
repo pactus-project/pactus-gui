@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
 import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
+import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
 import 'package:gui/src/core/enums/app_enums.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
@@ -78,107 +79,87 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
       create: (context) => DropdownCubit<ValidatorQty>(ValidatorQty.seven),
       child: BlocBuilder<NavigationPaneCubit, int>(
         builder: (context, selectedIndex) {
-          return NavigationView(
-            content: Stack(
+          return StandardPageLayout(
+            content: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Positioned.fill(
-                  child: SingleChildScrollView(
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ValidatorConfigTitleSection(),
-                            const Gap(28),
-
-                            ///to-do #81: work on improve Working Directory
-                            /// section by Pouria
-                            Text(
-                              context.tr(LocaleKeys.working_directory),
-                              style: InterTextStyles.captionMedium.copyWith(
-                                color: AppColors.primaryGray,
-                              ),
+                ValidatorConfigTitleSection(),
+                const Gap(28),
+                Text(
+                  context.tr(LocaleKeys.working_directory),
+                  style: InterTextStyles.captionMedium.copyWith(
+                    color: AppColors.primaryGray,
+                  ),
+                ),
+                const Gap(8),
+                Row(
+                  children: [
+                    Expanded(
+                      child: ExcludeSemantics(
+                        child: TextBox(
+                          controller: directoryController,
+                          placeholder: context.tr(
+                            LocaleKeys.choose_your_directory,
+                          ),
+                          decoration: WidgetStateProperty.all(
+                            BoxDecoration(
+                              border: Border.all(),
+                              borderRadius: BorderRadius.circular(5),
                             ),
-                            const Gap(8),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: ExcludeSemantics(
-                                    child: TextBox(
-                                      controller: directoryController,
-                                      placeholder: context.tr(
-                                        LocaleKeys.choose_your_directory,
-                                      ),
-                                      decoration: WidgetStateProperty.all(
-                                        BoxDecoration(
-                                          border: Border.all(),
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const Gap(36),
-                                CustomFilledButton(
-                                  text: context.tr(LocaleKeys.select_folder),
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 8,
-                                    vertical: 4,
-                                  ),
-                                  onPressed: _chooseDirectory,
-                                ),
-                              ],
-                            ),
-                            const Gap(28),
-                            ValidatorQtySelectorSection(),
-                          ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
+                    const Gap(36),
+                    CustomFilledButton(
+                      text: context.tr(LocaleKeys.select_folder),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4,
+                      ),
+                      onPressed: _chooseDirectory,
+                    ),
+                  ],
                 ),
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: NavigationFooterSection(
-                    selectedIndex: selectedIndex,
-                    onNextPressed: () async {
-                      final directoryStatus = await isNotEmptyDirectory(
-                        text: directoryController.text,
-                      );
-
-                      if (!context.mounted) {
-                        return;
-                      }
-
-                      if (directoryStatus) {
-                        showFluentAlert(context);
-                      } else {
-                        final selectedQty =
-                            context.read<DropdownCubit<ValidatorQty>>().state;
-                        NodeConfigData.instance.validatorQty =
-                            '${selectedQty.qty}';
-                        NodeConfigData.instance.workingDirectory =
-                            directoryController.text;
-
-                        if (context.mounted) {
-                          context
-                              .read<NavigationPaneCubit>()
-                              .setSelectedIndex(selectedIndex + 1);
-                        }
-                      }
-                    },
-                    onBackPressed: () {
-                      context
-                          .read<NavigationPaneCubit>()
-                          .setSelectedIndex(selectedIndex - 1);
-                    },
-                  ),
-                ),
+                const Gap(28),
+                ValidatorQtySelectorSection(),
               ],
+            ),
+            footer: NavigationFooterSection(
+              selectedIndex: selectedIndex,
+              onNextPressed: () async {
+                final directoryStatus = await isNotEmptyDirectory(
+                  text: directoryController.text,
+                );
+
+                if (!context.mounted) {
+                  return;
+                }
+
+                if (directoryStatus) {
+                  showFluentAlert(
+                    context,
+                    context.tr(LocaleKeys.directory_not_empty),
+                  );
+                } else {
+                  final selectedQty =
+                      context.read<DropdownCubit<ValidatorQty>>().state;
+                  NodeConfigData.instance.validatorQty = '${selectedQty.qty}';
+                  NodeConfigData.instance.workingDirectory =
+                      directoryController.text;
+
+                  if (context.mounted) {
+                    context
+                        .read<NavigationPaneCubit>()
+                        .setSelectedIndex(selectedIndex + 1);
+                  }
+                }
+              },
+              onBackPressed: () {
+                context
+                    .read<NavigationPaneCubit>()
+                    .setSelectedIndex(selectedIndex - 1);
+              },
             ),
           );
         },

@@ -1,3 +1,30 @@
+# 1.29.0+31
+
+- [Feature]: implement UI for remote connect server page [#101](https://github.com/pactus-project/pactus-gui/pull/102)
+
+# 1.28.0+30
+
+- [Refactor]: Update bottom navigation and create base layout. [#96](https://github.com/pactus-project/pactus-gui/pull/98)
+  - Improved bottom navigation structure.
+  - Introduced a base layout for consistent page structure.
+
+- [Update]: Add the standard page layout and re-order keys in locale files. [#96](https://github.com/pactus-project/pactus-gui/pull/98)
+  - Implemented a standardized page layout.
+  - Reorganized localization keys for better maintainability.
+
+- [Update]: Add skip button & dim background. [#96](https://github.com/pactus-project/pactus-gui/pull/98)
+  - Introduced a "Skip" button for optional steps.
+  - Added a dim background effect for better UI clarity.
+
+- [Update]: Update password handling and allow skipping the master password step. [#96](https://github.com/pactus-project/pactus-gui/pull/98)
+  - Enhanced password handling in the master password step.
+  - Provided an option for users to skip this step during initialization.
+
+- [Fix]: Resolve merge conflicts and improve password handling for `pactus-daemon`. [#96](https://github.com/pactus-project/pactus-gui/pull/98)
+  - Resolved conflicts in the latest integration.
+  - Ensured `pactus-daemon` correctly handles interactive password input.
+  - Implemented a method to bypass CLI interaction when necessary.
+
 # 1.27.0+29
 
 - [fix]: Correct navigation pane in restore node flow [#92](https://github.com/pactus-project/pactus-gui/pull/99)
@@ -6,7 +33,7 @@
 - [fix]: Add/correct some variables in translation files [#92](https://github.com/pactus-project/pactus-gui/pull/99)
   - Updated translation files by adding and correcting variables for better localization support.
 
-- [feat]: Implement widgets of Restoration Seed screen [#92](https://github.com/pactus-project/pactus-gui/pull/99)
+- [Feature]: Implement widgets of Restoration Seed screen [#92](https://github.com/pactus-project/pactus-gui/pull/99)
   - Added a general class `SeedScreenTitleSection` for both restoration and generation seed screens.
   - Renamed "restoration seed page" to "restoration seed screen".
   - Created `RestorationSeedWordsGridSection` to generate `ChipTextBox` for users to enter seed words.
