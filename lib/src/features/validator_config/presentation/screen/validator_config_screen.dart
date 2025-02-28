@@ -3,6 +3,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
+import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
 import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
 import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
 import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
@@ -32,7 +33,6 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 /// - Choose the validator quantity from a predefined set of options.
 /// - Navigate between sections using the navigation pane.
 ///
-///
 /// ### Methods:
 ///
 /// - **[_chooseDirectory()]**:
@@ -57,6 +57,7 @@ class ValidatorConfigScreen extends StatefulWidget {
 
 class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
   TextEditingController directoryController = TextEditingController();
+  bool isDirectoryValid = false;
 
   @override
   void dispose() {
@@ -69,6 +70,7 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
     if (directoryPath != null) {
       setState(() {
         directoryController.text = directoryPath;
+        isDirectoryValid = directoryController.text.isNotEmpty;
       });
     }
   }
@@ -79,6 +81,9 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
       create: (context) => DropdownCubit<ValidatorQty>(ValidatorQty.seven),
       child: BlocBuilder<NavigationPaneCubit, int>(
         builder: (context, selectedIndex) {
+          // بررسی و به‌روزرسانی وضعیت در هر بار تغییر فیلد
+          isDirectoryValid = directoryController.text.isNotEmpty;
+
           return StandardPageLayout(
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,6 +106,11 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
                           placeholder: context.tr(
                             LocaleKeys.choose_your_directory,
                           ),
+                          onChanged: (newValue) {
+                            setState(() {
+                              isDirectoryValid = newValue.isNotEmpty;
+                            });
+                          },
                           decoration: WidgetStateProperty.all(
                             BoxDecoration(
                               border: Border.all(),
@@ -127,7 +137,7 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
             ),
             footer: NavigationFooterSection(
               selectedIndex: selectedIndex,
-              onNextPressed: () async {
+              onNextPressed: isDirectoryValid ? () async {
                 final directoryStatus = await isNotEmptyDirectory(
                   text: directoryController.text,
                 );
@@ -154,7 +164,7 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
                         .setSelectedIndex(selectedIndex + 1);
                   }
                 }
-              },
+              } : null,
               onBackPressed: () {
                 context
                     .read<NavigationPaneCubit>()

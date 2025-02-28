@@ -18,11 +18,23 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 /// this range, the state will not change.
 
 class NavigationPaneCubit extends Cubit<int> {
+
   NavigationPaneCubit() : super(0);
+  int _maxVisitedIndex = 0;
 
   void setSelectedIndex(int index) {
     if (index >= 0 && index <= 6) {
+      if (index > _maxVisitedIndex) {
+        _maxVisitedIndex = index;
+      }
       emit(index);
     }
   }
+
+  bool canGoBack() {
+    return state > 0 && state <= _maxVisitedIndex;
+  }
 }
+
+
+

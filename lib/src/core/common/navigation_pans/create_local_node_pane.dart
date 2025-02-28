@@ -1,5 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
 import 'package:gui/src/core/extensions/context_extensions.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/confirmation_seed/presentation/screen/confirmation_seed_screen.dart';
@@ -11,44 +12,6 @@ import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/n
 import 'package:gui/src/features/master_password/presentation/screen/master_password_screen.dart';
 import 'package:gui/src/features/validator_config/presentation/screen/validator_config_screen.dart';
 
-/// ## [CreateLocalNodePane] Class Documentation
-///
-/// The `CreateLocalNodePane` class represents the navigation panel for
-/// the local node creation process.
-/// It provides a structured flow for setting up a local node by navigating
-/// through different configuration steps.
-///
-/// ### Usage:
-///
-/// This navigation pane consists of multiple steps, each represented by
-/// a `PaneItem`, including:
-/// - **[GenerationSeedScreen]**: Displays the wallet seed generation process.
-/// - **[ConfirmationSeedScreen]**: Allows the user to confirm the generated seed.
-/// - **[MasterPasswordScreen]**: Provides an interface for setting a master
-/// password.
-/// - **[ValidatorConfigScreen]**: Configures validator-related settings.
-/// - **[InitializingScreen]**: Handles the node initialization process.
-/// - **[FinishPage]**: Concludes the setup process, including daemon
-/// management.
-///
-/// ### Properties:
-///
-/// - **selectedIndex**:
-///   - An `int` representing the currently selected navigation index.
-///   - Managed by the `NavigationPaneCubit`.
-///
-/// - **[onChanged(index)]**:
-///   - Updates the selected index when the user navigates forward or backward.
-///   - Ensures only adjacent steps can be selected to maintain a
-///   linear setup flow.
-///
-/// ### Notes:
-///
-/// - Each navigation item (`PaneItem`) uses localized text from `LocaleKeys`.
-/// - Selected items are visually distinguished using colors from `AppColors`.
-/// - The `FinishPage` is wrapped in a `MultiBlocProvider` to initialize a
-/// `DaemonCubit` for managing the node daemon.
-///
 class CreateLocalNodePane extends StatelessWidget {
   const CreateLocalNodePane({super.key});
 
@@ -60,13 +23,29 @@ class CreateLocalNodePane extends StatelessWidget {
           pane: NavigationPane(
             displayMode: PaneDisplayMode.open,
             menuButton: const SizedBox(),
-            size: const NavigationPaneSize(
-              openMaxWidth: 209,
-            ),
+            size: const NavigationPaneSize(openMaxWidth: 209),
             selected: selectedIndex,
             onChanged: (index) {
-              if (index == selectedIndex + 1 || index == selectedIndex - 1) {
-                context.read<NavigationPaneCubit>().setSelectedIndex(index);
+              final stepValidationCubit = context.read<StepValidationCubit>();
+              final navigationCubit = context.read<NavigationPaneCubit>();
+
+              // Check if moving forward is allowed only if the current step is valid
+              final canGoForward = index == selectedIndex + 1 && stepValidationCubit.isStepValid(selectedIndex);
+
+              // Allow moving backward only if you're not at the last page
+              final canGoBack = index == selectedIndex - 1 && selectedIndex < 5 && navigationCubit.canGoBack();
+
+              // If you've reached the last page, you won't be able to go back
+              if (selectedIndex == 5) {
+                // If you've reached the last page, going backward is not allowed
+                if (index == selectedIndex - 1) {
+                  return;
+                }
+              }
+
+              // Otherwise, allow moving forward or backward only if valid
+              if (canGoForward || canGoBack) {
+                navigationCubit.setSelectedIndex(index);
               }
             },
             indicator: const SizedBox(),

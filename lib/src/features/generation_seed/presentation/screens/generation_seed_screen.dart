@@ -2,6 +2,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
 import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
 import 'package:gui/src/core/common/widgets/custom_expandable_widget.dart';
 import 'package:gui/src/core/common/widgets/screen_header_widget.dart';
@@ -77,6 +78,9 @@ class GenerationSeedScreen extends StatelessWidget {
                                     child: Text('No seed words generated.'),
                                   );
                                 }
+                                context
+                                    .read<StepValidationCubit>()
+                                    .setStepValid(stepIndex: selectedIndex, isValid: true);
                                 return Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [

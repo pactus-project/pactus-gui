@@ -1,5 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
 import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
 import 'package:gui/src/core/common/widgets/screen_header_widget.dart';
 import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
@@ -28,6 +29,10 @@ class ConfirmationSeedScreen extends StatelessWidget {
                 if (confirmationSeedState.words.isEmpty) {
                   return const Center(child: ProgressRing());
                 }
+                context.read<StepValidationCubit>().setStepValid(
+                    stepIndex: selectedIndex,
+                    isValid: confirmationSeedState.areAllWordsConfirmed);
+
                 return Padding(
                   padding: EdgeInsets.zero,
                   child: Column(
@@ -64,12 +69,16 @@ class ConfirmationSeedScreen extends StatelessWidget {
                 return NavigationFooterSection(
                   selectedIndex: selectedIndex,
                   onBackPressed: () {
-                    context.read<NavigationPaneCubit>().setSelectedIndex(selectedIndex - 1);
+                    context
+                        .read<NavigationPaneCubit>()
+                        .setSelectedIndex(selectedIndex - 1);
                   },
                   onNextPressed: confirmationSeedState.areAllWordsConfirmed
                       ? () {
-                    context.read<NavigationPaneCubit>().setSelectedIndex(selectedIndex + 1);
-                  }
+                          context
+                              .read<NavigationPaneCubit>()
+                              .setSelectedIndex(selectedIndex + 1);
+                        }
                       : null,
                 );
               },

@@ -1,7 +1,12 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
+import 'package:gui/src/core/common/widgets/adaptive_text_button.dart';
 import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
 import 'package:gui/src/core/common/widgets/custom_outlined_button.dart';
+import 'package:gui/src/core/router/route_name.dart';
+import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class NavigationFooterSection extends StatelessWidget {
@@ -35,25 +40,27 @@ class NavigationFooterSection extends StatelessWidget {
           // Always reserve space for Back button
           if (selectedIndex > 0)
             CustomOutlinedButton(
-              text: 'Back',
-              onPressed: () => {},
+              text: context.tr(LocaleKeys.back),
+              onPressed: onBackPressed,
               borderColor: AppColors.primaryGray,
             )
           else
-            CustomFilledButton(
-              text: 'Back',
-              onPressed: null,
+            CustomOutlinedButton(
+              text: context.tr(LocaleKeys.back),
+              onPressed: (){
+                context.goNamed(AppRoute.initializeMode.name);
+              },
+              borderColor: AppColors.primaryGray,
             ),
 
           // Modified Next button section with optional Skip
           Row(
             children: [
               if (showSkipButton) ...[
-                CustomOutlinedButton(
-                  text: 'Skip',
-                  onPressed: onSkipPressed,
-                  borderColor: Colors.transparent,
-                  textColor: Color(0xFF0066B4),
+                AdaptiveTextButton(
+                    text: context.tr(LocaleKeys.skip),
+                    onPressed: onSkipPressed!,
+                textColor: AppColors.inputActiveColor,
                 ),
                 const SizedBox(width: 10),
               ],
