@@ -5,7 +5,31 @@ import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/master_password/presentation/sections/master_password_section.dart';
-
+/// ## [MasterPasswordScreen] Class Documentation
+///
+/// The `MasterPasswordScreen` class represents a screen where users ca set a
+/// master password.
+/// It includes input fields for entering and confirming the password along
+/// with navigation controls.
+///
+/// ### Properties:
+///
+/// - **passwordController** (TextEditingController):
+///   - Controls the input field for the master password.
+///
+/// - **confirmPasswordController** (TextEditingController):
+///   - Controls the input field for confirming the master password.
+///
+/// ### Methods:
+///
+/// - **[dispose()]**:
+///   - Disposes of the text controllers to free up resources.
+///
+/// - **[build(BuildContext context)]**:
+///   - Builds the UI of the screen, which includes:
+///     - A `MasterPasswordSection` for password input.
+///     - A `NavigationFooterSection` with back, next, and skip buttons.
+///
 class MasterPasswordScreen extends StatefulWidget {
   const MasterPasswordScreen({super.key});
 
@@ -14,8 +38,15 @@ class MasterPasswordScreen extends StatefulWidget {
 }
 
 class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  late TextEditingController passwordController;
+  late TextEditingController confirmPasswordController;
+
+  @override
+  void initState() {
+    super.initState();
+    passwordController = TextEditingController();
+    confirmPasswordController = TextEditingController();
+  }
 
   @override
   void dispose() {
@@ -23,7 +54,6 @@ class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
     confirmPasswordController.dispose();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NavigationPaneCubit, int>(

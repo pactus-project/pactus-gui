@@ -6,6 +6,30 @@ import 'package:gui/src/core/common/widgets/seed_screen_title_section.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
+/// ## [MasterPasswordSection] Class Documentation
+///
+/// The `MasterPasswordSection` class represents a UI section for
+/// setting a master password.
+/// It includes input fields for password entry and confirmation,
+/// along with a title and an illustration.
+///
+/// ### Properties:
+///
+/// - **[passwordController]** (TextEditingController):
+///   - Controls the input field for the master password.
+///
+/// - **[confirmPasswordController]** (TextEditingController):
+///   - Controls the input field for confirming the master password.
+///
+/// ### Methods:
+///
+/// - **[build(BuildContext context)]**:
+///   - Builds the UI of the section, which includes:
+///     - A `SeedScreenTitleSection` displaying the title and description.
+///     - A centered SVG illustration for visual representation.
+///     - Two `CustomInputWidget` fields for entering and confirming
+///     the master password.
+///
 
 class MasterPasswordSection extends StatelessWidget {
 

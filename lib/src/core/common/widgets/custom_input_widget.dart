@@ -1,7 +1,68 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
-
+/// ## [CustomInputWidget] Class Documentation
+///
+/// The `CustomInputWidget` is a customizable text input field that
+/// supports various configurations,
+/// including password masking, validation, and styling.
+///
+/// ### Properties:
+///
+/// - **[controller]** (TextEditingController?):
+///   - Manages the text input field. If not provided, an internal
+///   controller is used.
+///
+/// - **[confirmationController]** (TextEditingController?):
+///   - If set, validates that the input matches the text of
+///   another field (e.g., password confirmation).
+///
+/// - **[placeholder]** (String):
+///   - Placeholder text displayed inside the input field.
+///
+/// - **[onChanged]** (ValueChanged<String>?):
+///   - Callback triggered when the text value changes.
+///
+/// - **[maxLines] / [minLines]** (int?):
+///   - Controls the number of lines for the input field.
+///
+/// - **[readOnly]** (bool):
+///   - If `true`, the field is non-editable.
+///
+/// - **[autofocus]** (bool):
+///   - Determines whether the field receives focus automatically.
+///
+/// - **[textStyle] / [placeHolderTextStyle]** (TextStyle?):
+///   - Defines the text styling for the input and placeholder.
+///
+/// - **[backgroundColor]** (Color?):
+///   - Background color of the input field.
+///
+/// - **[borderRadius]** (BorderRadius?):
+///   - Defines the border radius of the field.
+///
+/// - **[width]** (double?):
+///   - Specifies the width of the input field.
+///
+/// - **[obscureText]** (bool):
+///   - Enables password masking when `true`.
+///
+/// - **[obscureIcon]** (Widget?):
+///   - Custom icon to toggle password visibility.
+///
+/// ### Methods:
+///
+/// - **[validateInput()]**:
+///   - Checks if the input matches the `confirmationController`
+///   value (if provided).
+///   - Updates the error message accordingly.
+///
+/// - **[build(BuildContext context)]**:
+///   - Constructs the UI of the input field, which includes:
+///     - A `TextBox` with validation and dynamic styling.
+///     - A password visibility toggle if `obscureText` is enabled.
+///     - An error message display if validation fails.
+///
 class CustomInputWidget extends StatefulWidget {
   const CustomInputWidget({
     super.key,
