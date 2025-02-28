@@ -1,5 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gui/src/core/enums/app_enums.dart';
 import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
 import 'package:gui/src/core/constants/app_constants.dart';
 import 'package:gui/src/core/extensions/context_extensions.dart';
@@ -60,7 +61,9 @@ class RemoteNodePane extends StatelessWidget {
                     ),
                   ),
                 ),
-                body: InitializingScreen(),
+                body: InitializingScreen(
+                  initialMode: InitialMode.remote,
+                ),
               ),
               PaneItem(
                 icon: const SizedBox(),

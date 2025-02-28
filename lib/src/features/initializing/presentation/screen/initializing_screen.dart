@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
 import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
 import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
+import 'package:gui/src/core/enums/app_enums.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_state.dart';
@@ -16,33 +17,38 @@ import 'package:logger/logger.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class InitializingScreen extends StatefulWidget {
-  const InitializingScreen({super.key});
-
+  const InitializingScreen({super.key, required this.initialMode});
+  final InitialMode initialMode;
   @override
   State<InitializingScreen> createState() => _InitializingScreenState();
 }
 
 class _InitializingScreenState extends State<InitializingScreen> {
-  final cliCommand = CliCommand(
-    command: './pactus-daemon',
-    arguments: [
-      'init',
-      '--working-dir',
-      NodeConfigData.instance.workingDirectory,
-      if (NodeConfigData.instance.password.isNotEmpty) '--password',
-      if (NodeConfigData.instance.password.isNotEmpty)
-        NodeConfigData.instance.password, // Add password only if it's not empty
-      '--val-num',
-      NodeConfigData.instance.validatorQty,
-    ],
-  );
   final logger = Logger();
 
   @override
   void initState() {
     super.initState();
+    final initialCommand = CliCommand(
+      command: './pactus-daemon',
+      arguments: [
+        'init',
+        // if (widget.initialMode == InitialMode.restore)
+        '--restore',
+        // if (widget.initialMode == InitialMode.restore)
+        NodeConfigData.instance.restorationSeed!.sentence,
+        '--working-dir',
+        NodeConfigData.instance.workingDirectory,
+        if (NodeConfigData.instance.password.isNotEmpty) '--password',
+        if (NodeConfigData.instance.password.isNotEmpty)
+          NodeConfigData
+              .instance.password, // Add password only if it's not empty
+        '--val-num',
+        NodeConfigData.instance.validatorQty,
+      ],
+    );
     context.read<DaemonCubit>().runPactusDaemon(
-          cliCommand: cliCommand,
+          cliCommand: initialCommand,
         );
     logger
       ..i(
@@ -84,6 +90,7 @@ class _InitializingScreenState extends State<InitializingScreen> {
         }
       },
       builder: (context, daemonState) {
+        /// TODO(esmaeil): check performance cost
         context.read<StepValidationCubit>().setStepValid(
               stepIndex: newIndex,
               isValid: daemonState is DaemonSuccess,

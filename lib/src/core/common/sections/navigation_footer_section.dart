@@ -14,7 +14,7 @@ class NavigationFooterSection extends StatelessWidget {
     super.key,
     required this.selectedIndex,
     this.onNextPressed,
-    required this.onBackPressed,
+    this.onBackPressed,
     this.showPrevious = true,
     this.showNext = true,
     this.showSkipButton = false,
@@ -22,7 +22,7 @@ class NavigationFooterSection extends StatelessWidget {
   });
   final int selectedIndex;
   final VoidCallback? onNextPressed;
-  final VoidCallback onBackPressed;
+  final VoidCallback? onBackPressed;
   final bool showPrevious;
   final bool showNext;
   final bool showSkipButton;
@@ -38,7 +38,7 @@ class NavigationFooterSection extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // Always reserve space for Back button
-          if (selectedIndex > 0)
+          if (selectedIndex > 0 && onBackPressed != null)
             CustomOutlinedButton(
               text: context.tr(LocaleKeys.back),
               onPressed: onBackPressed,

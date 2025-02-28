@@ -126,6 +126,22 @@ class DaemonCubit extends Cubit<DaemonState> {
         });
       }
 
+      if (cliCommand.command == './pactus-wallet' &&
+          cliCommand.arguments.first == 'password') {
+        final pass = cliCommand.arguments.last;
+        // Writing password interactively
+        process.stdin.writeln(pass);
+
+        await Future.delayed(Duration(seconds: 1), () {
+          // Writing password interactively
+          process.stdin.writeln(pass);
+        });
+        await Future.delayed(Duration(seconds: 1), () {
+          // Writing password interactively
+          process.stdin.writeln(pass);
+        });
+      }
+
       _logger.d('Process started with PID: ${process.pid}');
 
       // Handle process output

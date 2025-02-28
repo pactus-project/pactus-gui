@@ -1,4 +1,35 @@
-### 1.30.0+32
+# 1.32.0+34
+
+- [Fix]: Change first route to UnblockPasswordScreen if wallet has a password. [#109](https://github.com/pactus-project/pactus-gui/pull/113)
+  - Ensured that when the wallet has a password, the app correctly navigates to the `UnblockPasswordScreen` on launch.
+  - Improved security by enforcing password authentication before accessing the app.
+
+- [Fix]: Check correct password using pactus-wallet. [#109](https://github.com/pactus-project/pactus-gui/pull/113)
+  - Implemented proper password validation using `pactus-wallet` to enhance security.
+  - Resolved potential issues with incorrect password checks in the splash screen flow.
+
+# 1.31.0+33
+
+- [Fix]: Handle disable mode for back button in `NavigationFooterSection` [#97](https://github.com/pactus-project/pactus-gui/pull/112)
+  - Ensured that the back button is properly disabled when necessary.
+
+- [Fix]: Improve seed restoration handling on `Next` button [#97](https://github.com/pactus-project/pactus-gui/pull/112)
+  - Display an alert when the seed fields are filled incorrectly before proceeding.
+
+- [Fix]: Validate password match in `Master Password` screen [#97](https://github.com/pactus-project/pactus-gui/pull/112)
+  - Show an alert when passwords do not match on the `Next` button.
+
+- [Fix]: Prevent back navigation in `InitializingScreen` [#97](https://github.com/pactus-project/pactus-gui/pull/112)
+  - Restricted the back button in the `InitializingScreen` to ensure a smooth initialization process.
+
+- [Fix]: Review and update validations for `Restoration Seed` screen [#97](https://github.com/pactus-project/pactus-gui/pull/112)
+  - Improved seed verification logic on the `Next` button.
+  - Fixed back button behavior to correctly return to the previous screen.
+
+- [Fix]: Handle seed data in `InitializingScreen` for `pactus-daemon init` command [#97](https://github.com/pactus-project/pactus-gui/pull/112)
+  - Ensured proper handling of seed data when initializing a new node.
+
+# 1.30.0+32
 
 - [feat]: Implement Master Password screen [#100](https://github.com/pactus-project/pactus-gui/pull/103)
   - Added `MasterPasswordScreen` with new UI and functionality.
