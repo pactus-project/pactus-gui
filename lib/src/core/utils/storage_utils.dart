@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StorageUtils {
@@ -7,6 +9,7 @@ class StorageUtils {
 
   static const String _installationFinishedKey = 'isInstallationFinished';
   static const String _passwordKey = 'savedPassword';
+  static const String _hasPasswordKey = 'hasPassword';
 
   /// Saves the installation completion status to local storage.
   static Future<void> setInstallationFinished({
@@ -22,17 +25,23 @@ class StorageUtils {
     return prefs.getBool(_installationFinishedKey) ?? false;
   }
 
-  /// Saves the password to local storage if it's not empty.
-  static Future<void> savePasswordIfNotEmpty(String password) async {
-    if (password.isNotEmpty) {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString(_passwordKey, password);
-    }
+  /// Saves a flag indicating whether a password exists.
+  /// If password is not empty, saves true, otherwise saves false.
+  static Future<void> savePasswordIfNotEmpty(bool hasPassword) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_hasPasswordKey, hasPassword);
   }
 
-  /// Retrieves the saved password from local storage.
-  static Future<String?> getSavedPassword() async {
+  /// Checks if a password exists in local storage.
+  static Future<bool> hasPassword() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(_passwordKey);
+    return prefs.getBool(_hasPasswordKey) ?? false;
+  }
+
+  /// Clears the saved password from local storage.
+  static Future<void> clearPassword() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_passwordKey);
+    await prefs.setBool(_hasPasswordKey, false);
   }
 }
