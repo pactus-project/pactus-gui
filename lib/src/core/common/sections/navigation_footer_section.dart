@@ -36,7 +36,7 @@ class NavigationFooterSection extends StatelessWidget {
           if (selectedIndex > 0)
             CustomOutlinedButton(
               text: 'Back',
-              onPressed: () => {},
+              onPressed: onBackPressed,
               borderColor: AppColors.primaryGray,
             )
           else

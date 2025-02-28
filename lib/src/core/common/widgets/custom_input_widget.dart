@@ -108,11 +108,18 @@ class CustomInputWidgetState extends State<CustomInputWidget> {
   late TextEditingController _controller;
   late bool _obscureText;
   String? errorText;
+  bool _isInternalController = false;
 
   @override
   void initState() {
     super.initState();
-    _controller = widget.controller ?? TextEditingController();
+    // Only create a new controller if one wasn't provided
+    if (widget.controller == null) {
+      _controller = TextEditingController();
+      _isInternalController = true;
+    } else {
+      _controller = widget.controller!;
+    }
     _obscureText = widget.obscureText;
     _controller.addListener(validateInput);
     widget.confirmationController?.addListener(validateInput);
@@ -120,7 +127,12 @@ class CustomInputWidgetState extends State<CustomInputWidget> {
 
   @override
   void dispose() {
-    _controller.dispose();
+    // Only dispose the controller if we created it internally
+    if (_isInternalController) {
+      _controller.dispose();
+    }
+    // Always remove listeners to prevent memory leaks
+    _controller.removeListener(validateInput);
     widget.confirmationController?.removeListener(validateInput);
     super.dispose();
   }
