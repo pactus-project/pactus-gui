@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
-import 'package:gui/src/core/common/widgets/adaptive_text_button.dart';
+import 'package:gui/src/core/common/widgets/adaptive_filled_button.dart';
 import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/initialize_mode/presentation/sections/remote_node_section.dart';
@@ -125,7 +125,7 @@ class InitializeModeScreen extends StatelessWidget {
                       alignment: Alignment.centerRight,
                       child: BlocBuilder<RadioButtonCubit, int>(
                         builder: (context, selectedValue) {
-                          return AdaptiveTextButton(
+                          return AdaptiveFilledButton(
                             text: context.tr(LocaleKeys.next),
                             onPressed: () {
                               switch (selectedValue) {

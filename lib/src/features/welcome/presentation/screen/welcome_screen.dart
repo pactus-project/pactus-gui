@@ -1,7 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gui/src/core/common/widgets/adaptive_text_button.dart';
+import 'package:gui/src/core/common/widgets/adaptive_filled_button.dart';
 import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
@@ -81,7 +81,7 @@ class WelcomeScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const Gap(16),
-            AdaptiveTextButton(
+            AdaptiveFilledButton(
               text: LocaleKeys.start_button_text,
               onPressed: () {
                 context.goNamed(AppRoute.initializeMode.name);

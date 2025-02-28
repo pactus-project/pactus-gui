@@ -11,7 +11,7 @@
   "initialize_mode": "Mode d initialisation",
   "wallet_seed": "Graine de portefeuille",
   "confirm_seed": "Confirmer la graine",
-  "master_password": "Confirmer la graine",
+  "master_password": "mot de passe principal",
   "validator_config": "Configuration du validateur",
   "initializing": "Initialisation",
   "finish": "Terminer",
@@ -69,5 +69,9 @@
   "seed_twenty_four_words": "24 mots",
   "restoration": "Restauration",
   "restoration_seed_title": "Graine de Restauration",
-  "restoration_seed_description": "Graine de restauration, votre clé pour la résilience et la récupération numériques"
+  "restoration_seed_description": "Graine de restauration, votre clé pour la résilience et la récupération numériques",
+  "master_password_description": "Votre clé de voûte pour la sécurité cryptographique. Ce mot de passe sécurise votre nœud.",
+  "confirm_password": "Confirmer le mot de passe",
+  "skip": "Passer",
+  "back": "Retour"
 }

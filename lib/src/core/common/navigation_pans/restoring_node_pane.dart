@@ -6,7 +6,7 @@ import 'package:gui/src/features/finish/presentation/screen/finish_page.dart';
 import 'package:gui/src/features/initializing/presentation/screen/initializing_page.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
-import 'package:gui/src/features/master_password/presentation/screen/master_password_page.dart';
+import 'package:gui/src/features/master_password/presentation/screen/master_password_screen.dart';
 import 'package:gui/src/features/restoration_seed/presentation/screen/restoration_seed_screen.dart';
 import 'package:gui/src/features/validator_config/presentation/screen/validator_config_screen.dart';
 
@@ -18,7 +18,7 @@ import 'package:gui/src/features/validator_config/presentation/screen/validator_
 /// ### Navigation Steps:
 ///
 /// - **[RestorationSeedScreen]**: Restores the wallet using a seed phrase.
-/// - **[MasterPasswordPage]**: Sets or verifies the master password.
+/// - **[MasterPasswordScreen]**: Sets or verifies the master password.
 /// - **[ValidatorConfigScreen]**: Configures validator settings.
 /// - **[InitializingScreen]**: Initializes the restored node.
 /// - **[FinishPage]**: Completes the restoration process.
@@ -84,7 +84,7 @@ class RestoringNodePane extends StatelessWidget {
                     ),
                   ),
                 ),
-                body: MasterPasswordPage(),
+                body: MasterPasswordScreen(),
               ),
               PaneItem(
                 icon: const SizedBox(),

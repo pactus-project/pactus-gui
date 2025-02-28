@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
-import 'package:gui/src/core/common/widgets/adaptive_text_button.dart';
+import 'package:gui/src/core/common/widgets/adaptive_filled_button.dart';
 import 'package:gui/src/core/common/widgets/custom_expandable_widget.dart';
 import 'package:gui/src/core/common/widgets/seed_screen_title_section.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
@@ -129,7 +129,7 @@ class GenerationSeedScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 46),
                     child: Align(
                       alignment: Alignment.centerRight,
-                      child: AdaptiveTextButton(
+                      child: AdaptiveFilledButton(
                         text: LocaleKeys.next,
                         onPressed: () {
                           context.read<NavigationPaneCubit>().setSelectedIndex(

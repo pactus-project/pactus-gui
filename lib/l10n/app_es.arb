@@ -11,7 +11,7 @@
   "initialize_mode": "Modo de inicialización",
   "wallet_seed": "Semilla de billetera",
   "confirm_seed": "Confirmar semilla",
-  "master_password": "Confirmar semilla",
+  "master_password": "contraseña maestra",
   "validator_config": "Configuración del validador",
   "initializing": "Inicializando",
   "finish": "Finalizar",
@@ -69,5 +69,9 @@
   "seed_twenty_four_words": "24 palabras",
   "restoration": "Restauración",
   "restoration_seed_title": "Semilla de Restauración",
-  "restoration_seed_description": "Semilla de restauración, tu clave para la resiliencia y recuperación digital"
-}
+  "restoration_seed_description": "Semilla de restauración, tu clave para la resiliencia y recuperación digital",
+  "master_password_description": "Tu piedra angular para la seguridad criptográfica. Esta contraseña hace que tu nodo sea seguro.",
+  "confirm_password": "Confirmar contraseña",
+  "skip": "Omitir",
+  "back": "Atrás"
+  }

@@ -11,7 +11,7 @@
   "initialize_mode": "Initialize mode",
   "wallet_seed": "Wallet seed",
   "confirm_seed": "Confirm seed",
-  "master_password": "Confirm seed",
+  "master_password": "Master Password",
   "validator_config": "Validator config",
   "initializing": "Initializing",
   "finish": "Finish",
@@ -69,5 +69,9 @@
   "seed_twenty_four_words": "24 words",
   "restoration": "Restoration",
   "restoration_seed_title": "Restoration Seed",
-  "restoration_seed_description": "Restoration seed, your key to digital resilience and recovery"
+  "restoration_seed_description": "Restoration seed, your key to digital resilience and recovery",
+  "master_password_description": "Your keystone to cryptographic security. This password makes your node secure",
+  "confirm_password": "Confirm Password",
+  "skip": "skip",
+  "back": "Back"
 }

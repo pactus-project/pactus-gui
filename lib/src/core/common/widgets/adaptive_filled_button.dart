@@ -3,10 +3,10 @@ import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
-/// ## [AdaptiveTextButton] Class Documentation
+/// ## [AdaptiveFilledButton] Class Documentation
 ///
-/// The `AdaptiveTextButton` class represents a customizable text button widget
-/// that doesn't have a background or border color, and the content is passed in as parameters.
+/// The `AdaptiveTextButton` class represents a customizable button widget
+/// that can function as either a filled button or a text button.
 ///
 /// ### Properties:
 /// - **[text]** (String):
@@ -14,6 +14,11 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 ///
 /// - **[onPressed]** (VoidCallback):
 ///   - The function executed when the button is pressed.
+///
+/// - **[isFilled]** (bool):
+///   - Determines whether the button is a filled button (`true`) or
+///   a text button (`false`).
+///   - Defaults to `true`.
 ///
 /// - **[style]** (ButtonStyle?):
 ///   - Custom button style; if not provided, a default style is used.
@@ -32,13 +37,15 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 ///
 /// - **[textColor]** (Color?):
 ///   - The color of the text displayed on the button.
-///   - If not provided, the text color defaults to `AppColors.primaryDark`.
+///   - If not provided, the text color defaults to `AppColors.primaryLight`
+///   for filled buttons and `AppColors.primaryDark` for text buttons.
 ///
-class AdaptiveTextButton extends StatelessWidget {
-  const AdaptiveTextButton({
+class AdaptiveFilledButton extends StatelessWidget {
+  const AdaptiveFilledButton({
     super.key,
     required this.text,
     required this.onPressed,
+    this.isFilled = true,
     this.style,
     this.icon,
     this.autofocus = false,
@@ -49,6 +56,7 @@ class AdaptiveTextButton extends StatelessWidget {
 
   final String text;
   final VoidCallback onPressed;
+  final bool isFilled;
   final ButtonStyle? style;
   final Widget? icon;
   final bool autofocus;
@@ -70,7 +78,9 @@ class AdaptiveTextButton extends StatelessWidget {
                 vertical: 4,
               ),
             ),
-            backgroundColor: WidgetStateProperty.all(Colors.transparent),
+            backgroundColor: WidgetStateProperty.all(
+              isFilled ? const Color(0xFF0066B4) : Colors.transparent,
+            ),
             shape: WidgetStateProperty.all(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(4),
@@ -79,7 +89,7 @@ class AdaptiveTextButton extends StatelessWidget {
           ),
       child: Padding(
         padding:
-        padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -90,7 +100,8 @@ class AdaptiveTextButton extends StatelessWidget {
               textAlign: TextAlign.center,
               style: InterTextStyles.bodyBold.copyWith(
                 height: 0,
-                color: textColor ?? AppColors.primaryDark,
+                color: textColor ??
+                    (isFilled ? AppColors.primaryLight : AppColors.primaryDark),
               ),
             ),
           ],
