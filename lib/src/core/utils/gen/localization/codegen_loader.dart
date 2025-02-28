@@ -40,7 +40,7 @@ class CodegenLoader {
     'initialize_mode': 'Initialize mode',
     'wallet_seed': 'Wallet seed',
     'confirm_seed': 'Confirm seed',
-    'master_password': 'Confirm seed',
+    'master_password': 'Master Password',
     'validator_config': 'Validator config',
     'initializing': 'Initializing',
     'finish': 'Finish',
@@ -111,6 +111,11 @@ class CodegenLoader {
     'restoration_seed_description':
         'Restoration seed, your key to digital resilience and recovery',
     'please_input_all_fields': 'Please input all fields before continuing',
+    'master_password_description':
+        'Your keystone to cryptographic security. This password makes your node secure',
+    'confirm_password': 'Confirm Password',
+    'skip': 'skip',
+    'back': 'Back',
   };
   static const Map<String, dynamic> frFR = {
     'title': 'Bonjour le Monde!',
@@ -125,7 +130,7 @@ class CodegenLoader {
     'initialize_mode': 'Mode dinitialisation',
     'wallet_seed': 'Graine de portefeuille',
     'confirm_seed': 'Confirmer la graine',
-    'master_password': 'Confirmer la graine',
+    'master_password': 'mot de passe principal',
     'validator_config': 'Configuration du validateur',
     'initializing': 'Initialisation',
     'finish': 'Terminer',
@@ -199,6 +204,11 @@ class CodegenLoader {
         'Graine de restauration, votre clé pour la résilience et la récupération numériques',
     'please_input_all_fields':
         'Veuillez entrer tous les champs avant de continuer',
+    'master_password_description':
+        'Votre clé de voûte pour la sécurité cryptographique. Ce mot de passe sécurise votre nœud.',
+    'confirm_password': 'Confirmer le mot de passe',
+    'skip': 'Passer',
+    'back': 'Retour',
   };
   static const Map<String, dynamic> esES = {
     'title': 'Hola Mundo!',
@@ -213,7 +223,7 @@ class CodegenLoader {
     'initialize_mode': 'Modo de inicialización',
     'wallet_seed': 'Semilla de billetera',
     'confirm_seed': 'Confirmar semilla',
-    'master_password': 'Confirmar semilla',
+    'master_password': 'contraseña maestra',
     'validator_config': 'Configuración del validador',
     'initializing': 'Inicializando',
     'finish': 'Finalizar',
@@ -285,6 +295,11 @@ class CodegenLoader {
         'Semilla de restauración, tu clave para la resiliencia y recuperación digital',
     'please_input_all_fields':
         'Por favor ingrese todos los campos antes de continuar',
+    'master_password_description':
+        'Tu piedra angular para la seguridad criptográfica. Esta contraseña hace que tu nodo sea seguro.',
+    'confirm_password': 'Confirmar contraseña',
+    'skip': 'Omitir',
+    'back': 'Atrás',
   };
 
   static const Map<String, Map<String, dynamic>> mapLocales = {

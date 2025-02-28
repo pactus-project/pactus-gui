@@ -1,6 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
-import 'package:gui/src/core/common/widgets/adaptive_text_button.dart';
+import 'package:gui/src/core/common/widgets/adaptive_filled_button.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
@@ -65,7 +65,7 @@ class CopyToClipboardButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.centerRight,
-      child: AdaptiveTextButton(
+      child: AdaptiveFilledButton(
         textColor: AppColors.radioButtonActiveColor,
         icon: const Icon(
           FluentIcons.copy,
@@ -94,7 +94,7 @@ class CopyToClipboardButton extends StatelessWidget {
                     .copyWith(color: AppColors.primaryDark),
               ),
               actions: [
-                AdaptiveTextButton(
+                AdaptiveFilledButton(
                   text: context.tr(LocaleKeys.ok),
                   onPressed: () {
                     if (context.mounted) {

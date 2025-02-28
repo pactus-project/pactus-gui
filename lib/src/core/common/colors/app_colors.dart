@@ -11,4 +11,5 @@ class AppColors {
   static const radioButtonActiveColor = Color(0xFF0066B4);
   static const inputActiveColor = Color(0xFF0F6CBD);
   static const expandableSeedTypeColor = Color(0xFF707070);
+  static const buttonBorderColor = Color(0xFFC7C7C7);
 }

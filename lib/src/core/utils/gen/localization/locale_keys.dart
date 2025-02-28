@@ -80,4 +80,9 @@ abstract class LocaleKeys {
   static const String restoration_seed_description =
       'restoration_seed_description';
   static const String please_input_all_fields = 'please_input_all_fields';
+  static const String master_password_description =
+      'master_password_description';
+  static const String confirm_password = 'confirm_password';
+  static const String skip = 'skip';
+  static const String back = 'back';
 }

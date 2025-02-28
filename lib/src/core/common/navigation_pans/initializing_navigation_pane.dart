@@ -9,7 +9,7 @@ import 'package:gui/src/features/initialize_mode/presentation/screen/initialize_
 import 'package:gui/src/features/initializing/presentation/screen/initializing_page.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
-import 'package:gui/src/features/master_password/presentation/screen/master_password_page.dart';
+import 'package:gui/src/features/master_password/presentation/screen/master_password_screen.dart';
 import 'package:gui/src/features/validator_config/presentation/screen/validator_config_screen.dart';
 
 /// ## [InitializingNavigationPane] Class Documentation
@@ -115,7 +115,7 @@ class InitializingNavigationPane extends StatelessWidget {
                         : AppColors.navigationPanelDisableColor,
                   ),
                 ),
-                body: MasterPasswordPage(),
+                body: MasterPasswordScreen(),
               ),
               PaneItem(
                 icon: const SizedBox(),

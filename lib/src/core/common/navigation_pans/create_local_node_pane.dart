@@ -8,7 +8,7 @@ import 'package:gui/src/features/generation_seed/presentation/screens/generation
 import 'package:gui/src/features/initializing/presentation/screen/initializing_page.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
-import 'package:gui/src/features/master_password/presentation/screen/master_password_page.dart';
+import 'package:gui/src/features/master_password/presentation/screen/master_password_screen.dart';
 import 'package:gui/src/features/validator_config/presentation/screen/validator_config_screen.dart';
 
 /// ## [CreateLocalNodePane] Class Documentation
@@ -24,7 +24,7 @@ import 'package:gui/src/features/validator_config/presentation/screen/validator_
 /// a `PaneItem`, including:
 /// - **[GenerationSeedScreen]**: Displays the wallet seed generation process.
 /// - **[ConfirmationSeedPage]**: Allows the user to confirm the generated seed.
-/// - **[MasterPasswordPage]**: Provides an interface for setting a master
+/// - **[MasterPasswordScreen]**: Provides an interface for setting a master
 /// password.
 /// - **[ValidatorConfigScreen]**: Configures validator-related settings.
 /// - **[InitializingScreen]**: Handles the node initialization process.
@@ -105,7 +105,7 @@ class CreateLocalNodePane extends StatelessWidget {
                     ),
                   ),
                 ),
-                body: MasterPasswordPage(),
+                body: MasterPasswordScreen(),
               ),
               PaneItem(
                 icon: const SizedBox(),
