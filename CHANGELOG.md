@@ -1,3 +1,13 @@
+# 1.32.0+34
+
+- [Fix]: Change first route to UnblockPasswordScreen if wallet has a password. [#109](https://github.com/pactus-project/pactus-gui/pull/113)
+  - Ensured that when the wallet has a password, the app correctly navigates to the `UnblockPasswordScreen` on launch.
+  - Improved security by enforcing password authentication before accessing the app.
+
+- [Fix]: Check correct password using pactus-wallet. [#109](https://github.com/pactus-project/pactus-gui/pull/113)
+  - Implemented proper password validation using `pactus-wallet` to enhance security.
+  - Resolved potential issues with incorrect password checks in the splash screen flow.
+
 # 1.31.0+33
 
 - [Fix]: Handle disable mode for back button in `NavigationFooterSection` [#97](https://github.com/pactus-project/pactus-gui/pull/112)
