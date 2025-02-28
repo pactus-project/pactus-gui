@@ -8,7 +8,7 @@ class NavigationFooterSection extends StatelessWidget {
   const NavigationFooterSection({
     super.key,
     required this.selectedIndex,
-    required this.onNextPressed,
+    this.onNextPressed,
     required this.onBackPressed,
     this.showPrevious = true,
     this.showNext = true,
@@ -16,7 +16,7 @@ class NavigationFooterSection extends StatelessWidget {
     this.onSkipPressed,
   });
   final int selectedIndex;
-  final VoidCallback onNextPressed;
+  final VoidCallback? onNextPressed;
   final VoidCallback onBackPressed;
   final bool showPrevious;
   final bool showNext;

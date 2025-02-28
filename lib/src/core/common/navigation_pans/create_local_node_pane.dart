@@ -2,7 +2,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/extensions/context_extensions.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
-import 'package:gui/src/features/confirmation_seed/presentation/screen/confirmation_seed_page.dart';
+import 'package:gui/src/features/confirmation_seed/presentation/screen/confirmation_seed_screen.dart';
 import 'package:gui/src/features/finish/presentation/screen/finish_page.dart';
 import 'package:gui/src/features/generation_seed/presentation/screens/generation_seed_screen.dart';
 import 'package:gui/src/features/initializing/presentation/screen/initializing_page.dart';
@@ -23,7 +23,7 @@ import 'package:gui/src/features/validator_config/presentation/screen/validator_
 /// This navigation pane consists of multiple steps, each represented by
 /// a `PaneItem`, including:
 /// - **[GenerationSeedScreen]**: Displays the wallet seed generation process.
-/// - **[ConfirmationSeedPage]**: Allows the user to confirm the generated seed.
+/// - **[ConfirmationSeedScreen]**: Allows the user to confirm the generated seed.
 /// - **[MasterPasswordScreen]**: Provides an interface for setting a master
 /// password.
 /// - **[ValidatorConfigScreen]**: Configures validator-related settings.
@@ -93,7 +93,7 @@ class CreateLocalNodePane extends StatelessWidget {
                     ),
                   ),
                 ),
-                body: ConfirmationSeedPage(),
+                body: ConfirmationSeedScreen(),
               ),
               PaneItem(
                 icon: const SizedBox(),

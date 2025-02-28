@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
-import 'package:gui/src/core/common/widgets/seed_screen_title_section.dart';
+import 'package:gui/src/core/common/widgets/screen_header_widget.dart';
 import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/core/utils/daemon_manager/seed_generator.dart';
@@ -39,7 +39,7 @@ class GenerationSeedScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SeedScreenTitleSection(
+                        const ScreenHeaderWidget(
                           title: LocaleKeys.generation_seed_title,
                           description: LocaleKeys.generation_seed_description,
                         ),

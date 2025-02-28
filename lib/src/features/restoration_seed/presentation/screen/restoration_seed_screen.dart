@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/common/widgets/adaptive_filled_button.dart';
 import 'package:gui/src/core/common/widgets/custom_expandable_widget.dart';
-import 'package:gui/src/core/common/widgets/seed_screen_title_section.dart';
+import 'package:gui/src/core/common/widgets/screen_header_widget.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/generation_seed/core/constants/enums/seed_type_enum.dart';
 import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
@@ -69,7 +69,7 @@ class RestorationSeedScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SeedScreenTitleSection(
+                        const ScreenHeaderWidget(
                           title: LocaleKeys.restoration_seed_title,
                           description: LocaleKeys.restoration_seed_description,
                         ),

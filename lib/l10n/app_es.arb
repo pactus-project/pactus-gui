@@ -75,5 +75,7 @@
   "master_password_description": "Tu piedra angular para la seguridad criptográfica. Esta contraseña hace que tu nodo sea seguro.",
   "confirm_password": "Confirmar contraseña",
   "skip": "Omitir",
-  "back": "Atrás"
+  "back": "Atrás",
+  "confirmation_seed_title": "Confirmación de la semilla",
+  "confirmation_seed_description": "Embárcate con confianza, tu puerta de entrada a una generación de semillas segura"
   }
