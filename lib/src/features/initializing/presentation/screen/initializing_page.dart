@@ -131,18 +131,14 @@ class _InitializingScreenState extends State<InitializingScreen> {
                   const SizedBox(height: 20),
                   NavigationFooterSection(
                     selectedIndex: selectedIndex,
-                    onBackPressed: () {
-                      context
-                          .read<NavigationPaneCubit>()
-                          .setSelectedIndex(selectedIndex - 1);
-                    },
+                    onBackPressed: null,
                     onNextPressed: () {
                       context
                           .read<NavigationPaneCubit>()
                           .setSelectedIndex(selectedIndex + 1);
                     },
-                    showPrevious: false,
-                    showNext: false,
+                    // showPrevious: false,
+                    // showNext: false,
                   ),
                 ],
               ),
