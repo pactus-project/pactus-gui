@@ -81,9 +81,10 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
       create: (context) => DropdownCubit<ValidatorQty>(ValidatorQty.seven),
       child: BlocBuilder<NavigationPaneCubit, int>(
         builder: (context, selectedIndex) {
-          // بررسی و به‌روزرسانی وضعیت در هر بار تغییر فیلد
           isDirectoryValid = directoryController.text.isNotEmpty;
-
+          context.read<StepValidationCubit>().setStepValid(
+              stepIndex: context.read<NavigationPaneCubit>().state,
+              isValid: isDirectoryValid);
           return StandardPageLayout(
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -137,34 +138,37 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
             ),
             footer: NavigationFooterSection(
               selectedIndex: selectedIndex,
-              onNextPressed: isDirectoryValid ? () async {
-                final directoryStatus = await isNotEmptyDirectory(
-                  text: directoryController.text,
-                );
+              onNextPressed: isDirectoryValid
+                  ? () async {
+                      final directoryStatus = await isNotEmptyDirectory(
+                        text: directoryController.text,
+                      );
 
-                if (!context.mounted) {
-                  return;
-                }
+                      if (!context.mounted) {
+                        return;
+                      }
 
-                if (directoryStatus) {
-                  showFluentAlert(
-                    context,
-                    context.tr(LocaleKeys.directory_not_empty),
-                  );
-                } else {
-                  final selectedQty =
-                      context.read<DropdownCubit<ValidatorQty>>().state;
-                  NodeConfigData.instance.validatorQty = '${selectedQty.qty}';
-                  NodeConfigData.instance.workingDirectory =
-                      directoryController.text;
+                      if (directoryStatus) {
+                        showFluentAlert(
+                          context,
+                          context.tr(LocaleKeys.directory_not_empty),
+                        );
+                      } else {
+                        final selectedQty =
+                            context.read<DropdownCubit<ValidatorQty>>().state;
+                        NodeConfigData.instance.validatorQty =
+                            '${selectedQty.qty}';
+                        NodeConfigData.instance.workingDirectory =
+                            directoryController.text;
 
-                  if (context.mounted) {
-                    context
-                        .read<NavigationPaneCubit>()
-                        .setSelectedIndex(selectedIndex + 1);
-                  }
-                }
-              } : null,
+                        if (context.mounted) {
+                          context
+                              .read<NavigationPaneCubit>()
+                              .setSelectedIndex(selectedIndex + 1);
+                        }
+                      }
+                    }
+                  : null,
               onBackPressed: () {
                 context
                     .read<NavigationPaneCubit>()
