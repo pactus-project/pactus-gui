@@ -1,3 +1,7 @@
+# 1.29.0+31
+
+- [Feature]: implement UI for remote connect server page [#101](https://github.com/pactus-project/pactus-gui/pull/102)
+
 # 1.28.0+30
 
 - [Refactor]: Update bottom navigation and create base layout. [#96](https://github.com/pactus-project/pactus-gui/pull/98)
@@ -29,7 +33,7 @@
 - [fix]: Add/correct some variables in translation files [#92](https://github.com/pactus-project/pactus-gui/pull/99)
   - Updated translation files by adding and correcting variables for better localization support.
 
-- [feat]: Implement widgets of Restoration Seed screen [#92](https://github.com/pactus-project/pactus-gui/pull/99)
+- [Feature]: Implement widgets of Restoration Seed screen [#92](https://github.com/pactus-project/pactus-gui/pull/99)
   - Added a general class `SeedScreenTitleSection` for both restoration and generation seed screens.
   - Renamed "restoration seed page" to "restoration seed screen".
   - Created `RestorationSeedWordsGridSection` to generate `ChipTextBox` for users to enter seed words.
