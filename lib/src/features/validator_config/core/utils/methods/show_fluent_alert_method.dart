@@ -20,7 +20,7 @@ import 'package:gui/src/features/main/language/core/localization_extension.dart'
 /// Need empty directory to continue."**
 /// - Includes an "OK" button to close the alert.
 ///
-void showFluentAlert(BuildContext context) {
+void showFluentAlert(BuildContext context, String message) {
   displayInfoBar(
     context,
     builder: (context, close) {
@@ -30,7 +30,7 @@ void showFluentAlert(BuildContext context) {
           style: TextStyle(color: AppColors.primaryDark),
         ),
         content: Text(
-          context.tr(LocaleKeys.directory_not_empty),
+          message,
           style: TextStyle(color: AppColors.primaryDark),
         ),
         action: Button(

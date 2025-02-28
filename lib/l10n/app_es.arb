@@ -70,5 +70,6 @@
   "seed_twenty_four_words": "24 palabras",
   "restoration": "Restauración",
   "restoration_seed_title": "Semilla de Restauración",
-  "restoration_seed_description": "Semilla de restauración, tu clave para la resiliencia y recuperación digital"
+  "restoration_seed_description": "Semilla de restauración, tu clave para la resiliencia y recuperación digital",
+  "please_input_all_fields": "Por favor ingrese todos los campos antes de continuar"
 }

@@ -137,7 +137,10 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
                 }
 
                 if (directoryStatus) {
-                  showFluentAlert(context);
+                  showFluentAlert(
+                    context,
+                    context.tr(LocaleKeys.directory_not_empty),
+                  );
                 } else {
                   final selectedQty =
                       context.read<DropdownCubit<ValidatorQty>>().state;
