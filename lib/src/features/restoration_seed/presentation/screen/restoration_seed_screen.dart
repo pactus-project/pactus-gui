@@ -1,8 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/core/common/colors/app_colors.dart';
-import 'package:gui/src/core/common/widgets/adaptive_filled_button.dart';
 import 'package:gui/src/core/common/widgets/custom_expandable_widget.dart';
+import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
 import 'package:gui/src/core/common/widgets/seed_screen_title_section.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/generation_seed/core/constants/enums/seed_type_enum.dart';
@@ -11,6 +10,7 @@ import 'package:gui/src/features/main/language/core/localization_extension.dart'
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/restoration_seed/presentation/cubits/restoration_seed_cubit.dart';
 import 'package:gui/src/features/restoration_seed/presentation/sections/restoration_seed_words_grid_section.dart';
+import 'package:gui/src/features/validator_config/core/utils/methods/show_fluent_alert_method.dart';
 
 /// ## [RestorationSeedScreen] Class Documentation
 ///
@@ -110,25 +110,38 @@ class RestorationSeedScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 46),
                     child: Align(
                       alignment: Alignment.centerRight,
-                      child: AdaptiveFilledButton(
-                        text: LocaleKeys.next,
+                      child: CustomFilledButton(
+                        text: 'Next',
                         onPressed: () {
-                          context.read<NavigationPaneCubit>().setSelectedIndex(
-                                context.read<NavigationPaneCubit>().state + 1,
+                          final seeds = context.read<SeedTextCubit>().state;
 
-                                /// to-do : add logic of restoration here
-                                /// to store
-                                /// restoration eed words that user entered
-                              );
+                          final seedQty = context
+                              .read<DropdownCubit<SeedTypeEnum>>()
+                              .state
+                              .qty;
+
+                          final isValidSeedQuantity = seeds
+                                  .where((item) => item.trim().isNotEmpty)
+                                  .length ==
+                              seedQty;
+
+                          if (isValidSeedQuantity) {
+                            context
+                                .read<NavigationPaneCubit>()
+                                .setSelectedIndex(
+                                  context.read<NavigationPaneCubit>().state + 1,
+
+                                  /// to-do : add logic of restoration here
+                                  /// to store
+                                  /// restoration eed words that user entered
+                                );
+                          } else {
+                            showFluentAlert(
+                              context,
+                              'All seeds must be filled in.',
+                            );
+                          }
                         },
-                        style: ButtonStyle(
-                          backgroundColor: WidgetStatePropertyAll(
-                            AppColors.radioButtonActiveColor,
-                          ),
-                          padding: WidgetStatePropertyAll(
-                            const EdgeInsets.symmetric(horizontal: 16),
-                          ),
-                        ),
                       ),
                     ),
                   ),
