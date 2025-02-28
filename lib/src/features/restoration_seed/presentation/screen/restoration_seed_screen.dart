@@ -52,141 +52,132 @@ class RestorationSeedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => DropdownCubit<SeedTypeEnum>(SeedTypeEnum.twelve),
-        ),
-        BlocProvider(create: (context) => SeedTextCubit(SeedTypeEnum.twelve)),
-      ],
-      child: BlocBuilder<NavigationPaneCubit, int>(
-        builder: (context, selectedIndex) {
-          return StandardPageLayout(
-            content: LayoutBuilder(
-              builder: (context, constraints) {
-                final crossAxisCount =
-                    (constraints.maxWidth / 150).floor().clamp(2, 6);
-                return Stack(
-                  children: [
-                    SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.only(
-                          start: 47,
-                          end: 47,
-                          top: 47,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const ScreenHeaderWidget(
-                              title: LocaleKeys.restoration_seed_title,
-                              description:
-                                  LocaleKeys.restoration_seed_description,
-                            ),
-                            BlocBuilder<DropdownCubit<SeedTypeEnum>,
-                                SeedTypeEnum>(
-                              builder: (context, state) {
-                                return BlocBuilder<SeedTextCubit, List<String>>(
-                                  builder: (context, words) {
-                                    context
-                                        .read<StepValidationCubit>()
-                                        .setStepValid(
-                                          stepIndex: context
-                                              .read<NavigationPaneCubit>()
-                                              .state,
-                                          isValid: context
-                                              .read<SeedTextCubit>()
-                                              .areAllWordsEntered(),
-                                        );
-                                    return RestorationSeedWordsGridSection(
-                                      crossAxisCount: crossAxisCount,
-                                      state: state,
-                                    );
-                                  },
-                                );
-                              },
-                            ),
-                          ],
-                        ),
+    return BlocBuilder<NavigationPaneCubit, int>(
+      builder: (context, selectedIndex) {
+        return StandardPageLayout(
+          content: LayoutBuilder(
+            builder: (context, constraints) {
+              final crossAxisCount =
+                  (constraints.maxWidth / 150).floor().clamp(2, 6);
+              return Stack(
+                children: [
+                  SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsetsDirectional.only(
+                        start: 47,
+                        end: 47,
+                        top: 47,
                       ),
-                    ),
-                    Positioned(
-                      top: 47,
-                      right: 47,
-                      child: BlocBuilder<DropdownCubit<SeedTypeEnum>,
-                          SeedTypeEnum>(
-                        builder: (context, state) {
-                          return CustomDropdownWidget<SeedTypeEnum>(
-                            items: SeedTypeEnum.values,
-                            itemLabel: (item) => context.tr(item.text),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                );
-              },
-            ),
-            footer: BlocBuilder<SeedTextCubit, List<String>>(
-              builder: (context, words) {
-                return NavigationFooterSection(
-                  selectedIndex: selectedIndex,
-                  onNextPressed: context
-                          .read<SeedTextCubit>()
-                          .areAllWordsEntered()
-                      ? () {
-                          final seeds = context.read<SeedTextCubit>().state;
-
-                          final seedQty = context
-                              .read<DropdownCubit<SeedTypeEnum>>()
-                              .state
-                              .qty;
-
-                          final isValidSeedQuantity = seeds
-                                  .where((item) => item.trim().isNotEmpty)
-                                  .length ==
-                              seedQty;
-
-                          final isValidateMnemonic =
-                              bip39.validateMnemonic(seeds.join(' '));
-
-                          if (isValidSeedQuantity) {
-                            if (isValidateMnemonic) {
-                              NodeConfigData.instance.restorationSeed =
-                                  Mnemonic.generate(
-                                Language.english,
-                                passphrase: seeds.join(' '),
-                              );
-
-                              context
-                                  .read<NavigationPaneCubit>()
-                                  .setSelectedIndex(
-                                    context.read<NavigationPaneCubit>().state +
-                                        1,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const ScreenHeaderWidget(
+                            title: LocaleKeys.restoration_seed_title,
+                            description:
+                                LocaleKeys.restoration_seed_description,
+                          ),
+                          BlocBuilder<DropdownCubit<SeedTypeEnum>,
+                              SeedTypeEnum>(
+                            builder: (context, state) {
+                              return BlocBuilder<SeedTextCubit, List<String>>(
+                                builder: (context, words) {
+                                  context
+                                      .read<StepValidationCubit>()
+                                      .setStepValid(
+                                        stepIndex: context
+                                            .read<NavigationPaneCubit>()
+                                            .state,
+                                        isValid: context
+                                            .read<SeedTextCubit>()
+                                            .areAllWordsEntered(),
+                                      );
+                                  return RestorationSeedWordsGridSection(
+                                    crossAxisCount: crossAxisCount,
+                                    state: state,
                                   );
-                            } else {
-                              showFluentAlert(
-                                context,
-                                'Invalid seeds.',
+                                },
                               );
-                            }
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 47,
+                    right: 47,
+                    child:
+                        BlocBuilder<DropdownCubit<SeedTypeEnum>, SeedTypeEnum>(
+                      builder: (context, state) {
+                        return CustomDropdownWidget<SeedTypeEnum>(
+                          items: SeedTypeEnum.values,
+                          itemLabel: (item) => context.tr(item.text),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+          footer: BlocBuilder<SeedTextCubit, List<String>>(
+            builder: (context, words) {
+              return NavigationFooterSection(
+                selectedIndex: selectedIndex,
+                onNextPressed: context
+                        .read<SeedTextCubit>()
+                        .areAllWordsEntered()
+                    ? () {
+                        final seeds = context.read<SeedTextCubit>().state;
+
+                        final seedQty = context
+                            .read<DropdownCubit<SeedTypeEnum>>()
+                            .state
+                            .qty;
+
+                        final isValidSeedQuantity = seeds
+                                .where((item) => item.trim().isNotEmpty)
+                                .length ==
+                            seedQty;
+
+                        final isValidateMnemonic =
+                            bip39.validateMnemonic(seeds.join(' '));
+
+                        if (isValidSeedQuantity) {
+                          if (isValidateMnemonic) {
+                            NodeConfigData.instance.restorationSeed =
+                                Mnemonic.generate(
+                              Language.english,
+                              passphrase: seeds.join(' '),
+                            );
+
+                            context
+                                .read<NavigationPaneCubit>()
+                                .setSelectedIndex(
+                                  context.read<NavigationPaneCubit>().state + 1,
+                                );
                           } else {
                             showFluentAlert(
                               context,
-                              'All seeds must be filled in.',
+                              'Invalid seeds.',
                             );
                           }
+                        } else {
+                          showFluentAlert(
+                            context,
+                            'All seeds must be filled in.',
+                          );
                         }
-                      : null,
-                  onBackPressed: () {
-                    context.goNamed(AppRoute.initializeMode.name);
-                  },
-                );
-              },
-            ),
-          );
-        },
-      ),
+                      }
+                    : null,
+                onBackPressed: () {
+                  context.goNamed(AppRoute.initializeMode.name);
+                },
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }
