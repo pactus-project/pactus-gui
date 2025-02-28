@@ -5,6 +5,7 @@ import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/master_password/presentation/sections/master_password_section.dart';
+
 /// ## [MasterPasswordScreen] Class Documentation
 ///
 /// The `MasterPasswordScreen` class represents a screen where users ca set a
@@ -54,6 +55,7 @@ class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
     confirmPasswordController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NavigationPaneCubit, int>(
@@ -75,11 +77,15 @@ class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
             onNextPressed: () {
               if (passwordController.text == confirmPasswordController.text) {
                 NodeConfigData.instance.password = passwordController.text;
-                context.read<NavigationPaneCubit>().setSelectedIndex(selectedIndex + 1);
+                context
+                    .read<NavigationPaneCubit>()
+                    .setSelectedIndex(selectedIndex + 1);
               }
             },
             onBackPressed: () {
-              context.read<NavigationPaneCubit>().setSelectedIndex(selectedIndex - 1);
+              context
+                  .read<NavigationPaneCubit>()
+                  .setSelectedIndex(selectedIndex - 1);
             },
           ),
         );
@@ -87,5 +93,3 @@ class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
     );
   }
 }
-
-

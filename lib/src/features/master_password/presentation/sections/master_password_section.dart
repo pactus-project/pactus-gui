@@ -6,6 +6,7 @@ import 'package:gui/src/core/common/widgets/seed_screen_title_section.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
+
 /// ## [MasterPasswordSection] Class Documentation
 ///
 /// The `MasterPasswordSection` class represents a UI section for
@@ -32,14 +33,13 @@ import 'package:gui/src/features/main/language/core/localization_extension.dart'
 ///
 
 class MasterPasswordSection extends StatelessWidget {
-
-  const MasterPasswordSection({super.key,
+  const MasterPasswordSection({
+    super.key,
     required this.passwordController,
     required this.confirmPasswordController,
   });
   final TextEditingController passwordController;
   final TextEditingController confirmPasswordController;
-
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+
 /// ## [CustomInputWidget] Class Documentation
 ///
 /// The `CustomInputWidget` is a customizable text input field that
@@ -100,10 +101,10 @@ class CustomInputWidget extends StatefulWidget {
   final Widget? obscureIcon;
 
   @override
-  _CustomInputWidgetState createState() => _CustomInputWidgetState();
+  CustomInputWidgetState createState() => CustomInputWidgetState();
 }
 
-class _CustomInputWidgetState extends State<CustomInputWidget> {
+class CustomInputWidgetState extends State<CustomInputWidget> {
   late TextEditingController _controller;
   late bool _obscureText;
   String? errorText;
@@ -128,11 +129,13 @@ class _CustomInputWidgetState extends State<CustomInputWidget> {
     if (widget.confirmationController != null) {
       setState(() {
         errorText = (_controller.text != widget.confirmationController!.text)
-            ? "Passwords do not match"
+            ? 'Passwords do not match'
             : null;
       });
     }
-    if (widget.onChanged != null) widget.onChanged!(_controller.text);
+    if (widget.onChanged != null) {
+      widget.onChanged!(_controller.text);
+    }
   }
 
   @override
@@ -156,34 +159,41 @@ class _CustomInputWidgetState extends State<CustomInputWidget> {
               obscureText: _obscureText,
               textAlignVertical: TextAlignVertical.center,
               style: widget.textStyle?.copyWith(
-                color: errorText != null ? Colors.red : AppColors.expandableSeedTypeColor,
+                color: errorText != null
+                    ? Colors.red
+                    : AppColors.expandableSeedTypeColor,
               ),
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
               decoration: WidgetStateProperty.resolveWith((states) {
                 final isFocused = states.isFocused;
                 return BoxDecoration(
-                  color: widget.backgroundColor ?? AppTheme.of(context).extension<LightPallet>()!.light900,
+                  color: widget.backgroundColor ??
+                      AppTheme.of(context).extension<LightPallet>()!.light900,
                   borderRadius: widget.borderRadius ?? BorderRadius.circular(4),
                   border: Border.all(
-                    color: errorText != null ? Colors.red : (isFocused ? AppColors.inputActiveColor : Colors.transparent),
+                    color: errorText != null
+                        ? Colors.red
+                        : (isFocused
+                            ? AppColors.inputActiveColor
+                            : Colors.transparent),
                     width: 2,
                   ),
                 );
               }),
               suffix: widget.obscureText
                   ? IconButton(
-                icon: widget.obscureIcon ??
-                    Icon(
-                      _obscureText ? FluentIcons.hide3 : FluentIcons.view,
-                      color: Colors.grey,
-                      size: 19,
-                    ),
-                onPressed: () {
-                  setState(() {
-                    _obscureText = !_obscureText;
-                  });
-                },
-              )
+                      icon: widget.obscureIcon ??
+                          Icon(
+                            _obscureText ? FluentIcons.hide3 : FluentIcons.view,
+                            color: Colors.grey,
+                            size: 19,
+                          ),
+                      onPressed: () {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
+                    )
                   : null,
             ),
           ),
@@ -191,7 +201,13 @@ class _CustomInputWidgetState extends State<CustomInputWidget> {
         if (errorText != null)
           Padding(
             padding: const EdgeInsets.only(top: 4),
-            child: Text(errorText!, style: TextStyle(color: Colors.red, fontSize: 12)),
+            child: Text(
+              errorText!,
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 12,
+              ),
+            ),
           ),
       ],
     );

@@ -6,7 +6,8 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 /// ## [AdaptiveTextButton] Class Documentation
 ///
 /// The `AdaptiveTextButton` class represents a customizable text button widget
-/// that doesn't have a background or border color, and the content is passed in as parameters.
+/// that doesn't have a background or border color, and the content is
+/// passed in as parameters.
 ///
 /// ### Properties:
 /// - **[text]** (String):
@@ -79,7 +80,7 @@ class AdaptiveTextButton extends StatelessWidget {
           ),
       child: Padding(
         padding:
-        padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
