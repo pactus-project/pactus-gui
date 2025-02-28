@@ -1,7 +1,7 @@
 name: gui
 description: "Pactus Flutter GUI"
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 1.30.0+32
+version: 1.31.0+33
 
 environment:
   sdk: ^3.6.1
