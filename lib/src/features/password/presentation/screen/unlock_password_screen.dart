@@ -2,7 +2,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
-import 'package:gui/src/core/common/widgets/custom_password_widget.dart';
+import 'package:gui/src/core/common/widgets/custom_input_widget.dart';
 import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
@@ -10,15 +10,15 @@ import 'package:gui/src/features/main/language/core/localization_extension.dart'
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 import '../../../../core/common/colors/app_colors.dart';
 
-class UnblockPasswordScreen extends StatefulWidget {
-  const UnblockPasswordScreen({super.key, required this.fromRegistrationRoute});
+class UnlockPasswordScreen extends StatefulWidget {
+  const UnlockPasswordScreen({super.key, required this.fromRegistrationRoute});
   final bool fromRegistrationRoute;
 
   @override
-  State<UnblockPasswordScreen> createState() => _UnblockPasswordScreenState();
+  State<UnlockPasswordScreen> createState() => _UnlockPasswordScreenState();
 }
 
-class _UnblockPasswordScreenState extends State<UnblockPasswordScreen> {
+class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
   String? _errorMessage;
   String _passwordValue = '';
   // Constants for layout
@@ -37,71 +37,66 @@ class _UnblockPasswordScreenState extends State<UnblockPasswordScreen> {
     final colors = AppTheme.of(context).extension<DarkPallet>()!;
 
     return NavigationView(
-      appBar: NavigationAppBar(
-        title: Text(
-          '',
-          style: theme.typography.body!.copyWith(
-            color: colors.dark900,
-          ),
-        ),
-      ),
-      content: Center(
-        child: Container(
-          constraints: const BoxConstraints(maxWidth: _maxContentWidth),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Lock Icon Container
-              _buildLockIcon(isDark),
-              const SizedBox(height: _spacingMedium),
-
-              // Small Lock Icon
-              Assets.icons.lock.image(
-                width: _smallLockIconSize,
-                height: _smallLockIconSize,
-                fit: BoxFit.contain,
-                color: isDark ? AppColors.primaryLight : AppColors.primaryDark,
-              ),
-              const SizedBox(height: _spacingMedium),
-
-              // Instruction Text
-              Text(
-                context.tr(LocaleKeys.unlock_wallet_description),
-                style: theme.typography.body!.copyWith(
-                  color: colors.dark700,
+      content: SingleChildScrollView(
+        child: Center(
+          child: Container(
+            constraints: const BoxConstraints(maxWidth: _maxContentWidth),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Lock Icon Container
+                _buildLockIcon(isDark),
+                const SizedBox(height: _spacingMedium),
+        
+                // Small Lock Icon
+                Assets.icons.lock.image(
+                  width: _smallLockIconSize,
+                  height: _smallLockIconSize,
+                  fit: BoxFit.contain,
+                  color: isDark ? AppColors.primaryLight : AppColors.primaryDark,
                 ),
-              ),
-              const SizedBox(height: _spacingLarge),
-              // Password Field
-              CustomPasswordWidget(
-                width: 280,
-                placeholder: '••••••••',
-                onChanged: (value) {
-                  setState(() {
-                    _errorMessage = null;
-                    _passwordValue = value;
-                  });
-                  debugPrint('Password value: $value');
-                },
-              ),
-
-              // Error Message
-              if (_errorMessage != null)
-                Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: Text(
-                    _errorMessage!,
-                    style: theme.typography.body!.copyWith(
-                      color: Colors.red,
-                    ),
+                const SizedBox(height: _spacingMedium),
+        
+                // Instruction Text
+                Text(
+                  context.tr(LocaleKeys.unlock_wallet_description),
+                  style: theme.typography.body!.copyWith(
+                    color: colors.dark700,
                   ),
                 ),
-
-              const SizedBox(height: _spacingLarge),
-
-              // Unlock Button
-              _buildUnlockButton(),
-            ],
+                const SizedBox(height: _spacingLarge),
+                // Password Field
+                CustomInputWidget(
+                  width: 280,
+                  placeholder: context.tr(LocaleKeys.enter_your_password),
+                  obscureText: true,
+                  onChanged: (value) {
+                    setState(() {
+                      _errorMessage = null;
+                      _passwordValue = value;
+                    });
+                    debugPrint('Password value: $value');
+                  },
+                ),
+                // Error Message
+                if (_errorMessage != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: Text(
+                      _errorMessage!,
+                      style: theme.typography.body!.copyWith(
+                        color: AppTheme.of(context).
+                        extension<RedPallet>()!.red500,
+                      ),
+                    ),
+                  ),
+        
+                const SizedBox(height: _spacingLarge),
+        
+                // Unlock Button
+                _buildUnlockButton(),
+              ],
+            ),
           ),
         ),
       ),
