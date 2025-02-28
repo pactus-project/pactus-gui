@@ -85,4 +85,7 @@ abstract class LocaleKeys {
   static const String confirm_password = 'confirm_password';
   static const String skip = 'skip';
   static const String back = 'back';
+  static const String confirmation_seed_title = 'confirmation_seed_title';
+  static const String confirmation_seed_description =
+      'confirmation_seed_description';
 }

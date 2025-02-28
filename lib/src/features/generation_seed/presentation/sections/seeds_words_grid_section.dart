@@ -47,7 +47,7 @@ class SeedWordsGridSection extends StatelessWidget {
         crossAxisCount: crossAxisCount,
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
-        childAspectRatio: 3,
+        childAspectRatio: 141 / 30,
       ),
       itemCount: seedWords.length,
       itemBuilder: (context, index) {

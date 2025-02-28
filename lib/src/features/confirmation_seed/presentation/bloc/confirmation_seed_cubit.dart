@@ -25,7 +25,6 @@ class ConfirmationSeedCubit extends Cubit<ConfirmationSeedState> {
       return SeedItemData(word: words[index], isNeedConfirmation: isFlagged);
     });
 
-    // مقداردهی اولیه فیلدهای تأییدی به false
     final validationMap = <int, bool>{};
     for (var i = 0; i < wordEntryList.length; i++) {
       if (wordEntryList[i].isNeedConfirmation) {
@@ -56,30 +55,3 @@ class ConfirmationSeedCubit extends Cubit<ConfirmationSeedState> {
         state.validationResults.values.every((value) => value);
   }
 }
-
-/*
-class ConfirmationSeedCubit extends Cubit<List<SeedItemData>> {
-  ConfirmationSeedCubit(List<String> words) : super([]) {
-    generateWords(words);
-  }
-  void generateWords(List<String> words) {
-    if (words.isEmpty) {}
-    final totalWords = words.length;
-    final countToFlag = (totalWords * 0.3).ceil();
-
-    final flaggedIndexes = <int>{};
-    final random = Random();
-
-    while (flaggedIndexes.length < countToFlag) {
-      flaggedIndexes.add(random.nextInt(totalWords));
-    }
-
-    final wordEntryList = List.generate(totalWords, (index) {
-      final isFlagged = flaggedIndexes.contains(index);
-      return SeedItemData(word: words[index], isNeedConfirmation: isFlagged);
-    });
-
-    emit(wordEntryList);
-  }
-}
-*/

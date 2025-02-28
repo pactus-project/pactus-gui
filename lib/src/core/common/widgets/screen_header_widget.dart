@@ -4,7 +4,7 @@ import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
-/// ## [SeedScreenTitleSection] Class Documentation
+/// ## [ScreenHeaderWidget] Class Documentation
 ///
 /// The `SeedScreenTitleSection` class represents a section of the UI
 /// displaying a title and a description.
@@ -38,8 +38,8 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 /// - Colors for the text are set using the `AppColors` class, with
 /// `primaryDark` for the title and `primaryGray` for the description.
 
-class SeedScreenTitleSection extends StatelessWidget {
-  const SeedScreenTitleSection({
+class ScreenHeaderWidget extends StatelessWidget {
+  const ScreenHeaderWidget({
     super.key,
     required this.title,
     required this.description,

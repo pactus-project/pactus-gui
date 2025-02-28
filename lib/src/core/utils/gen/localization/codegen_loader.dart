@@ -116,6 +116,9 @@ class CodegenLoader {
     'confirm_password': 'Confirm Password',
     'skip': 'skip',
     'back': 'Back',
+    'confirmation_seed_title': 'Confirmation Seed',
+    'confirmation_seed_description':
+        'Embark with assurance, your gateway to secure seed generation',
   };
   static const Map<String, dynamic> frFR = {
     'title': 'Bonjour le Monde!',
@@ -209,6 +212,9 @@ class CodegenLoader {
     'confirm_password': 'Confirmer le mot de passe',
     'skip': 'Passer',
     'back': 'Retour',
+    'confirmation_seed_title': 'Confirmation de la graine',
+    'confirmation_seed_description':
+        'Embarquez en toute confiance, votre passerelle vers une génération de graine sécurisée',
   };
   static const Map<String, dynamic> esES = {
     'title': 'Hola Mundo!',
@@ -300,6 +306,9 @@ class CodegenLoader {
     'confirm_password': 'Confirmar contraseña',
     'skip': 'Omitir',
     'back': 'Atrás',
+    'confirmation_seed_title': 'Confirmación de la semilla',
+    'confirmation_seed_description':
+        'Embárcate con confianza, tu puerta de entrada a una generación de semillas segura',
   };
 
   static const Map<String, Map<String, dynamic>> mapLocales = {

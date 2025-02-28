@@ -1,3 +1,62 @@
+### 1.33.0+35
+
+- [feat]: Implement Master Password screen
+  - Added `MasterPasswordScreen` with new UI and functionality.
+  - Renamed "Master Password page" to "Master Password screen".
+  - Updated `CustomInputWidget` with new features.
+  - Created `MasterPasswordActionButtonWidget`, `MasterPasswordBackButtonWidget`, and `MasterPasswordFooter`.
+  - Introduced `MasterPasswordSection` for better UI structure.
+  - Added `AdaptiveFilledButton` and updated its usage in the codebase.
+  - Updated `AdaptiveTextButton`.
+  - Added `buttonBorderColor` to `AppColors`.
+  - Added new variables to translation files for better localization support.
+
+- [refactor]: Update `UnlockPasswordScreen` & fix related issues
+  - Removed old password screen.
+  - Renamed `UnlockPasswordScreen`.
+  - Refactored password text field.
+  - Updated `basicRoutes` and fixed navigation to `UnlockPasswordScreen`.
+
+- [refactor]: Update `ConfirmationSeedScreen`
+  - Renamed `SeedScreenTitleSection` to `ScreenHeaderWidget` and updated references.
+  - Added `areAllWordsConfirmed` method in `ConfirmationSeedState`.
+  - Made `onNextPressed` nullable where necessary.
+  - Added `ConfirmationSeedScreen` and `ConfirmationSeedWordsGridSection`.
+  - Removed old `ConfirmationSeedPage`.
+  - Updated `ConfirmationSeedCubit`.
+  - Added new variables to translation files.
+
+- [refactor]: Fix `GenerationSeedScreen` issues
+  - Added `CustomDropdownWidget` to handle selection between 12 or 24 seed words.
+  - Fixed UI-related issues in this screen.
+
+- [refactor]: Improve navigation in `CreateLocalNodePane`
+  - Added `StepValidationCubit` to validate user steps in panels.
+  - Updated `NavigationPaneCubit` with a new `canGoBack` method.
+  - Improved panel logic on `onChanged` events.
+  - Added `stepValidation` checks on each screen in the local node creation flow.
+  - Removed unused `InitializingNavigationPane`.
+
+- [refactor]: Improve navigation in `RestoringNodePane`
+  - Added `areAllWordsEntered` logic in `SeedTextCubit` to ensure all seed words are entered.
+  - Updated `RestorationSeedScreen`.
+
+- [refactor]: Improve navigation in `ValidatorConfigScreen`
+  - Added `StepValidationCubit` to prevent navigation if the directory is not set.
+
+- [refactor]: Various improvements & optimizations
+  - Removed `canGoBack` method from `NavigationPaneCubit`.
+  - Added `maxIndex` constant to `AppConstants`.
+  - Renamed "Dashboard page" to "Dashboard screen".
+  - Updated logic in all three panels.
+  - Reformatted code for consistency.
+  - Fixed `ChipTextBox` sizes.
+  - Added `dashboardScreenRoute` to each panel route in `registrationRoutes`.
+
+- [fix]: Add `NavigationFooterSection` to `MasterPasswordScreen`
+  - Improved navigation flow in the Master Password screen.
+  - Removed unused widgets to optimize performance.
+
 # 1.32.0+34
 
 - [Fix]: Change first route to UnblockPasswordScreen if wallet has a password. [#109](https://github.com/pactus-project/pactus-gui/pull/113)

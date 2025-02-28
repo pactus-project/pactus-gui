@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
 import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
 import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
 import 'package:gui/src/core/enums/app_enums.dart';
@@ -66,7 +67,8 @@ class _InitializingScreenState extends State<InitializingScreen> {
     final theme = FluentTheme.of(context);
     final colors = AppTheme.of(context).extension<DarkPallet>()!;
     final bluePallet = AppTheme.of(context).extension<BluePallet>()!;
-
+    final cubit = context.read<NavigationPaneCubit>();
+    final newIndex = cubit.state + 1;
     return BlocConsumer<DaemonCubit, DaemonState>(
       listener: (context, state) {
         if (state is DaemonLoading) {
@@ -75,8 +77,7 @@ class _InitializingScreenState extends State<InitializingScreen> {
 
         if (state is DaemonSuccess) {
           logger.i('DaemonState is DaemonSuccess');
-          final cubit = context.read<NavigationPaneCubit>();
-          final newIndex = cubit.state + 1;
+
           Future.delayed(const Duration(seconds: 2), () {
             if (mounted) {
               cubit.setSelectedIndex(newIndex);
@@ -89,6 +90,11 @@ class _InitializingScreenState extends State<InitializingScreen> {
         }
       },
       builder: (context, daemonState) {
+        /// to-do(esmaeil): check performance cost
+        context.read<StepValidationCubit>().setStepValid(
+              stepIndex: newIndex,
+              isValid: daemonState is DaemonSuccess,
+            );
         return BlocBuilder<NavigationPaneCubit, int>(
           builder: (context, selectedIndex) {
             return StandardPageLayout(
@@ -135,16 +141,24 @@ class _InitializingScreenState extends State<InitializingScreen> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  NavigationFooterSection(
-                    selectedIndex: selectedIndex,
-                    onBackPressed: null,
-                    onNextPressed: () {
-                      context
-                          .read<NavigationPaneCubit>()
-                          .setSelectedIndex(selectedIndex + 1);
+                  BlocBuilder<DaemonCubit, DaemonState>(
+                    builder: (context, state) {
+                      return NavigationFooterSection(
+                        selectedIndex: selectedIndex,
+                        onBackPressed: () {
+                          context
+                              .read<NavigationPaneCubit>()
+                              .setSelectedIndex(selectedIndex - 1);
+                        },
+                        onNextPressed: (state is DaemonSuccess)
+                            ? () {
+                                context
+                                    .read<NavigationPaneCubit>()
+                                    .setSelectedIndex(selectedIndex + 1);
+                              }
+                            : null,
+                      );
                     },
-                    // showPrevious: false,
-                    // showNext: false,
                   ),
                 ],
               ),
