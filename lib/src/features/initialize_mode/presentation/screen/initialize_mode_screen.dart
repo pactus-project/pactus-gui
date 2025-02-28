@@ -11,6 +11,7 @@ import 'package:gui/src/features/initialize_mode/presentation/widgets/radio_butt
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/main/radio_button_cubit/presentation/radio_button_cubit.dart';
+import 'package:gui/src/features/validator_config/core/utils/methods/show_fluent_alert_method.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 /// ## [InitializeModeScreen] Class Documentation
@@ -51,8 +52,43 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 /// to-do : Currently, no app bar has been designed for this page.
 /// need to wait for the design team to redesign
 /// the page before refactoring it again by Pouria
-class InitializeModeScreen extends StatelessWidget {
+class InitializeModeScreen extends StatefulWidget {
   const InitializeModeScreen({super.key});
+
+  @override
+  State<InitializeModeScreen> createState() => _InitializeModeScreenState();
+}
+
+class _InitializeModeScreenState extends State<InitializeModeScreen> {
+  final _remoteNodeSectionKey = GlobalKey<RemoteNodeSectionState>();
+
+  void _handleNextPressed(int selectedValue) {
+    // Validate all sections before proceeding
+    switch (selectedValue) {
+      case 0:
+        context.goNamed(
+          AppRoute.initializingLocalNodePane.name,
+        );
+      case 1:
+        context.goNamed(
+          AppRoute.restoringNodePane.name,
+        );
+      case 2:
+        final isRemoteNodeValid =
+            _remoteNodeSectionKey.currentState?.validate() ?? false;
+
+        if (isRemoteNodeValid) {
+          context.goNamed(
+            AppRoute.connectingRemoteNodePane.name,
+          );
+        } else {
+          showFluentAlert(
+            context,
+            context.tr(LocaleKeys.please_input_all_fields),
+          );
+        }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +139,9 @@ class InitializeModeScreen extends StatelessWidget {
                           BlocBuilder<RadioButtonCubit, int>(
                             builder: (context, selectedValue) {
                               return selectedValue == 2
-                                  ? RemoteNodeSection()
+                                  ? RemoteNodeSection(
+                                      key: _remoteNodeSectionKey,
+                                    )
                                   : const SizedBox();
                             },
                           ),
@@ -127,22 +165,7 @@ class InitializeModeScreen extends StatelessWidget {
                         builder: (context, selectedValue) {
                           return AdaptiveTextButton(
                             text: context.tr(LocaleKeys.next),
-                            onPressed: () {
-                              switch (selectedValue) {
-                                case 0:
-                                  context.goNamed(
-                                    AppRoute.initializingLocalNodePane.name,
-                                  );
-                                case 1:
-                                  context.goNamed(
-                                    AppRoute.restoringNodePane.name,
-                                  );
-                                case 2:
-                                  context.goNamed(
-                                    AppRoute.connectingRemoteNodePane.name,
-                                  );
-                              }
-                            },
+                            onPressed: () => _handleNextPressed(selectedValue),
                             style: ButtonStyle(
                               backgroundColor: WidgetStatePropertyAll(
                                 AppColors.radioButtonActiveColor,

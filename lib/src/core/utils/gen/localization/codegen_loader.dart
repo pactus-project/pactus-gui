@@ -110,6 +110,7 @@ class CodegenLoader {
     'restoration_seed_title': 'Restoration Seed',
     'restoration_seed_description':
         'Restoration seed, your key to digital resilience and recovery',
+    'please_input_all_fields': 'Please input all fields before continuing',
   };
   static const Map<String, dynamic> frFR = {
     'title': 'Bonjour le Monde!',
@@ -196,6 +197,8 @@ class CodegenLoader {
     'restoration_seed_title': 'Graine de Restauration',
     'restoration_seed_description':
         'Graine de restauration, votre clé pour la résilience et la récupération numériques',
+    'please_input_all_fields':
+        'Veuillez entrer tous les champs avant de continuer',
   };
   static const Map<String, dynamic> esES = {
     'title': 'Hola Mundo!',
@@ -280,6 +283,8 @@ class CodegenLoader {
     'restoration_seed_title': 'Semilla de Restauración',
     'restoration_seed_description':
         'Semilla de restauración, tu clave para la resiliencia y recuperación digital',
+    'please_input_all_fields':
+        'Por favor ingrese todos los campos antes de continuar',
   };
 
   static const Map<String, Map<String, dynamic>> mapLocales = {

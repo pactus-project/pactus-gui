@@ -22,10 +22,24 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 ///   - Triggers `onChanged` callback on text change, logging the value for
 ///   debugging purposes.
 ///
-class PasswordComponent extends StatelessWidget {
+class PasswordComponent extends StatefulWidget {
   const PasswordComponent({
     super.key,
   });
+
+  @override
+  PasswordComponentState createState() => PasswordComponentState();
+}
+
+class PasswordComponentState extends State<PasswordComponent> {
+  String _passwordValue = '12345678';
+  bool isValid = false;
+
+  bool validate() {
+    final isValid = _passwordValue.isNotEmpty;
+    setState(() => this.isValid = isValid);
+    return isValid;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +53,10 @@ class PasswordComponent extends StatelessWidget {
           ),
         ),
         CustomPasswordWidget(
-          placeholder: '12345678',
+          placeholder: '********',
           width: 280,
           onChanged: (value) {
-            debugPrint('Text changed: $value');
+            _passwordValue = value;
           },
         ),
       ],

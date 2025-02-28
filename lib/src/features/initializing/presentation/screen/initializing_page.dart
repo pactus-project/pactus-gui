@@ -28,8 +28,6 @@ class _InitializingScreenState extends State<InitializingScreen> {
       'init',
       '--working-dir',
       NodeConfigData.instance.workingDirectory,
-      '--restore',
-      NodeConfigData.instance.restorationSeed!.sentence,
       if (NodeConfigData.instance.password.isNotEmpty) '--password',
       if (NodeConfigData.instance.password.isNotEmpty)
         NodeConfigData.instance.password, // Add password only if it's not empty
@@ -49,7 +47,6 @@ class _InitializingScreenState extends State<InitializingScreen> {
       ..i(
         '--working-dir ${NodeConfigData.instance.workingDirectory}',
       )
-      ..i('--restore${NodeConfigData.instance.restorationSeed!.sentence}')
       ..i(
         '--password ${NodeConfigData.instance.password}',
       )

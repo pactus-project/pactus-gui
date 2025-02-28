@@ -90,7 +90,7 @@ class CustomInputWidget extends StatelessWidget {
         child: TextBox(
           placeholder: placeholder,
           placeholderStyle: TextStyle(
-            color: AppTheme.of(context).extension<LightPallet>()!.light900,
+            color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
           ),
           onChanged: onChanged,
           maxLines: maxLines,
@@ -98,8 +98,6 @@ class CustomInputWidget extends StatelessWidget {
           readOnly: readOnly,
           autofocus: autofocus,
           textAlignVertical: TextAlignVertical.center,
-
-          // TODO(pouria): #71 there is no text style for placeholder .
           style: textStyle ??
               TextStyle(
                 fontSize: 14,
