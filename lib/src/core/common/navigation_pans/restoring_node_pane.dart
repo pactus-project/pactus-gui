@@ -1,12 +1,16 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gui/src/core/enums/app_enums.dart';
 import 'package:gui/src/core/extensions/context_extensions.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/finish/presentation/screen/finish_page.dart';
+import 'package:gui/src/features/generation_seed/core/constants/enums/seed_type_enum.dart';
+import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
 import 'package:gui/src/features/initializing/presentation/screen/initializing_page.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/master_password/presentation/screen/master_password_screen.dart';
+import 'package:gui/src/features/restoration_seed/presentation/cubits/restoration_seed_cubit.dart';
 import 'package:gui/src/features/restoration_seed/presentation/screen/restoration_seed_screen.dart';
 import 'package:gui/src/features/validator_config/presentation/screen/validator_config_screen.dart';
 
@@ -72,7 +76,18 @@ class RestoringNodePane extends StatelessWidget {
                     ),
                   ),
                 ),
-                body: RestorationSeedScreen(),
+                body: MultiBlocProvider(
+                  providers: [
+                    BlocProvider(
+                      create: (context) =>
+                          DropdownCubit<SeedTypeEnum>(SeedTypeEnum.twelve),
+                    ),
+                    BlocProvider(
+                      create: (context) => SeedTextCubit(SeedTypeEnum.twelve),
+                    ),
+                  ],
+                  child: RestorationSeedScreen(),
+                ),
               ),
               PaneItem(
                 icon: const SizedBox(),
@@ -108,7 +123,9 @@ class RestoringNodePane extends StatelessWidget {
                     ),
                   ),
                 ),
-                body: InitializingScreen(),
+                body: InitializingScreen(
+                  initialMode: InitialMode.restore,
+                ),
               ),
               PaneItem(
                 icon: const SizedBox(),

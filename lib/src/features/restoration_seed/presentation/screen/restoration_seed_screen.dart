@@ -1,9 +1,14 @@
+import 'package:bip39/bip39.dart' as bip39;
+import 'package:bip39_mnemonic/bip39_mnemonic.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/core/common/colors/app_colors.dart';
-import 'package:gui/src/core/common/widgets/adaptive_filled_button.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
 import 'package:gui/src/core/common/widgets/custom_expandable_widget.dart';
 import 'package:gui/src/core/common/widgets/seed_screen_title_section.dart';
+import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
+import 'package:gui/src/core/router/route_name.dart';
+import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/generation_seed/core/constants/enums/seed_type_enum.dart';
 import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
@@ -11,6 +16,7 @@ import 'package:gui/src/features/main/language/core/localization_extension.dart'
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/restoration_seed/presentation/cubits/restoration_seed_cubit.dart';
 import 'package:gui/src/features/restoration_seed/presentation/sections/restoration_seed_words_grid_section.dart';
+import 'package:gui/src/features/validator_config/core/utils/methods/show_fluent_alert_method.dart';
 
 /// ## [RestorationSeedScreen] Class Documentation
 ///
@@ -45,16 +51,10 @@ class RestorationSeedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => DropdownCubit<SeedTypeEnum>(SeedTypeEnum.twelve),
-        ),
-        BlocProvider(create: (context) => SeedTextCubit(SeedTypeEnum.twelve)),
-      ],
-      child: NavigationView(
+    return NavigationView(
+      content: StandardPageLayout(
         content: LayoutBuilder(
-          builder: (context, constraints) {
+          builder: (_, constraints) {
             final crossAxisCount =
                 (constraints.maxWidth / 150).floor().clamp(2, 6);
             return Stack(
@@ -101,40 +101,48 @@ class RestorationSeedScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    height: 89,
-                    padding: const EdgeInsets.only(right: 46),
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: AdaptiveFilledButton(
-                        text: LocaleKeys.next,
-                        onPressed: () {
-                          context.read<NavigationPaneCubit>().setSelectedIndex(
-                                context.read<NavigationPaneCubit>().state + 1,
-
-                                /// to-do : add logic of restoration here
-                                /// to store
-                                /// restoration eed words that user entered
-                              );
-                        },
-                        style: ButtonStyle(
-                          backgroundColor: WidgetStatePropertyAll(
-                            AppColors.radioButtonActiveColor,
-                          ),
-                          padding: WidgetStatePropertyAll(
-                            const EdgeInsets.symmetric(horizontal: 16),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
               ],
             );
+          },
+        ),
+        footer: NavigationFooterSection(
+          selectedIndex: 1,
+          onNextPressed: () {
+            final seeds = context.read<SeedTextCubit>().state;
+
+            final seedQty =
+                context.read<DropdownCubit<SeedTypeEnum>>().state.qty;
+
+            final isValidSeedQuantity =
+                seeds.where((item) => item.trim().isNotEmpty).length == seedQty;
+
+            final isValidateMnemonic = bip39.validateMnemonic(seeds.join(' '));
+
+            if (isValidSeedQuantity) {
+              if (isValidateMnemonic) {
+                NodeConfigData.instance.restorationSeed = Mnemonic.generate(
+                  Language.english,
+                  passphrase: seeds.join(' '),
+                );
+
+                context.read<NavigationPaneCubit>().setSelectedIndex(
+                      context.read<NavigationPaneCubit>().state + 1,
+                    );
+              } else {
+                showFluentAlert(
+                  context,
+                  'Invalid seeds.',
+                );
+              }
+            } else {
+              showFluentAlert(
+                context,
+                'All seeds must be filled in.',
+              );
+            }
+          },
+          onBackPressed: () {
+            context.goNamed(AppRoute.initializeMode.name);
           },
         ),
       ),

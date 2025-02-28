@@ -16,8 +16,8 @@ class NavigationFooterSection extends StatelessWidget {
     this.onSkipPressed,
   });
   final int selectedIndex;
-  final VoidCallback onNextPressed;
-  final VoidCallback onBackPressed;
+  final VoidCallback? onNextPressed;
+  final VoidCallback? onBackPressed;
   final bool showPrevious;
   final bool showNext;
   final bool showSkipButton;
@@ -33,10 +33,10 @@ class NavigationFooterSection extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // Always reserve space for Back button
-          if (selectedIndex > 0)
+          if (selectedIndex > 0 && onBackPressed != null)
             CustomOutlinedButton(
               text: 'Back',
-              onPressed: () => {},
+              onPressed: onBackPressed,
               borderColor: AppColors.primaryGray,
             )
           else

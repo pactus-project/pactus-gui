@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
+import 'package:gui/src/core/enums/app_enums.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/confirmation_seed/presentation/screen/confirmation_seed_page.dart';
 import 'package:gui/src/features/finish/presentation/screen/finish_page.dart';
@@ -48,8 +49,8 @@ import 'package:gui/src/features/validator_config/presentation/screen/validator_
 /// - Prevents skipping steps by allowing only sequential navigation.
 
 class InitializingNavigationPane extends StatelessWidget {
-  const InitializingNavigationPane({super.key});
-
+  const InitializingNavigationPane({super.key, required this.initialMode});
+  final InitialMode initialMode;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NavigationPaneCubit, int>(
@@ -139,7 +140,9 @@ class InitializingNavigationPane extends StatelessWidget {
                         : AppColors.navigationPanelDisableColor,
                   ),
                 ),
-                body: InitializingScreen(),
+                body: InitializingScreen(
+                  initialMode: initialMode,
+                ),
               ),
               PaneItem(
                 icon: const SizedBox(),
