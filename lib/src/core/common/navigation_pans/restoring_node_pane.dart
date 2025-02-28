@@ -76,14 +76,18 @@ class RestoringNodePane extends StatelessWidget {
                     ),
                   ),
                 ),
-                body: MultiBlocProvider(providers: [
-                  BlocProvider(
-                    create: (context) =>
-                        DropdownCubit<SeedTypeEnum>(SeedTypeEnum.twelve),
-                  ),
-                  BlocProvider(
-                      create: (context) => SeedTextCubit(SeedTypeEnum.twelve)),
-                ], child: RestorationSeedScreen()),
+                body: MultiBlocProvider(
+                  providers: [
+                    BlocProvider(
+                      create: (context) =>
+                          DropdownCubit<SeedTypeEnum>(SeedTypeEnum.twelve),
+                    ),
+                    BlocProvider(
+                      create: (context) => SeedTextCubit(SeedTypeEnum.twelve),
+                    ),
+                  ],
+                  child: RestorationSeedScreen(),
+                ),
               ),
               PaneItem(
                 icon: const SizedBox(),

@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
 import 'package:gui/src/core/common/widgets/custom_expandable_widget.dart';
-import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
 import 'package:gui/src/core/common/widgets/seed_screen_title_section.dart';
 import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
 import 'package:gui/src/core/router/route_name.dart';
@@ -72,11 +71,9 @@ class RestorationSeedScreen extends StatelessWidget {
                       children: [
                         const SeedScreenTitleSection(
                           title: LocaleKeys.restoration_seed_title,
-                          description:
-                              LocaleKeys.restoration_seed_description,
+                          description: LocaleKeys.restoration_seed_description,
                         ),
-                        BlocBuilder<DropdownCubit<SeedTypeEnum>,
-                            SeedTypeEnum>(
+                        BlocBuilder<DropdownCubit<SeedTypeEnum>, SeedTypeEnum>(
                           builder: (context, state) {
                             return BlocBuilder<SeedTextCubit, List<String>>(
                               builder: (context, words) {
@@ -95,8 +92,7 @@ class RestorationSeedScreen extends StatelessWidget {
                 Positioned(
                   top: 47,
                   right: 47,
-                  child:
-                      BlocBuilder<DropdownCubit<SeedTypeEnum>, SeedTypeEnum>(
+                  child: BlocBuilder<DropdownCubit<SeedTypeEnum>, SeedTypeEnum>(
                     builder: (context, state) {
                       return CustomDropdownWidget<SeedTypeEnum>(
                         items: SeedTypeEnum.values,
@@ -105,7 +101,7 @@ class RestorationSeedScreen extends StatelessWidget {
                     },
                   ),
                 ),
-               ],
+              ],
             );
           },
         ),
@@ -118,11 +114,9 @@ class RestorationSeedScreen extends StatelessWidget {
                 context.read<DropdownCubit<SeedTypeEnum>>().state.qty;
 
             final isValidSeedQuantity =
-                seeds.where((item) => item.trim().isNotEmpty).length ==
-                    seedQty;
+                seeds.where((item) => item.trim().isNotEmpty).length == seedQty;
 
-            final isValidateMnemonic =
-                bip39.validateMnemonic(seeds.join(' '));
+            final isValidateMnemonic = bip39.validateMnemonic(seeds.join(' '));
 
             if (isValidSeedQuantity) {
               if (isValidateMnemonic) {

@@ -81,7 +81,7 @@ class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
                 context
                     .read<NavigationPaneCubit>()
                     .setSelectedIndex(selectedIndex + 1);
-              }else{
+              } else {
                 showFluentAlert(
                   context,
                   'Passwords do not match !',

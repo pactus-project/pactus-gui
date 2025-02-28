@@ -33,7 +33,7 @@ class NavigationFooterSection extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // Always reserve space for Back button
-          if (selectedIndex > 0&&onBackPressed != null)
+          if (selectedIndex > 0 && onBackPressed != null)
             CustomOutlinedButton(
               text: 'Back',
               onPressed: onBackPressed,
