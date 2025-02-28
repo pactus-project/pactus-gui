@@ -1,5 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gui/src/core/enums/app_enums.dart';
 import 'package:gui/src/core/extensions/context_extensions.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/finish/presentation/screen/finish_page.dart';
@@ -118,7 +119,9 @@ class RestoringNodePane extends StatelessWidget {
                     ),
                   ),
                 ),
-                body: InitializingScreen(),
+                body: InitializingScreen(
+                  initialMode: InitialMode.restore,
+                ),
               ),
               PaneItem(
                 icon: const SizedBox(),
