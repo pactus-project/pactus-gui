@@ -1,3 +1,20 @@
+### 1.30.0+32
+
+- [feat]: Implement Master Password screen [#100](https://github.com/pactus-project/pactus-gui/pull/103)
+  - Added `MasterPasswordScreen` with new UI and functionality.
+  - Renamed "Master Password page" to "Master Password screen".
+  - Updated `CustomInputWidget` with new features.
+  - Created `MasterPasswordActionButtonWidget`, `MasterPasswordBackButtonWidget`, and `MasterPasswordFooter`.
+  - Introduced `MasterPasswordSection` for better UI structure.
+  - Added `AdaptiveFilledButton` and updated its usage in the codebase.
+  - Updated `AdaptiveTextButton`.
+  - Added `buttonBorderColor` to `AppColors`.
+  - Added new variables to translation files for better localization support.
+
+- [fix]: Add `NavigationFooterSection` to `MasterPasswordScreen` [#100](https://github.com/pactus-project/pactus-gui/pull/103)
+  - Improved navigation flow in the Master Password screen.
+  - Removed unused widgets to optimize performance.
+
 # 1.29.0+31
 
 - [Feature]: implement UI for remote connect server page [#101](https://github.com/pactus-project/pactus-gui/pull/102)

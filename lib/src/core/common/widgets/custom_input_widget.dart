@@ -21,7 +21,7 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 /// - **[placeholder]** (String):
 ///   - Placeholder text displayed inside the input field.
 ///
-/// - **[onChanged]** (ValueChanged<String>?):
+/// - **[onChanged]** (ValueChanged - String?):
 ///   - Callback triggered when the text value changes.
 ///
 /// - **[maxLines] / [minLines]** (int?):
