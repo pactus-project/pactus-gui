@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:gui/src/core/constants/configurations.dart';
+import 'package:gui/src/core/di/locator.dart';
 import 'package:gui/src/core/router/app_router.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:gui/src/features/main/language/core/language_constants.dart';
@@ -13,7 +14,10 @@ import 'src/core/common/cubits/step_validation_cubit.dart';
 import 'src/features/main/language/presentation/bloc/language_bloc.dart';
 import 'src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupSharedPreferences();
+
   runApp(
     MultiBlocProvider(
       providers: [

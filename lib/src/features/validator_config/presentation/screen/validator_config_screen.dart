@@ -10,6 +10,7 @@ import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
 import 'package:gui/src/core/enums/app_enums.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:gui/src/core/utils/storage_utils.dart';
 import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
@@ -141,15 +142,23 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
               selectedIndex: selectedIndex,
               onNextPressed: isDirectoryValid
                   ? () async {
-                      final directoryStatus = await isNotEmptyDirectory(
+                      final isDirectoryNotEmpty = await isNotEmptyDirectory(
                         text: directoryController.text,
                       );
 
+                      // Check if context is still mounted before proceeding
                       if (!context.mounted) {
                         return;
                       }
 
-                      if (directoryStatus) {
+                      // save `nodeDirectory` in `shared preferences` .
+                      // used for run cli commands in splash screen .
+                      StorageUtils.saveData(
+                        StorageUtils.nodeDirectory,
+                        directoryController.text,
+                      );
+
+                      if (isDirectoryNotEmpty) {
                         showFluentAlert(
                           context,
                           context.tr(LocaleKeys.directory_not_empty),
@@ -157,16 +166,16 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
                       } else {
                         final selectedQty =
                             context.read<DropdownCubit<ValidatorQty>>().state;
+
                         NodeConfigData.instance.validatorQty =
                             '${selectedQty.qty}';
+
                         NodeConfigData.instance.workingDirectory =
                             directoryController.text;
 
-                        if (context.mounted) {
-                          context
-                              .read<NavigationPaneCubit>()
-                              .setSelectedIndex(selectedIndex + 1);
-                        }
+                        context
+                            .read<NavigationPaneCubit>()
+                            .setSelectedIndex(selectedIndex + 1);
                       }
                     }
                   : null,
