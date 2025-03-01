@@ -1,4 +1,94 @@
-### 1.30.0+32
+### 1.33.0+35
+
+- [feat]: Implement Master Password screen
+  - Added `MasterPasswordScreen` with new UI and functionality.
+  - Renamed "Master Password page" to "Master Password screen".
+  - Updated `CustomInputWidget` with new features.
+  - Created `MasterPasswordActionButtonWidget`, `MasterPasswordBackButtonWidget`, and `MasterPasswordFooter`.
+  - Introduced `MasterPasswordSection` for better UI structure.
+  - Added `AdaptiveFilledButton` and updated its usage in the codebase.
+  - Updated `AdaptiveTextButton`.
+  - Added `buttonBorderColor` to `AppColors`.
+  - Added new variables to translation files for better localization support.
+
+- [refactor]: Update `UnlockPasswordScreen` & fix related issues
+  - Removed old password screen.
+  - Renamed `UnlockPasswordScreen`.
+  - Refactored password text field.
+  - Updated `basicRoutes` and fixed navigation to `UnlockPasswordScreen`.
+
+- [refactor]: Update `ConfirmationSeedScreen`
+  - Renamed `SeedScreenTitleSection` to `ScreenHeaderWidget` and updated references.
+  - Added `areAllWordsConfirmed` method in `ConfirmationSeedState`.
+  - Made `onNextPressed` nullable where necessary.
+  - Added `ConfirmationSeedScreen` and `ConfirmationSeedWordsGridSection`.
+  - Removed old `ConfirmationSeedPage`.
+  - Updated `ConfirmationSeedCubit`.
+  - Added new variables to translation files.
+
+- [refactor]: Fix `GenerationSeedScreen` issues
+  - Added `CustomDropdownWidget` to handle selection between 12 or 24 seed words.
+  - Fixed UI-related issues in this screen.
+
+- [refactor]: Improve navigation in `CreateLocalNodePane`
+  - Added `StepValidationCubit` to validate user steps in panels.
+  - Updated `NavigationPaneCubit` with a new `canGoBack` method.
+  - Improved panel logic on `onChanged` events.
+  - Added `stepValidation` checks on each screen in the local node creation flow.
+  - Removed unused `InitializingNavigationPane`.
+
+- [refactor]: Improve navigation in `RestoringNodePane`
+  - Added `areAllWordsEntered` logic in `SeedTextCubit` to ensure all seed words are entered.
+  - Updated `RestorationSeedScreen`.
+
+- [refactor]: Improve navigation in `ValidatorConfigScreen`
+  - Added `StepValidationCubit` to prevent navigation if the directory is not set.
+
+- [refactor]: Various improvements & optimizations
+  - Removed `canGoBack` method from `NavigationPaneCubit`.
+  - Added `maxIndex` constant to `AppConstants`.
+  - Renamed "Dashboard page" to "Dashboard screen".
+  - Updated logic in all three panels.
+  - Reformatted code for consistency.
+  - Fixed `ChipTextBox` sizes.
+  - Added `dashboardScreenRoute` to each panel route in `registrationRoutes`.
+
+- [fix]: Add `NavigationFooterSection` to `MasterPasswordScreen`
+  - Improved navigation flow in the Master Password screen.
+  - Removed unused widgets to optimize performance.
+
+# 1.32.0+34
+
+- [Fix]: Change first route to UnblockPasswordScreen if wallet has a password. [#109](https://github.com/pactus-project/pactus-gui/pull/113)
+  - Ensured that when the wallet has a password, the app correctly navigates to the `UnblockPasswordScreen` on launch.
+  - Improved security by enforcing password authentication before accessing the app.
+
+- [Fix]: Check correct password using pactus-wallet. [#109](https://github.com/pactus-project/pactus-gui/pull/113)
+  - Implemented proper password validation using `pactus-wallet` to enhance security.
+  - Resolved potential issues with incorrect password checks in the splash screen flow.
+
+# 1.31.0+33
+
+- [Fix]: Handle disable mode for back button in `NavigationFooterSection` [#97](https://github.com/pactus-project/pactus-gui/pull/112)
+  - Ensured that the back button is properly disabled when necessary.
+
+- [Fix]: Improve seed restoration handling on `Next` button [#97](https://github.com/pactus-project/pactus-gui/pull/112)
+  - Display an alert when the seed fields are filled incorrectly before proceeding.
+
+- [Fix]: Validate password match in `Master Password` screen [#97](https://github.com/pactus-project/pactus-gui/pull/112)
+  - Show an alert when passwords do not match on the `Next` button.
+
+- [Fix]: Prevent back navigation in `InitializingScreen` [#97](https://github.com/pactus-project/pactus-gui/pull/112)
+  - Restricted the back button in the `InitializingScreen` to ensure a smooth initialization process.
+
+- [Fix]: Review and update validations for `Restoration Seed` screen [#97](https://github.com/pactus-project/pactus-gui/pull/112)
+  - Improved seed verification logic on the `Next` button.
+  - Fixed back button behavior to correctly return to the previous screen.
+
+- [Fix]: Handle seed data in `InitializingScreen` for `pactus-daemon init` command [#97](https://github.com/pactus-project/pactus-gui/pull/112)
+  - Ensured proper handling of seed data when initializing a new node.
+
+# 1.30.0+32
 
 - [feat]: Implement Master Password screen [#100](https://github.com/pactus-project/pactus-gui/pull/103)
   - Added `MasterPasswordScreen` with new UI and functionality.

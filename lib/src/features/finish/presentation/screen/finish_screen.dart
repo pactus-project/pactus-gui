@@ -1,22 +1,24 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
 import 'package:gui/src/core/extensions/context_extensions.dart';
+import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/core/utils/string_extension.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
-class FinishPage extends StatefulWidget {
-  const FinishPage({super.key});
+class FinishScreen extends StatefulWidget {
+  const FinishScreen({super.key});
 
   @override
-  State<FinishPage> createState() => _FinishPageState();
+  State<FinishScreen> createState() => _FinishScreenState();
 }
 
-class _FinishPageState extends State<FinishPage> {
+class _FinishScreenState extends State<FinishScreen> {
   @override
   Widget build(BuildContext context) {
     return NavigationView(
@@ -88,7 +90,9 @@ class _FinishPageState extends State<FinishPage> {
                       alignment: AlignmentDirectional.bottomCenter,
                       child: CustomFilledButton(
                         text: LocaleKeys.go_to_dashboard,
-                        onPressed: null,
+                        onPressed: () {
+                          context.goNamed(AppRoute.dashboard.name);
+                        },
                       ),
                     ),
                   ],

@@ -19,9 +19,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NavigationPaneCubit extends Cubit<int> {
   NavigationPaneCubit() : super(0);
+  int _maxVisitedIndex = 0;
 
   void setSelectedIndex(int index) {
     if (index >= 0 && index <= 6) {
+      if (index > _maxVisitedIndex) {
+        _maxVisitedIndex = index;
+      }
       emit(index);
     }
   }

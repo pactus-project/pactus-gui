@@ -1,40 +1,14 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
+import 'package:gui/src/core/constants/app_constants.dart';
+import 'package:gui/src/core/enums/app_enums.dart';
 import 'package:gui/src/core/extensions/context_extensions.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
-import 'package:gui/src/features/finish/presentation/screen/finish_page.dart';
-import 'package:gui/src/features/initializing/presentation/screen/initializing_page.dart';
+import 'package:gui/src/features/finish/presentation/screen/finish_screen.dart';
+import 'package:gui/src/features/initializing/presentation/screen/initializing_screen.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
-
-/// ## [RemoteNodePane] Class Documentation
-///
-/// The `RemoteNodePane` class provides a navigation panel for setting up
-/// a remote node.
-/// It consists of two key steps: initialization and finalization.
-///
-/// ### Usage:
-///
-/// This navigation pane contains the following steps:
-/// - **[InitializingScreen]**: Handles the remote node initialization process.
-/// - **[FinishPage]**: Completes the setup and manages the node daemon.
-///
-/// ### Properties:
-///
-/// - **selectedIndex**:
-///   - An `int` representing the currently selected navigation index.
-///   - Managed by the `NavigationPaneCubit`.
-///
-/// - **[onChanged(index)]**:
-///   - Updates the selected index when navigating between steps.
-///   - Ensures a linear transition between setup steps.
-///
-/// ### Notes:
-///
-/// - Navigation labels are localized using `LocaleKeys`.
-/// - Selected items use colors from `AppColors` for visual distinction.
-/// - The `FinishPage` is wrapped in a `MultiBlocProvider` to initialize a
-/// `DaemonCubit` for daemon management.
 
 class RemoteNodePane extends StatelessWidget {
   const RemoteNodePane({super.key});
@@ -47,13 +21,32 @@ class RemoteNodePane extends StatelessWidget {
           pane: NavigationPane(
             displayMode: PaneDisplayMode.open,
             menuButton: const SizedBox(),
-            size: const NavigationPaneSize(
-              openMaxWidth: 209,
-            ),
+            size: const NavigationPaneSize(openMaxWidth: 209),
             selected: selectedIndex,
             onChanged: (index) {
-              if (index == selectedIndex + 1 || index == selectedIndex - 1) {
-                context.read<NavigationPaneCubit>().setSelectedIndex(index);
+              final stepValidationCubit = context.read<StepValidationCubit>();
+              final navigationCubit = context.read<NavigationPaneCubit>();
+
+              // Allow moving forward only if the previous step is valid
+              final canGoForward = index == selectedIndex + 1 &&
+                  stepValidationCubit.isStepValid(selectedIndex);
+
+              // Allow moving backward only if you're not at the first page
+              final canGoBack = index == selectedIndex - 1 &&
+                  selectedIndex < AppConstants.remoteNodeMaxIndex;
+
+              // If you've reached the first page, you won't be able to go back
+              if (selectedIndex == 1) {
+                // If you've reached the first page,
+                // going backward is not allowed
+                if (index == selectedIndex - 1) {
+                  return;
+                }
+              }
+
+              // Otherwise, allow moving forward or backward only if valid
+              if (canGoForward || canGoBack) {
+                navigationCubit.setSelectedIndex(index);
               }
             },
             indicator: const SizedBox(),
@@ -68,7 +61,9 @@ class RemoteNodePane extends StatelessWidget {
                     ),
                   ),
                 ),
-                body: InitializingScreen(),
+                body: InitializingScreen(
+                  initialMode: InitialMode.remote,
+                ),
               ),
               PaneItem(
                 icon: const SizedBox(),
@@ -80,7 +75,7 @@ class RemoteNodePane extends StatelessWidget {
                     ),
                   ),
                 ),
-                body: FinishPage(),
+                body: FinishScreen(),
               ),
             ],
           ),

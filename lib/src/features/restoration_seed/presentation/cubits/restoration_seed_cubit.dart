@@ -19,11 +19,9 @@ import 'package:gui/src/features/generation_seed/core/constants/enums/seed_type_
 ///   - Updates the seed word at the specified index with the new word value.
 ///     The state is emitted with the updated list of seed words.
 ///
-/// ### Notes:
-///
-/// - The initial state of the cubit is set based on the `SeedTypeEnum` passed
-///   during initialization, with a number of empty strings matching the seed
-///   word count (e.g., 12 or 24).
+/// - **[areAllWordsEntered()]**:
+///   - Checks if all words in the list are entered (none are empty).
+///   - Returns `true` if all words are filled; `false` otherwise.
 
 class SeedTextCubit extends Cubit<List<String>> {
   SeedTextCubit(SeedTypeEnum seedType) : super(List.filled(seedType.qty, ''));
@@ -32,5 +30,10 @@ class SeedTextCubit extends Cubit<List<String>> {
     final updatedList = List<String>.from(state);
     updatedList[index] = word;
     emit(updatedList);
+  }
+
+  /// Checks if all words are entered (no empty strings).
+  bool areAllWordsEntered() {
+    return state.every((word) => word.isNotEmpty);
   }
 }

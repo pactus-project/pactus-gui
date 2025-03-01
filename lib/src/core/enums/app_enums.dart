@@ -13,3 +13,5 @@ enum ValidatorQty {
 
   final int qty;
 }
+
+enum InitialMode { remote, create, restore }
