@@ -21,7 +21,7 @@ class ConfirmationSeedWordsGridSection extends StatelessWidget {
         crossAxisCount: crossAxisCount,
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
-        mainAxisExtent: 48,
+        childAspectRatio: 141 / 30,
       ),
       itemCount: confirmationSeedState.words.length,
       padding: EdgeInsets.zero,
