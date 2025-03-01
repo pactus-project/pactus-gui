@@ -1,4 +1,11 @@
-### 1.33.0+35
+# 1.34.0+36
+
+- [Fix]: Refactor some cli commands settings in `splash` and `unlockPassword` features [#114](https://github.com/pactus-project/pactus-gui/pull/115)
+  - change on using pactus-wallet `password` commands
+  - change on using pactus-wallet `info` commands
+  - save `node directory path` in local storage
+
+# 1.33.0+35
 
 - [feat]: Implement Master Password screen
   - Added `MasterPasswordScreen` with new UI and functionality.

@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gui/src/core/enums/app_os_separator.dart';
 import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_state.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:gui/src/core/utils/storage_utils.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
@@ -56,7 +58,7 @@ class SplashScreen extends StatelessWidget {
           if (isUndefinedNode) {
             Future.delayed(_splashDuration, () {
               if (context.mounted) {
-                context.goNamed(AppRoute.welcome.name);
+                context.goNamed(AppRoute.dashboard.name);
               }
             });
           }
@@ -101,10 +103,18 @@ class SplashScreen extends StatelessWidget {
         } else {
           if (state is DaemonInitial) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
+              final sign = AppOS.current.separator;
+              final storageKey = StorageUtils.nodeDirectory;
+
+              final nodeDirectory = '${StorageUtils.getData(
+                storageKey,
+              )}';
+              final walletPath = '${sign}wallets${sign}default_wallet';
+
               context.read<DaemonCubit>().runPactusDaemon(
                     cliCommand: CliCommand(
                       command: './pactus-wallet',
-                      arguments: ['info'],
+                      arguments: ['info', '--path', nodeDirectory + walletPath],
                     ),
                   );
             });

@@ -4,12 +4,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/common/widgets/custom_input_widget.dart';
+import 'package:gui/src/core/enums/app_os_separator.dart';
 import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_state.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:gui/src/core/utils/storage_utils.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/validator_config/core/utils/methods/show_fluent_alert_method.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
@@ -135,9 +137,26 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                           child: FilledButton(
                             onPressed: password.isNotEmpty
                                 ? () {
+                                    final sign = AppOS.current.separator;
+                                    final storageKey =
+                                        StorageUtils.nodeDirectory;
+
+                                    final nodeDirectory =
+                                        '${StorageUtils.getData(
+                                      storageKey,
+                                    )}';
+                                    final walletPath =
+                                        '${sign}wallets${sign}default_wallet';
+
                                     final cliCommand = CliCommand(
                                       command: './pactus-wallet',
-                                      arguments: ['password', password],
+                                      arguments: [
+                                        'password',
+                                        '--password',
+                                        password,
+                                        '--path',
+                                        nodeDirectory + walletPath,
+                                      ],
                                     );
                                     context.read<DaemonCubit>().runPactusDaemon(
                                           cliCommand: cliCommand,
