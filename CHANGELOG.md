@@ -1,3 +1,8 @@
+# 1.35.0+37
+
+- [Fix]: Fix bug crash when touch Next button in MasterPassword and add action back [#107](https://github.com/pactus-project/pactus-gui/pull/108)
+- [Update]: Fix height item in confirmation seed [#107](https://github.com/pactus-project/pactus-gui/pull/108)
+
 # 1.34.0+36
 
 - [Fix]: Refactor some cli commands settings in `splash` and `unlockPassword` features [#114](https://github.com/pactus-project/pactus-gui/pull/115)
