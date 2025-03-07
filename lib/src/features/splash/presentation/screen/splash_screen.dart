@@ -58,7 +58,7 @@ class SplashScreen extends StatelessWidget {
           if (isUndefinedNode) {
             Future.delayed(_splashDuration, () {
               if (context.mounted) {
-                context.goNamed(AppRoute.dashboard.name);
+                context.goNamed(AppRoute.welcome.name);
               }
             });
           }

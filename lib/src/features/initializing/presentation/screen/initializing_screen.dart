@@ -36,7 +36,7 @@ class _InitializingScreenState extends State<InitializingScreen> {
         // if (widget.initialMode == InitialMode.restore)
         '--restore',
         // if (widget.initialMode == InitialMode.restore)
-        NodeConfigData.instance.restorationSeed!.sentence,
+        NodeConfigData.instance.restorationSeed?.sentence ?? '',
         '--working-dir',
         NodeConfigData.instance.workingDirectory,
         if (NodeConfigData.instance.password.isNotEmpty) '--password',
