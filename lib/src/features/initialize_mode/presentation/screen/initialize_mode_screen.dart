@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
+import 'package:gui/src/core/common/cubits/app_accent_color_cubit.dart';
 import 'package:gui/src/core/common/widgets/adaptive_filled_button.dart';
 import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
@@ -157,23 +158,28 @@ class _InitializeModeScreenState extends State<InitializeModeScreen> {
                   child: Container(
                     height: 89,
                     color:
-                        AppTheme.of(context).extension<LightPallet>()!.light900,
+                    AppTheme.of(context).extension<LightPallet>()!.light900,
                     padding: const EdgeInsets.only(right: 46),
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: BlocBuilder<RadioButtonCubit, int>(
                         builder: (context, selectedValue) {
-                          return AdaptiveFilledButton(
-                            text: context.tr(LocaleKeys.next),
-                            onPressed: () => _handleNextPressed(selectedValue),
-                            style: ButtonStyle(
-                              backgroundColor: WidgetStatePropertyAll(
-                                AppColors.radioButtonActiveColor,
-                              ),
-                              padding: WidgetStatePropertyAll(
-                                const EdgeInsets.symmetric(horizontal: 16),
-                              ),
-                            ),
+                          return BlocBuilder<AppAccentColorCubit, Color>(
+                            builder: (context, accentColor) {
+                              return AdaptiveFilledButton(
+                                text: context.tr(LocaleKeys.next),
+                                onPressed: () =>
+                                    _handleNextPressed(selectedValue),
+                                style: ButtonStyle(
+                                  backgroundColor: WidgetStatePropertyAll(
+                                    accentColor,
+                                  ),
+                                  padding: WidgetStatePropertyAll(
+                                    const EdgeInsets.symmetric(horizontal: 16),
+                                  ),
+                                ),
+                              );
+                            },
                           );
                         },
                       ),

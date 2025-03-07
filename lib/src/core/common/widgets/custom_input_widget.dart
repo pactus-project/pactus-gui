@@ -1,69 +1,9 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
+import 'package:gui/src/core/common/cubits/app_accent_color_cubit.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
-/// ## [CustomInputWidget] Class Documentation
-///
-/// The `CustomInputWidget` is a customizable text input field that
-/// supports various configurations,
-/// including password masking, validation, and styling.
-///
-/// ### Properties:
-///
-/// - **[controller]** (TextEditingController?):
-///   - Manages the text input field. If not provided, an internal
-///   controller is used.
-///
-/// - **[confirmationController]** (TextEditingController?):
-///   - If set, validates that the input matches the text of
-///   another field (e.g., password confirmation).
-///
-/// - **[placeholder]** (String):
-///   - Placeholder text displayed inside the input field.
-///
-/// - **[onChanged]** (ValueChanged - String?):
-///   - Callback triggered when the text value changes.
-///
-/// - **[maxLines] / [minLines]** (int?):
-///   - Controls the number of lines for the input field.
-///
-/// - **[readOnly]** (bool):
-///   - If `true`, the field is non-editable.
-///
-/// - **[autofocus]** (bool):
-///   - Determines whether the field receives focus automatically.
-///
-/// - **[textStyle] / [placeHolderTextStyle]** (TextStyle?):
-///   - Defines the text styling for the input and placeholder.
-///
-/// - **[backgroundColor]** (Color?):
-///   - Background color of the input field.
-///
-/// - **[borderRadius]** (BorderRadius?):
-///   - Defines the border radius of the field.
-///
-/// - **[width]** (double?):
-///   - Specifies the width of the input field.
-///
-/// - **[obscureText]** (bool):
-///   - Enables password masking when `true`.
-///
-/// - **[obscureIcon]** (Widget?):
-///   - Custom icon to toggle password visibility.
-///
-/// ### Methods:
-///
-/// - **[validateInput()]**:
-///   - Checks if the input matches the `confirmationController`
-///   value (if provided).
-///   - Updates the error message accordingly.
-///
-/// - **[build(BuildContext context)]**:
-///   - Constructs the UI of the input field, which includes:
-///     - A `TextBox` with validation and dynamic styling.
-///     - A password visibility toggle if `obscureText` is enabled.
-///     - An error message display if validation fails.
-///
 class CustomInputWidget extends StatefulWidget {
   const CustomInputWidget({
     super.key,
@@ -159,54 +99,63 @@ class CustomInputWidgetState extends State<CustomInputWidget> {
           width: widget.width,
           height: 38,
           child: ExcludeSemantics(
-            child: TextBox(
-              controller: _controller,
-              placeholder: widget.placeholder,
-              placeholderStyle: widget.placeHolderTextStyle,
-              onChanged: (value) => validateInput(),
-              maxLines: widget.maxLines,
-              minLines: 1,
-              readOnly: widget.readOnly,
-              autofocus: widget.autofocus,
-              obscureText: _obscureText,
-              textAlignVertical: TextAlignVertical.center,
-              style: widget.textStyle?.copyWith(
-                color: errorText != null
-                    ? Colors.red
-                    : AppColors.expandableSeedTypeColor,
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-              decoration: WidgetStateProperty.resolveWith((states) {
-                final isFocused = states.isFocused;
-                return BoxDecoration(
-                  color: widget.backgroundColor ??
-                      AppTheme.of(context).extension<LightPallet>()!.light900,
-                  borderRadius: widget.borderRadius ?? BorderRadius.circular(4),
-                  border: Border.all(
+            child: BlocBuilder<AppAccentColorCubit, Color>(
+              builder: (context, accentColor) {
+                return TextBox(
+                  controller: _controller,
+                  placeholder: widget.placeholder,
+                  placeholderStyle: widget.placeHolderTextStyle,
+                  onChanged: (value) => validateInput(),
+                  maxLines: widget.maxLines,
+                  minLines: 1,
+                  readOnly: widget.readOnly,
+                  autofocus: widget.autofocus,
+                  obscureText: _obscureText,
+                  textAlignVertical: TextAlignVertical.center,
+                  style: widget.textStyle?.copyWith(
                     color: errorText != null
                         ? Colors.red
-                        : (isFocused
-                            ? AppColors.inputActiveColor
-                            : Colors.transparent),
-                    width: 2,
+                        : AppColors.expandableSeedTypeColor,
                   ),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12, vertical: 5),
+                  decoration: WidgetStateProperty.resolveWith((states) {
+                    final isFocused = states.isFocused;
+                    return BoxDecoration(
+                      color: widget.backgroundColor ??
+                          AppTheme.of(context).extension<LightPallet>()!
+                              .light900,
+                      borderRadius: widget.borderRadius ??
+                          BorderRadius.circular(4),
+                      border: Border(
+                        bottom: BorderSide(
+                          color: errorText != null
+                              ? Colors.red
+                              : (isFocused
+                              ? accentColor
+                              : Colors.transparent),
+                          width: 2,
+                        ),
+                      ),
+                    );
+                  }),
+                  suffix: widget.obscureText
+                      ? IconButton(
+                    icon: widget.obscureIcon ??
+                        Icon(
+                          _obscureText ? FluentIcons.hide3 : FluentIcons.view,
+                          color: Colors.grey,
+                          size: 19,
+                        ),
+                    onPressed: () {
+                      setState(() {
+                        _obscureText = !_obscureText;
+                      });
+                    },
+                  )
+                      : null,
                 );
-              }),
-              suffix: widget.obscureText
-                  ? IconButton(
-                      icon: widget.obscureIcon ??
-                          Icon(
-                            _obscureText ? FluentIcons.hide3 : FluentIcons.view,
-                            color: Colors.grey,
-                            size: 19,
-                          ),
-                      onPressed: () {
-                        setState(() {
-                          _obscureText = !_obscureText;
-                        });
-                      },
-                    )
-                  : null,
+              },
             ),
           ),
         ),

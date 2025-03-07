@@ -1,6 +1,8 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
+import 'package:gui/src/core/common/cubits/app_accent_color_cubit.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
@@ -64,29 +66,33 @@ class CustomRadioButton<T> extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
-            width: 16,
-            height: 16,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: AppColors.radioButtonActiveColor,
-                width: 2,
-              ),
-              color: Colors.white,
-            ),
-            child: isSelected
-                ? Center(
-                    child: Container(
-                      width: 8,
-                      height: 8,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColors.radioButtonActiveColor,
-                      ),
+          BlocBuilder<AppAccentColorCubit, Color>(
+            builder: (context, accentColor) {
+              return Container(
+                width: 16,
+                height: 16,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: accentColor,
+                    width: 2,
+                  ),
+                  color: Colors.white,
+                ),
+                child: isSelected
+                    ? Center(
+                  child: Container(
+                    width: 8,
+                    height: 8,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: accentColor,
                     ),
-                  )
-                : null,
+                  ),
+                )
+                    : null,
+              );
+            },
           ),
           const Gap(16),
           Text(
