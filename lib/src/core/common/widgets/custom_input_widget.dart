@@ -3,6 +3,83 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/common/cubits/app_accent_color_cubit.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+/// ## [CustomInputWidget] Class Documentation
+///
+/// The `CustomInputWidget` class is a customizable input field
+/// widget with various properties for user input interactions.
+/// It supports features such as obscured text, custom styling,
+/// validation, and controller management.
+///
+/// ### Properties:
+///
+/// - **[controller]**:
+///   - A `TextEditingController` used to manage the text being
+///   edited. If not provided, an internal controller is created.
+///
+/// - **[confirmationController]**:
+///   - An optional `TextEditingController` used for password
+///   confirmation input validation.
+///
+/// - **[placeholder]**:
+///   - The placeholder text displayed inside the input field.
+///
+/// - **[onChanged]**:
+///   - A callback function triggered whenever the text in the
+///   input field changes.
+///
+/// - **[maxLines]**:
+///   - The maximum number of lines the input field can expand to.
+///
+/// - **[minLines]**:
+///   - The minimum number of lines the input field will display.
+///
+/// - **[readOnly]**:
+///   - A boolean indicating whether the input field is read-only.
+///
+/// - **[autofocus]**:
+///   - A boolean indicating whether the input field should
+///   automatically gain focus upon widget build.
+///
+/// - **[textStyle]**:
+///   - A `TextStyle` for the text displayed in the input field.
+///
+/// - **[placeHolderTextStyle]**:
+///   - A `TextStyle` for the placeholder text.
+///
+/// - **[backgroundColor]**:
+///   - The background color of the input field.
+///
+/// - **[borderRadius]**:
+///   - The border radius of the input field.
+///
+/// - **[width]**:
+///   - The width of the input field.
+///
+/// - **[obscureText]**:
+///   - A boolean indicating whether the text should be obscured
+///   (e.g., for passwords).
+///
+/// - **[obscureIcon]**:
+///   - An optional custom icon displayed to toggle the obscured
+///   text visibility.
+///
+/// ### Methods:
+///
+/// - **[initState()]**:
+///   - Initializes the widget, sets up the controller, and adds listeners
+///   for input validation.
+///
+/// - **[dispose()]**:
+///   - Disposes of the internal controller and removes listeners when the
+///   widget is disposed.
+///
+/// - **[validateInput()]**:
+///   - Validates the input text, checking if it matches the confirmation text
+///   (if provided), and triggers the `onChanged` callback.
+///
+/// - **[build(BuildContext context)]**:
+///   - Builds the widget, displaying the input field and managing the text
+///   input, validation, and styling.
 
 class CustomInputWidget extends StatefulWidget {
   const CustomInputWidget({
