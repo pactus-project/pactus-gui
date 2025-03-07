@@ -65,13 +65,14 @@ class WelcomeScreen extends StatelessWidget {
 
             BlocBuilder<AppAccentColorCubit, Color>(
               builder: (context, accentColor) {
-                return AdaptiveTextButton(style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all<Color?>
-                      (accentColor),
-                ),
+                return AdaptiveTextButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        WidgetStateProperty.all<Color?>(accentColor),
+                  ),
                   text: LocaleKeys.start_button_text,
-                  textColor: AppTheme.of(context).extension<LightPallet>()!
-                      .light900,
+                  textColor:
+                      AppTheme.of(context).extension<LightPallet>()!.light900,
                   onPressed: () {
                     context.goNamed(AppRoute.initializeMode.name);
                   },

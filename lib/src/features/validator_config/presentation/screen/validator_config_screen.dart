@@ -131,8 +131,8 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
                           text: context.tr(LocaleKeys.select_folder),
                           onPressed: _chooseDirectory,
                           style: ButtonStyle(
-                            padding: WidgetStateProperty.all
-                            <EdgeInsetsDirectional?>(
+                            padding:
+                                WidgetStateProperty.all<EdgeInsetsDirectional?>(
                               const EdgeInsetsDirectional.symmetric(
                                 horizontal: 8,
                                 vertical: 4,

@@ -41,7 +41,7 @@ Future<void> main() async {
           create: (_) => StepValidationCubit(),
         ),
         BlocProvider<AppAccentColorCubit>(
-            create: (_) => AppAccentColorCubit(),
+          create: (_) => AppAccentColorCubit(),
         ),
       ],
       child: PactusGuiApp(),
@@ -62,13 +62,13 @@ class PactusGuiApp extends StatelessWidget {
               builder: (context, accentColor) {
                 final theme = isDarkMode
                     ? AppThemeData.darkTheme(accentColor).copyWith(
-                  extensions: AppThemeData.darkExtensions,
-                  typography: AppThemeData.typography,
-                )
+                        extensions: AppThemeData.darkExtensions,
+                        typography: AppThemeData.typography,
+                      )
                     : AppThemeData.lightTheme(accentColor).copyWith(
-                  extensions: AppThemeData.lightExtensions,
-                  typography: AppThemeData.typography,
-                );
+                        extensions: AppThemeData.lightExtensions,
+                        typography: AppThemeData.typography,
+                      );
                 return Builder(
                   builder: (context) {
                     return AppTheme(
@@ -77,8 +77,8 @@ class PactusGuiApp extends StatelessWidget {
                         debugShowCheckedModeBanner: false,
                         routerConfig: routerConfig,
                         title: 'Pactus Gui App',
-                        themeMode: isDarkMode ? ThemeMode.dark : ThemeMode
-                            .light,
+                        themeMode:
+                            isDarkMode ? ThemeMode.dark : ThemeMode.light,
                         theme: theme,
                         localizationsDelegates: [
                           AppLocalizations.delegate,
@@ -89,13 +89,13 @@ class PactusGuiApp extends StatelessWidget {
                         supportedLocales: AppConfigs.supportedLocales,
                         locale: languageState.selectedLanguage == null
                             ? Locale(
-                          LanguageConstants.enUS.language,
-                          LanguageConstants.enUS.country,
-                        )
+                                LanguageConstants.enUS.language,
+                                LanguageConstants.enUS.country,
+                              )
                             : Locale(
-                          languageState.selectedLanguage!.language,
-                          languageState.selectedLanguage!.country,
-                        ),
+                                languageState.selectedLanguage!.language,
+                                languageState.selectedLanguage!.country,
+                              ),
                       ),
                     );
                   },

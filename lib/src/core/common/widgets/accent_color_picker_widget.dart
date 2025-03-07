@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/common/cubits/app_accent_color_cubit.dart';
 import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+
 /// ## [AccentColorPicker] Class Documentation
 ///
 /// The `AccentColorPicker` class is a widget that allows users to select an
@@ -45,7 +46,6 @@ class AccentColorPicker extends StatelessWidget {
     final isDarkMode = context.watch<AppThemeCubit>().state;
     final colors = isDarkMode
         ? AppThemeData.darkAccentColors
-
         : AppThemeData.lightAccentColors;
 
     return Wrap(
@@ -53,7 +53,7 @@ class AccentColorPicker extends StatelessWidget {
       children: colors.map((color) {
         return GestureDetector(
           onTap: () {
-           context.read<AppAccentColorCubit>().setAccentColor(color);
+            context.read<AppAccentColorCubit>().setAccentColor(color);
           },
           child: Container(
             width: 40,

@@ -87,33 +87,32 @@ class CopyToClipboardButton extends StatelessWidget {
 
               await showDialog(
                 context: context,
-                builder: (context) =>
-                    ContentDialog(
-                      title: Text(
-                        context.tr(LocaleKeys.clipboard_dialog_title),
-                        style: InterTextStyles.bodyBold
-                            .copyWith(color: AppColors.primaryDark),
+                builder: (context) => ContentDialog(
+                  title: Text(
+                    context.tr(LocaleKeys.clipboard_dialog_title),
+                    style: InterTextStyles.bodyBold
+                        .copyWith(color: AppColors.primaryDark),
+                  ),
+                  content: Text(
+                    context.tr(LocaleKeys.clipboard_dialog_content),
+                    style: InterTextStyles.captionMedium
+                        .copyWith(color: AppColors.primaryDark),
+                  ),
+                  actions: [
+                    AdaptiveFilledButton(
+                      text: context.tr(LocaleKeys.ok),
+                      onPressed: () {
+                        if (context.mounted) {
+                          Navigator.pop(context);
+                        }
+                      },
+                      style: ButtonStyle(
+                        backgroundColor:
+                            WidgetStateProperty.all<Color?>(accentColor),
                       ),
-                      content: Text(
-                        context.tr(LocaleKeys.clipboard_dialog_content),
-                        style: InterTextStyles.captionMedium
-                            .copyWith(color: AppColors.primaryDark),
-                      ),
-                      actions: [
-                        AdaptiveFilledButton(
-                          text: context.tr(LocaleKeys.ok),
-                          onPressed: () {
-                            if (context.mounted) {
-                              Navigator.pop(context);
-                            }
-                          },
-                          style: ButtonStyle(
-                            backgroundColor: WidgetStateProperty.all<Color?>
-                              (accentColor),
-                          ),
-                        ),
-                      ],
                     ),
+                  ],
+                ),
               );
             },
             isFilled: false,

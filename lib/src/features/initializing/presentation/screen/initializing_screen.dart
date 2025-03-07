@@ -51,15 +51,18 @@ class _InitializingScreenState extends State<InitializingScreen> {
       ],
     );
     context.read<DaemonCubit>().runPactusDaemon(
-      cliCommand: initialCommand,
-    );
-    logger..i(
-      '--working-dir ${NodeConfigData.instance.workingDirectory}',
-    )..i(
-      '--password ${NodeConfigData.instance.password}',
-    )..i(
-      '--val-num ${NodeConfigData.instance.validatorQty}',
-    );
+          cliCommand: initialCommand,
+        );
+    logger
+      ..i(
+        '--working-dir ${NodeConfigData.instance.workingDirectory}',
+      )
+      ..i(
+        '--password ${NodeConfigData.instance.password}',
+      )
+      ..i(
+        '--val-num ${NodeConfigData.instance.validatorQty}',
+      );
   }
 
   @override
@@ -91,9 +94,9 @@ class _InitializingScreenState extends State<InitializingScreen> {
       builder: (context, daemonState) {
         /// to-do(esmaeil): check performance cost
         context.read<StepValidationCubit>().setStepValid(
-          stepIndex: newIndex,
-          isValid: daemonState is DaemonSuccess,
-        );
+              stepIndex: newIndex,
+              isValid: daemonState is DaemonSuccess,
+            );
         return BlocBuilder<NavigationPaneCubit, int>(
           builder: (context, selectedIndex) {
             return StandardPageLayout(
@@ -155,10 +158,10 @@ class _InitializingScreenState extends State<InitializingScreen> {
                         },
                         onNextPressed: (state is DaemonSuccess)
                             ? () {
-                          context
-                              .read<NavigationPaneCubit>()
-                              .setSelectedIndex(selectedIndex + 1);
-                        }
+                                context
+                                    .read<NavigationPaneCubit>()
+                                    .setSelectedIndex(selectedIndex + 1);
+                              }
                             : null,
                       );
                     },

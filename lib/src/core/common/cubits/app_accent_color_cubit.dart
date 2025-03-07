@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 /// ## [AppAccentColorCubit] Class Documentation
 ///
 /// The `AppAccentColorCubit` class is a cubit that manages the accent

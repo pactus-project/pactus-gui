@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/common/cubits/app_accent_color_cubit.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+
 /// ## [CustomInputWidget] Class Documentation
 ///
 /// The `CustomInputWidget` class is a customizable input field
@@ -195,22 +196,23 @@ class CustomInputWidgetState extends State<CustomInputWidget> {
                         : AppColors.expandableSeedTypeColor,
                   ),
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 12, vertical: 5,),
+                    horizontal: 12,
+                    vertical: 5,
+                  ),
                   decoration: WidgetStateProperty.resolveWith((states) {
                     final isFocused = states.isFocused;
                     return BoxDecoration(
                       color: widget.backgroundColor ??
-                          AppTheme.of(context).extension<LightPallet>()!
+                          AppTheme.of(context)
+                              .extension<LightPallet>()!
                               .light900,
-                      borderRadius: widget.borderRadius ??
-                          BorderRadius.circular(4),
+                      borderRadius:
+                          widget.borderRadius ?? BorderRadius.circular(4),
                       border: Border(
                         bottom: BorderSide(
                           color: errorText != null
                               ? Colors.red
-                              : (isFocused
-                              ? accentColor
-                              : Colors.transparent),
+                              : (isFocused ? accentColor : Colors.transparent),
                           width: 2,
                         ),
                       ),
@@ -218,18 +220,20 @@ class CustomInputWidgetState extends State<CustomInputWidget> {
                   }),
                   suffix: widget.obscureText
                       ? IconButton(
-                    icon: widget.obscureIcon ??
-                        Icon(
-                          _obscureText ? FluentIcons.hide3 : FluentIcons.view,
-                          color: Colors.grey,
-                          size: 19,
-                        ),
-                    onPressed: () {
-                      setState(() {
-                        _obscureText = !_obscureText;
-                      });
-                    },
-                  )
+                          icon: widget.obscureIcon ??
+                              Icon(
+                                _obscureText
+                                    ? FluentIcons.hide3
+                                    : FluentIcons.view,
+                                color: Colors.grey,
+                                size: 19,
+                              ),
+                          onPressed: () {
+                            setState(() {
+                              _obscureText = !_obscureText;
+                            });
+                          },
+                        )
                       : null,
                 );
               },

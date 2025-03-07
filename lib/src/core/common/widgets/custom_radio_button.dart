@@ -81,15 +81,15 @@ class CustomRadioButton<T> extends StatelessWidget {
                 ),
                 child: isSelected
                     ? Center(
-                  child: Container(
-                    width: 8,
-                    height: 8,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: accentColor,
-                    ),
-                  ),
-                )
+                        child: Container(
+                          width: 8,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: accentColor,
+                          ),
+                        ),
+                      )
                     : null,
               );
             },

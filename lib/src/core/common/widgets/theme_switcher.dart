@@ -68,8 +68,8 @@ class ThemeSwitcher extends StatelessWidget {
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                    color: AppTheme.of(context).extension<DarkPallet>()!.
-                    dark900!,
+                    color:
+                        AppTheme.of(context).extension<DarkPallet>()!.dark900!,
                   ),
                 ),
                 child: Padding(
@@ -83,7 +83,8 @@ class ThemeSwitcher extends StatelessWidget {
                       width: 14,
                       height: 14,
                       decoration: BoxDecoration(
-                        color: AppTheme.of(context).extension<DarkPallet>()!
+                        color: AppTheme.of(context)
+                            .extension<DarkPallet>()!
                             .dark900,
                         borderRadius: BorderRadius.circular(7),
                       ),
@@ -92,7 +93,6 @@ class ThemeSwitcher extends StatelessWidget {
                 ),
               ),
             ),
-
             AnimatedOpacity(
               curve: Curves.easeIn,
               opacity: isDarkMode ? 1.0 : 0.0,

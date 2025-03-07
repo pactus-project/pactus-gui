@@ -72,8 +72,8 @@ class NavigationFooterSection extends StatelessWidget {
                   CustomFilledButton(
                     text: 'Next',
                     style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all<Color?>
-                        (accentColor),
+                      backgroundColor:
+                          WidgetStateProperty.all<Color?>(accentColor),
                     ),
                     onPressed: selectedIndex < 6 ? onNextPressed : null,
                   ),
