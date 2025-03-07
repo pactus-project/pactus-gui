@@ -1,6 +1,8 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
+import 'package:gui/src/core/common/cubits/app_accent_color_cubit.dart';
 import 'package:gui/src/core/common/widgets/adaptive_text_button.dart';
 import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
 import 'package:gui/src/core/common/widgets/custom_outlined_button.dart';
@@ -20,6 +22,7 @@ class NavigationFooterSection extends StatelessWidget {
     this.showSkipButton = false,
     this.onSkipPressed,
   });
+
   final int selectedIndex;
   final VoidCallback? onNextPressed;
   final VoidCallback? onBackPressed;
@@ -54,21 +57,29 @@ class NavigationFooterSection extends StatelessWidget {
             ),
 
           // Modified Next button section with optional Skip
-          Row(
-            children: [
-              if (showSkipButton) ...[
-                AdaptiveTextButton(
-                  text: context.tr(LocaleKeys.skip),
-                  onPressed: onSkipPressed!,
-                  textColor: AppColors.inputActiveColor,
-                ),
-                const SizedBox(width: 10),
-              ],
-              CustomFilledButton(
-                text: 'Next',
-                onPressed: selectedIndex < 6 ? onNextPressed : null,
-              ),
-            ],
+          BlocBuilder<AppAccentColorCubit, Color>(
+            builder: (context, accentColor) {
+              return Row(
+                children: [
+                  if (showSkipButton) ...[
+                    AdaptiveTextButton(
+                      text: context.tr(LocaleKeys.skip),
+                      onPressed: onSkipPressed!,
+                      textColor: accentColor,
+                    ),
+                    const SizedBox(width: 10),
+                  ],
+                  CustomFilledButton(
+                    text: 'Next',
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all<Color?>
+                        (accentColor),
+                    ),
+                    onPressed: selectedIndex < 6 ? onNextPressed : null,
+                  ),
+                ],
+              );
+            },
           ),
         ],
       ),

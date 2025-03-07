@@ -118,7 +118,7 @@ class CustomInputWidgetState extends State<CustomInputWidget> {
                         : AppColors.expandableSeedTypeColor,
                   ),
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 12, vertical: 5),
+                      horizontal: 12, vertical: 5,),
                   decoration: WidgetStateProperty.resolveWith((states) {
                     final isFocused = states.isFocused;
                     return BoxDecoration(
