@@ -1,3 +1,8 @@
+# 1.37.0+39
+
+### [Fix]
+- Resolve initialization bug in remote node connection step [#116](https://github.com/pactus-project/pactus-gui/pull/119)
+
 # 1.36.0+38
 
 ### [Feature]
@@ -20,12 +25,16 @@
 
 # 1.35.0+37
 
-- [Fix]: Fix bug crash when touch Next button in MasterPassword and add action back [#107](https://github.com/pactus-project/pactus-gui/pull/108)
-- [Update]: Fix height item in confirmation seed [#107](https://github.com/pactus-project/pactus-gui/pull/108)
+### [Fix]
+- Fixed crash when tapping the "Next" button in `MasterPassword` and added back action [#107](https://github.com/pactus-project/pactus-gui/pull/108)
+
+### [Update]
+- Adjusted item height in `ConfirmationSeed` screen [#107](https://github.com/pactus-project/pactus-gui/pull/108)
 
 # 1.34.0+36
 
-- [Fix]: Refactor some cli commands settings in `splash` and `unlockPassword` features [#114](https://github.com/pactus-project/pactus-gui/pull/115)
+### [Fix]
+- Refactor some cli commands settings in `splash` and `unlockPassword` features [#114](https://github.com/pactus-project/pactus-gui/pull/115)
   - change on using pactus-wallet `password` commands
   - change on using pactus-wallet `info` commands
   - save `node directory path` in local storage
