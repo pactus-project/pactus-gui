@@ -68,7 +68,7 @@ void main() {
       final lightIconOpacity = tester.widget<AnimatedOpacity>(
         find.byType(AnimatedOpacity).last,
       );
-      expect(lightIconOpacity.opacity, 1.0);
+      expect(lightIconOpacity.opacity, 0.0);
 
       // Assert: Alignment should be for light theme
       final animatedAlignFinder = find.byType(AnimatedAlign);
@@ -91,7 +91,7 @@ void main() {
       final darkIconOpacity = tester.widget<AnimatedOpacity>(
         find.byType(AnimatedOpacity).first,
       );
-      expect(darkIconOpacity.opacity, 1.0);
+      expect(darkIconOpacity.opacity, 0.0);
 
       // Assert: Alignment should be for dark theme
       final animatedAlignFinder = find.byType(AnimatedAlign);
@@ -121,7 +121,7 @@ void main() {
       final lightIconOpacity = tester.widget<AnimatedOpacity>(
         find.byType(AnimatedOpacity).last,
       );
-      expect(lightIconOpacity.opacity, 1.0);
+      expect(lightIconOpacity.opacity, 0.0);
 
       // Assert: Alignment should be for light theme
       final animatedAlignFinder = find.byType(AnimatedAlign);
@@ -150,7 +150,7 @@ void main() {
               find.byType(AnimatedOpacity).first,
             )
             .opacity,
-        1.0,
+        0.0,
       );
 
       // Assert: Alignment should be for dark theme

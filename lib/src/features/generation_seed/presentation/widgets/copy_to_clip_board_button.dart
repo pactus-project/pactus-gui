@@ -1,5 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
+import 'package:gui/src/core/common/cubits/app_accent_color_cubit.dart';
 import 'package:gui/src/core/common/widgets/adaptive_filled_button.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
@@ -59,54 +61,63 @@ class CopyToClipboardButton extends StatelessWidget {
     required this.copyClipboardFunction,
     super.key,
   });
+
   final Future<void> Function() copyClipboardFunction;
 
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.centerRight,
-      child: AdaptiveFilledButton(
-        textColor: AppColors.radioButtonActiveColor,
-        icon: const Icon(
-          FluentIcons.copy,
-          size: 16,
-          color: AppColors.radioButtonActiveColor,
-        ),
-        text: LocaleKeys.copy_to_clipboard,
-        onPressed: () async {
-          await copyClipboardFunction();
-
-          if (!context.mounted) {
-            return;
-          }
-
-          await showDialog(
-            context: context,
-            builder: (context) => ContentDialog(
-              title: Text(
-                context.tr(LocaleKeys.clipboard_dialog_title),
-                style: InterTextStyles.bodyBold
-                    .copyWith(color: AppColors.primaryDark),
-              ),
-              content: Text(
-                context.tr(LocaleKeys.clipboard_dialog_content),
-                style: InterTextStyles.captionMedium
-                    .copyWith(color: AppColors.primaryDark),
-              ),
-              actions: [
-                AdaptiveFilledButton(
-                  text: context.tr(LocaleKeys.ok),
-                  onPressed: () {
-                    if (context.mounted) {
-                      Navigator.pop(context);
-                    }
-                  },
-                ),
-              ],
+      child: BlocBuilder<AppAccentColorCubit, Color>(
+        builder: (context, accentColor) {
+          return AdaptiveFilledButton(
+            textColor: accentColor,
+            icon: Icon(
+              FluentIcons.copy,
+              size: 16,
+              color: accentColor,
             ),
+            text: LocaleKeys.copy_to_clipboard,
+            onPressed: () async {
+              await copyClipboardFunction();
+
+              if (!context.mounted) {
+                return;
+              }
+
+              await showDialog(
+                context: context,
+                builder: (context) => ContentDialog(
+                  title: Text(
+                    context.tr(LocaleKeys.clipboard_dialog_title),
+                    style: InterTextStyles.bodyBold
+                        .copyWith(color: AppColors.primaryDark),
+                  ),
+                  content: Text(
+                    context.tr(LocaleKeys.clipboard_dialog_content),
+                    style: InterTextStyles.captionMedium
+                        .copyWith(color: AppColors.primaryDark),
+                  ),
+                  actions: [
+                    AdaptiveFilledButton(
+                      text: context.tr(LocaleKeys.ok),
+                      onPressed: () {
+                        if (context.mounted) {
+                          Navigator.pop(context);
+                        }
+                      },
+                      style: ButtonStyle(
+                        backgroundColor:
+                            WidgetStateProperty.all<Color?>(accentColor),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+            isFilled: false,
           );
         },
-        isFilled: false,
       ),
     );
   }

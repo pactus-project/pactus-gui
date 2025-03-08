@@ -1,3 +1,23 @@
+# 1.36.0+38
+
+### [Feature]
+- Implemented accent color feature in the GUI app [#117](https://github.com/pactus-project/pactus-gui/pull/120)
+  - Added `AccentColorPicker` for selecting accent colors [#117](https://github.com/pactus-project/pactus-gui/pull/120)
+  - Created `AppAccentColorCubit` for managing the accent color state [#117](https://github.com/pactus-project/pactus-gui/pull/120)
+  - Provided `AppAccentColorCubit` in the main file for global access [#117](https://github.com/pactus-project/pactus-gui/pull/120)
+  - Updated `ThemeSwitcher` to support accent color changes [#117](https://github.com/pactus-project/pactus-gui/pull/120)
+  - Updated `WelcomeScreen` to reflect accent color logic [#117](https://github.com/pactus-project/pactus-gui/pull/120)
+
+### [Refactor]
+- Updated `InitializeModeScreen` to integrate accent color logic [#117](https://github.com/pactus-project/pactus-gui/pull/120)
+  - Modified `CustomRadioButton` and `CustomInputWidget` to support accent colors [#117](https://github.com/pactus-project/pactus-gui/pull/120)
+- Refactored multiple screens to handle accent color logic: [#117](https://github.com/pactus-project/pactus-gui/pull/120)
+  - Updated `CopyToClipboardButton` [#117](https://github.com/pactus-project/pactus-gui/pull/120)
+  - Updated `FinishScreen` [#117](https://github.com/pactus-project/pactus-gui/pull/120)
+  - Updated `InitializingScreen` [#117](https://github.com/pactus-project/pactus-gui/pull/120)
+  - Updated `NavigationFooterSection` [#117](https://github.com/pactus-project/pactus-gui/pull/120)
+  - Updated `ValidatorConfigScreen` [#117](https://github.com/pactus-project/pactus-gui/pull/120)
+
 # 1.35.0+37
 
 - [Fix]: Fix bug crash when touch Next button in MasterPassword and add action back [#107](https://github.com/pactus-project/pactus-gui/pull/108)
