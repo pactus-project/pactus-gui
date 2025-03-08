@@ -2,6 +2,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:gui/src/core/common/cubits/app_accent_color_cubit.dart';
 import 'package:gui/src/core/constants/configurations.dart';
 import 'package:gui/src/core/di/locator.dart';
 import 'package:gui/src/core/router/app_router.dart';
@@ -39,6 +40,9 @@ Future<void> main() async {
         BlocProvider<StepValidationCubit>(
           create: (_) => StepValidationCubit(),
         ),
+        BlocProvider<AppAccentColorCubit>(
+          create: (_) => AppAccentColorCubit(),
+        ),
       ],
       child: PactusGuiApp(),
     ),
@@ -54,46 +58,47 @@ class PactusGuiApp extends StatelessWidget {
       builder: (context, languageState) {
         return BlocBuilder<AppThemeCubit, bool>(
           builder: (context, isDarkMode) {
-            final theme = isDarkMode
-                ? AppThemeData.darkTheme(
-                    AppThemeData.darkAccentColors[0],
-                  ).copyWith(
-                    extensions: AppThemeData.darkExtensions,
-                    typography: AppThemeData.typography,
-                  )
-                : AppThemeData.lightTheme(
-                    AppThemeData.lightAccentColors[0],
-                  ).copyWith(
-                    extensions: AppThemeData.lightExtensions,
-                    typography: AppThemeData.typography,
-                  );
-            return Builder(
-              builder: (context) {
-                return AppTheme(
-                  themeData: theme,
-                  child: FluentApp.router(
-                    debugShowCheckedModeBanner: false,
-                    routerConfig: routerConfig,
-                    title: 'Pactus Gui App',
-                    themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,
-                    theme: theme,
-                    localizationsDelegates: [
-                      AppLocalizations.delegate,
-                      GlobalMaterialLocalizations.delegate,
-                      GlobalWidgetsLocalizations.delegate,
-                      GlobalCupertinoLocalizations.delegate,
-                    ],
-                    supportedLocales: AppConfigs.supportedLocales,
-                    locale: languageState.selectedLanguage == null
-                        ? Locale(
-                            LanguageConstants.enUS.language,
-                            LanguageConstants.enUS.country,
-                          )
-                        : Locale(
-                            languageState.selectedLanguage!.language,
-                            languageState.selectedLanguage!.country,
-                          ),
-                  ),
+            return BlocBuilder<AppAccentColorCubit, Color>(
+              builder: (context, accentColor) {
+                final theme = isDarkMode
+                    ? AppThemeData.darkTheme(accentColor).copyWith(
+                        extensions: AppThemeData.darkExtensions,
+                        typography: AppThemeData.typography,
+                      )
+                    : AppThemeData.lightTheme(accentColor).copyWith(
+                        extensions: AppThemeData.lightExtensions,
+                        typography: AppThemeData.typography,
+                      );
+                return Builder(
+                  builder: (context) {
+                    return AppTheme(
+                      themeData: theme,
+                      child: FluentApp.router(
+                        debugShowCheckedModeBanner: false,
+                        routerConfig: routerConfig,
+                        title: 'Pactus Gui App',
+                        themeMode:
+                            isDarkMode ? ThemeMode.dark : ThemeMode.light,
+                        theme: theme,
+                        localizationsDelegates: [
+                          AppLocalizations.delegate,
+                          GlobalMaterialLocalizations.delegate,
+                          GlobalWidgetsLocalizations.delegate,
+                          GlobalCupertinoLocalizations.delegate,
+                        ],
+                        supportedLocales: AppConfigs.supportedLocales,
+                        locale: languageState.selectedLanguage == null
+                            ? Locale(
+                                LanguageConstants.enUS.language,
+                                LanguageConstants.enUS.country,
+                              )
+                            : Locale(
+                                languageState.selectedLanguage!.language,
+                                languageState.selectedLanguage!.country,
+                              ),
+                      ),
+                    );
+                  },
                 );
               },
             );

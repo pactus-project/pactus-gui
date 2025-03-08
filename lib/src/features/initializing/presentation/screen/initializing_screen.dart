@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gui/src/core/common/cubits/app_accent_color_cubit.dart';
 import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
 import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
 import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
@@ -18,7 +19,9 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class InitializingScreen extends StatefulWidget {
   const InitializingScreen({super.key, required this.initialMode});
+
   final InitialMode initialMode;
+
   @override
   State<InitializingScreen> createState() => _InitializingScreenState();
 }
@@ -66,7 +69,6 @@ class _InitializingScreenState extends State<InitializingScreen> {
   Widget build(BuildContext context) {
     final theme = FluentTheme.of(context);
     final colors = AppTheme.of(context).extension<DarkPallet>()!;
-    final bluePallet = AppTheme.of(context).extension<BluePallet>()!;
     final cubit = context.read<NavigationPaneCubit>();
     final newIndex = cubit.state + 1;
     return BlocConsumer<DaemonCubit, DaemonState>(
@@ -135,9 +137,13 @@ class _InitializingScreenState extends State<InitializingScreen> {
                   SizedBox(
                     width: 700,
                     height: 4,
-                    child: ProgressBar(
-                      activeColor: bluePallet.blue400,
-                      backgroundColor: colors.dark100,
+                    child: BlocBuilder<AppAccentColorCubit, Color>(
+                      builder: (context, accentColor) {
+                        return ProgressBar(
+                          activeColor: accentColor,
+                          backgroundColor: colors.dark100,
+                        );
+                      },
                     ),
                   ),
                   const SizedBox(height: 20),

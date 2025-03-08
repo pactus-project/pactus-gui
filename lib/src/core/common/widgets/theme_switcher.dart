@@ -5,60 +5,56 @@ import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
-/// ### [ThemeSwitcher] Widget documentation
+/// ## [ThemeSwitcher] Class Documentation
 ///
-/// A custom widget that toggles between light and dark themes using an
-/// animated switch. It provides a smooth user experience with visually
-/// engaging transitions between the themes.
+/// The `ThemeSwitcher` class is a widget that allows users to toggle between
+/// light and dark themes in the application.
+/// It listens to the state of the `AppThemeCubit` and updates the UI
+/// accordingly, providing a visual indicator of the current theme mode.
 ///
-/// #### Key Features:
-/// - Utilizes `Theme.of(context)` to check the current theme mode.
-/// - Displays different icons for light and dark themes with animated
-///   opacity.
-/// - Includes an interactive switch with animations for theme toggling.
-/// - Relies on `ThemeBloc` for state management and theme updates.
+/// ### Properties:
 ///
-/// #### Widget Structure:
-/// 1. **Icons**: Displays a moon icon for the dark theme and a sun icon for
-///    the light theme with opacity animations.
-/// 2. **Switch**: An interactive container that acts as a theme toggle
-///    with animated alignment and styling.
+/// - **[BlocBuilder]**:
+///   - Listens for theme changes from the `AppThemeCubit` and rebuilds the
+///   widget when the theme mode changes (dark or light).
 ///
-/// #### Interaction:
-/// - On tapping the switch, a `ThemeChanged` event is dispatched to the
-///   `ThemeBloc` to update the theme mode.
+/// ### Methods:
 ///
-/// #### Animations:
-/// - Icons fade in and out with an `AnimatedOpacity` widget.
-/// - Switch thumb aligns to the left or right using `AnimatedAlign`.
-/// - Switch background adjusts its appearance with an `AnimatedContainer`.
+/// - **[build(BuildContext context)]**:
+///   - Builds the widget tree, displaying an animated switcher between dark
+///   and light mode icons.
+///   - Uses `AnimatedOpacity` to smoothly transition between dark and light
+///   mode icons based on the current theme.
+///   - Uses `AnimatedAlign` within an `AnimatedContainer` to create a sliding
+///   effect for the theme switcher toggle.
 ///
-/// #### Example:
-/// ```dart
-/// ThemeSwitcher();
+/// ### Notes:
 ///
+/// - The switcher uses `SvgPicture.asset` to display icons for both dark and
+/// light modes, switching between them based on the current theme mode.
+/// - The widget includes an animated transition for smooth visual effects
+/// during theme changes.
+
 class ThemeSwitcher extends StatelessWidget {
   const ThemeSwitcher({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AppThemeCubit, bool>(
-      builder: (context, isDarkTheme) {
+      builder: (context, isDarkMode) {
         const duration = Duration(milliseconds: 200);
 
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Dark mode icon
             AnimatedOpacity(
               curve: Curves.easeIn,
-              opacity: isDarkTheme ? 1.0 : 0.0,
+              opacity: isDarkMode ? 0.0 : 1.0,
               duration: duration,
               child: SvgPicture.asset(
-                Assets.icons.icLightMode,
+                Assets.icons.icDarkMode,
               ),
             ),
-            // Switch
             GestureDetector(
               onTap: () {
                 context.read<AppThemeCubit>().toggleTheme();
@@ -80,7 +76,7 @@ class ThemeSwitcher extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 3),
                   child: AnimatedAlign(
                     duration: const Duration(milliseconds: 100),
-                    alignment: isDarkTheme
+                    alignment: isDarkMode
                         ? Alignment.centerLeft
                         : Alignment.centerRight,
                     child: Container(
@@ -97,13 +93,12 @@ class ThemeSwitcher extends StatelessWidget {
                 ),
               ),
             ),
-            // Light mode icon
             AnimatedOpacity(
               curve: Curves.easeIn,
-              opacity: isDarkTheme ? 0.0 : 1.0,
+              opacity: isDarkMode ? 1.0 : 0.0,
               duration: duration,
               child: SvgPicture.asset(
-                Assets.icons.icDarkMode,
+                Assets.icons.icLightMode,
               ),
             ),
           ],
