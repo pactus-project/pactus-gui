@@ -58,16 +58,14 @@ class PactusGuiApp extends StatelessWidget {
       builder: (context, languageState) {
         return BlocBuilder<AppThemeCubit, bool>(
           builder: (context, isDarkMode) {
-            return BlocBuilder<AppAccentColorCubit, Color>(
-              builder: (context, accentColor) {
+            return BlocBuilder<AppAccentColorCubit, int>(
+              builder: (context, accentColorId) {
                 final theme = isDarkMode
-                    ? AppThemeData.darkTheme(accentColor).copyWith(
-                        extensions: AppThemeData.darkExtensions,
-                        typography: AppThemeData.typography,
+                    ? AppThemeData.darkTheme(
+                        AccentPallet.dark.getByIndex(accentColorId),
                       )
-                    : AppThemeData.lightTheme(accentColor).copyWith(
-                        extensions: AppThemeData.lightExtensions,
-                        typography: AppThemeData.typography,
+                    : AppThemeData.lightTheme(
+                        AccentPallet.light.getByIndex(accentColorId),
                       );
                 return Builder(
                   builder: (context) {

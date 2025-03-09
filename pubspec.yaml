@@ -34,7 +34,7 @@ dependencies:
   json_annotation: ^4.9.0
   logger: ^1.4.0
   pactus_gui_widgetbook:
-    #    path: ../pactus-gui-widgetbook
+#        path: ../../pactus_gui_widgetbook
     git:
       url: https://github.com/pactus-project/pactus-gui-widgetbook.git
       ref: main

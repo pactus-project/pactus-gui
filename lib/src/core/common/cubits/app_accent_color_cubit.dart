@@ -42,27 +42,23 @@ import 'package:gui/src/core/utils/storage_utils.dart';
 /// - The color is stored in an integer format (ARGB) for efficient storage
 /// and retrieval.
 
-class AppAccentColorCubit extends Cubit<Color> {
-  AppAccentColorCubit() : super(const Color(0xFF0F6CBD)) {
+class AppAccentColorCubit extends Cubit<int> {
+  AppAccentColorCubit() : super(1) {
     _loadAccentColor();
   }
 
   void _loadAccentColor() {
     final accentColorValue =
-        StorageUtils.getData<int>(StorageKeys.savedAccentColor) ?? 0xFF0F6CBD;
-    emit(Color(accentColorValue));
+        StorageUtils.getData<int>(StorageKeys.savedAccentColor) ?? 0;
+    emit(accentColorValue);
   }
 
-  void setAccentColor(Color color) {
-    final alpha = (color.a * 255).toInt();
-    final red = (color.r * 255).toInt();
-    final green = (color.g * 255).toInt();
-    final blue = (color.b * 255).toInt();
-
-    final colorValue = (alpha << 24) | (red << 16) | (green << 8) | blue;
-
-    StorageUtils.saveData(StorageKeys.savedAccentColor, colorValue);
-
-    emit(color);
+  void setAccentColor(int colorId) {
+    StorageUtils.saveData(StorageKeys.savedAccentColor, colorId);
+    emit(colorId);
+  }
+  void replaceAccentColor() {
+    StorageUtils.saveData(StorageKeys.savedAccentColor, state);
+    emit(state);
   }
 }

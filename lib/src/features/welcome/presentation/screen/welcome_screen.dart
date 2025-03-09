@@ -1,6 +1,8 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gui/src/core/common/cubits/app_accent_color_cubit.dart';
 import 'package:gui/src/core/common/widgets/accent_color_picker_widget.dart';
 import 'package:gui/src/core/common/widgets/adaptive_text_button.dart';
 import 'package:gui/src/core/common/widgets/theme_switcher.dart';
@@ -8,6 +10,7 @@ import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
+import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -47,7 +50,16 @@ class WelcomeScreen extends StatelessWidget {
             /// to-do #117: these ThemeSwitcher & text & AccentColorPicker
             /// widgets are temporary so after we codeing setting screen
             /// they shit to there.
-            const ThemeSwitcher(),
+            BlocConsumer<AppThemeCubit, bool>(
+              listener: (context, isDarkTheme) {
+                if (isDarkTheme) {
+                  context.read<AppAccentColorCubit>().replaceAccentColor();
+                }
+              },
+              builder: (context, isDarkMode) {
+                return const ThemeSwitcher();
+              },
+            ),
             const Gap(16),
             Text(
               'choose your Accent Color:',
@@ -67,8 +79,9 @@ class WelcomeScreen extends StatelessWidget {
                 ),
               ),
               text: LocaleKeys.start_button_text,
-              textColor:
-                  AppTheme.of(context).extension<LightPallet>()!.light900,
+              textColor: AppTheme.of(context)
+                  .extension<OnAccentPallet>()!
+                  .onAccentColor,
               onPressed: () {
                 context.goNamed(AppRoute.initializeMode.name);
               },
