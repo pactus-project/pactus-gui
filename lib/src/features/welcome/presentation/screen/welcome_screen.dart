@@ -1,8 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gui/src/core/common/cubits/app_accent_color_cubit.dart';
 import 'package:gui/src/core/common/widgets/accent_color_picker_widget.dart';
 import 'package:gui/src/core/common/widgets/adaptive_text_button.dart';
 import 'package:gui/src/core/common/widgets/theme_switcher.dart';
@@ -62,21 +60,17 @@ class WelcomeScreen extends StatelessWidget {
             const Gap(16),
             const AccentColorPicker(),
             const Gap(16),
-
-            BlocBuilder<AppAccentColorCubit, Color>(
-              builder: (context, accentColor) {
-                return AdaptiveTextButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        WidgetStateProperty.all<Color?>(accentColor),
-                  ),
-                  text: LocaleKeys.start_button_text,
-                  textColor:
-                      AppTheme.of(context).extension<LightPallet>()!.light900,
-                  onPressed: () {
-                    context.goNamed(AppRoute.initializeMode.name);
-                  },
-                );
+            AdaptiveTextButton(
+              style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.all<Color?>(
+                  FluentTheme.of(context).accentColor,
+                ),
+              ),
+              text: LocaleKeys.start_button_text,
+              textColor:
+                  AppTheme.of(context).extension<LightPallet>()!.light900,
+              onPressed: () {
+                context.goNamed(AppRoute.initializeMode.name);
               },
             ),
             const Gap(50),

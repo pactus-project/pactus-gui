@@ -1,9 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gui/src/core/common/cubits/app_accent_color_cubit.dart';
 import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
 import 'package:gui/src/core/extensions/context_extensions.dart';
 import 'package:gui/src/core/router/route_name.dart';
@@ -90,19 +88,16 @@ class _FinishScreenState extends State<FinishScreen> {
                     ),
                     Align(
                       alignment: AlignmentDirectional.bottomCenter,
-                      child: BlocBuilder<AppAccentColorCubit, Color>(
-                        builder: (context, accentColor) {
-                          return CustomFilledButton(
-                            text: LocaleKeys.go_to_dashboard,
-                            onPressed: () {
-                              context.goNamed(AppRoute.dashboard.name);
-                            },
-                            style: ButtonStyle(
-                              backgroundColor:
-                                  WidgetStateProperty.all<Color?>(accentColor),
-                            ),
-                          );
+                      child: CustomFilledButton(
+                        text: LocaleKeys.go_to_dashboard,
+                        onPressed: () {
+                          context.goNamed(AppRoute.dashboard.name);
                         },
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all<Color?>(
+                            FluentTheme.of(context).accentColor,
+                          ),
+                        ),
                       ),
                     ),
                   ],

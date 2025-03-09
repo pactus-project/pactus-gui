@@ -1,7 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:gui/src/core/common/cubits/app_accent_color_cubit.dart';
 import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
 import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
 import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
@@ -137,13 +136,9 @@ class _InitializingScreenState extends State<InitializingScreen> {
                   SizedBox(
                     width: 700,
                     height: 4,
-                    child: BlocBuilder<AppAccentColorCubit, Color>(
-                      builder: (context, accentColor) {
-                        return ProgressBar(
-                          activeColor: accentColor,
-                          backgroundColor: colors.dark100,
-                        );
-                      },
+                    child: ProgressBar(
+                      activeColor: FluentTheme.of(context).accentColor,
+                      backgroundColor: colors.dark100,
                     ),
                   ),
                   const SizedBox(height: 20),
