@@ -142,7 +142,7 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                                         StorageUtils.nodeDirectory;
 
                                     final nodeDirectory =
-                                        '${StorageUtils.getData(
+                                        '${StorageUtils.getData<String>(
                                       storageKey,
                                     )}';
                                     final walletPath =

@@ -106,7 +106,7 @@ class SplashScreen extends StatelessWidget {
               final sign = AppOS.current.separator;
               final storageKey = StorageUtils.nodeDirectory;
 
-              final nodeDirectory = '${StorageUtils.getData(
+              final nodeDirectory = '${StorageUtils.getData<String>(
                 storageKey,
               )}';
               final walletPath = '${sign}wallets${sign}default_wallet';
