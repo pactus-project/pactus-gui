@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
 import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
 import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
+import 'package:gui/src/core/constants/cli_constants.dart';
 import 'package:gui/src/core/enums/app_enums.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
@@ -32,20 +33,21 @@ class _InitializingScreenState extends State<InitializingScreen> {
   void initState() {
     super.initState();
     final initialCommand = CliCommand(
-      command: './pactus-daemon',
+      command: CliConstants.pactusDaemon,
       arguments: [
-        'init',
+        CliConstants.init,
         // if (widget.initialMode == InitialMode.restore)
-        '--restore',
+        CliConstants.dashDashRestore,
         // if (widget.initialMode == InitialMode.restore)
         NodeConfigData.instance.restorationSeed?.sentence ?? '',
-        '--working-dir',
+        CliConstants.dashDashWorkingDir,
         NodeConfigData.instance.workingDirectory,
-        if (NodeConfigData.instance.password.isNotEmpty) '--password',
+        if (NodeConfigData.instance.password.isNotEmpty)
+          CliConstants.dashDashPassword,
         if (NodeConfigData.instance.password.isNotEmpty)
           NodeConfigData
               .instance.password, // Add password only if it's not empty
-        '--val-num',
+        CliConstants.dashDashValNum,
         NodeConfigData.instance.validatorQty,
       ],
     );
@@ -54,13 +56,16 @@ class _InitializingScreenState extends State<InitializingScreen> {
         );
     logger
       ..i(
-        '--working-dir ${NodeConfigData.instance.workingDirectory}',
+        '${CliConstants.dashDashWorkingDir} '
+        '${NodeConfigData.instance.workingDirectory}',
       )
       ..i(
-        '--password ${NodeConfigData.instance.password}',
+        '${CliConstants.dashDashPassword} '
+        '${NodeConfigData.instance.password}',
       )
       ..i(
-        '--val-num ${NodeConfigData.instance.validatorQty}',
+        '${CliConstants.dashDashValNum} '
+        '${NodeConfigData.instance.validatorQty}',
       );
   }
 

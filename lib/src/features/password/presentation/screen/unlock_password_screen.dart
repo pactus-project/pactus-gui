@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/common/widgets/custom_input_widget.dart';
+import 'package:gui/src/core/constants/cli_constants.dart';
 import 'package:gui/src/core/enums/app_os_separator.dart';
 import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
@@ -146,15 +147,16 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                                       storageKey,
                                     )}';
                                     final walletPath =
-                                        '${sign}wallets${sign}default_wallet';
+                                        '$sign${CliConstants.wallets}'
+                                        '$sign${CliConstants.defaultWallet}';
 
                                     final cliCommand = CliCommand(
-                                      command: './pactus-wallet',
+                                      command: CliConstants.pactusWallet,
                                       arguments: [
-                                        'password',
-                                        '--password',
+                                        CliConstants.password,
+                                        CliConstants.dashDashPassword,
                                         password,
-                                        '--path',
+                                        CliConstants.dashDashPath,
                                         nodeDirectory + walletPath,
                                       ],
                                     );

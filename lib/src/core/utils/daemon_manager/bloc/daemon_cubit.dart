@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gui/src/core/constants/cli_constants.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
 import 'package:logger/logger.dart';
 import 'package:path/path.dart' show dirname, join;
@@ -116,7 +117,7 @@ class DaemonCubit extends Cubit<DaemonState> {
       // bypass password-less wallet cli and init node
       if (cliCommand.command == './pactus-daemon' &&
           cliCommand.arguments.first == 'init' &&
-          !cliCommand.arguments.contains('password')) {
+          !cliCommand.arguments.contains(CliConstants.password)) {
         // Writing password interactively
         process.stdin.writeln();
 
@@ -126,8 +127,8 @@ class DaemonCubit extends Cubit<DaemonState> {
         });
       }
 
-      if (cliCommand.command == './pactus-wallet' &&
-          cliCommand.arguments[0] == 'password') {
+      if (cliCommand.command == CliConstants.pactusWallet &&
+          cliCommand.arguments[0] == CliConstants.password) {
         final pass = cliCommand.arguments[2];
         // Writing password interactively
         process.stdin.writeln(pass);
