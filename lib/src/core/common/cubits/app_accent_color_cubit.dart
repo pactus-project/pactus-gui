@@ -1,4 +1,3 @@
-import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/constants/storage_keys.dart';
 import 'package:gui/src/core/utils/storage_utils.dart';
@@ -57,6 +56,7 @@ class AppAccentColorCubit extends Cubit<int> {
     StorageUtils.saveData(StorageKeys.savedAccentColor, colorId);
     emit(colorId);
   }
+
   void replaceAccentColor() {
     StorageUtils.saveData(StorageKeys.savedAccentColor, state);
     emit(state);
