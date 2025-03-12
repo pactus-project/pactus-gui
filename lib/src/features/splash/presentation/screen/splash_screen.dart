@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gui/src/core/constants/cli_constants.dart';
 import 'package:gui/src/core/enums/app_os_separator.dart';
 import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
@@ -106,15 +107,20 @@ class SplashScreen extends StatelessWidget {
               final sign = AppOS.current.separator;
               final storageKey = StorageUtils.nodeDirectory;
 
-              final nodeDirectory = '${StorageUtils.getData(
+              final nodeDirectory = '${StorageUtils.getData<String>(
                 storageKey,
               )}';
-              final walletPath = '${sign}wallets${sign}default_wallet';
+              final walletPath = '$sign${CliConstants.wallets}'
+                  '$sign${CliConstants.defaultWallet}';
 
               context.read<DaemonCubit>().runPactusDaemon(
                     cliCommand: CliCommand(
-                      command: './pactus-wallet',
-                      arguments: ['info', '--path', nodeDirectory + walletPath],
+                      command: CliConstants.pactusWallet,
+                      arguments: [
+                        CliConstants.info,
+                        CliConstants.dashDashPath,
+                        nodeDirectory + walletPath,
+                      ],
                     ),
                   );
             });

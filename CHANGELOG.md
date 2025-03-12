@@ -1,3 +1,21 @@
+# 1.38.0+40
+
+### [Feature]
+- Optimize and align accent color with Widgetbook repository [#121](https://github.com/pactus-project/pactus-gui/pull/125)
+  - Updated color management to ensure uniform styling across all components.
+  - Defined `accentColorLight` / `accentColorDark` for improved theme adaptation.
+  - Introduced `onAccentColorLight` / `onAccentColorDark` for consistent foreground colors.
+  - Applied changes to all relevant UI components.
+  - Ensured compatibility with theme handling and tested UI consistency.
+- Added `CliConstants` for centralized daemon file key management.
+
+### [Update]
+- Removed BlocBuilder widgets and directly used `accentColor` from context for improved performance and cleaner code.[#121](https://github.com/pactus-project/pactus-gui/pull/125)
+- Improved loading speed of accent color from local storage.
+
+### [Test]
+- Added tests for different states of saving/loading data from local storage.[#121](https://github.com/pactus-project/pactus-gui/pull/125)
+ 
 # 1.37.0+39
 
 ### [Fix]

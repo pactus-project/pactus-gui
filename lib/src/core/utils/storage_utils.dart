@@ -13,17 +13,53 @@ class StorageUtils {
     }
   }
 
-  static void saveData(String key, String value) {
-    GetIt.instance<SharedPreferences>().setString(key, value);
+  static void saveData<T>(String key, T value) {
+    assert(
+      value is bool ||
+          value is double ||
+          value is int ||
+          value is List<String> ||
+          value is String,
+      'Unsupported type: ${value.runtimeType}. '
+      'Allowed types: bool, double, int, List<String>, String',
+    );
+
+    final pref = GetIt.instance<SharedPreferences>();
+
+    switch (value) {
+      case bool _:
+        pref.setBool(key, value as bool);
+      case double _:
+        pref.setDouble(key, value as double);
+      case int _:
+        pref.setInt(key, value as int);
+      case List<String> _:
+        pref.setStringList(key, value as List<String>);
+      case String _:
+        pref.setString(key, value as String);
+    }
   }
 
-  static dynamic getData(String key) {
+  static T? getData<T>(String key) {
+    assert(
+      <Type>{bool, double, int, String, List<String>}.contains(T),
+      'Unsupported type: $T. '
+      'Allowed types: bool, double, int, String, List<String>',
+    );
     final prefs = GetIt.instance<SharedPreferences>();
-    final savedValue = prefs.getString(key);
-    if (savedValue != null) {
-      return savedValue;
+
+    if (T == int) {
+      return prefs.getInt(key) as T?;
+    } else if (T == bool) {
+      return prefs.getBool(key) as T?;
+    } else if (T == double) {
+      return prefs.getDouble(key) as T?;
+    } else if (T == String) {
+      return prefs.getString(key) as T?;
+    } else if (T == List<String>) {
+      return prefs.getStringList(key) as T?;
     } else {
-      return null;
+      throw UnsupportedError('Unsupported type: $T');
     }
   }
 }

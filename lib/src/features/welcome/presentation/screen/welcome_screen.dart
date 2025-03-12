@@ -10,6 +10,7 @@ import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
+import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -49,7 +50,16 @@ class WelcomeScreen extends StatelessWidget {
             /// to-do #117: these ThemeSwitcher & text & AccentColorPicker
             /// widgets are temporary so after we codeing setting screen
             /// they shit to there.
-            const ThemeSwitcher(),
+            BlocConsumer<AppThemeCubit, bool>(
+              listener: (context, isDarkTheme) {
+                if (isDarkTheme) {
+                  context.read<AppAccentColorCubit>().replaceAccentColor();
+                }
+              },
+              builder: (context, isDarkMode) {
+                return const ThemeSwitcher();
+              },
+            ),
             const Gap(16),
             Text(
               'choose your Accent Color:',
@@ -62,21 +72,18 @@ class WelcomeScreen extends StatelessWidget {
             const Gap(16),
             const AccentColorPicker(),
             const Gap(16),
-
-            BlocBuilder<AppAccentColorCubit, Color>(
-              builder: (context, accentColor) {
-                return AdaptiveTextButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        WidgetStateProperty.all<Color?>(accentColor),
-                  ),
-                  text: LocaleKeys.start_button_text,
-                  textColor:
-                      AppTheme.of(context).extension<LightPallet>()!.light900,
-                  onPressed: () {
-                    context.goNamed(AppRoute.initializeMode.name);
-                  },
-                );
+            AdaptiveTextButton(
+              style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.all<Color?>(
+                  FluentTheme.of(context).accentColor,
+                ),
+              ),
+              text: LocaleKeys.start_button_text,
+              textColor: AppTheme.of(context)
+                  .extension<OnAccentPallet>()!
+                  .onAccentColor,
+              onPressed: () {
+                context.goNamed(AppRoute.initializeMode.name);
               },
             ),
             const Gap(50),

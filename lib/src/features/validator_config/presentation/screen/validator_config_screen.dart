@@ -3,7 +3,6 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
-import 'package:gui/src/core/common/cubits/app_accent_color_cubit.dart';
 import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
 import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
 import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
@@ -125,24 +124,21 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
                       ),
                     ),
                     const Gap(28),
-                    BlocBuilder<AppAccentColorCubit, Color>(
-                      builder: (context, accentColor) {
-                        return CustomFilledButton(
-                          text: context.tr(LocaleKeys.select_folder),
-                          onPressed: _chooseDirectory,
-                          style: ButtonStyle(
-                            padding:
-                                WidgetStateProperty.all<EdgeInsetsDirectional?>(
-                              const EdgeInsetsDirectional.symmetric(
-                                horizontal: 8,
-                                vertical: 4,
-                              ),
-                            ),
-                            backgroundColor:
-                                WidgetStateProperty.all<Color?>(accentColor),
+                    CustomFilledButton(
+                      text: context.tr(LocaleKeys.select_folder),
+                      onPressed: _chooseDirectory,
+                      style: ButtonStyle(
+                        padding:
+                            WidgetStateProperty.all<EdgeInsetsDirectional?>(
+                          const EdgeInsetsDirectional.symmetric(
+                            horizontal: 8,
+                            vertical: 4,
                           ),
-                        );
-                      },
+                        ),
+                        backgroundColor: WidgetStateProperty.all<Color?>(
+                          FluentTheme.of(context).accentColor,
+                        ),
+                      ),
                     ),
                   ],
                 ),

@@ -50,25 +50,26 @@ class AccentColorPicker extends StatelessWidget {
 
     return Wrap(
       spacing: 10,
-      children: colors.map((color) {
-        return GestureDetector(
-          onTap: () {
-            context.read<AppAccentColorCubit>().setAccentColor(color);
-          },
-          child: Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: color,
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: Colors.white,
-                width: 2,
+      children: [
+        for (int i = 0; i < colors.length; i++)
+          GestureDetector(
+            onTap: () {
+              context.read<AppAccentColorCubit>().setAccentColor(i);
+            },
+            child: Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                color: colors[i],
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: Colors.white,
+                  width: 2,
+                ),
               ),
             ),
           ),
-        );
-      }).toList(),
+      ],
     );
   }
 }

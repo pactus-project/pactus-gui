@@ -1,6 +1,6 @@
-import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:gui/src/core/constants/storage_keys.dart';
+import 'package:gui/src/core/utils/storage_utils.dart';
 
 /// ## [AppAccentColorCubit] Class Documentation
 ///
@@ -41,29 +41,24 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// - The color is stored in an integer format (ARGB) for efficient storage
 /// and retrieval.
 
-class AppAccentColorCubit extends Cubit<Color> {
-  AppAccentColorCubit() : super(const Color(0xFF0F6CBD)) {
+class AppAccentColorCubit extends Cubit<int> {
+  AppAccentColorCubit() : super(1) {
     _loadAccentColor();
   }
 
-  Future<void> _loadAccentColor() async {
-    final prefs = await SharedPreferences.getInstance();
-    final accentColorValue = prefs.getInt('accentColor') ?? 0xFF0F6CBD;
-    emit(Color(accentColorValue));
+  void _loadAccentColor() {
+    final accentColorValue =
+        StorageUtils.getData<int>(StorageKeys.savedAccentColor) ?? 0;
+    emit(accentColorValue);
   }
 
-  Future<void> setAccentColor(Color color) async {
-    final prefs = await SharedPreferences.getInstance();
+  void setAccentColor(int colorId) {
+    StorageUtils.saveData(StorageKeys.savedAccentColor, colorId);
+    emit(colorId);
+  }
 
-    final alpha = (color.a * 255).toInt();
-    final red = (color.r * 255).toInt();
-    final green = (color.g * 255).toInt();
-    final blue = (color.b * 255).toInt();
-
-    final colorValue = (alpha << 24) | (red << 16) | (green << 8) | blue;
-
-    await prefs.setInt('accentColor', colorValue);
-
-    emit(color);
+  void replaceAccentColor() {
+    StorageUtils.saveData(StorageKeys.savedAccentColor, state);
+    emit(state);
   }
 }

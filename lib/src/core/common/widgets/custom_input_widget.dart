@@ -1,7 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
-import 'package:gui/src/core/common/cubits/app_accent_color_cubit.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 /// ## [CustomInputWidget] Class Documentation
@@ -177,66 +175,59 @@ class CustomInputWidgetState extends State<CustomInputWidget> {
           width: widget.width,
           height: 38,
           child: ExcludeSemantics(
-            child: BlocBuilder<AppAccentColorCubit, Color>(
-              builder: (context, accentColor) {
-                return TextBox(
-                  controller: _controller,
-                  placeholder: widget.placeholder,
-                  placeholderStyle: widget.placeHolderTextStyle,
-                  onChanged: (value) => validateInput(),
-                  maxLines: widget.maxLines,
-                  minLines: 1,
-                  readOnly: widget.readOnly,
-                  autofocus: widget.autofocus,
-                  obscureText: _obscureText,
-                  textAlignVertical: TextAlignVertical.center,
-                  style: widget.textStyle?.copyWith(
-                    color: errorText != null
-                        ? Colors.red
-                        : AppColors.expandableSeedTypeColor,
+            child: TextBox(
+              controller: _controller,
+              placeholder: widget.placeholder,
+              placeholderStyle: widget.placeHolderTextStyle,
+              onChanged: (value) => validateInput(),
+              maxLines: widget.maxLines,
+              minLines: 1,
+              readOnly: widget.readOnly,
+              autofocus: widget.autofocus,
+              obscureText: _obscureText,
+              textAlignVertical: TextAlignVertical.center,
+              style: widget.textStyle?.copyWith(
+                color: errorText != null
+                    ? Colors.red
+                    : AppColors.expandableSeedTypeColor,
+              ),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 5,
+              ),
+              decoration: WidgetStateProperty.resolveWith((states) {
+                final isFocused = states.isFocused;
+                return BoxDecoration(
+                  color: widget.backgroundColor ??
+                      AppTheme.of(context).extension<LightPallet>()!.light900,
+                  borderRadius: widget.borderRadius ?? BorderRadius.circular(4),
+                  border: Border(
+                    bottom: BorderSide(
+                      color: errorText != null
+                          ? Colors.red
+                          : (isFocused
+                              ? FluentTheme.of(context).accentColor
+                              : Colors.transparent),
+                      width: 2,
+                    ),
                   ),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 5,
-                  ),
-                  decoration: WidgetStateProperty.resolveWith((states) {
-                    final isFocused = states.isFocused;
-                    return BoxDecoration(
-                      color: widget.backgroundColor ??
-                          AppTheme.of(context)
-                              .extension<LightPallet>()!
-                              .light900,
-                      borderRadius:
-                          widget.borderRadius ?? BorderRadius.circular(4),
-                      border: Border(
-                        bottom: BorderSide(
-                          color: errorText != null
-                              ? Colors.red
-                              : (isFocused ? accentColor : Colors.transparent),
-                          width: 2,
-                        ),
-                      ),
-                    );
-                  }),
-                  suffix: widget.obscureText
-                      ? IconButton(
-                          icon: widget.obscureIcon ??
-                              Icon(
-                                _obscureText
-                                    ? FluentIcons.hide3
-                                    : FluentIcons.view,
-                                color: Colors.grey,
-                                size: 19,
-                              ),
-                          onPressed: () {
-                            setState(() {
-                              _obscureText = !_obscureText;
-                            });
-                          },
-                        )
-                      : null,
                 );
-              },
+              }),
+              suffix: widget.obscureText
+                  ? IconButton(
+                      icon: widget.obscureIcon ??
+                          Icon(
+                            _obscureText ? FluentIcons.hide3 : FluentIcons.view,
+                            color: Colors.grey,
+                            size: 19,
+                          ),
+                      onPressed: () {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
+                    )
+                  : null,
             ),
           ),
         ),
