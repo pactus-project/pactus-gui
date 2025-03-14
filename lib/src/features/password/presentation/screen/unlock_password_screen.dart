@@ -15,6 +15,7 @@ import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/core/utils/storage_utils.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/validator_config/core/utils/methods/show_fluent_alert_method.dart';
+import 'package:logger/logger.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class UnlockPasswordScreen extends StatefulWidget {
@@ -103,7 +104,7 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                   obscureText: true,
                   onChanged: (value) {
                     passwordNotifier.value = value;
-                    debugPrint('Password value: $value');
+                    Logger().i('Password value: $value');
                   },
                 ),
 
@@ -161,7 +162,7 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                                           cliCommand: cliCommand,
                                         );
 
-                                    debugPrint(
+                                    Logger().i(
                                       'Unlocking with password: $password',
                                     );
                                   }
