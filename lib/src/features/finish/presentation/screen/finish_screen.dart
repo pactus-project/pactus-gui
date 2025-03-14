@@ -91,7 +91,7 @@ class _FinishScreenState extends State<FinishScreen> {
                       child: CustomFilledButton(
                         text: LocaleKeys.go_to_dashboard,
                         onPressed: () {
-                          context.goNamed(AppRoute.dashboard.name);
+                          context.go(AppRoute.dashboard.fullPath);
                         },
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color?>(
