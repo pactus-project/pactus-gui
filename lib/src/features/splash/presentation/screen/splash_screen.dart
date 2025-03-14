@@ -31,7 +31,7 @@ class SplashScreen extends StatelessWidget {
         if (state is DaemonError) {
           Future.delayed(_splashDuration, () {
             if (context.mounted) {
-              context.goNamed(AppRoute.welcome.name);
+              context.go(AppRoute.welcome.fullPath);
             }
           });
         }
@@ -44,14 +44,14 @@ class SplashScreen extends StatelessWidget {
           if (isUnprotectedNode) {
             Future.delayed(_splashDuration, () {
               if (context.mounted) {
-                context.goNamed(AppRoute.dashboard.name);
+                context.go(AppRoute.dashboard.fullPath);
               }
             });
           }
           if (isProtectedNode) {
             Future.delayed(_splashDuration, () {
               if (context.mounted) {
-                context.goNamed(AppRoute.basicPassword.name);
+                context.go(AppRoute.basicPassword.fullPath);
               }
             });
           }
@@ -59,7 +59,7 @@ class SplashScreen extends StatelessWidget {
           if (isUndefinedNode) {
             Future.delayed(_splashDuration, () {
               if (context.mounted) {
-                context.goNamed(AppRoute.welcome.name);
+                context.go(AppRoute.welcome.fullPath);
               }
             });
           }

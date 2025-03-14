@@ -83,7 +83,9 @@ class WelcomeScreen extends StatelessWidget {
                   .extension<OnAccentPallet>()!
                   .onAccentColor,
               onPressed: () {
-                context.goNamed(AppRoute.initializeMode.name);
+                context.go(
+                  '${AppRoute.welcome.fullPath}/${AppRoute.initializeMode.path}',
+                );
               },
             ),
             const Gap(50),

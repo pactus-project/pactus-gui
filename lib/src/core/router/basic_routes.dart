@@ -11,12 +11,11 @@ final List<GoRoute> basicRoutes = [
       fromRegistrationRoute:
           state.matchedLocation.contains(AppRoute.finish.name),
     ),
-    routes: [
-      GoRoute(
-        path: AppRoute.basicDashboard.path,
-        name: AppRoute.basicDashboard.name,
-        builder: (context, state) => const DashboardScreen(),
-      ),
-    ],
+  ),
+  // Dashboard as a standalone route
+  GoRoute(
+    path: AppRoute.dashboard.fullPath,
+    name: AppRoute.dashboard.name,
+    builder: (context, state) => const DashboardScreen(),
   ),
 ];

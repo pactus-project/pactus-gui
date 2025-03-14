@@ -66,20 +66,20 @@ class _InitializeModeScreenState extends State<InitializeModeScreen> {
     // Validate all sections before proceeding
     switch (selectedValue) {
       case 0:
-        context.goNamed(
-          AppRoute.initializingLocalNodePane.name,
+        context.go(
+          '${AppRoute.welcome.fullPath}/${AppRoute.initializeMode.path}/${AppRoute.initializingLocalNodePane.path}',
         );
       case 1:
-        context.goNamed(
-          AppRoute.restoringNodePane.name,
+        context.go(
+          '${AppRoute.welcome.fullPath}/${AppRoute.initializeMode.path}/${AppRoute.restoringNodePane.path}',
         );
       case 2:
         final isRemoteNodeValid =
             _remoteNodeSectionKey.currentState?.validate() ?? false;
 
         if (isRemoteNodeValid) {
-          context.goNamed(
-            AppRoute.connectingRemoteNodePane.name,
+          context.go(
+            '${AppRoute.welcome.fullPath}/${AppRoute.initializeMode.path}/${AppRoute.connectingRemoteNodePane.path}',
           );
         } else {
           showFluentAlert(

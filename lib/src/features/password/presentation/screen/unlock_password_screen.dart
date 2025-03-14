@@ -119,11 +119,8 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                           final isPasswordCorrect = state.output
                               .contains('Your wallet password successfully');
                           if (isPasswordCorrect) {
-                            if (widget.fromRegistrationRoute) {
-                              context.goNamed(AppRoute.dashboard.name);
-                            } else {
-                              context.goNamed(AppRoute.basicDashboard.name);
-                            }
+                            // Always navigate to the standalone dashboard route
+                            context.go(AppRoute.dashboard.fullPath);
                           } else {
                             showFluentAlert(
                               context,
