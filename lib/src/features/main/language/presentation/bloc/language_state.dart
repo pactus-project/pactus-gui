@@ -1,16 +1,13 @@
 part of 'language_bloc.dart';
 
-class LanguageState extends Equatable {
+class LanguageState {
   const LanguageState({
-    this.selectedLanguage = Language.english, // Default to English
+    this.selectedLanguage,
   });
 
-  final Language selectedLanguage;
+  final LanguageCase? selectedLanguage;
 
-  @override
-  List<Object> get props => [selectedLanguage];
-
-  LanguageState copyWith({Language? selectedLanguage}) {
+  LanguageState copyWith({LanguageCase? selectedLanguage}) {
     return LanguageState(
       selectedLanguage: selectedLanguage ?? this.selectedLanguage,
     );
@@ -18,8 +15,8 @@ class LanguageState extends Equatable {
 }
 
 class LanguageInitial extends LanguageState {
-  const LanguageInitial()
+  LanguageInitial()
       : super(
-          selectedLanguage: Language.english,
+          selectedLanguage: LanguageConstants.enUS,
         ); // Explicitly set default language to English
 }

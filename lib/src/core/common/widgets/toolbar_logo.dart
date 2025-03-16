@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 
@@ -12,7 +12,7 @@ class ToolbarLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isLightTheme = Theme.of(context).brightness == Brightness.light;
+    final isLightTheme = FluentTheme.of(context).brightness == Brightness.light;
     return SvgPicture.asset(
       width: 25,
       height: 25,
