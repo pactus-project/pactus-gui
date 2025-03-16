@@ -12,6 +12,7 @@ import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_state.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:gui/src/core/utils/methods/update_node_details_singleton.dart';
 import 'package:gui/src/core/utils/storage_utils.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/validator_config/core/utils/methods/show_fluent_alert_method.dart';
@@ -120,6 +121,7 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                           final isPasswordCorrect = state.output
                               .contains('Your wallet password successfully');
                           if (isPasswordCorrect) {
+                            updateNodeDetailsSingleton(password);
                             // Always navigate to the standalone dashboard route
                             context.go(AppRoute.dashboard.fullPath);
                           } else {

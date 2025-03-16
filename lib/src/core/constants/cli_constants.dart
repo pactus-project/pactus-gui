@@ -1,6 +1,8 @@
 class CliConstants {
   CliConstants._();
 
+  static const String localNodeIP = '127.0.0.1';
+  static const int localNodePort = 50051;
   static const String pactusWallet = './pactus-wallet';
   static const String info = 'info';
   static const String password = 'password';

@@ -15,3 +15,14 @@ enum ValidatorQty {
 }
 
 enum InitialMode { remote, create, restore }
+
+enum DelayTime {
+  zero(Duration.zero),
+  fiveSeconds(Duration(seconds: 5)),
+  tenSeconds(Duration(seconds: 10)),
+  fifteenSeconds(Duration(seconds: 15));
+
+  const DelayTime(this.duration);
+
+  final Duration duration;
+}

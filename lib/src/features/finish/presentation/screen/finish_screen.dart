@@ -5,8 +5,10 @@ import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
 import 'package:gui/src/core/extensions/context_extensions.dart';
 import 'package:gui/src/core/router/route_name.dart';
+import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:gui/src/core/utils/methods/update_node_details_singleton.dart';
 import 'package:gui/src/core/utils/string_extension.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
@@ -91,6 +93,10 @@ class _FinishScreenState extends State<FinishScreen> {
                       child: CustomFilledButton(
                         text: LocaleKeys.go_to_dashboard,
                         onPressed: () {
+                          updateNodeDetailsSingleton(
+                            NodeConfigData.instance.password,
+                          );
+
                           context.go(AppRoute.dashboard.fullPath);
                         },
                         style: ButtonStyle(
