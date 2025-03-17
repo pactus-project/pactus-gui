@@ -12,7 +12,9 @@ class CliConstants {
   static const String dashDashRestore = '--restore';
   static const String pactusDaemon = './pactus-daemon';
   static const String dashDashWorkingDir = '--working-dir';
+  static const String dashDashW= '--w';
   static const String dashDashValNum = '--val-num';
   static const String wallets = 'wallets';
   static const String defaultWallet = 'default_wallet';
+  static const String start = 'start';
 }

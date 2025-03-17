@@ -7,6 +7,7 @@ import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
 import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
 import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
 import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
+import 'package:gui/src/core/constants/storage_keys.dart';
 import 'package:gui/src/core/enums/app_enums.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
@@ -162,7 +163,7 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
                       // save `nodeDirectory` in `shared preferences` .
                       // used for run cli commands in splash screen .
                       StorageUtils.saveData(
-                        StorageUtils.nodeDirectory,
+                        StorageKeys.nodeDirectory,
                         directoryController.text,
                       );
 
