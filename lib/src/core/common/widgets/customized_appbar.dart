@@ -1,9 +1,11 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
+import 'package:pactus_gui_widgetbook/app_styles.dart';
 import 'package:window_manager/window_manager.dart';
 
 import 'app_bar_button.dart';
+import 'theme_switcher.dart';
 
 /// ## [CustomAppBar] Class Documentation
 ///
@@ -19,7 +21,8 @@ import 'app_bar_button.dart';
 ///
 /// This widget provides a custom AppBar for an application, including:
 /// - An SVG logo on the left.
-/// - A toggle switch for changing themes (currently commented out).
+/// - An optional title in the center.
+/// - A toggle switch for changing themes.
 /// - Window control buttons for minimizing, maximizing, and closing the window.
 ///
 /// ### Properties:
@@ -33,15 +36,15 @@ import 'app_bar_button.dart';
 ///   - Builds the UI of the custom AppBar, including window controls and layout
 ///   management.
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({super.key});
+  const CustomAppBar({
+    super.key,
+  });
 
   @override
   Size get preferredSize => const Size.fromHeight(48);
 
   @override
   Widget build(BuildContext context) {
-    // final theme = Theme.of(context);
-    // final isLightTheme = theme.brightness == Brightness.light;
     return GestureDetector(
       onPanStart: (details) async {
         await windowManager.startDragging();
@@ -50,30 +53,24 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         height: preferredSize.height,
         padding: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
-          color: Colors.grey,
+          color: AppTheme.of(context).extension<LightPallet>()!.light800,
         ),
         child: Row(
           children: [
-            Expanded(
-              child: Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: SvgPicture.asset(
-                  Assets.icons.icLogoLight,
-                ),
+            // Logo on the left
+            Padding(
+              padding: const EdgeInsets.only(right: 16),
+              child: SvgPicture.asset(
+                Assets.icons.icLogoLight,
               ),
             ),
-            ToggleSwitch(
-              checked: true,
-              onChanged: (bool value) {
-                /// to-do #42 : uncomment this part after resolving confilcts
-                /// between theme & Fluent UI by Pouria
-                // context.read<ThemeBloc>().add(
-                //   ThemeChanged(
-                //     theme: isLightTheme ? ThemeModes.dark : ThemeModes.light,
-                //   ),
-                // );
-              },
+            // Optional title in the center
+            const Expanded(
+              child: Center(
+                child: Text('Pactus'),
+              ),
             ),
+            ThemeSwitcher(),
             Row(
               children: [
                 FluentAppBarButton(

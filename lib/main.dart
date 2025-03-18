@@ -11,8 +11,8 @@ import 'package:gui/src/features/main/language/core/language_constants.dart';
 import 'package:gui/src/features/main/radio_button_cubit/presentation/radio_button_cubit.dart';
 import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
-import 'src/core/common/cubits/step_validation_cubit.dart';
 import 'package:window_manager/window_manager.dart';
+import 'src/core/common/cubits/step_validation_cubit.dart';
 import 'src/features/main/language/presentation/bloc/language_bloc.dart';
 import 'src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 
@@ -27,8 +27,8 @@ Future<void> main() async {
     titleBarStyle: TitleBarStyle.hidden,
   );
   await windowManager.waitUntilReadyToShow(windowOptions, () async {
+    await windowManager.setAsFrameless();
     await windowManager.show();
-    await windowManager.startDragging();
   });
   await setupSharedPreferences();
   runApp(

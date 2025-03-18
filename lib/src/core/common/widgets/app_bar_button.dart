@@ -48,7 +48,7 @@ class FluentAppBarButton extends StatelessWidget {
       child: HoverButton(
         onPressed: onPressed,
         builder: (context, states) {
-          final color = states.isHovered ? Colors.red : Colors.transparent;
+          final color = Colors.transparent;
           return Container(
             height: 48,
             width: 48,
