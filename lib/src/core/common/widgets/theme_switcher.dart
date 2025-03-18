@@ -1,86 +1,109 @@
-import 'package:flutter/material.dart';
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gui/src/core/common/colors/app_colors.dart';
-import 'package:gui/src/core/enums/theme_modes.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
+import 'package:pactus_gui_widgetbook/app_styles.dart';
 
-/// ### [ThemeSwitcher] Documentation
-/// A widget that toggles between light and dark themes using a animated switch.
+/// ## [ThemeSwitcher] Class Documentation
 ///
-/// - Uses `Theme.of(context)` to determine the current theme.
-/// - Displays different icons for light and dark modes with animations.
-/// - Provides a switch that triggers a theme change by `ThemeBloc` when tapped.
+/// The `ThemeSwitcher` class is a widget that allows users to toggle between
+/// light and dark themes in the application.
+/// It listens to the state of the `AppThemeCubit` and updates the UI
+/// accordingly, providing a visual indicator of the current theme mode.
 ///
+/// ### Properties:
+///
+/// - **[BlocBuilder]**:
+///   - Listens for theme changes from the `AppThemeCubit` and rebuilds the
+///   widget when the theme mode changes (dark or light).
+///
+/// ### Methods:
+///
+/// - **[build(BuildContext context)]**:
+///   - Builds the widget tree, displaying an animated switcher between dark
+///   and light mode icons.
+///   - Uses `AnimatedOpacity` to smoothly transition between dark and light
+///   mode icons based on the current theme.
+///   - Uses `AnimatedAlign` within an `AnimatedContainer` to create a sliding
+///   effect for the theme switcher toggle.
+///
+/// ### Notes:
+///
+/// - The switcher uses `SvgPicture.asset` to display icons for both dark and
+/// light modes, switching between them based on the current theme mode.
+/// - The widget includes an animated transition for smooth visual effects
+/// during theme changes.
+
 class ThemeSwitcher extends StatelessWidget {
   const ThemeSwitcher({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final isLightTheme = theme.brightness == Brightness.light;
-    const duration = Duration(milliseconds: 200);
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        AnimatedOpacity(
-          curve: Curves.easeIn,
-          opacity: isLightTheme ? 0.0 : 1.0,
-          duration: duration,
-          child: SvgPicture.asset(
-            Assets.icons.icLightMode,
-          ),
-        ),
-        // Switch
-        GestureDetector(
-          onTap: () {
-            context.read<ThemeBloc>().add(
-                  ThemeChanged(
-                    theme: isLightTheme ? ThemeModes.dark : ThemeModes.light,
-                  ),
-                );
-          },
-          child: AnimatedContainer(
-            margin: EdgeInsets.symmetric(horizontal: 4),
-            width: 40, // Total width of the switch
-            height: 20, // Total height of the switch
-            duration: duration * 2,
-            decoration: BoxDecoration(
-              color: Colors.transparent,
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(
-                color: AppColors.primaryDark,
+    return BlocBuilder<AppThemeCubit, bool>(
+      builder: (context, isDarkMode) {
+        const duration = Duration(milliseconds: 200);
+
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            AnimatedOpacity(
+              curve: Curves.easeIn,
+              opacity: isDarkMode ? 0.0 : 1.0,
+              duration: duration,
+              child: SvgPicture.asset(
+                Assets.icons.icDarkMode,
               ),
             ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 3),
-              child: AnimatedAlign(
-                duration: Duration(milliseconds: 100),
-                alignment:
-                    isLightTheme ? Alignment.centerRight : Alignment.centerLeft,
-                child: Container(
-                  width: 14, // Thumb width
-                  height: 14, // Thumb height
-                  decoration: BoxDecoration(
-                    color: AppColors.primaryDark,
-                    borderRadius: BorderRadius.circular(7),
+            GestureDetector(
+              onTap: () {
+                context.read<AppThemeCubit>().toggleTheme();
+              },
+              child: AnimatedContainer(
+                margin: const EdgeInsets.symmetric(horizontal: 4),
+                width: 40,
+                height: 20,
+                duration: duration * 2,
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color:
+                        AppTheme.of(context).extension<DarkPallet>()!.dark900!,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 3),
+                  child: AnimatedAlign(
+                    duration: const Duration(milliseconds: 100),
+                    alignment: isDarkMode
+                        ? Alignment.centerLeft
+                        : Alignment.centerRight,
+                    child: Container(
+                      width: 14,
+                      height: 14,
+                      decoration: BoxDecoration(
+                        color: AppTheme.of(context)
+                            .extension<DarkPallet>()!
+                            .dark900,
+                        borderRadius: BorderRadius.circular(7),
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ),
-        // Sun icon (right side)
-        AnimatedOpacity(
-          curve: Curves.easeIn,
-          opacity: isLightTheme ? 1.0 : 0.0,
-          duration: duration,
-          child: SvgPicture.asset(
-            Assets.icons.icDarkMode,
-          ),
-        ),
-      ],
+            AnimatedOpacity(
+              curve: Curves.easeIn,
+              opacity: isDarkMode ? 1.0 : 0.0,
+              duration: duration,
+              child: SvgPicture.asset(
+                Assets.icons.icLightMode,
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

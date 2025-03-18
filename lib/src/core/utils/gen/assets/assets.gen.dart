@@ -61,6 +61,16 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/background_initializing.svg
+  String get backgroundInitializing =>
+      'assets/images/background_initializing.svg';
+
+  /// File path: assets/images/bg_finish_dark.svg
+  String get bgFinishDark => 'assets/images/bg_finish_dark.svg';
+
+  /// File path: assets/images/bg_finish_light.svg
+  String get bgFinishLight => 'assets/images/bg_finish_light.svg';
+
   /// File path: assets/images/gears.png
   AssetGenImage get gears => const AssetGenImage('assets/images/gears.png');
 
@@ -75,36 +85,40 @@ class $AssetsImagesGen {
   AssetGenImage get masterPassword =>
       const AssetGenImage('assets/images/master_password.png');
 
+  /// File path: assets/images/master_password_dark.svg
+  String get masterPasswordDark => 'assets/images/master_password_dark.svg';
+
+  /// File path: assets/images/master_password_light.svg
+  String get masterPasswordLight => 'assets/images/master_password_light.svg';
+
   /// File path: assets/images/splash.png
   AssetGenImage get splash => const AssetGenImage('assets/images/splash.png');
 
-  /// List of all assets
-  List<AssetGenImage> get values =>
-      [gears, gift, logoName, masterPassword, splash];
-}
-
-class $AssetsTranslationsGen {
-  const $AssetsTranslationsGen();
-
-  /// File path: assets/translations/en.json
-  String get en => 'assets/translations/en.json';
-
-  /// File path: assets/translations/es.json
-  String get es => 'assets/translations/es.json';
-
-  /// File path: assets/translations/fr.json
-  String get fr => 'assets/translations/fr.json';
+  /// File path: assets/images/welcome_pic.png
+  AssetGenImage get welcomePic =>
+      const AssetGenImage('assets/images/welcome_pic.png');
 
   /// List of all assets
-  List<String> get values => [en, es, fr];
+  List<dynamic> get values => [
+        backgroundInitializing,
+        bgFinishDark,
+        bgFinishLight,
+        gears,
+        gift,
+        logoName,
+        masterPassword,
+        masterPasswordDark,
+        masterPasswordLight,
+        splash,
+        welcomePic
+      ];
 }
 
 class Assets {
-  Assets._();
+  const Assets._();
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
-  static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
 }
 
 class AssetGenImage {
@@ -140,7 +154,7 @@ class AssetGenImage {
     bool gaplessPlayback = true,
     bool isAntiAlias = false,
     String? package,
-    FilterQuality filterQuality = FilterQuality.low,
+    FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
   }) {
