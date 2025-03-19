@@ -45,6 +45,7 @@ dependencies:
   process_run: ^1.2.2+1
   protobuf:
   shared_preferences: ^2.2.2
+  shimmer: ^3.0.0
 
 
 dev_dependencies:
