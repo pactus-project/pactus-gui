@@ -126,7 +126,7 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                               StorageKeys.nodeDirectory,
                             );
 
-                            context.read<DaemonCubit>().runPactusDaemon(
+                            context.read<DaemonCubit>().runStartNodeCommand(
                                   cliCommand: CliCommand(
                                     command: CliConstants.pactusDaemon,
                                     arguments: [

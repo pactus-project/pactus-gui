@@ -18,7 +18,7 @@ class BlockchainRepositoryImpl implements BlockchainRepository {
   }) async {
     try {
       final model = await _remoteDataSource.getBlockchainInfo();
-      final entity = BlockchainInfoMapper().toEntity(model);
+      final entity = BlockchainInfoMapper.toEntity(model);
       return Right(RemoteDataState.success(remoteData: entity));
     } on Exception catch (e) {
       return Left(RemoteDataState.failed(error: e.toString()));

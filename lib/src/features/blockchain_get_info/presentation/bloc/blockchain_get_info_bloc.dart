@@ -45,6 +45,7 @@ class BlockchainGetInfoBloc
     FetchBlockchainInfoStream event,
     Emitter<BlockchainGetInfoState> emit,
   ) async {
+    num runCounter = 0;
     emit(const BlockchainGetInfoState.loading());
 
     while (true) {
@@ -63,9 +64,12 @@ class BlockchainGetInfoBloc
           ),
         ),
       );
+      runCounter++;
 
       await Future<void>.delayed(
-        DelayTime.tenSeconds.duration,
+        runCounter == 1
+            ? DelayTime.fiveSeconds.duration
+            : DelayTime.tenSeconds.duration,
       ); // 10-second delay
     }
   }

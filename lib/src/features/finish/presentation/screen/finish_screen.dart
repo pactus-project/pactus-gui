@@ -97,7 +97,7 @@ class _FinishScreenState extends State<FinishScreen> {
                       child: CustomFilledButton(
                         text: LocaleKeys.go_to_dashboard,
                         onPressed: () {
-                          context.read<DaemonCubit>().runPactusDaemon(
+                          context.read<DaemonCubit>().runStartNodeCommand(
                                 cliCommand: CliCommand(
                                   command: CliConstants.pactusDaemon,
                                   arguments: [
