@@ -4,8 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 class StorageUtils {
   StorageUtils._();
 
-  static const String nodeDirectory = 'nodeDirectory';
-
   static void clearData(String key) {
     final prefs = GetIt.instance<SharedPreferences>();
     if (prefs.containsKey(key)) {

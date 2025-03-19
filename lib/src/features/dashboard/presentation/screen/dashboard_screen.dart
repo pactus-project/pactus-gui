@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:gui/src/features/blockchain_get_info/presentation/pages/blockchain_info_section.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -12,11 +13,16 @@ class DashboardScreen extends StatelessWidget {
       content: PopScope(
         canPop: false,
         child: Center(
-          child: const Text(
-            'DashboardPage',
-            style: TextStyle(
-              color: Colors.black,
-            ),
+          child: Column(
+            children: [
+              const Text(
+                'DashboardPage',
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+              BlockchainInfoSection(),
+            ],
           ),
         ),
       ),

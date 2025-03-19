@@ -18,19 +18,22 @@ import 'src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pa
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await windowManager.ensureInitialized();
+  await setupSharedPreferences();
+  await setupDependencies();
+
+  await WindowManager.instance.ensureInitialized();
   final windowOptions = WindowOptions(
-    size: Size(800, 600),
+    size: const Size(800, 600),
     center: true,
     backgroundColor: Colors.transparent,
     skipTaskbar: false,
     titleBarStyle: TitleBarStyle.hidden,
   );
-  await windowManager.waitUntilReadyToShow(windowOptions, () async {
-    await windowManager.setAsFrameless();
-    await windowManager.show();
+  await WindowManager.instance.waitUntilReadyToShow(windowOptions, () async {
+    await WindowManager.instance.setAsFrameless();
+    await WindowManager.instance.show();
   });
-  await setupSharedPreferences();
+
   runApp(
     MultiBlocProvider(
       providers: [

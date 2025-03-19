@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/constants/cli_constants.dart';
+import 'package:gui/src/core/constants/storage_keys.dart';
 import 'package:gui/src/core/enums/app_os_separator.dart';
 import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
@@ -105,7 +106,7 @@ class SplashScreen extends StatelessWidget {
           if (state is DaemonInitial) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               final sign = AppOS.current.separator;
-              final storageKey = StorageUtils.nodeDirectory;
+              final storageKey = StorageKeys.nodeDirectory;
 
               final nodeDirectory = '${StorageUtils.getData<String>(
                 storageKey,
