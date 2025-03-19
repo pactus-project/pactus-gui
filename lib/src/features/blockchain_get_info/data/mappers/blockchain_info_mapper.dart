@@ -12,7 +12,6 @@ mixin BlockchainInfoMapper {
       committeeSize: model.committeeSize,
       lastBlockHash: model.lastBlockHash,
       lastBlockHeight: model.lastBlockHeight,
-
     );
   }
 

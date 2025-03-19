@@ -1,8 +1,8 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/features/blockchain_get_info/presentation/bloc/blockchain_get_info_bloc.dart';
 import 'package:gui/src/core/common/widgets/shimmer_card_item.dart';
+import 'package:gui/src/features/blockchain_get_info/presentation/bloc/blockchain_get_info_bloc.dart';
 import 'package:gui/src/features/blockchain_get_info/presentation/widgets/customized_text_item.dart';
 
 class BlockchainInfoSection extends StatelessWidget {

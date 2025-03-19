@@ -6,6 +6,7 @@ import 'package:gui/src/features/blockchain_get_info/domain/entities/blockchain_
 mixin BlockchainRepository {
   Future<
       Either<RemoteDataState<ErrorResponseModel>,
-          RemoteDataState<BlockchainInfoEntity>>> getBlockchainInfo(
-      {void params,});
+          RemoteDataState<BlockchainInfoEntity>>> getBlockchainInfo({
+    void params,
+  });
 }
