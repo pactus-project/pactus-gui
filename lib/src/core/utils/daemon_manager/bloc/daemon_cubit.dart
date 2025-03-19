@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/constants/cli_constants.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
@@ -87,31 +88,18 @@ class DaemonCubit extends Cubit<DaemonState> {
         ' ${cliCommand.command} ${cliCommand.arguments}');
 
     try {
-      final scriptDir = dirname(Platform.script.toFilePath());
-      final executableDir = _getNativeResourcesPath(scriptDir);
-      _logger.d('Native resources path: $executableDir');
+      final executablePath = _executablePath(cliCommand.command);
 
-      final executablePath = join(
-        executableDir,
-        Platform.isWindows ? '${cliCommand.command}.exe' : cliCommand.command,
-      );
       _logger.d('Executable path: $executablePath');
 
       // Ensure executable permissions (skips on Windows)
       _ensureExecutablePermissions(executablePath);
 
       // Start the process with platform-specific command
-      _logger.d('Starting process...');
-      // final process = await Process.start(
-      //   Platform.isWindows ? 'cmd.exe' : executablePath,
-      //   Platform.isWindows ? ['/c', executablePath, ...arguments] : arguments,
-      //   workingDirectory: executableDir,
-      // );
-
       final process = await Process.start(
         executablePath,
         cliCommand.arguments,
-        workingDirectory: executableDir,
+        workingDirectory: _executableDir(),
       );
 
       // bypass password-less wallet cli and init node
@@ -152,10 +140,13 @@ class DaemonCubit extends Cubit<DaemonState> {
       });
 
       process.stderr.transform<String>(utf8.decoder).listen((data) {
-        _logger.i('Daemon stderr: $data');
-        emit(DaemonError(data));
+        if (kDebugMode) {
+          debugPrint('Daemon stderr: $data');
+        }
+        if (!data.contains('new block committed')) {
+          emit(DaemonError(data));
+        }
       });
-
       await process.exitCode.then((code) {
         _logger.i('Process exited with code: $code');
         if (code != 0) {
@@ -172,5 +163,33 @@ class DaemonCubit extends Cubit<DaemonState> {
       _logger.e('Unexpected error: $e');
       emit(DaemonError('Exception occurred: $e'));
     }
+  }
+
+  Future<void> runStartNodeCommand({required CliCommand cliCommand}) async {
+    try {
+      final executablePath = _executablePath(cliCommand.command);
+      _ensureExecutablePermissions(executablePath);
+
+      final process = await Process.start(
+        executablePath,
+        cliCommand.arguments,
+        workingDirectory: _executableDir(),
+      );
+
+      process.stderr.transform<String>(utf8.decoder).listen((data) {});
+    } on Exception catch (_) {}
+  }
+
+  String _executableDir() {
+    final scriptDir = dirname(Platform.script.toFilePath());
+    final executableDir = _getNativeResourcesPath(scriptDir);
+    return executableDir;
+  }
+
+  String _executablePath(String command) {
+    return join(
+      _executableDir(),
+      Platform.isWindows ? '$command.exe' : command,
+    );
   }
 }

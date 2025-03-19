@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/common/widgets/custom_input_widget.dart';
 import 'package:gui/src/core/constants/cli_constants.dart';
+import 'package:gui/src/core/constants/storage_keys.dart';
 import 'package:gui/src/core/enums/app_os_separator.dart';
 import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
@@ -12,6 +13,7 @@ import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_state.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:gui/src/core/utils/methods/update_node_details_singleton.dart';
 import 'package:gui/src/core/utils/storage_utils.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/validator_config/core/utils/methods/show_fluent_alert_method.dart';
@@ -120,6 +122,24 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                           final isPasswordCorrect = state.output
                               .contains('Your wallet password successfully');
                           if (isPasswordCorrect) {
+                            final nodeDirectory = StorageUtils.getData<String>(
+                              StorageKeys.nodeDirectory,
+                            );
+
+                            context.read<DaemonCubit>().runStartNodeCommand(
+                                  cliCommand: CliCommand(
+                                    command: CliConstants.pactusDaemon,
+                                    arguments: [
+                                      CliConstants.start,
+                                      CliConstants.dashDashWorkingDir,
+                                      nodeDirectory!,
+                                      CliConstants.dashDashPassword,
+                                      password,
+                                    ],
+                                  ),
+                                );
+
+                            updateNodeDetailsSingleton(password);
                             // Always navigate to the standalone dashboard route
                             context.go(AppRoute.dashboard.fullPath);
                           } else {
@@ -138,7 +158,7 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                                 ? () {
                                     final sign = AppOS.current.separator;
                                     final storageKey =
-                                        StorageUtils.nodeDirectory;
+                                        StorageKeys.nodeDirectory;
 
                                     final nodeDirectory =
                                         '${StorageUtils.getData<String>(

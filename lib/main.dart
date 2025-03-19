@@ -18,6 +18,7 @@ import 'src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pa
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setupSharedPreferences();
+  await setupDependencies();
 
   runApp(
     MultiBlocProvider(
