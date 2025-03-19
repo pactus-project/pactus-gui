@@ -18,6 +18,9 @@ enum InitialMode { remote, create, restore }
 
 enum DelayTime {
   zero(Duration.zero),
+  oneSeconds(Duration(seconds: 1)),
+  twoSeconds(Duration(seconds: 2)),
+  threeSeconds(Duration(seconds: 3)),
   fiveSeconds(Duration(seconds: 5)),
   tenSeconds(Duration(seconds: 10)),
   fifteenSeconds(Duration(seconds: 15));
