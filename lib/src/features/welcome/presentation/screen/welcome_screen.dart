@@ -44,8 +44,10 @@ class WelcomeScreen extends StatelessWidget {
                 softWrap: true,
                 textAlign: TextAlign.center,
               ),
-              if (kDebugMode) const Gap(16),
-              if (kDebugMode) const AccentColorPicker(),
+              if (kDebugMode) ...[
+                const Gap(16),
+                const AccentColorPicker(),
+              ],
               const Gap(16),
               AdaptiveTextButton(
                 style: ButtonStyle(
