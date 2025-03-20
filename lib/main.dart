@@ -18,20 +18,27 @@ import 'src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pa
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await windowManager.ensureInitialized();
-  final windowOptions = WindowOptions(
-    size: Size(800, 600),
-    center: true,
-    backgroundColor: Colors.transparent,
-    skipTaskbar: false,
-    titleBarStyle: TitleBarStyle.hidden,
-  );
-  await windowManager.waitUntilReadyToShow(windowOptions, () async {
-    await windowManager.setAsFrameless();
-    await windowManager.show();
-  });
   await setupSharedPreferences();
   await setupDependencies();
+
+  try {
+    await WindowManager.instance.ensureInitialized();
+    
+    final windowOptions = WindowOptions(
+      size: Size(1280, 720),
+      backgroundColor: Colors.transparent,
+      skipTaskbar: false,
+      titleBarStyle: TitleBarStyle.hidden,
+    );
+
+    await WindowManager.instance.waitUntilReadyToShow(windowOptions, () async {
+      await WindowManager.instance
+        .setAsFrameless()
+        .then((_) => WindowManager.instance.show());
+    });
+  } on Exception catch (e) {
+    debugPrint('Window initialization failed: $e');
+  }
   runApp(
     MultiBlocProvider(
       providers: [

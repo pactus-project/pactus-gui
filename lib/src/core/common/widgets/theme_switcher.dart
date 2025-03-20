@@ -49,10 +49,10 @@ class ThemeSwitcher extends StatelessWidget {
           children: [
             AnimatedOpacity(
               curve: Curves.easeIn,
-              opacity: isDarkMode ? 0.0 : 1.0,
+              opacity: isDarkMode ? 1.0 : 0.0,
               duration: duration,
               child: SvgPicture.asset(
-                Assets.icons.icDarkMode,
+                Assets.icons.icLightMode,
               ),
             ),
             GestureDetector(
@@ -65,11 +65,16 @@ class ThemeSwitcher extends StatelessWidget {
                 height: 20,
                 duration: duration * 2,
                 decoration: BoxDecoration(
-                  color: Colors.transparent,
+                  color: isDarkMode
+                      ? AppTheme.of(context).extension<BluePallet>()!.blue700!
+                      : Colors.transparent,
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                    color:
-                        AppTheme.of(context).extension<DarkPallet>()!.dark900!,
+                    color: isDarkMode
+                        ? Colors.transparent
+                        : AppTheme.of(context)
+                            .extension<DarkPallet>()!
+                            .dark900!,
                   ),
                 ),
                 child: Padding(
@@ -77,8 +82,8 @@ class ThemeSwitcher extends StatelessWidget {
                   child: AnimatedAlign(
                     duration: const Duration(milliseconds: 100),
                     alignment: isDarkMode
-                        ? Alignment.centerLeft
-                        : Alignment.centerRight,
+                        ? Alignment.centerRight
+                        : Alignment.centerLeft,
                     child: Container(
                       width: 14,
                       height: 14,
@@ -95,10 +100,10 @@ class ThemeSwitcher extends StatelessWidget {
             ),
             AnimatedOpacity(
               curve: Curves.easeIn,
-              opacity: isDarkMode ? 1.0 : 0.0,
+              opacity: isDarkMode ? 0.0 : 1.0,
               duration: duration,
               child: SvgPicture.asset(
-                Assets.icons.icLightMode,
+                Assets.icons.icDarkMode,
               ),
             ),
           ],

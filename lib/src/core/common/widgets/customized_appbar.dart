@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
@@ -38,13 +39,17 @@ import 'theme_switcher.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     super.key,
+    this.title,
   });
+
+  final String? title;
 
   @override
   Size get preferredSize => const Size.fromHeight(48);
 
   @override
   Widget build(BuildContext context) {
+    final isLightTheme = FluentTheme.of(context).brightness == Brightness.light;
     return GestureDetector(
       onPanStart: (details) async {
         await windowManager.startDragging();
@@ -57,50 +62,53 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
         child: Row(
           children: [
-            // Logo on the left
             Padding(
-              padding: const EdgeInsets.only(right: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 11),
               child: SvgPicture.asset(
-                Assets.icons.icLogoLight,
+                isLightTheme
+                    ? Assets.icons.icLogoLight
+                    : Assets.icons.icLogoDark,
+                width: 25,
+                height: 25,
               ),
             ),
-            // Optional title in the center
-            const Expanded(
-              child: Center(
-                child: Text('Pactus'),
-              ),
-            ),
-            ThemeSwitcher(),
-            Row(
-              children: [
-                FluentAppBarButton(
-                  icon: Assets.icons.icMinimize,
-                  onPressed: () async {
-                    await windowManager.minimize();
-                  },
-                ),
-                FluentAppBarButton(
-                  icon: Assets.icons.icMaximize,
-                  onPressed: () async {
-                    final isMaximized = await windowManager.isMaximized();
-                    if (isMaximized) {
-                      await windowManager.unmaximize();
-                    } else {
-                      await windowManager.maximize();
-                    }
-                  },
-                ),
-                FluentAppBarButton(
-                  icon: Assets.icons.icClose,
-                  onPressed: () async {
-                    await windowManager.close();
-                  },
-                ),
-              ],
-            ),
+            const Spacer(),
+            const ThemeSwitcher(),
+            _buildWindowControls(),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildWindowControls() {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _buildControlButton(Assets.icons.icMinimize, windowManager.minimize),
+        _buildControlButton(Assets.icons.icMaximize, _toggleMaximize),
+        _buildControlButton(Assets.icons.icClose, windowManager.close),
+      ],
+    );
+  }
+
+  Future<void> _toggleMaximize() async {
+    final isMaximized = await windowManager.isMaximized();
+    isMaximized
+        ? await windowManager.unmaximize()
+        : await windowManager.maximize();
+  }
+
+  Widget _buildControlButton(String icon, AsyncCallback action) {
+    return FluentAppBarButton(
+      icon: icon,
+      onPressed: () async {
+        try {
+          await action();
+        } on Exception catch (e) {
+          debugPrint('Window action failed: $e');
+        }
+      },
     );
   }
 }

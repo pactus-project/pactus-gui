@@ -28,7 +28,7 @@ class AppLayout extends StatelessWidget {
           left: 0,
           right: 0,
           child: BlocBuilder<AppThemeCubit, bool>(
-            builder: (context, isDarkMode) {
+            builder: (context, isDarkTheme) {
               return const CustomAppBar();
             },
           ),

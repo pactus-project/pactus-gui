@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
+import 'package:gui/src/core/common/widgets/app_layout.dart';
 import 'package:gui/src/core/constants/app_constants.dart';
 import 'package:gui/src/core/enums/app_enums.dart';
 import 'package:gui/src/core/extensions/context_extensions.dart';
@@ -21,116 +22,118 @@ class CreateLocalNodePane extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NavigationPaneCubit, int>(
       builder: (context, selectedIndex) {
-        return NavigationView(
-          pane: NavigationPane(
-            displayMode: PaneDisplayMode.open,
-            menuButton: const SizedBox(),
-            size: const NavigationPaneSize(openMaxWidth: 209),
-            selected: selectedIndex,
-            onChanged: (index) {
-              final stepValidationCubit = context.read<StepValidationCubit>();
-              final navigationCubit = context.read<NavigationPaneCubit>();
+        return AppLayout(
+          content: NavigationView(
+            pane: NavigationPane(
+              displayMode: PaneDisplayMode.open,
+              menuButton: const SizedBox(),
+              size: const NavigationPaneSize(openMaxWidth: 209),
+              selected: selectedIndex,
+              onChanged: (index) {
+                final stepValidationCubit = context.read<StepValidationCubit>();
+                final navigationCubit = context.read<NavigationPaneCubit>();
 
-              // Check if moving forward is allowed only if
-              // the current step is valid
-              final canGoForward = index == selectedIndex + 1 &&
-                  stepValidationCubit.isStepValid(selectedIndex);
+                // Check if moving forward is allowed only if
+                // the current step is valid
+                final canGoForward = index == selectedIndex + 1 &&
+                    stepValidationCubit.isStepValid(selectedIndex);
 
-              // Allow moving backward only if you're not at the last page
-              final canGoBack = index == selectedIndex - 1 &&
-                  selectedIndex < AppConstants.createLocalNodeMaxIndex;
+                // Allow moving backward only if you're not at the last page
+                final canGoBack = index == selectedIndex - 1 &&
+                    selectedIndex < AppConstants.createLocalNodeMaxIndex;
 
-              // If you've reached the last page, you won't be able to go back
-              if (selectedIndex == 5) {
-                // If you've reached the last page, going backward
-                // is not allowed
-                if (index == selectedIndex - 1) {
-                  return;
+                // If you've reached the last page, you won't be able to go back
+                if (selectedIndex == 5) {
+                  // If you've reached the last page, going backward
+                  // is not allowed
+                  if (index == selectedIndex - 1) {
+                    return;
+                  }
                 }
-              }
 
-              // Otherwise, allow moving forward or backward only if valid
-              if (canGoForward || canGoBack) {
-                navigationCubit.setSelectedIndex(index);
-              }
-            },
-            indicator: const SizedBox(),
-            items: [
-              PaneItem(
-                icon: const SizedBox(),
-                title: Text(
-                  context.tr(LocaleKeys.wallet_seed),
-                  style: TextStyle(
-                    color: context.detectPaneTextColor(
-                      isEnabledTextStyle: selectedIndex == 0,
+                // Otherwise, allow moving forward or backward only if valid
+                if (canGoForward || canGoBack) {
+                  navigationCubit.setSelectedIndex(index);
+                }
+              },
+              indicator: const SizedBox(),
+              items: [
+                PaneItem(
+                  icon: const SizedBox(),
+                  title: Text(
+                    context.tr(LocaleKeys.wallet_seed),
+                    style: TextStyle(
+                      color: context.detectPaneTextColor(
+                        isEnabledTextStyle: selectedIndex == 0,
+                      ),
                     ),
                   ),
+                  body: GenerationSeedScreen(),
                 ),
-                body: GenerationSeedScreen(),
-              ),
-              PaneItem(
-                icon: const SizedBox(),
-                title: Text(
-                  context.tr(LocaleKeys.confirm_seed),
-                  style: TextStyle(
-                    color: context.detectPaneTextColor(
-                      isEnabledTextStyle: selectedIndex == 1,
+                PaneItem(
+                  icon: const SizedBox(),
+                  title: Text(
+                    context.tr(LocaleKeys.confirm_seed),
+                    style: TextStyle(
+                      color: context.detectPaneTextColor(
+                        isEnabledTextStyle: selectedIndex == 1,
+                      ),
                     ),
                   ),
+                  body: ConfirmationSeedScreen(),
                 ),
-                body: ConfirmationSeedScreen(),
-              ),
-              PaneItem(
-                icon: const SizedBox(),
-                title: Text(
-                  context.tr(LocaleKeys.master_password),
-                  style: TextStyle(
-                    color: context.detectPaneTextColor(
-                      isEnabledTextStyle: selectedIndex == 2,
+                PaneItem(
+                  icon: const SizedBox(),
+                  title: Text(
+                    context.tr(LocaleKeys.master_password),
+                    style: TextStyle(
+                      color: context.detectPaneTextColor(
+                        isEnabledTextStyle: selectedIndex == 2,
+                      ),
                     ),
                   ),
+                  body: MasterPasswordScreen(),
                 ),
-                body: MasterPasswordScreen(),
-              ),
-              PaneItem(
-                icon: const SizedBox(),
-                title: Text(
-                  context.tr(LocaleKeys.validator_config),
-                  style: TextStyle(
-                    color: context.detectPaneTextColor(
-                      isEnabledTextStyle: selectedIndex == 3,
+                PaneItem(
+                  icon: const SizedBox(),
+                  title: Text(
+                    context.tr(LocaleKeys.validator_config),
+                    style: TextStyle(
+                      color: context.detectPaneTextColor(
+                        isEnabledTextStyle: selectedIndex == 3,
+                      ),
                     ),
                   ),
+                  body: ValidatorConfigScreen(),
                 ),
-                body: ValidatorConfigScreen(),
-              ),
-              PaneItem(
-                icon: const SizedBox(),
-                title: Text(
-                  context.tr(LocaleKeys.initializing),
-                  style: TextStyle(
-                    color: context.detectPaneTextColor(
-                      isEnabledTextStyle: selectedIndex == 4,
+                PaneItem(
+                  icon: const SizedBox(),
+                  title: Text(
+                    context.tr(LocaleKeys.initializing),
+                    style: TextStyle(
+                      color: context.detectPaneTextColor(
+                        isEnabledTextStyle: selectedIndex == 4,
+                      ),
                     ),
                   ),
-                ),
-                body: InitializingScreen(
-                  initialMode: InitialMode.create,
-                ),
-              ),
-              PaneItem(
-                icon: const SizedBox(),
-                title: Text(
-                  context.tr(LocaleKeys.finish),
-                  style: TextStyle(
-                    color: context.detectPaneTextColor(
-                      isEnabledTextStyle: selectedIndex == 5,
-                    ),
+                  body: InitializingScreen(
+                    initialMode: InitialMode.create,
                   ),
                 ),
-                body: FinishScreen(),
-              ),
-            ],
+                PaneItem(
+                  icon: const SizedBox(),
+                  title: Text(
+                    context.tr(LocaleKeys.finish),
+                    style: TextStyle(
+                      color: context.detectPaneTextColor(
+                        isEnabledTextStyle: selectedIndex == 5,
+                      ),
+                    ),
+                  ),
+                  body: FinishScreen(),
+                ),
+              ],
+            ),
           ),
         );
       },
