@@ -1,5 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gui/src/core/common/colors/app_colors.dart';
+import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 /// ## [FluentAppBarButton] Class Documentation
 ///
@@ -43,21 +45,33 @@ class FluentAppBarButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = AppTheme.of(context).brightness == Brightness.dark;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),
       child: HoverButton(
         onPressed: onPressed,
+        cursor: SystemMouseCursors.click,
         builder: (context, states) {
-          final color = Colors.transparent;
+          final theme = AppTheme.of(context);
+          final defaultColor =
+              isDark ? AppColors.primaryLight : AppColors.primaryDark;
+          final hoverColor =
+              theme.extension<DarkPallet>()?.dark300 ?? Colors.transparent;
+
           return Container(
             height: 48,
             width: 48,
             decoration: BoxDecoration(
-              color: color,
+              color: states.isHovered ? hoverColor : Colors.transparent,
               borderRadius: BorderRadius.circular(4),
             ),
             child: SvgPicture.asset(
               icon,
+              semanticsLabel: 'App bar button',
+              colorFilter: ColorFilter.mode(
+                defaultColor,
+                BlendMode.srcIn,
+              ),
             ),
           );
         },

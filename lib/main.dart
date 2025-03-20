@@ -22,18 +22,17 @@ Future<void> main() async {
   await setupDependencies();
 
   await WindowManager.instance.ensureInitialized();
-  final windowOptions = WindowOptions(
-    size: const Size(800, 600),
-    center: true,
-    backgroundColor: Colors.transparent,
-    skipTaskbar: false,
-    titleBarStyle: TitleBarStyle.hidden,
+  await WindowManager.instance.waitUntilReadyToShow(
+    WindowOptions(
+      backgroundColor: Colors.transparent,
+      skipTaskbar: false,
+      titleBarStyle: TitleBarStyle.hidden,
+    ),
+    () async {
+      await WindowManager.instance.setAsFrameless();
+      await WindowManager.instance.show();
+    },
   );
-  await WindowManager.instance.waitUntilReadyToShow(windowOptions, () async {
-    await WindowManager.instance.setAsFrameless();
-    await WindowManager.instance.show();
-  });
-
   runApp(
     MultiBlocProvider(
       providers: [
