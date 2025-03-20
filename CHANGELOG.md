@@ -1,3 +1,34 @@
+# 1.41.0+43
+
+### [Feature]
+- Implemented base layout for the app bar. [#42](https://github.com/pactus-project/pactus-gui/pull/135)
+
+### [Update]
+- Applied the app bar to all screens except the dashboard. [#42](https://github.com/pactus-project/pactus-gui/pull/135)
+- Refactored the condition in the `WelcomeScreen` for improved logic. [#42](https://github.com/pactus-project/pactus-gui/pull/135)
+- Updated the test for the switch theme to align with the latest logic. [#42](https://github.com/pactus-project/pactus-gui/pull/135)
+- Updated `accent` and `onAccent` color logic in the `ThemeSwitcher` widget.  [#42](https://github.com/pactus-project/pactus-gui/pull/135)
+- Removed extra paddings from `CustomAppBar` and `FluentAppBarButton` widgets for a cleaner UI. [#42](https://github.com/pactus-project/pactus-gui/pull/135)
+
+### [Refactor]
+- Updated tint color for the switch button to improve visual consistency.  [#42](https://github.com/pactus-project/pactus-gui/pull/135)
+- Enabled accent color selection visibility in developer mode for easier theme testing.  [#42](https://github.com/pactus-project/pactus-gui/pull/135)
+
+# 1.40.0+42
+
+### [Feature]
+- Added blockchain info infrastructure to support data retrieval and management. [#118](https://github.com/pactus-project/pactus-gui/pull/133)
+- Implemented node startup and data display functionality in the dashboard screen. [#118](https://github.com/pactus-project/pactus-gui/pull/133)
+- Introduced `ShimmerCardItem` widget for enhanced UI loading states. [#118](https://github.com/pactus-project/pactus-gui/pull/133)
+
+### [Update]
+- Added 1, 2, and 3 seconds duration options to the `DelayTime` enum for improved timing control. [#118](https://github.com/pactus-project/pactus-gui/pull/133)
+- Updated model, entity, and mapper files in the `blockchainGetInfo` feature to support UI integration. [#118](https://github.com/pactus-project/pactus-gui/pull/133)
+- Enhanced UI in the `blockchainGetInfo` feature to display data received from the API. [#118](https://github.com/pactus-project/pactus-gui/pull/133)
+
+### [Chore]
+- Integrated the `shimmer` package for smooth loading animations. [#118](https://github.com/pactus-project/pactus-gui/pull/133)
+
 # 1.39.0+41
 
 ### [Refactor]
