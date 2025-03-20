@@ -147,7 +147,7 @@ class __$$RemoteDataSuccessImplCopyWithImpl<T, $Res>
 /// @nodoc
 
 class _$RemoteDataSuccessImpl<T> implements RemoteDataSuccess<T> {
-  const _$RemoteDataSuccessImpl({this.remoteData, this.error});
+  _$RemoteDataSuccessImpl({this.remoteData, this.error});
 
   @override
   final T? remoteData;
@@ -247,7 +247,7 @@ class _$RemoteDataSuccessImpl<T> implements RemoteDataSuccess<T> {
 }
 
 abstract class RemoteDataSuccess<T> implements RemoteDataState<T> {
-  const factory RemoteDataSuccess({final T? remoteData, final String? error}) =
+  factory RemoteDataSuccess({final T? remoteData, final String? error}) =
       _$RemoteDataSuccessImpl<T>;
 
   @override
@@ -306,7 +306,7 @@ class __$$RemoteDataFailedImplCopyWithImpl<T, $Res>
 /// @nodoc
 
 class _$RemoteDataFailedImpl<T> implements RemoteDataFailed<T> {
-  const _$RemoteDataFailedImpl({this.remoteData, this.error});
+  _$RemoteDataFailedImpl({this.remoteData, this.error});
 
   @override
   final T? remoteData;
@@ -405,7 +405,7 @@ class _$RemoteDataFailedImpl<T> implements RemoteDataFailed<T> {
 }
 
 abstract class RemoteDataFailed<T> implements RemoteDataState<T> {
-  const factory RemoteDataFailed({final T? remoteData, final String? error}) =
+  factory RemoteDataFailed({final T? remoteData, final String? error}) =
       _$RemoteDataFailedImpl<T>;
 
   @override

@@ -51,7 +51,7 @@ jobs:
       - name: Generate Assets Files
         run: |
           # Command to rebuild asset files
-          dart run build_runner build --delete-conflicting-outputs --build-filter="lib/src/core/utils/gen/assets/*.dart" || (
+          dart run build_runner build --delete-conflicting-outputs || (
             echo "Error: Failed to generate asset files.";
             exit 1;
           )
