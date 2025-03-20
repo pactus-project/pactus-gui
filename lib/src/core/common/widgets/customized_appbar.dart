@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 import 'package:window_manager/window_manager.dart';
@@ -56,14 +57,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       },
       child: Container(
         height: preferredSize.height,
-        padding: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
           color: AppTheme.of(context).extension<LightPallet>()!.light800,
         ),
         child: Row(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 11),
+              padding: const EdgeInsetsDirectional.only(start: 20),
               child: SvgPicture.asset(
                 isLightTheme
                     ? Assets.icons.icLogoLight
@@ -74,6 +74,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
             const Spacer(),
             const ThemeSwitcher(),
+            const Gap(4),
             _buildWindowControls(),
           ],
         ),

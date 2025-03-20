@@ -46,36 +46,33 @@ class FluentAppBarButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = AppTheme.of(context).brightness == Brightness.dark;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
-      child: HoverButton(
-        onPressed: onPressed,
-        cursor: SystemMouseCursors.click,
-        builder: (context, states) {
-          final theme = AppTheme.of(context);
-          final defaultColor =
-              isDark ? AppColors.primaryLight : AppColors.primaryDark;
-          final hoverColor =
-              theme.extension<DarkPallet>()?.dark300 ?? Colors.transparent;
+    return HoverButton(
+      onPressed: onPressed,
+      cursor: SystemMouseCursors.click,
+      builder: (context, states) {
+        final theme = AppTheme.of(context);
+        final defaultColor =
+            isDark ? AppColors.primaryLight : AppColors.primaryDark;
+        final hoverColor =
+            theme.extension<DarkPallet>()?.dark300 ?? Colors.transparent;
 
-          return Container(
-            height: 48,
-            width: 48,
-            decoration: BoxDecoration(
-              color: states.isHovered ? hoverColor : Colors.transparent,
-              borderRadius: BorderRadius.circular(4),
+        return Container(
+          height: 48,
+          width: 48,
+          decoration: BoxDecoration(
+            color: states.isHovered ? hoverColor : Colors.transparent,
+            borderRadius: BorderRadius.circular(4),
+          ),
+          child: SvgPicture.asset(
+            icon,
+            semanticsLabel: 'App bar button',
+            colorFilter: ColorFilter.mode(
+              defaultColor,
+              BlendMode.srcIn,
             ),
-            child: SvgPicture.asset(
-              icon,
-              semanticsLabel: 'App bar button',
-              colorFilter: ColorFilter.mode(
-                defaultColor,
-                BlendMode.srcIn,
-              ),
-            ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
