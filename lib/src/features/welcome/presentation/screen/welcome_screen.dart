@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/foundation.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/common/widgets/accent_color_picker_widget.dart';
@@ -43,8 +44,8 @@ class WelcomeScreen extends StatelessWidget {
                 softWrap: true,
                 textAlign: TextAlign.center,
               ),
-              const Gap(32),
-              const AccentColorPicker(),
+              if (kDebugMode) const Gap(16),
+              if (kDebugMode) const AccentColorPicker(),
               const Gap(16),
               AdaptiveTextButton(
                 style: ButtonStyle(
