@@ -4,12 +4,12 @@ part 'remote_data_state.freezed.dart';
 
 @freezed
 class RemoteDataState<T> with _$RemoteDataState<T> {
-  const factory RemoteDataState.success({
+  factory RemoteDataState.success({
     T? remoteData,
     String? error,
   }) = RemoteDataSuccess<T>;
 
-  const factory RemoteDataState.failed({
+  factory RemoteDataState.failed({
     T? remoteData,
     String? error,
   }) = RemoteDataFailed<T>;

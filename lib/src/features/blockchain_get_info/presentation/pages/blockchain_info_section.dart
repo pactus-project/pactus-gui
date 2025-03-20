@@ -2,6 +2,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/common/widgets/shimmer_card_item.dart';
+import 'package:gui/src/features/blockchain_get_info/domain/entities/blockchain_info_entity.dart';
 import 'package:gui/src/features/blockchain_get_info/presentation/bloc/blockchain_get_info_bloc.dart';
 import 'package:gui/src/features/blockchain_get_info/presentation/widgets/customized_text_item.dart';
 
@@ -15,10 +16,10 @@ class BlockchainInfoSection extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: BlocBuilder<BlockchainGetInfoBloc, BlockchainGetInfoState>(
-          builder: (context, state) {
+          builder: (context, BlockchainGetInfoState state) {
             return state.maybeWhen(
               orElse: ShimmerCardItem.new,
-              loaded: (data) => Column(
+              loaded: (BlockchainInfoEntity data) => Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: 4,
                 children: [

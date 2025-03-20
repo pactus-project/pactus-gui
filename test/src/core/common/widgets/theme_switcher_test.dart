@@ -68,13 +68,13 @@ void main() {
       final lightIconOpacity = tester.widget<AnimatedOpacity>(
         find.byType(AnimatedOpacity).last,
       );
-      expect(lightIconOpacity.opacity, 0.0);
+      expect(lightIconOpacity.opacity, 1.0);
 
       // Assert: Alignment should be for light theme
       final animatedAlignFinder = find.byType(AnimatedAlign);
       expect(
         tester.widget<AnimatedAlign>(animatedAlignFinder).alignment,
-        Alignment.centerRight,
+        Alignment.centerLeft,
       );
     });
 
@@ -91,13 +91,13 @@ void main() {
       final darkIconOpacity = tester.widget<AnimatedOpacity>(
         find.byType(AnimatedOpacity).first,
       );
-      expect(darkIconOpacity.opacity, 0.0);
+      expect(darkIconOpacity.opacity, 1.0);
 
       // Assert: Alignment should be for dark theme
       final animatedAlignFinder = find.byType(AnimatedAlign);
       expect(
         tester.widget<AnimatedAlign>(animatedAlignFinder).alignment,
-        Alignment.centerLeft,
+        Alignment.centerRight,
       );
 
       // Assert: Verify the Cubit's state is updated to dark theme
@@ -121,13 +121,13 @@ void main() {
       final lightIconOpacity = tester.widget<AnimatedOpacity>(
         find.byType(AnimatedOpacity).last,
       );
-      expect(lightIconOpacity.opacity, 0.0);
+      expect(lightIconOpacity.opacity, 1.0);
 
       // Assert: Alignment should be for light theme
       final animatedAlignFinder = find.byType(AnimatedAlign);
       expect(
         tester.widget<AnimatedAlign>(animatedAlignFinder).alignment,
-        Alignment.centerRight,
+        Alignment.centerLeft,
       );
 
       // Assert: Verify the Cubit's state is updated to light theme
@@ -150,14 +150,14 @@ void main() {
               find.byType(AnimatedOpacity).first,
             )
             .opacity,
-        0.0,
+        1.0,
       );
 
       // Assert: Alignment should be for dark theme
       final animatedAlignFinder = find.byType(AnimatedAlign);
       expect(
         tester.widget<AnimatedAlign>(animatedAlignFinder).alignment,
-        Alignment.centerLeft,
+        Alignment.centerRight,
       );
     });
   });
