@@ -66,12 +66,14 @@ class ThemeSwitcher extends StatelessWidget {
                 duration: duration * 2,
                 decoration: BoxDecoration(
                   color: isDarkMode
-                      ? AppTheme.of(context).extension<BluePallet>()!.blue700!
+                      ? FluentTheme.of(context).accentColor
                       : Colors.transparent,
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
                     color: isDarkMode
-                        ? Colors.transparent
+                        ? AppTheme.of(context)
+                        .extension<OnAccentPallet>()!
+                        .onAccentColor
                         : AppTheme.of(context)
                             .extension<DarkPallet>()!
                             .dark900!,
