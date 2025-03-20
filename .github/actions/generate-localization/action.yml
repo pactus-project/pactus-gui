@@ -1,0 +1,17 @@
+name: 'Generate Localization Files'
+description: 'Generate localization files and check for untranslated messages.'
+runs:
+  using: 'composite'
+  steps:
+    - name: Generate Localization Files
+      shell: bash
+      run: |
+        output=$(flutter gen-l10n)
+        echo "$output"
+        if echo "$output" | grep -q "untranslated message"; then
+          echo "::error file=lib/l10n/l10n.yaml::Error: Untranslated messages detected in your localization files."
+          echo "::error::There are untranslated messages in the following languages:"
+          echo "$output" | grep "untranslated message"
+          echo "::error::Please ensure that all translations are provided in the respective .arb files."
+          exit 1
+        fi
