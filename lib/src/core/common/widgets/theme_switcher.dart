@@ -72,8 +72,8 @@ class ThemeSwitcher extends StatelessWidget {
                   border: Border.all(
                     color: isDarkMode
                         ? AppTheme.of(context)
-                        .extension<OnAccentPallet>()!
-                        .onAccentColor
+                            .extension<OnAccentPallet>()!
+                            .onAccentColor
                         : AppTheme.of(context)
                             .extension<DarkPallet>()!
                             .dark900!,
