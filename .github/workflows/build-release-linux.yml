@@ -64,6 +64,6 @@ jobs:
         uses: ./.github/actions/linux-release
         with:
           tag_name: ${{ env.tag_name }}
-          release_name: "${{ env.title }}"
-          release_body: "${{ env.description }}"
+          release_name: "${{ steps.extract_tag.outputs.title }}"
+          release_body: "${{ steps.extract_tag.outputs.description }}"
           github_token: ${{ secrets.GITHUB_TOKEN }} # Pass the secret as an input
