@@ -1,13 +1,16 @@
 name: 'Generate Localization Files'
-description: 'Generate localization files and check for untranslated messages.'
+description: 'Generate localization files, run custom utilities, and check for untranslated messages.'
 runs:
   using: 'composite'
   steps:
     - name: Generate Localization Files
       shell: bash
       run: |
-        output=$(flutter gen-l10n)
+        echo "* Rebuilding translation files using the l10n package..."
+        output=$(flutter gen-l10n --output-dir=lib/l10n --arb-dir=lib/l10n)
         echo "$output"
+
+        # Check for untranslated messages
         if echo "$output" | grep -q "untranslated message"; then
           echo "::error file=lib/l10n/l10n.yaml::Error: Untranslated messages detected in your localization files."
           echo "::error::There are untranslated messages in the following languages:"
@@ -15,3 +18,27 @@ runs:
           echo "::error::Please ensure that all translations are provided in the respective .arb files."
           exit 1
         fi
+
+    - name: Run custom translation utilities
+      shell: bash
+      run: |
+        echo "* Running custom translations utilities from lib/src/core/utils/gen/localization/translations_utils.dart..."
+        dart lib/src/core/utils/gen/localization/translations_utils.dart
+
+    - name: Run build_runner
+      shell: bash
+      run: |
+        echo "* Running build_runner to generate code for localization and other assets..."
+        dart run build_runner build --delete-conflicting-outputs
+
+    - name: Update dependencies
+      shell: bash
+      run: |
+        echo "* Running flutter pub get to update l10n dependencies..."
+        flutter pub get
+
+    - name: Rearrange Code Styles
+      shell: bash
+      run: |
+        echo "* Running dart format  to re-arrange code styles..."
+        dart format .

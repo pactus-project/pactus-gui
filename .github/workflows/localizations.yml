@@ -3,7 +3,6 @@ on:
   pull_request:
     branches:
       - main
-      - developer
 jobs:
   validation_localization:
     runs-on: ubuntu-latest

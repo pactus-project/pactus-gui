@@ -1,0 +1,59 @@
+name: 'Extract Tag Details'
+description: 'Extract tag details and create a description.'
+runs:
+  using: 'composite'
+  steps:
+    - name: Extract Tag Name
+      id: extract-tag
+      shell: bash
+      run: |
+        TAG_NAME=${GITHUB_REF#refs/tags/}
+        echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+        echo "TITLE=$TAG_NAME" >> $GITHUB_ENV
+
+    - name: Read Tag Description
+      id: read-tag-description
+      shell: bash
+      run: |
+        if [ -f "tag_message.txt" ]; then
+          TAG_DESCRIPTION=$(cat tag_message.txt)
+        else
+          TAG_DESCRIPTION="No additional details provided."
+        fi
+        echo "TAG_DESCRIPTION<<EOF" >> $GITHUB_ENV
+        echo "$TAG_DESCRIPTION" >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
+
+    - name: Create Description
+      id: create-description
+      shell: bash
+      run: |
+        echo "🚀 **Automated Release for $TAG_NAME**" > description.txt
+        echo "" >> description.txt
+        echo "$TAG_DESCRIPTION" >> description.txt
+        echo "" >> description.txt
+        echo "### Notes:" >> description.txt
+        echo "- This release includes all updates from the previous version." >> description.txt
+        echo "- Please report any issues on our [GitHub Issues](https://github.com/your-repo/issues) page." >> description.txt
+
+        DESCRIPTION=$(cat description.txt)
+        echo "DESCRIPTION<<EOF" >> $GITHUB_ENV
+        echo "$DESCRIPTION" >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
+
+        rm description.txt
+
+# Define action outputs
+outputs:
+  tag_name:
+    description: 'The name of the tag'
+    value: ${{ env.TAG_NAME }}
+  title:
+    description: 'The title of the tag'
+    value: ${{ env.TITLE }}
+  tag_description:
+    description: 'The description of the tag'
+    value: ${{ env.TAG_DESCRIPTION }}
+  description:
+    description: 'Generated release description'
+    value: ${{ env.DESCRIPTION }}
