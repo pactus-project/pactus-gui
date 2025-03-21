@@ -1,0 +1,11 @@
+name: 'Fetch and Extract Files for Windows'
+description: 'Fetch and Extract Files for Windows'
+runs:
+  using: 'composite'
+  steps:
+    - name: Fetch and Extract Files
+      shell: pwsh
+      run: |
+        Invoke-WebRequest -Uri ${{ env.WINDOWS_ASSETS_URL }} -OutFile file.zip
+        New-Item -ItemType Directory -Force -Path lib\src\core\native_resources\windows\
+        Expand-Archive -Path file.zip -DestinationPath lib\src\core\native_resources\windows\ -Force

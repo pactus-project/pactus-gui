@@ -1,0 +1,68 @@
+name: Windows Release Build
+
+env:
+  WINDOWS_ASSETS_URL: "https://github.com/pactus-project/pactus/releases/download/v1.6.4/pactus-cli_1.6.4_windows_amd64.zip"
+
+permissions:
+  contents: write
+
+on:
+  push:
+    tags:
+      - 'v*' # Trigger on version tags like v1.2.3
+
+jobs:
+  build-and-release-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Extract Tag Details
+        id: extract_tag
+        uses: ./.github/actions/extract-tag-details
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.27.3'
+          channel: 'stable'
+          cache: true
+
+      - name: Install Windows dependencies
+        uses: ./.github/actions/windows-install-dependencies
+
+      - name: Enable Windows desktop
+        run: flutter config --enable-windows-desktop
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Generate Localization Files
+        uses: ./.github/actions/generate-localization
+
+      - name: Generate Asset Files
+        uses: ./.github/actions/generate-assets
+
+      - name: Generate some files by build runner
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Rearrange Code Style
+        run: dart format .
+
+      - name: Run Flutter Analyze
+        run: flutter analyze
+
+      - name: Fetch and Extract Files
+        uses: ./.github/actions/windows-extract-files
+
+      - name: Build application
+        run: flutter build windows --release
+
+      - name: Windows Release
+        uses: ./.github/actions/windows-release
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: "${{ steps.extract_tag.outputs.title }}"
+          release_body: "${{ steps.extract_tag.outputs.description }}"
+          github_token: ${{ secrets.GITHUB_TOKEN }} # Pass the secret as an input

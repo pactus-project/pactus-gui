@@ -1,0 +1,12 @@
+name: 'Install Windows dependencies'
+description: 'Install Windows dependencies'
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Windows dependencies
+      shell: pwsh
+      run: |
+        choco install -y cmake
+        choco install -y ninja
+        choco install -y visualstudio2022community --package-parameters "--add Microsoft.VisualStudio.Workload.NativeDesktop"
+        choco install -y 7zip
