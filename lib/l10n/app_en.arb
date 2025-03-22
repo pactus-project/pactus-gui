@@ -76,5 +76,12 @@
   "skip": "skip",
   "back": "Back",
   "confirmation_seed_title": "Confirmation Seed",
-  "confirmation_seed_description": "Embark with assurance, your gateway to secure seed generation"
+  "confirmation_seed_description": "Embark with assurance, your gateway to secure seed generation",
+  "log": "Log",
+  "connection": "Connection",
+  "reachability": "Reachability",
+  "inbound_outbound": "(Inbound: 0, Outbound: 1)",
+  "public" : "Public",
+  "clock_offset": "Clock Offset",
+  "clock_offset_description": "0 second(s)"
 }

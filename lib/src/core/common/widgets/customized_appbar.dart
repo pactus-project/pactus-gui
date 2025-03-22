@@ -2,7 +2,10 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:gui/src/core/common/widgets/icon_action_button.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
+import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 import 'package:window_manager/window_manager.dart';
 
@@ -41,9 +44,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     super.key,
     this.title,
+    this.isDashboard = false,
   });
 
   final String? title;
+  final bool isDashboard;
 
   @override
   Size get preferredSize => const Size.fromHeight(48);
@@ -73,9 +78,43 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
             const Spacer(),
-            const ThemeSwitcher(),
-            const Gap(4),
-            _buildWindowControls(),
+            Row(
+              children: [
+                if (isDashboard) ...[
+                  IconActionButton(
+                    icon: Assets.icons.icCode,
+                    onPressed: _toggleShowLog,
+                    size: 30,
+                  ),
+                  IconActionButton(
+                    icon: Assets.icons.icClock,
+                    onPressed: _toggleClock,
+                    size: 30,
+                    tooltipTitle: context.tr(LocaleKeys.clock_offset),
+                    tooltipDescription:
+                        context.tr(LocaleKeys.clock_offset_description),
+                  ),
+                  IconActionButton(
+                    icon: Assets.icons.icConnection,
+                    onPressed: _toggleConnection,
+                    size: 30,
+                    tooltipTitle: context.tr(LocaleKeys.connection),
+                    tooltipDescription: context.tr(LocaleKeys.inbound_outbound),
+                  ),
+                  IconActionButton(
+                    icon: Assets.icons.icReachbility,
+                    onPressed: _toggleReachability,
+                    size: 30,
+                    tintColor: Colors.green,
+                    tooltipTitle: context.tr(LocaleKeys.reachability),
+                    tooltipDescription: context.tr(LocaleKeys.public),
+                  ),
+                ],
+                const ThemeSwitcher(),
+                const Gap(4),
+                _buildWindowControls(),
+              ],
+            ),
           ],
         ),
       ),
@@ -93,6 +132,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
+  Future<void> _toggleShowLog() async {}
+
+  Future<void> _toggleClock() async {}
+
+  Future<void> _toggleConnection() async {}
+
+  Future<void> _toggleReachability() async {}
+
   Future<void> _toggleMaximize() async {
     final isMaximized = await windowManager.isMaximized();
     isMaximized
@@ -100,9 +147,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         : await windowManager.maximize();
   }
 
-  Widget _buildControlButton(String icon, AsyncCallback action) {
+  Widget _buildControlButton(
+    String icon,
+    AsyncCallback action, {
+    double size = 48,
+  }) {
     return FluentAppBarButton(
       icon: icon,
+      size: size,
       onPressed: () async {
         try {
           await action();

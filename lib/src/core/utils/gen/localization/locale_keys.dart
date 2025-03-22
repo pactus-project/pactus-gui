@@ -88,4 +88,11 @@ abstract class LocaleKeys {
   static const String confirmation_seed_title = 'confirmation_seed_title';
   static const String confirmation_seed_description =
       'confirmation_seed_description';
+  static const String log = 'log';
+  static const String connection = 'connection';
+  static const String reachability = 'reachability';
+  static const String inbound_outbound = 'inbound_outbound';
+  static const String public = 'public';
+  static const String clock_offset = 'clock_offset';
+  static const String clock_offset_description = 'clock_offset_description';
 }

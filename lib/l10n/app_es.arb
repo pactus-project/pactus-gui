@@ -77,5 +77,13 @@
   "skip": "Omitir",
   "back": "Atrás",
   "confirmation_seed_title": "Confirmación de la semilla",
-  "confirmation_seed_description": "Embárcate con confianza, tu puerta de entrada a una generación de semillas segura"
-  }
+  "confirmation_seed_description": "Embárcate con confianza, tu puerta de entrada a una generación de semillas segura",
+  "log": "Registro",
+  "clock": "Reloj",
+  "connection": "Conexión",
+  "reachability": "Alcance",
+  "inbound_outbound": "(Inbound: 0, Outbound: 1)",
+  "public" : "Público",
+  "clock_offset": "Desplazamiento de reloj",
+  "clock_offset_description": "0 segundos"
+}
