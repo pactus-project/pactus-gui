@@ -35,6 +35,10 @@ class IconActionButton extends StatelessWidget {
     final defaultColor =
         isDark ? AppColors.primaryLight : AppColors.primaryDark;
 
+    final theme = AppTheme.of(context);
+    final hoverColor =
+        theme.extension<DarkPallet>()?.dark300 ?? Colors.transparent;
+
     return _CustomTooltip(
       tooltipTitle: tooltipTitle,
       tooltipDescription: tooltipDescription,
@@ -50,10 +54,12 @@ class IconActionButton extends StatelessWidget {
             }
           },
           builder: (context, states) {
+            final isHovering = states.isHovered;
+
             return AnimatedContainer(
               duration: const Duration(milliseconds: 150),
               decoration: BoxDecoration(
-                color: Colors.transparent,
+                color: isHovering ? hoverColor : Colors.transparent,
                 borderRadius: BorderRadius.circular(borderRadius),
               ),
               child: Center(

@@ -132,13 +132,21 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  Future<void> _toggleShowLog() async {}
+  Future<void> _toggleShowLog() async {
+    // Implement toggle show log
+  }
 
-  Future<void> _toggleClock() async {}
+  Future<void> _toggleClock() async {
+    // Implement toggle clock
+  }
 
-  Future<void> _toggleConnection() async {}
+  Future<void> _toggleConnection() async {
+    // Implement toggle connection
+  }
 
-  Future<void> _toggleReachability() async {}
+  Future<void> _toggleReachability() async {
+    //Implement toggle reachability
+  }
 
   Future<void> _toggleMaximize() async {
     final isMaximized = await windowManager.isMaximized();
