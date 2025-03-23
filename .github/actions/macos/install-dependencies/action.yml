@@ -1,4 +1,4 @@
-name: 'Install macOS dependencies'
+name: 'Install macOS Build Dependencies'
 description: 'Install macOS dependencies'
 runs:
   using: 'composite'

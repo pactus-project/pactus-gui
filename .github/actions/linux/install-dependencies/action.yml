@@ -1,4 +1,4 @@
-name: 'Install Linux dependencies'
+name: 'Install Linux Build Dependencies'
 description: 'Install Linux dependencies'
 runs:
   using: 'composite'

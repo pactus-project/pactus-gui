@@ -13,63 +13,77 @@ on:
       - 'v*' # Trigger on version tags like v1.2.3
 
 jobs:
-  build-and-release-macos:
+  build-and-release-macos-arm64:
     runs-on: macos-latest
+
     outputs:
-      release_tag: macos-arm64-release-${{ github.run_number }}
-      platform: macOS
+      tag_name: ${{ steps.get_tag_details.outputs.tag_name }}
+      release_body: ${{ steps.get_tag_details.outputs.release_body }}
+      file_name: ${{ steps.build_macos_app.outputs.file_name }}
+      download_link: ${{ steps.prepare_download_links.outputs.download_link }}
+      release_link: ${{ steps.prepare_download_links.outputs.release_link }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Extract Tag Details
-        id: extract_tag
-        uses: ./.github/actions/extract-tag-details
-
-      - name: Setup Flutter
+      - name: Set Up Flutter Environment
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.27.3'
           channel: 'stable'
           cache: true
 
-      - name: Install macOS dependencies
-        uses: ./.github/actions/macos-install-dependencies
+      - name: Install Flutter Project Dependencies
+        uses: ./.github/actions/utils/install-flutter-dependencies
 
-      - name: Enable macOS desktop
-        run: flutter config --enable-macos-desktop
+      - name: Install macOS Build Dependencies
+        uses: ./.github/actions/macos/install-dependencies
 
-      - name: Install dependencies
-        run: flutter pub get
-
-      - name: Generate Localization Files
-        uses: ./.github/actions/generate-localization
-
-      - name: Generate Asset Files
-        uses: ./.github/actions/generate-assets
-
-      - name: Generate some files by build runner
-        run: dart run build_runner build --delete-conflicting-outputs
-
-      - name: Rearrange Code Style
-        run: dart format .
-
-      - name: Run Flutter Analyze
-        run: flutter analyze
-
-      - name: Fetch and Extract Files
-        uses: ./.github/actions/macos-extract-files
+      - name: Prepare Tag Metadata
+        id: get_tag_details
+        uses: ./.github/actions/utils/extract-tag-metadata
         with:
-          assets_url: ${{ env.MACOS_ASSETS_URL }}
+          github_ref: ${{ github.ref }}
 
-      - name: Build application
-        run: flutter build macos --release
-
-      - name: macOS Release
-        uses: ./.github/actions/macos-release
+      - name: Build macOS Release Artifacts
+        id: build_macos_app
+        uses: ./.github/actions/macos/build-artifacts
         with:
-          tag_name: ${{ github.ref_name }}
-          release_name: "${{ steps.extract_tag.outputs.title }}"
-          release_body: "${{ steps.extract_tag.outputs.description }}"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: ${{ steps.get_tag_details.outputs.tag_name }}
           arch: arm64
+
+      - name: Upload macOS Release Assets
+        uses: ./.github/actions/macos/release
+        with:
+          tag_name: ${{ steps.get_tag_details.outputs.tag_name }}
+          release_name: ${{ steps.get_tag_details.outputs.tag_name }}
+          release_body: ${{ steps.get_tag_details.outputs.release_body }}
+          file_name: ${{ steps.build_macos_app.outputs.file_name }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate Release Download Links
+        id: prepare_download_links
+        uses: ./.github/actions/utils/generate-download-links
+        with:
+          tag_name: ${{ steps.get_tag_details.outputs.tag_name }}
+          file_name: ${{ steps.build_macos_app.outputs.file_name }}
+
+  notify-macos-arm64:
+    needs: build-and-release-macos-arm64
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Discord Notification
+        uses: Ilshidur/action-discord@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          args: |
+            🚀 **GUI Release:** ${{ needs.build-and-release-macos-arm64.outputs.tag_name }}   📥[Download MacOs-arm64 Version](${{ needs.build-and-release-macos-arm64.outputs.download_link }})
+
+#      - name: Send Slack Notification
+#        uses: rtCamp/action-slack-notify@v2
+#        env:
+#          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+#          SLACK_MESSAGE: |
+#            🚀 **GUI Release:** ${{ needs.build-and-release-macos-arm64.outputs.tag_name }}      📥[Download MacOs-arm64 Version](${{ needs.build-and-release-macos-arm64.outputs.download_link }})
+

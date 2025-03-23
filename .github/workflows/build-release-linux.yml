@@ -15,55 +15,75 @@ on:
 jobs:
   build-and-release-linux:
     runs-on: ubuntu-latest
+
+    outputs:
+      tag_name: ${{ steps.get_tag_details.outputs.tag_name }}
+      release_body: ${{ steps.get_tag_details.outputs.release_body }}
+      file_name: ${{ steps.build_linux_app.outputs.file_name }}
+      download_link: ${{ steps.prepare_download_links.outputs.download_link }}
+      release_link: ${{ steps.prepare_download_links.outputs.release_link }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Extract Tag Details
-        id: extract_tag
-        uses: ./.github/actions/extract-tag-details
-
-      - name: Setup Flutter
+      - name: Set Up Flutter Environment
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.27.3'
           channel: 'stable'
           cache: true
 
-      - name: Install Linux dependencies
-        uses: ./.github/actions/linux-install-dependencies
+      - name: Install Flutter Project Dependencies
+        uses: ./.github/actions/utils/install-flutter-dependencies
 
-      - name: Enable Linux desktop
-        run: flutter config --enable-linux-desktop
+      - name: Install Linux Build Dependencies
+        uses: ./.github/actions/linux/install-dependencies
 
-      - name: Install dependencies
-        run: flutter pub get
-
-      - name: Generate Localization Files
-        uses: ./.github/actions/generate-localization
-
-      - name: Generate Asset Files
-        uses: ./.github/actions/generate-assets
-
-      - name: Generate some files by build runner
-        run: dart run build_runner build --delete-conflicting-outputs
-
-      - name: Rearrange Code Style
-        run: dart format .
-
-      - name: Run Flutter Analyze
-        run: flutter analyze
-
-      - name: Fetch and Extract Files
-        uses: ./.github/actions/linux-extract-files
-
-      - name: Build application
-        run: flutter build linux --release
-
-      - name: Linux Release
-        uses: ./.github/actions/linux-release
+      - name: Prepare Tag Metadata
+        id: get_tag_details
+        uses: ./.github/actions/utils/extract-tag-metadata
         with:
-          tag_name: ${{ env.tag_name }}
-          release_name: "${{ steps.extract_tag.outputs.title }}"
-          release_body: "${{ steps.extract_tag.outputs.description }}"
-          github_token: ${{ secrets.GITHUB_TOKEN }} # Pass the secret as an input
+          github_ref: ${{ github.ref }}
+
+      - name: Build Linux Release Artifacts
+        id: build_linux_app
+        uses: ./.github/actions/linux/build-artifacts
+        with:
+          tag_name: ${{ steps.get_tag_details.outputs.tag_name }}
+
+      - name: Upload Linux Release Assets
+        uses: ./.github/actions/linux/release
+        with:
+          tag_name: ${{ steps.get_tag_details.outputs.tag_name }}
+          release_name: ${{ steps.get_tag_details.outputs.tag_name }}
+          release_body: ${{ steps.get_tag_details.outputs.release_body }}
+          file_name: ${{ steps.build_linux_app.outputs.file_name }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate Release Download Links
+        id: prepare_download_links
+        uses: ./.github/actions/utils/generate-download-links
+        with:
+          tag_name: ${{ steps.get_tag_details.outputs.tag_name }}
+          file_name: ${{ steps.build_linux_app.outputs.file_name }}
+
+  notify-linux:
+    needs: build-and-release-linux
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Discord Notification
+        uses: Ilshidur/action-discord@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          args: |
+            🚀 **GUI Release:** ${{ needs.build-and-release-linux.outputs.tag_name }}   📥[Download Linux Version](${{ needs.build-and-release-linux.outputs.download_link }})
+
+
+#      - name: Send Slack Notification
+#        uses: rtCamp/action-slack-notify@v2
+#        env:
+#          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+#          SLACK_MESSAGE: |
+#            🚀 **GUI Release:** ${{ needs.build-and-release-linux.outputs.tag_name }}      📥[Download Linux Version](${{ needs.build-and-release-linux.outputs.download_link }})

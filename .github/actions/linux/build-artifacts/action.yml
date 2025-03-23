@@ -1,0 +1,46 @@
+name: 'Build Linux Release Artifacts'
+description: 'Build Linux Application'
+
+inputs:
+  tag_name:
+    description: 'The name of the tag'
+    required: true
+
+outputs:
+  file_name:
+    description: 'The name of the zip file that created from build directory.'
+    value: ${{ steps.archive_linux_build.outputs.file_name }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Enable Linux desktop
+      shell: bash
+      run: |
+        flutter config --enable-linux-desktop
+
+    - name: Fetch and Extract Files
+      shell: bash
+      run: |
+        curl -L -o file.tar.gz ${{ env.LINUX_ASSETS_URL }}
+        mkdir -p build/linux/x64/release/bundle/lib/src/core/native_resources/linux/
+        tar -xvzf file.tar.gz --strip-components=1 -C build/linux/x64/release/bundle/lib/src/core/native_resources/linux/
+
+    - name: Build application
+      shell: bash
+      run: |
+        flutter build linux --release
+
+    - name: Archive Linux Build Files
+      id: archive_linux_build
+      shell: bash
+      run: |
+        # Navigate to the build directory
+        cd build/linux/x64/release/bundle
+        
+        # Create a zip archive with the correct file name
+        FILE_NAME="linux-build-${{ inputs.tag_name }}.zip"
+        zip -r "${FILE_NAME}" .
+        
+        # Set the file name as an output
+        echo "file_name=${FILE_NAME}" >> $GITHUB_OUTPUT

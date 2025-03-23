@@ -16,6 +16,6 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
       - name: Generate Asset Files
-        uses: ./.github/actions/generate-assets
+        uses: ./.github/actions/code-quality/generate-assets
       - name: Validate Asset Files
-        uses: ./.github/actions/validate-assets
+        uses: ./.github/actions/code-quality/validate-assets
