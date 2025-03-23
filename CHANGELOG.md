@@ -1,3 +1,11 @@
+# 1.41.1+44
+
+### [CI]
+- Enhanced CI/CD Pipeline [#132](https://github.com/pactus-project/pactus-gui/pull/137)
+  - Integrated Slack WebHook for automated release notifications.
+  - Integrated Discord WebHook for automated release notifications.
+  - Automated release process triggered by new Git tags starting with `v`.
+
 # 1.41.0+43
 
 ### [Feature]
