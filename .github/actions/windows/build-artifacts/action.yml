@@ -19,6 +19,11 @@ runs:
       run: |
         flutter config --enable-windows-desktop
 
+    - name: Build application
+      shell: bash
+      run: |
+        flutter build windows --release
+
     - name: Fetch and Extract Files
       shell: bash
       run: |
@@ -28,13 +33,8 @@ runs:
         # Create the target directory if it doesn't exist
         mkdir -p build/windows/x64/runner/Release/lib/src/core/native_resources/windows/
         
-        # Extract the zip file
-          unzip -o  file.zip -d build/windows/x64/runner/Release/lib/src/core/native_resources/windows/
-
-    - name: Build application
-      shell: bash
-      run: |
-        flutter build windows --release
+        # Extract the zip file directly into the target directory
+        unzip -j -o file.zip -d build/windows/x64/runner/Release/lib/src/core/native_resources/windows/
 
     - name: Archive Windows Build Files
       id: archive_windows_build

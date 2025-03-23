@@ -78,11 +78,11 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
           args: |
-            🚀 **GUI Release:** ${{ needs.build-and-release-linux.outputs.tag_name }}   📥[Download Linux Version](${{ needs.build-and-release-linux.outputs.download_link }})
+            🚀 **GUI Release:** [${{ needs.build-and-release-linux.outputs.tag_name }}](${{ needs.build-and-release-linux.outputs.release_link }})  📥[Download Linux Version](${{ needs.build-and-release-linux.outputs.download_link }})
 
       - name: Send Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_MESSAGE: |
-            🚀 **GUI Release:** ${{ needs.build-and-release-linux.outputs.tag_name }}      📥[Download Linux Version](${{ needs.build-and-release-linux.outputs.download_link }})
+            🚀 **GUI Release:** [${{ needs.build-and-release-linux.outputs.tag_name }}](${{ needs.build-and-release-linux.outputs.release_link }})      📥[Download Linux Version](${{ needs.build-and-release-linux.outputs.download_link }})

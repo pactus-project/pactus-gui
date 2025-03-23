@@ -19,17 +19,17 @@ runs:
       run: |
         flutter config --enable-linux-desktop
 
+    - name: Build application
+      shell: bash
+      run: |
+        flutter build linux --release
+
     - name: Fetch and Extract Files
       shell: bash
       run: |
         curl -L -o file.tar.gz ${{ env.LINUX_ASSETS_URL }}
         mkdir -p build/linux/x64/release/bundle/lib/src/core/native_resources/linux/
         tar -xvzf file.tar.gz --strip-components=1 -C build/linux/x64/release/bundle/lib/src/core/native_resources/linux/
-
-    - name: Build application
-      shell: bash
-      run: |
-        flutter build linux --release
 
     - name: Archive Linux Build Files
       id: archive_linux_build

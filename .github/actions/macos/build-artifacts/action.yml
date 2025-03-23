@@ -22,17 +22,17 @@ runs:
       run: |
         flutter config --enable-macos-desktop
 
+    - name: Build application
+      shell: bash
+      run: |
+        flutter build macos --release
+
     - name: Fetch and Extract Files
       shell: bash
       run: |
         curl -L -o file.tar.gz ${{ env.MACOS_ASSETS_URL }}
         mkdir -p build/macos/Build/Products/Release/lib/src/core/native_resources/macos/
         tar -xvzf file.tar.gz --strip-components=1 -C build/macos/Build/Products/Release/lib/src/core/native_resources/macos/
-
-    - name: Build application
-      shell: bash
-      run: |
-        flutter build macos --release
 
     - name: Archive macOS Build Files
       id: archive_macos_build
