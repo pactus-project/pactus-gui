@@ -119,6 +119,13 @@ class CodegenLoader {
     'confirmation_seed_title': 'Confirmation Seed',
     'confirmation_seed_description':
         'Embark with assurance, your gateway to secure seed generation',
+    'log': 'Log',
+    'connection': 'Connection',
+    'reachability': 'Reachability',
+    'inbound_outbound': '(Inbound: 0, Outbound: 1)',
+    'public': 'Public',
+    'clock_offset': 'Clock Offset',
+    'clock_offset_description': '0 second(s)',
   };
   static const Map<String, dynamic> frFR = {
     'title': 'Bonjour le Monde!',
@@ -215,6 +222,14 @@ class CodegenLoader {
     'confirmation_seed_title': 'Confirmation de la graine',
     'confirmation_seed_description':
         'Embarquez en toute confiance, votre passerelle vers une génération de graine sécurisée',
+    'log': 'Journal',
+    'clock': 'Horloge',
+    'connection': 'Connexion',
+    'reachability': 'Atteignabilité',
+    'inbound_outbound': '(Inbound: 0, Outbound: 1)',
+    'public': 'Public',
+    'clock_offset': 'Décalage horaire',
+    'clock_offset_description': '0 secondes',
   };
   static const Map<String, dynamic> esES = {
     'title': 'Hola Mundo!',
@@ -309,6 +324,14 @@ class CodegenLoader {
     'confirmation_seed_title': 'Confirmación de la semilla',
     'confirmation_seed_description':
         'Embárcate con confianza, tu puerta de entrada a una generación de semillas segura',
+    'log': 'Registro',
+    'clock': 'Reloj',
+    'connection': 'Conexión',
+    'reachability': 'Alcance',
+    'inbound_outbound': '(Inbound: 0, Outbound: 1)',
+    'public': 'Público',
+    'clock_offset': 'Desplazamiento de reloj',
+    'clock_offset_description': '0 segundos',
   };
 
   static const Map<String, Map<String, dynamic>> mapLocales = {

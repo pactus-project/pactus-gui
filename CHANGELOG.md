@@ -1,10 +1,19 @@
-# 1.41.1+44
+# 1.42.1+45
 
 ### [CI]
 - Enhanced CI/CD Pipeline [#132](https://github.com/pactus-project/pactus-gui/pull/137)
-  - Integrated Slack WebHook for automated release notifications.
-  - Integrated Discord WebHook for automated release notifications.
-  - Automated release process triggered by new Git tags starting with `v`.
+    - Integrated Slack WebHook for automated release notifications.
+    - Integrated Discord WebHook for automated release notifications.
+    - Automated release process triggered by new Git tags starting with `v`.
+
+# 1.42.0+44
+
+### [Feature]
+- Implemented custom window header for the dashboard screen. [#49](https://github.com/pactus-project/pactus-gui/pull/139)
+
+### [Update]
+- Added hover color for the `IconButton` to improve interactivity. [#49](https://github.com/pactus-project/pactus-gui/pull/139)
+- Updated icon size in the `IconActionButton` widget for better visual consistency. [#49](https://github.com/pactus-project/pactus-gui/pull/139)
 
 # 1.41.0+43
 
