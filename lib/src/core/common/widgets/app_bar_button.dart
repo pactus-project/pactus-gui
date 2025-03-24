@@ -38,8 +38,9 @@ class FluentAppBarButton extends StatelessWidget {
     super.key,
     required this.icon,
     required this.onPressed,
+    this.size = 48,
   });
-
+  final double size;
   final String icon;
   final VoidCallback onPressed;
 
@@ -57,8 +58,8 @@ class FluentAppBarButton extends StatelessWidget {
             theme.extension<DarkPallet>()?.dark300 ?? Colors.transparent;
 
         return Container(
-          height: 48,
-          width: 48,
+          height: size,
+          width: size,
           decoration: BoxDecoration(
             color: states.isHovered ? hoverColor : Colors.transparent,
             borderRadius: BorderRadius.circular(4),
@@ -66,6 +67,8 @@ class FluentAppBarButton extends StatelessWidget {
           child: SvgPicture.asset(
             icon,
             semanticsLabel: 'App bar button',
+            height: size,
+            width: size,
             colorFilter: ColorFilter.mode(
               defaultColor,
               BlendMode.srcIn,

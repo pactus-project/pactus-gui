@@ -13,10 +13,12 @@ class AppLayout extends StatelessWidget {
   const AppLayout({
     super.key,
     required this.content,
+    this.isDashboard = false,
   });
 
   /// The main content of the screen displayed below the app bar
   final Widget content;
+  final bool isDashboard;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class AppLayout extends StatelessWidget {
           right: 0,
           child: BlocBuilder<AppThemeCubit, bool>(
             builder: (context, isDarkTheme) {
-              return const CustomAppBar();
+              return CustomAppBar(isDashboard: isDashboard);
             },
           ),
         ),

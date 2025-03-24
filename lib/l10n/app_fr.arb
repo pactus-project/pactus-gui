@@ -76,5 +76,13 @@
   "skip": "Passer",
   "back": "Retour",
   "confirmation_seed_title": "Confirmation de la graine",
-  "confirmation_seed_description": "Embarquez en toute confiance, votre passerelle vers une génération de graine sécurisée"
+  "confirmation_seed_description": "Embarquez en toute confiance, votre passerelle vers une génération de graine sécurisée",
+  "log": "Journal",
+  "clock": "Horloge",
+  "connection": "Connexion",
+  "reachability": "Atteignabilité",
+  "inbound_outbound": "(Inbound: 0, Outbound: 1)",
+  "public" : "Public",
+  "clock_offset": "Décalage horaire",
+  "clock_offset_description": "0 secondes"
 }

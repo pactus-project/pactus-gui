@@ -1,3 +1,12 @@
+# 1.42.0+44
+
+### [Feature]
+- Implemented custom window header for the dashboard screen. [#49](https://github.com/pactus-project/pactus-gui/pull/139)
+
+### [Update]
+- Added hover color for the `IconButton` to improve interactivity. [#49](https://github.com/pactus-project/pactus-gui/pull/139)
+- Updated icon size in the `IconActionButton` widget for better visual consistency. [#49](https://github.com/pactus-project/pactus-gui/pull/139)
+
 # 1.41.0+43
 
 ### [Feature]

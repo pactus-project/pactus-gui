@@ -16,8 +16,17 @@ class $AssetsIconsGen {
   AssetGenImage get clipboard =>
       const AssetGenImage('assets/icons/clipboard.png');
 
+  /// File path: assets/icons/ic_clock.svg
+  String get icClock => 'assets/icons/ic_clock.svg';
+
   /// File path: assets/icons/ic_close.svg
   String get icClose => 'assets/icons/ic_close.svg';
+
+  /// File path: assets/icons/ic_code.svg
+  String get icCode => 'assets/icons/ic_code.svg';
+
+  /// File path: assets/icons/ic_connection.svg
+  String get icConnection => 'assets/icons/ic_connection.svg';
 
   /// File path: assets/icons/ic_dark_mode.svg
   String get icDarkMode => 'assets/icons/ic_dark_mode.svg';
@@ -37,6 +46,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_minimize.svg
   String get icMinimize => 'assets/icons/ic_minimize.svg';
 
+  /// File path: assets/icons/ic_reachbility.svg
+  String get icReachbility => 'assets/icons/ic_reachbility.svg';
+
   /// File path: assets/icons/lock.png
   AssetGenImage get lock => const AssetGenImage('assets/icons/lock.png');
 
@@ -46,13 +58,17 @@ class $AssetsIconsGen {
   /// List of all assets
   List<dynamic> get values => [
         clipboard,
+        icClock,
         icClose,
+        icCode,
+        icConnection,
         icDarkMode,
         icLightMode,
         icLogoDark,
         icLogoLight,
         icMaximize,
         icMinimize,
+        icReachbility,
         lock,
         logo
       ];
