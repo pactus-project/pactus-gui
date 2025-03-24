@@ -83,6 +83,6 @@ jobs:
       - name: Send Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_MESSAGE: |
             🚀 **GUI Release:** ${{ needs.build-and-release-macos-arm64.outputs.tag_name }}      📥[Download MacOs-arm64 Version](${{ needs.build-and-release-macos-arm64.outputs.download_link }})
