@@ -62,11 +62,12 @@ class IconActionButton extends StatelessWidget {
                 color: isHovering ? hoverColor : Colors.transparent,
                 borderRadius: BorderRadius.circular(borderRadius),
               ),
-              child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(4),
                 child: SvgPicture.asset(
                   icon,
-                  width: size * 0.8,
-                  height: size * 0.8,
+                  width: size,
+                  height: size,
                   colorFilter: ColorFilter.mode(
                     tintColor ?? defaultColor,
                     BlendMode.srcIn,
