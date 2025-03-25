@@ -7,6 +7,7 @@ import 'package:gui/src/core/extensions/context_extensions.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/data/models/fluent_navigation_state_model.dart';
+import 'package:gui/src/features/blockchain_get_info/presentation/pages/blockchain_info_section.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
@@ -141,10 +142,7 @@ class DashboardScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  body: Container(
-                    color: AppTheme.of(context).extension<RedPallet>()!.red700,
-                    width: double.infinity,
-                  ),
+                  body: BlockchainInfoSection(),
                 ),
                 PaneItem(
                   icon: SvgPicture.asset(
@@ -221,23 +219,6 @@ class DashboardScreen extends StatelessWidget {
                 ),
               ],
             ),
-
-            // content: PopScope(
-            //   canPop: false,
-            //   child: Center(
-            //     child: Column(
-            //       children: [
-            //         const Text(
-            //           'DashboardPage',
-            //           style: TextStyle(
-            //             color: Colors.black,
-            //           ),
-            //         ),
-            //         BlockchainInfoSection(),
-            //       ],
-            //     ),
-            //   ),
-            // ),
           ),
         );
       },
