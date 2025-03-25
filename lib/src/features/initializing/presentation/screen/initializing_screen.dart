@@ -12,6 +12,7 @@ import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_state.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:gui/src/data/models/fluent_navigation_state_model.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:logger/logger.dart';
@@ -74,7 +75,7 @@ class _InitializingScreenState extends State<InitializingScreen> {
     final theme = FluentTheme.of(context);
     final colors = AppTheme.of(context).extension<DarkPallet>()!;
     final cubit = context.read<NavigationPaneCubit>();
-    final newIndex = cubit.state + 1;
+    final newIndex = cubit.state.selectedIndex + 1;
     return BlocConsumer<DaemonCubit, DaemonState>(
       listener: (context, state) {
         if (state is DaemonLoading) {
@@ -101,7 +102,7 @@ class _InitializingScreenState extends State<InitializingScreen> {
               stepIndex: newIndex,
               isValid: daemonState is DaemonSuccess,
             );
-        return BlocBuilder<NavigationPaneCubit, int>(
+        return BlocBuilder<NavigationPaneCubit, NavigationState>(
           builder: (context, selectedIndex) {
             return StandardPageLayout(
               content: Column(
@@ -150,17 +151,19 @@ class _InitializingScreenState extends State<InitializingScreen> {
                   BlocBuilder<DaemonCubit, DaemonState>(
                     builder: (context, state) {
                       return NavigationFooterSection(
-                        selectedIndex: selectedIndex,
+                        selectedIndex: selectedIndex.selectedIndex,
                         onBackPressed: () {
-                          context
-                              .read<NavigationPaneCubit>()
-                              .setSelectedIndex(selectedIndex - 1);
+                          context.read<NavigationPaneCubit>().setSelectedIndex(
+                                selectedIndex.selectedIndex - 1,
+                              );
                         },
                         onNextPressed: (state is DaemonSuccess)
                             ? () {
                                 context
                                     .read<NavigationPaneCubit>()
-                                    .setSelectedIndex(selectedIndex + 1);
+                                    .setSelectedIndex(
+                                      selectedIndex.selectedIndex + 1,
+                                    );
                               }
                             : null,
                       );

@@ -83,5 +83,12 @@
   "inbound_outbound": "(Inbound: 0, Outbound: 1)",
   "public" : "Public",
   "clock_offset": "Clock Offset",
-  "clock_offset_description": "0 second(s)"
+  "clock_offset_description": "0 second(s)",
+  "dashboard": "Dashboard",
+  "transaction": "Transaction",
+  "wallet": "Wallet",
+  "node_logs": "Node Logs",
+  "settings": "Settings",
+  "faqs": "FAQs",
+  "about": "About"
 }

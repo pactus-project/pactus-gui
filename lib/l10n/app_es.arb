@@ -85,5 +85,12 @@
   "inbound_outbound": "(Inbound: 0, Outbound: 1)",
   "public" : "Público",
   "clock_offset": "Desplazamiento de reloj",
-  "clock_offset_description": "0 segundos"
+  "clock_offset_description": "0 segundos",
+  "dashboard": "Panel de control",
+  "transaction": "Transacción",
+  "wallet": "Monedero",
+  "node_logs": "Registros del nodo",
+  "settings": "Configuración",
+  "faqs": "Preguntas frecuentes",
+  "about": "Acerca de"
 }

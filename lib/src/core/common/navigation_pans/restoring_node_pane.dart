@@ -6,6 +6,7 @@ import 'package:gui/src/core/constants/app_constants.dart';
 import 'package:gui/src/core/enums/app_enums.dart';
 import 'package:gui/src/core/extensions/context_extensions.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:gui/src/data/models/fluent_navigation_state_model.dart';
 import 'package:gui/src/features/finish/presentation/screen/finish_screen.dart';
 import 'package:gui/src/features/generation_seed/core/constants/enums/seed_type_enum.dart';
 import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
@@ -22,32 +23,35 @@ class RestoringNodePane extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NavigationPaneCubit, int>(
+    return BlocBuilder<NavigationPaneCubit, NavigationState>(
       builder: (context, selectedIndex) {
         return AppLayout(
           content: NavigationView(
             pane: NavigationPane(
               displayMode: PaneDisplayMode.open,
               menuButton: const SizedBox(),
-              size: const NavigationPaneSize(openMaxWidth: 209),
-              selected: selectedIndex,
+              size:
+                  const NavigationPaneSize(openMaxWidth: 209, compactWidth: 52),
+              selected: selectedIndex.selectedIndex,
               onChanged: (index) {
                 final stepValidationCubit = context.read<StepValidationCubit>();
                 final navigationCubit = context.read<NavigationPaneCubit>();
 
                 // Allow moving forward only if the previous step is valid
-                final canGoForward = index == selectedIndex + 1 &&
-                    stepValidationCubit.isStepValid(selectedIndex);
+                final canGoForward = index == selectedIndex.selectedIndex + 1 &&
+                    stepValidationCubit
+                        .isStepValid(selectedIndex.selectedIndex);
 
                 // Allow moving backward only if you're not at the last page
-                final canGoBack = index == selectedIndex - 1 &&
-                    selectedIndex < AppConstants.restoreNodeMaxIndex;
+                final canGoBack = index == selectedIndex.selectedIndex - 1 &&
+                    selectedIndex.selectedIndex <
+                        AppConstants.restoreNodeMaxIndex;
 
                 // If you've reached the last page, you won't be able to go back
-                if (selectedIndex == 4) {
+                if (selectedIndex.selectedIndex == 4) {
                   // If you've reached the last page, going backward
                   // is not allowed
-                  if (index == selectedIndex - 1) {
+                  if (index == selectedIndex.selectedIndex - 1) {
                     return;
                   }
                 }
@@ -65,7 +69,7 @@ class RestoringNodePane extends StatelessWidget {
                     context.tr(LocaleKeys.restoration),
                     style: TextStyle(
                       color: context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex == 0,
+                        isEnabledTextStyle: selectedIndex.selectedIndex == 0,
                       ),
                     ),
                   ),
@@ -88,7 +92,7 @@ class RestoringNodePane extends StatelessWidget {
                     context.tr(LocaleKeys.master_password),
                     style: TextStyle(
                       color: context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex == 1,
+                        isEnabledTextStyle: selectedIndex.selectedIndex == 1,
                       ),
                     ),
                   ),
@@ -100,7 +104,7 @@ class RestoringNodePane extends StatelessWidget {
                     context.tr(LocaleKeys.validator_config),
                     style: TextStyle(
                       color: context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex == 2,
+                        isEnabledTextStyle: selectedIndex.selectedIndex == 2,
                       ),
                     ),
                   ),
@@ -112,7 +116,7 @@ class RestoringNodePane extends StatelessWidget {
                     context.tr(LocaleKeys.initializing),
                     style: TextStyle(
                       color: context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex == 3,
+                        isEnabledTextStyle: selectedIndex.selectedIndex == 3,
                       ),
                     ),
                   ),
@@ -126,7 +130,7 @@ class RestoringNodePane extends StatelessWidget {
                     context.tr(LocaleKeys.finish),
                     style: TextStyle(
                       color: context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex == 4,
+                        isEnabledTextStyle: selectedIndex.selectedIndex == 4,
                       ),
                     ),
                   ),

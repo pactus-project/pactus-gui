@@ -11,6 +11,7 @@ import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
 import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:gui/src/data/models/fluent_navigation_state_model.dart';
 import 'package:gui/src/features/generation_seed/core/constants/enums/seed_type_enum.dart';
 import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
@@ -52,7 +53,7 @@ class RestorationSeedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NavigationPaneCubit, int>(
+    return BlocBuilder<NavigationPaneCubit, NavigationState>(
       builder: (context, selectedIndex) {
         return StandardPageLayout(
           content: LayoutBuilder(
@@ -86,7 +87,8 @@ class RestorationSeedScreen extends StatelessWidget {
                                       .setStepValid(
                                         stepIndex: context
                                             .read<NavigationPaneCubit>()
-                                            .state,
+                                            .state
+                                            .selectedIndex,
                                         isValid: context
                                             .read<SeedTextCubit>()
                                             .areAllWordsEntered(),
@@ -123,53 +125,56 @@ class RestorationSeedScreen extends StatelessWidget {
           footer: BlocBuilder<SeedTextCubit, List<String>>(
             builder: (context, words) {
               return NavigationFooterSection(
-                selectedIndex: selectedIndex,
-                onNextPressed: context
-                        .read<SeedTextCubit>()
-                        .areAllWordsEntered()
-                    ? () {
-                        final seeds = context.read<SeedTextCubit>().state;
+                selectedIndex: selectedIndex.selectedIndex,
+                onNextPressed:
+                    context.read<SeedTextCubit>().areAllWordsEntered()
+                        ? () {
+                            final seeds = context.read<SeedTextCubit>().state;
 
-                        final seedQty = context
-                            .read<DropdownCubit<SeedTypeEnum>>()
-                            .state
-                            .qty;
+                            final seedQty = context
+                                .read<DropdownCubit<SeedTypeEnum>>()
+                                .state
+                                .qty;
 
-                        final isValidSeedQuantity = seeds
-                                .where((item) => item.trim().isNotEmpty)
-                                .length ==
-                            seedQty;
+                            final isValidSeedQuantity = seeds
+                                    .where((item) => item.trim().isNotEmpty)
+                                    .length ==
+                                seedQty;
 
-                        final isValidateMnemonic =
-                            bip39.validateMnemonic(seeds.join(' '));
+                            final isValidateMnemonic =
+                                bip39.validateMnemonic(seeds.join(' '));
 
-                        if (isValidSeedQuantity) {
-                          if (isValidateMnemonic) {
-                            NodeConfigData.instance.restorationSeed =
-                                Mnemonic.generate(
-                              Language.english,
-                              passphrase: seeds.join(' '),
-                            );
-
-                            context
-                                .read<NavigationPaneCubit>()
-                                .setSelectedIndex(
-                                  context.read<NavigationPaneCubit>().state + 1,
+                            if (isValidSeedQuantity) {
+                              if (isValidateMnemonic) {
+                                NodeConfigData.instance.restorationSeed =
+                                    Mnemonic.generate(
+                                  Language.english,
+                                  passphrase: seeds.join(' '),
                                 );
-                          } else {
-                            showFluentAlert(
-                              context,
-                              'Invalid seeds.',
-                            );
+
+                                context
+                                    .read<NavigationPaneCubit>()
+                                    .setSelectedIndex(
+                                      context
+                                              .read<NavigationPaneCubit>()
+                                              .state
+                                              .selectedIndex +
+                                          1,
+                                    );
+                              } else {
+                                showFluentAlert(
+                                  context,
+                                  'Invalid seeds.',
+                                );
+                              }
+                            } else {
+                              showFluentAlert(
+                                context,
+                                'All seeds must be filled in.',
+                              );
+                            }
                           }
-                        } else {
-                          showFluentAlert(
-                            context,
-                            'All seeds must be filled in.',
-                          );
-                        }
-                      }
-                    : null,
+                        : null,
                 onBackPressed: () {
                   context.goNamed(AppRoute.initializeMode.name);
                 },
