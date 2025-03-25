@@ -2,7 +2,7 @@ name: Windows Release Build
 
 # Add environment variables at the top level
 env:
-  WINDOWS_ASSETS_URL: "https://github.com/pactus-project/pactus/releases/download/v1.6.4/pactus-cli_1.6.4_windows_amd64.zip"
+  WINDOWS_ASSETS_URL: "https://github.com/pactus-project/pactus/releases/download/v1.7.1/pactus-cli_1.7.1_windows_amd64.zip"
 
 permissions:
   contents: write
