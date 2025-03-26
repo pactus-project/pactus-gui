@@ -1,8 +1,8 @@
-name: Linux Release Build
+name: Linux Release Build (ARM64)
 
 # Add environment variables at the top level
 env:
-  LINUX_ASSETS_URL: "https://github.com/pactus-project/pactus/releases/download/v1.7.1/pactus-cli_1.7.1_linux_amd64.tar.gz"
+  LINUX_ASSETS_URL: "https://github.com/pactus-project/pactus/releases/download/v1.7.1/pactus-cli_1.7.1_linux_arm64.tar.gz"
 
 permissions:
   contents: write
@@ -13,32 +13,21 @@ on:
       - 'v*' # Trigger on version tags like v1.2.3
 
 jobs:
-  build-and-release-linux:
+  build-and-release-linux-arm64:
     runs-on: ubuntu-latest
 
     outputs:
       tag_name: ${{ steps.get_tag_details.outputs.tag_name }}
       release_body: ${{ steps.get_tag_details.outputs.release_body }}
-      file_name: ${{ steps.build_linux_app.outputs.file_name }}
+      file_name: ${{ steps.prepared_artifact_file.outputs.file_name }}
       download_link: ${{ steps.prepare_download_links.outputs.download_link }}
       release_link: ${{ steps.prepare_download_links.outputs.release_link }}
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set Up Flutter Environment
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.27.3'
-          channel: 'stable'
-          cache: true
-
-      - name: Install Flutter Project Dependencies
-        uses: ./.github/actions/utils/install-flutter-dependencies
-
-      - name: Install Linux Build Dependencies
-        uses: ./.github/actions/linux/install-dependencies
+      - name: Build Linux ARM64 Artifacts
+        uses: ./.github/actions/linux/build-artifacts-arm64
 
       - name: Prepare Tag Metadata
         id: get_tag_details
@@ -46,11 +35,15 @@ jobs:
         with:
           github_ref: ${{ github.ref }}
 
-      - name: Build Linux Release Artifacts
-        id: build_linux_app
-        uses: ./.github/actions/linux/build-artifacts
+      - name: Move Build Files To Artifacts
+        uses: ./.github/actions/utils/move-files-to-artifacts
+
+      - name: Add Daemon Files To Artifacts
+        id: prepared_artifact_file
+        uses: ./.github/actions/linux/add-daemon-files
         with:
           tag_name: ${{ steps.get_tag_details.outputs.tag_name }}
+          arch: arm64 # The CPU architecture (e.g., arm64, x64)
 
       - name: Upload Linux Release Assets
         uses: ./.github/actions/linux/release
@@ -58,18 +51,19 @@ jobs:
           tag_name: ${{ steps.get_tag_details.outputs.tag_name }}
           release_name: ${{ steps.get_tag_details.outputs.tag_name }}
           release_body: ${{ steps.get_tag_details.outputs.release_body }}
-          file_name: ${{ steps.build_linux_app.outputs.file_name }}
+          file_name: ${{ steps.prepared_artifact_file.outputs.file_name }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          arch: arm64 # The CPU architecture (e.g., arm64, x64)
 
       - name: Generate Release Download Links
         id: prepare_download_links
         uses: ./.github/actions/utils/generate-download-links
         with:
           tag_name: ${{ steps.get_tag_details.outputs.tag_name }}
-          file_name: ${{ steps.build_linux_app.outputs.file_name }}
+          file_name: ${{ steps.prepared_artifact_file.outputs.file_name }}
 
   notify-linux:
-    needs: build-and-release-linux
+    needs: build-and-release-linux-arm64
     runs-on: ubuntu-latest
     steps:
       - name: Send Discord Notification
@@ -78,11 +72,11 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
           args: |
-            🚀 **GUI Release:** [${{ needs.build-and-release-linux.outputs.tag_name }}](${{ needs.build-and-release-linux.outputs.release_link }})  📥[Download Linux Version](${{ needs.build-and-release-linux.outputs.download_link }})
+            🚀 **GUI Release:** ${{ needs.build-and-release-linux-arm64.outputs.tag_name }}   📥[Download Linux-arm64 Version](${{ needs.build-and-release-linux-arm64.outputs.download_link }})
 
       - name: Send Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_MESSAGE: |
-            🚀 **GUI Release:** [${{ needs.build-and-release-linux.outputs.tag_name }}](${{ needs.build-and-release-linux.outputs.release_link }})      📥[Download Linux Version](${{ needs.build-and-release-linux.outputs.download_link }})
+            🚀 **GUI Release:** ${{ needs.build-and-release-linux-arm64.outputs.tag_name }}      📥[Download Linux-arm64 Version](${{ needs.build-and-release-linux-arm64.outputs.download_link }})

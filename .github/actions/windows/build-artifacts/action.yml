@@ -44,7 +44,7 @@ runs:
         cd build/windows/x64/runner/Release
         
         # Create a zip archive with the correct file name using 7zip
-        FILE_NAME="windows-build-${{ inputs.tag_name }}.zip"
+        FILE_NAME="windows-build-amd64-${{ inputs.tag_name }}.zip"
         7z a "${FILE_NAME}" .
         
         # Set the file name as an output

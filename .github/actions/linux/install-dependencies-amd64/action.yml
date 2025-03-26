@@ -1,9 +1,9 @@
-name: 'Install Linux Build Dependencies'
-description: 'Install Linux dependencies'
+name: 'Install Linux Build Dependencies (AMD64)'
+description: 'Install Linux (AMD64)  dependencies'
 runs:
   using: 'composite'
   steps:
-    - name: Install Linux dependencies
+    - name: Install Linux (AMD64) dependencies
       shell: bash
       run: |
         sudo apt-get update
@@ -12,4 +12,3 @@ runs:
         sudo apt-get install -y libblkid-dev
         sudo apt-get install -y liblzma-dev
         sudo apt-get install -y unzip
-

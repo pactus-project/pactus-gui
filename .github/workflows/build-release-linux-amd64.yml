@@ -1,8 +1,8 @@
-name: Windows Release Build (AMD64)
+name: Linux Release Build (AMD64)
 
 # Add environment variables at the top level
 env:
-  WINDOWS_ASSETS_URL: "https://github.com/pactus-project/pactus/releases/download/v1.7.1/pactus-cli_1.7.1_windows_amd64.zip"
+  LINUX_ASSETS_URL: "https://github.com/pactus-project/pactus/releases/download/v1.7.1/pactus-cli_1.7.1_linux_amd64.tar.gz"
 
 permissions:
   contents: write
@@ -13,13 +13,13 @@ on:
       - 'v*' # Trigger on version tags like v1.2.3
 
 jobs:
-  build-and-release-windows-amd64:
-    runs-on: windows-latest
+  build-and-release-linux-amd64:
+    runs-on: ubuntu-latest
 
     outputs:
       tag_name: ${{ steps.get_tag_details.outputs.tag_name }}
       release_body: ${{ steps.get_tag_details.outputs.release_body }}
-      file_name: ${{ steps.build_windows_app.outputs.file_name }}
+      file_name: ${{ steps.prepared_artifact_file.outputs.file_name }}
       download_link: ${{ steps.prepare_download_links.outputs.download_link }}
       release_link: ${{ steps.prepare_download_links.outputs.release_link }}
 
@@ -37,8 +37,8 @@ jobs:
       - name: Install Flutter Project Dependencies
         uses: ./.github/actions/utils/install-flutter-dependencies
 
-      - name: Install Windows Build Dependencies
-        uses: ./.github/actions/windows/install-dependencies
+      - name: Install Linux Build Dependencies (AMD64)
+        uses: ./.github/actions/linux/install-dependencies-amd64
 
       - name: Prepare Tag Metadata
         id: get_tag_details
@@ -46,30 +46,38 @@ jobs:
         with:
           github_ref: ${{ github.ref }}
 
-      - name: Build Windows Release Artifacts
-        id: build_windows_app
-        uses: ./.github/actions/windows/build-artifacts
+      - name: Build Linux AMD64 Artifacts
+        uses: ./.github/actions/linux/build-artifacts-amd64
+
+      - name: Move Build Files To Artifacts
+        uses: ./.github/actions/utils/move-files-to-artifacts
+
+      - name: Add Daemon Files To Artifacts
+        id: prepared_artifact_file
+        uses: ./.github/actions/linux/add-daemon-files
         with:
           tag_name: ${{ steps.get_tag_details.outputs.tag_name }}
+          arch: x64 # The CPU architecture (e.g., arm64, x64)
 
-      - name: Upload Windows Release Assets
-        uses: ./.github/actions/windows/release
+      - name: Upload Linux Release Assets
+        uses: ./.github/actions/linux/release
         with:
           tag_name: ${{ steps.get_tag_details.outputs.tag_name }}
           release_name: ${{ steps.get_tag_details.outputs.tag_name }}
           release_body: ${{ steps.get_tag_details.outputs.release_body }}
-          file_name: ${{ steps.build_windows_app.outputs.file_name }}
+          file_name: ${{ steps.prepared_artifact_file.outputs.file_name }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          arch: x64 # The CPU architecture (e.g., arm64, x64)
 
       - name: Generate Release Download Links
         id: prepare_download_links
         uses: ./.github/actions/utils/generate-download-links
         with:
           tag_name: ${{ steps.get_tag_details.outputs.tag_name }}
-          file_name: ${{ steps.build_windows_app.outputs.file_name }}
+          file_name: ${{ steps.prepared_artifact_file.outputs.file_name }}
 
-  notify-windows:
-    needs: build-and-release-windows-amd64
+  notify-linux:
+    needs: build-and-release-linux-amd64
     runs-on: ubuntu-latest
     steps:
       - name: Send Discord Notification
@@ -78,11 +86,11 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
           args: |
-            🚀 **GUI Release:** ${{ needs.build-and-release-windows-amd64.outputs.tag_name }}   📥[Download Windows-amd64 Version](${{ needs.build-and-release-windows-amd64.outputs.download_link }})
+            🚀 **GUI Release:** [${{ needs.build-and-release-linux-amd64.outputs.tag_name }}](${{ needs.build-and-release-linux-amd64.outputs.release_link }})  📥[Download Linux-amd64 Version](${{ needs.build-and-release-linux-amd64.outputs.download_link }})
 
       - name: Send Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_MESSAGE: |
-            🚀 **GUI Release:** ${{ needs.build-and-release-windows-amd64.outputs.tag_name }}      📥[Download Windows-amd64 Version](${{ needs.build-and-release-windows-amd64.outputs.download_link }})
+            🚀 **GUI Release:** [${{ needs.build-and-release-linux-amd64.outputs.tag_name }}](${{ needs.build-and-release-linux-amd64.outputs.release_link }})      📥[Download Linux-amd64 Version](${{ needs.build-and-release-linux-amd64.outputs.download_link }})

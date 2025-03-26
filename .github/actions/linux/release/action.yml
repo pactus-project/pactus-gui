@@ -21,7 +21,7 @@ runs:
       uses: softprops/action-gh-release@v2
       with:
         tag_name: ${{ inputs.tag_name }}
-        files: build/linux/x64/release/bundle/${{ inputs.file_name }}
+        files: ./artifacts/linux/${{ inputs.arch }}/release/bundle/${{ inputs.file_name }}
 
 inputs:
   tag_name:
@@ -38,4 +38,7 @@ inputs:
     required: true
   file_name:
     description: 'The name of the asset file, that must be uploaded/attached to the release.'
+    required: true
+  arch:
+    description: 'The CPU architecture (e.g., arm64, x64)'
     required: true
