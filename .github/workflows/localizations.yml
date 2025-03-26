@@ -1,0 +1,21 @@
+name: Validation Localization
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  validation_localization:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.27.3'
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Generate Localization Files
+        uses: ./.github/actions/code-quality/generate-locale-files
+      - name: Validate Localization Files
+        uses: ./.github/actions/code-quality/validate-localization

@@ -1,0 +1,36 @@
+name: 'Install Flutter Project Dependencies'
+description: 'Install dependencies, generate files, format code, and run Flutter analyze.'
+inputs:
+  flutter_version:
+    description: 'The version of Flutter to use'
+    required: false
+    default: 'stable'
+runs:
+  using: 'composite'
+  steps:
+    - name: Set Up Flutter Environment
+      shell: bash
+      run: |
+        flutter upgrade ${{ inputs.flutter_version }}
+
+    - name: Install dependencies
+      shell: bash
+      run: flutter pub get
+
+    - name: Generate Localization Files
+      uses: ./.github/actions/code-quality/generate-locale-files
+
+    - name: Generate Asset Files
+      uses: ./.github/actions/code-quality/generate-assets
+
+    - name: Generate files by build runner
+      shell: bash
+      run: dart run build_runner build --delete-conflicting-outputs
+
+    - name: Rearrange Code Style
+      shell: bash
+      run: dart format .
+
+    - name: Run Flutter Analyze
+      shell: bash
+      run: flutter analyze

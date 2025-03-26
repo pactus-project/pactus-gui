@@ -1,0 +1,23 @@
+name: 'Validate Localization Files'
+description: 'Validate generated localization files.'
+runs:
+  using: 'composite'
+  steps:
+    - name: Validate Localization Files
+      shell: bash
+      run: |
+        if git diff --exit-code lib/l10n/; then
+          echo "Localization files are up to date."
+        else
+          echo "::error file=lib/l10n/::Error: Localization files are outdated."
+          echo "::error::Please run 'flutter gen-l10n' and commit the changes."
+          exit 1
+        fi
+
+        if git diff --exit-code lib/src/core/utils/gen/localization/translations_utils.dart; then
+          echo "translations_utils.dart is up to date."
+        else
+          echo "::error file=lib/src/core/utils/gen/localization/translations_utils.dart::Error: Changes detected in translations_utils.dart."
+          echo "::error::Please run the necessary custom translation utilities and commit changes."
+          exit 1
+        fi

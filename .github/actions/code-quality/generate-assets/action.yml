@@ -1,0 +1,13 @@
+name: 'Generate Asset Files'
+description: 'Generate Asset files.'
+runs:
+  using: 'composite'
+  steps:
+    - name: Generate Assets Files
+      shell: bash
+      run: |
+        # Command to rebuild asset files
+        dart run build_runner build --delete-conflicting-outputs --build-filter="lib/src/core/utils/gen/assets\*.dart" || (
+          echo "Error: Failed to generate asset files.";
+          exit 1;
+        )

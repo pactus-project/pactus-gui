@@ -1,0 +1,12 @@
+name: 'Dart Format Check'
+description: 'Run Dart format check and fail if there are formatting issues.'
+runs:
+  using: 'composite'
+  steps:
+    - name: Run Dart Format Check
+      shell: bash
+      run: |
+        dart format . --set-exit-if-changed --output none || (
+          echo "::error::Code formatting issues detected. Run 'dart format .' and commit the changes."
+          exit 1
+        )
