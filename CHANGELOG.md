@@ -4,7 +4,7 @@
 - Implemented navigation pane for dashboard screen. [#130](https://github.com/pactus-project/pactus-gui/pull/157)
 
 ### [Update]
-- Refactor ui and set up `BlockchainInfoSection` in dashboard section. [#130](https://github.com/pactus-project/pactus-gui/pull/157)
+- Refactor ui and set-up `BlockchainInfoSection` in dashboard section. [#130](https://github.com/pactus-project/pactus-gui/pull/157)
 
 # 1.42.1+45
 
