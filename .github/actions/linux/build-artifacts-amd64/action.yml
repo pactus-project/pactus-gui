@@ -1,0 +1,15 @@
+name: 'Build Linux AMD64 Artifacts'
+description: 'Build Linux Application'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Enable Linux desktop
+      shell: bash
+      run: |
+        flutter config --enable-linux-desktop
+
+    - name: Build application
+      shell: bash
+      run: |
+        flutter build linux --release
