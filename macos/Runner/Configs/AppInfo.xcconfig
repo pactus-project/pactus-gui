@@ -5,10 +5,10 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = pactus
+PRODUCT_NAME = gui
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.m1chl.pactus.pactus
+PRODUCT_BUNDLE_IDENTIFIER = org.pactus.gui
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2024 com.m1chl.pactus. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2025 org.pactus. All rights reserved.

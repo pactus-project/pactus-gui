@@ -1,0 +1,41 @@
+name: 'Upload macOS Release Assets'
+description: 'Create a GitHub release, and upload the asset for macOS.'
+runs:
+  using: 'composite'
+
+  steps:
+    - name: Create macOS Release
+      id: create_macos_release
+      uses: softprops/action-gh-release@v2
+      env:
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+      with:
+        tag_name: ${{ inputs.tag_name }}
+        release_name: "${{ inputs.release_name }}"
+        body: "${{ inputs.release_body }}"
+        draft: false
+        prerelease: false
+
+    - name: Upload macOS Release Asset
+      id: upload_macos_release_asset
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: ${{ inputs.tag_name }}
+        files: build/macos/Build/Products/Release/${{ inputs.file_name }}
+
+inputs:
+  tag_name:
+    description: 'The name of the tag'
+    required: true
+  release_name:
+    description: 'The title of the release'
+    required: true
+  release_body:
+    description: 'The body/description of the release'
+    required: true
+  github_token:
+    description: 'The GitHub token for creating the release'
+    required: true
+  file_name:
+    description: 'The name of the asset file, that must be uploaded/attached to the release.'
+    required: true

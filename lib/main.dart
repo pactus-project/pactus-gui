@@ -1,138 +1,128 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_acrylic/flutter_acrylic.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
-import 'package:pactus/provider/theme_provider.dart';
-import 'package:pactus/support/app_router.dart';
-import 'package:pactus/support/extensions.dart';
-import 'package:pactus/support/platform_detect.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:gui/src/core/common/cubits/app_accent_color_cubit.dart';
+import 'package:gui/src/core/constants/configurations.dart';
+import 'package:gui/src/core/di/locator.dart';
+import 'package:gui/src/core/router/app_router.dart';
+import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
+import 'package:gui/src/features/main/language/core/language_constants.dart';
+import 'package:gui/src/features/main/radio_button_cubit/presentation/radio_button_cubit.dart';
+import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
+import 'package:pactus_gui_widgetbook/app_styles.dart';
 import 'package:window_manager/window_manager.dart';
+import 'src/core/common/cubits/step_validation_cubit.dart';
+import 'src/features/main/language/presentation/bloc/language_bloc.dart';
+import 'src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  GoRouter.optionURLReflectsImperativeAPIs = true;
-  // if (!kIsWeb &&
-  //     [
-  //       TargetPlatform.windows,
-  //       TargetPlatform.android,
-  //     ].contains(defaultTargetPlatform)) {
-  //   SystemTheme.accentColor.load();
-  // }
-// var sp=await SharedPreferences.getInstance();
-//     sp.clear();
-  if (isDesktop) {
-    await Window.initialize();
-    if (defaultTargetPlatform == TargetPlatform.windows) {
-      await Window.hideWindowControls();
-    }
+  await setupSharedPreferences();
+  await setupDependencies();
+
+  try {
     await WindowManager.instance.ensureInitialized();
-    await windowManager.waitUntilReadyToShow().then((_) async {
-      await windowManager.setTitleBarStyle(TitleBarStyle.hidden, windowButtonVisibility: PlatformDetect.isMacOS || PlatformDetect.isLinux) ; //Hiding the titlebar
-      await windowManager.setMinimumSize(const Size(1043, 552));
-      await windowManager.show();
-      await windowManager.center(animate: false);
-      await windowManager.setPreventClose(false);
-      await windowManager.setSkipTaskbar(false);
+
+    final windowOptions = WindowOptions(
+      size: Size(1280, 720),
+      backgroundColor: Colors.transparent,
+      skipTaskbar: false,
+      titleBarStyle: TitleBarStyle.hidden,
+    );
+
+    await WindowManager.instance.waitUntilReadyToShow(windowOptions, () async {
+      await WindowManager.instance
+          .setAsFrameless()
+          .then((_) => WindowManager.instance.show());
     });
+  } on Exception catch (e) {
+    debugPrint('Window initialization failed: $e');
   }
   runApp(
-    const ProviderScope(
-      child: MyApp(),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<LanguageBloc>(
+          create: (_) => LanguageBloc(),
+        ),
+        BlocProvider<AppThemeCubit>(
+          create: (_) => AppThemeCubit(),
+        ),
+        BlocProvider<NavigationPaneCubit>(
+          create: (_) => NavigationPaneCubit(),
+        ),
+        BlocProvider<RadioButtonCubit>(
+          create: (_) => RadioButtonCubit(),
+        ),
+        BlocProvider<DaemonCubit>(
+          create: (_) => DaemonCubit(),
+        ),
+        BlocProvider<StepValidationCubit>(
+          create: (_) => StepValidationCubit(),
+        ),
+        BlocProvider<AppAccentColorCubit>(
+          create: (_) => AppAccentColorCubit(),
+        ),
+      ],
+      child: PactusGuiApp(),
     ),
   );
 }
 
-bool get isDesktop {
-  if (kIsWeb) return false;
-  return [
-    TargetPlatform.windows,
-    TargetPlatform.linux,
-    TargetPlatform.macOS,
-  ].contains(defaultTargetPlatform);
-}
+class PactusGuiApp extends StatelessWidget {
+  const PactusGuiApp({super.key});
 
-bool isDarkMode() {
-  final darkMode = WidgetsBinding.instance.platformDispatcher.platformBrightness;
-  if (darkMode == Brightness.dark) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-class MyApp extends ConsumerStatefulWidget {
-  const MyApp({super.key});
-
-  @override
-  ConsumerState<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends ConsumerState<MyApp> {
-  @override
-  void initState() {
-    super.initState();
-    context.afterBuild(() {
-      var darkMode = isDarkMode();
-      if (darkMode) {
-        ref.read(appThemeProvider.notifier).mode = ThemeMode.dark;
-      } else {
-        ref.read(appThemeProvider.notifier).mode = ThemeMode.light;
-      }
-    });
-  }
   @override
   Widget build(BuildContext context) {
-    
-    final router = ref.watch(goRouterProvider);
-    final appTheme = ref.watch(appThemeProvider);
-    return FluentApp.router(
-      title: "Pactus",
-      themeMode: appTheme.mode,
-      debugShowCheckedModeBanner: false,
-      color: appTheme.color,
-      darkTheme: FluentThemeData(
-        scaffoldBackgroundColor: isDarkMode() ? Color(0xFF1D1E20) : Colors.grey.withOpacity(0.1),
-        fontFamily: 'Lexend',
-        brightness: Brightness.dark,
-        accentColor: appTheme.color,
-        // micaBackgroundColor: appTheme.backgroungColor,
-        inactiveBackgroundColor: appTheme.backgroungColor,
-        visualDensity: VisualDensity.standard,
-        focusTheme: FocusThemeData(
-          glowFactor: is10footScreen(context) ? 2.0 : 0.0,
-        ),
-      ),
-      theme: FluentThemeData(
-        
-        fontFamily: 'Lexend',
-        brightness: Brightness.light,
-        // accentColor: appTheme.color,
-        // inactiveBackgroundColor: appTheme.backgroungColor,
-        visualDensity: VisualDensity.standard,
-        focusTheme: FocusThemeData(
-          glowFactor: is10footScreen(context) ? 2.0 : 0.0,
-        ),
-      ),
-      locale: appTheme.locale,
-      builder: (context, child) {
-        return Directionality(
-          textDirection: appTheme.textDirection,
-          child: NavigationPaneTheme(
-            data: NavigationPaneThemeData(
-              backgroundColor: appTheme.windowEffect != WindowEffect.disabled ? Colors.transparent : null,
-            ),
-            child: ScreenUtilInit(minTextAdapt: true, splitScreenMode: true, designSize: const Size(1043, 552), child: child!),
-          ),
+    return BlocBuilder<LanguageBloc, LanguageState>(
+      builder: (context, languageState) {
+        return BlocBuilder<AppThemeCubit, bool>(
+          builder: (context, isDarkMode) {
+            return BlocBuilder<AppAccentColorCubit, int>(
+              builder: (context, accentColorId) {
+                final theme = isDarkMode
+                    ? AppThemeData.darkTheme(
+                        AccentPallet.dark.getByIndex(accentColorId),
+                      )
+                    : AppThemeData.lightTheme(
+                        AccentPallet.light.getByIndex(accentColorId),
+                      );
+                return Builder(
+                  builder: (context) {
+                    return AppTheme(
+                      themeData: theme,
+                      child: FluentApp.router(
+                        debugShowCheckedModeBanner: false,
+                        routerConfig: routerConfig,
+                        title: 'Pactus Gui App',
+                        themeMode:
+                            isDarkMode ? ThemeMode.dark : ThemeMode.light,
+                        theme: theme,
+                        localizationsDelegates: [
+                          AppLocalizations.delegate,
+                          GlobalMaterialLocalizations.delegate,
+                          GlobalWidgetsLocalizations.delegate,
+                          GlobalCupertinoLocalizations.delegate,
+                        ],
+                        supportedLocales: AppConfigs.supportedLocales,
+                        locale: languageState.selectedLanguage == null
+                            ? Locale(
+                                LanguageConstants.enUS.language,
+                                LanguageConstants.enUS.country,
+                              )
+                            : Locale(
+                                languageState.selectedLanguage!.language,
+                                languageState.selectedLanguage!.country,
+                              ),
+                      ),
+                    );
+                  },
+                );
+              },
+            );
+          },
         );
       },
-      // routerConfig: router,
-      routeInformationProvider: router.routeInformationProvider,
-      routerDelegate: router.routerDelegate,
-      routeInformationParser: router.routeInformationParser,
     );
   }
 }
-
