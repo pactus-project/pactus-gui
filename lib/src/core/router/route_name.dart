@@ -1,4 +1,5 @@
 enum AppRoute {
+  devMode,
   splash,
   welcome,
   initializeMode,
