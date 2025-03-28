@@ -10,6 +10,9 @@ class CliConstants {
   static const String init = 'init';
   static const String dashDashPath = '--path';
   static const String dashDashRestore = '--restore';
+  static const String dashDashLocalNet = '--localnet';
+  static const String dashDashMainNet = '--mainnet';
+  static const String dashDashTestNet = '--testnet';
   static const String pactusDaemon = './pactus-daemon';
   static const String dashDashWorkingDir = '--working-dir';
   static const String dashDashW = '--w';
@@ -17,4 +20,6 @@ class CliConstants {
   static const String wallets = 'wallets';
   static const String defaultWallet = 'default_wallet';
   static const String start = 'start';
+
+
 }

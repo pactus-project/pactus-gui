@@ -1,5 +1,9 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gui/src/core/constants/cli_constants.dart';
 import 'package:gui/src/core/enums/app_environment.dart';
+import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
+import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:gui/src/core/utils/daemon_manager/seed_generator.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
@@ -11,7 +15,7 @@ class DeveloperModeScreen extends StatefulWidget {
 }
 
 class _DeveloperModeScreenState extends State<DeveloperModeScreen> {
-  int? selectedOption;
+  AppEnvironment? selectedOption;
   String password = '';
   String generatedSeed = '';
   @override
@@ -32,15 +36,14 @@ class _DeveloperModeScreenState extends State<DeveloperModeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 3 Radio Buttons in a column
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 RadioButton(
-                  checked: selectedOption == 1,
+                  checked: selectedOption == AppEnvironment.mainnet,
                   onChanged: (value) {
                     setState(() {
-                      selectedOption = 1;
+                      selectedOption = AppEnvironment.mainnet;
                     });
                   },
                   content: Text(
@@ -50,10 +53,10 @@ class _DeveloperModeScreenState extends State<DeveloperModeScreen> {
                 ),
                 const SizedBox(height: 8),
                 RadioButton(
-                  checked: selectedOption == 2,
+                  checked: selectedOption == AppEnvironment.testnet,
                   onChanged: (value) {
                     setState(() {
-                      selectedOption = 2;
+                      selectedOption = AppEnvironment.testnet;
                     });
                   },
                   content: Text(
@@ -63,10 +66,10 @@ class _DeveloperModeScreenState extends State<DeveloperModeScreen> {
                 ),
                 const SizedBox(height: 8),
                 RadioButton(
-                  checked: selectedOption == 3,
+                  checked: selectedOption == AppEnvironment.localnet,
                   onChanged: (value) {
                     setState(() {
-                      selectedOption = 3;
+                      selectedOption = AppEnvironment.localnet;
                     });
                   },
                   content: Text(
@@ -76,81 +79,81 @@ class _DeveloperModeScreenState extends State<DeveloperModeScreen> {
                 ),
               ],
             ),
+            ...[
+              const SizedBox(height: 24),
 
-            const SizedBox(height: 24),
-
-            // Row with text, textbox, and generate button
-            Row(
-              children: [
-                Text(
-                  'Generate seed',
-                  style: textStyle,
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: ExcludeSemantics(
-                    child: TextBox(
-                      placeholder: 'Seed will appear here',
-                      readOnly: true,
-                      controller: TextEditingController(text: generatedSeed),
+              Row(
+                children: [
+                  Text(
+                    'Generate seed',
+                    style: textStyle,
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: ExcludeSemantics(
+                      child: TextBox(
+                        placeholder: 'Seed will appear here',
+                        readOnly: true,
+                        controller: TextEditingController(text: generatedSeed),
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(width: 16),
-                FilledButton(
-                  child: Text(
-                    'Generate',
-                    style: TextStyle(
-                      color: AppTheme.of(context)
-                          .extension<OnAccentPallet>()!
-                          .onAccentColor,
+                  const SizedBox(width: 16),
+                  FilledButton(
+                    child: Text(
+                      'Generate',
+                      style: TextStyle(
+                        color: AppTheme.of(context)
+                            .extension<OnAccentPallet>()!
+                            .onAccentColor,
+                      ),
                     ),
+                    onPressed: () {
+                      final generateSeed =
+                          SeedGenerator().generateSeed(12)!.sentence;
+                      setState(() {
+                        generatedSeed = generateSeed;
+                      });
+                    },
                   ),
-                  onPressed: () {
-                    final generateSeed =
-                        SeedGenerator().generateSeed(12)!.sentence;
+                ],
+              ),
+
+              const SizedBox(height: 24),
+
+              // Password text box
+              Text(
+                'Password',
+                style: textStyle,
+              ),
+              const SizedBox(height: 8),
+              ExcludeSemantics(
+                child: PasswordBox(
+                  placeholder: 'Enter your password',
+                  onChanged: (value) {
                     setState(() {
-                      generatedSeed = generateSeed;
+                      password = value;
                     });
                   },
                 ),
-              ],
-            ),
-
-            const SizedBox(height: 24),
-
-            // Password text box
-            Text(
-              'Password',
-              style: textStyle,
-            ),
-            const SizedBox(height: 8),
-            ExcludeSemantics(
-              child: PasswordBox(
-                placeholder: 'Enter your password',
-                onChanged: (value) {
-                  setState(() {
-                    password = value;
-                  });
-                },
               ),
-            ),
 
-            const SizedBox(height: 24),
+              const SizedBox(height: 24),
 
-            // Submit button
-            Spacer(),
-            Center(
-              child: SizedBox(
-                width: 196,
-                child: FilledButton(
-                  child: const Text('Submit'),
-                  onPressed: () {
-                    _showResults(context);
-                  },
+              // Submit button
+              Spacer(),
+              Center(
+                child: SizedBox(
+                  width: 196,
+                  child: FilledButton(
+                    child: const Text('Submit'),
+                    onPressed: () {
+                      _showResults(context);
+                    },
+                  ),
                 ),
               ),
-            ),
+            ]
           ],
         ),
       ),
@@ -163,13 +166,13 @@ class _DeveloperModeScreenState extends State<DeveloperModeScreen> {
     );
 
     var selected = 'No option selected';
-    if (selectedOption == 1) {
+    if (selectedOption == AppEnvironment.mainnet) {
       selected = AppEnvironment.mainnet.name;
     }
-    if (selectedOption == 2) {
+    if (selectedOption == AppEnvironment.testnet) {
       selected = AppEnvironment.testnet.name;
     }
-    if (selectedOption == 3) {
+    if (selectedOption == AppEnvironment.localnet) {
       selected = AppEnvironment.localnet.name;
     }
     bool? isValidateForm = false;
@@ -210,7 +213,26 @@ class _DeveloperModeScreenState extends State<DeveloperModeScreen> {
                       .onAccentColor,
                 ),
               ),
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                context.read<DaemonCubit>().runPactusDaemon(
+                      cliCommand: CliCommand(
+                        command: CliConstants.pactusDaemon,
+                        arguments: [
+                          CliConstants.init,
+                          selectedOption!.argument,
+                          CliConstants.dashDashRestore,
+                          generatedSeed,
+                          CliConstants.dashDashWorkingDir,
+                          '../../../../../../${selectedOption!.name}',
+                          CliConstants.dashDashPassword,
+                          password,
+                          CliConstants.dashDashValNum,
+                          '12',
+                        ],
+                      ),
+                    );
+                Navigator.pop(context);
+              },
             ),
             FilledButton(
               style: ButtonStyle(

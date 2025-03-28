@@ -83,6 +83,7 @@ class DaemonCubit extends Cubit<DaemonState> {
   /// - `DaemonError` if an error occurs.
   ///
   Future<void> runPactusDaemon({required CliCommand cliCommand}) async {
+    final _logger = Logger();
     emit(DaemonLoading());
     _logger.i('Starting daemon process with command:'
         ' ${cliCommand.command} ${cliCommand.arguments}');
