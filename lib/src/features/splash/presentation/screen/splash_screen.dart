@@ -1,8 +1,9 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gui/src/core/common/widgets/keyboard_shortcut_widget.dart';
 import 'package:gui/src/core/constants/cli_constants.dart';
 import 'package:gui/src/core/constants/storage_keys.dart';
 import 'package:gui/src/core/enums/app_os_separator.dart';
@@ -27,116 +28,125 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<DaemonCubit, DaemonState>(
-      listener: (ctxListener, state) {
-        if (state is DaemonError) {
-          Future.delayed(_splashDuration, () {
-            if (context.mounted) {
-              context.go(AppRoute.welcome.fullPath);
-            }
-          });
-        }
-        if (state is DaemonSuccess) {
-          final isUnprotectedNode = state.output.contains('false');
-          final isProtectedNode = state.output.contains('true');
-          final isUndefinedNode = !state.output.contains('is encrtypted') &&
-              !state.output.contains('created at');
-
-          if (isUnprotectedNode) {
-            Future.delayed(_splashDuration, () {
-              if (context.mounted) {
-                context.go(AppRoute.dashboard.fullPath);
-              }
-            });
-          }
-          if (isProtectedNode) {
-            Future.delayed(_splashDuration, () {
-              if (context.mounted) {
-                context.go(AppRoute.basicPassword.fullPath);
-              }
-            });
-          }
-
-          if (isUndefinedNode) {
+    return KeyboardShortcutWidget(
+      isEnabledInDebugMode: true,
+      actionOnLinuxWindows: () {
+        context.go(AppRoute.devMode.fullPath);
+      },
+      actionOnMacOs: () {
+        context.go(AppRoute.devMode.fullPath);
+      },
+      shortcutOnLinuxWindows: LogicalKeyboardKey.keyD,
+      shortcutOnMacOs: LogicalKeyboardKey.keyD,
+      child: BlocConsumer<DaemonCubit, DaemonState>(
+        listener: (ctxListener, state) {
+          if (state is DaemonError) {
             Future.delayed(_splashDuration, () {
               if (context.mounted) {
                 context.go(AppRoute.welcome.fullPath);
               }
             });
           }
-        }
-      },
-      builder: (ctxBuilder, state) {
-        if (state is DaemonSuccess) {
-          return ScaffoldPage(
-            content: Stack(
-              children: [
-                Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Assets.icons.logo.image(
-                        width: _logoSize,
-                        height: _logoSize,
-                        fit: BoxFit.contain,
-                      ),
-                      Gap(_spacingBetweenElements),
-                      Assets.images.logoName.image(
-                        width: _logoNameWidth,
-                        height: _logoNameHeight,
-                        fit: BoxFit.contain,
-                      ),
-                      Gap(_spacingBetweenElements),
-                      Text(
-                        context.tr(LocaleKeys.applications),
-                        style:
-                            FluentTheme.of(context).typography.title?.copyWith(
-                                  color: AppTheme.of(context)
-                                      .extension<DarkPallet>()!
-                                      .dark900,
-                                ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          );
-        } else {
-          if (state is DaemonInitial) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              final sign = AppOS.current.separator;
-              final storageKey = StorageKeys.nodeDirectory;
+          if (state is DaemonSuccess) {
+            final isUnprotectedNode = state.output.contains('false');
+            final isProtectedNode = state.output.contains('true');
+            final isUndefinedNode = !state.output.contains('is encrtypted') &&
+                !state.output.contains('created at');
 
-              final nodeDirectory = '${StorageUtils.getData<String>(
-                storageKey,
-              )}';
-              final walletPath = '$sign${CliConstants.wallets}'
-                  '$sign${CliConstants.defaultWallet}';
+            if (isUnprotectedNode) {
+              Future.delayed(_splashDuration, () {
+                if (context.mounted) {
+                  context.go(AppRoute.dashboard.fullPath);
+                }
+              });
+            }
+            if (isProtectedNode) {
+              Future.delayed(_splashDuration, () {
+                if (context.mounted) {
+                  context.go(AppRoute.basicPassword.fullPath);
+                }
+              });
+            }
 
-              context.read<DaemonCubit>().runPactusDaemon(
-                    cliCommand: CliCommand(
-                      command: CliConstants.pactusWallet,
-                      arguments: [
-                        CliConstants.info,
-                        CliConstants.dashDashPath,
-                        nodeDirectory + walletPath,
+            if (isUndefinedNode) {
+              Future.delayed(_splashDuration, () {
+                if (context.mounted) {
+                  context.go(AppRoute.welcome.fullPath);
+                }
+              });
+            }
+          }
+        },
+        builder: (ctxBuilder, state) {
+          if (state is DaemonSuccess) {
+            return ScaffoldPage(
+              content: Stack(
+                children: [
+                  Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Assets.icons.logo.image(
+                          width: _logoSize,
+                          height: _logoSize,
+                          fit: BoxFit.contain,
+                        ),
+                        Gap(_spacingBetweenElements),
+                        Assets.images.logoName.image(
+                          width: _logoNameWidth,
+                          height: _logoNameHeight,
+                          fit: BoxFit.contain,
+                        ),
+                        Gap(_spacingBetweenElements),
+                        Text(
+                          context.tr(LocaleKeys.applications),
+                          style: FluentTheme.of(context)
+                              .typography
+                              .title
+                              ?.copyWith(
+                                color: AppTheme.of(context)
+                                    .extension<DarkPallet>()!
+                                    .dark900,
+                              ),
+                        ),
                       ],
                     ),
-                  );
-            });
-          }
-          return ScaffoldPage(
-            content: Center(
-              child: SizedBox(
-                width: 64,
-                height: 64,
-                child: CircularProgressIndicator(),
+                  ),
+                ],
               ),
-            ),
-          );
-        }
-      },
+            );
+          } else {
+            if (state is DaemonInitial) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                final sign = AppOS.current.separator;
+                final storageKey = StorageKeys.nodeDirectory;
+
+                final nodeDirectory = '${StorageUtils.getData<String>(
+                  storageKey,
+                )}';
+                final walletPath = '$sign${CliConstants.wallets}'
+                    '$sign${CliConstants.defaultWallet}';
+
+                context.read<DaemonCubit>().runPactusDaemon(
+                      cliCommand: CliCommand(
+                        command: CliConstants.pactusWallet,
+                        arguments: [
+                          CliConstants.info,
+                          CliConstants.dashDashPath,
+                          nodeDirectory + walletPath,
+                        ],
+                      ),
+                    );
+              });
+            }
+            return ScaffoldPage(
+              content: Center(
+                child: ProgressRing(),
+              ),
+            );
+          }
+        },
+      ),
     );
   }
 }
