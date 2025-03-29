@@ -132,7 +132,7 @@ class SplashScreen extends StatelessWidget {
                         command: CliConstants.pactusWallet,
                         arguments: [
                           CliConstants.info,
-                          CliConstants.dashDashPath,
+                          CliConstants.pathArgument,
                           nodeDirectory + walletPath,
                         ],
                       ),

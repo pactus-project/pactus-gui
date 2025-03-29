@@ -148,9 +148,9 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                                         command: CliConstants.pactusDaemon,
                                         arguments: [
                                           CliConstants.start,
-                                          CliConstants.dashDashWorkingDir,
+                                          CliConstants.workingDirArgument,
                                           nodeDirectory!,
-                                          CliConstants.dashDashPassword,
+                                          CliConstants.passwordArgument,
                                           password,
                                         ],
                                       ),
@@ -191,9 +191,9 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                                           command: CliConstants.pactusWallet,
                                           arguments: [
                                             CliConstants.password,
-                                            CliConstants.dashDashPassword,
+                                            CliConstants.passwordArgument,
                                             password,
-                                            CliConstants.dashDashPath,
+                                            CliConstants.pathArgument,
                                             nodeDirectory + walletPath,
                                           ],
                                         );

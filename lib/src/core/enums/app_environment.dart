@@ -1,9 +1,9 @@
 import 'package:gui/src/core/constants/cli_constants.dart';
 
 enum AppEnvironment {
-  mainnet(argument: CliConstants.dashDashMainNet, name: 'MainNet'),
-  testnet(argument: CliConstants.dashDashTestNet, name: 'TestNet'),
-  localnet(argument: CliConstants.dashDashLocalNet, name: 'LocalNet');
+  mainnet(argument: CliConstants.mainNetArgument, name: 'MainNet'),
+  testnet(argument: CliConstants.testNetArgument, name: 'TestNet'),
+  localnet(argument: CliConstants.localNetArgument, name: 'LocalNet');
 
   const AppEnvironment({required this.argument, required this.name});
 
