@@ -16,6 +16,8 @@ import 'package:gui/src/core/utils/methods/update_node_details_singleton.dart';
 import 'package:gui/src/core/utils/string_extension.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+import 'package:pactus_gui_widgetbook/src/features/widgets/buttons/adaptive_primary_button/adaptive_primary_button.dart';
+import 'package:pactus_gui_widgetbook/src/core/enum/request_state_enum.dart';
 
 class FinishScreen extends StatefulWidget {
   const FinishScreen({super.key});
@@ -94,10 +96,12 @@ class _FinishScreenState extends State<FinishScreen> {
                     ),
                     Align(
                       alignment: AlignmentDirectional.bottomCenter,
-                      child: CustomFilledButton(
-                        text: LocaleKeys.go_to_dashboard,
-                        onPressed: () {
-                          context.read<DaemonCubit>().runStartNodeCommand(
+                      child: IntrinsicWidth(
+                        child: SizedBox(
+                          height: 32,
+                          child: AdaptivePrimaryButton.createTitleOnly(
+                            onPressed: () {
+                              context.read<DaemonCubit>().runStartNodeCommand(
                                 cliCommand: CliCommand(
                                   command: CliConstants.pactusDaemon,
                                   arguments: [
@@ -110,15 +114,14 @@ class _FinishScreenState extends State<FinishScreen> {
                                 ),
                               );
 
-                          updateNodeDetailsSingleton(
-                            NodeConfigData.instance.password,
-                          );
+                              updateNodeDetailsSingleton(
+                                NodeConfigData.instance.password,
+                              );
 
-                          context.go(AppRoute.dashboard.fullPath);
-                        },
-                        style: ButtonStyle(
-                          backgroundColor: WidgetStateProperty.all<Color?>(
-                            FluentTheme.of(context).accentColor,
+                              context.go(AppRoute.dashboard.fullPath);
+                            },
+                            requestState: RequestStateEnum.loaded,
+                            title: context.tr(LocaleKeys.go_to_dashboard,),
                           ),
                         ),
                       ),

@@ -20,6 +20,8 @@ import 'package:gui/src/features/validator_config/core/utils/methods/show_fluent
 import 'package:gui/src/features/validator_config/presentation/sections/validator_config_title_section.dart';
 import 'package:gui/src/features/validator_config/presentation/sections/validator_qty_selector_section.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+import 'package:pactus_gui_widgetbook/src/features/widgets/buttons/adaptive_primary_button/adaptive_primary_button.dart';
+import 'package:pactus_gui_widgetbook/src/core/enum/request_state_enum.dart';
 
 /// ## [ValidatorConfigScreen] Class Documentation
 ///
@@ -125,19 +127,13 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
                       ),
                     ),
                     const Gap(28),
-                    CustomFilledButton(
-                      text: context.tr(LocaleKeys.select_folder),
-                      onPressed: _chooseDirectory,
-                      style: ButtonStyle(
-                        padding:
-                            WidgetStateProperty.all<EdgeInsetsDirectional?>(
-                          const EdgeInsetsDirectional.symmetric(
-                            horizontal: 8,
-                            vertical: 4,
-                          ),
-                        ),
-                        backgroundColor: WidgetStateProperty.all<Color?>(
-                          FluentTheme.of(context).accentColor,
+                    IntrinsicWidth(
+                      child: SizedBox(
+                        height: 32,
+                        child: AdaptivePrimaryButton.createTitleOnly(
+                          onPressed: _chooseDirectory,
+                          requestState: RequestStateEnum.loaded,
+                          title: context.tr(LocaleKeys.select_folder),
                         ),
                       ),
                     ),

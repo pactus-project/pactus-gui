@@ -1,9 +1,12 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/common/widgets/adaptive_filled_button.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+import 'package:pactus_gui_widgetbook/src/features/widgets/buttons/adaptive_primary_button/adaptive_primary_button.dart';
+import 'package:pactus_gui_widgetbook/src/core/enum/request_state_enum.dart';
 
 /// ## [CopyToClipboardButton] Class Documentation
 ///
@@ -64,6 +67,7 @@ class CopyToClipboardButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// to-do : replace with adaptive text button here
     return Align(
       alignment: Alignment.centerRight,
       child: AdaptiveFilledButton(
@@ -95,16 +99,17 @@ class CopyToClipboardButton extends StatelessWidget {
                     .copyWith(color: AppColors.primaryDark),
               ),
               actions: [
-                AdaptiveFilledButton(
-                  text: context.tr(LocaleKeys.ok),
-                  onPressed: () {
-                    if (context.mounted) {
-                      Navigator.pop(context);
-                    }
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all<Color?>(
-                      FluentTheme.of(context).accentColor,
+                IntrinsicWidth(
+                  child: SizedBox(
+                    height: 32,
+                    child: AdaptivePrimaryButton.createTitleOnly(
+                      onPressed: () {
+                        if (context.mounted) {
+                          Navigator.pop(context);
+                        }
+                      },
+                      requestState: RequestStateEnum.loaded,
+                      title: context.tr(LocaleKeys.ok),
                     ),
                   ),
                 ),

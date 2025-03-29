@@ -14,6 +14,9 @@ import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/n
 import 'package:gui/src/features/main/radio_button_cubit/presentation/radio_button_cubit.dart';
 import 'package:gui/src/features/validator_config/core/utils/methods/show_fluent_alert_method.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+import 'package:pactus_gui_widgetbook/src/features/widgets/buttons/adaptive_primary_button/adaptive_primary_button.dart';
+import 'package:pactus_gui_widgetbook/src/core/enum/request_state_enum.dart';
+import 'package:pactus_gui_widgetbook/src/core/enum/padding_size_enum.dart';
 
 /// ## [InitializeModeScreen] Class Documentation
 ///
@@ -166,19 +169,31 @@ class _InitializeModeScreenState extends State<InitializeModeScreen> {
                         alignment: Alignment.centerRight,
                         child: BlocBuilder<RadioButtonCubit, int>(
                           builder: (context, selectedValue) {
-                            return AdaptiveFilledButton(
-                              text: context.tr(LocaleKeys.next),
-                              onPressed: () =>
-                                  _handleNextPressed(selectedValue),
-                              style: ButtonStyle(
-                                backgroundColor: WidgetStatePropertyAll(
-                                  FluentTheme.of(context).accentColor,
-                                ),
-                                padding: WidgetStatePropertyAll(
-                                  const EdgeInsets.symmetric(horizontal: 16),
+                            return  IntrinsicWidth(
+                              child: SizedBox(
+                                height: 32,
+                                child: AdaptivePrimaryButton.createTitleOnly(
+                                  requestState: RequestStateEnum.loaded,
+                                  onPressed: () =>
+                                      _handleNextPressed(selectedValue),
+                                  title: context.tr(LocaleKeys.next),
+                                  paddingSize: PaddingSizeEnum.large,
                                 ),
                               ),
                             );
+                            //   AdaptiveFilledButton(
+                            //   text: context.tr(LocaleKeys.next),
+                            //   onPressed: () =>
+                            //       _handleNextPressed(selectedValue),
+                            //   style: ButtonStyle(
+                            //     backgroundColor: WidgetStatePropertyAll(
+                            //       FluentTheme.of(context).accentColor,
+                            //     ),
+                            //     padding: WidgetStatePropertyAll(
+                            //       const EdgeInsets.symmetric(horizontal: 16),
+                            //     ),
+                            //   ),
+                            // );
                           },
                         ),
                       ),
