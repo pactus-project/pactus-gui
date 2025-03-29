@@ -1,8 +1,12 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gui/src/core/constants/storage_keys.dart';
 import 'package:gui/src/core/enums/app_environment.dart';
+import 'package:gui/src/core/utils/storage_utils.dart';
+import 'package:gui/src/features/dev_mode/data/repositories/environment_repository.dart';
 import 'package:gui/src/features/dev_mode/presentation/bloc/environment_selection_cubit.dart';
 import 'package:gui/src/features/dev_mode/presentation/bloc/environment_selection_state.dart';
+import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class EnvironmentRadioOption extends StatelessWidget {
   const EnvironmentRadioOption({
@@ -48,10 +52,45 @@ class EnvironmentRadioOption extends StatelessWidget {
                 ),
                 if (!isEnabled && disabledMessage != null)
                   Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: Text(
-                      disabledMessage!,
-                      style: textStyle.copyWith(color: Colors.teal),
+                    padding: const EdgeInsetsDirectional.only(
+                      start: 8,
+                      end: 8,
+                      bottom: 10,
+                    ),
+                    child: Row(
+                      spacing: 16,
+                      children: [
+                        Text(
+                          disabledMessage!,
+                          style: textStyle.copyWith(
+                            color: AppTheme.of(context)
+                                .extension<RedPallet>()!
+                                .red600,
+                          ),
+                        ),
+                        OutlinedButton(
+                          onPressed: () async {
+                            final repository =
+                                context.read<EnvironmentRepository>();
+                            final directory = await repository
+                                .detectCurrentDirectoryForInitNode(
+                              latestPartOfPath: environment.name,
+                            );
+
+                            StorageUtils.saveData(
+                              StorageKeys.nodeDirectory,
+                              directory.path,
+                            );
+                          },
+                          child: Row(
+                            spacing: 8,
+                            children: [
+                              Icon(FluentIcons.icon_sets_flag),
+                              Text('Set as default')
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
               ],

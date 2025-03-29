@@ -16,17 +16,17 @@ class EnvironmentRepository {
     final parentDir = Directory.current.parent;
     //print('Checking parent directory: ${parentDir.path}');
 
-    final parentDirPathAndLocalNet = '${parentDir.path}/$latestPartOfPath';
-    //print('Full directory path to check: $parentDirPathAndLocalNet');
+    final parentDirPathAndSelectedNet = '${parentDir.path}/$latestPartOfPath';
+    //print('Full directory path to check: $parentDirPathAndSelectedNet');
 
-    final dirLocalNet = Directory(parentDirPathAndLocalNet);
+    final dirSelectedNet = Directory(parentDirPathAndSelectedNet);
 
     // Check if directory exists
-    if (dirLocalNet.existsSync()) {
-      //print('Directory already exists at: $parentDirPathAndLocalNet');
+    if (dirSelectedNet.existsSync()) {
+      //print('Directory already exists at: $parentDirPathAndSelectedNet');
 
       // Check directory contents
-      final contents = dirLocalNet.listSync();
+      final contents = dirSelectedNet.listSync();
       if (contents.isEmpty) {
         // print('✅ Directory is EMPTY (ready for use)');
         return false;
@@ -36,12 +36,12 @@ class EnvironmentRepository {
         return true;
       }
     } else {
-      //print('Directory does not exist at: $parentDirPathAndLocalNet');
+      //print('Directory does not exist at: $parentDirPathAndSelectedNet');
 
       // Try to create directory
       try {
         //print('Attempting to create directory...');
-        /*final createdDir =*/ await dirLocalNet.create(recursive: true);
+        /*final createdDir =*/ await dirSelectedNet.create(recursive: true);
         //print('✅ Successfully created directory at: ${createdDir.path}');
         //print('✅ Directory is EMPTY (ready for use)');
         return false;
@@ -53,5 +53,18 @@ class EnvironmentRepository {
         rethrow;
       }
     }
+  }
+
+  Future<Directory> detectCurrentDirectoryForInitNode({
+    required String latestPartOfPath,
+  }) async {
+    final parentDir = Directory.current.parent;
+    //print('Checking parent directory: ${parentDir.path}');
+
+    final parentDirPathAndSelectedNet = '${parentDir.path}/$latestPartOfPath';
+    //print('Full directory path to check: $parentDirPathAndSelectedNet');
+
+    final dirSelectedNet = Directory(parentDirPathAndSelectedNet);
+    return Future<Directory>.value(dirSelectedNet);
   }
 }

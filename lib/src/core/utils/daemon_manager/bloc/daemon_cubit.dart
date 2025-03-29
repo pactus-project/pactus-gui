@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/constants/cli_constants.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
+import 'package:logger/logger.dart';
 import 'package:path/path.dart' show dirname, join;
 import 'daemon_state.dart';
 
@@ -31,6 +32,7 @@ import 'daemon_state.dart';
 /// - Handles exceptions and errors gracefully.
 class DaemonCubit extends Cubit<DaemonState> {
   DaemonCubit() : super(DaemonInitial());
+  final Logger _logger = Logger();
 
   /// Gets the appropriate native resources directory
   /// based on the operating system
@@ -81,16 +83,14 @@ class DaemonCubit extends Cubit<DaemonState> {
   /// - `DaemonError` if an error occurs.
   ///
   Future<void> runPactusDaemon({required CliCommand cliCommand}) async {
-    // final _logger = Logger();
     emit(DaemonLoading());
-    await Future<void>.delayed(Duration(seconds: 3));
-    // _logger.i('Starting daemon process with command:'
-    //     ' ${cliCommand.command} ${cliCommand.arguments}');
+    _logger.i('Starting daemon process with command:'
+        ' ${cliCommand.command} ${cliCommand.arguments}');
 
     try {
       final executablePath = _executablePath(cliCommand.command);
 
-      // _logger.d('Executable path: $executablePath');
+      _logger.d('Executable path: $executablePath');
 
       // Ensure executable permissions (skips on Windows)
       _ensureExecutablePermissions(executablePath);
@@ -131,11 +131,11 @@ class DaemonCubit extends Cubit<DaemonState> {
         });
       }
 
-      // _logger.d('Process started with PID: ${process.pid}');
+      _logger.d('Process started with PID: ${process.pid}');
 
       // Handle process output
       process.stdout.transform<String>(utf8.decoder).listen((data) {
-        // // _logger.i('Daemon stdout: $data');
+        _logger.i('Daemon stdout: $data');
         emit(DaemonSuccess(data));
       });
 
@@ -148,19 +148,19 @@ class DaemonCubit extends Cubit<DaemonState> {
         }
       });
       await process.exitCode.then((code) {
+        _logger.i('Process exited with code: $code');
         if (code != 0) {
           emit(DaemonError('Process exited with code: $code'));
         }
-        // // _logger.i('Process exited with code: $code');
       });
     } on FileSystemException catch (e) {
-      // _logger.e('File system error: ${e.message}');
+      _logger.e('File system error: ${e.message}');
       emit(DaemonError('File system error: ${e.message}'));
     } on ProcessException catch (e) {
-      // _logger.e('Process execution error: ${e.message}');
+      _logger.e('Process execution error: ${e.message}');
       emit(DaemonError('Process error: ${e.message}'));
     } on Exception catch (e) {
-      // _logger.e('Unexpected error: $e');
+      _logger.e('Unexpected error: $e');
       emit(DaemonError('Exception occurred: $e'));
     }
   }
