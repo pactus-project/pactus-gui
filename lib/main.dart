@@ -4,7 +4,6 @@ import 'package:gui/app.dart';
 import 'package:gui/src/core/common/cubits/app_accent_color_cubit.dart';
 import 'package:gui/src/core/di/locator.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
-import 'package:gui/src/data/models/app_config/mainnet_config.dart';
 import 'package:gui/src/features/main/radio_button_cubit/presentation/radio_button_cubit.dart';
 import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
 import 'src/core/common/cubits/step_validation_cubit.dart';
@@ -21,6 +20,9 @@ Future<void> main() async {
   runApp(
     MultiBlocProvider(
       providers: [
+        BlocProvider<AppAccentColorCubit>(
+          create: (_) => AppAccentColorCubit(),
+        ),
         BlocProvider<LanguageBloc>(
           create: (_) => LanguageBloc(),
         ),
@@ -38,9 +40,6 @@ Future<void> main() async {
         ),
         BlocProvider<StepValidationCubit>(
           create: (_) => StepValidationCubit(),
-        ),
-        BlocProvider<AppAccentColorCubit>(
-          create: (_) => AppAccentColorCubit(),
         ),
       ],
       child: PactusGuiApp(),

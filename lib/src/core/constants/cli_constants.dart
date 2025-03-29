@@ -20,6 +20,8 @@ class CliConstants {
   static const String wallets = 'wallets';
   static const String defaultWallet = 'default_wallet';
   static const String start = 'start';
-
-
+  static const String validators7 = '7';
+  static const String validators12 = '12';
+  static const String validators24 = '24';
+  static const String validators32 = '32';
 }

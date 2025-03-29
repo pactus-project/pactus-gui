@@ -135,7 +135,8 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                           listener: (ctxListener, state) {
                             if (state is DaemonSuccess) {
                               final isPasswordCorrect = state.output.contains(
-                                  'Your wallet password successfully');
+                                'Your wallet password successfully',
+                              );
                               if (isPasswordCorrect) {
                                 final nodeDirectory =
                                     StorageUtils.getData<String>(
@@ -180,9 +181,11 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                                             '${StorageUtils.getData<String>(
                                           storageKey,
                                         )}';
+
                                         final walletPath =
                                             '$sign${CliConstants.wallets}'
-                                            '$sign${CliConstants.defaultWallet}';
+                                            '$sign${CliConstants.defaultWallet}'
+                                            '';
 
                                         final cliCommand = CliCommand(
                                           command: CliConstants.pactusWallet,
@@ -204,7 +207,7 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                                           'Unlocking with password: $password',
                                         );
                                       }
-                                    : null, // Disable button if password is empty
+                                    : null,
                                 child: context.read<DaemonCubit>().state
                                         is DaemonLoading
                                     ? SizedBox(
@@ -213,7 +216,8 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                                         child: ProgressRing(),
                                       )
                                     : Text(
-                                        context.tr(LocaleKeys.unlock_wallet)),
+                                        context.tr(LocaleKeys.unlock_wallet),
+                                      ),
                               ),
                             );
                           },
