@@ -1,3 +1,20 @@
+# 1.44.0+47
+
+### [Feature]
+- Added `dev_mode` feature for `settings` Pactus GUI `network` for developers.
+- Added `set as default` button to preparing `start node` in devMode.
+
+### [Update]
+- Added `keyboard shortcut` (Ctrl+D) to enable `dev mode` (in debugging) directly from the `splash screen` and `unlock password screen` . 
+- Called daemon commands for initial node and `start node` in devMode.
+- Fixed UI `devMode` screen and used bloc to manage states.
+- Improved form states after `creating node` in devMode.
+- Changed `localNodePort` in core constants.
+
+### [Refactor]
+- Changed some properties of `CliConstants` class.
+- Fixed redirect `created node` to `unblock password` screen.
+
 # 1.43.0+46
 
 ### [Feature]
