@@ -1,13 +1,11 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gui/src/core/common/widgets/adaptive_text_button.dart';
 import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui_widgetbook/app_core.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
-import 'package:pactus_gui_widgetbook/src/features/widgets/buttons/adaptive_primary_button/adaptive_primary_button.dart';
-import 'package:pactus_gui_widgetbook/src/core/enum/request_state_enum.dart';
-import 'package:pactus_gui_widgetbook/src/core/enum/padding_size_enum.dart';
+import 'package:pactus_gui_widgetbook/app_widgets.dart';
 
 class NavigationFooterSection extends StatelessWidget {
   const NavigationFooterSection({
@@ -43,49 +41,43 @@ class NavigationFooterSection extends StatelessWidget {
             IntrinsicWidth(
               child: SizedBox(
                 height: 32,
-            child: AdaptivePrimaryButton.createTitleOnly(
+            child: AdaptiveSecondaryButton.createTitleOnly(
+              isDefaultOutlinedButton: true,
                   requestState: RequestStateEnum.loaded,
                   onPressed: onBackPressed,
                   title: context.tr(LocaleKeys.back),
-                  isOutlined: true,
                 ),
           ),
         )
-    // CustomOutlinedButton(
-    //           text: context.tr(LocaleKeys.back),
-    //           onPressed: onBackPressed,
-    //           borderColor: AppColors.primaryGray,
-    //         )
           else
             IntrinsicWidth(
               child: SizedBox(
                 height: 32,
-                child: AdaptivePrimaryButton.createTitleOnly(
+                child: AdaptiveSecondaryButton.createTitleOnly(
+                  isDefaultOutlinedButton: true,
                   requestState: RequestStateEnum.loaded,
                   onPressed: () {
                     context.goNamed(AppRoute.initializeMode.name);
                   },
                   title: context.tr(LocaleKeys.back),
-                  isOutlined: true,
                 ),
               ),
             ),
-            // CustomOutlinedButton(
-            //   text: context.tr(LocaleKeys.back),
-            //   onPressed: () {
-            //     context.goNamed(AppRoute.initializeMode.name);
-            //   },
-            //   borderColor: AppColors.primaryGray,
-            // ),
+
 
           // Modified Next button section with optional Skip
           Row(
             children: [
               if (showSkipButton) ...[
-                AdaptiveTextButton(
-                  text: context.tr(LocaleKeys.skip),
-                  onPressed: onSkipPressed!,
-                  textColor: FluentTheme.of(context).accentColor,
+                IntrinsicWidth(
+                  child: SizedBox(
+                    height: 32,
+                    child: AdaptiveTextButton.createTitleOnly(
+                      requestState: RequestStateEnum.loaded,
+                      title: context.tr(LocaleKeys.skip),
+                      onPressed: onSkipPressed,
+                    ),
+                  ),
                 ),
                 const SizedBox(width: 10),
               ],

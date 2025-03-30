@@ -3,7 +3,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
 import 'package:gui/src/core/constants/cli_constants.dart';
 import 'package:gui/src/core/extensions/context_extensions.dart';
 import 'package:gui/src/core/router/route_name.dart';
@@ -15,9 +14,9 @@ import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/core/utils/methods/update_node_details_singleton.dart';
 import 'package:gui/src/core/utils/string_extension.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui_widgetbook/app_core.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
-import 'package:pactus_gui_widgetbook/src/features/widgets/buttons/adaptive_primary_button/adaptive_primary_button.dart';
-import 'package:pactus_gui_widgetbook/src/core/enum/request_state_enum.dart';
+import 'package:pactus_gui_widgetbook/app_widgets.dart';
 
 class FinishScreen extends StatefulWidget {
   const FinishScreen({super.key});

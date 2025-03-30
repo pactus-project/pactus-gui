@@ -5,7 +5,6 @@ import 'package:gap/gap.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
 import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
-import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
 import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
 import 'package:gui/src/core/constants/storage_keys.dart';
 import 'package:gui/src/core/enums/app_enums.dart';
@@ -19,9 +18,9 @@ import 'package:gui/src/features/validator_config/core/utils/methods/is_not_empt
 import 'package:gui/src/features/validator_config/core/utils/methods/show_fluent_alert_method.dart';
 import 'package:gui/src/features/validator_config/presentation/sections/validator_config_title_section.dart';
 import 'package:gui/src/features/validator_config/presentation/sections/validator_qty_selector_section.dart';
+import 'package:pactus_gui_widgetbook/app_core.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
-import 'package:pactus_gui_widgetbook/src/features/widgets/buttons/adaptive_primary_button/adaptive_primary_button.dart';
-import 'package:pactus_gui_widgetbook/src/core/enum/request_state_enum.dart';
+import 'package:pactus_gui_widgetbook/app_widgets.dart';
 
 /// ## [ValidatorConfigScreen] Class Documentation
 ///
