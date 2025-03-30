@@ -21,31 +21,37 @@ class DirectoryCheckBloc
     Emitter<DirectoryCheckState> emit,
   ) async {
     // Start loading
-    emit(_updateStateForNetwork(
-      event.networkType,
-      (status) => status.copyWith(isLoading: true),
-    ));
+    emit(
+      _updateStateForNetwork(
+        event.networkType,
+        (status) => status.copyWith(isLoading: true),
+      ),
+    );
 
     try {
       final isReady = await EnvironmentRepository().isDirectoryReadyForNode(
         latestPartOfPath: event.latestPartOfPath,
       );
 
-      emit(_updateStateForNetwork(
-        event.networkType,
-        (status) => status.copyWith(
-          isLoading: false,
-          isReady: isReady,
+      emit(
+        _updateStateForNetwork(
+          event.networkType,
+          (status) => status.copyWith(
+            isLoading: false,
+            isReady: isReady,
+          ),
         ),
-      ));
+      );
     } on Exception catch (e) {
-      emit(_updateStateForNetwork(
-        event.networkType,
-        (status) => status.copyWith(
-          isLoading: false,
-          error: e.toString(),
+      emit(
+        _updateStateForNetwork(
+          event.networkType,
+          (status) => status.copyWith(
+            isLoading: false,
+            error: e.toString(),
+          ),
         ),
-      ));
+      );
     }
   }
 

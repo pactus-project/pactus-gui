@@ -43,4 +43,3 @@ final GoRouter routerConfig = GoRouter(
     ...registrationRoutes,
   ],
 );
-
