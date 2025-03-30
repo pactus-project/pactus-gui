@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/common/widgets/shimmer_card_item.dart';
 import 'package:gui/src/core/enums/app_environment.dart';
 import 'package:gui/src/features/dev_mode/data/repositories/environment_repository.dart';
+import 'package:gui/src/features/dev_mode/presentation/bloc/directory_check_bloc.dart';
 import 'package:gui/src/features/dev_mode/presentation/widgets/environment_radio_option.dart';
 
 class EnvironmentSelector extends StatelessWidget {
@@ -16,86 +17,60 @@ class EnvironmentSelector extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        FutureBuilder<bool>(
-          future: repository.isDirectoryReadyForNode(
-            latestPartOfPath: AppEnvironment.mainnet.name,
-          ),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const ShimmerCardItem(
-                height: 36,
-                width: 120,
-              );
-            }
-            if (snapshot.hasError) {
-              return Text('Error: ${snapshot.error}', style: textStyle);
-            }
-
-            final canCreate = snapshot.data == true;
-
-            return EnvironmentRadioOption(
-              environment: AppEnvironment.mainnet,
-              textStyle: textStyle,
-              isEnabled: !canCreate,
-              disabledMessage:
-                  canCreate ? 'Mainnet directory already contains files' : null,
-            );
-          },
+        DirectoryCheckerBlocWidget(
+          textStyle: textStyle,
+          appEnvironment: AppEnvironment.mainnet,
         ),
-        FutureBuilder<bool>(
-          future: repository.isDirectoryReadyForNode(
-            latestPartOfPath: AppEnvironment.testnet.name,
-          ),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const ShimmerCardItem(
-                height: 36,
-                width: 120,
-              );
-            }
-            if (snapshot.hasError) {
-              return Text('Error: ${snapshot.error}', style: textStyle);
-            }
-
-            final canCreate = snapshot.data == true;
-
-            return EnvironmentRadioOption(
-              environment: AppEnvironment.testnet,
-              textStyle: textStyle,
-              isEnabled: !canCreate,
-              disabledMessage:
-                  canCreate ? 'Testnet directory already contains files' : null,
-            );
-          },
+        DirectoryCheckerBlocWidget(
+          textStyle: textStyle,
+          appEnvironment: AppEnvironment.testnet,
         ),
-        FutureBuilder<bool>(
-          future: repository.isDirectoryReadyForNode(
-            latestPartOfPath: AppEnvironment.localnet.name,
-          ),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const ShimmerCardItem(
-                height: 36,
-                width: 120,
-              );
-            }
-            if (snapshot.hasError) {
-              return Text('Error: ${snapshot.error}', style: textStyle);
-            }
-
-            final canCreate = snapshot.data == true;
-
-            return EnvironmentRadioOption(
-              environment: AppEnvironment.localnet,
-              textStyle: textStyle,
-              isEnabled: !canCreate,
-              disabledMessage: canCreate
-                  ? 'Localnet directory already contains files'
-                  : null,
-            );
-          },
+        DirectoryCheckerBlocWidget(
+          textStyle: textStyle,
+          appEnvironment: AppEnvironment.localnet,
         ),
       ],
+    );
+  }
+}
+
+class DirectoryCheckerBlocWidget extends StatelessWidget {
+  const DirectoryCheckerBlocWidget({
+    super.key,
+    required this.textStyle,
+    required this.appEnvironment,
+  });
+
+  final TextStyle textStyle;
+  final AppEnvironment appEnvironment;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<DirectoryCheckBloc, DirectoryCheckState>(
+      builder: (context, state) {
+        final status = state.networkStatuses[appEnvironment]!;
+
+        if (status.isLoading) {
+          return const ShimmerCardItem(height: 36, width: 120);
+        }
+
+        if (status.error != null) {
+          return Text('Error: ${status.error}');
+        }
+
+        if (status.isReady != null) {
+          return EnvironmentRadioOption(
+            environment: appEnvironment,
+            isEnabled: !status.isReady!,
+            disabledMessage: status.isReady!
+                ? '${appEnvironment.name} directory contains files'
+                : null,
+            textStyle: textStyle,
+          );
+        }
+
+        return const SizedBox.shrink();
+      },
     );
   }
 }

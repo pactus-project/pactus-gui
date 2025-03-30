@@ -5,7 +5,7 @@ import 'package:gui/src/features/dev_mode/presentation/bloc/environment_selectio
 class EnvironmentSelectionCubit extends Cubit<EnvironmentSelectionState> {
   EnvironmentSelectionCubit() : super(EnvironmentSelectionState());
 
-  void selectEnvironment(AppEnvironment env) {
+  void selectEnvironment(AppEnvironment? env) {
     emit(state.copyWith(selectedEnvironment: env));
   }
 
@@ -15,5 +15,10 @@ class EnvironmentSelectionCubit extends Cubit<EnvironmentSelectionState> {
 
   void setSeeds(String? seeds) {
     emit(state.copyWith(seeds: seeds));
+  }
+
+
+  void clear () {
+    emit(EnvironmentSelectionState());
   }
 }
