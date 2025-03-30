@@ -22,7 +22,7 @@ class CreateLocalNodePane extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NavigationPaneCubit, NavigationState>(
-      builder: (context, selectedIndex) {
+      builder: (context, navigationState) {
         return AppLayout(
           content: NavigationView(
             pane: NavigationPane(
@@ -30,37 +30,9 @@ class CreateLocalNodePane extends StatelessWidget {
               menuButton: const SizedBox(),
               size:
                   const NavigationPaneSize(openMaxWidth: 209, compactWidth: 52),
-              selected: selectedIndex.selectedIndex,
-              onChanged: (index) {
-                final stepValidationCubit = context.read<StepValidationCubit>();
-                final navigationCubit = context.read<NavigationPaneCubit>();
-
-                // Check if moving forward is allowed only if
-                // the current step is valid
-                final canGoForward = index == selectedIndex.selectedIndex + 1 &&
-                    stepValidationCubit.isStepValid(
-                      selectedIndex.selectedIndex,
-                    );
-
-                // Allow moving backward only if you're not at the last page
-                final canGoBack = index == selectedIndex.selectedIndex - 1 &&
-                    selectedIndex.selectedIndex <
-                        AppConstants.createLocalNodeMaxIndex;
-
-                // If you've reached the last page, you won't be able to go back
-                if (selectedIndex.selectedIndex == 5) {
-                  // If you've reached the last page, going backward
-                  // is not allowed
-                  if (index == selectedIndex.selectedIndex - 1) {
-                    return;
-                  }
-                }
-
-                // Otherwise, allow moving forward or backward only if valid
-                if (canGoForward || canGoBack) {
-                  navigationCubit.setSelectedIndex(index);
-                }
-              },
+              selected: navigationState.selectedIndex,
+              onChanged: (index) =>
+                  _handleNavigationChange(context, navigationState, index),
               indicator: const SizedBox(),
               items: [
                 PaneItem(
@@ -69,7 +41,7 @@ class CreateLocalNodePane extends StatelessWidget {
                     context.tr(LocaleKeys.wallet_seed),
                     style: TextStyle(
                       color: context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex.selectedIndex == 0,
+                        isEnabledTextStyle: navigationState.selectedIndex == 0,
                       ),
                     ),
                   ),
@@ -81,7 +53,7 @@ class CreateLocalNodePane extends StatelessWidget {
                     context.tr(LocaleKeys.confirm_seed),
                     style: TextStyle(
                       color: context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex.selectedIndex == 1,
+                        isEnabledTextStyle: navigationState.selectedIndex == 1,
                       ),
                     ),
                   ),
@@ -93,7 +65,7 @@ class CreateLocalNodePane extends StatelessWidget {
                     context.tr(LocaleKeys.master_password),
                     style: TextStyle(
                       color: context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex.selectedIndex == 2,
+                        isEnabledTextStyle: navigationState.selectedIndex == 2,
                       ),
                     ),
                   ),
@@ -105,7 +77,7 @@ class CreateLocalNodePane extends StatelessWidget {
                     context.tr(LocaleKeys.validator_config),
                     style: TextStyle(
                       color: context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex.selectedIndex == 3,
+                        isEnabledTextStyle: navigationState.selectedIndex == 3,
                       ),
                     ),
                   ),
@@ -117,7 +89,7 @@ class CreateLocalNodePane extends StatelessWidget {
                     context.tr(LocaleKeys.initializing),
                     style: TextStyle(
                       color: context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex.selectedIndex == 4,
+                        isEnabledTextStyle: navigationState.selectedIndex == 4,
                       ),
                     ),
                   ),
@@ -131,7 +103,7 @@ class CreateLocalNodePane extends StatelessWidget {
                     context.tr(LocaleKeys.finish),
                     style: TextStyle(
                       color: context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex.selectedIndex == 5,
+                        isEnabledTextStyle: navigationState.selectedIndex == 5,
                       ),
                     ),
                   ),
@@ -143,5 +115,39 @@ class CreateLocalNodePane extends StatelessWidget {
         );
       },
     );
+  }
+
+  void _handleNavigationChange(
+    BuildContext context,
+    NavigationState navigationState,
+    int index,
+  ) {
+    final stepValidationCubit = context.read<StepValidationCubit>();
+    final navigationCubit = context.read<NavigationPaneCubit>();
+
+    // Check if moving forward is allowed only if
+    // the current step is valid
+    final canGoForward = index == navigationState.selectedIndex + 1 &&
+        stepValidationCubit.isStepValid(
+          navigationState.selectedIndex,
+        );
+
+    // Allow moving backward only if you're not at the last page
+    final canGoBack = index == navigationState.selectedIndex - 1 &&
+        navigationState.selectedIndex < AppConstants.createLocalNodeMaxIndex;
+
+    // If you've reached the last page, you won't be able to go back
+    if (navigationState.selectedIndex == 5) {
+      // If you've reached the last page, going backward
+      // is not allowed
+      if (index == navigationState.selectedIndex - 1) {
+        return;
+      }
+    }
+
+    // Otherwise, allow moving forward or backward only if valid
+    if (canGoForward || canGoBack) {
+      navigationCubit.setSelectedIndex(index);
+    }
   }
 }
