@@ -18,6 +18,9 @@ class DaemonManagerSuccess extends DaemonManagerState {
 }
 
 class DaemonManagerError extends DaemonManagerState {
-  const DaemonManagerError(this.error);
+  DaemonManagerError(this.error) : timestamp = DateTime.now();
+
   final String error;
+
+  final DateTime timestamp; // Add this line
 }

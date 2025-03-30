@@ -73,8 +73,8 @@ class DaemonManagerBloc extends Bloc<DaemonManagerEvent, DaemonManagerState> {
       _handlePasswordInput(event.cliCommand, process);
 
       final outputSubscription =
-          process.stdout.transform(utf8.decoder).listen((data) {
-        if (data.startsWith('[ERROR]')) {
+      process.stdout.transform(utf8.decoder).listen((data) {
+        if (data.startsWith('[ERROR]') || data.startsWith('invalid password')) {
           emit(DaemonManagerError(data));
         } else {
           emit(DaemonManagerSuccess(data));

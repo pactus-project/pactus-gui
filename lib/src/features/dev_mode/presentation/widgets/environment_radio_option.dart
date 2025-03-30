@@ -1,7 +1,9 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/constants/storage_keys.dart';
 import 'package:gui/src/core/enums/app_environment.dart';
+import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/storage_utils.dart';
 import 'package:gui/src/features/dev_mode/data/repositories/environment_repository.dart';
 import 'package:gui/src/features/dev_mode/presentation/bloc/environment_selection_cubit.dart';
@@ -76,17 +78,20 @@ class EnvironmentRadioOption extends StatelessWidget {
                                 .detectCurrentDirectoryForInitNode(
                               latestPartOfPath: environment.name,
                             );
-
                             StorageUtils.saveData(
                               StorageKeys.nodeDirectory,
                               directory.path,
                             );
+
+                            if (context.mounted) {
+                              context.go(AppRoute.basicPassword.fullPath);
+                            }
                           },
                           child: Row(
                             spacing: 8,
                             children: [
                               Icon(FluentIcons.icon_sets_flag),
-                              Text('Set as default')
+                              Text('Start Node'),
                             ],
                           ),
                         ),

@@ -18,7 +18,35 @@ class GenerateSeedAndSetPasswordSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime? lastErrorTime;
     return BlocConsumer<DaemonManagerBloc, DaemonManagerState>(
+      listenWhen: (previousState, currentState) {
+        if (currentState is DaemonManagerSuccess) {
+          return true;
+        }
+
+        if (currentState is DaemonManagerInitial) {
+          return true;
+        }
+
+        if (currentState is DaemonManagerLoading) {
+          return true;
+        }
+
+        // Special handling for error dialog debouncing
+        if (currentState is DaemonManagerError) {
+          final now = DateTime.now();
+          if (lastErrorTime == null ||
+              now.difference(lastErrorTime!) > Duration(seconds: 1)) {
+            lastErrorTime = now;
+            return true;
+          }
+          return false;
+        }
+
+        // Default case for other states
+        return currentState != previousState;
+      },
       listener: (context, state) {
         if (state is DaemonManagerSuccess) {
           showDialog(
