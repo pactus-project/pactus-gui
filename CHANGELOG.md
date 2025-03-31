@@ -1,4 +1,4 @@
-# 1.44.0+47
+# 1.44.0+47 
 
 ### [Feature]
 - Added `dev_mode` feature for `settings` Pactus GUI `network` for developers.
