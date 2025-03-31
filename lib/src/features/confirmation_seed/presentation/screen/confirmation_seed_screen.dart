@@ -6,6 +6,7 @@ import 'package:gui/src/core/common/widgets/screen_header_widget.dart';
 import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:gui/src/data/models/fluent_navigation_state_model.dart';
 import 'package:gui/src/features/confirmation_seed/data/models/seed_item_data.dart';
 import 'package:gui/src/features/confirmation_seed/presentation/bloc/confirmation_seed_cubit.dart';
 import 'package:gui/src/features/confirmation_seed/presentation/sections/confirmation_seed_words_grid_section.dart';
@@ -20,7 +21,7 @@ class ConfirmationSeedScreen extends StatelessWidget {
       create: (_) => ConfirmationSeedCubit(
         NodeConfigData.instance.restorationSeed!.words,
       ),
-      child: BlocBuilder<NavigationPaneCubit, int>(
+      child: BlocBuilder<NavigationPaneCubit, NavigationState>(
         builder: (context, selectedIndex) {
           return StandardPageLayout(
             content: BlocBuilder<ConfirmationSeedCubit, ConfirmationSeedState>(
@@ -32,7 +33,7 @@ class ConfirmationSeedScreen extends StatelessWidget {
                   return const Center(child: ProgressRing());
                 }
                 context.read<StepValidationCubit>().setStepValid(
-                      stepIndex: selectedIndex,
+                      stepIndex: selectedIndex.selectedIndex,
                       isValid: confirmationSeedState.areAllWordsConfirmed,
                     );
 
@@ -70,17 +71,17 @@ class ConfirmationSeedScreen extends StatelessWidget {
             footer: BlocBuilder<ConfirmationSeedCubit, ConfirmationSeedState>(
               builder: (context, confirmationSeedState) {
                 return NavigationFooterSection(
-                  selectedIndex: selectedIndex,
+                  selectedIndex: selectedIndex.selectedIndex,
                   onBackPressed: () {
                     context
                         .read<NavigationPaneCubit>()
-                        .setSelectedIndex(selectedIndex - 1);
+                        .setSelectedIndex(selectedIndex.selectedIndex - 1);
                   },
                   onNextPressed: confirmationSeedState.areAllWordsConfirmed
                       ? () {
-                          context
-                              .read<NavigationPaneCubit>()
-                              .setSelectedIndex(selectedIndex + 1);
+                          context.read<NavigationPaneCubit>().setSelectedIndex(
+                                selectedIndex.selectedIndex + 1,
+                              );
                         }
                       : null,
                 );

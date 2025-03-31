@@ -126,6 +126,13 @@ class CodegenLoader {
     'public': 'Public',
     'clock_offset': 'Clock Offset',
     'clock_offset_description': '0 second(s)',
+    'dashboard': 'Dashboard',
+    'transaction': 'Transaction',
+    'wallet': 'Wallet',
+    'node_logs': 'Node Logs',
+    'settings': 'Settings',
+    'faqs': 'FAQs',
+    'about': 'About',
   };
   static const Map<String, dynamic> frFR = {
     'title': 'Bonjour le Monde!',
@@ -230,6 +237,13 @@ class CodegenLoader {
     'public': 'Public',
     'clock_offset': 'Décalage horaire',
     'clock_offset_description': '0 secondes',
+    'dashboard': 'Tableau de bord',
+    'transaction': 'Transaction',
+    'wallet': 'Portefeuille',
+    'node_logs': 'Journaux du nœud',
+    'settings': 'Paramètres',
+    'faqs': 'FAQ',
+    'about': 'À propos',
   };
   static const Map<String, dynamic> esES = {
     'title': 'Hola Mundo!',
@@ -332,6 +346,13 @@ class CodegenLoader {
     'public': 'Público',
     'clock_offset': 'Desplazamiento de reloj',
     'clock_offset_description': '0 segundos',
+    'dashboard': 'Panel de control',
+    'transaction': 'Transacción',
+    'wallet': 'Monedero',
+    'node_logs': 'Registros del nodo',
+    'settings': 'Configuración',
+    'faqs': 'Preguntas frecuentes',
+    'about': 'Acerca de',
   };
 
   static const Map<String, Map<String, dynamic>> mapLocales = {

@@ -12,6 +12,7 @@ import 'package:gui/src/core/enums/app_enums.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/core/utils/storage_utils.dart';
+import 'package:gui/src/data/models/fluent_navigation_state_model.dart';
 import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
@@ -81,11 +82,12 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => DropdownCubit<ValidatorQty>(ValidatorQty.seven),
-      child: BlocBuilder<NavigationPaneCubit, int>(
+      child: BlocBuilder<NavigationPaneCubit, NavigationState>(
         builder: (context, selectedIndex) {
           isDirectoryValid = directoryController.text.isNotEmpty;
           context.read<StepValidationCubit>().setStepValid(
-                stepIndex: context.read<NavigationPaneCubit>().state,
+                stepIndex:
+                    context.read<NavigationPaneCubit>().state.selectedIndex,
                 isValid: isDirectoryValid,
               );
           return StandardPageLayout(
@@ -148,7 +150,7 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
               ],
             ),
             footer: NavigationFooterSection(
-              selectedIndex: selectedIndex,
+              selectedIndex: selectedIndex.selectedIndex,
               onNextPressed: isDirectoryValid
                   ? () async {
                       final isDirectoryNotEmpty = await isNotEmptyDirectory(
@@ -184,14 +186,14 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
 
                         context
                             .read<NavigationPaneCubit>()
-                            .setSelectedIndex(selectedIndex + 1);
+                            .setSelectedIndex(selectedIndex.selectedIndex + 1);
                       }
                     }
                   : null,
               onBackPressed: () {
                 context
                     .read<NavigationPaneCubit>()
-                    .setSelectedIndex(selectedIndex - 1);
+                    .setSelectedIndex(selectedIndex.selectedIndex - 1);
               },
             ),
           );

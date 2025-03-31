@@ -84,5 +84,12 @@
   "inbound_outbound": "(Inbound: 0, Outbound: 1)",
   "public" : "Public",
   "clock_offset": "Décalage horaire",
-  "clock_offset_description": "0 secondes"
+  "clock_offset_description": "0 secondes",
+  "dashboard": "Tableau de bord",
+  "transaction": "Transaction",
+  "wallet": "Portefeuille",
+  "node_logs": "Journaux du nœud",
+  "settings": "Paramètres",
+  "faqs": "FAQ",
+  "about": "À propos"
 }

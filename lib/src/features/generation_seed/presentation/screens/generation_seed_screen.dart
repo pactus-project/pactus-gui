@@ -10,6 +10,7 @@ import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/core/utils/daemon_manager/seed_generator.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:gui/src/data/models/fluent_navigation_state_model.dart';
 import 'package:gui/src/features/generation_seed/core/constants/enums/seed_type_enum.dart';
 import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
 import 'package:gui/src/features/generation_seed/presentation/sections/seed_notes_section.dart';
@@ -27,7 +28,7 @@ class GenerationSeedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => DropdownCubit<SeedTypeEnum>(SeedTypeEnum.twelve),
-      child: BlocBuilder<NavigationPaneCubit, int>(
+      child: BlocBuilder<NavigationPaneCubit, NavigationState>(
         builder: (context, selectedIndex) {
           return StandardPageLayout(
             content: LayoutBuilder(
@@ -81,7 +82,7 @@ class GenerationSeedScreen extends StatelessWidget {
                                 context
                                     .read<StepValidationCubit>()
                                     .setStepValid(
-                                      stepIndex: selectedIndex,
+                                      stepIndex: selectedIndex.selectedIndex,
                                       isValid: true,
                                     );
                                 return Column(
@@ -129,15 +130,15 @@ class GenerationSeedScreen extends StatelessWidget {
               },
             ),
             footer: NavigationFooterSection(
-              selectedIndex: selectedIndex,
+              selectedIndex: selectedIndex.selectedIndex,
               onNextPressed: () {
                 context.read<NavigationPaneCubit>().setSelectedIndex(
-                      selectedIndex + 1,
+                      selectedIndex.selectedIndex + 1,
                     );
               },
               onBackPressed: () {
                 context.read<NavigationPaneCubit>().setSelectedIndex(
-                      selectedIndex - 1,
+                      selectedIndex.selectedIndex - 1,
                     );
               },
             ),
