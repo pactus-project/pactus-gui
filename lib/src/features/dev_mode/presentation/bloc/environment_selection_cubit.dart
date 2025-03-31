@@ -17,8 +17,7 @@ class EnvironmentSelectionCubit extends Cubit<EnvironmentSelectionState> {
     emit(state.copyWith(seeds: seeds));
   }
 
-
-  void clear () {
+  void clear() {
     emit(EnvironmentSelectionState());
   }
 }

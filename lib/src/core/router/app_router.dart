@@ -31,7 +31,6 @@ final GoRouter routerConfig = GoRouter(
           BlocProvider<EnvironmentSelectionCubit>(
             create: (_) => EnvironmentSelectionCubit(),
           ),
-
           BlocProvider<DaemonManagerBloc>(
             create: (_) => DaemonManagerBloc(),
           ),

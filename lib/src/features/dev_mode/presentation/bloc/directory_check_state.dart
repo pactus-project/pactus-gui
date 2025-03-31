@@ -1,7 +1,6 @@
 part of 'directory_check_bloc.dart';
 
 class DirectoryCheckState {
-
   const DirectoryCheckState(this.networkStatuses);
 
   factory DirectoryCheckState.initial() {
@@ -15,7 +14,6 @@ class DirectoryCheckState {
 }
 
 class NetworkCheckStatus {
-
   const NetworkCheckStatus({
     this.isLoading = false,
     this.isReady,

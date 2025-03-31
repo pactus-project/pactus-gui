@@ -6,15 +6,13 @@ import 'package:gui/src/features/dev_mode/presentation/widgets/dialog_content_wi
 import 'package:gui/src/features/dev_mode/presentation/widgets/dialog_title_widget.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
-void createNodeDialog(
-{
+void createNodeDialog({
   required BuildContext context,
   required EnvironmentSelectionState collectedFormData,
   required VoidCallback? createNodeCommand,
   required VoidCallback? clearForm,
   required VoidCallback? checkNodeDirectories,
-}
-) {
+}) {
   final textStyle = TextStyle(
     color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
   );

@@ -47,8 +47,8 @@ class _SubmitButtonWidgetState extends State<SubmitButtonWidget> {
     createNodeDialog(
       context: context,
       clearForm: () {
-        context.read<EnvironmentSelectionCubit>().clear( );
-       },
+        context.read<EnvironmentSelectionCubit>().clear();
+      },
       createNodeCommand: () {
         context.read<DaemonManagerBloc>().add(
               RunDaemonCommand(
@@ -72,8 +72,6 @@ class _SubmitButtonWidgetState extends State<SubmitButtonWidget> {
       },
       collectedFormData: collectedFormData,
       checkNodeDirectories: () {
-
-
         context.read<DirectoryCheckBloc>().add(
               CheckDirectoryEvent(
                 latestPartOfPath: collectedFormData.selectedEnvironment!.name,
