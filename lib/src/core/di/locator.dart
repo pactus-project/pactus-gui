@@ -22,6 +22,7 @@ Future<void> setupSharedPreferences({SharedPreferences? param}) async {
 
 Future<void> setupDependencies() async {
   // Register `ClientChannel` as factory
+
   getIt
     ..registerFactory<ClientChannel>(() {
       final nodeDetails = getIt<NodeDetails>();

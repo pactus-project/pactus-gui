@@ -29,3 +29,11 @@ enum DelayTime {
 
   final Duration duration;
 }
+
+enum DialogType {
+  warning,
+  info,
+  succeed,
+  error,
+  normal,
+}

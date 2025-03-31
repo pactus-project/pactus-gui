@@ -38,17 +38,17 @@ class _InitializingScreenState extends State<InitializingScreen> {
       arguments: [
         CliConstants.init,
         // if (widget.initialMode == InitialMode.restore)
-        CliConstants.dashDashRestore,
+        CliConstants.restoreArgument,
         // if (widget.initialMode == InitialMode.restore)
         NodeConfigData.instance.restorationSeed?.sentence ?? '',
-        CliConstants.dashDashWorkingDir,
+        CliConstants.workingDirArgument,
         NodeConfigData.instance.workingDirectory,
         if (NodeConfigData.instance.password.isNotEmpty)
-          CliConstants.dashDashPassword,
+          CliConstants.passwordArgument,
         if (NodeConfigData.instance.password.isNotEmpty)
           NodeConfigData
               .instance.password, // Add password only if it's not empty
-        CliConstants.dashDashValNum,
+        CliConstants.valNumArgument,
         NodeConfigData.instance.validatorQty,
       ],
     );
@@ -57,15 +57,15 @@ class _InitializingScreenState extends State<InitializingScreen> {
         );
     logger
       ..i(
-        '${CliConstants.dashDashWorkingDir} '
+        '${CliConstants.workingDirArgument} '
         '${NodeConfigData.instance.workingDirectory}',
       )
       ..i(
-        '${CliConstants.dashDashPassword} '
+        '${CliConstants.passwordArgument} '
         '${NodeConfigData.instance.password}',
       )
       ..i(
-        '${CliConstants.dashDashValNum} '
+        '${CliConstants.valNumArgument} '
         '${NodeConfigData.instance.validatorQty}',
       );
   }

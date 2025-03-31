@@ -102,9 +102,9 @@ class _FinishScreenState extends State<FinishScreen> {
                                   command: CliConstants.pactusDaemon,
                                   arguments: [
                                     CliConstants.start,
-                                    CliConstants.dashDashWorkingDir,
+                                    CliConstants.workingDirArgument,
                                     NodeConfigData.instance.workingDirectory,
-                                    CliConstants.dashDashPassword,
+                                    CliConstants.passwordArgument,
                                     NodeConfigData.instance.password,
                                   ],
                                 ),
