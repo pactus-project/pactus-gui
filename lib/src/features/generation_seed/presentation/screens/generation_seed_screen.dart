@@ -44,12 +44,10 @@ class GenerationSeedScreen extends StatelessWidget {
                       children: [
                         const ScreenHeaderWidget(
                           title: LocaleKeys.generation_seed_title,
-                          description:
-                              LocaleKeys.generation_seed_description,
+                          description: LocaleKeys.generation_seed_description,
                         ),
                         const Gap(20),
-                        BlocBuilder<DropdownCubit<SeedTypeEnum>,
-                            SeedTypeEnum>(
+                        BlocBuilder<DropdownCubit<SeedTypeEnum>, SeedTypeEnum>(
                           builder: (context, state) {
                             if (state == SeedTypeEnum.twelve) {
                               final generatedSeed =
@@ -76,9 +74,7 @@ class GenerationSeedScreen extends StatelessWidget {
                                 child: Text('No seed words generated.'),
                               );
                             }
-                            context
-                                .read<StepValidationCubit>()
-                                .setStepValid(
+                            context.read<StepValidationCubit>().setStepValid(
                                   stepIndex: selectedIndex.selectedIndex,
                                   isValid: true,
                                 );
@@ -92,8 +88,7 @@ class GenerationSeedScreen extends StatelessWidget {
                                 const Gap(20),
                                 CopyToClipboardButton(
                                   copyClipboardFunction: () async {
-                                    final seedWordsText =
-                                        seedWords!.join(' ');
+                                    final seedWordsText = seedWords!.join(' ');
                                     await Clipboard.setData(
                                       ClipboardData(text: seedWordsText),
                                     );

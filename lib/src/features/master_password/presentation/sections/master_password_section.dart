@@ -1,6 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gap/gap.dart';
 import 'package:gui/src/core/common/widgets/custom_input_widget.dart';
 import 'package:gui/src/core/common/widgets/screen_header_widget.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
@@ -47,7 +46,8 @@ class MasterPasswordSection extends StatelessWidget {
       spacing: 24,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Align(alignment: AlignmentDirectional.centerStart,
+        Align(
+          alignment: AlignmentDirectional.centerStart,
           child: const ScreenHeaderWidget(
             title: LocaleKeys.master_password,
             description: LocaleKeys.master_password_description,
@@ -57,25 +57,26 @@ class MasterPasswordSection extends StatelessWidget {
           height: 250,
           child: SvgPicture.asset(
             Assets.images.masterPasswordLight,
-           ),
+          ),
         ),
-         Column(spacing: 24,
-           children: [
-             CustomInputWidget(
-               width: 280,
-               controller: passwordController,
-               placeholder: context.tr(LocaleKeys.enter_your_password),
-               obscureText: true,
-             ),
-              CustomInputWidget(
-               width: 280,
-               controller: confirmPasswordController,
-               placeholder: context.tr(LocaleKeys.confirm_password),
-               confirmationController: passwordController,
-               obscureText: true,
-             ),
-           ],
-         ),
+        Column(
+          spacing: 24,
+          children: [
+            CustomInputWidget(
+              width: 280,
+              controller: passwordController,
+              placeholder: context.tr(LocaleKeys.enter_your_password),
+              obscureText: true,
+            ),
+            CustomInputWidget(
+              width: 280,
+              controller: confirmPasswordController,
+              placeholder: context.tr(LocaleKeys.confirm_password),
+              confirmationController: passwordController,
+              obscureText: true,
+            ),
+          ],
+        ),
       ],
     );
   }

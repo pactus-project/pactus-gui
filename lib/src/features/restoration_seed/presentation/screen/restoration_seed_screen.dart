@@ -67,17 +67,13 @@ class RestorationSeedScreen extends StatelessWidget {
                     children: [
                       const ScreenHeaderWidget(
                         title: LocaleKeys.restoration_seed_title,
-                        description:
-                            LocaleKeys.restoration_seed_description,
+                        description: LocaleKeys.restoration_seed_description,
                       ),
-                      BlocBuilder<DropdownCubit<SeedTypeEnum>,
-                          SeedTypeEnum>(
+                      BlocBuilder<DropdownCubit<SeedTypeEnum>, SeedTypeEnum>(
                         builder: (context, state) {
                           return BlocBuilder<SeedTextCubit, List<String>>(
                             builder: (context, words) {
-                              context
-                                  .read<StepValidationCubit>()
-                                  .setStepValid(
+                              context.read<StepValidationCubit>().setStepValid(
                                     stepIndex: context
                                         .read<NavigationPaneCubit>()
                                         .state

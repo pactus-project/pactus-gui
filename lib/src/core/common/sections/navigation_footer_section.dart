@@ -32,8 +32,8 @@ class NavigationFooterSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-       color: AppTheme.of(context).extension<LightPallet>()!.light900,
-      padding: const EdgeInsets.all(  32),
+      color: AppTheme.of(context).extension<LightPallet>()!.light900,
+      padding: const EdgeInsets.all(32),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
