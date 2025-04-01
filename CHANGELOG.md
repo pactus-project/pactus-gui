@@ -1,3 +1,11 @@
+# 1.43.1+47
+
+### [Refactor]
+- Improved scroll performance and UI consistency [#167](https://github.com/pactus-project/pactus-gui/pull/168)
+  - Added `scrollBehavior` to `FluentApp.router` for better scrolling speed in desktop apps
+  - Adjusted padding in fetch component to match Figma specifications
+  - Enhanced logo name color theming for dark/light modes in splash screen
+
 # 1.43.0+46
 
 ### [Feature]
