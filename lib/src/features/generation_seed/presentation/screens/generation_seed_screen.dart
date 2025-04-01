@@ -39,78 +39,73 @@ class GenerationSeedScreen extends StatelessWidget {
 
                 return Stack(
                   children: [
-                    SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const ScreenHeaderWidget(
-                              title: LocaleKeys.generation_seed_title,
-                              description:
-                                  LocaleKeys.generation_seed_description,
-                            ),
-                            const Gap(20),
-                            BlocBuilder<DropdownCubit<SeedTypeEnum>,
-                                SeedTypeEnum>(
-                              builder: (context, state) {
-                                if (state == SeedTypeEnum.twelve) {
-                                  final generatedSeed =
-                                      SeedGenerator().generateSeed(12);
-                                  seedWords = generatedSeed?.words;
-                                  NodeConfigData.instance.restorationSeed =
-                                      generatedSeed;
-                                  context
-                                      .read<DropdownCubit<SeedTypeEnum>>()
-                                      .selectItem(SeedTypeEnum.twelve);
-                                } else if (state == SeedTypeEnum.twentyFour) {
-                                  final generatedSeed =
-                                      SeedGenerator().generateSeed(24);
-                                  seedWords = generatedSeed?.words;
-                                  NodeConfigData.instance.restorationSeed =
-                                      generatedSeed;
-                                  context
-                                      .read<DropdownCubit<SeedTypeEnum>>()
-                                      .selectItem(SeedTypeEnum.twentyFour);
-                                }
-
-                                if (seedWords!.isEmpty) {
-                                  return const Center(
-                                    child: Text('No seed words generated.'),
-                                  );
-                                }
-                                context
-                                    .read<StepValidationCubit>()
-                                    .setStepValid(
-                                      stepIndex: selectedIndex.selectedIndex,
-                                      isValid: true,
-                                    );
-                                return Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SeedWordsGridSection(
-                                      seedWords: seedWords!,
-                                      crossAxisCount: crossAxisCount,
-                                    ),
-                                    const Gap(20),
-                                    CopyToClipboardButton(
-                                      copyClipboardFunction: () async {
-                                        final seedWordsText =
-                                            seedWords!.join(' ');
-                                        await Clipboard.setData(
-                                          ClipboardData(text: seedWordsText),
-                                        );
-                                      },
-                                    ),
-                                    const Gap(20),
-                                    const SeedNotesSection(),
-                                  ],
-                                );
-                              },
-                            ),
-                          ],
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const ScreenHeaderWidget(
+                          title: LocaleKeys.generation_seed_title,
+                          description:
+                              LocaleKeys.generation_seed_description,
                         ),
-                      ),
+                        const Gap(20),
+                        BlocBuilder<DropdownCubit<SeedTypeEnum>,
+                            SeedTypeEnum>(
+                          builder: (context, state) {
+                            if (state == SeedTypeEnum.twelve) {
+                              final generatedSeed =
+                                  SeedGenerator().generateSeed(12);
+                              seedWords = generatedSeed?.words;
+                              NodeConfigData.instance.restorationSeed =
+                                  generatedSeed;
+                              context
+                                  .read<DropdownCubit<SeedTypeEnum>>()
+                                  .selectItem(SeedTypeEnum.twelve);
+                            } else if (state == SeedTypeEnum.twentyFour) {
+                              final generatedSeed =
+                                  SeedGenerator().generateSeed(24);
+                              seedWords = generatedSeed?.words;
+                              NodeConfigData.instance.restorationSeed =
+                                  generatedSeed;
+                              context
+                                  .read<DropdownCubit<SeedTypeEnum>>()
+                                  .selectItem(SeedTypeEnum.twentyFour);
+                            }
+
+                            if (seedWords!.isEmpty) {
+                              return const Center(
+                                child: Text('No seed words generated.'),
+                              );
+                            }
+                            context
+                                .read<StepValidationCubit>()
+                                .setStepValid(
+                                  stepIndex: selectedIndex.selectedIndex,
+                                  isValid: true,
+                                );
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SeedWordsGridSection(
+                                  seedWords: seedWords!,
+                                  crossAxisCount: crossAxisCount,
+                                ),
+                                const Gap(20),
+                                CopyToClipboardButton(
+                                  copyClipboardFunction: () async {
+                                    final seedWordsText =
+                                        seedWords!.join(' ');
+                                    await Clipboard.setData(
+                                      ClipboardData(text: seedWordsText),
+                                    );
+                                  },
+                                ),
+                                const Gap(20),
+                                const SeedNotesSection(),
+                              ],
+                            );
+                          },
+                        ),
+                      ],
                     ),
                     Positioned(
                       top: 47,

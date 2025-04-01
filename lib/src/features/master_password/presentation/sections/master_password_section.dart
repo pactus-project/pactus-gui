@@ -43,55 +43,40 @@ class MasterPasswordSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsetsDirectional.only(
-          start: 47,
-          end: 47,
-          top: 47,
+    return Column(
+      spacing: 24,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Align(alignment: AlignmentDirectional.centerStart,
+          child: const ScreenHeaderWidget(
+            title: LocaleKeys.master_password,
+            description: LocaleKeys.master_password_description,
+          ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const ScreenHeaderWidget(
-              title: LocaleKeys.master_password,
-              description: LocaleKeys.master_password_description,
-            ),
-            Center(
-              child: SizedBox(
-                width: 406,
-                height: 363,
-                child: SvgPicture.asset(
-                  Assets.images.masterPasswordLight,
-                  width: 406,
-                  height: 363,
-                ),
-              ),
-            ),
-            const Gap(24),
-            Center(
-              child: Column(
-                children: [
-                  CustomInputWidget(
-                    width: 280,
-                    controller: passwordController,
-                    placeholder: context.tr(LocaleKeys.enter_your_password),
-                    obscureText: true,
-                  ),
-                  const Gap(24),
-                  CustomInputWidget(
-                    width: 280,
-                    controller: confirmPasswordController,
-                    placeholder: context.tr(LocaleKeys.confirm_password),
-                    confirmationController: passwordController,
-                    obscureText: true,
-                  ),
-                ],
-              ),
-            ),
-          ],
+        SizedBox(
+          height: 250,
+          child: SvgPicture.asset(
+            Assets.images.masterPasswordLight,
+           ),
         ),
-      ),
+         Column(spacing: 24,
+           children: [
+             CustomInputWidget(
+               width: 280,
+               controller: passwordController,
+               placeholder: context.tr(LocaleKeys.enter_your_password),
+               obscureText: true,
+             ),
+              CustomInputWidget(
+               width: 280,
+               controller: confirmPasswordController,
+               placeholder: context.tr(LocaleKeys.confirm_password),
+               confirmationController: passwordController,
+               obscureText: true,
+             ),
+           ],
+         ),
+      ],
     );
   }
 }
