@@ -9,6 +9,7 @@ import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
+import 'package:gui/src/features/main/language/presentation/widget/language_widget.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -45,6 +46,8 @@ class WelcomeScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               if (kDebugMode) ...[
+                const Gap(16),
+                LanguageSelector(),
                 const Gap(16),
                 const AccentColorPicker(),
               ],
