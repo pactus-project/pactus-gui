@@ -27,8 +27,14 @@ class LanguageInitial extends LanguageState {
       return LanguageInitial();
     }
 
+    // Add assert to validate the stored value format
+    assert(
+      RegExp(r'^[a-z]{2}_[A-Z]{2}$').hasMatch(storedValue),
+      'Stored language value must be in format "ll_CC" (e.g. "en_US")',
+    );
+
     final parts = storedValue.split('_');
-    if (parts.length != 2) {
+    if (parts.length != 2 || parts[0].isEmpty || parts[1].isEmpty) {
       return LanguageInitial();
     }
 
