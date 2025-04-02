@@ -2,23 +2,37 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 import 'package:gui/src/core/common/widgets/theme_switcher.dart';
+import 'package:gui/src/core/di/locator.dart';
 import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  group('ThemeSwitcher Widget Tests', () {
-    late AppThemeCubit themeCubit;
 
-    // Set up the ThemeCubit before each test
-    setUp(() {
-      themeCubit = AppThemeCubit();
-    });
+Future<void> main() async {
+  Future<void> prepareSharedPreferencesLocator() async {
+    SharedPreferences.setMockInitialValues({});
+    await setupSharedPreferences();
+  }
 
-    // Close the ThemeCubit after each test
-    tearDown(() {
-      themeCubit.close();
-    });
+  Future<void> cleanUpLocator() async {
+    await GetIt.instance.reset();
+  }
+
+  late AppThemeCubit themeCubit;
+
+  // Set up the LanguageBloc before each test
+  setUp(() async {
+    await cleanUpLocator();
+    await prepareSharedPreferencesLocator();
+    themeCubit = AppThemeCubit();
+  });
+
+  // Close the LanguageBloc after each test
+  tearDown(() {
+    themeCubit.close();
+  });
 
     // Helper method to build the widget tree with BlocProvider
     Widget buildTestableWidget(Widget child) {
@@ -160,5 +174,5 @@ void main() {
         Alignment.centerRight,
       );
     });
-  });
+
 }
