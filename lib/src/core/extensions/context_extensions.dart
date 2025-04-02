@@ -1,7 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gui/src/core/enums/app_enums.dart';
+import 'package:pactus_gui_widgetbook/app_core.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
-import 'package:pactus_gui_widgetbook/core.dart';
 // TODO(esmaeil): this part need correction in widgetbook repo
 // ignore_for_file: implementation_imports
 import 'package:pactus_gui_widgetbook/src/core/enum/pane_text_mode_enum.dart';
