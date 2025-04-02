@@ -17,7 +17,7 @@ class StandardPageLayout extends StatelessWidget {
           Positioned.fill(
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(46),
                 child: content,
               ),
             ),

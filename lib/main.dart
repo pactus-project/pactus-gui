@@ -1,4 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/gestures.dart' as gestures;
+import 'package:flutter/material.dart' as material;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -92,6 +94,13 @@ class PactusGuiApp extends StatelessWidget {
                     return AppTheme(
                       themeData: theme,
                       child: FluentApp.router(
+                        scrollBehavior:
+                            const material.MaterialScrollBehavior().copyWith(
+                          dragDevices: {
+                            gestures.PointerDeviceKind.mouse,
+                            gestures.PointerDeviceKind.touch,
+                          },
+                        ),
                         debugShowCheckedModeBanner: false,
                         routerConfig: routerConfig,
                         title: 'Pactus Gui App',
