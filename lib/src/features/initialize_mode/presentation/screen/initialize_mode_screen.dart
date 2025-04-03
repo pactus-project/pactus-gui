@@ -168,7 +168,7 @@ class _InitializeModeScreenState extends State<InitializeModeScreen> {
                         alignment: Alignment.centerRight,
                         child: BlocBuilder<RadioButtonCubit, int>(
                           builder: (context, selectedValue) {
-                            return  IntrinsicWidth(
+                            return IntrinsicWidth(
                               child: SizedBox(
                                 height: 32,
                                 child: AdaptivePrimaryButton.createTitleOnly(

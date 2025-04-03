@@ -101,17 +101,18 @@ class _FinishScreenState extends State<FinishScreen> {
                           child: AdaptivePrimaryButton.createTitleOnly(
                             onPressed: () {
                               context.read<DaemonCubit>().runStartNodeCommand(
-                                cliCommand: CliCommand(
-                                  command: CliConstants.pactusDaemon,
-                                  arguments: [
-                                    CliConstants.start,
-                                    CliConstants.dashDashWorkingDir,
-                                    NodeConfigData.instance.workingDirectory,
-                                    CliConstants.dashDashPassword,
-                                    NodeConfigData.instance.password,
-                                  ],
-                                ),
-                              );
+                                    cliCommand: CliCommand(
+                                      command: CliConstants.pactusDaemon,
+                                      arguments: [
+                                        CliConstants.start,
+                                        CliConstants.dashDashWorkingDir,
+                                        NodeConfigData
+                                            .instance.workingDirectory,
+                                        CliConstants.dashDashPassword,
+                                        NodeConfigData.instance.password,
+                                      ],
+                                    ),
+                                  );
 
                               updateNodeDetailsSingleton(
                                 NodeConfigData.instance.password,
@@ -120,7 +121,9 @@ class _FinishScreenState extends State<FinishScreen> {
                               context.go(AppRoute.dashboard.fullPath);
                             },
                             requestState: RequestStateEnum.loaded,
-                            title: context.tr(LocaleKeys.go_to_dashboard,),
+                            title: context.tr(
+                              LocaleKeys.go_to_dashboard,
+                            ),
                           ),
                         ),
                       ),

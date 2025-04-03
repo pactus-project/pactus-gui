@@ -41,14 +41,14 @@ class NavigationFooterSection extends StatelessWidget {
             IntrinsicWidth(
               child: SizedBox(
                 height: 32,
-            child: AdaptiveSecondaryButton.createTitleOnly(
-              isDefaultOutlinedButton: true,
+                child: AdaptiveSecondaryButton.createTitleOnly(
+                  isDefaultOutlinedButton: true,
                   requestState: RequestStateEnum.loaded,
                   onPressed: onBackPressed,
                   title: context.tr(LocaleKeys.back),
                 ),
-          ),
-        )
+              ),
+            )
           else
             IntrinsicWidth(
               child: SizedBox(
@@ -63,7 +63,6 @@ class NavigationFooterSection extends StatelessWidget {
                 ),
               ),
             ),
-
 
           // Modified Next button section with optional Skip
           Row(

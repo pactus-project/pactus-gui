@@ -67,7 +67,7 @@ class CopyToClipboardButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.centerRight,
-      child:  IntrinsicWidth(
+      child: IntrinsicWidth(
         child: SizedBox(
           height: 24,
           child: AdaptiveTextButton.createIconAndTitle(
