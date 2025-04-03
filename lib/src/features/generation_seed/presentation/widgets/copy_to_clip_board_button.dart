@@ -1,9 +1,10 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
-import 'package:gui/src/core/common/widgets/adaptive_filled_button.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui_widgetbook/app_core.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+import 'package:pactus_gui_widgetbook/app_widgets.dart';
 
 /// ## [CopyToClipboardButton] Class Documentation
 ///
@@ -66,53 +67,54 @@ class CopyToClipboardButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.centerRight,
-      child: AdaptiveFilledButton(
-        textColor: FluentTheme.of(context).accentColor,
-        icon: Icon(
-          FluentIcons.copy,
-          size: 16,
-          color: FluentTheme.of(context).accentColor,
-        ),
-        text: LocaleKeys.copy_to_clipboard,
-        onPressed: () async {
-          await copyClipboardFunction();
+      child: IntrinsicWidth(
+        child: SizedBox(
+          height: 24,
+          child: AdaptiveTextButton.createIconAndTitle(
+            requestState: RequestStateEnum.loaded,
+            prefixIcon: FluentIcons.copy,
+            title: context.tr(LocaleKeys.copy_to_clipboard),
+            onPressed: () async {
+              await copyClipboardFunction();
 
-          if (!context.mounted) {
-            return;
-          }
+              if (!context.mounted) {
+                return;
+              }
 
-          await showDialog(
-            context: context,
-            builder: (context) => ContentDialog(
-              title: Text(
-                context.tr(LocaleKeys.clipboard_dialog_title),
-                style: InterTextStyles.bodyBold
-                    .copyWith(color: AppColors.primaryDark),
-              ),
-              content: Text(
-                context.tr(LocaleKeys.clipboard_dialog_content),
-                style: InterTextStyles.captionMedium
-                    .copyWith(color: AppColors.primaryDark),
-              ),
-              actions: [
-                AdaptiveFilledButton(
-                  text: context.tr(LocaleKeys.ok),
-                  onPressed: () {
-                    if (context.mounted) {
-                      Navigator.pop(context);
-                    }
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all<Color?>(
-                      FluentTheme.of(context).accentColor,
-                    ),
+              await showDialog(
+                context: context,
+                builder: (context) => ContentDialog(
+                  title: Text(
+                    context.tr(LocaleKeys.clipboard_dialog_title),
+                    style: InterTextStyles.bodyBold
+                        .copyWith(color: AppColors.primaryDark),
                   ),
+                  content: Text(
+                    context.tr(LocaleKeys.clipboard_dialog_content),
+                    style: InterTextStyles.captionMedium
+                        .copyWith(color: AppColors.primaryDark),
+                  ),
+                  actions: [
+                    IntrinsicWidth(
+                      child: SizedBox(
+                        height: 32,
+                        child: AdaptivePrimaryButton.createTitleOnly(
+                          onPressed: () {
+                            if (context.mounted) {
+                              Navigator.pop(context);
+                            }
+                          },
+                          requestState: RequestStateEnum.loaded,
+                          title: context.tr(LocaleKeys.ok),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          );
-        },
-        isFilled: false,
+              );
+            },
+          ),
+        ),
       ),
     );
   }

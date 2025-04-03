@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
-import 'package:gui/src/core/common/widgets/adaptive_filled_button.dart';
 import 'package:gui/src/core/common/widgets/app_layout.dart';
 import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
@@ -14,7 +13,9 @@ import 'package:gui/src/features/main/language/core/localization_extension.dart'
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/main/radio_button_cubit/presentation/radio_button_cubit.dart';
 import 'package:gui/src/features/validator_config/core/utils/methods/show_fluent_alert_method.dart';
+import 'package:pactus_gui_widgetbook/app_core.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+import 'package:pactus_gui_widgetbook/app_widgets.dart';
 
 /// ## [InitializeModeScreen] Class Documentation
 ///
@@ -167,16 +168,15 @@ class _InitializeModeScreenState extends State<InitializeModeScreen> {
                         alignment: Alignment.centerRight,
                         child: BlocBuilder<RadioButtonCubit, int>(
                           builder: (context, selectedValue) {
-                            return AdaptiveFilledButton(
-                              text: context.tr(LocaleKeys.next),
-                              onPressed: () =>
-                                  _handleNextPressed(selectedValue),
-                              style: ButtonStyle(
-                                backgroundColor: WidgetStatePropertyAll(
-                                  FluentTheme.of(context).accentColor,
-                                ),
-                                padding: WidgetStatePropertyAll(
-                                  const EdgeInsets.symmetric(horizontal: 16),
+                            return IntrinsicWidth(
+                              child: SizedBox(
+                                height: 32,
+                                child: AdaptivePrimaryButton.createTitleOnly(
+                                  requestState: RequestStateEnum.loaded,
+                                  onPressed: () =>
+                                      _handleNextPressed(selectedValue),
+                                  title: context.tr(LocaleKeys.next),
+                                  paddingSize: PaddingSizeEnum.large,
                                 ),
                               ),
                             );
