@@ -95,4 +95,11 @@ abstract class LocaleKeys {
   static const String public = 'public';
   static const String clock_offset = 'clock_offset';
   static const String clock_offset_description = 'clock_offset_description';
+  static const String dashboard = 'dashboard';
+  static const String transaction = 'transaction';
+  static const String wallet = 'wallet';
+  static const String node_logs = 'node_logs';
+  static const String settings = 'settings';
+  static const String faqs = 'faqs';
+  static const String about = 'about';
 }

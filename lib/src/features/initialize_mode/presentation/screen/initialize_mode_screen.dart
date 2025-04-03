@@ -6,6 +6,7 @@ import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/common/widgets/app_layout.dart';
 import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:gui/src/data/models/fluent_navigation_state_model.dart';
 import 'package:gui/src/features/initialize_mode/presentation/sections/remote_node_section.dart';
 import 'package:gui/src/features/initialize_mode/presentation/widgets/radio_button_group_widget.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
@@ -96,7 +97,7 @@ class _InitializeModeScreenState extends State<InitializeModeScreen> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => RadioButtonCubit(),
-      child: BlocBuilder<NavigationPaneCubit, int>(
+      child: BlocBuilder<NavigationPaneCubit, NavigationState>(
         builder: (context, selectedIndex) {
           return AppLayout(
             content: NavigationView(

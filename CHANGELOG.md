@@ -1,4 +1,4 @@
-# 1.42.2+46
+# 1.43.1+47
 - [Refactor] : Replaced all `FilledButton` instances with `AdaptivePrimaryButton` from `widgetBook`. [#128](https://github.com/pactus-project/pactus-gui/pull/166)
   - Updated `CopyToClipboardButton` class.
   - Updated `FinishScreen`.
@@ -21,6 +21,14 @@
   - Updated `SeedWordsGridSection`.
   - Updated `ValidatorConfigScreen`.
   - Updated `WelcomeScreen`.
+
+# 1.43.0+46
+
+### [Feature]
+- Implemented navigation pane for dashboard screen. [#130](https://github.com/pactus-project/pactus-gui/pull/157)
+
+### [Update]
+- Refactor ui and set-up `BlockchainInfoSection` in dashboard section. [#130](https://github.com/pactus-project/pactus-gui/pull/157)
 
 # 1.42.1+45
 

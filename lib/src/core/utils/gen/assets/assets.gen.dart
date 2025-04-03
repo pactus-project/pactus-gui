@@ -16,6 +16,9 @@ class $AssetsIconsGen {
   AssetGenImage get clipboard =>
       const AssetGenImage('assets/icons/clipboard.png');
 
+  /// File path: assets/icons/ic_about_us.svg
+  String get icAboutUs => 'assets/icons/ic_about_us.svg';
+
   /// File path: assets/icons/ic_clock.svg
   String get icClock => 'assets/icons/ic_clock.svg';
 
@@ -30,6 +33,12 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/ic_dark_mode.svg
   String get icDarkMode => 'assets/icons/ic_dark_mode.svg';
+
+  /// File path: assets/icons/ic_dashboard.svg
+  String get icDashboard => 'assets/icons/ic_dashboard.svg';
+
+  /// File path: assets/icons/ic_faqs.svg
+  String get icFaqs => 'assets/icons/ic_faqs.svg';
 
   /// File path: assets/icons/ic_light_mode.svg
   String get icLightMode => 'assets/icons/ic_light_mode.svg';
@@ -46,8 +55,20 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_minimize.svg
   String get icMinimize => 'assets/icons/ic_minimize.svg';
 
+  /// File path: assets/icons/ic_node_logs.svg
+  String get icNodeLogs => 'assets/icons/ic_node_logs.svg';
+
   /// File path: assets/icons/ic_reachbility.svg
   String get icReachbility => 'assets/icons/ic_reachbility.svg';
+
+  /// File path: assets/icons/ic_settings.svg
+  String get icSettings => 'assets/icons/ic_settings.svg';
+
+  /// File path: assets/icons/ic_transaction.svg
+  String get icTransaction => 'assets/icons/ic_transaction.svg';
+
+  /// File path: assets/icons/ic_wallet.svg
+  String get icWallet => 'assets/icons/ic_wallet.svg';
 
   /// File path: assets/icons/lock.png
   AssetGenImage get lock => const AssetGenImage('assets/icons/lock.png');
@@ -58,17 +79,24 @@ class $AssetsIconsGen {
   /// List of all assets
   List<dynamic> get values => [
         clipboard,
+        icAboutUs,
         icClock,
         icClose,
         icCode,
         icConnection,
         icDarkMode,
+        icDashboard,
+        icFaqs,
         icLightMode,
         icLogoDark,
         icLogoLight,
         icMaximize,
         icMinimize,
+        icNodeLogs,
         icReachbility,
+        icSettings,
+        icTransaction,
+        icWallet,
         lock,
         logo
       ];

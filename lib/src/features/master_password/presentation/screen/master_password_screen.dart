@@ -4,6 +4,7 @@ import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
 import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
 import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
+import 'package:gui/src/data/models/fluent_navigation_state_model.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:gui/src/features/master_password/presentation/sections/master_password_section.dart';
 import 'package:gui/src/features/validator_config/core/utils/methods/show_fluent_alert_method.dart';
@@ -60,31 +61,32 @@ class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NavigationPaneCubit, int>(
+    return BlocBuilder<NavigationPaneCubit, NavigationState>(
       builder: (context, selectedIndex) {
-        context
-            .read<StepValidationCubit>()
-            .setStepValid(stepIndex: selectedIndex, isValid: true);
+        context.read<StepValidationCubit>().setStepValid(
+              stepIndex: selectedIndex.selectedIndex,
+              isValid: true,
+            );
         return StandardPageLayout(
           content: MasterPasswordSection(
             passwordController: passwordController,
             confirmPasswordController: confirmPasswordController,
           ),
           footer: NavigationFooterSection(
-            selectedIndex: selectedIndex,
+            selectedIndex: selectedIndex.selectedIndex,
             showSkipButton: true,
             onSkipPressed: () {
               NodeConfigData.instance.password = '';
               context
                   .read<NavigationPaneCubit>()
-                  .setSelectedIndex(selectedIndex + 1);
+                  .setSelectedIndex(selectedIndex.selectedIndex + 1);
             },
             onNextPressed: () {
               if (passwordController.text == confirmPasswordController.text) {
                 NodeConfigData.instance.password = passwordController.text;
                 context
                     .read<NavigationPaneCubit>()
-                    .setSelectedIndex(selectedIndex + 1);
+                    .setSelectedIndex(selectedIndex.selectedIndex + 1);
               } else {
                 showFluentAlert(
                   context,
@@ -95,7 +97,7 @@ class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
             onBackPressed: () {
               context
                   .read<NavigationPaneCubit>()
-                  .setSelectedIndex(selectedIndex - 1);
+                  .setSelectedIndex(selectedIndex.selectedIndex - 1);
             },
           ),
         );
