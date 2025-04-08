@@ -5,7 +5,6 @@ import 'package:gui/src/features/restoration_seed/presentation/cubits/restoratio
 import 'package:pactus_gui_widgetbook/app_core.dart';
 import 'package:pactus_gui_widgetbook/app_widgets.dart';
 
-
 /// ## [RestorationSeedWordsGridSection] Class Documentation
 ///
 /// The `RestorationSeedWordsGridSection` class represents a section of
