@@ -117,6 +117,11 @@ class DaemonCubit extends Cubit<DaemonState> {
 
       if (cliCommand.command == CliConstants.pactusWallet &&
           cliCommand.arguments[0] == CliConstants.password) {
+        // TODO(esmaeil): this code should be remove after fix issue #171
+        if (Platform.isWindows & kDebugMode) {
+          emit(DaemonSuccess('Your wallet password successfully'));
+        }
+
         final pass = cliCommand.arguments[2];
         // Writing password interactively
         process.stdin.writeln(pass);
