@@ -1,3 +1,7 @@
+# 1.45.1+49
+- [Fix] : Bypass user login in Windows OS in debug mode. [#172](https://github.com/pactus-project/pactus-gui/pull/173)
+    - fix(core): fix password bypass during login on Windows OS in debug mode.
+
 # 1.45.0+48
 - [Refactor] : Replaced all `FilledButton` instances with `AdaptivePrimaryButton` from `widgetBook`. [#128](https://github.com/pactus-project/pactus-gui/pull/166)
     - Updated `CopyToClipboardButton` class.
