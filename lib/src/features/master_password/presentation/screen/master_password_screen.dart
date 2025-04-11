@@ -11,7 +11,7 @@ import 'package:gui/src/features/validator_config/core/utils/methods/show_fluent
 
 /// ## [MasterPasswordScreen] Class Documentation
 ///
-/// The `MasterPasswordScreen` class represents a screen where users ca set a
+/// The `MasterPasswordScreen` class represents a screens where users ca set a
 /// master password.
 /// It includes input fields for entering and confirming the password along
 /// with navigation controls.
@@ -30,7 +30,7 @@ import 'package:gui/src/features/validator_config/core/utils/methods/show_fluent
 ///   - Disposes of the text controllers to free up resources.
 ///
 /// - **[build(BuildContext context)]**:
-///   - Builds the UI of the screen, which includes:
+///   - Builds the UI of the screens, which includes:
 ///     - A `MasterPasswordSection` for password input.
 ///     - A `NavigationFooterSection` with back, next, and skip buttons.
 ///

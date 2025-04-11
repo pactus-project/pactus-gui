@@ -148,7 +148,8 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
               selectedIndex: selectedIndex.selectedIndex,
               onNextPressed: isDirectoryValid
                   ? () async {
-                      final isDirectoryNotEmpty = await isNotEmptyDirectory(
+                      final isDirectoryNotEmpty =
+                          await guaranteeDirectoryExists(
                         text: directoryController.text,
                       );
 
