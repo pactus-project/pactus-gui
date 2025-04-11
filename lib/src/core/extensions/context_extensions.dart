@@ -1,5 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:gui/src/core/enums/app_enums.dart';
 import 'package:pactus_gui_widgetbook/app_core.dart';
+import 'package:pactus_gui_widgetbook/app_styles.dart';
 // TODO(esmaeil): this part need correction in widgetbook repo
 // ignore_for_file: implementation_imports
 import 'package:pactus_gui_widgetbook/src/core/enum/pane_text_mode_enum.dart';
@@ -33,5 +35,19 @@ extension ExtensionOnBoolean on BuildContext {
   /// ```
   bool isDarkTheme() {
     return FluentTheme.of(this).brightness == Brightness.dark;
+  }
+}
+
+extension DialogTypeOnContext on BuildContext {
+  Color getDialogTypesColor(DialogType type) {
+    return switch (type) {
+      DialogType.error => AppTheme.of(this).extension<RedPallet>()!.red600!,
+      DialogType.info => AppTheme.of(this).extension<BluePallet>()!.blue600!,
+      DialogType.succeed =>
+        AppTheme.of(this).extension<GreenPallet>()!.green600!,
+      DialogType.warning =>
+        AppTheme.of(this).extension<OrangePallet>()!.orange600!,
+      DialogType.normal => AppTheme.of(this).accentColor,
+    };
   }
 }
