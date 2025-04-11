@@ -1,3 +1,27 @@
+# 1.45.0+48
+- [Refactor] : Replaced all `FilledButton` instances with `AdaptivePrimaryButton` from `widgetBook`. [#128](https://github.com/pactus-project/pactus-gui/pull/166)
+    - Updated `CopyToClipboardButton` class.
+    - Updated `FinishScreen`.
+    - Updated `InitializeModeScreen`.
+    - Updated `NavigationFooterSection`.
+    - Updated `ValidatorConfigScreen`.
+    - Updated `WelcomeScreen`.
+
+- [Refactor] : Replaced all `OutlinedButton` & `TextButton` instances with `AdaptiveSecondaryButton` & `AdaptiveTextButton` from `widgetBook`. [#128](https://github.com/pactus-project/pactus-gui/pull/166)
+    - Removed unused `AdaptiveFilledButton` overall class.
+    - Removed unused `AdaptiveTextButton` overall class.
+    - Removed unused `CustomFilledButton` overall class.
+    - Removed unused `CustomOutlinedButton` overall class.
+    - Updated `ConfirmationSeedWordsGridSection`.
+    - Updated `context_extensions` file.
+    - Updated `CopyToClipboardButton`.
+    - Updated `FinishScreen`.
+    - Updated `InitializeModeScreen`.
+    - Updated `NavigationFooterSection`.
+    - Updated `SeedWordsGridSection`.
+    - Updated `ValidatorConfigScreen`.
+    - Updated `WelcomeScreen`.
+
 # 1.44.0+47 
 
 ### [Feature]

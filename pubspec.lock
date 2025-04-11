@@ -781,10 +781,12 @@ packages:
   pactus_gui_widgetbook:
     dependency: "direct main"
     description:
-      path: "../pactus-gui-widgetbook"
-      relative: true
-    source: path
-    version: "1.13.1+18"
+      path: "."
+      ref: main
+      resolved-ref: d2adb16bb9b09860e82007b9dbcb64ad9ebfb2a9
+      url: "https://github.com/pactus-project/pactus-gui-widgetbook.git"
+    source: git
+    version: "1.13.2+19"
   path:
     dependency: "direct main"
     description:

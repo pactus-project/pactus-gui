@@ -3,7 +3,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
 import 'package:gui/src/core/constants/cli_constants.dart';
 import 'package:gui/src/core/extensions/context_extensions.dart';
 import 'package:gui/src/core/router/route_name.dart';
@@ -15,7 +14,9 @@ import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/core/utils/methods/update_node_details_singleton.dart';
 import 'package:gui/src/core/utils/string_extension.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui_widgetbook/app_core.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+import 'package:pactus_gui_widgetbook/app_widgets.dart';
 
 class FinishScreen extends StatefulWidget {
   const FinishScreen({super.key});
@@ -94,31 +95,35 @@ class _FinishScreenState extends State<FinishScreen> {
                     ),
                     Align(
                       alignment: AlignmentDirectional.bottomCenter,
-                      child: CustomFilledButton(
-                        text: LocaleKeys.go_to_dashboard,
-                        onPressed: () {
-                          context.read<DaemonCubit>().runStartNodeCommand(
-                                cliCommand: CliCommand(
-                                  command: CliConstants.pactusDaemon,
-                                  arguments: [
-                                    CliConstants.start,
-                                    CliConstants.workingDirArgument,
-                                    NodeConfigData.instance.workingDirectory,
-                                    CliConstants.passwordArgument,
-                                    NodeConfigData.instance.password,
-                                  ],
-                                ),
+                      child: IntrinsicWidth(
+                        child: SizedBox(
+                          height: 32,
+                          child: AdaptivePrimaryButton.createTitleOnly(
+                            onPressed: () {
+                              context.read<DaemonCubit>().runStartNodeCommand(
+                                    cliCommand: CliCommand(
+                                      command: CliConstants.pactusDaemon,
+                                      arguments: [
+                                        CliConstants.start,
+                                        CliConstants.workingDirArgument,
+                                        NodeConfigData
+                                            .instance.workingDirectory,
+                                        CliConstants.passwordArgument,
+                                        NodeConfigData.instance.password,
+                                      ],
+                                    ),
+                                  );
+
+                              updateNodeDetailsSingleton(
+                                NodeConfigData.instance.password,
                               );
 
-                          updateNodeDetailsSingleton(
-                            NodeConfigData.instance.password,
-                          );
-
-                          context.go(AppRoute.dashboard.fullPath);
-                        },
-                        style: ButtonStyle(
-                          backgroundColor: WidgetStateProperty.all<Color?>(
-                            FluentTheme.of(context).accentColor,
+                              context.go(AppRoute.dashboard.fullPath);
+                            },
+                            requestState: RequestStateEnum.loaded,
+                            title: context.tr(
+                              LocaleKeys.go_to_dashboard,
+                            ),
                           ),
                         ),
                       ),
