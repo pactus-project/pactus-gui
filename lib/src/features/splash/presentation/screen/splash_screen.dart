@@ -68,59 +68,61 @@ class SplashScreen extends StatelessWidget {
               });
             }
 
-          if (isUndefinedNode) {
-            Future.delayed(_splashDuration, () {
-              if (context.mounted) {
-                context.go(AppRoute.welcome.fullPath);
-              }
-            });
+            if (isUndefinedNode) {
+              Future.delayed(_splashDuration, () {
+                if (context.mounted) {
+                  context.go(AppRoute.welcome.fullPath);
+                }
+              });
+            }
           }
-        }
-      },
-      builder: (ctxBuilder, state) {
-        if (state is DaemonSuccess) {
-          return ScaffoldPage(
-            content: Stack(
-              children: [
-                Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Assets.icons.logo.image(
-                        width: _logoSize,
-                        height: _logoSize,
-                        fit: BoxFit.contain,
-                      ),
-                      Gap(_spacingBetweenElements),
-                      Assets.images.logoName.image(
-                        color: AppTheme.of(context)
-                            .extension<DarkPallet>()!
-                            .dark900,
-                        width: _logoNameWidth,
-                        height: _logoNameHeight,
-                        fit: BoxFit.contain,
-                      ),
-                      Gap(_spacingBetweenElements),
-                      Text(
-                        context.tr(LocaleKeys.applications),
-                        style:
-                            FluentTheme.of(context).typography.title?.copyWith(
-                                  color: AppTheme.of(context)
-                                      .extension<DarkPallet>()!
-                                      .dark900,
-                                ),
-                      ),
-                    ],
+        },
+        builder: (ctxBuilder, state) {
+          if (state is DaemonSuccess) {
+            return ScaffoldPage(
+              content: Stack(
+                children: [
+                  Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Assets.icons.logo.image(
+                          width: _logoSize,
+                          height: _logoSize,
+                          fit: BoxFit.contain,
+                        ),
+                        Gap(_spacingBetweenElements),
+                        Assets.images.logoName.image(
+                          color: AppTheme.of(context)
+                              .extension<DarkPallet>()!
+                              .dark900,
+                          width: _logoNameWidth,
+                          height: _logoNameHeight,
+                          fit: BoxFit.contain,
+                        ),
+                        Gap(_spacingBetweenElements),
+                        Text(
+                          context.tr(LocaleKeys.applications),
+                          style: FluentTheme.of(context)
+                              .typography
+                              .title
+                              ?.copyWith(
+                                color: AppTheme.of(context)
+                                    .extension<DarkPallet>()!
+                                    .dark900,
+                              ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-          );
-        } else {
-          if (state is DaemonInitial) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              final sign = AppOS.current.separator;
-              final storageKey = StorageKeys.nodeDirectory;
+                ],
+              ),
+            );
+          } else {
+            if (state is DaemonInitial) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                final sign = AppOS.current.separator;
+                final storageKey = StorageKeys.nodeDirectory;
 
                 final nodeDirectory = '${StorageUtils.getData<String>(
                   storageKey,
