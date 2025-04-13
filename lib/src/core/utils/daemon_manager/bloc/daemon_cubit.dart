@@ -176,7 +176,31 @@ class DaemonCubit extends Cubit<DaemonState> {
         workingDirectory: _executableDir(),
       );
 
-      process.stderr.transform<String>(utf8.decoder).listen((data) {});
+      process.stderr.transform<String>(utf8.decoder).listen((data) {
+        if (kDebugMode) {
+          debugPrint('DATA--->:$data');
+        }
+        if (data.contains('You are running a Pactus blockchain')) {
+          emit(DaemonSuccess(data));
+        }
+      });
+
+      process.stdout.transform<String>(utf8.decoder).listen((data) {
+        if (kDebugMode) {
+          debugPrint('DATA--->:$data');
+        }
+        if (data.contains('invalid password')) {
+          emit(DaemonError(data));
+        }
+      });
+
+      // await process.exitCode.then((code) {
+      //   _logger.i('Process exited with code: $code');
+      //   if (code != 0) {
+      //     emit(DaemonError('Process exited with code: $code'));
+      //   }
+      // });
+      //
     } on Exception catch (_) {}
   }
 

@@ -36,7 +36,7 @@ class _SubmitButtonWidgetState extends State<SubmitButtonWidget> {
   bool _isValidateForm() {
     final collectedFormData = context.read<EnvironmentSelectionCubit>().state;
 
-    return collectedFormData.password?.trim().isNotEmpty == true &&
+    return
         collectedFormData.seeds?.isNotEmpty == true &&
         collectedFormData.selectedEnvironment != null;
   }
@@ -61,8 +61,8 @@ class _SubmitButtonWidgetState extends State<SubmitButtonWidget> {
                     collectedFormData.seeds!,
                     CliConstants.workingDirArgument,
                     '../../../../../../${collectedFormData.selectedEnvironment!.name}',
-                    CliConstants.passwordArgument,
-                    collectedFormData.password!,
+                   CliConstants.passwordArgument,
+                 collectedFormData.password??'null',
                     CliConstants.valNumArgument,
                     CliConstants.validators12,
                   ],

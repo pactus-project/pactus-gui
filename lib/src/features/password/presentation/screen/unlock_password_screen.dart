@@ -48,6 +48,27 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    final nodeDirectory = StorageUtils.getData<String>(
+      StorageKeys.nodeDirectory,
+    );
+
+    context.read<DaemonCubit>().runStartNodeCommand(
+          cliCommand: CliCommand(
+            command: CliConstants.pactusDaemon,
+            arguments: [
+              CliConstants.start,
+              CliConstants.workingDirArgument,
+              nodeDirectory!,
+              CliConstants.passwordArgument,
+              'null',
+            ],
+          ),
+        );
+  }
+
+  @override
   Widget build(BuildContext context) {
     final theme = FluentTheme.of(context);
     final isDark = theme.brightness == Brightness.dark;
@@ -121,7 +142,7 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                       obscureText: true,
                       onChanged: (value) {
                         passwordNotifier.value = value;
-                        Logger().i('Password value: $value');
+                        // Logger().i('Password value: $value');
                       },
                     ),
 
@@ -134,6 +155,13 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                         return BlocConsumer<DaemonCubit, DaemonState>(
                           listener: (ctxListener, state) {
                             if (state is DaemonSuccess) {
+                              final isNodeStarted = state.output.contains(
+                                'You are running a Pactus blockchain',
+                              );
+                              if (isNodeStarted) {
+                                context.go(AppRoute.dashboard.fullPath);
+                              }
+
                               final isPasswordCorrect = state.output.contains(
                                 'Your wallet password successfully',
                               );
@@ -166,6 +194,17 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                                 );
                               }
                             }
+                            if(state is DaemonError){
+                              final isInvalidPassword = state.error.contains(
+                                'invalid password',
+                              );
+                              if(isInvalidPassword){
+                                showFluentAlert(
+                                  context,
+                                  context.tr(LocaleKeys.incorrect_password),
+                                );
+                              }
+                            }
                           },
                           builder: (ctxBuilder, state) {
                             return SizedBox(
@@ -173,39 +212,28 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                               child: FilledButton(
                                 onPressed: password.isNotEmpty
                                     ? () {
-                                        final sign = AppOS.current.separator;
-                                        final storageKey =
-                                            StorageKeys.nodeDirectory;
-
                                         final nodeDirectory =
                                             '${StorageUtils.getData<String>(
-                                          storageKey,
+                                          StorageKeys.nodeDirectory,
                                         )}';
 
-                                        final walletPath =
-                                            '$sign${CliConstants.wallets}'
-                                            '$sign${CliConstants.defaultWallet}'
-                                            '';
-
-                                        final cliCommand = CliCommand(
-                                          command: CliConstants.pactusWallet,
-                                          arguments: [
-                                            CliConstants.password,
-                                            CliConstants.passwordArgument,
-                                            password,
-                                            CliConstants.pathArgument,
-                                            nodeDirectory + walletPath,
-                                          ],
-                                        );
                                         context
                                             .read<DaemonCubit>()
-                                            .runPactusDaemon(
-                                              cliCommand: cliCommand,
+                                            .runStartNodeCommand(
+                                              cliCommand: CliCommand(
+                                                command:
+                                                    CliConstants.pactusDaemon,
+                                                arguments: [
+                                                  CliConstants.start,
+                                                  CliConstants
+                                                      .workingDirArgument,
+                                                  nodeDirectory,
+                                                  CliConstants.passwordArgument,
+                                                  password,
+                                                ],
+                                              ),
                                             );
 
-                                        Logger().i(
-                                          'Unlocking with password: $password',
-                                        );
                                       }
                                     : null,
                                 child: context.read<DaemonCubit>().state
