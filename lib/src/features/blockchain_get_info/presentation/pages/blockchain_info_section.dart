@@ -18,7 +18,19 @@ class BlockchainInfoSection extends StatelessWidget {
         child: BlocBuilder<BlockchainGetInfoBloc, BlockchainGetInfoState>(
           builder: (context, BlockchainGetInfoState state) {
             return state.maybeWhen(
-              orElse: ShimmerCardItem.new,
+              orElse: () => Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 4,
+                children: [
+                  ShimmerCardItem(),
+                  ShimmerCardItem(),
+                  ShimmerCardItem(),
+                  ShimmerCardItem(),
+                  ShimmerCardItem(),
+                  ShimmerCardItem(),
+                  ShimmerCardItem(),
+                ],
+              ),
               loaded: (BlockchainInfoEntity data) => Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: 4,

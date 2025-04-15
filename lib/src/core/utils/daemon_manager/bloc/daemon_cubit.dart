@@ -166,6 +166,8 @@ class DaemonCubit extends Cubit<DaemonState> {
   }
 
   Future<void> runStartNodeCommand({required CliCommand cliCommand}) async {
+    emit(DaemonLoading());
+
     try {
       final executablePath = _executablePath(cliCommand.command);
       _ensureExecutablePermissions(executablePath);
@@ -180,7 +182,7 @@ class DaemonCubit extends Cubit<DaemonState> {
         if (kDebugMode) {
           debugPrint('DATA--->:$data');
         }
-        if (data.contains('You are running a Pactus blockchain')) {
+        if (data.contains(CliConstants.grpcServerStarted)) {
           emit(DaemonSuccess(data));
         }
       });
