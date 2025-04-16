@@ -1,12 +1,11 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
- import 'package:gui/src/features/main/language/data/language_case.dart';
+import 'package:gui/src/features/main/language/data/language_case.dart';
 import 'package:gui/src/features/main/language/presentation/bloc/language_bloc.dart';
 
 void main() {
   group('LanguageState', () {
-     final testLanguage = LanguageCase(
+    final testLanguage = LanguageCase(
       name: 'Test Language',
       language: 'tl',
       country: 'TL',
@@ -21,7 +20,7 @@ void main() {
     });
 
     test('copyWith returns new state with unchanged language when null', () {
-      final  initialState = LanguageState(selectedLanguage: testLanguage);
+      final initialState = LanguageState(selectedLanguage: testLanguage);
       final newState = initialState.copyWith();
 
       expect(newState.selectedLanguage, testLanguage);
@@ -45,11 +44,14 @@ void main() {
       // Wrap in assert block since asserts only throw in debug mode
       assert(() {
         expect(
-              () => LanguageInitial.fromStorage('invalid_format'),
-          throwsA(isA<AssertionError>()
-              .having((e) => e.message,
+          () => LanguageInitial.fromStorage('invalid_format'),
+          throwsA(
+            isA<AssertionError>().having(
+              (e) => e.message,
               'message',
-              contains('Stored language value must be in format "ll_CC"'),),),
+              contains('Stored language value must be in format "ll_CC"'),
+            ),
+          ),
         );
         return true; // Required for assert block
       }());
@@ -65,7 +67,7 @@ void main() {
     test('fromStorage with invalid format throws AssertionError', () {
       if (kDebugMode) {
         expect(
-              () => LanguageInitial.fromStorage('invalid_format'),
+          () => LanguageInitial.fromStorage('invalid_format'),
           throwsA(isA<AssertionError>()),
         );
       } else {
