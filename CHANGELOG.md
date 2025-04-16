@@ -1,3 +1,13 @@
+# 1.46.0+49
+
+### [Refactor]
+- Improved scroll performance and UI consistency [#167](https://github.com/pactus-project/pactus-gui/pull/168)
+    - Added `scrollBehavior` to `FluentApp.router` for better scrolling speed in desktop apps
+    - Adjusted padding in fetch component to match Figma specifications
+    ٖ
+### [Fix]
+- Fix Item Scroll Problem On Generation Seed And Master Password [#167](https://github.com/pactus-project/pactus-gui/pull/168)
+
 # 1.45.0+48
 - [Refactor] : Replaced all `FilledButton` instances with `AdaptivePrimaryButton` from `widgetBook`. [#128](https://github.com/pactus-project/pactus-gui/pull/166)
     - Updated `CopyToClipboardButton` class.

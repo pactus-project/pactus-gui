@@ -93,6 +93,9 @@ class SplashScreen extends StatelessWidget {
                         ),
                         Gap(_spacingBetweenElements),
                         Assets.images.logoName.image(
+                          color: AppTheme.of(context)
+                              .extension<DarkPallet>()!
+                              .dark900,
                           width: _logoNameWidth,
                           height: _logoNameHeight,
                           fit: BoxFit.contain,
