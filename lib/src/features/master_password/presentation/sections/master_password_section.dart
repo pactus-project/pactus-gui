@@ -78,7 +78,7 @@ class MasterPasswordSection extends StatelessWidget {
             ),
           ],
         ),
-        Gap(70)
+        Gap(70),
       ],
     );
   }
