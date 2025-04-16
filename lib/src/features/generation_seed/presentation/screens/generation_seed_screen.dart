@@ -97,7 +97,6 @@ class GenerationSeedScreen extends StatelessWidget {
                                 const Gap(20),
                                 const SeedNotesSection(),
                                 const Gap(80),
-
                               ],
                             );
                           },
