@@ -1,3 +1,16 @@
+# 1.47.0+50
+
+### [Feature]
+- Persist selected theme using `AppThemeCubit` and `localStorage` [#31](https://github.com/pactus-project/pactus-gui/pull/169)
+- Persist selected language using `LanguageBloc` and `localStorage` [#31](https://github.com/pactus-project/pactus-gui/pull/169)
+
+### [Update]
+- Added error handling in language state management [#31](https://github.com/pactus-project/pactus-gui/pull/169)
+
+### [Test]
+- Verified storage operations and data consistency in `LanguageBloc` [#31](https://github.com/pactus-project/pactus-gui/pull/169)
+- Verified storage operations and data consistency in `AppThemeCubit` [#31](https://github.com/pactus-project/pactus-gui/pull/169)
+
 # 1.46.0+49
 
 ### [Refactor]
