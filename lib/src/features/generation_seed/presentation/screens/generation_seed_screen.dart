@@ -46,7 +46,7 @@ class GenerationSeedScreen extends StatelessWidget {
                           title: LocaleKeys.generation_seed_title,
                           description: LocaleKeys.generation_seed_description,
                         ),
-                        const Gap(20),
+                        const Gap(35),
                         BlocBuilder<DropdownCubit<SeedTypeEnum>, SeedTypeEnum>(
                           builder: (context, state) {
                             if (state == SeedTypeEnum.twelve) {
@@ -96,6 +96,8 @@ class GenerationSeedScreen extends StatelessWidget {
                                 ),
                                 const Gap(20),
                                 const SeedNotesSection(),
+                                const Gap(80),
+
                               ],
                             );
                           },
@@ -103,7 +105,7 @@ class GenerationSeedScreen extends StatelessWidget {
                       ],
                     ),
                     Positioned(
-                      top: 47,
+                      top: 60,
                       right: 47,
                       child: BlocBuilder<DropdownCubit<SeedTypeEnum>,
                           SeedTypeEnum>(
