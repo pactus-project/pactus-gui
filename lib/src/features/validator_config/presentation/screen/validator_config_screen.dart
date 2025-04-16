@@ -5,7 +5,6 @@ import 'package:gap/gap.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
 import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
-import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
 import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
 import 'package:gui/src/core/constants/storage_keys.dart';
 import 'package:gui/src/core/enums/app_enums.dart';
@@ -20,7 +19,9 @@ import 'package:gui/src/features/validator_config/core/utils/methods/is_not_empt
 import 'package:gui/src/features/validator_config/core/utils/methods/show_fluent_alert_method.dart';
 import 'package:gui/src/features/validator_config/presentation/sections/validator_config_title_section.dart';
 import 'package:gui/src/features/validator_config/presentation/sections/validator_qty_selector_section.dart';
+import 'package:pactus_gui_widgetbook/app_core.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+import 'package:pactus_gui_widgetbook/app_widgets.dart';
 
 /// ## [ValidatorConfigScreen] Class Documentation
 ///
@@ -127,19 +128,13 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
                       ),
                     ),
                     const Gap(28),
-                    CustomFilledButton(
-                      text: context.tr(LocaleKeys.select_folder),
-                      onPressed: _chooseDirectory,
-                      style: ButtonStyle(
-                        padding:
-                            WidgetStateProperty.all<EdgeInsetsDirectional?>(
-                          const EdgeInsetsDirectional.symmetric(
-                            horizontal: 8,
-                            vertical: 4,
-                          ),
-                        ),
-                        backgroundColor: WidgetStateProperty.all<Color?>(
-                          FluentTheme.of(context).accentColor,
+                    IntrinsicWidth(
+                      child: SizedBox(
+                        height: 32,
+                        child: AdaptivePrimaryButton.createTitleOnly(
+                          onPressed: _chooseDirectory,
+                          requestState: RequestStateEnum.loaded,
+                          title: context.tr(LocaleKeys.select_folder),
                         ),
                       ),
                     ),
@@ -153,7 +148,8 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
               selectedIndex: selectedIndex.selectedIndex,
               onNextPressed: isDirectoryValid
                   ? () async {
-                      final isDirectoryNotEmpty = await isNotEmptyDirectory(
+                      final isDirectoryNotEmpty =
+                          await guaranteeDirectoryExists(
                         text: directoryController.text,
                       );
 

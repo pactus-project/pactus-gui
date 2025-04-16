@@ -62,48 +62,35 @@ class RestorationSeedScreen extends StatelessWidget {
                   (constraints.maxWidth / 150).floor().clamp(2, 6);
               return Stack(
                 children: [
-                  SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.only(
-                        start: 47,
-                        end: 47,
-                        top: 47,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const ScreenHeaderWidget(
+                        title: LocaleKeys.restoration_seed_title,
+                        description: LocaleKeys.restoration_seed_description,
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const ScreenHeaderWidget(
-                            title: LocaleKeys.restoration_seed_title,
-                            description:
-                                LocaleKeys.restoration_seed_description,
-                          ),
-                          BlocBuilder<DropdownCubit<SeedTypeEnum>,
-                              SeedTypeEnum>(
-                            builder: (context, state) {
-                              return BlocBuilder<SeedTextCubit, List<String>>(
-                                builder: (context, words) {
-                                  context
-                                      .read<StepValidationCubit>()
-                                      .setStepValid(
-                                        stepIndex: context
-                                            .read<NavigationPaneCubit>()
-                                            .state
-                                            .selectedIndex,
-                                        isValid: context
-                                            .read<SeedTextCubit>()
-                                            .areAllWordsEntered(),
-                                      );
-                                  return RestorationSeedWordsGridSection(
-                                    crossAxisCount: crossAxisCount,
-                                    state: state,
+                      BlocBuilder<DropdownCubit<SeedTypeEnum>, SeedTypeEnum>(
+                        builder: (context, state) {
+                          return BlocBuilder<SeedTextCubit, List<String>>(
+                            builder: (context, words) {
+                              context.read<StepValidationCubit>().setStepValid(
+                                    stepIndex: context
+                                        .read<NavigationPaneCubit>()
+                                        .state
+                                        .selectedIndex,
+                                    isValid: context
+                                        .read<SeedTextCubit>()
+                                        .areAllWordsEntered(),
                                   );
-                                },
+                              return RestorationSeedWordsGridSection(
+                                crossAxisCount: crossAxisCount,
+                                state: state,
                               );
                             },
-                          ),
-                        ],
+                          );
+                        },
                       ),
-                    ),
+                    ],
                   ),
                   Positioned(
                     top: 47,

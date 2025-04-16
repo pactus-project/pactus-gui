@@ -1,3 +1,54 @@
+# 1.46.0+49
+
+### [Refactor]
+- Improved scroll performance and UI consistency [#167](https://github.com/pactus-project/pactus-gui/pull/168)
+    - Added `scrollBehavior` to `FluentApp.router` for better scrolling speed in desktop apps
+    - Adjusted padding in fetch component to match Figma specifications
+    ٖ
+### [Fix]
+- Fix Item Scroll Problem On Generation Seed And Master Password [#167](https://github.com/pactus-project/pactus-gui/pull/168)
+
+# 1.45.0+48
+- [Refactor] : Replaced all `FilledButton` instances with `AdaptivePrimaryButton` from `widgetBook`. [#128](https://github.com/pactus-project/pactus-gui/pull/166)
+    - Updated `CopyToClipboardButton` class.
+    - Updated `FinishScreen`.
+    - Updated `InitializeModeScreen`.
+    - Updated `NavigationFooterSection`.
+    - Updated `ValidatorConfigScreen`.
+    - Updated `WelcomeScreen`.
+
+- [Refactor] : Replaced all `OutlinedButton` & `TextButton` instances with `AdaptiveSecondaryButton` & `AdaptiveTextButton` from `widgetBook`. [#128](https://github.com/pactus-project/pactus-gui/pull/166)
+    - Removed unused `AdaptiveFilledButton` overall class.
+    - Removed unused `AdaptiveTextButton` overall class.
+    - Removed unused `CustomFilledButton` overall class.
+    - Removed unused `CustomOutlinedButton` overall class.
+    - Updated `ConfirmationSeedWordsGridSection`.
+    - Updated `context_extensions` file.
+    - Updated `CopyToClipboardButton`.
+    - Updated `FinishScreen`.
+    - Updated `InitializeModeScreen`.
+    - Updated `NavigationFooterSection`.
+    - Updated `SeedWordsGridSection`.
+    - Updated `ValidatorConfigScreen`.
+    - Updated `WelcomeScreen`.
+
+# 1.44.0+47 
+
+### [Feature]
+- Added `dev_mode` feature for `settings` Pactus GUI `network` for developers.
+- Added `set as default` button to preparing `start node` in devMode.
+
+### [Update]
+- Added `keyboard shortcut` (Ctrl+D) to enable `dev mode` (in debugging) directly from the `splash screen` and `unlock password screen` . 
+- Called daemon commands for initial node and `start node` in devMode.
+- Fixed UI `devMode` screen and used bloc to manage states.
+- Improved form states after `creating node` in devMode.
+- Changed `localNodePort` in core constants.
+
+### [Refactor]
+- Changed some properties of `CliConstants` class.
+- Fixed redirect `created node` to `unblock password` screen.
+
 # 1.43.0+46
 
 ### [Feature]
