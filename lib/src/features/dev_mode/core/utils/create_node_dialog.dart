@@ -22,8 +22,6 @@ void createNodeDialog({
 
   bool? isValidateForm = false;
   if (collectedFormData.selectedEnvironment != null &&
-      collectedFormData.password != null &&
-      collectedFormData.password!.isNotEmpty &&
       collectedFormData.seeds != null &&
       collectedFormData.seeds!.isNotEmpty) {
     isValidateForm = true;
