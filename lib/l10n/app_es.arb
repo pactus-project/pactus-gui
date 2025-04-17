@@ -56,7 +56,6 @@
   "copy_to_clipboard": "Copiar al portapapeles",
   "clipboard_dialog_title": "Copia exitosa",
   "clipboard_dialog_content": "Tus palabras semilla han sido copiadas al portapapeles",
-  "ok": "ok",
   "node_activation_powering": "Activación del Nodo, Alimentando el Pulso de la Blockchain",
   "initialization_complete": "Inicialización Completa",
   "node_ready": "Nodo Listo",
@@ -92,5 +91,19 @@
   "node_logs": "Registros del nodo",
   "settings": "Configuración",
   "faqs": "Preguntas frecuentes",
-  "about": "Acerca de"
+  "about": "Acerca de",
+  "faq": "Preguntas frecuentes",
+  "answer_faq": "Esta página de Preguntas Frecuentes (FAQ) tiene como objetivo proporcionar información útil y orientación sobre preguntas y preocupaciones comunes relacionadas con Pactus.",
+  "what_does_pactus_mean": "¿Qué significa \"Pactus\"?",
+  "answer_what_does_pactus_mean": "La palabra \"Pactus\" es de origen latino y significa \"acordar juntos\", \"contrato\" o \"transacción\". En inglés, el término \"Pact\" deriva de la palabra latina \"Pactus\".",
+  "is_pactus_a_copy_of_any_other_blockchain": "¿Es Pactus una copia de alguna otra blockchain?",
+  "answer_is_pactus_a_copy_of_any_other_blockchain": "No, Pactus no es una copia ni un derivado de ninguna otra blockchain. Es un protocolo de blockchain nuevo y único que ha sido diseñado desde cero. El mecanismo de consenso utilizado en Pactus es único y creado específicamente para resolver el problema de scalabilidad de los validadores en las blockchains de Prueba de Participación.",
+  "did_pactus_have_an_ico": "¿Tuvo Pactus una ICO?",
+  "answer_did_pactus_have_an_ico": "No, Pactus no tuvo ninguna ICO o Oferta Inicial de Monedas.",
+  "where_can_i_buy_pactus_coins": "¿Dónde puedo comprar monedas Pactus?",
+  "answer_where_can_i_buy_pactus_coins": "Pactus no tiene monedas en preventa. La única forma de obtener monedas Pactus en este momento es instalando el software Pactus y participando activamente en la validación de bloques. Al participar en la red y contribuir a la validación de bloques, serás recompensado con monedas Pactus.",
+  "how_is_pactus_different_from_bitcoin": "¿En qué se diferencia Pactus de Bitcoin?",
+  "answer_how_is_pactus_different_from_bitcoin": "Pactus y Bitcoin son dos tipos diferentes de redes blockchain. Mientras que Bitcoin utiliza un proceso llamado \"Prueba de Trabajo\" para asegurar su red, Pactus usa un método diferente llamado \"Prueba de Participación\". Esto significa que, en lugar de minar, los validadores son responsables de votar sobre los bloques entrantes y deben poseer una cierta cantidad de monedas de la red, conocida como \"participación\", como depósito de seguridad para prevenir comportamientos maliciosos.",
+  "how_is_pactus_different_from_ethereum": "¿En qué se diferencia Pactus de Ethereum?",
+  "answer_how_is_pactus_different_from_ethereum": "Pactus y Ethereum son ambas blockchains de Prueba de Participación, pero difieren en su enfoque para ejecutar un validador. Ejecutar un validador en Ethereum puede ser desafiante y requiere 32 monedas Ethereum para participar. En Pactus, no hay una cantidad fija para la participación. Pactus está diseñado específicamente para ser más accesible para usuarios normales, y puedes ejecutar la blockchain Pactus en tu computadora personal con hardware básico."
 }

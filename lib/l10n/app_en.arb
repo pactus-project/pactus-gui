@@ -90,5 +90,19 @@
   "node_logs": "Node Logs",
   "settings": "Settings",
   "faqs": "FAQs",
-  "about": "About"
+  "about": "About",
+  "faq": "FAQ",
+  "answer_faq": "This FAQ (Frequently Asked Questions) page aims to provide helpful information and guidance on common questions and concerns related to Pactus.",
+  "what_does_pactus_mean": "What does \"Pactus\" mean?",
+  "answer_what_does_pactus_mean": "The word \"Pactus\" is of Latin origin and means \"to agree together\", \"contract\", or \"transact\". In English, the term \"Pact\" is derived from the Latin word \"Pactus\".",
+  "is_pactus_a_copy_of_any_other_blockchain": "Is Pactus a copy of any other blockchain?",
+  "answer_is_pactus_a_copy_of_any_other_blockchain": "No, Pactus is not a copy or a derivative of any other blockchain. It is a new and unique blockchain protocol that has been designed from scratch. The consensus mechanism used in Pactus is unique and specifically created to solve the scalability issue of validators in the Proof of Stake blockchains.",
+  "did_pactus_have_an_ico": "Did Pactus have an ICO?",
+  "answer_did_pactus_have_an_ico": "No, Pactus did not have any ICO or Initial Coin Offering.",
+  "where_can_i_buy_pactus_coins": "Where can I buy Pactus coins?",
+  "answer_where_can_i_buy_pactus_coins": "Pactus does not have any pre-sales coins. The only way to obtain Pactus coins at the moment is by installing the Pactus software and actively participating in block validation. By engaging in the network and contributing to block validation, you will be rewarded with Pactus coins.",
+  "how_is_pactus_different_from_bitcoin": "How is Pactus different from Bitcoin?",
+  "answer_how_is_pactus_different_from_bitcoin": "Pactus and Bitcoin are two different types of blockchain networks. While Bitcoin uses a process called \"Proof of Work\" to secure its network, Pactus uses a different method called \"Proof of Stake\". This means that instead of mining, validators are responsible for voting on incoming blocks and must hold a certain amount of the network coin, known as \"stake\", as a security deposit to prevent malicious behavior.",
+  "how_is_pactus_different_from_ethereum": "How is Pactus different from Ethereum?",
+  "answer_how_is_pactus_different_from_ethereum": "Pactus and Ethereum are both Proof of Stake blockchains, but they differ in their approach to running a validator. Running a validator on Ethereum can be challenging and requires 32 Ethereum coins to stake. In Pactus, there is no fixed amount for staking. Pactus is specifically designed to be more accessible to normal users, and you can run the Pactus blockchain on your personal computer with basic hardware."
 }
