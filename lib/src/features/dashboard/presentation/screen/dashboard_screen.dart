@@ -7,7 +7,8 @@ import 'package:gui/src/core/extensions/context_extensions.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/data/models/fluent_navigation_state_model.dart';
-import 'package:gui/src/features/blockchain_get_info/presentation/pages/blockchain_info_section.dart';
+import 'package:gui/src/features/dashboard/core/enums/dashboard_card_type.dart';
+import 'package:gui/src/features/dashboard/presentation/widgets/dashboard_card_widget.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
@@ -142,7 +143,32 @@ class DashboardScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  body: BlockchainInfoSection(),
+                  body: Padding(
+                    padding: const EdgeInsetsDirectional.only(
+                      top: 56,
+                      start: 56,
+                      bottom: 56,
+                    ),
+                    child: Wrap(
+                      spacing: 32,
+                      runSpacing: 32,
+                      children: [
+                        DashboardCardWidget(
+                          dashboardCardType: DashboardCardType.committeeSize,
+                        ),
+                        DashboardCardWidget(
+                          dashboardCardType: DashboardCardType.committeePower,
+                        ),
+                        DashboardCardWidget(
+                          dashboardCardType:
+                              DashboardCardType.numberOfValidators,
+                        ),
+                        DashboardCardWidget(
+                          dashboardCardType: DashboardCardType.totalPower,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 PaneItem(
                   icon: SvgPicture.asset(
