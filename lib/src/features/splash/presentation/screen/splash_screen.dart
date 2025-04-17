@@ -28,59 +28,59 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return KeyboardShortcutWidget(
-      isEnabledInDebugMode: true,
-      actionOnLinuxWindows: () {
-        context.go(AppRoute.devMode.fullPath);
-      },
-      actionOnMacOs: () {
-        context.go(AppRoute.devMode.fullPath);
-      },
-      shortcutOnLinuxWindows: LogicalKeyboardKey.keyD,
-      shortcutOnMacOs: LogicalKeyboardKey.keyD,
-      child: BlocConsumer<DaemonCubit, DaemonState>(
-        listener: (ctxListener, state) {
-          if (state is DaemonError) {
-            Future.delayed(_splashDuration, () {
-              if (context.mounted) {
-                context.go(AppRoute.welcome.fullPath);
-              }
-            });
-          }
-          if (state is DaemonSuccess) {
-            final isUnprotectedNode = state.output.contains('false');
-            final isProtectedNode = state.output.contains('true');
-            final isUndefinedNode = !state.output.contains('is encrtypted') &&
-                !state.output.contains('created at');
-
-            if (isUnprotectedNode) {
-              Future.delayed(_splashDuration, () {
-                if (context.mounted) {
-                  context.go(AppRoute.dashboard.fullPath);
-                }
-              });
-            }
-            if (isProtectedNode) {
-              Future.delayed(_splashDuration, () {
-                if (context.mounted) {
-                  context.go(AppRoute.basicPassword.fullPath);
-                }
-              });
-            }
-
-            if (isUndefinedNode) {
+    return ScaffoldPage(
+      content: KeyboardShortcutWidget(
+        isEnabledInDebugMode: true,
+        actionOnLinuxWindows: () {
+          context.go(AppRoute.devMode.fullPath);
+        },
+        actionOnMacOs: () {
+          context.go(AppRoute.devMode.fullPath);
+        },
+        shortcutOnLinuxWindows: LogicalKeyboardKey.keyD,
+        shortcutOnMacOs: LogicalKeyboardKey.keyD,
+        child: BlocConsumer<DaemonCubit, DaemonState>(
+          listener: (ctxListener, state) {
+            if (state is DaemonError) {
               Future.delayed(_splashDuration, () {
                 if (context.mounted) {
                   context.go(AppRoute.welcome.fullPath);
                 }
               });
             }
-          }
-        },
-        builder: (ctxBuilder, state) {
-          if (state is DaemonSuccess) {
-            return ScaffoldPage(
-              content: Stack(
+            if (state is DaemonSuccess) {
+              final isUnprotectedNode = state.output.contains('false');
+              final isProtectedNode = state.output.contains('true');
+              final isUndefinedNode = !state.output.contains('is encrtypted') &&
+                  !state.output.contains('created at');
+
+              if (isUnprotectedNode) {
+                Future.delayed(_splashDuration, () {
+                  if (context.mounted) {
+                    context.go(AppRoute.dashboard.fullPath);
+                  }
+                });
+              }
+              if (isProtectedNode) {
+                Future.delayed(_splashDuration, () {
+                  if (context.mounted) {
+                    context.go(AppRoute.basicPassword.fullPath);
+                  }
+                });
+              }
+
+              if (isUndefinedNode) {
+                Future.delayed(_splashDuration, () {
+                  if (context.mounted) {
+                    context.go(AppRoute.welcome.fullPath);
+                  }
+                });
+              }
+            }
+          },
+          builder: (ctxBuilder, state) {
+            if (state is DaemonSuccess) {
+              return Stack(
                 children: [
                   Center(
                     child: Column(
@@ -116,39 +116,37 @@ class SplashScreen extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),
-            );
-          } else {
-            if (state is DaemonInitial) {
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                final sign = AppOS.current.separator;
-                final storageKey = StorageKeys.nodeDirectory;
+              );
+            } else {
+              if (state is DaemonInitial) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  final sign = AppOS.current.separator;
+                  final storageKey = StorageKeys.nodeDirectory;
 
-                final nodeDirectory = '${StorageUtils.getData<String>(
-                  storageKey,
-                )}';
-                final walletPath = '$sign${CliConstants.wallets}'
-                    '$sign${CliConstants.defaultWallet}';
+                  final nodeDirectory = '${StorageUtils.getData<String>(
+                    storageKey,
+                  )}';
+                  final walletPath = '$sign${CliConstants.wallets}'
+                      '$sign${CliConstants.defaultWallet}';
 
-                context.read<DaemonCubit>().runPactusDaemon(
-                      cliCommand: CliCommand(
-                        command: CliConstants.pactusWallet,
-                        arguments: [
-                          CliConstants.info,
-                          CliConstants.pathArgument,
-                          nodeDirectory + walletPath,
-                        ],
-                      ),
-                    );
-              });
-            }
-            return ScaffoldPage(
-              content: Center(
+                  context.read<DaemonCubit>().runPactusDaemon(
+                        cliCommand: CliCommand(
+                          command: CliConstants.pactusWallet,
+                          arguments: [
+                            CliConstants.info,
+                            CliConstants.pathArgument,
+                            nodeDirectory + walletPath,
+                          ],
+                        ),
+                      );
+                });
+              }
+              return Center(
                 child: ProgressRing(),
-              ),
-            );
-          }
-        },
+              );
+            }
+          },
+        ),
       ),
     );
   }

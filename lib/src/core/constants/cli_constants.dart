@@ -2,7 +2,6 @@ class CliConstants {
   CliConstants._();
 
   static const String localNodeIP = '127.0.0.1';
-  static const int localNodePort = 50052;
   static const String pactusWallet = './pactus-wallet';
   static const String info = 'info';
   static const String password = 'password';
@@ -24,4 +23,8 @@ class CliConstants {
   static const String validators12 = '12';
   static const String validators24 = '24';
   static const String validators32 = '32';
+  static const String grpcServerStarted = 'grpc server started';
+  static const String detectNetwork = 'network=';
+  static const String detectSucceedWalletPassword =
+      'Your wallet password successfully';
 }

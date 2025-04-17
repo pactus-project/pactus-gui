@@ -12,10 +12,10 @@ import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_state.dart';
 import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:gui/src/core/utils/methods/print_debug.dart';
 import 'package:gui/src/data/models/fluent_navigation_state_model.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
-import 'package:logger/logger.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class InitializingScreen extends StatefulWidget {
@@ -28,8 +28,6 @@ class InitializingScreen extends StatefulWidget {
 }
 
 class _InitializingScreenState extends State<InitializingScreen> {
-  final logger = Logger();
-
   @override
   void initState() {
     super.initState();
@@ -55,19 +53,18 @@ class _InitializingScreenState extends State<InitializingScreen> {
     context.read<DaemonCubit>().runPactusDaemon(
           cliCommand: initialCommand,
         );
-    logger
-      ..i(
-        '${CliConstants.workingDirArgument} '
-        '${NodeConfigData.instance.workingDirectory}',
-      )
-      ..i(
-        '${CliConstants.passwordArgument} '
-        '${NodeConfigData.instance.password}',
-      )
-      ..i(
-        '${CliConstants.valNumArgument} '
-        '${NodeConfigData.instance.validatorQty}',
-      );
+    printDebug(
+      '${CliConstants.workingDirArgument} '
+      '${NodeConfigData.instance.workingDirectory}',
+    );
+    printDebug(
+      '${CliConstants.passwordArgument} '
+      '${NodeConfigData.instance.password}',
+    );
+    printDebug(
+      '${CliConstants.valNumArgument} '
+      '${NodeConfigData.instance.validatorQty}',
+    );
   }
 
   @override
@@ -79,11 +76,11 @@ class _InitializingScreenState extends State<InitializingScreen> {
     return BlocConsumer<DaemonCubit, DaemonState>(
       listener: (context, state) {
         if (state is DaemonLoading) {
-          logger.i('DaemonState is DaemonLoading \n\n please wait \n\n');
+          printDebug('DaemonState is DaemonLoading \n\n please wait \n\n');
         }
 
         if (state is DaemonSuccess) {
-          logger.i('DaemonState is DaemonSuccess');
+          printDebug('DaemonState is DaemonSuccess');
 
           Future.delayed(const Duration(seconds: 2), () {
             if (mounted) {
@@ -93,7 +90,7 @@ class _InitializingScreenState extends State<InitializingScreen> {
         }
 
         if (state is DaemonError) {
-          logger.i('DaemonState is DaemonError');
+          printDebug('DaemonState is DaemonError');
         }
       },
       builder: (context, daemonState) {
