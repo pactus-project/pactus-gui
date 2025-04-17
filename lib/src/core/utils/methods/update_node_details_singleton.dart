@@ -8,15 +8,16 @@ void updateNodeDetailsSingleton({
   String? nodeType,
 }) {
   // Get the existing instance if it exists
-  final existingDetails = GetIt.I.isRegistered<NodeDetails>()
-      ? GetIt.I<NodeDetails>()
-      : null;
+  final existingDetails =
+      GetIt.I.isRegistered<NodeDetails>() ? GetIt.I<NodeDetails>() : null;
 
-  // Create new instance with updated values, falling back to existing values when null
+  // Create new instance with updated values, falling back to
+  // existing values when null
   final serverDetails = NodeDetails(
     nodeType: nodeType ?? existingDetails?.nodeType ?? '',
     ip: existingDetails?.ip ?? CliConstants.localNodeIP,
-    port: port ?? existingDetails?.port ?? 0, // Provide default if no existing value
+    // Provide default if no existing value
+    port: port ?? existingDetails?.port ?? 0,
     password: password ?? existingDetails?.password,
   );
 

@@ -42,7 +42,6 @@ mixin NodeListenerHandler {
 
     // Handle password validation
     if (state.output.contains(CliConstants.detectSucceedWalletPassword)) {
-
       _startNodeDaemon(context, password);
     }
     // Handle GRPC port extraction & navigation

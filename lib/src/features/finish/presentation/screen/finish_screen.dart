@@ -123,8 +123,7 @@ class _FinishScreenState extends State<FinishScreen> {
                                           ],
                                         ),
                                       );
-
-                                 },
+                                },
                                 requestState: RequestStateEnum.loaded,
                                 title: context.tr(
                                   LocaleKeys.go_to_dashboard,
