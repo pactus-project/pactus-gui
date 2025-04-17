@@ -7,7 +7,7 @@ Future<void> windowsManager() async {
 
     final windowOptions = WindowOptions(
       size: Size(1280, 720),
-       skipTaskbar: false,
+      skipTaskbar: false,
       titleBarStyle: TitleBarStyle.hidden,
     );
 

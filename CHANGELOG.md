@@ -1,3 +1,13 @@
+# 1.48.0+51
+### [Fix]
+- Resolved Windows OS transparent window background issue [#171](https://github.com/pactus-project/pactus-gui/pull/174)
+- Fixed splash screen widget tree for proper `ScaffoldPage` usage [#171](https://github.com/pactus-project/pactus-gui/pull/174)
+- Improved password validation for node startup with stdout message review [#171](https://github.com/pactus-project/pactus-gui/pull/174)
+- Fixed dashboard data loading from GRPC port in node configuration [#171](https://github.com/pactus-project/pactus-gui/pull/174)
+
+### [Update]
+- Removed logger package and updated related code [#171](https://github.com/pactus-project/pactus-gui/pull/174)
+
 # 1.47.0+50
 
 ### [Feature]

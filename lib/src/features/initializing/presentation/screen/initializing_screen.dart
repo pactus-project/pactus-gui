@@ -28,7 +28,6 @@ class InitializingScreen extends StatefulWidget {
 }
 
 class _InitializingScreenState extends State<InitializingScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -55,17 +54,17 @@ class _InitializingScreenState extends State<InitializingScreen> {
           cliCommand: initialCommand,
         );
     printDebug(
-        '${CliConstants.workingDirArgument} '
-        '${NodeConfigData.instance.workingDirectory}',
-      );
+      '${CliConstants.workingDirArgument} '
+      '${NodeConfigData.instance.workingDirectory}',
+    );
     printDebug(
-        '${CliConstants.passwordArgument} '
-        '${NodeConfigData.instance.password}',
-      );
+      '${CliConstants.passwordArgument} '
+      '${NodeConfigData.instance.password}',
+    );
     printDebug(
-        '${CliConstants.valNumArgument} '
-        '${NodeConfigData.instance.validatorQty}',
-      );
+      '${CliConstants.valNumArgument} '
+      '${NodeConfigData.instance.validatorQty}',
+    );
   }
 
   @override
