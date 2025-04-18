@@ -2,6 +2,7 @@
 ### [Feat]
 - Implemented settings section for dashboard and settings screens [#154](https://github.com/pactus-project/pactus-gui/pull/175)
 - Updated app constants to define static text for settings section [#154](https://github.com/pactus-project/pactus-gui/pull/175)
+- Fix switch language when autoSelect english [#154](https://github.com/pactus-project/pactus-gui/pull/175)
 
 ### [Refactor]
 - Refactored settings text style for improved consistency [#154](https://github.com/pactus-project/pactus-gui/pull/175)
