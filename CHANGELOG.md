@@ -1,3 +1,17 @@
+# 1.50.0+52
+### [Feat]
+- Implemented settings section for dashboard and settings screens [#154](https://github.com/pactus-project/pactus-gui/pull/175)
+- Updated app constants to define static text for settings section [#154](https://github.com/pactus-project/pactus-gui/pull/175)
+
+### [Refactor]
+- Refactored settings text style for improved consistency [#154](https://github.com/pactus-project/pactus-gui/pull/175)
+- Refactored dashboard screen: [#154](https://github.com/pactus-project/pactus-gui/pull/175)
+- Removed selector color and language from welcome screen [#154](https://github.com/pactus-project/pactus-gui/pull/175)
+- Added Bloc provider for dropdown functionality on dashboard screen [#154](https://github.com/pactus-project/pactus-gui/pull/175)
+- Refactored language widget to use dropdown instead of button [#154](https://github.com/pactus-project/pactus-gui/pull/175)
+- Refactored app color accent [#154](https://github.com/pactus-project/pactus-gui/pull/175)
+- Changed shape to rectangle [#154](https://github.com/pactus-project/pactus-gui/pull/175)
+- Added check icon display when a color is selected [#154](https://github.com/pactus-project/pactus-gui/pull/175)
 # 1.48.0+51
 ### [Fix]
 - Resolved Windows OS transparent window background issue [#171](https://github.com/pactus-project/pactus-gui/pull/174)
