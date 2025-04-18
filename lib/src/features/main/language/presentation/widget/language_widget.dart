@@ -1,6 +1,10 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gui/src/core/common/widgets/custom_expandable_widget.dart';
+import 'package:gui/src/core/enums/language_enum.dart';
+import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
 import 'package:gui/src/features/main/language/core/language_constants.dart';
+import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/language/presentation/bloc/language_bloc.dart';
 
 class LanguageSelector extends StatelessWidget {
@@ -9,34 +13,32 @@ class LanguageSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Button(
-          onPressed: () {
+    BlocBuilder<DropdownCubit<LanguageEnum>, LanguageEnum>(
+      builder: (context, state) {
+        switch (state) {
+          case LanguageEnum.english:
             context.read<LanguageBloc>().add(
-                  ChangeLanguage(selectedLanguage: LanguageConstants.enUS),
+                  ChangeLanguage(
+                      selectedLanguage: LanguageConstants.enUS,),
                 );
-          },
-          child: const Text('English'),
-        ),
-        const SizedBox(width: 8),
-        Button(
-          onPressed: () {
+          case LanguageEnum.french:
             context.read<LanguageBloc>().add(
-                  ChangeLanguage(selectedLanguage: LanguageConstants.esES),
+                  ChangeLanguage(
+                      selectedLanguage: LanguageConstants.frFR,),
                 );
-          },
-          child: const Text('Español'),
-        ),
-        const SizedBox(width: 8),
-        Button(
-          onPressed: () {
+          case LanguageEnum.spanish:
             context.read<LanguageBloc>().add(
-                  ChangeLanguage(selectedLanguage: LanguageConstants.frFR),
+                  ChangeLanguage(
+                      selectedLanguage: LanguageConstants.esES,),
                 );
-          },
-          child: const Text('Français'),
-        ),
+        }
+        return CustomDropdownWidget<LanguageEnum>(
+          items: LanguageEnum.values,
+          itemLabel: (item) => context.tr(item.text),
+        );
+      },
+    ),
       ],
     );
   }
