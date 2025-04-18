@@ -8,6 +8,7 @@ import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/data/models/fluent_navigation_state_model.dart';
 import 'package:gui/src/features/blockchain_get_info/presentation/pages/blockchain_info_section.dart';
+import 'package:gui/src/features/faq/presentation/sections/faq_section.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
@@ -74,29 +75,24 @@ class DashboardScreen extends StatelessWidget {
                   ),
                 ),
                 PaneItem(
-                  icon: SvgPicture.asset(
-                    Assets.icons.icFaqs,
-                    colorFilter: ColorFilter.mode(
-                      context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex.selectedIndex == 5,
-                      ),
-                      BlendMode.srcIn,
-                    ),
-                  ),
-                  title: Text(
-                    context.tr(LocaleKeys.faqs),
-                    style: TextStyle(
-                      color: context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex.selectedIndex == 5,
+                    icon: SvgPicture.asset(
+                      Assets.icons.icFaqs,
+                      colorFilter: ColorFilter.mode(
+                        context.detectPaneTextColor(
+                          isEnabledTextStyle: selectedIndex.selectedIndex == 5,
+                        ),
+                        BlendMode.srcIn,
                       ),
                     ),
-                  ),
-                  body: Container(
-                    color:
-                        AppTheme.of(context).extension<GreenPallet>()!.green700,
-                    width: double.infinity,
-                  ),
-                ),
+                    title: Text(
+                      context.tr(LocaleKeys.faqs),
+                      style: TextStyle(
+                        color: context.detectPaneTextColor(
+                          isEnabledTextStyle: selectedIndex.selectedIndex == 5,
+                        ),
+                      ),
+                    ),
+                    body: FaqSection(),),
                 PaneItem(
                   icon: SvgPicture.asset(
                     Assets.icons.icAboutUs,
