@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/material.dart' show Icons;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/common/cubits/app_accent_color_cubit.dart';
 import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
@@ -48,28 +49,42 @@ class AccentColorPicker extends StatelessWidget {
         ? AppThemeData.darkAccentColors
         : AppThemeData.lightAccentColors;
 
-    return Wrap(
-      spacing: 10,
-      children: [
-        for (int i = 0; i < colors.length; i++)
-          GestureDetector(
-            onTap: () {
-              context.read<AppAccentColorCubit>().setAccentColor(i);
-            },
-            child: Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: colors[i],
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: Colors.white,
-                  width: 2,
+    return BlocBuilder<AppAccentColorCubit, int>(
+      builder: (context, selectedColorId) {
+        return Wrap(
+          spacing: 10,
+          children: [
+            for (int i = 0; i < colors.length; i++)
+              GestureDetector(
+                onTap: () {
+                  context.read<AppAccentColorCubit>().setAccentColor(i);
+                },
+                child: Stack(
+                  alignment: Alignment.center, // Center the check mark
+                  children: [
+                    Container(
+                      width: 34,
+                      height: 34,
+                      decoration: BoxDecoration(
+                        color: colors[i],
+                        border: Border.all(
+                          color: Colors.white,
+                          width: 2,
+                        ),
+                      ),
+                    ),
+                    if (selectedColorId == i)
+                      const Icon(
+                        Icons.check,
+                        size: 20,
+                        color: Colors.white, // Ensure visibility
+                      ),
+                  ],
                 ),
               ),
-            ),
-          ),
-      ],
+          ],
+        );
+      },
     );
   }
 }
