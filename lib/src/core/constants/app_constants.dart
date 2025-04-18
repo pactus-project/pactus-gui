@@ -17,5 +17,4 @@ class AppConstants {
   static const String english = 'English';
   static const String spanish = 'Español';
   static const String french = 'Français';
-
 }

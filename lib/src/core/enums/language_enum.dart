@@ -6,9 +6,9 @@ enum LanguageEnum {
   spanish(3, AppConstants.spanish);
 
   const LanguageEnum(
-      this.id,
-      this.text,
-      );
+    this.id,
+    this.text,
+  );
   final int id;
   final String text;
 }

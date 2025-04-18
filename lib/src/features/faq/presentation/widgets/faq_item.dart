@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
-import 'package:pactus_gui_widgetbook/app_styles.dart' show AppTheme, DarkPallet, InterTextStyles;
+import 'package:pactus_gui_widgetbook/app_styles.dart'
+    show AppTheme, DarkPallet, InterTextStyles;
 
 class FaqItem extends StatelessWidget {
   const FaqItem({super.key, required this.faqTitle, required this.faqSubTitle});
