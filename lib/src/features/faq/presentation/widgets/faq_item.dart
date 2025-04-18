@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gui/src/core/common/colors/app_colors.dart' show AppColors;
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
-import 'package:pactus_gui_widgetbook/app_styles.dart' show InterTextStyles;
+import 'package:pactus_gui_widgetbook/app_styles.dart' show AppTheme, DarkPallet, InterTextStyles;
 
 class FaqItem extends StatelessWidget {
   const FaqItem({super.key, required this.faqTitle, required this.faqSubTitle});
@@ -16,7 +15,7 @@ class FaqItem extends StatelessWidget {
         Text(
           context.tr(faqTitle),
           style: InterTextStyles.smallRegular.copyWith(
-            color: AppColors.primaryDark,
+            color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
           ),
         ),
         Text(
@@ -24,7 +23,7 @@ class FaqItem extends StatelessWidget {
             faqSubTitle,
           ),
           style: InterTextStyles.smallRegular.copyWith(
-            color: AppColors.expandableSeedTypeColor,
+            color: AppTheme.of(context).extension<DarkPallet>()!.dark600,
           ),
         ),
       ],
