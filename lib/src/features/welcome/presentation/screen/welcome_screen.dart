@@ -46,12 +46,6 @@ class WelcomeScreen extends StatelessWidget {
                 softWrap: true,
                 textAlign: TextAlign.center,
               ),
-              if (kDebugMode) ...[
-                const Gap(16),
-                LanguageSelector(),
-                const Gap(16),
-                const AccentColorPicker(),
-              ],
               const Gap(16),
               IntrinsicWidth(
                 child: SizedBox(

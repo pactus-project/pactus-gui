@@ -3,13 +3,16 @@ import 'package:flutter/material.dart' as material;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gui/src/core/common/widgets/app_layout.dart';
+import 'package:gui/src/core/enums/language_enum.dart';
 import 'package:gui/src/core/extensions/context_extensions.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/data/models/fluent_navigation_state_model.dart';
 import 'package:gui/src/features/blockchain_get_info/presentation/pages/blockchain_info_section.dart';
+import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
+import 'package:gui/src/features/settings/presentation/sections/settings_section.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -66,11 +69,10 @@ class DashboardScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  body: Container(
-                    color: AppTheme.of(context)
-                        .extension<BlueGrayPallet>()!
-                        .blueGray700,
-                    width: double.infinity,
+                  body: BlocProvider(
+                    create: (context) =>
+                        DropdownCubit<LanguageEnum>(LanguageEnum.english),
+                    child: SettingsSection(),
                   ),
                 ),
                 PaneItem(
