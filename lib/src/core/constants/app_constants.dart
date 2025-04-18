@@ -12,4 +12,10 @@ class AppConstants {
   static const int createLocalNodeMaxIndex = 5;
   static const int restoreNodeMaxIndex = 4;
   static const int remoteNodeMaxIndex = 1;
+
+  // language
+  static const String english = 'English';
+  static const String spanish = 'Español';
+  static const String french = 'Français';
+
 }

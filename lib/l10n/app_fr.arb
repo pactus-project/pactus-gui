@@ -91,5 +91,7 @@
   "node_logs": "Journaux du nœud",
   "settings": "Paramètres",
   "faqs": "FAQ",
-  "about": "À propos"
+  "about": "À propos",
+  "accent_color": "Couleur d Accent",
+  "language": "Langue"
 }

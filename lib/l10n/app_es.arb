@@ -92,5 +92,7 @@
   "node_logs": "Registros del nodo",
   "settings": "Configuración",
   "faqs": "Preguntas frecuentes",
-  "about": "Acerca de"
+  "about": "Acerca de",
+  "accent_color": "Color de Acento",
+  "language": "Idioma"
 }

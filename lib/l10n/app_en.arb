@@ -90,5 +90,7 @@
   "node_logs": "Node Logs",
   "settings": "Settings",
   "faqs": "FAQs",
-  "about": "About"
+  "about": "About",
+  "accent_color": "Accent Color",
+  "language": "Language"
 }
