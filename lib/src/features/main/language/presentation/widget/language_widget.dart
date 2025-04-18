@@ -14,31 +14,34 @@ class LanguageSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-    BlocBuilder<DropdownCubit<LanguageEnum>, LanguageEnum>(
-      builder: (context, state) {
-        switch (state) {
-          case LanguageEnum.english:
-            context.read<LanguageBloc>().add(
-                  ChangeLanguage(
-                      selectedLanguage: LanguageConstants.enUS,),
-                );
-          case LanguageEnum.french:
-            context.read<LanguageBloc>().add(
-                  ChangeLanguage(
-                      selectedLanguage: LanguageConstants.frFR,),
-                );
-          case LanguageEnum.spanish:
-            context.read<LanguageBloc>().add(
-                  ChangeLanguage(
-                      selectedLanguage: LanguageConstants.esES,),
-                );
-        }
-        return CustomDropdownWidget<LanguageEnum>(
-          items: LanguageEnum.values,
-          itemLabel: (item) => context.tr(item.text),
-        );
-      },
-    ),
+        BlocBuilder<DropdownCubit<LanguageEnum>, LanguageEnum>(
+          builder: (context, state) {
+            switch (state) {
+              case LanguageEnum.english:
+                context.read<LanguageBloc>().add(
+                      ChangeLanguage(
+                        selectedLanguage: LanguageConstants.enUS,
+                      ),
+                    );
+              case LanguageEnum.french:
+                context.read<LanguageBloc>().add(
+                      ChangeLanguage(
+                        selectedLanguage: LanguageConstants.frFR,
+                      ),
+                    );
+              case LanguageEnum.spanish:
+                context.read<LanguageBloc>().add(
+                      ChangeLanguage(
+                        selectedLanguage: LanguageConstants.esES,
+                      ),
+                    );
+            }
+            return CustomDropdownWidget<LanguageEnum>(
+              items: LanguageEnum.values,
+              itemLabel: (item) => context.tr(item.text),
+            );
+          },
+        ),
       ],
     );
   }
