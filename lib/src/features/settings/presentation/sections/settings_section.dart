@@ -5,7 +5,8 @@ import 'package:gui/src/core/common/widgets/accent_color_picker_widget.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:gui/src/features/main/language/presentation/widget/language_widget.dart';
-import 'package:pactus_gui_widgetbook/app_styles.dart' show InterTextStyles;
+import 'package:pactus_gui_widgetbook/app_styles.dart'
+    show AppTheme, DarkPallet, InterTextStyles;
 
 class SettingsSection extends StatelessWidget {
   const SettingsSection({super.key});
@@ -26,20 +27,20 @@ class SettingsSection extends StatelessWidget {
                   LocaleKeys.accent_color,
                 ),
                 style: InterTextStyles.smallRegular.copyWith(
-                  color: AppColors.primaryDark,
+                  color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
                 ),
               ),
               const AccentColorPicker(),
             ],
           ),
-          const Gap(16),
+          const Gap(24),
           Row(
             spacing: 16,
             children: [
               Text(
                 context.tr(LocaleKeys.language),
                 style: InterTextStyles.smallRegular.copyWith(
-                  color: AppColors.primaryDark,
+                  color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
                 ),
               ),
               LanguageSelector(),
