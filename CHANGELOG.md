@@ -1,4 +1,4 @@
-# 1.50.0+52
+# 1.50.0+53
 ### [Feat]
 - Implemented settings section for dashboard and settings screens [#154](https://github.com/pactus-project/pactus-gui/pull/175)
 - Updated app constants to define static text for settings section [#154](https://github.com/pactus-project/pactus-gui/pull/175)
@@ -12,6 +12,20 @@
 - Refactored app color accent [#154](https://github.com/pactus-project/pactus-gui/pull/175)
 - Changed shape to rectangle [#154](https://github.com/pactus-project/pactus-gui/pull/175)
 - Added check icon display when a color is selected [#154](https://github.com/pactus-project/pactus-gui/pull/175)
+
+
+# 1.49.0+52
+### [Feature]
+- Implemented translation for FAQ text on dashboard and FAQ screens [#155](https://github.com/pactus-project/pactus-gui/pull/176)
+
+### [Update]
+- Implemented FAQ section:
+  - Added FAQ section to handle all FAQ content [#155](https://github.com/pactus-project/pactus-gui/pull/176)
+  - Implemented FAQ item to manage title and subtitle [#155](https://github.com/pactus-project/pactus-gui/pull/176)
+
+### [Refactor]
+- Refactored FAQ item text style for improved consistency [#155](https://github.com/pactus-project/pactus-gui/pull/176)
+
 # 1.48.0+51
 ### [Fix]
 - Resolved Windows OS transparent window background issue [#171](https://github.com/pactus-project/pactus-gui/pull/174)

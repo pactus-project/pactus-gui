@@ -89,8 +89,23 @@ abstract class LocaleKeys {
   static const String wallet = 'wallet';
   static const String node_logs = 'node_logs';
   static const String settings = 'settings';
+  static const String clock = 'clock';
   static const String faqs = 'faqs';
-  static const String about = 'about';
   static const String accent_color = 'accent_color';
+  static const String about = 'about';
   static const String language = 'language';
+  static const String faq = 'faq';
+  static const String answer_faq = 'answer_faq';
+  static const String what_does_pactus_mean = 'what_does_pactus_mean';
+  static const String answer_what_does_pactus_mean = 'answer_what_does_pactus_mean';
+  static const String is_pactus_a_copy_of_any_other_blockchain = 'is_pactus_a_copy_of_any_other_blockchain';
+  static const String answer_is_pactus_a_copy_of_any_other_blockchain = 'answer_is_pactus_a_copy_of_any_other_blockchain';
+  static const String did_pactus_have_an_ico = 'did_pactus_have_an_ico';
+  static const String answer_did_pactus_have_an_ico = 'answer_did_pactus_have_an_ico';
+  static const String where_can_i_buy_pactus_coins = 'where_can_i_buy_pactus_coins';
+  static const String answer_where_can_i_buy_pactus_coins = 'answer_where_can_i_buy_pactus_coins';
+  static const String how_is_pactus_different_from_bitcoin = 'how_is_pactus_different_from_bitcoin';
+  static const String answer_how_is_pactus_different_from_bitcoin = 'answer_how_is_pactus_different_from_bitcoin';
+  static const String how_is_pactus_different_from_ethereum = 'how_is_pactus_different_from_ethereum';
+  static const String answer_how_is_pactus_different_from_ethereum = 'answer_how_is_pactus_different_from_ethereum';
 }
