@@ -28,6 +28,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_code.svg
   String get icCode => 'assets/icons/ic_code.svg';
 
+  /// File path: assets/icons/ic_committee_power.svg
+  String get icCommitteePower => 'assets/icons/ic_committee_power.svg';
+
+  /// File path: assets/icons/ic_committee_size.svg
+  String get icCommitteeSize => 'assets/icons/ic_committee_size.svg';
+
   /// File path: assets/icons/ic_connection.svg
   String get icConnection => 'assets/icons/ic_connection.svg';
 
@@ -64,8 +70,14 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_settings.svg
   String get icSettings => 'assets/icons/ic_settings.svg';
 
+  /// File path: assets/icons/ic_total_power.svg
+  String get icTotalPower => 'assets/icons/ic_total_power.svg';
+
   /// File path: assets/icons/ic_transaction.svg
   String get icTransaction => 'assets/icons/ic_transaction.svg';
+
+  /// File path: assets/icons/ic_validators.svg
+  String get icValidators => 'assets/icons/ic_validators.svg';
 
   /// File path: assets/icons/ic_wallet.svg
   String get icWallet => 'assets/icons/ic_wallet.svg';
@@ -83,6 +95,8 @@ class $AssetsIconsGen {
         icClock,
         icClose,
         icCode,
+        icCommitteePower,
+        icCommitteeSize,
         icConnection,
         icDarkMode,
         icDashboard,
@@ -95,7 +109,9 @@ class $AssetsIconsGen {
         icNodeLogs,
         icReachbility,
         icSettings,
+        icTotalPower,
         icTransaction,
+        icValidators,
         icWallet,
         lock,
         logo
