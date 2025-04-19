@@ -3,7 +3,10 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/constants/cli_constants.dart';
+import 'package:gui/src/core/constants/storage_keys.dart';
+import 'package:gui/src/core/enums/app_os_separator.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
+import 'package:gui/src/core/utils/storage_utils.dart';
 import 'package:path/path.dart' show dirname, join;
 
 part 'daemon_manager_event.dart';
@@ -13,6 +16,7 @@ class DaemonManagerBloc extends Bloc<DaemonManagerEvent, DaemonManagerState> {
   DaemonManagerBloc() : super(DaemonManagerInitial()) {
     on<RunDaemonCommand>(_onRunDaemonCommand);
     on<RunStartNodeCommand>(_onRunStartNodeCommand);
+    on<RunGetNodeValidatorAddressesCommand>(_onRunGetNodeValidatorAddresses);
   }
 
   static String _executableDir() {
@@ -146,6 +150,50 @@ class DaemonManagerBloc extends Bloc<DaemonManagerEvent, DaemonManagerState> {
         const Duration(seconds: 2),
         () => process.stdin.writeln(pass),
       );
+    }
+  }
+
+  Future<void> _onRunGetNodeValidatorAddresses(
+    RunGetNodeValidatorAddressesCommand event,
+    Emitter<DaemonManagerState> emit,
+  ) async {
+    try {
+      emit(DaemonManagerLoading());
+
+      final executablePath = _executablePath(CliConstants.pactusWallet);
+      _ensureExecutablePermissions(executablePath);
+      final sign = AppOS.current.separator;
+
+      final walletPath = '$sign${CliConstants.wallets}'
+          '$sign${CliConstants.defaultWallet}';
+      final storageKey = StorageKeys.nodeDirectory;
+
+      final nodeDirectory = '${StorageUtils.getData<String>(
+        storageKey,
+      )}';
+
+      final process = await Process.start(
+        executablePath,
+        [
+          'address',
+          'all',
+          '--path',
+          nodeDirectory + walletPath,
+        ],
+        workingDirectory: _executableDir(),
+      );
+
+      final output = await process.stdout.transform(utf8.decoder).join();
+      emit(DaemonManagerSuccess(output));
+
+      // Handle process output if needed
+      process.stderr.transform(utf8.decoder).listen((res) {
+        // Silently handle errors for start node command
+        emit(DaemonManagerError(res));
+      });
+    } on Exception catch (e) {
+      // Silently handle errors for start node command
+      emit(DaemonManagerError(e.toString()));
     }
   }
 }

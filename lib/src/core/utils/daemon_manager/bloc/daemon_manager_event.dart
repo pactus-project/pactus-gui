@@ -13,3 +13,7 @@ class RunStartNodeCommand extends DaemonManagerEvent {
   const RunStartNodeCommand({required this.cliCommand});
   final CliCommand cliCommand;
 }
+
+class RunGetNodeValidatorAddressesCommand extends DaemonManagerEvent {
+  const RunGetNodeValidatorAddressesCommand();
+}

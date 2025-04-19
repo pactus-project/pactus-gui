@@ -140,7 +140,7 @@ class DaemonCubit extends Cubit<DaemonState> {
 
       process.stderr.transform<String>(utf8.decoder).listen((data) {
         if (kDebugMode) {
-          debugPrint('Daemon stderr: $data');
+          printDebug('Daemon stderr: $data');
         }
         if (!data.contains('new block committed')) {
           emit(DaemonError(data));
@@ -179,7 +179,7 @@ class DaemonCubit extends Cubit<DaemonState> {
 
       process.stderr.transform<String>(utf8.decoder).listen((data) {
         if (kDebugMode) {
-          debugPrint('DATA--->:$data');
+          printDebug('DATA--->:$data');
         }
         if (data.contains(CliConstants.grpcServerStarted)) {
           emit(DaemonSuccess(data));
@@ -188,7 +188,7 @@ class DaemonCubit extends Cubit<DaemonState> {
 
       process.stdout.transform<String>(utf8.decoder).listen((data) {
         if (kDebugMode) {
-          debugPrint('DATA--->:$data');
+          printDebug('DATA--->:$data');
         }
         if (data.contains('invalid password')) {
           emit(DaemonError(data));
