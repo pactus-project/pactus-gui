@@ -13,6 +13,8 @@ class BlockchainRemoteDataSourceImpl implements BlockchainRemoteDataSource {
   @override
   Future<BlockchainInfoModel> getBlockchainInfo() async {
     final response = await _service.service();
+    print("RES:${response.committeeValidators[0].address}");
+    print("RES:${response.toProto3Json()}");
     return BlockchainInfoMapper.fromResponse(response);
   }
 }

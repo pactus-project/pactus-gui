@@ -5,6 +5,7 @@ import 'package:gui/src/features/dashboard/sub_modules/blockchain_get_info/domai
 mixin BlockchainInfoMapper {
   static BlockchainInfoEntity toEntity(BlockchainInfoModel model) {
     return BlockchainInfoEntity(
+      committeeValidators: model.committeeValidators,
       isPruned: model.isPruned,
       committeePower: model.committeePower,
       totalPower: model.totalPower,
@@ -17,6 +18,7 @@ mixin BlockchainInfoMapper {
 
   static BlockchainInfoModel fromResponse(GetBlockchainInfoResponse response) {
     return BlockchainInfoModel(
+      committeeValidators: response.committeeValidators,
       isPruned: response.isPruned,
       committeePower: response.committeePower.toInt(),
       totalPower: response.totalPower.toInt(),

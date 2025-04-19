@@ -1,3 +1,5 @@
+import 'package:gui/src/data/models/generated/blockchain.pb.dart';
+
 class BlockchainInfoModel {
   BlockchainInfoModel({
     required this.lastBlockHash,
@@ -7,6 +9,7 @@ class BlockchainInfoModel {
     required this.totalPower,
     required this.committeePower,
     required this.isPruned,
+    required this.committeeValidators,
   });
   final String lastBlockHash;
   final int lastBlockHeight;
@@ -15,4 +18,5 @@ class BlockchainInfoModel {
   final int totalPower;
   final int committeePower;
   final bool isPruned;
+  final List<ValidatorInfo> committeeValidators;
 }
