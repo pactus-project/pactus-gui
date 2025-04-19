@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:gui/src/core/utils/methods/print_debug.dart';
 import 'package:window_manager/window_manager.dart';
 
 Future<void> windowsManager() async {
@@ -17,6 +18,6 @@ Future<void> windowsManager() async {
           .then((_) => WindowManager.instance.show());
     });
   } on Exception catch (e) {
-    debugPrint('Window initialization failed: $e');
+    printDebug('Window initialization failed: $e');
   }
 }

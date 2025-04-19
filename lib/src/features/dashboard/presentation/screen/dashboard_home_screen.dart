@@ -46,7 +46,7 @@ class DashboardHomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-             Align(
+            Align(
               alignment: AlignmentDirectional.centerEnd,
               child: Padding(
                 padding: const EdgeInsetsDirectional.only(end: 32),

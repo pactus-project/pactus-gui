@@ -5,7 +5,6 @@ import 'package:gui/src/core/enums/language_enum.dart';
 import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
 import 'package:gui/src/features/main/language/presentation/bloc/language_bloc.dart';
 import 'package:gui/src/features/settings/presentation/sections/settings_section.dart';
-import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({
@@ -16,11 +15,8 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Builder(
       builder: (context) {
-        final currentLanguage = context
-            .read<LanguageBloc>()
-            .state
-            .selectedLanguage!
-            .name;
+        final currentLanguage =
+            context.read<LanguageBloc>().state.selectedLanguage!.name;
         final selected = switch (currentLanguage) {
           AppConstants.english => LanguageEnum.english,
           AppConstants.french => LanguageEnum.french,
@@ -28,8 +24,7 @@ class SettingsScreen extends StatelessWidget {
         };
 
         return BlocProvider(
-          create: (context) =>
-              DropdownCubit<LanguageEnum>(selected),
+          create: (context) => DropdownCubit<LanguageEnum>(selected),
           child: SettingsSection(),
         );
       },
