@@ -1,3 +1,20 @@
+# 1.51.0+54
+### [Feat]
+- Add infrastructure to receive node wallet/validator addresses [#158](https://github.com/pactus-project/pactus-gui/pull/177)
+- Add API infrastructure to receive details for any node wallet/validator address [#158](https://github.com/pactus-project/pactus-gui/pull/177)
+- Implementation UI for addresses_card on dashboard home screen [#158](https://github.com/pactus-project/pactus-gui/pull/177)
+- Show address card data on the dashboard home screen [#158](https://github.com/pactus-project/pactus-gui/pull/177)
+
+### [Fix]
+- Fix transparent color of window background in Windows OS [#158](https://github.com/pactus-project/pactus-gui/pull/177)
+- Fix widget tree for usage ScaffoldPage in splash screen [#158](https://github.com/pactus-project/pactus-gui/pull/177)
+- Validate password of node by start node and review validation [#158](https://github.com/pactus-project/pactus-gui/pull/177)
+- Load data from GRPC port in node configuration [#158](https://github.com/pactus-project/pactus-gui/pull/177)
+
+### [Refactor]
+- Split dashboard code into smaller files for better maintainability [#158](https://github.com/pactus-project/pactus-gui/pull/177)
+- Refactor and improve dashboard UI [#158](https://github.com/pactus-project/pactus-gui/pull/177)
+
 # 1.50.0+53
 ### [Feat]
 - Implemented settings section for dashboard and settings screens [#154](https://github.com/pactus-project/pactus-gui/pull/175)
