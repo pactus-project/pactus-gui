@@ -47,7 +47,7 @@
   "your_journey_finalized_description_last": "Pactus no solo está revolucionando la estructura de la gobernanza blockchain; también está redefiniendo la experiencia del usuario. Diseñado con la convicción de que blockchain debería ser accesible para todos, la cadena Pactus cuenta con una interfaz gráfica de usuario (GUI) simple pero sofisticada que desmitifica el proceso de ejecución de un nodo. La elegancia radica en su simplicidad: un diseño claro y accesible que oculta la mecánica robusta y compleja debajo, permitiendo a los usuarios, independientemente de su destreza técnica, participar como clientes validadores. Este movimiento hacia la inclusión transforma a los usuarios de meros participantes en guardianes de la blockchain, un aspecto esencial del ecosistema Pactus.",
   "generation_seed_title": "Tu semilla de generación de billetera",
   "generation_seed_description": "Inicia tu viaje criptográfico con confianza",
-  "generation_seed_note1": "Por favor escribe estas 24 palabras en papel",
+  "generation_seed_note1": "Por favor escribe estas ___ palabras en papel",
   "generation_seed_note2": "Esta semilla te permitirá recuperar tu billetera en caso de falla de la computadora",
   "warning": "ADVERTENCIA",
   "generation_seed_warning1": "Nunca reveles tu semilla",
