@@ -9,6 +9,7 @@ import 'package:gui/src/core/extensions/context_extensions.dart';
 import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/data/models/fluent_navigation_state_model.dart';
+import 'package:gui/src/features/about/presentation/sections/about_section.dart';
 import 'package:gui/src/features/blockchain_get_info/presentation/pages/blockchain_info_section.dart';
 import 'package:gui/src/features/faq/presentation/sections/faq_section.dart';
 import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
@@ -131,13 +132,8 @@ class DashboardScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  body: Container(
-                    color: AppTheme.of(context)
-                        .extension<PurplePallet>()!
-                        .purple700,
-                    width: double.infinity,
-                  ),
-                ),
+                  body: AboutSection()
+                ,),
               ],
               items: [
                 PaneItem(
