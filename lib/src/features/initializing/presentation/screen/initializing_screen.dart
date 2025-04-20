@@ -1,11 +1,13 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
 import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
 import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
 import 'package:gui/src/core/constants/cli_constants.dart';
 import 'package:gui/src/core/enums/app_enums.dart';
+import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_state.dart';
@@ -41,11 +43,11 @@ class _InitializingScreenState extends State<InitializingScreen> {
         NodeConfigData.instance.restorationSeed?.sentence ?? '',
         CliConstants.workingDirArgument,
         NodeConfigData.instance.workingDirectory,
-        if (NodeConfigData.instance.password.isNotEmpty)
-          CliConstants.passwordArgument,
-        if (NodeConfigData.instance.password.isNotEmpty)
-          NodeConfigData
-              .instance.password, // Add password only if it's not empty
+        CliConstants.passwordArgument,
+        NodeConfigData.instance.password == null ||
+                NodeConfigData.instance.password!.isEmpty
+            ? 'null'
+            : NodeConfigData.instance.password!,
         CliConstants.valNumArgument,
         NodeConfigData.instance.validatorQty,
       ],
@@ -81,7 +83,7 @@ class _InitializingScreenState extends State<InitializingScreen> {
 
         if (state is DaemonSuccess) {
           printDebug('DaemonState is DaemonSuccess');
-
+          context.goNamed(AppRoute.basicPassword.name);
           Future.delayed(const Duration(seconds: 2), () {
             if (mounted) {
               cubit.setSelectedIndex(newIndex);
