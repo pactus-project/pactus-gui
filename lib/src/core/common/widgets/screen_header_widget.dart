@@ -56,7 +56,7 @@ class ScreenHeaderWidget extends StatelessWidget {
         Text(
           context.tr(title),
           style: InterTextStyles.bodyBold.copyWith(
-            color: AppColors.primaryDark,
+            color: AppTheme.of(context).extension<DarkPallet>()!.dark700,
           ),
         ),
         const Gap(8),
