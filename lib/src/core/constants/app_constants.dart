@@ -17,4 +17,7 @@ class AppConstants {
   static const String english = 'English';
   static const String spanish = 'Español';
   static const String french = 'Français';
+
+  //about item number list
+  static const List<String> aboutItemNumberList = ['1.', '2.', '3.', '4.'];
 }

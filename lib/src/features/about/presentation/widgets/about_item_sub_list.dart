@@ -25,32 +25,40 @@ class AboutItemSubList extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 10),
-          child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: faqSubTitle.length,
-            itemBuilder: (context, index) => Row(
-              children: [
-                Container(
-                  height: 5,
-                  width: 5,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color:
-                        AppTheme.of(context).extension<DarkPallet>()!.dark900,
+          padding: const EdgeInsets.only(left: 16),
+          child: Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: faqSubTitle.length,
+              itemBuilder: (context, index) => Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 12),
+                    child: Container(
+                      height: 3,
+                      width: 3,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color:
+                            AppTheme.of(context).extension<DarkPallet>()!.dark900,
+                      ),
+                    ),
                   ),
-                ),
-                Gap(5),
-                Text(
-                  context.tr(
-                    faqSubTitle[index],
+                  Gap(7),
+                  Expanded(
+                    child: Text(
+                      context.tr(
+                        faqSubTitle[index],
+                      ),
+                      style: InterTextStyles.smallRegular.copyWith(
+                        color:
+                            AppTheme.of(context).extension<DarkPallet>()!.dark500,
+                      ),
+                    ),
                   ),
-                  style: InterTextStyles.smallRegular.copyWith(
-                    color:
-                        AppTheme.of(context).extension<DarkPallet>()!.dark600,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         )
