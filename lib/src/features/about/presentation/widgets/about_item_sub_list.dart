@@ -62,7 +62,7 @@ class AboutItemSubList extends StatelessWidget {
             ),
           ),
         )
-      ],
+      ,],
     );
   }
 }
