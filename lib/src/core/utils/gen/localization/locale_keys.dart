@@ -107,5 +107,18 @@ abstract class LocaleKeys {
   static const String how_is_pactus_different_from_bitcoin = 'how_is_pactus_different_from_bitcoin';
   static const String answer_how_is_pactus_different_from_bitcoin = 'answer_how_is_pactus_different_from_bitcoin';
   static const String how_is_pactus_different_from_ethereum = 'how_is_pactus_different_from_ethereum';
+  static const String committeeSize = 'committeeSize';
+  static const String committeePower = 'committeePower';
+  static const String numberOfValidators = 'numberOfValidators';
+  static const String totalPower = 'totalPower';
+  static const String label = 'label';
+  static const String address = 'address';
+  static const String committee = 'committee';
+  static const String score = 'score';
+  static const String stake = 'stake';
+  static const String submit = 'submit';
+  static const String noSeedGenerated = 'noSeedGenerated';
+  static const String generatedSeed = 'generatedSeed';
+  static const String startNode = 'startNode';
   static const String answer_how_is_pactus_different_from_ethereum = 'answer_how_is_pactus_different_from_ethereum';
 }

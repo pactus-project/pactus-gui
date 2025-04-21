@@ -1,18 +1,20 @@
+import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+
 enum DashboardCardType {
   committeeSize(
-    title: 'Committee Size',
+    title: LocaleKeys.committeeSize,
     asset: 'assets/icons/ic_committee_size.svg',
   ),
   numberOfValidators(
-    title: 'Number of Validators',
+    title:LocaleKeys.numberOfValidators,
     asset: 'assets/icons/ic_validators.svg',
   ),
   committeePower(
-    title: 'Committee Power',
+    title: LocaleKeys.committeePower,
     asset: 'assets/icons/ic_committee_power.svg',
   ),
   totalPower(
-    title: 'Total Power',
+    title: LocaleKeys.totalPower,
     asset: 'assets/icons/ic_total_power.svg',
   );
 

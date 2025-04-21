@@ -2,8 +2,10 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/common/widgets/shimmer_card_item.dart';
 import 'package:gui/src/core/enums/app_environment.dart';
+import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/dev_mode/presentation/bloc/directory_check_bloc.dart';
 import 'package:gui/src/features/dev_mode/presentation/widgets/environment_radio_option.dart';
+import 'package:gui/src/features/main/language/core/localization_extension.dart';
 
 class DirectoryCheckerBlocWidget extends StatelessWidget {
   const DirectoryCheckerBlocWidget({
@@ -26,7 +28,8 @@ class DirectoryCheckerBlocWidget extends StatelessWidget {
         }
 
         if (status.error != null) {
-          return Text('Error: ${status.error}');
+          return Text('${context.tr(LocaleKeys.error)}'
+              ': ${status.error}');
         }
 
         if (status.isReady != null) {

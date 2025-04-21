@@ -107,5 +107,18 @@
   "how_is_pactus_different_from_bitcoin": "¿En qué se diferencia Pactus de Bitcoin?",
   "answer_how_is_pactus_different_from_bitcoin": "Pactus y Bitcoin son dos tipos diferentes de redes blockchain. Mientras que Bitcoin utiliza un proceso llamado \"Prueba de Trabajo\" para asegurar su red, Pactus usa un método diferente llamado \"Prueba de Participación\". Esto significa que, en lugar de minar, los validadores son responsables de votar sobre los bloques entrantes y deben poseer una cierta cantidad de monedas de la red, conocida como \"participación\", como depósito de seguridad para prevenir comportamientos maliciosos.",
   "how_is_pactus_different_from_ethereum": "¿En qué se diferencia Pactus de Ethereum?",
+  "committeeSize": "Tamaño del Comité",
+  "committeePower": "Poder del Comité",
+  "numberOfValidators": "Número de Validadores",
+  "totalPower": "Poder Total",
+  "label": "Etiqueta",
+  "address": "Dirección",
+  "committee": "Comité",
+  "score": "Puntuación",
+  "stake": "Participación",
+  "submit": "Enviar",
+  "noSeedGenerated": "No se generaron palabras semilla.",
+  "generatedSeed": "Semilla Generada",
+  "startNode": "Iniciar Nodo",
   "answer_how_is_pactus_different_from_ethereum": "Pactus y Ethereum son ambas blockchains de Prueba de Participación, pero difieren en su enfoque para ejecutar un validador. Ejecutar un validador en Ethereum puede ser desafiante y requiere 32 monedas Ethereum para participar. En Pactus, no hay una cantidad fija para la participación. Pactus está diseñado específicamente para ser más accesible para usuarios normales, y puedes ejecutar la blockchain Pactus en tu computadora personal con hardware básico."
 }

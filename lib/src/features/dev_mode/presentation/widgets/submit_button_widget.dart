@@ -3,10 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/constants/cli_constants.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_manager_bloc.dart';
+import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/dev_mode/core/utils/create_node_dialog.dart';
 import 'package:gui/src/features/dev_mode/presentation/bloc/directory_check_bloc.dart';
 import 'package:gui/src/features/dev_mode/presentation/bloc/environment_selection_cubit.dart';
 import 'package:gui/src/features/dev_mode/presentation/bloc/environment_selection_state.dart';
+import 'package:gui/src/features/main/language/core/localization_extension.dart';
 
 class SubmitButtonWidget extends StatefulWidget {
   const SubmitButtonWidget({
@@ -26,7 +28,7 @@ class _SubmitButtonWidgetState extends State<SubmitButtonWidget> {
         builder: (context, state) {
           return FilledButton(
             onPressed: _isValidateForm() ? _showCreateNodeDialog : null,
-            child: const Text('Submit'),
+            child: Text(context.tr(LocaleKeys.submit)),
           );
         },
       ),
