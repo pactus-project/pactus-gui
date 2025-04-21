@@ -93,8 +93,8 @@ class RestorationSeedScreen extends StatelessWidget {
                     ],
                   ),
                   Positioned(
-                    top: 47,
-                    right: 47,
+                    top: 0,
+                    right: 0,
                     child:
                         BlocBuilder<DropdownCubit<SeedTypeEnum>, SeedTypeEnum>(
                       builder: (context, state) {

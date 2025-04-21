@@ -1,6 +1,10 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
+import 'package:gui/src/core/extensions/string_extensions.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:gui/src/features/generation_seed/core/constants/enums/seed_type_enum.dart';
+import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
@@ -38,11 +42,17 @@ class SeedNotesSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          context.tr(LocaleKeys.generation_seed_note1),
-          style: InterTextStyles.captionMedium.copyWith(
-            color: AppColors.primaryGray,
-          ),
+        BlocBuilder<DropdownCubit<SeedTypeEnum>, SeedTypeEnum>(
+          builder: (context, state) {
+            return Text(
+              context.tr(LocaleKeys.generation_seed_note1).replacePlaceholders([
+                '${state.qty}',
+              ]),
+              style: InterTextStyles.captionMedium.copyWith(
+                color: AppColors.primaryGray,
+              ),
+            );
+          },
         ),
         Text(
           context.tr(LocaleKeys.generation_seed_note2),

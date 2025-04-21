@@ -100,19 +100,20 @@ class DaemonCubit extends Cubit<DaemonState> {
         cliCommand.arguments,
         workingDirectory: _executableDir(),
       );
+      printDebug('process path: $process');
 
       // bypass password-less wallet cli and init node
-      if (cliCommand.command == './pactus-daemon' &&
-          cliCommand.arguments.first == 'init' &&
-          !cliCommand.arguments.contains(CliConstants.password)) {
-        // Writing password interactively
-        process.stdin.writeln();
-
-        Future.delayed(Duration(seconds: 2), () {
-          // Writing password interactively
-          process.stdin.writeln();
-        });
-      }
+      // if (cliCommand.command == './pactus-daemon' &&
+      //     cliCommand.arguments.first == 'init' &&
+      //     !cliCommand.arguments.contains(CliConstants.password)) {
+      //   // Writing password interactively
+      //   process.stdin.writeln();
+      //
+      //   Future.delayed(Duration(seconds: 2), () {
+      //     // Writing password interactively
+      //     process.stdin.writeln();
+      //   });
+      // }
 
       if (cliCommand.command == CliConstants.pactusWallet &&
           cliCommand.arguments[0] == CliConstants.password) {

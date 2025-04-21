@@ -47,7 +47,7 @@
   "your_journey_finalized_description_last": "Pactus isn#t just revolutionizing the structure of blockchain governance; it#s also remapping the user experience. Crafted with the conviction that blockchain should be accessible to all, the Pactus chain boasts a simple yet sophisticated graphical user interface (GUI) that demystifies the process of running a node. The elegance lies in its simplicity - a clear, approachable design that veils the robust and intricate mechanics beneath, allowing users, regardless of their technical prowess, to participate as validator clients. This move towards inclusivity transforms users from mere participants to guardians of the blockchain, an essential facet of the Pactus ecosystem.",
   "generation_seed_title": "Votre graine de génération de portefeuille",
   "generation_seed_description": "Commencez votre voyage cryptographique en toute confiance",
-  "generation_seed_note1": "Veuillez écrire ces 24 mots sur papier",
+  "generation_seed_note1": "Veuillez écrire ces ___ mots sur papier",
   "generation_seed_note2": "Cette graine vous permettra de récupérer votre portefeuille en cas de panne informatique",
   "warning": "AVERTISSEMENT",
   "generation_seed_warning1": "Ne divulguez jamais votre graine",

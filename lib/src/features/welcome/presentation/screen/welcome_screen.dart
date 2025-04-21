@@ -21,7 +21,6 @@ class WelcomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Gap(70),
               Image.asset(
                 Assets.images.welcomePic.path,
                 width: double.infinity,

@@ -1,5 +1,4 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_core.dart';
@@ -86,13 +85,17 @@ class CopyToClipboardButton extends StatelessWidget {
                 builder: (context) => ContentDialog(
                   title: Text(
                     context.tr(LocaleKeys.clipboard_dialog_title),
-                    style: InterTextStyles.bodyBold
-                        .copyWith(color: AppColors.primaryDark),
+                    style: InterTextStyles.bodyBold.copyWith(
+                      color:
+                          AppTheme.of(context).extension<DarkPallet>()!.dark900,
+                    ),
                   ),
                   content: Text(
                     context.tr(LocaleKeys.clipboard_dialog_content),
-                    style: InterTextStyles.captionMedium
-                        .copyWith(color: AppColors.primaryDark),
+                    style: InterTextStyles.captionMedium.copyWith(
+                      color:
+                          AppTheme.of(context).extension<DarkPallet>()!.dark700,
+                    ),
                   ),
                   actions: [
                     IntrinsicWidth(
