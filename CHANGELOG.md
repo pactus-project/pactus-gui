@@ -1,3 +1,7 @@
+# 1.53.0+56
+### [Fix]
+
+
 # 1.52.0+55
 ### [Fix] 
 - Fixed correctly switching between pane items in dashboard [#179](https://github.com/pactus-project/pactus-gui/pull/180)
