@@ -1,3 +1,20 @@
+# 1.52.0+55
+### [Fix] 
+- Fixed correctly switching between pane items in dashboard [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+- Fixed FAQ screen usage in dashboard feature  [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+- Removed extra space in welcome screen UI for better scrolling [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+- Fixed button width in unlock password feature [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+- Fixed 24/12 seed selection for password generation in contents [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+- Fixed colors of CopyToClipboardButton [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+- Disabled remote node feature in initializeMode [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+- Made changes in localization files [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+- Fixed color changes in ValidatorConfig feature  [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+- Fixed UI and color changes in ScreenHeaderWidget  [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+- Fixed init node command in windows OS [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+
+### [Update]
+- Changed location of seed combo-box in restoration seed screen [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+
 # 1.51.0+54
 ### [Feat]
 - Add infrastructure to receive node wallet/validator addresses [#158](https://github.com/pactus-project/pactus-gui/pull/177)
