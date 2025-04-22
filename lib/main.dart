@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter_app_info/flutter_app_info.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/app.dart';
 import 'package:gui/src/core/common/cubits/app_accent_color_cubit.dart';
@@ -10,7 +11,6 @@ import 'src/core/common/cubits/step_validation_cubit.dart';
 import 'src/core/utils/window_manager.dart';
 import 'src/features/main/language/presentation/bloc/language_bloc.dart';
 import 'src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
-import 'package:flutter_app_info/flutter_app_info.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
