@@ -39,7 +39,7 @@ void showFluentAlert(BuildContext context, String message) {
         ),
         action: Button(
           onPressed: close,
-          child: const Text('OK'),
+          child: Text(context.tr(LocaleKeys.ok)),
         ),
         severity: InfoBarSeverity.error,
       );

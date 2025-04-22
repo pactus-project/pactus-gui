@@ -107,5 +107,18 @@
   "how_is_pactus_different_from_bitcoin": "How is Pactus different from Bitcoin?",
   "answer_how_is_pactus_different_from_bitcoin": "Pactus and Bitcoin are two different types of blockchain networks. While Bitcoin uses a process called \"Proof of Work\" to secure its network, Pactus uses a different method called \"Proof of Stake\". This means that instead of mining, validators are responsible for voting on incoming blocks and must hold a certain amount of the network coin, known as \"stake\", as a security deposit to prevent malicious behavior.",
   "how_is_pactus_different_from_ethereum": "How is Pactus different from Ethereum?",
+  "committeeSize": "Committee Size",
+  "committeePower": "Committee Power",
+  "numberOfValidators": "Number Of Validators",
+  "totalPower": "Total Power",
+  "label": "Label",
+  "address": "Address",
+  "committee": "Committee",
+  "score": "Score",
+  "stake": "Stake",
+  "submit": "Submit",
+  "noSeedGenerated": "No seed words generated.",
+  "generatedSeed": "Generated Seed",
+  "startNode": "Start Node",
   "answer_how_is_pactus_different_from_ethereum": "Pactus and Ethereum are both Proof of Stake blockchains, but they differ in their approach to running a validator. Running a validator on Ethereum can be challenging and requires 32 Ethereum coins to stake. In Pactus, there is no fixed amount for staking. Pactus is specifically designed to be more accessible to normal users, and you can run the Pactus blockchain on your personal computer with basic hardware."
 }

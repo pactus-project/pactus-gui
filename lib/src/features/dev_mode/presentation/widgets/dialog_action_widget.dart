@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gui/src/core/enums/app_enums.dart';
 import 'package:gui/src/core/extensions/context_extensions.dart';
+import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class DialogActionWidget extends StatelessWidget {
@@ -30,7 +31,7 @@ class DialogActionWidget extends StatelessWidget {
           }),
         ),
         child: Text(
-          title,
+          context.tr(title),
           style: TextStyle(
             color:
                 AppTheme.of(context).extension<OnAccentPallet>()!.onAccentColor,

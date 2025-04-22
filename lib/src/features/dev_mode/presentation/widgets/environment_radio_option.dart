@@ -4,10 +4,12 @@ import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/constants/storage_keys.dart';
 import 'package:gui/src/core/enums/app_environment.dart';
 import 'package:gui/src/core/router/route_name.dart';
+import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/core/utils/storage_utils.dart';
 import 'package:gui/src/features/dev_mode/data/repositories/environment_repository.dart';
 import 'package:gui/src/features/dev_mode/presentation/bloc/environment_selection_cubit.dart';
 import 'package:gui/src/features/dev_mode/presentation/bloc/environment_selection_state.dart';
+import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class EnvironmentRadioOption extends StatelessWidget {
@@ -91,7 +93,7 @@ class EnvironmentRadioOption extends StatelessWidget {
                             spacing: 8,
                             children: [
                               Icon(FluentIcons.icon_sets_flag),
-                              Text('Start Node'),
+                              Text(context.tr(LocaleKeys.startNode)),
                             ],
                           ),
                         ),

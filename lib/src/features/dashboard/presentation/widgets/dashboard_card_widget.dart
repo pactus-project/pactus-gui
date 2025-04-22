@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gui/src/core/common/widgets/shimmer_card_item.dart';
 import 'package:gui/src/features/dashboard/core/enums/dashboard_card_type.dart';
 import 'package:gui/src/features/dashboard/sub_modules/blockchain_get_info/presentation/bloc/blockchain_get_info_bloc.dart';
+import 'package:gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class DashboardCardWidget extends StatelessWidget {
@@ -43,7 +44,7 @@ class DashboardCardWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  dashboardCardType.title,
+                  context.tr(dashboardCardType.title),
                   style: AppTheme.of(context).typography.body!.copyWith(
                         color: AppTheme.of(context)
                             .extension<DarkPallet>()!

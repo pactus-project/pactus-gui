@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/dashboard/presentation/widgets/addresses_card_header_item.dart';
 
 class AddressesCardHeader extends StatelessWidget {
@@ -11,15 +12,15 @@ class AddressesCardHeader extends StatelessWidget {
     return Row(
       spacing: 8,
       children: [
-        AddressesCardHeaderItem(label: 'Label', size: 120),
-        AddressesCardHeaderItem(label: 'Address', size: 284),
-        AddressesCardHeaderItem(label: 'Stake', size: 48),
+        AddressesCardHeaderItem(label: LocaleKeys.label, size: 120),
+        AddressesCardHeaderItem(label: LocaleKeys.address, size: 284),
+        AddressesCardHeaderItem(label:LocaleKeys.stake, size: 48),
         Expanded(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              AddressesCardHeaderItem(label: 'Committee', size: null),
-              AddressesCardHeaderItem(label: 'Score', size: null),
+              AddressesCardHeaderItem(label: LocaleKeys.committee, size: null),
+              AddressesCardHeaderItem(label: LocaleKeys.score, size: null),
             ],
           ),
         ),
