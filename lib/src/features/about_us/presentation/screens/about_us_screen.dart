@@ -1,5 +1,4 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:gui/src/core/constants/app_constants.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/about/presentation/widgets/about_item.dart';
 import 'package:gui/src/features/about/presentation/widgets/about_item_sub_list.dart';
@@ -34,7 +33,7 @@ class AboutUsScreen extends StatelessWidget {
               ),
             ),
             AboutItemSubList(
-              faqTitle: '${AppConstants.aboutItemNumberList.first} '
+              faqTitle: '1. '
                   '${context.tr(LocaleKeys.node_management)}',
               faqSubTitle: [
                 LocaleKeys.answer_first_node_management,
@@ -42,25 +41,41 @@ class AboutUsScreen extends StatelessWidget {
               ],
             ),
             AboutItemSubList(
-              faqTitle: '${AppConstants.aboutItemNumberList[1]} '
+              faqTitle: '2. '
                   '${context.tr(LocaleKeys.transaction_management)}',
               faqSubTitle: [
                 LocaleKeys.answer_transaction_management,
               ],
             ),
             AboutItemSubList(
-              faqTitle: '${AppConstants.aboutItemNumberList[2]} '
+              faqTitle: '3. '
                   '${context.tr(LocaleKeys.security_and_privacy)}',
               faqSubTitle: [
                 LocaleKeys.answer_security_and_privacy,
               ],
             ),
             AboutItemSubList(
-              faqTitle: '${AppConstants.aboutItemNumberList[3]} '
+              faqTitle: '4. '
                   '${context.tr(LocaleKeys.decentralization_and_accessibility)}'
                   '',
               faqSubTitle: [
                 LocaleKeys.answer_decentralization_and_accessibility,
+              ],
+            ),
+            AboutItemSubList(
+              faqTitle: '5. '
+                  '${context.tr(LocaleKeys.user_experience_enhancements)}'
+                  '',
+              faqSubTitle: [
+                LocaleKeys.answer_decentralization_and_accessibility,
+              ],
+            ),
+            AboutItemSubList(
+              faqTitle: '6. '
+                  '${context.tr(LocaleKeys.realtime_blockchain_monitoring)}'
+                  '',
+              faqSubTitle: [
+                LocaleKeys.answer_realtime_blockchain_monitoring,
               ],
             ),
           ],

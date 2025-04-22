@@ -160,4 +160,12 @@ abstract class LocaleKeys {
   static const String noSeedGenerated = 'noSeedGenerated';
   static const String generatedSeed = 'generatedSeed';
   static const String startNode = 'startNode';
+  static const String user_experience_enhancements =
+      'user_experience_enhancements';
+  static const String answer_user_experience_enhancements =
+      'answer_user_experience_enhancements';
+  static const String realtime_blockchain_monitoring =
+      'realtime_blockchain_monitoring';
+  static const String answer_realtime_blockchain_monitoring =
+      'answer_realtime_blockchain_monitoring';
 }
