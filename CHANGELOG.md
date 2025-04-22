@@ -1,3 +1,19 @@
+# 1.56.0+57
+
+### [Refactor]
+- Split dashboard code into smaller files for better maintainability [156](https://github.com/pactus-project/pactus-gui/pull/183)
+- Refactor and improve dashboard UI [156](https://github.com/pactus-project/pactus-gui/pull/183)
+- Refactor About Item To Showing Text Correctly And Responsive For Smaller Screen [156](https://github.com/pactus-project/pactus-gui/pull/183)
+
+### [Fix]
+- Fix analyze error [156](https://github.com/pactus-project/pactus-gui/pull/183)
+- Update contents in the about screen [156](https://github.com/pactus-project/pactus-gui/pull/183)
+
+### [Feat]
+- implementation all about text [156](https://github.com/pactus-project/pactus-gui/pull/183)
+- Add package info for show app version [156](https://github.com/pactus-project/pactus-gui/pull/183)
+- Update application icons for windows and macos [156](https://github.com/pactus-project/pactus-gui/pull/183)
+
 # 1.53.0+56
 ### [Fix]
 - Fixed navigation issues between dashboard panes [#178](https://github.com/pactus-project/pactus-gui/pull/182)

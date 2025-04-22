@@ -116,8 +116,8 @@ class _InitializeModeScreenState extends State<InitializeModeScreen> {
                               context.tr(LocaleKeys.initiate_your_node),
                               style: InterTextStyles.bodyBold.copyWith(
                                 color: AppTheme.of(context)
-                                    .extension<DarkPallet>()
-                                    !.dark700,
+                                    .extension<DarkPallet>()!
+                                    .dark700,
                               ),
                             ),
                             const Gap(8),
@@ -143,16 +143,16 @@ class _InitializeModeScreenState extends State<InitializeModeScreen> {
                               },
                             ),
                             const Gap(30),
-                            if(fullyDisabledFeature)
-                            BlocBuilder<RadioButtonCubit, int>(
-                              builder: (context, selectedValue) {
-                                return selectedValue == 2
-                                    ? RemoteNodeSection(
-                                        key: _remoteNodeSectionKey,
-                                      )
-                                    : const SizedBox();
-                              },
-                            ),
+                            if (fullyDisabledFeature)
+                              BlocBuilder<RadioButtonCubit, int>(
+                                builder: (context, selectedValue) {
+                                  return selectedValue == 2
+                                      ? RemoteNodeSection(
+                                          key: _remoteNodeSectionKey,
+                                        )
+                                      : const SizedBox();
+                                },
+                              ),
                           ],
                         ),
                       ),

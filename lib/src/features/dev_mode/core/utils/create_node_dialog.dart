@@ -110,7 +110,7 @@ void createNodeDialog({
         actions: [
           DialogActionWidget(
             dialogType: DialogType.normal,
-            title:LocaleKeys.ok ,
+            title: LocaleKeys.ok,
             callToAction: () {
               Navigator.pop(context);
             },

@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter_app_info/flutter_app_info.dart';
 import 'package:gap/gap.dart' show Gap;
 import 'package:gui/src/core/common/widgets/accent_color_picker_widget.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
@@ -13,7 +14,7 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 53, left: 32),
+      padding: EdgeInsets.only(top: 53, left: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -44,6 +45,15 @@ class SettingsScreen extends StatelessWidget {
               ),
               ComboBoxLanguageSelector(),
             ],
+          ),
+          Gap(24),
+          Text(
+            '${context.tr(LocaleKeys.current_application_version)}'
+            ' : '
+            '${AppInfo.of(context).package.version}',
+            style: FluentTheme.of(context).typography.body?.copyWith(
+                  color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
+                ),
           ),
         ],
       ),

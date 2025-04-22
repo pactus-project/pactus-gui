@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter_app_info/flutter_app_info.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/app.dart';
 import 'package:gui/src/core/common/cubits/app_accent_color_cubit.dart';
@@ -18,31 +19,34 @@ Future<void> main() async {
   await windowsManager();
 
   runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider<AppAccentColorCubit>(
-          create: (_) => AppAccentColorCubit(),
-        ),
-        BlocProvider<LanguageBloc>(
-          create: (_) => LanguageBloc(),
-        ),
-        BlocProvider<AppThemeCubit>(
-          create: (_) => AppThemeCubit(),
-        ),
-        BlocProvider<NavigationPaneCubit>(
-          create: (_) => NavigationPaneCubit(),
-        ),
-        BlocProvider<RadioButtonCubit>(
-          create: (_) => RadioButtonCubit(),
-        ),
-        BlocProvider<DaemonCubit>(
-          create: (_) => DaemonCubit(),
-        ),
-        BlocProvider<StepValidationCubit>(
-          create: (_) => StepValidationCubit(),
-        ),
-      ],
-      child: PactusGuiApp(),
+    AppInfo(
+      data: await AppInfoData.get(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<AppAccentColorCubit>(
+            create: (_) => AppAccentColorCubit(),
+          ),
+          BlocProvider<LanguageBloc>(
+            create: (_) => LanguageBloc(),
+          ),
+          BlocProvider<AppThemeCubit>(
+            create: (_) => AppThemeCubit(),
+          ),
+          BlocProvider<NavigationPaneCubit>(
+            create: (_) => NavigationPaneCubit(),
+          ),
+          BlocProvider<RadioButtonCubit>(
+            create: (_) => RadioButtonCubit(),
+          ),
+          BlocProvider<DaemonCubit>(
+            create: (_) => DaemonCubit(),
+          ),
+          BlocProvider<StepValidationCubit>(
+            create: (_) => StepValidationCubit(),
+          ),
+        ],
+        child: PactusGuiApp(),
+      ),
     ),
   );
 }

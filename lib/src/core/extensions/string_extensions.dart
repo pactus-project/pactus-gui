@@ -17,9 +17,8 @@ extension UltraFastReplacementExtension on String {
     // Verify counts match by counting placeholders
     final placeholderCount = RegExp(r'___').allMatches(this).length;
     if (placeholderCount != replacements.length) {
-      throw ArgumentError(
-          'Expected ${replacements.length} replacements, found'
-              ' $placeholderCount placeholders');
+      throw ArgumentError('Expected ${replacements.length} replacements, found'
+          ' $placeholderCount placeholders');
     }
 
     // Create an iterator for replacements

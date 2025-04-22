@@ -14,7 +14,7 @@ class AddressesCardHeader extends StatelessWidget {
       children: [
         AddressesCardHeaderItem(label: LocaleKeys.label, size: 120),
         AddressesCardHeaderItem(label: LocaleKeys.address, size: 284),
-        AddressesCardHeaderItem(label:LocaleKeys.stake, size: 48),
+        AddressesCardHeaderItem(label: LocaleKeys.stake, size: 48),
         Expanded(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

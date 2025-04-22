@@ -1,5 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app_info/flutter_app_info.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -113,6 +114,17 @@ class SplashScreen extends StatelessWidget {
                               ),
                         ),
                       ],
+                    ),
+                  ),
+                  Align(
+                    alignment: AlignmentDirectional.bottomCenter,
+                    child: Text(
+                      '${AppInfo.of(context).package.version}',
+                      style: FluentTheme.of(context).typography.title?.copyWith(
+                            color: AppTheme.of(context)
+                                .extension<DarkPallet>()!
+                                .dark900,
+                          ),
                     ),
                   ),
                 ],

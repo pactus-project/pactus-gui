@@ -57,13 +57,13 @@ class RadioButtonGroup extends StatelessWidget {
           onChanged: onChanged,
           label: LocaleKeys.restore_local_node_from_seed_pharse,
         ),
-        if(fullyDisabledFeature)
-        CustomRadioButton(
-          value: 2,
-          groupValue: selectedValue,
-          onChanged: onChanged,
-          label: LocaleKeys.connect_to_remote_node,
-        ),
+        if (fullyDisabledFeature)
+          CustomRadioButton(
+            value: 2,
+            groupValue: selectedValue,
+            onChanged: onChanged,
+            label: LocaleKeys.connect_to_remote_node,
+          ),
       ],
     );
   }
