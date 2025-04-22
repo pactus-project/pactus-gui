@@ -1,5 +1,20 @@
 # 1.53.0+56
 ### [Fix]
+- Fixed navigation issues between dashboard panes [#178](https://github.com/pactus-project/pactus-gui/pull/182)
+- Resolved rendering issues in the FAQ section of the dashboard [#178](https://github.com/pactus-project/pactus-gui/pull/182)
+- Eliminated unnecessary padding in the welcome screen for smoother scrolling [#178](https://github.com/pactus-project/pactus-gui/pull/182)
+- Adjusted button sizing in the unlock password interface [#178](https://github.com/pactus-project/pactus-gui/pull/182)
+- Corrected seed selection logic for 24/12 seed password generation [#178](https://github.com/pactus-project/pactus-gui/pull/182)
+- Updated color scheme for CopyToClipboardButton [#178](https://github.com/pactus-project/pactus-gui/pull/182)
+- Deactivated remote node functionality in initializeMode [#178](https://github.com/pactus-project/pactus-gui/pull/182)
+- Applied updates to localization files [#178](https://github.com/pactus-project/pactus-gui/pull/182)
+- Modified color settings in ValidatorConfig feature [#178](https://github.com/pactus-project/pactus-gui/pull/182)
+- Enhanced UI and color consistency in ScreenHeaderWidget [#178](https://github.com/pactus-project/pactus-gui/pull/182)
+- Fixed node initialization command for Windows compatibility [#178](https://github.com/pactus-project/pactus-gui/pull/182)
+- Updated various localization texts #181
+
+### [Update]
+- Repositioned seed combo-box in the restoration seed interface [#178](https://github.com/pactus-project/pactus-gui/pull/182)
 
 
 # 1.52.0+55
