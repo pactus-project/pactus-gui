@@ -10,6 +10,7 @@ import 'src/core/common/cubits/step_validation_cubit.dart';
 import 'src/core/utils/window_manager.dart';
 import 'src/features/main/language/presentation/bloc/language_bloc.dart';
 import 'src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
+import 'package:flutter_app_info/flutter_app_info.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,31 +19,34 @@ Future<void> main() async {
   await windowsManager();
 
   runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider<AppAccentColorCubit>(
-          create: (_) => AppAccentColorCubit(),
-        ),
-        BlocProvider<LanguageBloc>(
-          create: (_) => LanguageBloc(),
-        ),
-        BlocProvider<AppThemeCubit>(
-          create: (_) => AppThemeCubit(),
-        ),
-        BlocProvider<NavigationPaneCubit>(
-          create: (_) => NavigationPaneCubit(),
-        ),
-        BlocProvider<RadioButtonCubit>(
-          create: (_) => RadioButtonCubit(),
-        ),
-        BlocProvider<DaemonCubit>(
-          create: (_) => DaemonCubit(),
-        ),
-        BlocProvider<StepValidationCubit>(
-          create: (_) => StepValidationCubit(),
-        ),
-      ],
-      child: PactusGuiApp(),
+    AppInfo(
+      data: await AppInfoData.get(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<AppAccentColorCubit>(
+            create: (_) => AppAccentColorCubit(),
+          ),
+          BlocProvider<LanguageBloc>(
+            create: (_) => LanguageBloc(),
+          ),
+          BlocProvider<AppThemeCubit>(
+            create: (_) => AppThemeCubit(),
+          ),
+          BlocProvider<NavigationPaneCubit>(
+            create: (_) => NavigationPaneCubit(),
+          ),
+          BlocProvider<RadioButtonCubit>(
+            create: (_) => RadioButtonCubit(),
+          ),
+          BlocProvider<DaemonCubit>(
+            create: (_) => DaemonCubit(),
+          ),
+          BlocProvider<StepValidationCubit>(
+            create: (_) => StepValidationCubit(),
+          ),
+        ],
+        child: PactusGuiApp(),
+      ),
     ),
   );
 }
