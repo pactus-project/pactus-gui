@@ -1,23 +1,20 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter/material.dart' as material;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gui/src/core/common/widgets/app_layout.dart';
-import 'package:gui/src/core/constants/app_constants.dart';
-import 'package:gui/src/core/enums/language_enum.dart';
 import 'package:gui/src/core/extensions/context_extensions.dart';
-import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
-import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/data/models/fluent_navigation_state_model.dart';
-import 'package:gui/src/features/about/presentation/sections/about_section.dart';
-import 'package:gui/src/features/blockchain_get_info/presentation/pages/blockchain_info_section.dart';
-import 'package:gui/src/features/faq/presentation/sections/faq_section.dart';
-import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
+import 'package:gui/src/features/about_us/presentation/screens/about_us_screen.dart';
+import 'package:gui/src/features/dashboard/core/enums/pane_item_type.dart';
+import 'package:gui/src/features/dashboard/presentation/screen/dashboard_home_screen.dart';
+import 'package:gui/src/features/dashboard/presentation/widgets/icon_pane_item.dart';
+import 'package:gui/src/features/dashboard/presentation/widgets/menu_button.dart';
+import 'package:gui/src/features/faq/presentation/screen/faq_screen.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
-import 'package:gui/src/features/main/language/presentation/bloc/language_bloc.dart';
 import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
-import 'package:gui/src/features/settings/presentation/sections/settings_section.dart';
-import 'package:pactus_gui_widgetbook/app_styles.dart';
+import 'package:gui/src/features/node_logs/presentation/screens/node_logs_screen.dart';
+import 'package:gui/src/features/settings/presentation/screens/settings_screen.dart';
+import 'package:gui/src/features/transactions/presentation/screens/transactions_screen.dart';
+import 'package:gui/src/features/wallet/presentation/screens/wallet_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -25,7 +22,7 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NavigationPaneCubit, NavigationState>(
-      builder: (context, selectedIndex) {
+      builder: (context, state) {
         return AppLayout(
           isDashboard: true,
           content: NavigationView(
@@ -33,201 +30,120 @@ class DashboardScreen extends StatelessWidget {
               displayMode: context.read<NavigationPaneCubit>().state.isMenuOpen
                   ? PaneDisplayMode.open
                   : PaneDisplayMode.compact,
-              menuButton: Padding(
-                padding: const EdgeInsetsDirectional.only(start: 8),
-                child: HoverButton(
-                  cursor: SystemMouseCursors.click,
-                  onPressed: () {
-                    context.read<NavigationPaneCubit>().toggleMenu();
-                  },
-                  builder: (context, states) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Icon(material.Icons.menu),
-                    );
-                  },
-                ),
-              ),
+              menuButton: MenuButton(),
               size:
                   const NavigationPaneSize(openMaxWidth: 209, compactWidth: 52),
-              selected: selectedIndex.selectedIndex,
+              selected: state.selectedIndex,
               onChanged: (index) {
                 context.read<NavigationPaneCubit>().setSelectedIndex(index);
               },
               footerItems: [
                 PaneItem(
-                  icon: SvgPicture.asset(
-                    Assets.icons.icSettings,
-                    colorFilter: ColorFilter.mode(
-                      context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex.selectedIndex == 4,
-                      ),
-                      BlendMode.srcIn,
-                    ),
+                  icon: IconPaneItem(
+                    type: PaneItemType.settings,
                   ),
                   title: Text(
-                    context.tr(LocaleKeys.settings),
+                    context.tr(PaneItemType.settings.name),
                     style: TextStyle(
                       color: context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex.selectedIndex == 4,
+                        isEnabledTextStyle:
+                            PaneItemType.settings.id == state.selectedIndex,
                       ),
                     ),
                   ),
-                  body: Builder(
-                    builder: (context) {
-                      final currentLanguage = context
-                          .read<LanguageBloc>()
-                          .state
-                          .selectedLanguage!
-                          .name;
-                      final selected = switch (currentLanguage) {
-                        AppConstants.english => LanguageEnum.english,
-                        AppConstants.french => LanguageEnum.french,
-                        _ => LanguageEnum.spanish,
-                      };
-
-                      return BlocProvider(
-                        create: (context) =>
-                            DropdownCubit<LanguageEnum>(selected),
-                        child: SettingsSection(),
-                      );
-                    },
-                  ),
+                  body: SettingsScreen(),
                 ),
                 PaneItem(
-                  icon: SvgPicture.asset(
-                    Assets.icons.icFaqs,
-                    colorFilter: ColorFilter.mode(
-                      context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex.selectedIndex == 5,
-                      ),
-                      BlendMode.srcIn,
-                    ),
+                  icon: IconPaneItem(
+                    type: PaneItemType.faqs,
                   ),
                   title: Text(
-                    context.tr(LocaleKeys.faqs),
+                    context.tr(PaneItemType.faqs.name),
                     style: TextStyle(
                       color: context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex.selectedIndex == 5,
+                        isEnabledTextStyle:
+                            PaneItemType.faqs.id == state.selectedIndex,
                       ),
                     ),
                   ),
-                  body: FaqSection(),
+                  body: FaqScreen(),
                 ),
                 PaneItem(
-                  icon: SvgPicture.asset(
-                    Assets.icons.icAboutUs,
-                    colorFilter: ColorFilter.mode(
-                      context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex.selectedIndex == 6,
-                      ),
-                      BlendMode.srcIn,
-                    ),
+                  icon: IconPaneItem(
+                    type: PaneItemType.about,
                   ),
                   title: Text(
-                    context.tr(LocaleKeys.about),
+                    context.tr(PaneItemType.about.name),
                     style: TextStyle(
                       color: context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex.selectedIndex == 6,
+                        isEnabledTextStyle:
+                            PaneItemType.about.id == state.selectedIndex,
                       ),
                     ),
                   ),
-                  body: AboutSection()
-                ,),
+                  body: AboutUsScreen(),
+                ),
               ],
               items: [
                 PaneItem(
-                  icon: SvgPicture.asset(
-                    Assets.icons.icDashboard,
-                    colorFilter: ColorFilter.mode(
-                      context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex.selectedIndex == 0,
-                      ),
-                      BlendMode.srcIn,
-                    ),
+                  icon: IconPaneItem(
+                    type: PaneItemType.home,
                   ),
                   title: Text(
-                    context.tr(LocaleKeys.dashboard),
+                    context.tr(PaneItemType.home.name),
                     style: TextStyle(
                       color: context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex.selectedIndex == 0,
+                        isEnabledTextStyle:
+                            PaneItemType.home.id == state.selectedIndex,
                       ),
                     ),
                   ),
-                  body: BlockchainInfoSection(),
+                  body: DashboardHomeScreen(),
                 ),
                 PaneItem(
-                  icon: SvgPicture.asset(
-                    Assets.icons.icTransaction,
-                    colorFilter: ColorFilter.mode(
-                      context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex.selectedIndex == 1,
-                      ),
-                      BlendMode.srcIn,
-                    ),
+                  icon: IconPaneItem(
+                    type: PaneItemType.transaction,
                   ),
                   title: Text(
-                    context.tr(LocaleKeys.transaction),
+                    context.tr(PaneItemType.transaction.name),
                     style: TextStyle(
                       color: context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex.selectedIndex == 1,
+                        isEnabledTextStyle:
+                            PaneItemType.transaction.id == state.selectedIndex,
                       ),
                     ),
                   ),
-                  body: Container(
-                    color:
-                        AppTheme.of(context).extension<PinkPallet>()!.pink600,
-                    width: double.infinity,
-                  ),
+                  body: TransactionsScreen(),
                 ),
                 PaneItem(
-                  icon: SvgPicture.asset(
-                    Assets.icons.icWallet,
-                    colorFilter: ColorFilter.mode(
-                      context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex.selectedIndex == 2,
-                      ),
-                      BlendMode.srcIn,
-                    ),
+                  icon: IconPaneItem(
+                    type: PaneItemType.wallet,
                   ),
                   title: Text(
-                    context.tr(LocaleKeys.wallet),
+                    context.tr(PaneItemType.wallet.name),
                     style: TextStyle(
                       color: context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex.selectedIndex == 2,
+                        isEnabledTextStyle:
+                            PaneItemType.wallet.id == state.selectedIndex,
                       ),
                     ),
                   ),
-                  body: Container(
-                    color: AppTheme.of(context)
-                        .extension<YellowPallet>()!
-                        .yellow700,
-                    width: double.infinity,
-                  ),
+                  body: WalletScreen(),
                 ),
                 PaneItem(
-                  icon: SvgPicture.asset(
-                    Assets.icons.icNodeLogs,
-                    colorFilter: ColorFilter.mode(
-                      context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex.selectedIndex == 3,
-                      ),
-                      BlendMode.srcIn,
-                    ),
+                  icon: IconPaneItem(
+                    type: PaneItemType.nodeLogs,
                   ),
                   title: Text(
-                    context.tr(LocaleKeys.node_logs),
+                    context.tr(PaneItemType.nodeLogs.name),
                     style: TextStyle(
                       color: context.detectPaneTextColor(
-                        isEnabledTextStyle: selectedIndex.selectedIndex == 3,
+                        isEnabledTextStyle:
+                            PaneItemType.nodeLogs.id == state.selectedIndex,
                       ),
                     ),
                   ),
-                  body: Container(
-                    color:
-                        AppTheme.of(context).extension<BluePallet>()!.blue700,
-                    width: double.infinity,
-                  ),
+                  body: NodeLogsScreen(),
                 ),
               ],
             ),

@@ -160,7 +160,7 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                           },
                           builder: (ctxBuilder, state) {
                             return SizedBox(
-                              width: 100,
+                              width: 120,
                               child: FilledButton(
                                 onPressed: password.isNotEmpty
                                     ? () {

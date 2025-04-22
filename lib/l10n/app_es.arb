@@ -47,7 +47,7 @@
   "your_journey_finalized_description_last": "Pactus no solo está revolucionando la estructura de la gobernanza blockchain; también está redefiniendo la experiencia del usuario. Diseñado con la convicción de que blockchain debería ser accesible para todos, la cadena Pactus cuenta con una interfaz gráfica de usuario (GUI) simple pero sofisticada que desmitifica el proceso de ejecución de un nodo. La elegancia radica en su simplicidad: un diseño claro y accesible que oculta la mecánica robusta y compleja debajo, permitiendo a los usuarios, independientemente de su destreza técnica, participar como clientes validadores. Este movimiento hacia la inclusión transforma a los usuarios de meros participantes en guardianes de la blockchain, un aspecto esencial del ecosistema Pactus.",
   "generation_seed_title": "Tu semilla de generación de billetera",
   "generation_seed_description": "Inicia tu viaje criptográfico con confianza",
-  "generation_seed_note1": "Por favor escribe estas 24 palabras en papel",
+  "generation_seed_note1": "Por favor escribe estas ___ palabras en papel",
   "generation_seed_note2": "Esta semilla te permitirá recuperar tu billetera en caso de falla de la computadora",
   "warning": "ADVERTENCIA",
   "generation_seed_warning1": "Nunca reveles tu semilla",
@@ -119,6 +119,19 @@
   "security_and_privacy": "Seguridad y Privacidad",
   "answer_security_and_privacy": "Pactus GUI integra medidas de seguridad mejoradas para garantizar la protección de los datos de los usuarios y el procesamiento seguro de transacciones. Con la última actualización, Pactus ha mejorado las funciones de firewall para validar mensajes entrantes y detectar intentos maliciosos, asegurando un entorno seguro para que los usuarios interactúen con la blockchain. La arquitectura del sistema y las características de seguridad se revisan constantemente para alinearse con los últimos protocolos de seguridad de blockchain.",
   "decentralization_and_accessibility": "Descentralización y Accesibilidad",
-  "answer_decentralization_and_accessibility": "Como una blockchain que prioriza la descentralización, Pactus elimina el control centralizado, permitiendo a los usuarios participar sin intermediarios. La GUI promueve aún más este principio al ofrecer un medio accesible para convertirse en validador en la red. Los usuarios que apuestan monedas PAC en sus nodos obtienen privilegios de validador, participan en la creación de bloques y ganan recompensas, todo a través de la intuitiva GUI. Esto democratiza el acceso al ecosistema de Pactus, haciendo posible la participación en la blockchain para aquellos sin conocimientos técnicos especializados."
-
+  "answer_decentralization_and_accessibility": "Como una blockchain que prioriza la descentralización, Pactus elimina el control centralizado, permitiendo a los usuarios participar sin intermediarios. La GUI promueve aún más este principio al ofrecer un medio accesible para convertirse en validador en la red. Los usuarios que apuestan monedas PAC en sus nodos obtienen privilegios de validador, participan en la creación de bloques y ganan recompensas, todo a través de la intuitiva GUI. Esto democratiza el acceso al ecosistema de Pactus, haciendo posible la participación en la blockchain para aquellos sin conocimientos técnicos especializados.",
+  "committee_size": "Tamaño del Comité",
+  "committee_power": "Poder del Comité",
+  "number_of_validators": "Número de Validadores",
+  "total_power": "Poder Total",
+  "label": "Etiqueta",
+  "address": "Dirección",
+  "committee": "Comité",
+  "score": "Puntuación",
+  "stake": "Participación",
+  "submit": "Enviar",
+  "noSeedGenerated": "No se generaron palabras semilla.",
+  "generatedSeed": "Semilla Generada",
+  "startNode": "Iniciar Nodo",
+  "answer_how_is_pactus_different_from_ethereum": "Pactus y Ethereum son ambas blockchains de Prueba de Participación, pero difieren en su enfoque para ejecutar un validador. Ejecutar un validador en Ethereum puede ser desafiante y requiere 32 monedas Ethereum para participar. En Pactus, no hay una cantidad fija para la participación. Pactus está diseñado específicamente para ser más accesible para usuarios normales, y puedes ejecutar la blockchain Pactus en tu computadora personal con hardware básico."
 }

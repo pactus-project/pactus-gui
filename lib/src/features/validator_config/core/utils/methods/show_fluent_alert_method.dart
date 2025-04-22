@@ -1,7 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 /// ## [showFluentAlert] Function Documentation
 ///
@@ -27,15 +27,19 @@ void showFluentAlert(BuildContext context, String message) {
       return InfoBar(
         title: Text(
           context.tr(LocaleKeys.error),
-          style: TextStyle(color: AppColors.primaryDark),
+          style: TextStyle(
+            color: AppTheme.of(context).extension<RedPallet>()!.red700,
+          ),
         ),
         content: Text(
           message,
-          style: TextStyle(color: AppColors.primaryDark),
+          style: TextStyle(
+            color: AppTheme.of(context).extension<RedPallet>()!.red700,
+          ),
         ),
         action: Button(
           onPressed: close,
-          child: const Text('OK'),
+          child: Text(context.tr(LocaleKeys.ok)),
         ),
         severity: InfoBarSeverity.error,
       );

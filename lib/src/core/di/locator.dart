@@ -1,11 +1,11 @@
 import 'package:get_it/get_it.dart';
 import 'package:grpc/grpc.dart';
 import 'package:gui/src/data/models/node_details.dart';
-import 'package:gui/src/features/blockchain_get_info/data/data_sources/blockchain_remote_data_source.dart';
-import 'package:gui/src/features/blockchain_get_info/data/repositories/blockchain_repository_impl.dart';
-import 'package:gui/src/features/blockchain_get_info/data/services/blockchain_service.dart';
-import 'package:gui/src/features/blockchain_get_info/domain/repositories/blockchain_repository.dart';
-import 'package:gui/src/features/blockchain_get_info/domain/use_cases/get_blockchain_info_use_case.dart';
+import 'package:gui/src/features/dashboard/sub_modules/blockchain_get_info/data/data_sources/blockchain_remote_data_source.dart';
+import 'package:gui/src/features/dashboard/sub_modules/blockchain_get_info/data/repositories/blockchain_repository_impl.dart';
+import 'package:gui/src/features/dashboard/sub_modules/blockchain_get_info/data/services/blockchain_service.dart';
+import 'package:gui/src/features/dashboard/sub_modules/blockchain_get_info/domain/repositories/blockchain_repository.dart';
+import 'package:gui/src/features/dashboard/sub_modules/blockchain_get_info/domain/use_cases/get_blockchain_info_use_case.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final getIt = GetIt.instance;

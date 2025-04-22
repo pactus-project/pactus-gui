@@ -2,6 +2,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gui/src/core/enums/app_enums.dart';
 import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_manager_bloc.dart';
+import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/features/dev_mode/presentation/widgets/dialog_action_widget.dart';
 import 'package:gui/src/features/dev_mode/presentation/widgets/dialog_content_widget.dart';
 import 'package:gui/src/features/dev_mode/presentation/widgets/dialog_title_widget.dart';
@@ -104,7 +105,7 @@ class GenerateSeedAndSetPasswordSection extends StatelessWidget {
               actions: [
                 DialogActionWidget(
                   dialogType: DialogType.normal,
-                  title: 'Ok',
+                  title: LocaleKeys.ok,
                   callToAction: () {
                     Navigator.pop(context);
                   },

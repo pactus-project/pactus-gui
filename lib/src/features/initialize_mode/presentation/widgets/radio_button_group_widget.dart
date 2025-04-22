@@ -1,5 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gui/src/core/common/widgets/custom_radio_button.dart';
+import 'package:gui/src/core/constants/feature_flag.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 
 /// ## [RadioButtonGroup] Class Documentation
@@ -56,12 +57,13 @@ class RadioButtonGroup extends StatelessWidget {
           onChanged: onChanged,
           label: LocaleKeys.restore_local_node_from_seed_pharse,
         ),
-        CustomRadioButton(
-          value: 2,
-          groupValue: selectedValue,
-          onChanged: onChanged,
-          label: LocaleKeys.connect_to_remote_node,
-        ),
+        if (fullyDisabledFeature)
+          CustomRadioButton(
+            value: 2,
+            groupValue: selectedValue,
+            onChanged: onChanged,
+            label: LocaleKeys.connect_to_remote_node,
+          ),
       ],
     );
   }

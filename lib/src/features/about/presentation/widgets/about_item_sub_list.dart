@@ -40,8 +40,9 @@ class AboutItemSubList extends StatelessWidget {
                       width: 3,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color:
-                            AppTheme.of(context).extension<DarkPallet>()!.dark900,
+                        color: AppTheme.of(context)
+                            .extension<DarkPallet>()!
+                            .dark900,
                       ),
                     ),
                   ),
@@ -52,8 +53,9 @@ class AboutItemSubList extends StatelessWidget {
                         faqSubTitle[index],
                       ),
                       style: InterTextStyles.smallRegular.copyWith(
-                        color:
-                            AppTheme.of(context).extension<DarkPallet>()!.dark500,
+                        color: AppTheme.of(context)
+                            .extension<DarkPallet>()!
+                            .dark500,
                       ),
                     ),
                   ),
@@ -61,8 +63,8 @@ class AboutItemSubList extends StatelessWidget {
               ),
             ),
           ),
-        )
-      ,],
+        ),
+      ],
     );
   }
 }

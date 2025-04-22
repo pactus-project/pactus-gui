@@ -4,7 +4,11 @@ import 'package:pactus_gui_widgetbook/app_styles.dart'
     show AppTheme, DarkPallet, InterTextStyles;
 
 class AboutItem extends StatelessWidget {
-  const AboutItem({super.key, required this.faqTitle, required this.faqSubTitle});
+  const AboutItem({
+    super.key,
+    required this.faqTitle,
+    required this.faqSubTitle,
+  });
   final String faqTitle;
   final String faqSubTitle;
   @override

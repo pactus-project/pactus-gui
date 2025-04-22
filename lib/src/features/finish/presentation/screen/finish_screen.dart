@@ -102,7 +102,8 @@ class _FinishScreenState extends State<FinishScreen> {
                               NodeListenerHandler.handleState(
                                 context: ctxListener,
                                 state: state,
-                                password: NodeConfigData.instance.password,
+                                password:
+                                    NodeConfigData.instance.password ?? 'null',
                               );
                             },
                             builder: (ctxBuilder, state) {
@@ -119,7 +120,8 @@ class _FinishScreenState extends State<FinishScreen> {
                                             NodeConfigData
                                                 .instance.workingDirectory,
                                             CliConstants.passwordArgument,
-                                            NodeConfigData.instance.password,
+                                            NodeConfigData.instance.password ??
+                                                'null',
                                           ],
                                         ),
                                       );

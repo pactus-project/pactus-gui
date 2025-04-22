@@ -70,8 +70,10 @@ class GenerationSeedScreen extends StatelessWidget {
                             }
 
                             if (seedWords!.isEmpty) {
-                              return const Center(
-                                child: Text('No seed words generated.'),
+                              return Center(
+                                child: Text(
+                                  context.tr(LocaleKeys.noSeedGenerated),
+                                ),
                               );
                             }
                             context.read<StepValidationCubit>().setStepValid(

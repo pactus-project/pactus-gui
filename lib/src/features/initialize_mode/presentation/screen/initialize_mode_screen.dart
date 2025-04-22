@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gui/src/core/common/colors/app_colors.dart';
 import 'package:gui/src/core/common/widgets/app_layout.dart';
+import 'package:gui/src/core/constants/feature_flag.dart';
 import 'package:gui/src/core/router/route_name.dart';
 import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:gui/src/data/models/fluent_navigation_state_model.dart';
@@ -114,7 +115,9 @@ class _InitializeModeScreenState extends State<InitializeModeScreen> {
                             Text(
                               context.tr(LocaleKeys.initiate_your_node),
                               style: InterTextStyles.bodyBold.copyWith(
-                                color: AppColors.primaryDark,
+                                color: AppTheme.of(context)
+                                    .extension<DarkPallet>()!
+                                    .dark700,
                               ),
                             ),
                             const Gap(8),
@@ -140,15 +143,16 @@ class _InitializeModeScreenState extends State<InitializeModeScreen> {
                               },
                             ),
                             const Gap(30),
-                            BlocBuilder<RadioButtonCubit, int>(
-                              builder: (context, selectedValue) {
-                                return selectedValue == 2
-                                    ? RemoteNodeSection(
-                                        key: _remoteNodeSectionKey,
-                                      )
-                                    : const SizedBox();
-                              },
-                            ),
+                            if (fullyDisabledFeature)
+                              BlocBuilder<RadioButtonCubit, int>(
+                                builder: (context, selectedValue) {
+                                  return selectedValue == 2
+                                      ? RemoteNodeSection(
+                                          key: _remoteNodeSectionKey,
+                                        )
+                                      : const SizedBox();
+                                },
+                              ),
                           ],
                         ),
                       ),
