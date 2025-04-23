@@ -12,11 +12,11 @@ class AboutItemSubList extends StatelessWidget {
   });
   final String faqTitle;
   final List<String> faqSubTitle;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: 6,
       children: [
         Text(
           context.tr(faqTitle),
@@ -26,32 +26,30 @@ class AboutItemSubList extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.only(left: 16),
-          child: Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: faqSubTitle.length,
-              itemBuilder: (context, index) => Row(
+          child: ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(), // Disable scrolling
+            itemCount: faqSubTitle.length,
+            itemBuilder: (context, index) => Padding(
+              padding: const EdgeInsets.only(top: 12),
+              child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 12),
-                    child: Container(
-                      height: 3,
-                      width: 3,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppTheme.of(context)
-                            .extension<DarkPallet>()!
-                            .dark900,
-                      ),
+                  Container(
+                    height: 3,
+                    width: 3,
+                    margin: const EdgeInsets.only(top: 6), // Adjust alignment
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppTheme.of(context)
+                          .extension<DarkPallet>()!
+                          .dark900,
                     ),
                   ),
-                  Gap(7),
+                  const Gap(7),
                   Expanded(
                     child: Text(
-                      context.tr(
-                        faqSubTitle[index],
-                      ),
+                      context.tr(faqSubTitle[index]),
                       style: InterTextStyles.smallRegular.copyWith(
                         color: AppTheme.of(context)
                             .extension<DarkPallet>()!
