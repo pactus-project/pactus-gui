@@ -106,8 +106,8 @@ class GenerationSeedScreen extends StatelessWidget {
                       ],
                     ),
                     Positioned(
-                      top: 60,
-                      right: 47,
+                      top: 0,
+                      right: 0,
                       child: BlocBuilder<DropdownCubit<SeedTypeEnum>,
                           SeedTypeEnum>(
                         builder: (context, state) {

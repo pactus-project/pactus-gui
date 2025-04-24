@@ -170,4 +170,5 @@ abstract class LocaleKeys {
       'answer_realtime_blockchain_monitoring';
   static const String current_application_version =
       'current_application_version';
+  static const String coming_soon = 'coming_soon';
 }
