@@ -1,3 +1,14 @@
+# 1.57.0+58
+### [Refactor]
+- Add "Coming Soon" label to sections in dashboard. [#185](https://github.com/pactus-project/pactus-gui/pull/186)
+  - `Node logs` section
+  - `Transactions` section
+  - `Wallet` section
+- Fix location of combo-box in generation seed screen. [#185](https://github.com/pactus-project/pactus-gui/pull/186)
+
+### [Fix]
+- Fix scrolling bug in about screen [#185](https://github.com/pactus-project/pactus-gui/pull/186)
+
 # 1.56.0+57
 
 ### [Refactor]
