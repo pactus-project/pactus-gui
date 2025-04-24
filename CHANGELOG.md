@@ -1,3 +1,9 @@
+# 1.58.0+60
+### [Update]
+- Fix lock node in debugging mode and force close app  [#187](https://github.com/pactus-project/pactus-gui/pull/188)
+  - detect running `pactus-daemon` process
+  - remove lock file
+
 # 1.57.1+59
 ### [CI]
 - Update linux amd github action. [#183](https://github.com/pactus-project/pactus-gui/pull/184)
