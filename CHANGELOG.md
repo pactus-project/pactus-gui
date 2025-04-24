@@ -1,3 +1,7 @@
+# 1.57.1+59
+### [CI]
+- Update linux amd github action. [#183](https://github.com/pactus-project/pactus-gui/pull/184)
+
 # 1.57.0+58
 ### [Refactor]
 - Add "Coming Soon" label to sections in dashboard. [#185](https://github.com/pactus-project/pactus-gui/pull/186)

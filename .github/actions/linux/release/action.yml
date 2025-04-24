@@ -7,18 +7,20 @@ runs:
     - name: Create Linux Release
       id: create_linux_release
       uses: softprops/action-gh-release@v2
+      continue-on-error: true
       env:
         GITHUB_TOKEN: ${{ inputs.github_token }}
       with:
         tag_name: ${{ inputs.tag_name }}
-        release_name: "${{ inputs.release_name }}"
         body: "${{ inputs.release_body }}"
         draft: false
         prerelease: false
+        generate_release_notes: true
 
     - name: Upload Linux Release Asset
       id: upload_linux_release_asset
       uses: softprops/action-gh-release@v2
+      continue-on-error: true
       with:
         tag_name: ${{ inputs.tag_name }}
         files: ./artifacts/linux/${{ inputs.arch }}/release/bundle/${{ inputs.file_name }}
