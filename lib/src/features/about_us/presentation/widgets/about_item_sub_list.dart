@@ -41,9 +41,8 @@ class AboutItemSubList extends StatelessWidget {
                     margin: const EdgeInsets.only(top: 6), // Adjust alignment
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: AppTheme.of(context)
-                          .extension<DarkPallet>()!
-                          .dark900,
+                      color:
+                          AppTheme.of(context).extension<DarkPallet>()!.dark900,
                     ),
                   ),
                   const Gap(7),

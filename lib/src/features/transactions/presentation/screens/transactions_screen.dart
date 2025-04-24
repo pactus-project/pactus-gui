@@ -16,7 +16,7 @@ class TransactionsScreen extends StatelessWidget {
       child: Center(
         child: Text(
           '${context.tr(LocaleKeys.coming_soon)}'
-              '...',
+          '...',
           style: TextStyle(
             color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
           ),
