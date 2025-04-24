@@ -212,10 +212,15 @@ class DaemonCubit extends Cubit<DaemonState> {
     return executableDir;
   }
 
+  String _matchOsCommand(String command) {
+    final result = Platform.isWindows ? '$command.exe' : command;
+    return result;
+  }
+
   String _executablePath(String command) {
     return join(
       _executableDir(),
-      Platform.isWindows ? '$command.exe' : command,
+      _matchOsCommand(command),
     );
   }
 }
