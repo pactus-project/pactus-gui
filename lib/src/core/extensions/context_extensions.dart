@@ -1,5 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:gui/src/core/enums/app_enums.dart';
+import 'package:pactus_gui/src/core/enums/app_enums.dart';
 import 'package:pactus_gui_widgetbook/app_core.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 // TODO(esmaeil): this part need correction in widgetbook repo

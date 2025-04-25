@@ -1,10 +1,10 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/core/common/widgets/shimmer_card_item.dart';
-import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_manager_bloc.dart';
-import 'package:gui/src/features/dashboard/presentation/widgets/addresses_card_content.dart';
-import 'package:gui/src/features/dashboard/presentation/widgets/addresses_card_header.dart';
-import 'package:gui/src/features/dashboard/sub_modules/get_node_addresses/data/mappers/get_node_addresses_mapper.dart';
+import 'package:pactus_gui/src/core/common/widgets/shimmer_card_item.dart';
+import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/daemon_manager_bloc.dart';
+import 'package:pactus_gui/src/features/dashboard/presentation/widgets/addresses_card_content.dart';
+import 'package:pactus_gui/src/features/dashboard/presentation/widgets/addresses_card_header.dart';
+import 'package:pactus_gui/src/features/dashboard/sub_modules/get_node_addresses/data/mappers/get_node_addresses_mapper.dart';
 
 class LoadNodeValidatorAddresses extends StatefulWidget {
   const LoadNodeValidatorAddresses({super.key});

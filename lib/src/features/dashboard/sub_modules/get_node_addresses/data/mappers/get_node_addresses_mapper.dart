@@ -1,4 +1,4 @@
-import 'package:gui/src/features/dashboard/sub_modules/get_node_addresses/data/models/get_node_addresse_model.dart';
+import 'package:pactus_gui/src/features/dashboard/sub_modules/get_node_addresses/data/models/get_node_addresse_model.dart';
 
 mixin AddressMapper {
   static List<AddressModel> fromText(String inputText) {

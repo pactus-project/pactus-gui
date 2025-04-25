@@ -1,7 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gap/gap.dart';
-import 'package:gui/src/core/common/colors/app_colors.dart';
-import 'package:gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui/src/core/common/colors/app_colors.dart';
+import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 /// ## [CustomRadioButton] Class Documentation

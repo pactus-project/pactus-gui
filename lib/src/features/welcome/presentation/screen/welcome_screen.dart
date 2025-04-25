@@ -1,11 +1,11 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gui/src/core/common/widgets/app_layout.dart';
-import 'package:gui/src/core/router/route_name.dart';
-import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
-import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
-import 'package:gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui/src/core/common/widgets/app_layout.dart';
+import 'package:pactus_gui/src/core/router/route_name.dart';
+import 'package:pactus_gui/src/core/utils/gen/assets/assets.gen.dart';
+import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_core.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 import 'package:pactus_gui_widgetbook/app_widgets.dart';

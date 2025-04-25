@@ -35,7 +35,7 @@
 ///   generation process.
 library;
 
-import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
 
 enum SeedTypeEnum {
   twelve(1, LocaleKeys.seed_twelve_words, 12),

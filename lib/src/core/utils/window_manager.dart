@@ -1,5 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:gui/src/core/utils/methods/print_debug.dart';
+import 'package:pactus_gui/src/core/utils/methods/print_debug.dart';
 import 'package:window_manager/window_manager.dart';
 
 Future<void> windowsManager() async {

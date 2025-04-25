@@ -1,7 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/core/common/widgets/customized_appbar.dart';
-import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
+import 'package:pactus_gui/src/core/common/widgets/customized_appbar.dart';
+import 'package:pactus_gui/src/features/main/theme/bloc/theme_bloc.dart';
 
 /// A layout widget that provides consistent structure for all app screens
 /// including the custom app bar

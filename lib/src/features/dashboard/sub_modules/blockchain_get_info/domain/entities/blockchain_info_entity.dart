@@ -1,4 +1,4 @@
-import 'package:gui/src/data/models/generated/blockchain.pb.dart';
+import 'package:pactus_gui/src/data/models/generated/blockchain.pb.dart';
 
 class BlockchainInfoEntity {
   BlockchainInfoEntity({

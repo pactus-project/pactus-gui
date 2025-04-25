@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:gui/src/core/enums/app_environment.dart';
-import 'package:gui/src/features/dev_mode/data/repositories/environment_repository.dart';
+import 'package:pactus_gui/src/core/enums/app_environment.dart';
+import 'package:pactus_gui/src/features/dev_mode/data/repositories/environment_repository.dart';
 
 part 'directory_check_event.dart';
 part 'directory_check_state.dart';
@@ -66,41 +66,3 @@ class DirectoryCheckBloc
     return DirectoryCheckState(newStatuses);
   }
 }
-
-/*
-class DirectoryCheckBloc
-    extends Bloc<DirectoryCheckEvent, DirectoryCheckState> {
-  DirectoryCheckBloc() : super(DirectoryCheckInitial()) {
-    on<ResetBlocEvent>(_handleReset);
-    on<CheckDirectoryEvent>(_handleCheckDirectory);
-  }
-
-  void _handleReset(ResetBlocEvent event,
-      Emitter<DirectoryCheckState> emit,) {
-    emit(DirectoryCheckInitial()); // Reset to initial state
-  }
-
-  Future<void> _handleCheckDirectory(CheckDirectoryEvent event,
-      Emitter<DirectoryCheckState> emit,) async {
-    emit(DirectoryCheckLoading(event.networkType));
-
-    try {
-      final isReady = await EnvironmentRepository().isDirectoryReadyForNode(
-        latestPartOfPath: event.latestPartOfPath,
-      );
-
-      emit(
-        DirectoryCheckLoaded(
-          networkType: event.networkType,
-          isReady: isReady,
-        ),
-      );
-    } on Exception catch (e) {
-      emit(DirectoryCheckError(
-        networkType: event.networkType,
-        error: e.toString(),
-      ));
-    }
-  }
-}
-*/

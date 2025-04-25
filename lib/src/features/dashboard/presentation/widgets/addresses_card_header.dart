@@ -1,6 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
-import 'package:gui/src/features/dashboard/presentation/widgets/addresses_card_header_item.dart';
+import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:pactus_gui/src/features/dashboard/presentation/widgets/addresses_card_header_item.dart';
 
 class AddressesCardHeader extends StatelessWidget {
   const AddressesCardHeader({

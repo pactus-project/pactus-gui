@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:gui/src/core/utils/node_lock_manager/directory_manager.dart';
+import 'package:pactus_gui/src/core/utils/node_lock_manager/directory_manager.dart';
 
 part 'unlocker_state.dart';
 
@@ -29,12 +29,4 @@ class UnlockNodeCubit extends Cubit<UnlockerState> {
   Future<void> _removeLock() async {
     await DirectoryManager().removeLockFile();
   }
-
-  // Future<void> _killPactusWallet() async {
-  //   await DirectoryManager().killDaemonProcess(DaemonFileEnum.pactusWallet);
-  // }
-  //
-  // Future<void> _killPactusShell() async {
-  //   await DirectoryManager().killDaemonProcess(DaemonFileEnum.pactusShell);
-  // }
 }

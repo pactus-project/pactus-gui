@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
-import 'package:gui/src/core/constants/cli_constants.dart';
-import 'package:gui/src/data/models/node_details.dart';
+import 'package:pactus_gui/src/core/constants/cli_constants.dart';
+import 'package:pactus_gui/src/data/models/node_details.dart';
 
 void updateNodeDetailsSingleton({
   String? password,

@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/features/confirmation_seed/data/models/seed_item_data.dart';
+import 'package:pactus_gui/src/features/confirmation_seed/data/models/seed_item_data.dart';
 
 class ConfirmationSeedCubit extends Cubit<ConfirmationSeedState> {
   ConfirmationSeedCubit(List<String> words)

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart'
     show AppTheme, DarkPallet, InterTextStyles;
 

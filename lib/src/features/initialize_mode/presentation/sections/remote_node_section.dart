@@ -1,8 +1,8 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:gui/src/features/initialize_mode/presentation/widgets/auth_method_component.dart';
-import 'package:gui/src/features/initialize_mode/presentation/widgets/password_component.dart';
-import 'package:gui/src/features/initialize_mode/presentation/widgets/remote_address_component.dart';
-import 'package:gui/src/features/initialize_mode/presentation/widgets/username_component.dart';
+import 'package:pactus_gui/src/features/initialize_mode/presentation/widgets/auth_method_component.dart';
+import 'package:pactus_gui/src/features/initialize_mode/presentation/widgets/password_component.dart';
+import 'package:pactus_gui/src/features/initialize_mode/presentation/widgets/remote_address_component.dart';
+import 'package:pactus_gui/src/features/initialize_mode/presentation/widgets/username_component.dart';
 
 /// ## [RemoteNodeSection] Class Documentation
 ///

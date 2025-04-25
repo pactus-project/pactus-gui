@@ -4,11 +4,11 @@ import 'package:flutter/material.dart' as material;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:gui/src/core/common/cubits/app_accent_color_cubit.dart';
-import 'package:gui/src/core/constants/configurations.dart';
-import 'package:gui/src/core/router/app_router.dart';
-import 'package:gui/src/features/main/language/core/language_constants.dart';
-import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
+import 'package:pactus_gui/src/core/common/cubits/app_accent_color_cubit.dart';
+import 'package:pactus_gui/src/core/constants/configurations.dart';
+import 'package:pactus_gui/src/core/router/app_router.dart';
+import 'package:pactus_gui/src/features/main/language/core/language_constants.dart';
+import 'package:pactus_gui/src/features/main/theme/bloc/theme_bloc.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 import 'src/features/main/language/presentation/bloc/language_bloc.dart';
 

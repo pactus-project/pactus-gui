@@ -1,11 +1,11 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:gui/src/core/common/widgets/custom_input_widget.dart';
-import 'package:gui/src/core/common/widgets/screen_header_widget.dart';
-import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
-import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
-import 'package:gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui/src/core/common/widgets/custom_input_widget.dart';
+import 'package:pactus_gui/src/core/common/widgets/screen_header_widget.dart';
+import 'package:pactus_gui/src/core/utils/gen/assets/assets.gen.dart';
+import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
 
 /// ## [MasterPasswordSection] Class Documentation
 ///

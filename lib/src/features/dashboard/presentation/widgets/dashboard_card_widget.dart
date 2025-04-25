@@ -1,10 +1,10 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gui/src/core/common/widgets/shimmer_card_item.dart';
-import 'package:gui/src/features/dashboard/core/enums/dashboard_card_type.dart';
-import 'package:gui/src/features/dashboard/sub_modules/blockchain_get_info/presentation/bloc/blockchain_get_info_bloc.dart';
-import 'package:gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui/src/core/common/widgets/shimmer_card_item.dart';
+import 'package:pactus_gui/src/features/dashboard/core/enums/dashboard_card_type.dart';
+import 'package:pactus_gui/src/features/dashboard/sub_modules/blockchain_get_info/presentation/bloc/blockchain_get_info_bloc.dart';
+import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class DashboardCardWidget extends StatelessWidget {

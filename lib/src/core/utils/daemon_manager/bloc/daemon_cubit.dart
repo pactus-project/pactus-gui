@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/core/constants/cli_constants.dart';
-import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
-import 'package:gui/src/core/utils/methods/print_debug.dart';
+import 'package:pactus_gui/src/core/constants/cli_constants.dart';
+import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
+import 'package:pactus_gui/src/core/utils/methods/print_debug.dart';
 import 'package:path/path.dart' show dirname, join;
 import 'daemon_state.dart';
 

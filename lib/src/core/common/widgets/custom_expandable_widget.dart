@@ -1,6 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
+import 'package:pactus_gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
 
 // Generic Dropdown Widget
 class CustomDropdownWidget<T> extends StatelessWidget {
@@ -34,11 +34,3 @@ class CustomDropdownWidget<T> extends StatelessWidget {
     );
   }
 }
-
-// BlocProvider(
-//   create: (context) => DropdownCubit<ValidatorQty>(ValidatorQty.one),
-//   child: CustomDropdown<ValidatorQty>(
-//     items: ValidatorQty.values,
-//     itemLabel: (item) => item.name,
-//   ),
-// ),

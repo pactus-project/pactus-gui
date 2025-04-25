@@ -1,4 +1,4 @@
-import 'package:gui/src/features/main/language/data/language_case.dart';
+import 'package:pactus_gui/src/features/main/language/data/language_case.dart';
 
 /// [LanguageConstants] Documentation
 /// This class defines the language constants for localization in the -

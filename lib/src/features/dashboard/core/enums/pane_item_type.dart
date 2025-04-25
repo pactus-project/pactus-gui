@@ -1,4 +1,4 @@
-import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
 
 enum PaneItemType {
   home(

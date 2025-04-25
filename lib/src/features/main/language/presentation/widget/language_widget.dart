@@ -1,11 +1,11 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/core/common/widgets/custom_expandable_widget.dart';
-import 'package:gui/src/core/enums/language_enum.dart';
-import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
-import 'package:gui/src/features/main/language/core/language_constants.dart';
-import 'package:gui/src/features/main/language/core/localization_extension.dart';
-import 'package:gui/src/features/main/language/presentation/bloc/language_bloc.dart';
+import 'package:pactus_gui/src/core/common/widgets/custom_expandable_widget.dart';
+import 'package:pactus_gui/src/core/enums/language_enum.dart';
+import 'package:pactus_gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
+import 'package:pactus_gui/src/features/main/language/core/language_constants.dart';
+import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui/src/features/main/language/presentation/bloc/language_bloc.dart';
 
 class LanguageSelector extends StatelessWidget {
   const LanguageSelector({super.key});

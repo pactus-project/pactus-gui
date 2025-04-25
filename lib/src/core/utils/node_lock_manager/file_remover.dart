@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:gui/src/core/utils/methods/print_debug.dart';
+import 'package:pactus_gui/src/core/utils/methods/print_debug.dart';
 import 'package:path/path.dart' as path;
 
 mixin FileRemover {

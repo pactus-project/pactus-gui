@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/core/constants/storage_keys.dart';
-import 'package:gui/src/core/utils/storage_utils.dart';
+import 'package:pactus_gui/src/core/constants/storage_keys.dart';
+import 'package:pactus_gui/src/core/utils/storage_utils.dart';
 
 /// Manages the theme state.
 class AppThemeCubit extends Cubit<bool> {
