@@ -24,7 +24,7 @@ mixin NodeListenerHandler {
     if (state is DaemonSuccess) {
       _handleSuccessState(context, state, password);
     } else if (state is DaemonError) {
-      _handleErrorState(context, state);
+      _handleErrorState(context, state, password);
     }
   }
 
@@ -54,8 +54,12 @@ mixin NodeListenerHandler {
     }
   }
 
-  static void _handleErrorState(BuildContext context, DaemonError state) {
-    if (state.error.contains('invalid password')) {
+  static void _handleErrorState(
+    BuildContext context,
+    DaemonError state,
+    String password,
+  ) {
+    if (state.error.contains('invalid password')&& password!='') {
       _showErrorDialog(context, context.tr(LocaleKeys.incorrect_password));
     }
   }
