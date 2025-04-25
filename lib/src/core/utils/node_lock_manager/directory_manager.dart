@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:gui/src/core/utils/methods/print_debug.dart';
-import 'package:gui/src/core/utils/node_lock_manager/file_remover.dart';
-import 'package:gui/src/core/utils/node_lock_manager/process_close_manager.dart';
+import 'package:pactus_gui/src/core/utils/methods/print_debug.dart';
+import 'package:pactus_gui/src/core/utils/node_lock_manager/file_remover.dart';
+import 'package:pactus_gui/src/core/utils/node_lock_manager/process_close_manager.dart';
 import 'package:path/path.dart';
 
 enum DaemonFileEnum {
@@ -18,18 +18,18 @@ enum DaemonFileEnum {
 class DirectoryManager {
   Future<void> killDaemonProcess(DaemonFileEnum daemonFile) async {
     try {
-      final executablePath = _executablePath(daemonFile.name);
+      final executablePath = _executablePath(daemonFile.fileName);
 
       printDebug('Executable path: $executablePath');
 
       // Ensure executable permissions (skips on Windows)
       _ensureExecutablePermissions(executablePath);
 
-      // close proccess
+      // close process
       await ProcessCloserManager.closeProcessesByPath(
         directoryPath: _executableDir(),
         executableName:
-            _matchOsCommand(daemonFile.name), // یا 'myapp.exe' در ویندوز
+            _matchOsCommand(daemonFile.fileName),
       );
     } on FileSystemException catch (e) {
       printDebug('File system error: ${e.message}');

@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:gui/src/core/utils/methods/print_debug.dart';
+import 'package:pactus_gui/src/core/utils/methods/print_debug.dart';
 import 'package:path/path.dart' as path;
 
 mixin ProcessCloserManager {
-  /// بستن همه فرآیندهای در حال اجرا از یک مسیر خاص
+  // Terminates all running processes from a specific directory path.
   static Future<int> closeProcessesByPath({
     required String directoryPath,
     String? executableName,
@@ -13,7 +13,7 @@ mixin ProcessCloserManager {
 
     try {
       if (Platform.isWindows) {
-        // روش ویندوز
+        // Windows OS
         final processes = await _getWindowsProcesses();
         for (final process in processes) {
           if (_isProcessInDirectory(process, directoryPath, executableName)) {
@@ -22,7 +22,7 @@ mixin ProcessCloserManager {
           }
         }
       } else {
-        // روش لینوکس
+        // Non-Windows OS
         final processes = await _getLinuxProcesses();
         for (final process in processes) {
           if (_isProcessInDirectory(process, directoryPath, executableName)) {
@@ -32,13 +32,13 @@ mixin ProcessCloserManager {
         }
       }
     } on Exception catch (e) {
-      printDebug('خطا در بستن فرآیندها: $e');
+      printDebug('Error closing processes : $e');
     }
 
     return closedCount;
   }
 
-  /// تشخیص اینکه فرآیند در مسیر مورد نظر اجرا شده یا خیر
+  // Checks whether the process was executed in the specified target directory.
   static bool _isProcessInDirectory(
     ProcessInfo process,
     String directoryPath,
@@ -50,14 +50,19 @@ mixin ProcessCloserManager {
         return false;
       }
 
-      // تطابق نام فایل اجرایی (اگر مشخص شده باشد)
+      // Checks if an executable name is specified (for matching purposes)
       if (executableName != null) {
-        if (!processPath.endsWith(executableName)) {
+        if (!Platform.isWindows &&
+            !processPath.contains('$executableName start')) {
+          return false;
+        }
+
+        if (Platform.isWindows && !processPath.endsWith(executableName)) {
           return false;
         }
       }
 
-      // تبدیل مسیرها به فرمت استاندارد برای مقایسه
+      // Normalizes path format for consistent cross-platform comparison
       final normalizedDirPath = path.normalize(directoryPath);
       final normalizedProcessPath = path.normalize(path.dirname(processPath));
 
@@ -67,7 +72,7 @@ mixin ProcessCloserManager {
     }
   }
 
-  // --- توابع ویندوز ---
+// --- Windows Utilities ---
   static Future<List<ProcessInfo>> _getWindowsProcesses() async {
     final result = await Process.run(
       'wmic',
@@ -105,7 +110,7 @@ mixin ProcessCloserManager {
     await Process.run('taskkill', ['/pid', pid.toString(), '/f']);
   }
 
-  // --- توابع لینوکس ---
+// --- Linux Utilities ---
   static Future<List<ProcessInfo>> _getLinuxProcesses() async {
     final result = await Process.run('ps', ['-eo', 'pid,cmd']);
     return _parseLinuxPsOutput(result.stdout.toString());
@@ -113,7 +118,7 @@ mixin ProcessCloserManager {
 
   static List<ProcessInfo> _parseLinuxPsOutput(String output) {
     final processes = <ProcessInfo>[];
-    final lines = output.split('\n').skip(1); // خط عنوان را حذف می‌کنیم
+    final lines = output.split('\n').skip(1); // Skips the header line
 
     for (final line in lines) {
       final trimmed = line.trim();
