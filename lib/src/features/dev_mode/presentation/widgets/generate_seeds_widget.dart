@@ -1,8 +1,8 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/core/utils/daemon_manager/seed_generator.dart';
-import 'package:gui/src/features/dev_mode/presentation/bloc/environment_selection_cubit.dart';
-import 'package:gui/src/features/dev_mode/presentation/bloc/environment_selection_state.dart';
+import 'package:pactus_gui/src/core/utils/daemon_manager/seed_generator.dart';
+import 'package:pactus_gui/src/features/dev_mode/presentation/bloc/environment_selection_cubit.dart';
+import 'package:pactus_gui/src/features/dev_mode/presentation/bloc/environment_selection_state.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class GenerateSeedsWidget extends StatelessWidget {

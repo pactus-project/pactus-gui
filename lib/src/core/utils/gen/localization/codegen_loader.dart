@@ -166,6 +166,10 @@ class CodegenLoader {
     'answer_realtime_blockchain_monitoring': 'Users can monitor real-time data on the Pactus blockchain, including current block height, transaction rates, and network health, all displayed through an interactive dashboard within the GUI. This feature is especially useful for developers and power users who require detailed network insights for decision-making or development purposes. Pactus GUI embodies the projects commitment to creating a decentralized and user-friendly blockchain ecosystem. With continuous updates, the GUI is evolving to meet the needs of a growing user base, facilitating decentralized finance (DeFi) participation and empowering users to interact with blockchain technology easily and securely. Whether you`re looking to become a validator, manage transactions, or simply monitor blockchain activity, Pactus GUI offers an accessible and powerful solution for engaging with the Pactus network. With Pactus GUI, blockchain becomes intuitive and approachable, inviting users to take part in the decentralization movement through a simple, secure, and efficient platform.',
     'current_application_version': 'Current application version',
     'coming_soon': 'Coming Soon',
+    'generate_seed_button': 'Generate seed',
+    'generate_button': 'Generate',
+    'seed_placeholder': 'Seed will appear here',
+    'password_mismatch_error': 'Passwords do not match!',
   };
   static const Map<String, dynamic> frFR = {
     'title': 'Bonjour le Monde!',
@@ -306,6 +310,10 @@ class CodegenLoader {
     'answer_realtime_blockchain_monitoring': 'Les utilisateurs peuvent surveiller les données en temps réel sur la blockchain Pactus, y compris la hauteur de bloc actuelle, les taux de transaction et l`état du réseau, le tout affiché via un tableau de bord interactif dans l`interface graphique. Cette fonctionnalité est particulièrement utile pour les développeurs et les utilisateurs avancés qui ont besoin d`informations détaillées sur le réseau pour la prise de décision ou le développement. L`interface graphique de Pactus incarne l`engagement du projet à créer un écosystème blockchain décentralisé et convivial. Avec des mises à jour continues, l`interface évolue pour répondre aux besoins d`une base d`utilisateurs en croissance, facilitant la participation à la finance décentralisée (DeFi) et permettant aux utilisateurs d`interagir avec la technologie blockchain de manière simple et sécurisée. Que vous souhaitiez devenir un validateur, gérer des transactions ou simplement surveiller l`activité de la blockchain, l`interface graphique de Pactus offre une solution accessible et puissante pour interagir avec le réseau Pactus. Avec Pactus GUI, la blockchain devient intuitive et abordable, invitant les utilisateurs à participer au mouvement de décentralisation à travers une plateforme simple, sécurisée et efficace.',
     'current_application_version': 'Version actuelle de l`application',
     'coming_soon': 'Prochainement',
+    'generate_seed_button': 'Générer une graine',
+    'generate_button': 'Générer',
+    'seed_placeholder': 'La graine apparaîtra ici',
+    'password_mismatch_error': 'Les mots de passe ne correspondent pas !',
   };
   static const Map<String, dynamic> esES = {
     'title': 'Hola Mundo!',
@@ -446,6 +454,10 @@ class CodegenLoader {
     'answer_realtime_blockchain_monitoring': 'Los usuarios pueden monitorear datos en tiempo real en la blockchain de Pactus, incluida la altura de bloque actual, las tasas de transacción y el estado de la red, todo mostrado a través de un panel interactivo dentro de la GUI. Esta característica es especialmente útil para desarrolladores y usuarios avanzados que requieren información detallada de la red para la toma de decisiones o fines de desarrollo. La GUI de Pactus encarna el compromiso del proyecto de crear un ecosistema blockchain descentralizado y fácil de usar. Con actualizaciones continuas, la GUI está evolucionando para satisfacer las necesidades de una base de usuarios en crecimiento, facilitando la participación en las finanzas descentralizadas (DeFi) y permitiendo a los usuarios interactuar con la tecnología blockchain de manera fácil y segura. Ya sea que desee convertirse en validador, gestionar transacciones o simplemente monitorear la actividad de la blockchain, la GUI de Pactus ofrece una solución accesible y potente para interactuar con la red Pactus. Con Pactus GUI, la blockchain se vuelve intuitiva y accesible, invitando a los usuarios a ser parte del movimiento de descentralización a través de una plataforma simple, segura y eficiente.',
     'current_application_version': 'Versión actual de la aplicación',
     'coming_soon': 'Próximamente',
+    'generate_seed_button': 'Generar semilla',
+    'generate_button': 'Generar',
+    'seed_placeholder': 'La semilla aparecerá aquí',
+    'password_mismatch_error': '¡Las contraseñas no coinciden!',
   };
 
   static const Map<String, Map<String, dynamic>> mapLocales = {

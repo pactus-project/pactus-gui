@@ -626,10 +626,10 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = freezed,
+    Object? data = null,
   }) {
     return _then(_$LoadedImpl(
-      freezed == data
+      null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as BlockchainInfoEntity,
@@ -655,12 +655,11 @@ class _$LoadedImpl implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            const DeepCollectionEquality().equals(other.data, data));
+            (identical(other.data, data) || other.data == data));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+  int get hashCode => Object.hash(runtimeType, data);
 
   /// Create a copy of BlockchainGetInfoState
   /// with the given fields replaced by the non-null parameter values.
