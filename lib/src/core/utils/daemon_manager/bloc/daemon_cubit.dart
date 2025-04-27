@@ -191,6 +191,11 @@ class DaemonCubit extends Cubit<DaemonState> {
         if (kDebugMode) {
           printDebug('DATA--->:$data');
         }
+
+        if (data.toLowerCase().contains('another instance is running') ||
+            data.toLowerCase().contains('could not start grpc server:')) {
+          emit(DaemonError('The node is locked'));
+        }
         if (data.contains('invalid password')) {
           emit(DaemonError(data));
         }
