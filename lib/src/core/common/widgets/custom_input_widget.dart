@@ -151,7 +151,7 @@ class CustomInputWidgetState extends State<CustomInputWidget> {
             errorText = null; // Clear error on valid input
           });
         },
-        onError: (error) {
+        onError: (Object error) {
           setState(() {
             errorText = error.toString(); // Display validation error
           });
