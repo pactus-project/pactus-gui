@@ -103,7 +103,8 @@ mixin NodeListenerHandler {
       printDebug('Window action failed: $e');
     }
   }
-static  Future<void> _restartApp() async {
+
+  static Future<void> _restartApp() async {
     final executable = Platform.resolvedExecutable;
     final arguments = Platform.executableArguments;
     final script = Platform.script.toFilePath();
@@ -113,5 +114,3 @@ static  Future<void> _restartApp() async {
     exit(0);
   }
 }
-
-

@@ -1,5 +1,10 @@
+import 'dart:async';
+
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:pactus_gui/src/core/common/colors/app_colors.dart';
+import 'package:pactus_gui/src/core/common/colors/app_colors.dart'
+    show AppColors;
+import 'package:pactus_gui/src/core/utils/validators/password_validation.dart'
+    show PasswordValidation;
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 /// ## [CustomInputWidget] Class Documentation
@@ -79,7 +84,6 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 /// - **[build(BuildContext context)]**:
 ///   - Builds the widget, displaying the input field and managing the text
 ///   input, validation, and styling.
-
 class CustomInputWidget extends StatefulWidget {
   const CustomInputWidget({
     super.key,
@@ -98,6 +102,7 @@ class CustomInputWidget extends StatefulWidget {
     this.obscureIcon,
     this.placeHolderTextStyle,
     this.confirmationController,
+    this.passwordValidation, // New optional parameter
   });
 
   final TextEditingController? controller;
@@ -115,6 +120,7 @@ class CustomInputWidget extends StatefulWidget {
   final double? width;
   final bool obscureText;
   final Widget? obscureIcon;
+  final PasswordValidation? passwordValidation; // Optional LoginValidation
 
   @override
   CustomInputWidgetState createState() => CustomInputWidgetState();
@@ -125,11 +131,12 @@ class CustomInputWidgetState extends State<CustomInputWidget> {
   late bool _obscureText;
   String? errorText;
   bool _isInternalController = false;
+  StreamSubscription<String>? _passwordSubscription;
 
   @override
   void initState() {
     super.initState();
-    // Only create a new controller if one wasn't provided
+    // Initialize controller
     if (widget.controller == null) {
       _controller = TextEditingController();
       _isInternalController = true;
@@ -138,22 +145,41 @@ class CustomInputWidgetState extends State<CustomInputWidget> {
     }
     _obscureText = widget.obscureText;
     _controller.addListener(validateInput);
+
+    // Setup password validation if LoginValidation is provided
+    if (widget.passwordValidation != null) {
+      _passwordSubscription = widget.passwordValidation!.password.listen(
+        (password) {
+          setState(() {
+            errorText = null; // Clear error on valid input
+          });
+        },
+        onError: (Object error) {
+          setState(() {
+            errorText = error.toString(); // Display validation error
+          });
+        },
+      );
+    }
+
     widget.confirmationController?.addListener(validateInput);
   }
 
   @override
   void dispose() {
-    // Only dispose the controller if we created it internally
+    // Cleanup subscription
+    _passwordSubscription?.cancel();
+    // Cleanup controller if internal
     if (_isInternalController) {
       _controller.dispose();
     }
-    // Always remove listeners to prevent memory leaks
     _controller.removeListener(validateInput);
     widget.confirmationController?.removeListener(validateInput);
     super.dispose();
   }
 
   void validateInput() {
+    // Confirmation validation
     if (widget.confirmationController != null) {
       setState(() {
         errorText = (_controller.text != widget.confirmationController!.text)
@@ -161,6 +187,11 @@ class CustomInputWidgetState extends State<CustomInputWidget> {
             : null;
       });
     }
+    // Update LoginValidation if provided
+    if (widget.passwordValidation != null) {
+      widget.passwordValidation!.changePassword(_controller.text);
+    }
+    // Trigger onChanged callback
     if (widget.onChanged != null) {
       widget.onChanged!(_controller.text);
     }

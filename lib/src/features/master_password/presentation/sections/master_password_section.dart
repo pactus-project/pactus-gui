@@ -5,6 +5,8 @@ import 'package:pactus_gui/src/core/common/widgets/custom_input_widget.dart';
 import 'package:pactus_gui/src/core/common/widgets/screen_header_widget.dart';
 import 'package:pactus_gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:pactus_gui/src/core/utils/validators/password_validation.dart'
+    show PasswordValidation;
 import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
 
 /// ## [MasterPasswordSection] Class Documentation
@@ -61,12 +63,13 @@ class MasterPasswordSection extends StatelessWidget {
           ),
         ),
         Column(
-          spacing: 24,
+          spacing: 16,
           children: [
             CustomInputWidget(
               width: 280,
               controller: passwordController,
               placeholder: context.tr(LocaleKeys.enter_your_password),
+              passwordValidation: PasswordValidation(),
               obscureText: true,
             ),
             CustomInputWidget(

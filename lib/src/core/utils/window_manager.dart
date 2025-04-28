@@ -6,7 +6,8 @@ Future<void> windowsManager() async {
   try {
     await WindowManager.instance.ensureInitialized();
 
-    final windowOptions = WindowOptions(title: 'Pactus GUI',
+    final windowOptions = WindowOptions(
+      title: 'Pactus GUI',
       size: Size(1280, 720),
       skipTaskbar: false,
       titleBarStyle: TitleBarStyle.hidden,

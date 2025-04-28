@@ -1,26 +1,31 @@
 # 1.59.0+61
 ### [Fix]
 - Fix lock node in debugging mode and force close app [#187](https://github.com/pactus-project/pactus-gui/pull/188)
-  - Detect running `pactus-daemon` process
-  - Remove lock file
+    - Detect running `pactus-daemon` process
+    - Remove lock file
 - Fix lock file and stop running node in debug mode and force close app [#187](https://github.com/pactus-project/pactus-gui/pull/188)
 - Resolved extra error message at unlock password screen [#187](https://github.com/pactus-project/pactus-gui/pull/188)
 
 ### [Update]
 - Change pactus package name from gui to pactus_gui [#187](https://github.com/pactus-project/pactus-gui/pull/188)
 - Fix some hardcoded texts [#187](https://github.com/pactus-project/pactus-gui/pull/188)
-  - Master password feature
-  - Generate seeds feature
+    - Master password feature
+    - Generate seeds feature
 
 ### [Refactor]
 - Close pactus-daemon process when user clicks close button [#187](https://github.com/pactus-project/pactus-gui/pull/188)
 
-
-# 1.58.0+60
 ### [Update]
 - Fix lock node in debugging mode and force close app  [#187](https://github.com/pactus-project/pactus-gui/pull/188)
-  - detect running `pactus-daemon` process
-  - remove lock file
+    - detect running `pactus-daemon` process
+    - remove lock file
+
+# 1.58.0+60
+### [Feature]
+- Implement password validation for master password. [#190](https://github.com/pactus-project/pactus-gui/pull/194)
+  - Add password validation using RxDart.
+### [Refactor]
+- Refactor custom input widget to support password validation [#190](https://github.com/pactus-project/pactus-gui/pull/194)
 
 # 1.57.1+59
 ### [CI]

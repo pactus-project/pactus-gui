@@ -28,8 +28,7 @@ class DirectoryManager {
       // close process
       await ProcessCloserManager.closeProcessesByPath(
         directoryPath: _executableDir(),
-        executableName:
-            _matchOsCommand(daemonFile.fileName),
+        executableName: _matchOsCommand(daemonFile.fileName),
       );
     } on FileSystemException catch (e) {
       printDebug('File system error: ${e.message}');

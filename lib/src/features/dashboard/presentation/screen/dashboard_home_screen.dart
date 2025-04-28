@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/daemon_manager_bloc.dart';
 import 'package:pactus_gui/src/features/dashboard/core/enums/dashboard_card_type.dart';
 import 'package:pactus_gui/src/features/dashboard/presentation/widgets/dashboard_card_widget.dart';
-import 'package:pactus_gui/src/features/dashboard/presentation/widgets/load_node_validator_addresses.dart' show LoadNodeValidatorAddresses;
+import 'package:pactus_gui/src/features/dashboard/presentation/widgets/load_node_validator_addresses.dart'
+    show LoadNodeValidatorAddresses;
 
 class DashboardHomeScreen extends StatelessWidget {
   const DashboardHomeScreen({
