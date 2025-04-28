@@ -3,7 +3,7 @@
 - Implement password validation for master password. [#190](https://github.com/pactus-project/pactus-gui/pull/194)
   - Add password validation using RxDart.
 ### [Refactor]
-- Refactor custom input widget to support password validation. (`e166301`)[#190](https://github.com/pactus-project/pactus-gui/pull/194)
+- Refactor custom input widget to support password validation [#190](https://github.com/pactus-project/pactus-gui/pull/194)
 
 # 1.57.1+59
 ### [CI]
