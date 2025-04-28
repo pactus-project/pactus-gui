@@ -1,7 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:gui/src/core/common/widgets/custom_radio_button.dart';
-import 'package:gui/src/core/constants/feature_flag.dart';
-import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:pactus_gui/src/core/common/widgets/custom_radio_button.dart';
+import 'package:pactus_gui/src/core/constants/feature_flag.dart';
+import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
 
 /// ## [RadioButtonGroup] Class Documentation
 ///

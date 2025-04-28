@@ -1,6 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
-import 'package:gui/src/features/faq/presentation/widgets/faq_item.dart';
+import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:pactus_gui/src/features/faq/presentation/widgets/faq_item.dart';
 
 class FaqScreen extends StatelessWidget {
   const FaqScreen({super.key});

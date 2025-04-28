@@ -1,4 +1,4 @@
-import 'package:gui/src/core/constants/app_constants.dart';
+import 'package:pactus_gui/src/core/constants/app_constants.dart';
 
 enum LanguageEnum {
   english(1, AppConstants.english),

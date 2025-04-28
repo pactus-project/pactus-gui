@@ -1,4 +1,4 @@
-import 'package:gui/src/core/enums/app_environment.dart';
+import 'package:pactus_gui/src/core/enums/app_environment.dart';
 
 class EnvironmentSelectionState {
   EnvironmentSelectionState({

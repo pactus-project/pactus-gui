@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/core/constants/cli_constants.dart';
-import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
-import 'package:gui/src/core/utils/methods/print_debug.dart';
+import 'package:pactus_gui/src/core/constants/cli_constants.dart';
+import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
+import 'package:pactus_gui/src/core/utils/methods/print_debug.dart';
 import 'package:path/path.dart' show dirname, join;
 import 'daemon_state.dart';
 
@@ -191,6 +191,11 @@ class DaemonCubit extends Cubit<DaemonState> {
         if (kDebugMode) {
           printDebug('DATA--->:$data');
         }
+
+        if (data.toLowerCase().contains('another instance is running') ||
+            data.toLowerCase().contains('could not start grpc server:')) {
+          emit(DaemonError('The node is locked'));
+        }
         if (data.contains('invalid password')) {
           emit(DaemonError(data));
         }
@@ -212,10 +217,15 @@ class DaemonCubit extends Cubit<DaemonState> {
     return executableDir;
   }
 
+  String _matchOsCommand(String command) {
+    final result = Platform.isWindows ? '$command.exe' : command;
+    return result;
+  }
+
   String _executablePath(String command) {
     return join(
       _executableDir(),
-      Platform.isWindows ? '$command.exe' : command,
+      _matchOsCommand(command),
     );
   }
 }

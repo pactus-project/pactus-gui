@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:gui/src/core/common/colors/app_colors.dart';
-import 'package:gui/src/core/utils/validators/password_validation.dart';
+import 'package:pactus_gui/src/core/common/colors/app_colors.dart'
+    show AppColors;
+import 'package:pactus_gui/src/core/utils/validators/password_validation.dart'
+    show PasswordValidation;
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 /// ## [CustomInputWidget] Class Documentation
@@ -123,6 +125,7 @@ class CustomInputWidget extends StatefulWidget {
   @override
   CustomInputWidgetState createState() => CustomInputWidgetState();
 }
+
 class CustomInputWidgetState extends State<CustomInputWidget> {
   late TextEditingController _controller;
   late bool _obscureText;
@@ -146,7 +149,7 @@ class CustomInputWidgetState extends State<CustomInputWidget> {
     // Setup password validation if LoginValidation is provided
     if (widget.passwordValidation != null) {
       _passwordSubscription = widget.passwordValidation!.password.listen(
-            (password) {
+        (password) {
           setState(() {
             errorText = null; // Clear error on valid input
           });
@@ -234,8 +237,8 @@ class CustomInputWidgetState extends State<CustomInputWidget> {
                       color: errorText != null
                           ? Colors.red
                           : (isFocused
-                          ? FluentTheme.of(context).accentColor
-                          : Colors.transparent),
+                              ? FluentTheme.of(context).accentColor
+                              : Colors.transparent),
                       width: 2,
                     ),
                   ),
@@ -243,18 +246,18 @@ class CustomInputWidgetState extends State<CustomInputWidget> {
               }),
               suffix: widget.obscureText
                   ? IconButton(
-                icon: widget.obscureIcon ??
-                    Icon(
-                      _obscureText ? FluentIcons.hide3 : FluentIcons.view,
-                      color: Colors.grey,
-                      size: 19,
-                    ),
-                onPressed: () {
-                  setState(() {
-                    _obscureText = !_obscureText;
-                  });
-                },
-              )
+                      icon: widget.obscureIcon ??
+                          Icon(
+                            _obscureText ? FluentIcons.hide3 : FluentIcons.view,
+                            color: Colors.grey,
+                            size: 19,
+                          ),
+                      onPressed: () {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
+                    )
                   : null,
             ),
           ),

@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gui/src/features/main/language/data/language_case.dart';
-import 'package:gui/src/features/main/language/presentation/bloc/language_bloc.dart';
+import 'package:pactus_gui/src/features/main/language/data/language_case.dart';
+import 'package:pactus_gui/src/features/main/language/presentation/bloc/language_bloc.dart';
 
 void main() {
   group('LanguageState', () {

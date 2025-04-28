@@ -1,4 +1,4 @@
-import 'package:gui/src/data/models/generated/blockchain.pbgrpc.dart';
+import 'package:pactus_gui/src/data/models/generated/blockchain.pbgrpc.dart';
 
 extension ListValidatorInfoExtension on List<ValidatorInfo> {
   ValidatorInfo? getByAddress(String address) {

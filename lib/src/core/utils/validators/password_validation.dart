@@ -16,10 +16,8 @@ class PasswordValidation {
       if (password.isEmpty) {
         sink.addError('Password cannot be empty');
       } else if (!RegExp(passwordPattern).hasMatch(password)) {
-        sink.addError(
-            'Password must be at least 8 characters,contain\n'
-                'uppercase, lowercase, and special character (@!)'
-        );
+        sink.addError('Password must be at least 8 characters,contain\n'
+            'uppercase, lowercase, and special character (@!)');
       } else {
         sink.add(password);
       }

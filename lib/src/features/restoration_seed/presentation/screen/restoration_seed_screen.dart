@@ -3,22 +3,22 @@ import 'package:bip39_mnemonic/bip39_mnemonic.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
-import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
-import 'package:gui/src/core/common/widgets/custom_expandable_widget.dart';
-import 'package:gui/src/core/common/widgets/screen_header_widget.dart';
-import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
-import 'package:gui/src/core/router/route_name.dart';
-import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
-import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
-import 'package:gui/src/data/models/fluent_navigation_state_model.dart';
-import 'package:gui/src/features/generation_seed/core/constants/enums/seed_type_enum.dart';
-import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
-import 'package:gui/src/features/main/language/core/localization_extension.dart';
-import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
-import 'package:gui/src/features/restoration_seed/presentation/cubits/restoration_seed_cubit.dart';
-import 'package:gui/src/features/restoration_seed/presentation/sections/restoration_seed_words_grid_section.dart';
-import 'package:gui/src/features/validator_config/core/utils/methods/show_fluent_alert_method.dart';
+import 'package:pactus_gui/src/core/common/cubits/step_validation_cubit.dart';
+import 'package:pactus_gui/src/core/common/sections/navigation_footer_section.dart';
+import 'package:pactus_gui/src/core/common/widgets/custom_expandable_widget.dart';
+import 'package:pactus_gui/src/core/common/widgets/screen_header_widget.dart';
+import 'package:pactus_gui/src/core/common/widgets/standard_page_layout.dart';
+import 'package:pactus_gui/src/core/router/route_name.dart';
+import 'package:pactus_gui/src/core/utils/daemon_manager/node_config_data.dart';
+import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:pactus_gui/src/data/models/fluent_navigation_state_model.dart';
+import 'package:pactus_gui/src/features/generation_seed/core/constants/enums/seed_type_enum.dart';
+import 'package:pactus_gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
+import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
+import 'package:pactus_gui/src/features/restoration_seed/presentation/cubits/restoration_seed_cubit.dart';
+import 'package:pactus_gui/src/features/restoration_seed/presentation/sections/restoration_seed_words_grid_section.dart';
+import 'package:pactus_gui/src/features/validator_config/core/utils/methods/show_fluent_alert_method.dart';
 
 /// ## [RestorationSeedScreen] Class Documentation
 ///

@@ -1,8 +1,8 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/features/main/language/core/language_constants.dart';
-import 'package:gui/src/features/main/language/data/language_case.dart';
-import 'package:gui/src/features/main/language/presentation/bloc/language_bloc.dart';
+import 'package:pactus_gui/src/features/main/language/core/language_constants.dart';
+import 'package:pactus_gui/src/features/main/language/data/language_case.dart';
+import 'package:pactus_gui/src/features/main/language/presentation/bloc/language_bloc.dart';
 
 class ComboBoxLanguageSelector extends StatelessWidget {
   const ComboBoxLanguageSelector({super.key});

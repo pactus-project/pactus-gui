@@ -1,7 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:gui/src/features/dev_mode/presentation/bloc/environment_selection_cubit.dart';
+import 'package:pactus_gui/src/features/dev_mode/presentation/bloc/environment_selection_cubit.dart';
 
 class SetPasswordWidget extends StatelessWidget {
   const SetPasswordWidget({

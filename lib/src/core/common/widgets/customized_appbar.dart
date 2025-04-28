@@ -2,11 +2,13 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:gui/src/core/common/widgets/icon_action_button.dart';
-import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
-import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
-import 'package:gui/src/core/utils/methods/print_debug.dart';
-import 'package:gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui/src/core/common/widgets/icon_action_button.dart';
+import 'package:pactus_gui/src/core/utils/gen/assets/assets.gen.dart';
+import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:pactus_gui/src/core/utils/methods/print_debug.dart';
+import 'package:pactus_gui/src/core/utils/node_lock_manager/directory_manager.dart'
+    show DaemonFileEnum, DirectoryManager;
+import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 import 'package:window_manager/window_manager.dart';
 
@@ -166,6 +168,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       size: size,
       onPressed: () async {
         try {
+          await DirectoryManager()
+              .killDaemonProcess(DaemonFileEnum.pactusDaemon);
+          await DirectoryManager().removeLockFile();
           await action();
         } on Exception catch (e) {
           printDebug('Window action failed: $e');

@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:gui/src/features/main/language/core/language_constants.dart';
+import 'package:pactus_gui/src/features/main/language/core/language_constants.dart';
 
 /// This script generates the necessary files to support localization in your
 /// Flutter app.

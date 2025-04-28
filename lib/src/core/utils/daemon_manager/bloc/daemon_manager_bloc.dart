@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/core/constants/cli_constants.dart';
-import 'package:gui/src/core/constants/storage_keys.dart';
-import 'package:gui/src/core/enums/app_os_separator.dart';
-import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
-import 'package:gui/src/core/utils/storage_utils.dart';
+import 'package:pactus_gui/src/core/constants/cli_constants.dart';
+import 'package:pactus_gui/src/core/constants/storage_keys.dart';
+import 'package:pactus_gui/src/core/enums/app_os_separator.dart';
+import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
+import 'package:pactus_gui/src/core/utils/storage_utils.dart';
 import 'package:path/path.dart' show dirname, join;
 
 part 'daemon_manager_event.dart';

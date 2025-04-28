@@ -1,4 +1,4 @@
-import 'package:gui/src/core/constants/cli_constants.dart';
+import 'package:pactus_gui/src/core/constants/cli_constants.dart';
 
 enum AppEnvironment {
   mainnet(argument: CliConstants.mainNetArgument, name: 'MainNet'),

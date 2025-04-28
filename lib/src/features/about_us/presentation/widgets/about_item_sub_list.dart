@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart'
     show AppTheme, DarkPallet, InterTextStyles;
 
@@ -41,9 +41,8 @@ class AboutItemSubList extends StatelessWidget {
                     margin: const EdgeInsets.only(top: 6), // Adjust alignment
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: AppTheme.of(context)
-                          .extension<DarkPallet>()!
-                          .dark900,
+                      color:
+                          AppTheme.of(context).extension<DarkPallet>()!.dark900,
                     ),
                   ),
                   const Gap(7),

@@ -1,7 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/features/generation_seed/core/constants/enums/seed_type_enum.dart';
-import 'package:gui/src/features/restoration_seed/presentation/cubits/restoration_seed_cubit.dart';
+import 'package:pactus_gui/src/features/generation_seed/core/constants/enums/seed_type_enum.dart';
+import 'package:pactus_gui/src/features/restoration_seed/presentation/cubits/restoration_seed_cubit.dart';
 import 'package:pactus_gui_widgetbook/app_core.dart';
 import 'package:pactus_gui_widgetbook/app_widgets.dart';
 

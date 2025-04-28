@@ -171,4 +171,8 @@ abstract class LocaleKeys {
   static const String current_application_version =
       'current_application_version';
   static const String coming_soon = 'coming_soon';
+  static const String generate_seed_button = 'generate_seed_button';
+  static const String generate_button = 'generate_button';
+  static const String seed_placeholder = 'seed_placeholder';
+  static const String password_mismatch_error = 'password_mismatch_error';
 }

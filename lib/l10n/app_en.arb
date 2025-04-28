@@ -139,5 +139,9 @@
   "answer_realtime_blockchain_monitoring": "Users can monitor real-time data on the Pactus blockchain, including current block height, transaction rates, and network health, all displayed through an interactive dashboard within the GUI. This feature is especially useful for developers and power users who require detailed network insights for decision-making or development purposes. Pactus GUI embodies the projects commitment to creating a decentralized and user-friendly blockchain ecosystem. With continuous updates, the GUI is evolving to meet the needs of a growing user base, facilitating decentralized finance (DeFi) participation and empowering users to interact with blockchain technology easily and securely. Whether you`re looking to become a validator, manage transactions, or simply monitor blockchain activity, Pactus GUI offers an accessible and powerful solution for engaging with the Pactus network. With Pactus GUI, blockchain becomes intuitive and approachable, inviting users to take part in the decentralization movement through a simple, secure, and efficient platform.",
   "current_application_version": "Current application version",
   "coming_soon": "Coming Soon",
+  "generate_seed_button": "Generate seed",
+  "generate_button": "Generate",
+  "seed_placeholder": "Seed will appear here",
+  "password_mismatch_error": "Passwords do not match!",
   "answer_how_is_pactus_different_from_ethereum": "Pactus and Ethereum are both Proof of Stake blockchains, but they differ in their approach to running a validator. Running a validator on Ethereum can be challenging and requires 32 Ethereum coins to stake. In Pactus, there is no fixed amount for staking. Pactus is specifically designed to be more accessible to normal users, and you can run the Pactus blockchain on your personal computer with basic hardware."
 }

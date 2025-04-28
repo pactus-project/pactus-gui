@@ -1,8 +1,8 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart' show Icons;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/core/common/cubits/app_accent_color_cubit.dart';
-import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
+import 'package:pactus_gui/src/core/common/cubits/app_accent_color_cubit.dart';
+import 'package:pactus_gui/src/features/main/theme/bloc/theme_bloc.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 /// ## [AccentColorPicker] Class Documentation

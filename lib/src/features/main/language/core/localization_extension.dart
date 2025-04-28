@@ -1,5 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:gui/src/core/utils/gen/localization/codegen_loader.dart';
+import 'package:pactus_gui/src/core/utils/gen/localization/codegen_loader.dart';
 
 /// [LocalizationExtension] documentation:
 /// An extension on `BuildContext` that provides easy access to localized -

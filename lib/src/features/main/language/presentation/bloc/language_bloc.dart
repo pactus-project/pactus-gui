@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:gui/src/core/constants/storage_keys.dart';
-import 'package:gui/src/core/utils/storage_utils.dart';
-import 'package:gui/src/features/main/language/core/language_constants.dart';
-import 'package:gui/src/features/main/language/data/language_case.dart';
+import 'package:pactus_gui/src/core/constants/storage_keys.dart';
+import 'package:pactus_gui/src/core/utils/storage_utils.dart';
+import 'package:pactus_gui/src/features/main/language/core/language_constants.dart';
+import 'package:pactus_gui/src/features/main/language/data/language_case.dart';
 
 part 'language_event.dart';
 part 'language_state.dart';
