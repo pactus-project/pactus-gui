@@ -9,6 +9,7 @@ import 'package:pactus_gui/src/core/utils/methods/print_debug.dart';
 import 'package:pactus_gui/src/core/utils/node_lock_manager/directory_manager.dart'
     show DaemonFileEnum, DirectoryManager;
 import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui_widgetbook/app_core.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 import 'package:window_manager/window_manager.dart';
 
@@ -128,9 +129,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        _buildControlButton(Assets.icons.icMinimize, windowManager.minimize),
-        _buildControlButton(Assets.icons.icMaximize, _toggleMaximize),
-        _buildControlButton(Assets.icons.icClose, windowManager.close),
+        _buildControlButton(
+          Assets.icons.icMinimize,
+          windowManager.minimize,
+        ),
+        _buildControlButton(
+          Assets.icons.icMaximize,
+          _toggleMaximize,
+        ),
+        _buildControlButton(
+          Assets.icons.icClose,
+          windowManager.close,
+          color: PalletColors.red400,
+        ),
       ],
     );
   }
@@ -161,11 +172,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget _buildControlButton(
     String icon,
     AsyncCallback action, {
+    PalletColors? color,
     double size = 48,
   }) {
     return FluentAppBarButton(
       icon: icon,
       size: size,
+      color: color,
       onPressed: () async {
         try {
           await DirectoryManager()
