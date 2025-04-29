@@ -48,9 +48,9 @@ class DashboardHomeScreen extends StatelessWidget {
               ),
             ),
             Align(
-              alignment: AlignmentDirectional.centerEnd,
+              alignment: AlignmentDirectional.centerStart,
               child: Padding(
-                padding: const EdgeInsetsDirectional.only(end: 32),
+                padding: const EdgeInsetsDirectional.only(start: 32),
                 child: LoadNodeValidatorAddresses(),
               ),
             ),
