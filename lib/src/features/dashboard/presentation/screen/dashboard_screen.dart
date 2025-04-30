@@ -1,7 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pactus_gui/src/core/common/widgets/app_layout.dart';
-import 'package:pactus_gui/src/core/extensions/context_extensions.dart';
 import 'package:pactus_gui/src/data/models/fluent_navigation_state_model.dart';
 import 'package:pactus_gui/src/features/about_us/presentation/screens/about_us_screen.dart';
 import 'package:pactus_gui/src/features/dashboard/core/enums/pane_item_type.dart';
@@ -15,6 +14,8 @@ import 'package:pactus_gui/src/features/node_logs/presentation/screens/node_logs
 import 'package:pactus_gui/src/features/settings/presentation/screens/settings_screen.dart';
 import 'package:pactus_gui/src/features/transactions/presentation/screens/transactions_screen.dart';
 import 'package:pactus_gui/src/features/wallet/presentation/screens/wallet_screen.dart';
+import 'package:pactus_gui_widgetbook/app_styles.dart'
+    show AppTheme, PanePallet;
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -45,10 +46,9 @@ class DashboardScreen extends StatelessWidget {
                   title: Text(
                     context.tr(PaneItemType.settings.name),
                     style: TextStyle(
-                      color: context.detectPaneTextColor(
-                        isEnabledTextStyle:
-                            PaneItemType.settings.id == state.selectedIndex,
-                      ),
+                      color: AppTheme.of(context)
+                          .extension<PanePallet>()!
+                          .itemColor,
                     ),
                   ),
                   body: SettingsScreen(),
@@ -60,10 +60,9 @@ class DashboardScreen extends StatelessWidget {
                   title: Text(
                     context.tr(PaneItemType.faqs.name),
                     style: TextStyle(
-                      color: context.detectPaneTextColor(
-                        isEnabledTextStyle:
-                            PaneItemType.faqs.id == state.selectedIndex,
-                      ),
+                      color: AppTheme.of(context)
+                          .extension<PanePallet>()!
+                          .itemColor,
                     ),
                   ),
                   body: FaqScreen(),
@@ -75,10 +74,9 @@ class DashboardScreen extends StatelessWidget {
                   title: Text(
                     context.tr(PaneItemType.about.name),
                     style: TextStyle(
-                      color: context.detectPaneTextColor(
-                        isEnabledTextStyle:
-                            PaneItemType.about.id == state.selectedIndex,
-                      ),
+                      color: AppTheme.of(context)
+                          .extension<PanePallet>()!
+                          .itemColor,
                     ),
                   ),
                   body: AboutUsScreen(),
@@ -92,10 +90,9 @@ class DashboardScreen extends StatelessWidget {
                   title: Text(
                     context.tr(PaneItemType.home.name),
                     style: TextStyle(
-                      color: context.detectPaneTextColor(
-                        isEnabledTextStyle:
-                            PaneItemType.home.id == state.selectedIndex,
-                      ),
+                      color: AppTheme.of(context)
+                          .extension<PanePallet>()!
+                          .itemColor,
                     ),
                   ),
                   body: DashboardHomeScreen(),
@@ -107,10 +104,9 @@ class DashboardScreen extends StatelessWidget {
                   title: Text(
                     context.tr(PaneItemType.transaction.name),
                     style: TextStyle(
-                      color: context.detectPaneTextColor(
-                        isEnabledTextStyle:
-                            PaneItemType.transaction.id == state.selectedIndex,
-                      ),
+                      color: AppTheme.of(context)
+                          .extension<PanePallet>()!
+                          .itemColor,
                     ),
                   ),
                   body: TransactionsScreen(),
@@ -122,10 +118,9 @@ class DashboardScreen extends StatelessWidget {
                   title: Text(
                     context.tr(PaneItemType.wallet.name),
                     style: TextStyle(
-                      color: context.detectPaneTextColor(
-                        isEnabledTextStyle:
-                            PaneItemType.wallet.id == state.selectedIndex,
-                      ),
+                      color: AppTheme.of(context)
+                          .extension<PanePallet>()!
+                          .itemColor,
                     ),
                   ),
                   body: WalletScreen(),
@@ -137,10 +132,9 @@ class DashboardScreen extends StatelessWidget {
                   title: Text(
                     context.tr(PaneItemType.nodeLogs.name),
                     style: TextStyle(
-                      color: context.detectPaneTextColor(
-                        isEnabledTextStyle:
-                            PaneItemType.nodeLogs.id == state.selectedIndex,
-                      ),
+                      color: AppTheme.of(context)
+                          .extension<PanePallet>()!
+                          .itemColor,
                     ),
                   ),
                   body: NodeLogsScreen(),
