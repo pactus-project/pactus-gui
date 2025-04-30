@@ -1,3 +1,7 @@
+# 1.60.0+62
+### [Feature]
+- Adjustment background color of seed input component [#195](https://github.com/pactus-project/pactus-gui/pull/196)
+
 # 1.59.0+61
 ### [Fix]
 - Fix lock node in debugging mode and force close app [#187](https://github.com/pactus-project/pactus-gui/pull/188)
