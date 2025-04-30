@@ -815,10 +815,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "89ad54cc00edcac4f5bf60c51a08c5fe7908fe5b"
+      resolved-ref: "07a950327038fca5fa2d667d60bd89a8f73368e3"
       url: "https://github.com/pactus-project/pactus-gui-widgetbook.git"
     source: git
-    version: "1.13.3+20"
+    version: "1.14.0+21"
   path:
     dependency: "direct main"
     description:
