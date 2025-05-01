@@ -1,3 +1,8 @@
+# 1.63.0+65
+### [Feature]
+- Remove empty-directory requirement for node setup [#199](https://github.com/pactus-project/pactus-gui/pull/199)
+  - Auto-generates `pactus_node_[version]` subfolders in any selected directory
+
 # 1.62.0+64
 ### [Refactor]
 - Move LoadNodeValidatorAddresses component to the start of the dashboard home screen [#193](https://github.com/pactus-project/pactus-gui/pull/198)

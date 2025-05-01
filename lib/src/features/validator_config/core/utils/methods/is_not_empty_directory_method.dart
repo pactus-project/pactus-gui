@@ -1,80 +1,48 @@
 import 'dart:io';
+import 'package:flutter_app_info/package_info_plus.dart' show PackageInfo;
+import 'package:pactus_gui/src/core/utils/methods/print_debug.dart';
+import 'package:path/path.dart' as path;
 
-/// ## [guaranteeDirectoryExists] Function Documentation
+/// ## [createNodeDirectory] Function Documentation
 ///
-/// Checks if a directory exists with content, creating it if missing.
+/// Creates a new Pactus node directory with version-specific naming inside
+/// the specified base path.
 ///
-/// Returns `true` only if the directory exists AND contains files/subdirectories.
-/// Returns `false` for empty directories, creation failures, or invalid paths.
-/// Silently handles creation errors.
+/// Returns the full path of the newly created directory if successful.
+/// Returns `null` if the base directory doesn't exist or if creation fails.
+/// Silently handles errors with debug logging.
+///
+/// The generated directory follows the naming pattern: `pactus_node_[version]`
+/// where version is derived from the app's package info.
 ///
 /// Example:
 /// ```dart
-/// if (await guaranteeDirectoryExists(text: './data')) {
-///   // Directory has content
+/// final nodeDir = await createNodeDirectory('/user/documents');
+/// if (nodeDir != null) {
+///   // Success - use the new directory path
+///   print('Created node directory at: $nodeDir');
 /// }
 /// ```
-Future<bool> guaranteeDirectoryExists({required String text}) async {
-  final directory = Directory(text);
-  if (!directory.existsSync()) {
-    try {
-      await directory.create(recursive: true);
-    } on Exception catch (_) {}
-  }
-  return directory.listSync().isNotEmpty;
-}
 
-/*
-/// Checks if directory is ready for new node creation.
-/// Returns `true` when:
-///   - Directory doesn't exist (and gets created successfully), OR
-///   - Directory exists but is empty
-/// Returns `false` when:
-///   - Directory exists AND contains files (pre-existing node detected)
-///   - Any filesystem error occurs
-Future<bool> isDirectoryReadyForNode2({
-  required String latestPartOfPath,
-}) async {
-  final parentDir = Directory.current.parent;
-  //print('Checking parent directory: ${parentDir.path}');
-
-  final parentDirPathAndLocalNet = '${parentDir.path}/$latestPartOfPath';
-  //print('Full directory path to check: $parentDirPathAndLocalNet');
-
-  final dirLocalNet = Directory(parentDirPathAndLocalNet);
-
-  // Check if directory exists
-  if (dirLocalNet.existsSync()) {
-    //print('Directory already exists at: $parentDirPathAndLocalNet');
-
-    // Check directory contents
-    final contents = dirLocalNet.listSync();
-    if (contents.isEmpty) {
-      // print('✅ Directory is EMPTY (ready for use)');
-      return false;
-    } else {
-      //print('⚠️ Directory is NOT empty (contains ${contents.length} items)');
-      return true;
+Future<String?> createNodeDirectory(String basePath) async {
+  try {
+    // Verify base directory exists
+    final baseDir = Directory(basePath);
+    if (!baseDir.existsSync()) {
+      return null;
     }
-  } else {
-    //print('Directory does not exist at: $parentDirPathAndLocalNet');
 
-    // Try to create directory
-    try {
-      //print('Attempting to create directory...');
-      */
-/* final createdDir =*/ /*
- await dirLocalNet.create(recursive: true);
-      //print('✅ Successfully created directory at: ${createdDir.path}');
-      //print('✅ Directory is EMPTY (ready for use)');
-      return false;
-    } on PathNotFoundException catch (_) {
-      //print('❌ Path creation failed (PathNotFoundException): $e');
-      rethrow;
-    } on Exception catch (_) {
-      //print('❌ Path creation failed (Exception): $e');
-      rethrow;
-    }
+    // Generate unique directory name
+    final packageInfo = await PackageInfo.fromPlatform();
+    final version = packageInfo.version.replaceAll('.', '_');
+    final dirName = 'pactus_node_$version';
+
+    // Create new directory
+    final newPath = path.join(basePath, dirName);
+    await Directory(newPath).create(recursive: true);
+    return newPath;
+  } on Exception catch (e) {
+    printDebug('Directory creation error: $e');
+    return null;
   }
 }
-*/

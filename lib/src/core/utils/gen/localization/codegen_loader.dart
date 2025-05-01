@@ -202,6 +202,8 @@ class CodegenLoader {
     'generate_button': 'Generate',
     'seed_placeholder': 'Seed will appear here',
     'password_mismatch_error': 'Passwords do not match!',
+    'directory_creation_failed':
+        'Failed to create application directory. Please check permissions and try again.',
   };
   static const Map<String, dynamic> frFR = {
     'title': 'Bonjour le Monde!',
@@ -383,6 +385,8 @@ class CodegenLoader {
     'generate_button': 'Générer',
     'seed_placeholder': 'La graine apparaîtra ici',
     'password_mismatch_error': 'Les mots de passe ne correspondent pas !',
+    'directory_creation_failed':
+        'Échec de la création du répertoire. Veuillez vérifier les permissions et réessayer.',
   };
   static const Map<String, dynamic> esES = {
     'title': 'Hola Mundo!',
@@ -562,6 +566,8 @@ class CodegenLoader {
     'generate_button': 'Generar',
     'seed_placeholder': 'La semilla aparecerá aquí',
     'password_mismatch_error': '¡Las contraseñas no coinciden!',
+    'directory_creation_failed':
+        'No se pudo crear el directorio. Por favor verifique los permisos e intente nuevamente.',
   };
 
   static const Map<String, Map<String, dynamic>> mapLocales = {

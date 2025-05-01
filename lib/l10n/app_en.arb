@@ -143,5 +143,6 @@
   "generate_button": "Generate",
   "seed_placeholder": "Seed will appear here",
   "password_mismatch_error": "Passwords do not match!",
+  "directory_creation_failed": "Failed to create application directory. Please check permissions and try again.",
   "answer_how_is_pactus_different_from_ethereum": "Pactus and Ethereum are both Proof of Stake blockchains, but they differ in their approach to running a validator. Running a validator on Ethereum can be challenging and requires 32 Ethereum coins to stake. In Pactus, there is no fixed amount for staking. Pactus is specifically designed to be more accessible to normal users, and you can run the Pactus blockchain on your personal computer with basic hardware."
 }

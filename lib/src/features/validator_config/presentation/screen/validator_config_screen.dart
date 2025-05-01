@@ -148,48 +148,42 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
               selectedIndex: selectedIndex.selectedIndex,
               onNextPressed: isDirectoryValid
                   ? () async {
-                      final isDirectoryNotEmpty =
-                          await guaranteeDirectoryExists(
-                        text: directoryController.text,
+                      final newPath = await createNodeDirectory(
+                        directoryController.text,
                       );
 
-                      // Check if context is still mounted before proceeding
                       if (!context.mounted) {
                         return;
                       }
 
-                      // save `nodeDirectory` in `shared preferences` .
-                      // used for run cli commands in splash screen .
-                      StorageUtils.saveData(
-                        StorageKeys.nodeDirectory,
-                        directoryController.text,
-                      );
-
-                      if (isDirectoryNotEmpty) {
+                      if (newPath == null) {
                         showFluentAlert(
                           context,
-                          context.tr(LocaleKeys.directory_not_empty),
+                          context.tr(LocaleKeys.directory_creation_failed),
                         );
-                      } else {
-                        final selectedQty =
-                            context.read<DropdownCubit<ValidatorQty>>().state;
-
-                        NodeConfigData.instance.validatorQty =
-                            '${selectedQty.qty}';
-
-                        NodeConfigData.instance.workingDirectory =
-                            directoryController.text;
-
-                        context
-                            .read<NavigationPaneCubit>()
-                            .setSelectedIndex(selectedIndex.selectedIndex + 1);
+                        return;
                       }
+
+                      StorageUtils.saveData(
+                        StorageKeys.nodeDirectory,
+                        newPath,
+                      );
+
+                      final selectedQty =
+                          context.read<DropdownCubit<ValidatorQty>>().state;
+                      NodeConfigData.instance.validatorQty =
+                          '${selectedQty.qty}';
+                      NodeConfigData.instance.workingDirectory = newPath;
+
+                      context.read<NavigationPaneCubit>().setSelectedIndex(
+                            selectedIndex.selectedIndex + 1,
+                          );
                     }
                   : null,
               onBackPressed: () {
-                context
-                    .read<NavigationPaneCubit>()
-                    .setSelectedIndex(selectedIndex.selectedIndex - 1);
+                context.read<NavigationPaneCubit>().setSelectedIndex(
+                      selectedIndex.selectedIndex - 1,
+                    );
               },
             ),
           );
