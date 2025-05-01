@@ -143,5 +143,6 @@
   "generate_button": "Générer",
   "seed_placeholder": "La graine apparaîtra ici",
   "password_mismatch_error": "Les mots de passe ne correspondent pas !",
+  "directory_creation_failed": "Échec de la création du répertoire. Veuillez vérifier les permissions et réessayer.",
   "answer_how_is_pactus_different_from_ethereum": "Pactus et Ethereum sont tous les deux des blockchains à Preuve de Enjeu, mais ils diffèrent dans leur approche pour exécuter un validador. Exécuter un validador sur Ethereum peut être difficile et nécessite 32 pièces Ethereum pour miser. Dans Pactus, il ne y a pas de montant fixe pour miser. Pactus est spécifiquement conçu pour être plus accessible aux utilisateurs ordinaires, et vous pouvez exécuter la blockchain Pactus sur votre ordinateur personnel avec un matériel de base."
 }
