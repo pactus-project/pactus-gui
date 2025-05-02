@@ -20,7 +20,7 @@ class AboutItemSubList extends StatelessWidget {
       children: [
         Text(
           context.tr(faqTitle),
-          style: InterTextStyles.smallRegular.copyWith(
+          style: InterTextStyles.body.copyWith(
             color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
           ),
         ),
@@ -49,7 +49,7 @@ class AboutItemSubList extends StatelessWidget {
                   Expanded(
                     child: Text(
                       context.tr(faqSubTitle[index]),
-                      style: InterTextStyles.smallRegular.copyWith(
+                      style: InterTextStyles.body.copyWith(
                         color: AppTheme.of(context)
                             .extension<DarkPallet>()!
                             .dark500,

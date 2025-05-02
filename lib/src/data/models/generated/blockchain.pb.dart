@@ -16,9 +16,8 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'transaction.pb.dart' as $0;
-
 import 'blockchain.pbenum.dart';
+import 'transaction.pb.dart' as $0;
 import 'transaction.pbenum.dart' as $0;
 
 export 'blockchain.pbenum.dart';

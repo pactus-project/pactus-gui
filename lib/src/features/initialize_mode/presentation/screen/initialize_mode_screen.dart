@@ -2,7 +2,6 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pactus_gui/src/core/common/colors/app_colors.dart';
 import 'package:pactus_gui/src/core/common/widgets/app_layout.dart';
 import 'package:pactus_gui/src/core/constants/feature_flag.dart';
 import 'package:pactus_gui/src/core/router/route_name.dart';
@@ -114,10 +113,10 @@ class _InitializeModeScreenState extends State<InitializeModeScreen> {
                             const Gap(46),
                             Text(
                               context.tr(LocaleKeys.initiate_your_node),
-                              style: InterTextStyles.bodyBold.copyWith(
+                              style: InterTextStyles.bodyStrong.copyWith(
                                 color: AppTheme.of(context)
                                     .extension<DarkPallet>()!
-                                    .dark700,
+                                    .contrast,
                               ),
                             ),
                             const Gap(8),
@@ -125,8 +124,10 @@ class _InitializeModeScreenState extends State<InitializeModeScreen> {
                               context.tr(
                                 LocaleKeys.initiate_your_node_for_first_time,
                               ),
-                              style: InterTextStyles.smallRegular.copyWith(
-                                color: AppColors.primaryGray,
+                              style: InterTextStyles.body.copyWith(
+                                color: AppTheme.of(context)
+                                    .extension<DarkPallet>()!
+                                    .dark800,
                               ),
                             ),
                             const Gap(24),

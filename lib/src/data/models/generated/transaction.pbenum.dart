@@ -12,6 +12,7 @@
 // ignore_for_file: prefer_final_locals
 
 import 'dart:core' as $core;
+
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class PayloadType extends $pb.ProtobufEnum {

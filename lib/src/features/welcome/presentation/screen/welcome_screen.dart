@@ -29,14 +29,14 @@ class WelcomeScreen extends StatelessWidget {
               const Gap(40),
               Text(
                 context.tr(LocaleKeys.welcome_title),
-                style: InterTextStyles.bodyBold.copyWith(
+                style: InterTextStyles.bodyStrong.copyWith(
                   color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
                 ),
               ),
               const Gap(16),
               Text(
                 context.tr(LocaleKeys.welcome_description),
-                style: InterTextStyles.smallRegular.copyWith(
+                style: InterTextStyles.body.copyWith(
                   color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
                 ),
                 softWrap: true,

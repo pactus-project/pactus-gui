@@ -26,7 +26,7 @@ class SettingsScreen extends StatelessWidget {
                 context.tr(
                   LocaleKeys.accent_color,
                 ),
-                style: InterTextStyles.smallRegular.copyWith(
+                style: InterTextStyles.body.copyWith(
                   color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
                 ),
               ),
@@ -39,7 +39,7 @@ class SettingsScreen extends StatelessWidget {
             children: [
               Text(
                 context.tr(LocaleKeys.language),
-                style: InterTextStyles.smallRegular.copyWith(
+                style: InterTextStyles.body.copyWith(
                   color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
                 ),
               ),

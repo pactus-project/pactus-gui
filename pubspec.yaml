@@ -39,7 +39,7 @@ dependencies:
 #        path: ../pactus-gui-widgetbook
     git:
       url: https://github.com/pactus-project/pactus-gui-widgetbook.git
-      ref: main
+      ref: b603ff5abef2689978ea406a710d77b54369a9ac
   path: ^1.8.3
   process_run: ^1.2.2+1
   protobuf:

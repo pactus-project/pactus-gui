@@ -1,5 +1,4 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:pactus_gui/src/core/common/colors/app_colors.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 /// ## [CustomPasswordWidget] Class Documentation
@@ -105,7 +104,7 @@ class CustomPasswordWidget extends StatelessWidget {
               border: Border(
                 bottom: BorderSide(
                   color: isFocused
-                      ? AppColors.inputActiveColor
+                      ? AppTheme.of(context).accentColor
                       : Colors.transparent,
                   width: 2,
                 ),
