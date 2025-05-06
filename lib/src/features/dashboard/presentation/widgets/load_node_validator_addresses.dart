@@ -61,7 +61,23 @@ class _LoadNodeValidatorAddressesState
             ),
           );
         } else {
-          return ShimmerCardItem();
+          return SizedBox(
+            height: 230,
+            width: 660,
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: ListView.builder(
+                  itemCount: 7,
+                  itemBuilder: (context, index) {
+                    return ShimmerCardItem(
+                      width: 650,
+                    );
+                  },
+                ),
+              ),
+            ),
+          );
         }
       },
     );

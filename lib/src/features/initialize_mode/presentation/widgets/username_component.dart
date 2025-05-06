@@ -1,5 +1,4 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:pactus_gui/src/core/common/colors/app_colors.dart';
 import 'package:pactus_gui/src/core/common/widgets/custom_input_widget.dart';
 import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
@@ -13,7 +12,8 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 ///
 /// - **Username Label:**
 ///   - Displays the localized username text.like `context.tr(LocaleKeys.usr)`.
-///   - Styled with `InterTextStyles.captionMedium` and `AppColors.primaryGray`.
+///   - Styled with `InterTextStyles.caption` and
+///   `AppTheme.of(context).extension<GrayPallet>()!.contrast`.
 ///
 /// - **Username Input Field:**
 ///   - Uses `CustomInputWidget` for input functionality.
@@ -49,8 +49,8 @@ class UserNameComponentState extends State<UserNameComponent> {
       children: [
         Text(
           context.tr(LocaleKeys.username),
-          style: InterTextStyles.captionMedium.copyWith(
-            color: AppColors.primaryGray,
+          style: InterTextStyles.caption.copyWith(
+            color: AppTheme.of(context).extension<GrayPallet>()!.contrast,
           ),
         ),
         CustomInputWidget(

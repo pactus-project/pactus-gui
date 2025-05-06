@@ -1,6 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gap/gap.dart';
-import 'package:pactus_gui/src/core/common/colors/app_colors.dart';
 import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
@@ -73,7 +72,7 @@ class CustomRadioButton<T> extends StatelessWidget {
                 color: FluentTheme.of(context).accentColor,
                 width: 2,
               ),
-              color: Colors.white,
+              color: AppTheme.of(context).extension<LightPallet>()!.light900,
             ),
             child: isSelected
                 ? Center(
@@ -92,8 +91,8 @@ class CustomRadioButton<T> extends StatelessWidget {
           Text(
             context.tr(label),
             style: textStyle ??
-                InterTextStyles.smallRegular.copyWith(
-                  color: AppColors.primaryGray,
+                InterTextStyles.body.copyWith(
+                  color: AppTheme.of(context).extension<GrayPallet>()!.contrast,
                 ),
           ),
         ],

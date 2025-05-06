@@ -2,7 +2,6 @@ import 'package:file_selector/file_selector.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:pactus_gui/src/core/common/colors/app_colors.dart';
 import 'package:pactus_gui/src/core/common/cubits/step_validation_cubit.dart';
 import 'package:pactus_gui/src/core/common/sections/navigation_footer_section.dart';
 import 'package:pactus_gui/src/core/common/widgets/standard_page_layout.dart';
@@ -99,8 +98,9 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
                 const Gap(28),
                 Text(
                   context.tr(LocaleKeys.working_directory),
-                  style: InterTextStyles.captionMedium.copyWith(
-                    color: AppColors.primaryGray,
+                  style: InterTextStyles.caption.copyWith(
+                    color:
+                        AppTheme.of(context).extension<GrayPallet>()!.contrast,
                   ),
                 ),
                 const Gap(8),

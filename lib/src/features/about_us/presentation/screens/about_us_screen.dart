@@ -28,7 +28,7 @@ class AboutUsScreen extends StatelessWidget {
               context.tr(
                 LocaleKeys.key_features_and_functionalities,
               ),
-              style: InterTextStyles.smallRegular.copyWith(
+              style: InterTextStyles.body.copyWith(
                 color: AppTheme.of(context).extension<DarkPallet>()!.dark600,
               ),
             ),

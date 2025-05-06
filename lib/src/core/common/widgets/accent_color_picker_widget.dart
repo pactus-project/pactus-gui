@@ -68,16 +68,20 @@ class AccentColorPicker extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: colors[i],
                         border: Border.all(
-                          color: Colors.white,
+                          color: AppTheme.of(context)
+                              .extension<OnAccentPallet>()!
+                              .onAccentColor,
                           width: 2,
                         ),
                       ),
                     ),
                     if (selectedColorId == i)
-                      const Icon(
+                      Icon(
                         Icons.check,
                         size: 20,
-                        color: Colors.white, // Ensure visibility
+                        color: AppTheme.of(context)
+                            .extension<OnAccentPallet>()!
+                            .onAccentColor, // Ensure visibility
                       ),
                   ],
                 ),

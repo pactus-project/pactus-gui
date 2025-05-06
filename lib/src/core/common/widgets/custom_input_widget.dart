@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:pactus_gui/src/core/common/colors/app_colors.dart'
-    show AppColors;
 import 'package:pactus_gui/src/core/utils/validators/password_validation.dart'
     show PasswordValidation;
 import 'package:pactus_gui_widgetbook/app_styles.dart';
@@ -219,8 +217,8 @@ class CustomInputWidgetState extends State<CustomInputWidget> {
               textAlignVertical: TextAlignVertical.center,
               style: widget.textStyle?.copyWith(
                 color: errorText != null
-                    ? Colors.red
-                    : AppColors.expandableSeedTypeColor,
+                    ? AppTheme.of(context).extension<RedPallet>()!.red500
+                    : AppTheme.of(context).extension<DarkPallet>()!.contrast,
               ),
               padding: const EdgeInsets.symmetric(
                 horizontal: 12,
@@ -235,7 +233,7 @@ class CustomInputWidgetState extends State<CustomInputWidget> {
                   border: Border(
                     bottom: BorderSide(
                       color: errorText != null
-                          ? Colors.red
+                          ? AppTheme.of(context).extension<RedPallet>()!.red500!
                           : (isFocused
                               ? FluentTheme.of(context).accentColor
                               : Colors.transparent),
@@ -249,7 +247,9 @@ class CustomInputWidgetState extends State<CustomInputWidget> {
                       icon: widget.obscureIcon ??
                           Icon(
                             _obscureText ? FluentIcons.hide3 : FluentIcons.view,
-                            color: Colors.grey,
+                            color: AppTheme.of(context)
+                                .extension<DarkPallet>()!
+                                .contrast,
                             size: 19,
                           ),
                       onPressed: () {
@@ -268,7 +268,7 @@ class CustomInputWidgetState extends State<CustomInputWidget> {
             child: Text(
               errorText!,
               style: TextStyle(
-                color: Colors.red,
+                color: AppTheme.of(context).extension<RedPallet>()!.red500,
                 fontSize: 12,
               ),
             ),
