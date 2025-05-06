@@ -139,7 +139,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
         _buildControlButton(
           Assets.icons.icClose,
-          windowManager.close,
+              () async {
+            await DirectoryManager()
+                .killDaemonProcess(DaemonFileEnum.pactusDaemon);
+            await DirectoryManager().removeLockFile();
+            await windowManager.close();
+          },
           color: PalletColors.red400,
         ),
       ],
@@ -181,9 +186,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       color: color,
       onPressed: () async {
         try {
-          await DirectoryManager()
-              .killDaemonProcess(DaemonFileEnum.pactusDaemon);
-          await DirectoryManager().removeLockFile();
           await action();
         } on Exception catch (e) {
           printDebug('Window action failed: $e');
