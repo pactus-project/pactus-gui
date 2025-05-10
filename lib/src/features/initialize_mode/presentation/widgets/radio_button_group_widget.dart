@@ -53,7 +53,7 @@ class RadioButtonGroup extends StatelessWidget {
           groupValue: selectedValue,
           textStyle: textStyle,
           onChanged: onChanged,
-          label: LocaleKeys.create_local_node_from_scrache,
+          label: LocaleKeys.create_local_node_from_scratch,
         ),
         CustomRadioButton(
           textStyle: textStyle,

@@ -17,7 +17,7 @@
   "finish": "Terminer",
   "initiate_your_node": "Initialiser votre nœud",
   "initiate_your_node_for_first_time": "Initialiser votre nœud pour la première fois",
-  "create_local_node_from_scrache": "Créer un nœud local à partir de zéro",
+  "create_local_node_from_scratch": "Créer un nœud local à partir de zéro",
   "restore_local_node_from_seed_pharse": "Restaurer le nœud local à partir de la phrase germinative",
   "connect_to_remote_node": "Se connecter à un nœud distant",
   "remote_address": "Adresse distante",

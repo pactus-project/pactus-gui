@@ -48,7 +48,7 @@ class SeedNotesSection extends StatelessWidget {
               context.tr(LocaleKeys.generation_seed_note1).replacePlaceholders([
                 '${state.qty}',
               ]),
-              style: InterTextStyles.caption.copyWith(
+              style: InterTextStyles.body.copyWith(
                 color: AppTheme.of(context).extension<GrayPallet>()!.contrast,
               ),
             );
@@ -56,31 +56,31 @@ class SeedNotesSection extends StatelessWidget {
         ),
         Text(
           context.tr(LocaleKeys.generation_seed_note2),
-          style: InterTextStyles.caption.copyWith(
+          style: InterTextStyles.body.copyWith(
             color: AppTheme.of(context).extension<GrayPallet>()!.contrast,
           ),
         ),
         Text(
           context.tr(LocaleKeys.warning),
-          style: InterTextStyles.caption.copyWith(
+          style: InterTextStyles.body.copyWith(
             color: AppTheme.of(context).extension<GrayPallet>()!.contrast,
           ),
         ),
         Text(
           '- ${context.tr(LocaleKeys.generation_seed_warning1)}',
-          style: InterTextStyles.caption.copyWith(
+          style: InterTextStyles.body.copyWith(
             color: AppTheme.of(context).extension<GrayPallet>()!.contrast,
           ),
         ),
         Text(
           '- ${context.tr(LocaleKeys.generation_seed_warning2)}',
-          style: InterTextStyles.caption.copyWith(
+          style: InterTextStyles.body.copyWith(
             color: AppTheme.of(context).extension<GrayPallet>()!.contrast,
           ),
         ),
         Text(
           '- ${context.tr(LocaleKeys.generation_seed_warning3)}',
-          style: InterTextStyles.caption.copyWith(
+          style: InterTextStyles.body.copyWith(
             color: AppTheme.of(context).extension<GrayPallet>()!.contrast,
           ),
         ),

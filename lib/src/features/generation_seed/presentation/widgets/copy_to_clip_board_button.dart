@@ -92,7 +92,7 @@ class CopyToClipboardButton extends StatelessWidget {
                   ),
                   content: Text(
                     context.tr(LocaleKeys.clipboard_dialog_content),
-                    style: InterTextStyles.caption.copyWith(
+                    style: InterTextStyles.body.copyWith(
                       color:
                           AppTheme.of(context).extension<DarkPallet>()!.dark700,
                     ),

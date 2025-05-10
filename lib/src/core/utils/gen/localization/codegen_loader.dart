@@ -35,7 +35,7 @@ class CodegenLoader {
     'applications': 'Applications',
     'welcome_title': 'Welcome to the Future of Blockchain with Pactus!',
     'welcome_description':
-        'Where the future of blockchain unfolds with trust and transparency in every transaction. Join us in shaping a decentralized revolution!',
+        'Where the future of blockchain unfolds with trust and transparency in every transaction. Join us in shaping the decentralized revolution!',
     'start_button_text': 'Get Started',
     'initialize_mode': 'Initialize mode',
     'wallet_seed': 'Wallet seed',
@@ -46,7 +46,7 @@ class CodegenLoader {
     'finish': 'Finish',
     'initiate_your_node': 'Initiate your node',
     'initiate_your_node_for_first_time': 'Initiate your node for first time',
-    'create_local_node_from_scrache': 'Create local node from scrache',
+    'create_local_node_from_scratch': 'Create local node from scratch',
     'restore_local_node_from_seed_pharse':
         'Restore local node from seed pharse',
     'connect_to_remote_node': 'Connect to remote node',
@@ -225,7 +225,7 @@ class CodegenLoader {
     'initiate_your_node': 'Initialiser votre nœud',
     'initiate_your_node_for_first_time':
         'Initialiser votre nœud pour la première fois',
-    'create_local_node_from_scrache': 'Créer un nœud local à partir de zéro',
+    'create_local_node_from_scratch': 'Créer un nœud local à partir de zéro',
     'restore_local_node_from_seed_pharse':
         'Restaurer le nœud local à partir de la phrase germinative',
     'connect_to_remote_node': 'Se connecter à un nœud distant',
@@ -407,7 +407,7 @@ class CodegenLoader {
     'finish': 'Finalizar',
     'initiate_your_node': 'Iniciar tu nodo',
     'initiate_your_node_for_first_time': 'Iniciar tu nodo por primera vez',
-    'create_local_node_from_scrache': 'Crear nodo local desde cero',
+    'create_local_node_from_scratch': 'Crear nodo local desde cero',
     'restore_local_node_from_seed_pharse':
         'Restaurar nodo local desde frase semilla',
     'connect_to_remote_node': 'Conectar a nodo remoto',

@@ -18,8 +18,8 @@ abstract class LocaleKeys {
   static const String initiate_your_node = 'initiate_your_node';
   static const String initiate_your_node_for_first_time =
       'initiate_your_node_for_first_time';
-  static const String create_local_node_from_scrache =
-      'create_local_node_from_scrache';
+  static const String create_local_node_from_scratch =
+      'create_local_node_from_scratch';
   static const String restore_local_node_from_seed_pharse =
       'restore_local_node_from_seed_pharse';
   static const String connect_to_remote_node = 'connect_to_remote_node';

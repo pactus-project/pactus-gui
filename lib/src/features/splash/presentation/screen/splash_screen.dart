@@ -135,16 +135,19 @@ class SplashScreen extends StatelessWidget {
                         ),
                         Align(
                           alignment: AlignmentDirectional.bottomCenter,
-                          child: Text(
-                            '${AppInfo.of(context).package.version}',
-                            style: FluentTheme.of(context)
-                                .typography
-                                .title
-                                ?.copyWith(
-                                  color: AppTheme.of(context)
-                                      .extension<DarkPallet>()!
-                                      .dark900,
-                                ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 16),
+                            child: Text(
+                              '${AppInfo.of(context).package.version}',
+                              style: FluentTheme.of(context)
+                                  .typography
+                                  .title
+                                  ?.copyWith(
+                                    color: AppTheme.of(context)
+                                        .extension<DarkPallet>()!
+                                        .dark900,
+                                  ),
+                            ),
                           ),
                         ),
                       ],
