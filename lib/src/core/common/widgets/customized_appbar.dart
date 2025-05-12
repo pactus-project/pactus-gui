@@ -74,7 +74,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           children: [
             Padding(
               padding: const EdgeInsetsDirectional.only(start: 20),
-              child: SizedBox(width: 25,
+              child: SizedBox(
+                width: 25,
                 height: 25,
                 child: SvgPicture.asset(
                   isLightTheme
@@ -143,7 +144,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
         _buildControlButton(
           Assets.icons.icClose,
-              () async {
+          () async {
             await DirectoryManager()
                 .killDaemonProcess(DaemonFileEnum.pactusDaemon);
             await DirectoryManager().removeLockFile();
