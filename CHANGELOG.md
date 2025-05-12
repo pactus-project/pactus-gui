@@ -1,3 +1,15 @@
+# 1.64.0+66
+### [Feature]
+- Fix reported some ui issues for version `1.6.3.0-rc1` [#200](https://github.com/pactus-project/pactus-gui/pull/203)
+  - fix(dashboard): fix maximize issue and crash call api in dashboard screen
+  - update: fixed some UI issues
+    - moved UI elements to the center of the welcome screen.
+    - fixed some spelling corrections.
+    - improved the font size of some text sections.
+    - add padding to version number in splash screen
+    - increase font size for copy to clipboard dialog
+    - remove `dark blue` from accent colors and themes
+
 # 1.63.0+65
 ### [Feature]
 - Remove empty-directory requirement for node setup [#199](https://github.com/pactus-project/pactus-gui/pull/199)
