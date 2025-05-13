@@ -70,15 +70,20 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           color: AppTheme.of(context).extension<LightPallet>()!.light800,
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsetsDirectional.only(start: 20),
-              child: SvgPicture.asset(
-                isLightTheme
-                    ? Assets.icons.icLogoLight
-                    : Assets.icons.icLogoDark,
+              child: SizedBox(
                 width: 25,
                 height: 25,
+                child: SvgPicture.asset(
+                  isLightTheme
+                      ? Assets.icons.icLogoLight
+                      : Assets.icons.icLogoDark,
+                  width: 25,
+                  height: 25,
+                ),
               ),
             ),
             const Spacer(),
@@ -139,7 +144,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
         _buildControlButton(
           Assets.icons.icClose,
-          windowManager.close,
+          () async {
+            await DirectoryManager()
+                .killDaemonProcess(DaemonFileEnum.pactusDaemon);
+            await DirectoryManager().removeLockFile();
+            await windowManager.close();
+          },
           color: PalletColors.red400,
         ),
       ],
@@ -181,9 +191,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       color: color,
       onPressed: () async {
         try {
-          await DirectoryManager()
-              .killDaemonProcess(DaemonFileEnum.pactusDaemon);
-          await DirectoryManager().removeLockFile();
           await action();
         } on Exception catch (e) {
           printDebug('Window action failed: $e');

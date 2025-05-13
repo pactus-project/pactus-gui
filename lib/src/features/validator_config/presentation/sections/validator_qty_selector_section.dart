@@ -1,7 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:pactus_gui/src/core/common/colors/app_colors.dart';
 import 'package:pactus_gui/src/core/common/widgets/custom_expandable_widget.dart';
 import 'package:pactus_gui/src/core/enums/app_enums.dart';
 import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
@@ -56,8 +55,8 @@ class ValidatorQtySelectorSection extends StatelessWidget {
       children: [
         Text(
           context.tr(LocaleKeys.number_of_validators),
-          style: InterTextStyles.captionMedium.copyWith(
-            color: AppColors.primaryGray,
+          style: InterTextStyles.caption.copyWith(
+            color: AppTheme.of(context).extension<GrayPallet>()!.contrast,
           ),
         ),
         const Gap(8),

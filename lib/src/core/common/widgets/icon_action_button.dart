@@ -2,7 +2,6 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pactus_gui/src/core/common/colors/app_colors.dart';
 import 'package:pactus_gui/src/core/utils/methods/print_debug.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
@@ -32,9 +31,8 @@ class IconActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = FluentTheme.of(context).brightness == Brightness.dark;
     final defaultColor =
-        isDark ? AppColors.primaryLight : AppColors.primaryDark;
+        AppTheme.of(context).extension<DarkPallet>()!.contrast!.toAccentColor();
 
     final theme = AppTheme.of(context);
     final hoverColor =

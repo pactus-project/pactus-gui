@@ -10,6 +10,7 @@ import 'package:pactus_gui/src/core/router/app_router.dart';
 import 'package:pactus_gui/src/features/main/language/core/language_constants.dart';
 import 'package:pactus_gui/src/features/main/theme/bloc/theme_bloc.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+
 import 'src/features/main/language/presentation/bloc/language_bloc.dart';
 
 class PactusGuiApp extends StatelessWidget {

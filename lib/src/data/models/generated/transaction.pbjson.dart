@@ -10,8 +10,8 @@
 // ignore_for_file: sort_constructors_first
 // ignore_for_file: prefer_final_locals
 
-import 'dart:core' as $core;
 import 'dart:convert' as $convert;
+import 'dart:core' as $core;
 import 'dart:typed_data' as $typed_data;
 
 @$core.Deprecated('Use payloadTypeDescriptor instead')

@@ -17,7 +17,7 @@
   "finish": "Finalizar",
   "initiate_your_node": "Iniciar tu nodo",
   "initiate_your_node_for_first_time": "Iniciar tu nodo por primera vez",
-  "create_local_node_from_scrache": "Crear nodo local desde cero",
+  "create_local_node_from_scratch": "Crear nodo local desde cero",
   "restore_local_node_from_seed_pharse": "Restaurar nodo local desde frase semilla",
   "connect_to_remote_node": "Conectar a nodo remoto",
   "remote_address": "Dirección remota",

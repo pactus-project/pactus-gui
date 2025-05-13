@@ -1,6 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gap/gap.dart';
-import 'package:pactus_gui/src/core/common/colors/app_colors.dart';
 import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
@@ -55,15 +54,15 @@ class ScreenHeaderWidget extends StatelessWidget {
       children: [
         Text(
           context.tr(title),
-          style: InterTextStyles.bodyBold.copyWith(
-            color: AppTheme.of(context).extension<DarkPallet>()!.dark700,
+          style: InterTextStyles.bodyStrong.copyWith(
+            color: AppTheme.of(context).extension<DarkPallet>()!.contrast,
           ),
         ),
         const Gap(8),
         Text(
           context.tr(description),
-          style: InterTextStyles.smallRegular.copyWith(
-            color: AppColors.primaryGray,
+          style: InterTextStyles.body.copyWith(
+            color: AppTheme.of(context).extension<DarkPallet>()!.dark700,
           ),
         ),
         const Gap(24),

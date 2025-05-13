@@ -2,6 +2,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:pactus_gui/src/core/common/widgets/custom_radio_button.dart';
 import 'package:pactus_gui/src/core/constants/feature_flag.dart';
 import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 /// ## [RadioButtonGroup] Class Documentation
 ///
@@ -41,6 +42,8 @@ class RadioButtonGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textStyle =
+        TextStyle(color: AppTheme.of(context).extension<DarkPallet>()!.dark800);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 8,
@@ -48,10 +51,12 @@ class RadioButtonGroup extends StatelessWidget {
         CustomRadioButton(
           value: 0,
           groupValue: selectedValue,
+          textStyle: textStyle,
           onChanged: onChanged,
-          label: LocaleKeys.create_local_node_from_scrache,
+          label: LocaleKeys.create_local_node_from_scratch,
         ),
         CustomRadioButton(
+          textStyle: textStyle,
           value: 1,
           groupValue: selectedValue,
           onChanged: onChanged,
@@ -61,6 +66,7 @@ class RadioButtonGroup extends StatelessWidget {
           CustomRadioButton(
             value: 2,
             groupValue: selectedValue,
+            textStyle: textStyle,
             onChanged: onChanged,
             label: LocaleKeys.connect_to_remote_node,
           ),

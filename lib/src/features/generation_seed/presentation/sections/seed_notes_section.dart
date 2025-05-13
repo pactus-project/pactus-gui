@@ -1,6 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pactus_gui/src/core/common/colors/app_colors.dart';
 import 'package:pactus_gui/src/core/extensions/string_extensions.dart';
 import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:pactus_gui/src/features/generation_seed/core/constants/enums/seed_type_enum.dart';
@@ -18,7 +17,8 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 ///
 /// - **Note Texts (`Text`)**:
 ///   - Displays various notes and warnings related to seed generation.
-///   - Uses `InterTextStyles.captionMedium` with `AppColors.primaryGray` for
+///   - Uses `InterTextStyles.caption` with
+///   `AppTheme.of(context).extension<GrayPallet>()!.contrast` for
 ///     styling.
 ///
 /// - **Warning Texts (`Text`)**:
@@ -48,40 +48,40 @@ class SeedNotesSection extends StatelessWidget {
               context.tr(LocaleKeys.generation_seed_note1).replacePlaceholders([
                 '${state.qty}',
               ]),
-              style: InterTextStyles.captionMedium.copyWith(
-                color: AppColors.primaryGray,
+              style: InterTextStyles.body.copyWith(
+                color: AppTheme.of(context).extension<GrayPallet>()!.contrast,
               ),
             );
           },
         ),
         Text(
           context.tr(LocaleKeys.generation_seed_note2),
-          style: InterTextStyles.captionMedium.copyWith(
-            color: AppColors.primaryGray,
+          style: InterTextStyles.body.copyWith(
+            color: AppTheme.of(context).extension<GrayPallet>()!.contrast,
           ),
         ),
         Text(
           context.tr(LocaleKeys.warning),
-          style: InterTextStyles.captionMedium.copyWith(
-            color: AppColors.primaryGray,
+          style: InterTextStyles.body.copyWith(
+            color: AppTheme.of(context).extension<GrayPallet>()!.contrast,
           ),
         ),
         Text(
           '- ${context.tr(LocaleKeys.generation_seed_warning1)}',
-          style: InterTextStyles.captionMedium.copyWith(
-            color: AppColors.primaryGray,
+          style: InterTextStyles.body.copyWith(
+            color: AppTheme.of(context).extension<GrayPallet>()!.contrast,
           ),
         ),
         Text(
           '- ${context.tr(LocaleKeys.generation_seed_warning2)}',
-          style: InterTextStyles.captionMedium.copyWith(
-            color: AppColors.primaryGray,
+          style: InterTextStyles.body.copyWith(
+            color: AppTheme.of(context).extension<GrayPallet>()!.contrast,
           ),
         ),
         Text(
           '- ${context.tr(LocaleKeys.generation_seed_warning3)}',
-          style: InterTextStyles.captionMedium.copyWith(
-            color: AppColors.primaryGray,
+          style: InterTextStyles.body.copyWith(
+            color: AppTheme.of(context).extension<GrayPallet>()!.contrast,
           ),
         ),
       ],

@@ -19,7 +19,7 @@ class AboutItem extends StatelessWidget {
       children: [
         Text(
           context.tr(faqTitle),
-          style: InterTextStyles.smallRegular.copyWith(
+          style: InterTextStyles.body.copyWith(
             color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
           ),
         ),
@@ -27,7 +27,7 @@ class AboutItem extends StatelessWidget {
           context.tr(
             faqSubTitle,
           ),
-          style: InterTextStyles.smallRegular.copyWith(
+          style: InterTextStyles.body.copyWith(
             color: AppTheme.of(context).extension<DarkPallet>()!.dark600,
           ),
         ),
