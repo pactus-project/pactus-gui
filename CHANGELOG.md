@@ -1,3 +1,7 @@
+# 1.65.0+67
+### [CI]
+- Add support for building `.AppImage` on Linux amd64 [#202](https://github.com/pactus-project/pactus-gui/pull/204)
+
 # 1.64.0+66
 ### [Feature]
 - Fix reported some ui issues for version `1.6.3.0-rc1` [#200](https://github.com/pactus-project/pactus-gui/pull/203)
