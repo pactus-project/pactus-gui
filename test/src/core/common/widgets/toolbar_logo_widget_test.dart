@@ -44,9 +44,7 @@ void main() {
       await tester.pumpWidget(
         FluentApp(
           theme: FluentThemeData(brightness: Brightness.light),
-          home: const ScaffoldPage(
-            content: ToolbarLogo(),
-          ),
+          home: const ScaffoldPage(content: ToolbarLogo()),
         ),
       );
 
@@ -67,9 +65,7 @@ void main() {
       await tester.pumpWidget(
         FluentApp(
           theme: FluentThemeData(brightness: Brightness.dark),
-          home: const ScaffoldPage(
-            content: ToolbarLogo(),
-          ),
+          home: const ScaffoldPage(content: ToolbarLogo()),
         ),
       );
 

@@ -11,9 +11,7 @@ import 'package:pactus_gui/src/features/dev_mode/presentation/bloc/environment_s
 import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
 
 class SubmitButtonWidget extends StatefulWidget {
-  const SubmitButtonWidget({
-    super.key,
-  });
+  const SubmitButtonWidget({super.key});
 
   @override
   State<SubmitButtonWidget> createState() => _SubmitButtonWidgetState();
@@ -52,33 +50,33 @@ class _SubmitButtonWidgetState extends State<SubmitButtonWidget> {
       },
       createNodeCommand: () {
         context.read<DaemonManagerBloc>().add(
-              RunDaemonCommand(
-                cliCommand: CliCommand(
-                  command: CliConstants.pactusDaemon,
-                  arguments: [
-                    CliConstants.init,
-                    collectedFormData.selectedEnvironment!.argument,
-                    CliConstants.restoreArgument,
-                    collectedFormData.seeds!,
-                    CliConstants.workingDirArgument,
-                    '../../../../../../${collectedFormData.selectedEnvironment!.name}',
-                    CliConstants.passwordArgument,
-                    collectedFormData.password ?? 'null',
-                    CliConstants.valNumArgument,
-                    CliConstants.validators12,
-                  ],
-                ),
-              ),
-            );
+          RunDaemonCommand(
+            cliCommand: CliCommand(
+              command: CliConstants.pactusDaemon,
+              arguments: [
+                CliConstants.init,
+                collectedFormData.selectedEnvironment!.argument,
+                CliConstants.restoreArgument,
+                collectedFormData.seeds!,
+                CliConstants.workingDirArgument,
+                '../../../../../../${collectedFormData.selectedEnvironment!.name}',
+                CliConstants.passwordArgument,
+                collectedFormData.password ?? 'null',
+                CliConstants.valNumArgument,
+                CliConstants.validators12,
+              ],
+            ),
+          ),
+        );
       },
       collectedFormData: collectedFormData,
       checkNodeDirectories: () {
         context.read<DirectoryCheckBloc>().add(
-              CheckDirectoryEvent(
-                latestPartOfPath: collectedFormData.selectedEnvironment!.name,
-                networkType: collectedFormData.selectedEnvironment!,
-              ),
-            );
+          CheckDirectoryEvent(
+            latestPartOfPath: collectedFormData.selectedEnvironment!.name,
+            networkType: collectedFormData.selectedEnvironment!,
+          ),
+        );
       },
     );
   }

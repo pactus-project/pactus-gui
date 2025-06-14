@@ -36,18 +36,19 @@ class PactusGuiApp extends StatelessWidget {
                     return AppTheme(
                       themeData: theme,
                       child: FluentApp.router(
-                        scrollBehavior:
-                            const material.MaterialScrollBehavior().copyWith(
-                          dragDevices: {
-                            gestures.PointerDeviceKind.mouse,
-                            gestures.PointerDeviceKind.touch,
-                          },
-                        ),
+                        scrollBehavior: const material.MaterialScrollBehavior()
+                            .copyWith(
+                              dragDevices: {
+                                gestures.PointerDeviceKind.mouse,
+                                gestures.PointerDeviceKind.touch,
+                              },
+                            ),
                         debugShowCheckedModeBanner: false,
                         routerConfig: routerConfig,
                         title: 'Pactus Gui App',
-                        themeMode:
-                            isDarkMode ? ThemeMode.dark : ThemeMode.light,
+                        themeMode: isDarkMode
+                            ? ThemeMode.dark
+                            : ThemeMode.light,
                         theme: theme,
                         localizationsDelegates: [
                           AppLocalizations.delegate,

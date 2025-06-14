@@ -20,9 +20,7 @@ class FaqItem extends StatelessWidget {
           ),
         ),
         Text(
-          context.tr(
-            faqSubTitle,
-          ),
+          context.tr(faqSubTitle),
           style: InterTextStyles.body.copyWith(
             color: AppTheme.of(context).extension<DarkPallet>()!.dark600,
           ),

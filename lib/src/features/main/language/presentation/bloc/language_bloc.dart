@@ -15,8 +15,9 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
   }
 
   Future<void> _loadSavedLanguage() async {
-    final savedLanguage =
-        StorageUtils.getData<String>(StorageKeys.savedLanguage);
+    final savedLanguage = StorageUtils.getData<String>(
+      StorageKeys.savedLanguage,
+    );
     if (savedLanguage != null) {
       final parts = savedLanguage.split('_');
       if (parts.length == 2) {

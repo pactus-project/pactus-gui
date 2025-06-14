@@ -33,8 +33,9 @@ class DialogActionWidget extends StatelessWidget {
         child: Text(
           context.tr(title),
           style: TextStyle(
-            color:
-                AppTheme.of(context).extension<OnAccentPallet>()!.onAccentColor,
+            color: AppTheme.of(
+              context,
+            ).extension<OnAccentPallet>()!.onAccentColor,
           ),
         ),
       ),

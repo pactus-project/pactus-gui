@@ -3,9 +3,7 @@ import 'package:pactus_gui/src/features/dashboard/sub_modules/get_validator/data
 import 'package:pactus_gui/src/features/dashboard/sub_modules/get_validator/domain/entities/get_validator_entity.dart';
 
 mixin GetValidatorMapper {
-  static GetValidatorEntity toEntity(
-    GetValidatorModel model,
-  ) {
+  static GetValidatorEntity toEntity(GetValidatorModel model) {
     return GetValidatorEntity(
       validatorAddress: model.validatorAddress,
       validatorAvailabilityScore: model.validatorAvailabilityScore,
@@ -13,9 +11,7 @@ mixin GetValidatorMapper {
     );
   }
 
-  static GetValidatorModel fromResponse(
-    GetValidatorResponse response,
-  ) {
+  static GetValidatorModel fromResponse(GetValidatorResponse response) {
     return GetValidatorModel(
       validatorAddress: response.validator.address,
       validatorAvailabilityScore: response.validator.availabilityScore,

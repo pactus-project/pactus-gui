@@ -28,9 +28,7 @@ class KeyboardShortcutWidget extends StatelessWidget {
             shortcuts: {
               // Shortcuts for Windows/Linux (Ctrl+D)
               SingleActivator(shortcutOnLinuxWindows, control: true):
-                  VoidCallbackIntent(
-                actionOnLinuxWindows,
-              ),
+                  VoidCallbackIntent(actionOnLinuxWindows),
 
               // Shortcuts for macOs (Cmd+D)
               SingleActivator(shortcutOnMacOs, meta: true): VoidCallbackIntent(

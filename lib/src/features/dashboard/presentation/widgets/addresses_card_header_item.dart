@@ -17,8 +17,8 @@ class AddressesCardHeaderItem extends StatelessWidget {
       child: Text(
         context.tr(label),
         style: AppTheme.of(context).typography.bodyStrong!.copyWith(
-              color: AppTheme.of(context).extension<DarkPallet>()!.dark800,
-            ),
+          color: AppTheme.of(context).extension<DarkPallet>()!.dark800,
+        ),
         textAlign: TextAlign.start,
         overflow: TextOverflow.ellipsis,
       ),

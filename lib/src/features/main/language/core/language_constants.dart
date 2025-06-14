@@ -48,9 +48,5 @@ class LanguageConstants {
     name: 'Español',
   );
 
-  static final List<LanguageCase> languageCases = [
-    enUS,
-    frFR,
-    esES,
-  ];
+  static final List<LanguageCase> languageCases = [enUS, frFR, esES];
 }

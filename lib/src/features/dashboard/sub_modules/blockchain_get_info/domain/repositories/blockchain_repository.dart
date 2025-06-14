@@ -5,8 +5,10 @@ import 'package:pactus_gui/src/features/dashboard/sub_modules/blockchain_get_inf
 
 mixin BlockchainRepository {
   Future<
-      Either<RemoteDataState<ErrorResponseModel>,
-          RemoteDataState<BlockchainInfoEntity>>> getBlockchainInfo({
-    void params,
-  });
+    Either<
+      RemoteDataState<ErrorResponseModel>,
+      RemoteDataState<BlockchainInfoEntity>
+    >
+  >
+  getBlockchainInfo({void params});
 }

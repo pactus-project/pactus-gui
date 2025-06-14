@@ -55,10 +55,7 @@ import 'package:pactus_gui_widgetbook/app_widgets.dart';
 ///   - All text is localized via `LocaleKeys` and `context.tr(...)`.
 ///
 class CopyToClipboardButton extends StatelessWidget {
-  const CopyToClipboardButton({
-    required this.copyClipboardFunction,
-    super.key,
-  });
+  const CopyToClipboardButton({required this.copyClipboardFunction, super.key});
 
   final Future<void> Function() copyClipboardFunction;
 
@@ -86,15 +83,17 @@ class CopyToClipboardButton extends StatelessWidget {
                   title: Text(
                     context.tr(LocaleKeys.clipboard_dialog_title),
                     style: InterTextStyles.bodyStrong.copyWith(
-                      color:
-                          AppTheme.of(context).extension<DarkPallet>()!.dark900,
+                      color: AppTheme.of(
+                        context,
+                      ).extension<DarkPallet>()!.dark900,
                     ),
                   ),
                   content: Text(
                     context.tr(LocaleKeys.clipboard_dialog_content),
                     style: InterTextStyles.body.copyWith(
-                      color:
-                          AppTheme.of(context).extension<DarkPallet>()!.dark700,
+                      color: AppTheme.of(
+                        context,
+                      ).extension<DarkPallet>()!.dark700,
                     ),
                   ),
                   actions: [

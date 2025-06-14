@@ -10,9 +10,7 @@ class NavigationPaneCubit extends Cubit<NavigationState> {
       if (index > _maxVisitedIndex) {
         _maxVisitedIndex = index;
       }
-      emit(
-        state.copyWith(selectedIndex: index),
-      );
+      emit(state.copyWith(selectedIndex: index));
     }
   }
 

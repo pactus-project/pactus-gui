@@ -8,18 +8,23 @@ import 'package:pactus_gui/src/features/dashboard/sub_modules/get_validator/doma
 class GetValidatorUseCase
     implements
         FutureUseCase<
-            Either<RemoteDataState<ErrorResponseModel>,
-                RemoteDataState<GetValidatorEntity>>,
-            void> {
+          Either<
+            RemoteDataState<ErrorResponseModel>,
+            RemoteDataState<GetValidatorEntity>
+          >,
+          void
+        > {
   GetValidatorUseCase(this._repository);
   final GetValidatorRepository _repository;
 
   @override
   Future<
-      Either<RemoteDataState<ErrorResponseModel>,
-          RemoteDataState<GetValidatorEntity>>> call({
-    void params,
-  }) async {
+    Either<
+      RemoteDataState<ErrorResponseModel>,
+      RemoteDataState<GetValidatorEntity>
+    >
+  >
+  call({void params}) async {
     return _repository.getValidator();
   }
 }

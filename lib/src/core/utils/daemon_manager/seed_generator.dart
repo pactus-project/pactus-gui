@@ -13,8 +13,8 @@ class SeedGenerator {
       final entropyLength = (wordCount == 12)
           ? 128
           : (wordCount == 24)
-              ? 256
-              : 128;
+          ? 256
+          : 128;
 
       // Generate secure random bytes for entropy
       final secureRandomBytes = generateSecureRandomBytes(entropyLength ~/ 8);

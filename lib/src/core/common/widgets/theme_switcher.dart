@@ -51,9 +51,7 @@ class ThemeSwitcher extends StatelessWidget {
               curve: Curves.easeIn,
               opacity: isDarkMode ? 1.0 : 0.0,
               duration: duration,
-              child: SvgPicture.asset(
-                Assets.icons.icLightMode,
-              ),
+              child: SvgPicture.asset(Assets.icons.icLightMode),
             ),
             GestureDetector(
               onTap: () {
@@ -71,12 +69,12 @@ class ThemeSwitcher extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
                     color: isDarkMode
-                        ? AppTheme.of(context)
-                            .extension<OnAccentPallet>()!
-                            .onAccentColor
-                        : AppTheme.of(context)
-                            .extension<DarkPallet>()!
-                            .dark900!,
+                        ? AppTheme.of(
+                            context,
+                          ).extension<OnAccentPallet>()!.onAccentColor
+                        : AppTheme.of(
+                            context,
+                          ).extension<DarkPallet>()!.dark900!,
                   ),
                 ),
                 child: Padding(
@@ -90,9 +88,9 @@ class ThemeSwitcher extends StatelessWidget {
                       width: 14,
                       height: 14,
                       decoration: BoxDecoration(
-                        color: AppTheme.of(context)
-                            .extension<DarkPallet>()!
-                            .dark900,
+                        color: AppTheme.of(
+                          context,
+                        ).extension<DarkPallet>()!.dark900,
                         borderRadius: BorderRadius.circular(7),
                       ),
                     ),
@@ -104,9 +102,7 @@ class ThemeSwitcher extends StatelessWidget {
               curve: Curves.easeIn,
               opacity: isDarkMode ? 0.0 : 1.0,
               duration: duration,
-              child: SvgPicture.asset(
-                Assets.icons.icDarkMode,
-              ),
+              child: SvgPicture.asset(Assets.icons.icDarkMode),
             ),
           ],
         );

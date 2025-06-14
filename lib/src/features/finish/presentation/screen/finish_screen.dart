@@ -29,10 +29,7 @@ class _FinishScreenState extends State<FinishScreen> {
   Widget build(BuildContext context) {
     return NavigationView(
       content: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 50,
-          vertical: 20,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
         child: Row(
           children: [
             Expanded(
@@ -51,13 +48,11 @@ class _FinishScreenState extends State<FinishScreen> {
                       children: [
                         Text(
                           context.tr(LocaleKeys.your_journey_finalized),
-                          style: FluentTheme.of(context)
-                              .typography
-                              .title
+                          style: FluentTheme.of(context).typography.title
                               ?.copyWith(
-                                color: AppTheme.of(context)
-                                    .extension<DarkPallet>()!
-                                    .dark900,
+                                color: AppTheme.of(
+                                  context,
+                                ).extension<DarkPallet>()!.dark900,
                               ),
                         ),
                         const SizedBox(height: 20),
@@ -65,12 +60,12 @@ class _FinishScreenState extends State<FinishScreen> {
                           context
                               .tr(LocaleKeys.your_journey_finalized_description)
                               .replaceHashWithSpecialCharacter(),
-                          style:
-                              FluentTheme.of(context).typography.body?.copyWith(
-                                    color: AppTheme.of(context)
-                                        .extension<DarkPallet>()!
-                                        .dark900,
-                                  ),
+                          style: FluentTheme.of(context).typography.body
+                              ?.copyWith(
+                                color: AppTheme.of(
+                                  context,
+                                ).extension<DarkPallet>()!.dark900,
+                              ),
                           textAlign: TextAlign.left,
                         ),
                         const SizedBox(height: 20),
@@ -81,12 +76,12 @@ class _FinishScreenState extends State<FinishScreen> {
                                     .your_journey_finalized_description_last,
                               )
                               .replaceHashWithSpecialCharacter(),
-                          style:
-                              FluentTheme.of(context).typography.body?.copyWith(
-                                    color: AppTheme.of(context)
-                                        .extension<DarkPallet>()!
-                                        .dark900,
-                                  ),
+                          style: FluentTheme.of(context).typography.body
+                              ?.copyWith(
+                                color: AppTheme.of(
+                                  context,
+                                ).extension<DarkPallet>()!.dark900,
+                              ),
                           textAlign: TextAlign.left,
                         ),
                         const SizedBox(height: 64),
@@ -118,7 +113,8 @@ class _FinishScreenState extends State<FinishScreen> {
                                             CliConstants.start,
                                             CliConstants.workingDirArgument,
                                             NodeConfigData
-                                                .instance.workingDirectory,
+                                                .instance
+                                                .workingDirectory,
                                             CliConstants.passwordArgument,
                                             NodeConfigData.instance.password ??
                                                 'null',
@@ -127,9 +123,7 @@ class _FinishScreenState extends State<FinishScreen> {
                                       );
                                 },
                                 requestState: RequestStateEnum.loaded,
-                                title: context.tr(
-                                  LocaleKeys.go_to_dashboard,
-                                ),
+                                title: context.tr(LocaleKeys.go_to_dashboard),
                               );
                             },
                           ),

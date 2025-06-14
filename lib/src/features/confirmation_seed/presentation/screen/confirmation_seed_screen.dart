@@ -18,70 +18,73 @@ class ConfirmationSeedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => ConfirmationSeedCubit(
-        NodeConfigData.instance.restorationSeed!.words,
-      ),
+      create: (_) =>
+          ConfirmationSeedCubit(NodeConfigData.instance.restorationSeed!.words),
       child: BlocBuilder<NavigationPaneCubit, NavigationState>(
         builder: (context, selectedIndex) {
           return StandardPageLayout(
             content: BlocBuilder<ConfirmationSeedCubit, ConfirmationSeedState>(
-              builder: (
-                BuildContext context,
-                ConfirmationSeedState confirmationSeedState,
-              ) {
-                if (confirmationSeedState.words.isEmpty) {
-                  return const Center(child: ProgressRing());
-                }
-                context.read<StepValidationCubit>().setStepValid(
+              builder:
+                  (
+                    BuildContext context,
+                    ConfirmationSeedState confirmationSeedState,
+                  ) {
+                    if (confirmationSeedState.words.isEmpty) {
+                      return const Center(child: ProgressRing());
+                    }
+                    context.read<StepValidationCubit>().setStepValid(
                       stepIndex: selectedIndex.selectedIndex,
                       isValid: confirmationSeedState.areAllWordsConfirmed,
                     );
 
-                return Padding(
-                  padding: EdgeInsets.zero,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const ScreenHeaderWidget(
-                        title: LocaleKeys.confirmation_seed_title,
-                        description: LocaleKeys.confirmation_seed_description,
+                    return Padding(
+                      padding: EdgeInsets.zero,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const ScreenHeaderWidget(
+                            title: LocaleKeys.confirmation_seed_title,
+                            description:
+                                LocaleKeys.confirmation_seed_description,
+                          ),
+                          ConstrainedBox(
+                            constraints: const BoxConstraints(
+                              minHeight: 200,
+                              maxHeight: 500,
+                            ),
+                            child: LayoutBuilder(
+                              builder: (context, constraints) {
+                                final crossAxisCount =
+                                    (constraints.maxWidth / 150).floor().clamp(
+                                      2,
+                                      6,
+                                    );
+                                return ConfirmationSeedWordsGridSection(
+                                  crossAxisCount: crossAxisCount,
+                                  confirmationSeedState: confirmationSeedState,
+                                );
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                      ConstrainedBox(
-                        constraints: const BoxConstraints(
-                          minHeight: 200,
-                          maxHeight: 500,
-                        ),
-                        child: LayoutBuilder(
-                          builder: (context, constraints) {
-                            final crossAxisCount = (constraints.maxWidth / 150)
-                                .floor()
-                                .clamp(2, 6);
-                            return ConfirmationSeedWordsGridSection(
-                              crossAxisCount: crossAxisCount,
-                              confirmationSeedState: confirmationSeedState,
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
+                    );
+                  },
             ),
             footer: BlocBuilder<ConfirmationSeedCubit, ConfirmationSeedState>(
               builder: (context, confirmationSeedState) {
                 return NavigationFooterSection(
                   selectedIndex: selectedIndex.selectedIndex,
                   onBackPressed: () {
-                    context
-                        .read<NavigationPaneCubit>()
-                        .setSelectedIndex(selectedIndex.selectedIndex - 1);
+                    context.read<NavigationPaneCubit>().setSelectedIndex(
+                      selectedIndex.selectedIndex - 1,
+                    );
                   },
                   onNextPressed: confirmationSeedState.areAllWordsConfirmed
                       ? () {
                           context.read<NavigationPaneCubit>().setSelectedIndex(
-                                selectedIndex.selectedIndex + 1,
-                              );
+                            selectedIndex.selectedIndex + 1,
+                          );
                         }
                       : null,
                 );

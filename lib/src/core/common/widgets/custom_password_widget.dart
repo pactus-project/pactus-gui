@@ -89,16 +89,13 @@ class CustomPasswordWidget extends StatelessWidget {
           textAlignVertical: TextAlignVertical.center,
 
           // TODO(pouria): #71 there is no text style for placeholder .
-          style: textStyle ??
-              TextStyle(
-                fontSize: 14,
-                height: 1,
-              ),
+          style: textStyle ?? TextStyle(fontSize: 14, height: 1),
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
           decoration: WidgetStateProperty.resolveWith((states) {
             final isFocused = states.isFocused;
             return BoxDecoration(
-              color: backgroundColor ??
+              color:
+                  backgroundColor ??
                   AppTheme.of(context).extension<LightPallet>()!.light900,
               borderRadius: borderRadius ?? BorderRadius.circular(4),
               border: Border(

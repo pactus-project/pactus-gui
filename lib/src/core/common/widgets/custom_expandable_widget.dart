@@ -24,10 +24,7 @@ class CustomDropdownWidget<T> extends StatelessWidget {
             }
           },
           items: items.map((item) {
-            return ComboBoxItem<T>(
-              value: item,
-              child: Text(itemLabel(item)),
-            );
+            return ComboBoxItem<T>(value: item, child: Text(itemLabel(item)));
           }).toList(),
         );
       },

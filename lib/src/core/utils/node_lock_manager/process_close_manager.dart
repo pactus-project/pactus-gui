@@ -72,12 +72,14 @@ mixin ProcessCloserManager {
     }
   }
 
-// --- Windows Utilities ---
+  // --- Windows Utilities ---
   static Future<List<ProcessInfo>> _getWindowsProcesses() async {
-    final result = await Process.run(
-      'wmic',
-      ['process', 'get', 'ExecutablePath,ProcessId', '/format:list'],
-    );
+    final result = await Process.run('wmic', [
+      'process',
+      'get',
+      'ExecutablePath,ProcessId',
+      '/format:list',
+    ]);
     return _parseWindowsWmicOutput(result.stdout.toString());
   }
 
@@ -96,8 +98,9 @@ mixin ProcessCloserManager {
       }
 
       if (currentPath != null && currentPid != null) {
-        processes
-            .add(ProcessInfo(pid: currentPid, executablePath: currentPath));
+        processes.add(
+          ProcessInfo(pid: currentPid, executablePath: currentPath),
+        );
         currentPath = null;
         currentPid = null;
       }
@@ -110,7 +113,7 @@ mixin ProcessCloserManager {
     await Process.run('taskkill', ['/pid', pid.toString(), '/f']);
   }
 
-// --- Linux Utilities ---
+  // --- Linux Utilities ---
   static Future<List<ProcessInfo>> _getLinuxProcesses() async {
     final result = await Process.run('ps', ['-eo', 'pid,cmd']);
     return _parseLinuxPsOutput(result.stdout.toString());

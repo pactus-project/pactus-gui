@@ -5,8 +5,10 @@ import 'package:pactus_gui/src/features/dashboard/sub_modules/get_validator/doma
 
 mixin GetValidatorRepository {
   Future<
-      Either<RemoteDataState<ErrorResponseModel>,
-          RemoteDataState<GetValidatorEntity>>> getValidator({
-    void params,
-  });
+    Either<
+      RemoteDataState<ErrorResponseModel>,
+      RemoteDataState<GetValidatorEntity>
+    >
+  >
+  getValidator({void params});
 }

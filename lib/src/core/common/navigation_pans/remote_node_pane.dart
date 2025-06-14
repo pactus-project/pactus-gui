@@ -24,8 +24,10 @@ class RemoteNodePane extends StatelessWidget {
             pane: NavigationPane(
               displayMode: PaneDisplayMode.open,
               menuButton: const SizedBox(),
-              size:
-                  const NavigationPaneSize(openMaxWidth: 209, compactWidth: 52),
+              size: const NavigationPaneSize(
+                openMaxWidth: 209,
+                compactWidth: 52,
+              ),
               selected: navigationState.selectedIndex,
               onChanged: (index) =>
                   _handleNavigationChange(context, navigationState, index),
@@ -41,9 +43,7 @@ class RemoteNodePane extends StatelessWidget {
                       ),
                     ),
                   ),
-                  body: InitializingScreen(
-                    initialMode: InitialMode.remote,
-                  ),
+                  body: InitializingScreen(initialMode: InitialMode.remote),
                 ),
                 PaneItem(
                   icon: const SizedBox(),
@@ -74,11 +74,13 @@ class RemoteNodePane extends StatelessWidget {
     final navigationCubit = context.read<NavigationPaneCubit>();
 
     // Allow moving forward only if the previous step is valid
-    final canGoForward = index == navigationState.selectedIndex + 1 &&
+    final canGoForward =
+        index == navigationState.selectedIndex + 1 &&
         stepValidationCubit.isStepValid(navigationState.selectedIndex);
 
     // Allow moving backward only if you're not at the first page
-    final canGoBack = index == navigationState.selectedIndex - 1 &&
+    final canGoBack =
+        index == navigationState.selectedIndex - 1 &&
         navigationState.selectedIndex < AppConstants.remoteNodeMaxIndex;
 
     // If you've reached the first page,you won't be able to go back

@@ -9,8 +9,6 @@ class NavigationState with _$NavigationState {
     required bool isMenuOpen,
   }) = _NavigationState;
 
-  factory NavigationState.initial() => const NavigationState(
-        selectedIndex: 0,
-        isMenuOpen: false,
-      );
+  factory NavigationState.initial() =>
+      const NavigationState(selectedIndex: 0, isMenuOpen: false);
 }

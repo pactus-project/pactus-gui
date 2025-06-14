@@ -12,10 +12,12 @@ class GetValidatorRepositoryImpl implements GetValidatorRepository {
 
   @override
   Future<
-      Either<RemoteDataState<ErrorResponseModel>,
-          RemoteDataState<GetValidatorEntity>>> getValidator({
-    void params,
-  }) async {
+    Either<
+      RemoteDataState<ErrorResponseModel>,
+      RemoteDataState<GetValidatorEntity>
+    >
+  >
+  getValidator({void params}) async {
     try {
       final model = await _remoteDataSource.getValidator();
       final entity = GetValidatorMapper.toEntity(model);

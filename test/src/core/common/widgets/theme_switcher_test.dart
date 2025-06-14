@@ -147,8 +147,9 @@ Future<void> main() async {
     expect(themeCubit.state, false);
   });
 
-  testWidgets('Switch animations and UI respond to Cubit state changes',
-      (tester) async {
+  testWidgets('Switch animations and UI respond to Cubit state changes', (
+    tester,
+  ) async {
     // Arrange: Set Cubit's state to dark theme
     themeCubit.setDarkTheme();
 
@@ -159,9 +160,7 @@ Future<void> main() async {
     // Assert: Dark mode icon should be visible
     expect(
       tester
-          .widget<AnimatedOpacity>(
-            find.byType(AnimatedOpacity).first,
-          )
+          .widget<AnimatedOpacity>(find.byType(AnimatedOpacity).first)
           .opacity,
       1.0,
     );

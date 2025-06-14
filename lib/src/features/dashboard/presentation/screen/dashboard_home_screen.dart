@@ -7,9 +7,7 @@ import 'package:pactus_gui/src/features/dashboard/presentation/widgets/load_node
     show LoadNodeValidatorAddresses;
 
 class DashboardHomeScreen extends StatelessWidget {
-  const DashboardHomeScreen({
-    super.key,
-  });
+  const DashboardHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

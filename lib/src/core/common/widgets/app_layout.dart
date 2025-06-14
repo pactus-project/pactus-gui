@@ -10,11 +10,7 @@ class AppLayout extends StatelessWidget {
   ///
   /// The [content] parameter is required and contains the main content
   /// of the screen.
-  const AppLayout({
-    super.key,
-    required this.content,
-    this.isDashboard = false,
-  });
+  const AppLayout({super.key, required this.content, this.isDashboard = false});
 
   /// The main content of the screen displayed below the app bar
   final Widget content;

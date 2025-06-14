@@ -35,20 +35,14 @@ Future<void> setupDependencies() async {
         ),
       );
     })
-
     // Register `services`
     ..registerSingleton<BlockchainService>(BlockchainService())
-
     // Register `DataSources`
     ..registerSingleton<BlockchainRemoteDataSource>(
       BlockchainRemoteDataSourceImpl(getIt()),
     )
-
     // Register `Repositories`
-    ..registerSingleton<BlockchainRepository>(
-      BlockchainRepositoryImpl(getIt()),
-    )
-
+    ..registerSingleton<BlockchainRepository>(BlockchainRepositoryImpl(getIt()))
     // Register `UseCases`
     ..registerSingleton<GetBlockchainInfoUseCase>(
       GetBlockchainInfoUseCase(getIt()),

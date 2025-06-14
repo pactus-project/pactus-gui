@@ -34,8 +34,9 @@ class GenerationSeedScreen extends StatelessWidget {
             content: LayoutBuilder(
               builder: (context, constraints) {
                 List<String>? seedWords = <String>[];
-                final crossAxisCount =
-                    (constraints.maxWidth / 150).floor().clamp(2, 6);
+                final crossAxisCount = (constraints.maxWidth / 150)
+                    .floor()
+                    .clamp(2, 6);
 
                 return Stack(
                   children: [
@@ -50,8 +51,8 @@ class GenerationSeedScreen extends StatelessWidget {
                         BlocBuilder<DropdownCubit<SeedTypeEnum>, SeedTypeEnum>(
                           builder: (context, state) {
                             if (state == SeedTypeEnum.twelve) {
-                              final generatedSeed =
-                                  SeedGenerator().generateSeed(12);
+                              final generatedSeed = SeedGenerator()
+                                  .generateSeed(12);
                               seedWords = generatedSeed?.words;
                               NodeConfigData.instance.restorationSeed =
                                   generatedSeed;
@@ -59,8 +60,8 @@ class GenerationSeedScreen extends StatelessWidget {
                                   .read<DropdownCubit<SeedTypeEnum>>()
                                   .selectItem(SeedTypeEnum.twelve);
                             } else if (state == SeedTypeEnum.twentyFour) {
-                              final generatedSeed =
-                                  SeedGenerator().generateSeed(24);
+                              final generatedSeed = SeedGenerator()
+                                  .generateSeed(24);
                               seedWords = generatedSeed?.words;
                               NodeConfigData.instance.restorationSeed =
                                   generatedSeed;
@@ -77,9 +78,9 @@ class GenerationSeedScreen extends StatelessWidget {
                               );
                             }
                             context.read<StepValidationCubit>().setStepValid(
-                                  stepIndex: selectedIndex.selectedIndex,
-                                  isValid: true,
-                                );
+                              stepIndex: selectedIndex.selectedIndex,
+                              isValid: true,
+                            );
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -108,15 +109,18 @@ class GenerationSeedScreen extends StatelessWidget {
                     Positioned(
                       top: 0,
                       right: 0,
-                      child: BlocBuilder<DropdownCubit<SeedTypeEnum>,
-                          SeedTypeEnum>(
-                        builder: (context, state) {
-                          return CustomDropdownWidget<SeedTypeEnum>(
-                            items: SeedTypeEnum.values,
-                            itemLabel: (item) => context.tr(item.text),
-                          );
-                        },
-                      ),
+                      child:
+                          BlocBuilder<
+                            DropdownCubit<SeedTypeEnum>,
+                            SeedTypeEnum
+                          >(
+                            builder: (context, state) {
+                              return CustomDropdownWidget<SeedTypeEnum>(
+                                items: SeedTypeEnum.values,
+                                itemLabel: (item) => context.tr(item.text),
+                              );
+                            },
+                          ),
                     ),
                   ],
                 );
@@ -126,13 +130,13 @@ class GenerationSeedScreen extends StatelessWidget {
               selectedIndex: selectedIndex.selectedIndex,
               onNextPressed: () {
                 context.read<NavigationPaneCubit>().setSelectedIndex(
-                      selectedIndex.selectedIndex + 1,
-                    );
+                  selectedIndex.selectedIndex + 1,
+                );
               },
               onBackPressed: () {
                 context.read<NavigationPaneCubit>().setSelectedIndex(
-                      selectedIndex.selectedIndex - 1,
-                    );
+                  selectedIndex.selectedIndex - 1,
+                );
               },
             ),
           );

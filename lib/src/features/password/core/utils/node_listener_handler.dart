@@ -41,9 +41,7 @@ mixin NodeListenerHandler {
   ) {
     // Handle network detection
     if (state.output.contains(CliConstants.detectNetwork)) {
-      updateNodeDetailsSingleton(
-        nodeType: state.output.extractNetworkName(),
-      );
+      updateNodeDetailsSingleton(nodeType: state.output.extractNetworkName());
     }
 
     // Handle password validation
@@ -74,20 +72,21 @@ mixin NodeListenerHandler {
   }
 
   static void _startNodeDaemon(BuildContext context, String password) {
-    final nodeDirectory =
-        StorageUtils.getData<String>(StorageKeys.nodeDirectory);
+    final nodeDirectory = StorageUtils.getData<String>(
+      StorageKeys.nodeDirectory,
+    );
     context.read<DaemonCubit>().runStartNodeCommand(
-          cliCommand: CliCommand(
-            command: CliConstants.pactusDaemon,
-            arguments: [
-              CliConstants.start,
-              CliConstants.workingDirArgument,
-              nodeDirectory!,
-              CliConstants.passwordArgument,
-              password,
-            ],
-          ),
-        );
+      cliCommand: CliCommand(
+        command: CliConstants.pactusDaemon,
+        arguments: [
+          CliConstants.start,
+          CliConstants.workingDirArgument,
+          nodeDirectory!,
+          CliConstants.passwordArgument,
+          password,
+        ],
+      ),
+    );
   }
 
   static void _showErrorDialog(BuildContext context, String message) {

@@ -51,9 +51,7 @@ class SplashScreen extends StatelessWidget {
           child: BlocBuilder<UnlockNodeCubit, UnlockerState>(
             builder: (context, state) {
               if (state is UnlockerLoading) {
-                return Center(
-                  child: ProgressRing(),
-                );
+                return Center(child: ProgressRing());
               }
 
               return BlocConsumer<DaemonCubit, DaemonState>(
@@ -70,7 +68,7 @@ class SplashScreen extends StatelessWidget {
                     final isProtectedNode = state.output.contains('true');
                     final isUndefinedNode =
                         !state.output.contains('is encrtypted') &&
-                            !state.output.contains('created at');
+                        !state.output.contains('created at');
 
                     if (isUnprotectedNode) {
                       Future.delayed(_splashDuration, () {
@@ -111,9 +109,9 @@ class SplashScreen extends StatelessWidget {
                               ),
                               Gap(_spacingBetweenElements),
                               Assets.images.logoName.image(
-                                color: AppTheme.of(context)
-                                    .extension<DarkPallet>()!
-                                    .dark900,
+                                color: AppTheme.of(
+                                  context,
+                                ).extension<DarkPallet>()!.dark900,
                                 width: _logoNameWidth,
                                 height: _logoNameHeight,
                                 fit: BoxFit.contain,
@@ -121,13 +119,11 @@ class SplashScreen extends StatelessWidget {
                               Gap(_spacingBetweenElements),
                               Text(
                                 context.tr(LocaleKeys.applications),
-                                style: FluentTheme.of(context)
-                                    .typography
-                                    .title
+                                style: FluentTheme.of(context).typography.title
                                     ?.copyWith(
-                                      color: AppTheme.of(context)
-                                          .extension<DarkPallet>()!
-                                          .dark900,
+                                      color: AppTheme.of(
+                                        context,
+                                      ).extension<DarkPallet>()!.dark900,
                                     ),
                               ),
                             ],
@@ -139,13 +135,11 @@ class SplashScreen extends StatelessWidget {
                             padding: const EdgeInsets.only(bottom: 16),
                             child: Text(
                               '${AppInfo.of(context).package.version}',
-                              style: FluentTheme.of(context)
-                                  .typography
-                                  .title
+                              style: FluentTheme.of(context).typography.title
                                   ?.copyWith(
-                                    color: AppTheme.of(context)
-                                        .extension<DarkPallet>()!
-                                        .dark900,
+                                    color: AppTheme.of(
+                                      context,
+                                    ).extension<DarkPallet>()!.dark900,
                                   ),
                             ),
                           ),
@@ -158,27 +152,25 @@ class SplashScreen extends StatelessWidget {
                         final sign = AppOS.current.separator;
                         final storageKey = StorageKeys.nodeDirectory;
 
-                        final nodeDirectory = '${StorageUtils.getData<String>(
-                          storageKey,
-                        )}';
-                        final walletPath = '$sign${CliConstants.wallets}'
+                        final nodeDirectory =
+                            '${StorageUtils.getData<String>(storageKey)}';
+                        final walletPath =
+                            '$sign${CliConstants.wallets}'
                             '$sign${CliConstants.defaultWallet}';
 
                         context.read<DaemonCubit>().runPactusDaemon(
-                              cliCommand: CliCommand(
-                                command: CliConstants.pactusWallet,
-                                arguments: [
-                                  CliConstants.info,
-                                  CliConstants.pathArgument,
-                                  nodeDirectory + walletPath,
-                                ],
-                              ),
-                            );
+                          cliCommand: CliCommand(
+                            command: CliConstants.pactusWallet,
+                            arguments: [
+                              CliConstants.info,
+                              CliConstants.pathArgument,
+                              nodeDirectory + walletPath,
+                            ],
+                          ),
+                        );
                       });
                     }
-                    return Center(
-                      child: ProgressRing(),
-                    );
+                    return Center(child: ProgressRing());
                   }
                 },
               );

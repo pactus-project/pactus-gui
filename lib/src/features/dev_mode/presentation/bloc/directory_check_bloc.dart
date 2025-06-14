@@ -36,20 +36,14 @@ class DirectoryCheckBloc
       emit(
         _updateStateForNetwork(
           event.networkType,
-          (status) => status.copyWith(
-            isLoading: false,
-            isReady: isReady,
-          ),
+          (status) => status.copyWith(isLoading: false, isReady: isReady),
         ),
       );
     } on Exception catch (e) {
       emit(
         _updateStateForNetwork(
           event.networkType,
-          (status) => status.copyWith(
-            isLoading: false,
-            error: e.toString(),
-          ),
+          (status) => status.copyWith(isLoading: false, error: e.toString()),
         ),
       );
     }

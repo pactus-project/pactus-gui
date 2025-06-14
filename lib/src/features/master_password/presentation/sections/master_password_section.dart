@@ -58,9 +58,7 @@ class MasterPasswordSection extends StatelessWidget {
         ),
         SizedBox(
           height: 250,
-          child: SvgPicture.asset(
-            Assets.images.masterPasswordLight,
-          ),
+          child: SvgPicture.asset(Assets.images.masterPasswordLight),
         ),
         Column(
           spacing: 16,

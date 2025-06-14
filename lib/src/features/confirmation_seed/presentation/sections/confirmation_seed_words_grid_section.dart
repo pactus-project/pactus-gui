@@ -22,9 +22,7 @@ class ConfirmationSeedWordsGridSection extends StatelessWidget {
       padding: const EdgeInsets.all(32),
       decoration: ShapeDecoration(
         color: AppTheme.of(context).extension<LightPallet>()!.light900,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       ),
       child: GridView.builder(
         shrinkWrap: true,
@@ -47,9 +45,10 @@ class ConfirmationSeedWordsGridSection extends StatelessWidget {
                   prefixText: '$wordID.',
                   chipTextMode: chipTextMode,
                   onChanged: (value) {
-                    context
-                        .read<ConfirmationSeedCubit>()
-                        .updateValidation(index, value);
+                    context.read<ConfirmationSeedCubit>().updateValidation(
+                      index,
+                      value,
+                    );
                   },
                 )
               : ChipTextBox(
@@ -58,9 +57,10 @@ class ConfirmationSeedWordsGridSection extends StatelessWidget {
                   chipTextMode: ChipTextMode.normal,
                   placeholder: item.word,
                   onChanged: (value) {
-                    context
-                        .read<ConfirmationSeedCubit>()
-                        .updateValidation(index, value);
+                    context.read<ConfirmationSeedCubit>().updateValidation(
+                      index,
+                      value,
+                    );
                   },
                 );
         },

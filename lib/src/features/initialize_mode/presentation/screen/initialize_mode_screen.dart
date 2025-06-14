@@ -114,9 +114,9 @@ class _InitializeModeScreenState extends State<InitializeModeScreen> {
                             Text(
                               context.tr(LocaleKeys.initiate_your_node),
                               style: InterTextStyles.bodyStrong.copyWith(
-                                color: AppTheme.of(context)
-                                    .extension<DarkPallet>()!
-                                    .contrast,
+                                color: AppTheme.of(
+                                  context,
+                                ).extension<DarkPallet>()!.contrast,
                               ),
                             ),
                             const Gap(8),
@@ -125,9 +125,9 @@ class _InitializeModeScreenState extends State<InitializeModeScreen> {
                                 LocaleKeys.initiate_your_node_for_first_time,
                               ),
                               style: InterTextStyles.body.copyWith(
-                                color: AppTheme.of(context)
-                                    .extension<DarkPallet>()!
-                                    .dark800,
+                                color: AppTheme.of(
+                                  context,
+                                ).extension<DarkPallet>()!.dark800,
                               ),
                             ),
                             const Gap(24),
@@ -165,9 +165,9 @@ class _InitializeModeScreenState extends State<InitializeModeScreen> {
                     right: 0,
                     child: Container(
                       height: 89,
-                      color: AppTheme.of(context)
-                          .extension<LightPallet>()!
-                          .light900,
+                      color: AppTheme.of(
+                        context,
+                      ).extension<LightPallet>()!.light900,
                       padding: const EdgeInsets.only(right: 46),
                       child: Align(
                         alignment: Alignment.centerRight,

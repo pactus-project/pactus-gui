@@ -2,9 +2,7 @@ part of 'language_bloc.dart';
 
 // Rest of your existing code remains the same:
 class LanguageState {
-  const LanguageState({
-    this.selectedLanguage,
-  });
+  const LanguageState({this.selectedLanguage});
 
   final LanguageCase? selectedLanguage;
 
@@ -17,10 +15,7 @@ class LanguageState {
 
 // Modified LanguageInitial to load from storage
 class LanguageInitial extends LanguageState {
-  LanguageInitial()
-      : super(
-          selectedLanguage: LanguageConstants.enUS,
-        );
+  LanguageInitial() : super(selectedLanguage: LanguageConstants.enUS);
 
   factory LanguageInitial.fromStorage(String? storedValue) {
     if (storedValue == null) {
@@ -39,16 +34,10 @@ class LanguageInitial extends LanguageState {
     }
 
     return LanguageInitial._internal(
-      LanguageCase(
-        name: storedValue,
-        language: parts[0],
-        country: parts[1],
-      ),
+      LanguageCase(name: storedValue, language: parts[0], country: parts[1]),
     );
   }
 
   LanguageInitial._internal(LanguageCase language)
-      : super(
-          selectedLanguage: language,
-        );
+    : super(selectedLanguage: language);
 }

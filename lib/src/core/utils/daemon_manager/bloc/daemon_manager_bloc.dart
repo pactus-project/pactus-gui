@@ -83,8 +83,9 @@ class DaemonManagerBloc extends Bloc<DaemonManagerEvent, DaemonManagerState> {
 
       _handlePasswordInput(event.cliCommand, process);
 
-      final outputSubscription =
-          process.stdout.transform(utf8.decoder).listen((data) {
+      final outputSubscription = process.stdout.transform(utf8.decoder).listen((
+        data,
+      ) {
         if (data.startsWith('[ERROR]') || data.startsWith('invalid password')) {
           emit(DaemonManagerError(data));
         } else {
@@ -171,24 +172,19 @@ class DaemonManagerBloc extends Bloc<DaemonManagerEvent, DaemonManagerState> {
       _ensureExecutablePermissions(executablePath);
       final sign = AppOS.current.separator;
 
-      final walletPath = '$sign${CliConstants.wallets}'
+      final walletPath =
+          '$sign${CliConstants.wallets}'
           '$sign${CliConstants.defaultWallet}';
       final storageKey = StorageKeys.nodeDirectory;
 
-      final nodeDirectory = '${StorageUtils.getData<String>(
-        storageKey,
-      )}';
+      final nodeDirectory = '${StorageUtils.getData<String>(storageKey)}';
 
-      final process = await Process.start(
-        executablePath,
-        [
-          'address',
-          'all',
-          '--path',
-          nodeDirectory + walletPath,
-        ],
-        workingDirectory: _executableDir(),
-      );
+      final process = await Process.start(executablePath, [
+        'address',
+        'all',
+        '--path',
+        nodeDirectory + walletPath,
+      ], workingDirectory: _executableDir());
 
       final output = await process.stdout.transform(utf8.decoder).join();
       emit(DaemonManagerSuccess(output));

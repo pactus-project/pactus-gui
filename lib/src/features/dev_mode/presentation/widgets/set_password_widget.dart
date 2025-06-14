@@ -4,10 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:pactus_gui/src/features/dev_mode/presentation/bloc/environment_selection_cubit.dart';
 
 class SetPasswordWidget extends StatelessWidget {
-  const SetPasswordWidget({
-    super.key,
-    required this.textStyle,
-  });
+  const SetPasswordWidget({super.key, required this.textStyle});
 
   final TextStyle textStyle;
 
@@ -15,10 +12,7 @@ class SetPasswordWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          'Password',
-          style: textStyle,
-        ),
+        Text('Password', style: textStyle),
         const Gap(16),
         Expanded(
           child: ExcludeSemantics(

@@ -1,10 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 
 class HeaderTitleWidget extends StatelessWidget {
-  const HeaderTitleWidget({
-    super.key,
-    required this.textStyle,
-  });
+  const HeaderTitleWidget({super.key, required this.textStyle});
 
   final TextStyle textStyle;
 

@@ -4,9 +4,7 @@ import 'package:pactus_gui/src/features/main/language/core/localization_extensio
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class TransactionsScreen extends StatelessWidget {
-  const TransactionsScreen({
-    super.key,
-  });
+  const TransactionsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

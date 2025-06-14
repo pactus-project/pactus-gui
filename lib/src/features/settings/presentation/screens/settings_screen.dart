@@ -23,9 +23,7 @@ class SettingsScreen extends StatelessWidget {
             spacing: 13,
             children: [
               Text(
-                context.tr(
-                  LocaleKeys.accent_color,
-                ),
+                context.tr(LocaleKeys.accent_color),
                 style: InterTextStyles.body.copyWith(
                   color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
                 ),
@@ -52,8 +50,8 @@ class SettingsScreen extends StatelessWidget {
             ' : '
             '${AppInfo.of(context).package.version}',
             style: FluentTheme.of(context).typography.body?.copyWith(
-                  color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
-                ),
+              color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
+            ),
           ),
         ],
       ),

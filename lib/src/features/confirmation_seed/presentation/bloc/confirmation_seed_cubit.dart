@@ -5,7 +5,7 @@ import 'package:pactus_gui/src/features/confirmation_seed/data/models/seed_item_
 
 class ConfirmationSeedCubit extends Cubit<ConfirmationSeedState> {
   ConfirmationSeedCubit(List<String> words)
-      : super(ConfirmationSeedState(words: [], validationResults: {})) {
+    : super(ConfirmationSeedState(words: [], validationResults: {})) {
     generateWords(words);
   }
 
@@ -33,10 +33,7 @@ class ConfirmationSeedCubit extends Cubit<ConfirmationSeedState> {
     }
 
     emit(
-      state.copyWith(
-        words: wordEntryList,
-        validationResults: validationMap,
-      ),
+      state.copyWith(words: wordEntryList, validationResults: validationMap),
     );
   }
 

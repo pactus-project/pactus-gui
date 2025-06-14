@@ -92,8 +92,10 @@ class DaemonCubit extends Cubit<DaemonState> {
   ///
   Future<void> runPactusDaemon({required CliCommand cliCommand}) async {
     emit(DaemonLoading());
-    printDebug('Starting daemon process with command:'
-        ' ${cliCommand.command} ${cliCommand.arguments}');
+    printDebug(
+      'Starting daemon process with command:'
+      ' ${cliCommand.command} ${cliCommand.arguments}',
+    );
 
     try {
       final executablePath = _executablePath(cliCommand.command);
@@ -232,9 +234,6 @@ class DaemonCubit extends Cubit<DaemonState> {
   }
 
   String _executablePath(String command) {
-    return join(
-      _executableDir(),
-      _matchOsCommand(command),
-    );
+    return join(_executableDir(), _matchOsCommand(command));
   }
 }

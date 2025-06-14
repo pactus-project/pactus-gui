@@ -90,7 +90,8 @@ class CustomRadioButton<T> extends StatelessWidget {
           const Gap(16),
           Text(
             context.tr(label),
-            style: textStyle ??
+            style:
+                textStyle ??
                 InterTextStyles.body.copyWith(
                   color: AppTheme.of(context).extension<GrayPallet>()!.contrast,
                 ),

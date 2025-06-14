@@ -58,8 +58,10 @@ class RestorationSeedScreen extends StatelessWidget {
         return StandardPageLayout(
           content: LayoutBuilder(
             builder: (context, constraints) {
-              final crossAxisCount =
-                  (constraints.maxWidth / 150).floor().clamp(2, 6);
+              final crossAxisCount = (constraints.maxWidth / 150).floor().clamp(
+                2,
+                6,
+              );
               return Stack(
                 children: [
                   Column(
@@ -74,14 +76,14 @@ class RestorationSeedScreen extends StatelessWidget {
                           return BlocBuilder<SeedTextCubit, List<String>>(
                             builder: (context, words) {
                               context.read<StepValidationCubit>().setStepValid(
-                                    stepIndex: context
-                                        .read<NavigationPaneCubit>()
-                                        .state
-                                        .selectedIndex,
-                                    isValid: context
-                                        .read<SeedTextCubit>()
-                                        .areAllWordsEntered(),
-                                  );
+                                stepIndex: context
+                                    .read<NavigationPaneCubit>()
+                                    .state
+                                    .selectedIndex,
+                                isValid: context
+                                    .read<SeedTextCubit>()
+                                    .areAllWordsEntered(),
+                              );
                               return RestorationSeedWordsGridSection(
                                 crossAxisCount: crossAxisCount,
                                 state: state,
@@ -97,13 +99,13 @@ class RestorationSeedScreen extends StatelessWidget {
                     right: 0,
                     child:
                         BlocBuilder<DropdownCubit<SeedTypeEnum>, SeedTypeEnum>(
-                      builder: (context, state) {
-                        return CustomDropdownWidget<SeedTypeEnum>(
-                          items: SeedTypeEnum.values,
-                          itemLabel: (item) => context.tr(item.text),
-                        );
-                      },
-                    ),
+                          builder: (context, state) {
+                            return CustomDropdownWidget<SeedTypeEnum>(
+                              items: SeedTypeEnum.values,
+                              itemLabel: (item) => context.tr(item.text),
+                            );
+                          },
+                        ),
                   ),
                 ],
               );
@@ -115,53 +117,52 @@ class RestorationSeedScreen extends StatelessWidget {
                 selectedIndex: selectedIndex.selectedIndex,
                 onNextPressed:
                     context.read<SeedTextCubit>().areAllWordsEntered()
-                        ? () {
-                            final seeds = context.read<SeedTextCubit>().state;
+                    ? () {
+                        final seeds = context.read<SeedTextCubit>().state;
 
-                            final seedQty = context
-                                .read<DropdownCubit<SeedTypeEnum>>()
-                                .state
-                                .qty;
+                        final seedQty = context
+                            .read<DropdownCubit<SeedTypeEnum>>()
+                            .state
+                            .qty;
 
-                            final isValidSeedQuantity = seeds
-                                    .where((item) => item.trim().isNotEmpty)
-                                    .length ==
-                                seedQty;
+                        final isValidSeedQuantity =
+                            seeds
+                                .where((item) => item.trim().isNotEmpty)
+                                .length ==
+                            seedQty;
 
-                            final isValidateMnemonic =
-                                bip39.validateMnemonic(seeds.join(' '));
+                        final isValidateMnemonic = bip39.validateMnemonic(
+                          seeds.join(' '),
+                        );
 
-                            if (isValidSeedQuantity) {
-                              if (isValidateMnemonic) {
-                                NodeConfigData.instance.restorationSeed =
-                                    Mnemonic.generate(
+                        if (isValidSeedQuantity) {
+                          if (isValidateMnemonic) {
+                            NodeConfigData.instance.restorationSeed =
+                                Mnemonic.generate(
                                   Language.english,
                                   passphrase: seeds.join(' '),
                                 );
 
-                                context
-                                    .read<NavigationPaneCubit>()
-                                    .setSelectedIndex(
-                                      context
-                                              .read<NavigationPaneCubit>()
-                                              .state
-                                              .selectedIndex +
-                                          1,
-                                    );
-                              } else {
-                                showFluentAlert(
-                                  context,
-                                  'Invalid seeds.',
+                            context
+                                .read<NavigationPaneCubit>()
+                                .setSelectedIndex(
+                                  context
+                                          .read<NavigationPaneCubit>()
+                                          .state
+                                          .selectedIndex +
+                                      1,
                                 );
-                              }
-                            } else {
-                              showFluentAlert(
-                                context,
-                                'All seeds must be filled in.',
-                              );
-                            }
+                          } else {
+                            showFluentAlert(context, 'Invalid seeds.');
                           }
-                        : null,
+                        } else {
+                          showFluentAlert(
+                            context,
+                            'All seeds must be filled in.',
+                          );
+                        }
+                      }
+                    : null,
                 onBackPressed: () {
                   context.goNamed(AppRoute.initializeMode.name);
                 },

@@ -14,9 +14,9 @@ Future<void> windowsManager() async {
     );
 
     await WindowManager.instance.waitUntilReadyToShow(windowOptions, () async {
-      await WindowManager.instance
-          .setAsFrameless()
-          .then((_) => WindowManager.instance.show());
+      await WindowManager.instance.setAsFrameless().then(
+        (_) => WindowManager.instance.show(),
+      );
     });
   } on Exception catch (e) {
     printDebug('Window initialization failed: $e');

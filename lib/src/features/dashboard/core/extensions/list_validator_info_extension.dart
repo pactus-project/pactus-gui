@@ -4,9 +4,7 @@ extension ListValidatorInfoExtension on List<ValidatorInfo> {
   ValidatorInfo? getByAddress(String address) {
     ValidatorInfo? validatorInfo;
     try {
-      validatorInfo = firstWhere(
-        (item) => item.address == address,
-      );
+      validatorInfo = firstWhere((item) => item.address == address);
       // ignore: avoid_catching_errors
     } on StateError catch (_) {}
     return validatorInfo;

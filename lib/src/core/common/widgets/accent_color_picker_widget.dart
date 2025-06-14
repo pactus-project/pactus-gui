@@ -68,9 +68,9 @@ class AccentColorPicker extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: colors[i],
                         border: Border.all(
-                          color: AppTheme.of(context)
-                              .extension<OnAccentPallet>()!
-                              .onAccentColor,
+                          color: AppTheme.of(
+                            context,
+                          ).extension<OnAccentPallet>()!.onAccentColor,
                           width: 2,
                         ),
                       ),

@@ -44,12 +44,16 @@ void createNodeDialog({
           children: [
             Text(selected),
             const SizedBox(height: 8),
-            Text('${context.tr(LocaleKeys.password)}'
-                ': ${collectedFormData.password}'),
+            Text(
+              '${context.tr(LocaleKeys.password)}'
+              ': ${collectedFormData.password}',
+            ),
             const SizedBox(height: 8),
             if (collectedFormData.seeds!.isNotEmpty)
-              Text('${context.tr(LocaleKeys.generatedSeed)}'
-                  ': ${collectedFormData.seeds}'),
+              Text(
+                '${context.tr(LocaleKeys.generatedSeed)}'
+                ': ${collectedFormData.seeds}',
+              ),
           ],
         ),
         actions: [
@@ -57,9 +61,9 @@ void createNodeDialog({
             child: Text(
               'Create Node',
               style: TextStyle(
-                color: AppTheme.of(context)
-                    .extension<OnAccentPallet>()!
-                    .onAccentColor,
+                color: AppTheme.of(
+                  context,
+                ).extension<OnAccentPallet>()!.onAccentColor,
               ),
             ),
             onPressed: () async {

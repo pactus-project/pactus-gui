@@ -12,10 +12,7 @@ class UnlockNodeCubit extends Cubit<UnlockerState> {
     emit(UnlockerLoading());
 
     try {
-      await Future.wait([
-        _killPactusDaemon(),
-        _removeLock(),
-      ]);
+      await Future.wait([_killPactusDaemon(), _removeLock()]);
 
       emit(UnlockerSuccess());
     } on Exception catch (e) {

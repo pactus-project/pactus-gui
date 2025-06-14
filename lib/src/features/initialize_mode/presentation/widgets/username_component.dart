@@ -24,9 +24,7 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 ///
 ///
 class UserNameComponent extends StatefulWidget {
-  const UserNameComponent({
-    super.key,
-  });
+  const UserNameComponent({super.key});
 
   @override
   UserNameComponentState createState() => UserNameComponentState();

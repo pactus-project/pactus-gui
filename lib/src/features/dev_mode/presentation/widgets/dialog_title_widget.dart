@@ -21,11 +21,7 @@ class DialogTitleWidget extends StatelessWidget {
             style: TextStyle(color: context.getDialogTypesColor(dialogType)),
           ),
         ),
-        Divider(
-          style: DividerThemeData(
-            thickness: 2,
-          ),
-        ),
+        Divider(style: DividerThemeData(thickness: 2)),
       ],
     );
   }

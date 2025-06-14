@@ -67,19 +67,19 @@ class EnvironmentRadioOption extends StatelessWidget {
                         Text(
                           disabledMessage!,
                           style: textStyle.copyWith(
-                            color: AppTheme.of(context)
-                                .extension<RedPallet>()!
-                                .red600,
+                            color: AppTheme.of(
+                              context,
+                            ).extension<RedPallet>()!.red600,
                           ),
                         ),
                         OutlinedButton(
                           onPressed: () async {
-                            final repository =
-                                context.read<EnvironmentRepository>();
+                            final repository = context
+                                .read<EnvironmentRepository>();
                             final directory = await repository
                                 .detectCurrentDirectoryForInitNode(
-                              latestPartOfPath: environment.name,
-                            );
+                                  latestPartOfPath: environment.name,
+                                );
                             StorageUtils.saveData(
                               StorageKeys.nodeDirectory,
                               directory.path,

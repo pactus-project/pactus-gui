@@ -12,9 +12,8 @@ part 'blockchain_get_info_state.dart';
 
 class BlockchainGetInfoBloc
     extends Bloc<BlockchainGetInfoEvent, BlockchainGetInfoState> {
-  BlockchainGetInfoBloc(
-    this._getBlockchainInfoUseCase,
-  ) : super(const BlockchainGetInfoState.initial()) {
+  BlockchainGetInfoBloc(this._getBlockchainInfoUseCase)
+    : super(const BlockchainGetInfoState.initial()) {
     on<FetchBlockchainInfo>(_onFetchBlockchainInfo);
     on<FetchBlockchainInfoStream>(_onFetchBlockchainInfoStream);
   }
@@ -28,16 +27,10 @@ class BlockchainGetInfoBloc
     final result = await _getBlockchainInfoUseCase();
 
     result.fold(
-      (errorState) => emit(
-        BlockchainGetInfoState.error(
-          errorState.remoteData?.msg ?? '',
-        ),
-      ),
-      (successState) => emit(
-        BlockchainGetInfoState.loaded(
-          successState.remoteData!,
-        ),
-      ),
+      (errorState) =>
+          emit(BlockchainGetInfoState.error(errorState.remoteData?.msg ?? '')),
+      (successState) =>
+          emit(BlockchainGetInfoState.loaded(successState.remoteData!)),
     );
   }
 
@@ -54,15 +47,10 @@ class BlockchainGetInfoBloc
 
       result.fold(
         (errorState) => emit(
-          BlockchainGetInfoState.error(
-            errorState.remoteData?.msg ?? '',
-          ),
+          BlockchainGetInfoState.error(errorState.remoteData?.msg ?? ''),
         ),
-        (successState) => emit(
-          BlockchainGetInfoState.loaded(
-            successState.remoteData!,
-          ),
-        ),
+        (successState) =>
+            emit(BlockchainGetInfoState.loaded(successState.remoteData!)),
       );
       runCounter++;
 
