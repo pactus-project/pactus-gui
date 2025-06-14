@@ -23,9 +23,7 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 ///   debugging purposes.
 ///
 class PasswordComponent extends StatefulWidget {
-  const PasswordComponent({
-    super.key,
-  });
+  const PasswordComponent({super.key});
 
   @override
   PasswordComponentState createState() => PasswordComponentState();

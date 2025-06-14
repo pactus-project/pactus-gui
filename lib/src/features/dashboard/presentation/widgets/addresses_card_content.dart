@@ -7,10 +7,7 @@ import 'package:pactus_gui/src/features/dashboard/sub_modules/blockchain_get_inf
 import 'package:pactus_gui/src/features/dashboard/sub_modules/get_node_addresses/data/models/get_node_addresse_model.dart';
 
 class AddressesCardContent extends StatelessWidget {
-  const AddressesCardContent({
-    super.key,
-    required this.contact,
-  });
+  const AddressesCardContent({super.key, required this.contact});
 
   final AddressModel contact;
 
@@ -26,7 +23,8 @@ class AddressesCardContent extends StatelessWidget {
             return state.maybeWhen(
               orElse: ShimmerCardItem.new,
               loaded: (response) {
-                final stakeValue = response.committeeValidators
+                final stakeValue =
+                    response.committeeValidators
                         .getByAddress(contact.address)
                         ?.stake
                         .toInt() ??
@@ -54,8 +52,10 @@ class AddressesCardContent extends StatelessWidget {
                   return state.maybeWhen(
                     orElse: ShimmerCardItem.new,
                     loaded: (response) {
-                      final result = response.committeeValidators
-                              .any((item) => item.address == contact.address)
+                      final result =
+                          response.committeeValidators.any(
+                            (item) => item.address == contact.address,
+                          )
                           ? 'Yes'
                           : 'No';
                       return AddressesCardContentItem(
@@ -72,11 +72,12 @@ class AddressesCardContent extends StatelessWidget {
                     orElse: ShimmerCardItem.new,
                     loaded: (response) {
                       return AddressesCardContentItem(
-                        contact: (response.committeeValidators
-                                    .getByAddress(contact.address)
-                                    ?.availabilityScore ??
-                                '')
-                            .toString(),
+                        contact:
+                            (response.committeeValidators
+                                        .getByAddress(contact.address)
+                                        ?.availabilityScore ??
+                                    '')
+                                .toString(),
                         width: 32,
                       );
                     },

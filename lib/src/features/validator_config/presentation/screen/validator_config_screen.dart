@@ -86,10 +86,9 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
         builder: (context, selectedIndex) {
           isDirectoryValid = directoryController.text.isNotEmpty;
           context.read<StepValidationCubit>().setStepValid(
-                stepIndex:
-                    context.read<NavigationPaneCubit>().state.selectedIndex,
-                isValid: isDirectoryValid,
-              );
+            stepIndex: context.read<NavigationPaneCubit>().state.selectedIndex,
+            isValid: isDirectoryValid,
+          );
           return StandardPageLayout(
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,8 +98,9 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
                 Text(
                   context.tr(LocaleKeys.working_directory),
                   style: InterTextStyles.caption.copyWith(
-                    color:
-                        AppTheme.of(context).extension<GrayPallet>()!.contrast,
+                    color: AppTheme.of(
+                      context,
+                    ).extension<GrayPallet>()!.contrast,
                   ),
                 ),
                 const Gap(8),
@@ -164,26 +164,24 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
                         return;
                       }
 
-                      StorageUtils.saveData(
-                        StorageKeys.nodeDirectory,
-                        newPath,
-                      );
+                      StorageUtils.saveData(StorageKeys.nodeDirectory, newPath);
 
-                      final selectedQty =
-                          context.read<DropdownCubit<ValidatorQty>>().state;
+                      final selectedQty = context
+                          .read<DropdownCubit<ValidatorQty>>()
+                          .state;
                       NodeConfigData.instance.validatorQty =
                           '${selectedQty.qty}';
                       NodeConfigData.instance.workingDirectory = newPath;
 
                       context.read<NavigationPaneCubit>().setSelectedIndex(
-                            selectedIndex.selectedIndex + 1,
-                          );
+                        selectedIndex.selectedIndex + 1,
+                      );
                     }
                   : null,
               onBackPressed: () {
                 context.read<NavigationPaneCubit>().setSelectedIndex(
-                      selectedIndex.selectedIndex - 1,
-                    );
+                  selectedIndex.selectedIndex - 1,
+                );
               },
             ),
           );

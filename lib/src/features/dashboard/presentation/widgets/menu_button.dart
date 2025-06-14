@@ -4,9 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pactus_gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 
 class MenuButton extends StatelessWidget {
-  const MenuButton({
-    super.key,
-  });
+  const MenuButton({super.key});
 
   @override
   Widget build(BuildContext context) {

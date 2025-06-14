@@ -45,9 +45,7 @@ class SeedWordsGridSection extends StatelessWidget {
       padding: const EdgeInsets.all(32),
       decoration: ShapeDecoration(
         color: AppTheme.of(context).extension<LightPallet>()!.light900,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       ),
       child: GridView.builder(
         shrinkWrap: true,

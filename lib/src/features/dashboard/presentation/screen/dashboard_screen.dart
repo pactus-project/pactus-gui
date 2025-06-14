@@ -32,51 +32,47 @@ class DashboardScreen extends StatelessWidget {
                   ? PaneDisplayMode.open
                   : PaneDisplayMode.compact,
               menuButton: MenuButton(),
-              size:
-                  const NavigationPaneSize(openMaxWidth: 209, compactWidth: 52),
+              size: const NavigationPaneSize(
+                openMaxWidth: 209,
+                compactWidth: 52,
+              ),
               selected: state.selectedIndex,
               onChanged: (index) {
                 context.read<NavigationPaneCubit>().setSelectedIndex(index);
               },
               footerItems: [
                 PaneItem(
-                  icon: IconPaneItem(
-                    type: PaneItemType.settings,
-                  ),
+                  icon: IconPaneItem(type: PaneItemType.settings),
                   title: Text(
                     context.tr(PaneItemType.settings.name),
                     style: TextStyle(
-                      color: AppTheme.of(context)
-                          .extension<PanePallet>()!
-                          .itemColor,
+                      color: AppTheme.of(
+                        context,
+                      ).extension<PanePallet>()!.itemColor,
                     ),
                   ),
                   body: SettingsScreen(),
                 ),
                 PaneItem(
-                  icon: IconPaneItem(
-                    type: PaneItemType.faqs,
-                  ),
+                  icon: IconPaneItem(type: PaneItemType.faqs),
                   title: Text(
                     context.tr(PaneItemType.faqs.name),
                     style: TextStyle(
-                      color: AppTheme.of(context)
-                          .extension<PanePallet>()!
-                          .itemColor,
+                      color: AppTheme.of(
+                        context,
+                      ).extension<PanePallet>()!.itemColor,
                     ),
                   ),
                   body: FaqScreen(),
                 ),
                 PaneItem(
-                  icon: IconPaneItem(
-                    type: PaneItemType.about,
-                  ),
+                  icon: IconPaneItem(type: PaneItemType.about),
                   title: Text(
                     context.tr(PaneItemType.about.name),
                     style: TextStyle(
-                      color: AppTheme.of(context)
-                          .extension<PanePallet>()!
-                          .itemColor,
+                      color: AppTheme.of(
+                        context,
+                      ).extension<PanePallet>()!.itemColor,
                     ),
                   ),
                   body: AboutUsScreen(),
@@ -84,57 +80,49 @@ class DashboardScreen extends StatelessWidget {
               ],
               items: [
                 PaneItem(
-                  icon: IconPaneItem(
-                    type: PaneItemType.home,
-                  ),
+                  icon: IconPaneItem(type: PaneItemType.home),
                   title: Text(
                     context.tr(PaneItemType.home.name),
                     style: TextStyle(
-                      color: AppTheme.of(context)
-                          .extension<PanePallet>()!
-                          .itemColor,
+                      color: AppTheme.of(
+                        context,
+                      ).extension<PanePallet>()!.itemColor,
                     ),
                   ),
                   body: DashboardHomeScreen(),
                 ),
                 PaneItem(
-                  icon: IconPaneItem(
-                    type: PaneItemType.transaction,
-                  ),
+                  icon: IconPaneItem(type: PaneItemType.transaction),
                   title: Text(
                     context.tr(PaneItemType.transaction.name),
                     style: TextStyle(
-                      color: AppTheme.of(context)
-                          .extension<PanePallet>()!
-                          .itemColor,
+                      color: AppTheme.of(
+                        context,
+                      ).extension<PanePallet>()!.itemColor,
                     ),
                   ),
                   body: TransactionsScreen(),
                 ),
                 PaneItem(
-                  icon: IconPaneItem(
-                    type: PaneItemType.wallet,
-                  ),
+                  icon: IconPaneItem(type: PaneItemType.wallet),
                   title: Text(
                     context.tr(PaneItemType.wallet.name),
                     style: TextStyle(
-                      color: AppTheme.of(context)
-                          .extension<PanePallet>()!
-                          .itemColor,
+                      color: AppTheme.of(
+                        context,
+                      ).extension<PanePallet>()!.itemColor,
                     ),
                   ),
                   body: WalletScreen(),
                 ),
                 PaneItem(
-                  icon: IconPaneItem(
-                    type: PaneItemType.nodeLogs,
-                  ),
+                  icon: IconPaneItem(type: PaneItemType.nodeLogs),
                   title: Text(
                     context.tr(PaneItemType.nodeLogs.name),
                     style: TextStyle(
-                      color: AppTheme.of(context)
-                          .extension<PanePallet>()!
-                          .itemColor,
+                      color: AppTheme.of(
+                        context,
+                      ).extension<PanePallet>()!.itemColor,
                     ),
                   ),
                   body: NodeLogsScreen(),

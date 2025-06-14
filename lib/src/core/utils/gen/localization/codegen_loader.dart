@@ -20,10 +20,7 @@ class CodegenLoader {
     Map<String, dynamic> localeMap,
   ) {
     return Future.value(
-      mapLocales["${Locale(
-        "${localeMap["language"]}",
-        "${localeMap["country"]}",
-      )}"],
+      mapLocales["${Locale("${localeMap["language"]}", "${localeMap["country"]}")}"],
     );
   }
 
@@ -48,7 +45,7 @@ class CodegenLoader {
     'initiate_your_node_for_first_time': 'Initiate your node for first time',
     'create_local_node_from_scratch': 'Create local node from scratch',
     'restore_local_node_from_seed_pharse':
-        'Restore local node from seed pharse',
+        'Restore local node from seed phrase',
     'connect_to_remote_node': 'Connect to remote node',
     'remote_address': 'Remote Address',
     'auth_method': 'Auth Method',

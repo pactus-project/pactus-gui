@@ -27,21 +27,13 @@ Future<void> main() async {
           BlocProvider<AppAccentColorCubit>(
             create: (_) => AppAccentColorCubit(),
           ),
-          BlocProvider<LanguageBloc>(
-            create: (_) => LanguageBloc(),
-          ),
-          BlocProvider<AppThemeCubit>(
-            create: (_) => AppThemeCubit(),
-          ),
+          BlocProvider<LanguageBloc>(create: (_) => LanguageBloc()),
+          BlocProvider<AppThemeCubit>(create: (_) => AppThemeCubit()),
           BlocProvider<NavigationPaneCubit>(
             create: (_) => NavigationPaneCubit(),
           ),
-          BlocProvider<RadioButtonCubit>(
-            create: (_) => RadioButtonCubit(),
-          ),
-          BlocProvider<DaemonCubit>(
-            create: (_) => DaemonCubit(),
-          ),
+          BlocProvider<RadioButtonCubit>(create: (_) => RadioButtonCubit()),
+          BlocProvider<DaemonCubit>(create: (_) => DaemonCubit()),
           BlocProvider<StepValidationCubit>(
             create: (_) => StepValidationCubit(),
           ),

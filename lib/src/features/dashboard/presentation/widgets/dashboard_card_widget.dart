@@ -8,10 +8,7 @@ import 'package:pactus_gui/src/features/main/language/core/localization_extensio
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class DashboardCardWidget extends StatelessWidget {
-  const DashboardCardWidget({
-    super.key,
-    required this.dashboardCardType,
-  });
+  const DashboardCardWidget({super.key, required this.dashboardCardType});
   final DashboardCardType dashboardCardType;
   @override
   Widget build(BuildContext context) {
@@ -27,10 +24,7 @@ class DashboardCardWidget extends StatelessWidget {
         ],
         color: AppTheme.of(context).extension<LightPallet>()!.light900,
         border: Border(
-          left: BorderSide(
-            color: AppTheme.of(context).accentColor,
-            width: 4,
-          ),
+          left: BorderSide(color: AppTheme.of(context).accentColor, width: 4),
         ),
       ),
       child: Row(
@@ -46,18 +40,15 @@ class DashboardCardWidget extends StatelessWidget {
                 Text(
                   context.tr(dashboardCardType.title),
                   style: AppTheme.of(context).typography.body!.copyWith(
-                        color: AppTheme.of(context)
-                            .extension<DarkPallet>()!
-                            .dark900,
-                      ),
+                    color: AppTheme.of(
+                      context,
+                    ).extension<DarkPallet>()!.dark900,
+                  ),
                 ),
                 BlocBuilder<BlockchainGetInfoBloc, BlockchainGetInfoState>(
                   builder: (context, BlockchainGetInfoState state) {
                     return state.maybeWhen(
-                      orElse: () => ShimmerCardItem(
-                        height: 48,
-                        width: 48,
-                      ),
+                      orElse: () => ShimmerCardItem(height: 48, width: 48),
                       loaded: (res) {
                         return SizedBox(
                           height: 48,
@@ -72,12 +63,12 @@ class DashboardCardWidget extends StatelessWidget {
                               DashboardCardType.totalPower =>
                                 '${res.totalPower}',
                             },
-                            style:
-                                AppTheme.of(context).typography.body!.copyWith(
-                                      color: AppTheme.of(context)
-                                          .extension<DarkPallet>()!
-                                          .dark900,
-                                    ),
+                            style: AppTheme.of(context).typography.body!
+                                .copyWith(
+                                  color: AppTheme.of(
+                                    context,
+                                  ).extension<DarkPallet>()!.dark900,
+                                ),
                           ),
                         );
                       },

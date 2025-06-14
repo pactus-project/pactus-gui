@@ -13,11 +13,7 @@ class DialogContentWidget extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                ),
-              ],
+              children: [Text(title)],
             ),
           ),
         );

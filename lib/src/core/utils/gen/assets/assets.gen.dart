@@ -90,32 +90,32 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<dynamic> get values => [
-        clipboard,
-        icAboutUs,
-        icClock,
-        icClose,
-        icCode,
-        icCommitteePower,
-        icCommitteeSize,
-        icConnection,
-        icDarkMode,
-        icDashboard,
-        icFaqs,
-        icLightMode,
-        icLogoDark,
-        icLogoLight,
-        icMaximize,
-        icMinimize,
-        icNodeLogs,
-        icReachbility,
-        icSettings,
-        icTotalPower,
-        icTransaction,
-        icValidators,
-        icWallet,
-        lock,
-        logo
-      ];
+    clipboard,
+    icAboutUs,
+    icClock,
+    icClose,
+    icCode,
+    icCommitteePower,
+    icCommitteeSize,
+    icConnection,
+    icDarkMode,
+    icDashboard,
+    icFaqs,
+    icLightMode,
+    icLogoDark,
+    icLogoLight,
+    icMaximize,
+    icMinimize,
+    icNodeLogs,
+    icReachbility,
+    icSettings,
+    icTotalPower,
+    icTransaction,
+    icValidators,
+    icWallet,
+    lock,
+    logo,
+  ];
 }
 
 class $AssetsImagesGen {
@@ -160,18 +160,18 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<dynamic> get values => [
-        backgroundInitializing,
-        bgFinishDark,
-        bgFinishLight,
-        gears,
-        gift,
-        logoName,
-        masterPassword,
-        masterPasswordDark,
-        masterPasswordLight,
-        splash,
-        welcomePic
-      ];
+    backgroundInitializing,
+    bgFinishDark,
+    bgFinishLight,
+    gears,
+    gift,
+    logoName,
+    masterPassword,
+    masterPasswordDark,
+    masterPasswordLight,
+    splash,
+    welcomePic,
+  ];
 }
 
 class Assets {
@@ -182,11 +182,7 @@ class Assets {
 }
 
 class AssetGenImage {
-  const AssetGenImage(
-    this._assetName, {
-    this.size,
-    this.flavors = const {},
-  });
+  const AssetGenImage(this._assetName, {this.size, this.flavors = const {}});
 
   final String _assetName;
 
@@ -246,15 +242,8 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({
-    AssetBundle? bundle,
-    String? package,
-  }) {
-    return AssetImage(
-      _assetName,
-      bundle: bundle,
-      package: package,
-    );
+  ImageProvider provider({AssetBundle? bundle, String? package}) {
+    return AssetImage(_assetName, bundle: bundle, package: package);
   }
 
   String get path => _assetName;

@@ -12,10 +12,12 @@ class BlockchainRepositoryImpl implements BlockchainRepository {
 
   @override
   Future<
-      Either<RemoteDataState<ErrorResponseModel>,
-          RemoteDataState<BlockchainInfoEntity>>> getBlockchainInfo({
-    void params,
-  }) async {
+    Either<
+      RemoteDataState<ErrorResponseModel>,
+      RemoteDataState<BlockchainInfoEntity>
+    >
+  >
+  getBlockchainInfo({void params}) async {
     try {
       final model = await _remoteDataSource.getBlockchainInfo();
       final entity = BlockchainInfoMapper.toEntity(model);

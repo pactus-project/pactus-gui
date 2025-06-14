@@ -28,8 +28,10 @@ class CreateLocalNodePane extends StatelessWidget {
             pane: NavigationPane(
               displayMode: PaneDisplayMode.open,
               menuButton: const SizedBox(),
-              size:
-                  const NavigationPaneSize(openMaxWidth: 209, compactWidth: 52),
+              size: const NavigationPaneSize(
+                openMaxWidth: 209,
+                compactWidth: 52,
+              ),
               selected: navigationState.selectedIndex,
               onChanged: (index) =>
                   _handleNavigationChange(context, navigationState, index),
@@ -93,9 +95,7 @@ class CreateLocalNodePane extends StatelessWidget {
                       ),
                     ),
                   ),
-                  body: InitializingScreen(
-                    initialMode: InitialMode.create,
-                  ),
+                  body: InitializingScreen(initialMode: InitialMode.create),
                 ),
                 PaneItem(
                   icon: const SizedBox(),
@@ -127,13 +127,13 @@ class CreateLocalNodePane extends StatelessWidget {
 
     // Check if moving forward is allowed only if
     // the current step is valid
-    final canGoForward = index == navigationState.selectedIndex + 1 &&
-        stepValidationCubit.isStepValid(
-          navigationState.selectedIndex,
-        );
+    final canGoForward =
+        index == navigationState.selectedIndex + 1 &&
+        stepValidationCubit.isStepValid(navigationState.selectedIndex);
 
     // Allow moving backward only if you're not at the last page
-    final canGoBack = index == navigationState.selectedIndex - 1 &&
+    final canGoBack =
+        index == navigationState.selectedIndex - 1 &&
         navigationState.selectedIndex < AppConstants.createLocalNodeMaxIndex;
 
     // If you've reached the last page, you won't be able to go back

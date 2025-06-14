@@ -45,11 +45,7 @@ import 'theme_switcher.dart';
 ///   - Builds the UI of the custom AppBar, including window controls and layout
 ///   management.
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({
-    super.key,
-    this.title,
-    this.isDashboard = false,
-  });
+  const CustomAppBar({super.key, this.title, this.isDashboard = false});
 
   final String? title;
   final bool isDashboard;
@@ -100,8 +96,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     onPressed: _toggleClock,
                     size: 30,
                     tooltipTitle: context.tr(LocaleKeys.clock_offset),
-                    tooltipDescription:
-                        context.tr(LocaleKeys.clock_offset_description),
+                    tooltipDescription: context.tr(
+                      LocaleKeys.clock_offset_description,
+                    ),
                   ),
                   IconActionButton(
                     icon: Assets.icons.icConnection,
@@ -134,24 +131,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        _buildControlButton(
-          Assets.icons.icMinimize,
-          windowManager.minimize,
-        ),
-        _buildControlButton(
-          Assets.icons.icMaximize,
-          _toggleMaximize,
-        ),
-        _buildControlButton(
-          Assets.icons.icClose,
-          () async {
-            await DirectoryManager()
-                .killDaemonProcess(DaemonFileEnum.pactusDaemon);
-            await DirectoryManager().removeLockFile();
-            await windowManager.close();
-          },
-          color: PalletColors.red400,
-        ),
+        _buildControlButton(Assets.icons.icMinimize, windowManager.minimize),
+        _buildControlButton(Assets.icons.icMaximize, _toggleMaximize),
+        _buildControlButton(Assets.icons.icClose, () async {
+          await DirectoryManager().killDaemonProcess(
+            DaemonFileEnum.pactusDaemon,
+          );
+          await DirectoryManager().removeLockFile();
+          await windowManager.close();
+        }, color: PalletColors.red400),
       ],
     );
   }

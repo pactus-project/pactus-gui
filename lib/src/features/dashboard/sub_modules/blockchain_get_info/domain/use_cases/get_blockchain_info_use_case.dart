@@ -8,16 +8,23 @@ import 'package:pactus_gui/src/features/dashboard/sub_modules/blockchain_get_inf
 class GetBlockchainInfoUseCase
     implements
         FutureUseCase<
-            Either<RemoteDataState<ErrorResponseModel>,
-                RemoteDataState<BlockchainInfoEntity>>,
-            void> {
+          Either<
+            RemoteDataState<ErrorResponseModel>,
+            RemoteDataState<BlockchainInfoEntity>
+          >,
+          void
+        > {
   GetBlockchainInfoUseCase(this._repository);
   final BlockchainRepository _repository;
 
   @override
   Future<
-      Either<RemoteDataState<ErrorResponseModel>,
-          RemoteDataState<BlockchainInfoEntity>>> call({void params}) async {
+    Either<
+      RemoteDataState<ErrorResponseModel>,
+      RemoteDataState<BlockchainInfoEntity>
+    >
+  >
+  call({void params}) async {
     return _repository.getBlockchainInfo();
   }
 }

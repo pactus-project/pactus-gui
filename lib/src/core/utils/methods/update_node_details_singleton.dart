@@ -8,8 +8,9 @@ void updateNodeDetailsSingleton({
   String? nodeType,
 }) {
   // Get the existing instance if it exists
-  final existingDetails =
-      GetIt.I.isRegistered<NodeDetails>() ? GetIt.I<NodeDetails>() : null;
+  final existingDetails = GetIt.I.isRegistered<NodeDetails>()
+      ? GetIt.I<NodeDetails>()
+      : null;
 
   // Create new instance with updated values, falling back to
   // existing values when null

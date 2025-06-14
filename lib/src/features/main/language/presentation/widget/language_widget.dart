@@ -19,22 +19,16 @@ class LanguageSelector extends StatelessWidget {
             switch (state) {
               case LanguageEnum.english:
                 context.read<LanguageBloc>().add(
-                      ChangeLanguage(
-                        selectedLanguage: LanguageConstants.enUS,
-                      ),
-                    );
+                  ChangeLanguage(selectedLanguage: LanguageConstants.enUS),
+                );
               case LanguageEnum.french:
                 context.read<LanguageBloc>().add(
-                      ChangeLanguage(
-                        selectedLanguage: LanguageConstants.frFR,
-                      ),
-                    );
+                  ChangeLanguage(selectedLanguage: LanguageConstants.frFR),
+                );
               case LanguageEnum.spanish:
                 context.read<LanguageBloc>().add(
-                      ChangeLanguage(
-                        selectedLanguage: LanguageConstants.esES,
-                      ),
-                    );
+                  ChangeLanguage(selectedLanguage: LanguageConstants.esES),
+                );
             }
             return CustomDropdownWidget<LanguageEnum>(
               items: LanguageEnum.values,

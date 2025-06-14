@@ -14,25 +14,17 @@ class DirectoryCheckState {
 }
 
 class NetworkCheckStatus {
-  const NetworkCheckStatus({
-    this.isLoading = false,
-    this.isReady,
-    this.error,
-  });
+  const NetworkCheckStatus({this.isLoading = false, this.isReady, this.error});
 
   const NetworkCheckStatus.initial()
-      : isLoading = false,
-        isReady = null,
-        error = null;
+    : isLoading = false,
+      isReady = null,
+      error = null;
   final bool isLoading;
   final bool? isReady;
   final String? error;
 
-  NetworkCheckStatus copyWith({
-    bool? isLoading,
-    bool? isReady,
-    String? error,
-  }) {
+  NetworkCheckStatus copyWith({bool? isLoading, bool? isReady, String? error}) {
     return NetworkCheckStatus(
       isLoading: isLoading ?? this.isLoading,
       isReady: isReady ?? this.isReady,

@@ -31,16 +31,18 @@ class WelcomeScreen extends StatelessWidget {
                 Text(
                   context.tr(LocaleKeys.welcome_title),
                   style: InterTextStyles.bodyStrong.copyWith(
-                    color:
-                        AppTheme.of(context).extension<DarkPallet>()!.dark900,
+                    color: AppTheme.of(
+                      context,
+                    ).extension<DarkPallet>()!.dark900,
                   ),
                 ),
                 const Gap(16),
                 Text(
                   context.tr(LocaleKeys.welcome_description),
                   style: InterTextStyles.body.copyWith(
-                    color:
-                        AppTheme.of(context).extension<DarkPallet>()!.dark900,
+                    color: AppTheme.of(
+                      context,
+                    ).extension<DarkPallet>()!.dark900,
                   ),
                   softWrap: true,
                   textAlign: TextAlign.center,

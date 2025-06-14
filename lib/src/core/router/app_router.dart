@@ -19,9 +19,7 @@ final GoRouter routerConfig = GoRouter(
       path: '/',
       builder: (context, state) => MultiBlocProvider(
         providers: [
-          BlocProvider<UnlockNodeCubit>(
-            create: (_) => UnlockNodeCubit(),
-          ),
+          BlocProvider<UnlockNodeCubit>(create: (_) => UnlockNodeCubit()),
         ],
         child: SplashScreen(),
       ),
@@ -34,15 +32,11 @@ final GoRouter routerConfig = GoRouter(
           RepositoryProvider<EnvironmentRepository>(
             create: (_) => EnvironmentRepository(),
           ),
-          BlocProvider<DirectoryCheckBloc>(
-            create: (_) => DirectoryCheckBloc(),
-          ),
+          BlocProvider<DirectoryCheckBloc>(create: (_) => DirectoryCheckBloc()),
           BlocProvider<EnvironmentSelectionCubit>(
             create: (_) => EnvironmentSelectionCubit(),
           ),
-          BlocProvider<DaemonManagerBloc>(
-            create: (_) => DaemonManagerBloc(),
-          ),
+          BlocProvider<DaemonManagerBloc>(create: (_) => DaemonManagerBloc()),
         ],
         child: DeveloperModeScreen(),
       ),

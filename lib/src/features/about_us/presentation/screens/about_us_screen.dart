@@ -7,9 +7,7 @@ import 'package:pactus_gui_widgetbook/app_styles.dart'
     show AppTheme, DarkPallet, InterTextStyles;
 
 class AboutUsScreen extends StatelessWidget {
-  const AboutUsScreen({
-    super.key,
-  });
+  const AboutUsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,15 +23,14 @@ class AboutUsScreen extends StatelessWidget {
               faqSubTitle: LocaleKeys.answer_about_pactus_gui,
             ),
             Text(
-              context.tr(
-                LocaleKeys.key_features_and_functionalities,
-              ),
+              context.tr(LocaleKeys.key_features_and_functionalities),
               style: InterTextStyles.body.copyWith(
                 color: AppTheme.of(context).extension<DarkPallet>()!.dark600,
               ),
             ),
             AboutItemSubList(
-              faqTitle: '1. '
+              faqTitle:
+                  '1. '
                   '${context.tr(LocaleKeys.node_management)}',
               faqSubTitle: [
                 LocaleKeys.answer_first_node_management,
@@ -41,21 +38,20 @@ class AboutUsScreen extends StatelessWidget {
               ],
             ),
             AboutItemSubList(
-              faqTitle: '2. '
+              faqTitle:
+                  '2. '
                   '${context.tr(LocaleKeys.transaction_management)}',
-              faqSubTitle: [
-                LocaleKeys.answer_transaction_management,
-              ],
+              faqSubTitle: [LocaleKeys.answer_transaction_management],
             ),
             AboutItemSubList(
-              faqTitle: '3. '
+              faqTitle:
+                  '3. '
                   '${context.tr(LocaleKeys.security_and_privacy)}',
-              faqSubTitle: [
-                LocaleKeys.answer_security_and_privacy,
-              ],
+              faqSubTitle: [LocaleKeys.answer_security_and_privacy],
             ),
             AboutItemSubList(
-              faqTitle: '4. '
+              faqTitle:
+                  '4. '
                   '${context.tr(LocaleKeys.decentralization_and_accessibility)}'
                   '',
               faqSubTitle: [
@@ -63,7 +59,8 @@ class AboutUsScreen extends StatelessWidget {
               ],
             ),
             AboutItemSubList(
-              faqTitle: '5. '
+              faqTitle:
+                  '5. '
                   '${context.tr(LocaleKeys.user_experience_enhancements)}'
                   '',
               faqSubTitle: [
@@ -71,12 +68,11 @@ class AboutUsScreen extends StatelessWidget {
               ],
             ),
             AboutItemSubList(
-              faqTitle: '6. '
+              faqTitle:
+                  '6. '
                   '${context.tr(LocaleKeys.realtime_blockchain_monitoring)}'
                   '',
-              faqSubTitle: [
-                LocaleKeys.answer_realtime_blockchain_monitoring,
-              ],
+              faqSubTitle: [LocaleKeys.answer_realtime_blockchain_monitoring],
             ),
           ],
         ),

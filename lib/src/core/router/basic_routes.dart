@@ -12,8 +12,9 @@ final List<GoRoute> basicRoutes = [
     path: AppRoute.basicPassword.fullPath,
     name: AppRoute.basicPassword.name,
     builder: (context, state) => UnlockPasswordScreen(
-      fromRegistrationRoute:
-          state.matchedLocation.contains(AppRoute.finish.name),
+      fromRegistrationRoute: state.matchedLocation.contains(
+        AppRoute.finish.name,
+      ),
     ),
   ),
   // Dashboard as a standalone route
@@ -24,11 +25,9 @@ final List<GoRoute> basicRoutes = [
       return MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => BlockchainGetInfoBloc(
-              getIt(),
-            )..add(
-                const BlockchainGetInfoEvent.fetchStream(),
-              ),
+            create: (context) =>
+                BlockchainGetInfoBloc(getIt())
+                  ..add(const BlockchainGetInfoEvent.fetchStream()),
           ),
         ],
         child: DashboardScreen(),

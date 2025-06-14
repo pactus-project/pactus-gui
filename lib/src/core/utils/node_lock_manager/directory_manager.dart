@@ -73,18 +73,21 @@ class DirectoryManager {
   }
 
   String _executablePath(String command) {
-    return join(
-      _executableDir(),
-      _matchOsCommand(command),
-    );
+    return join(_executableDir(), _matchOsCommand(command));
   }
 
   /// Gets the appropriate native resources directory
   /// based on the operating system
   String _getNativeResourcesPath(String scriptDir) {
+    final envPath = Platform.environment['PACTUS_NATIVE_RESOURCES'];
+
+    if (envPath != null && envPath.isNotEmpty) {
+      return envPath;
+    }
+
+    final scriptDir = dirname(Platform.script.toFilePath());
     final platform = Platform.operatingSystem;
     final nativeDir = join(scriptDir, 'lib', 'src', 'core', 'native_resources');
-
     switch (platform) {
       case 'linux':
         return join(nativeDir, 'linux');

@@ -20,8 +20,8 @@ class AddressesCardContentItem extends StatelessWidget {
       child: Text(
         contact,
         style: AppTheme.of(context).typography.caption!.copyWith(
-              color: AppTheme.of(context).extension<DarkPallet>()!.dark800,
-            ),
+          color: AppTheme.of(context).extension<DarkPallet>()!.dark800,
+        ),
         overflow: TextOverflow.ellipsis,
         textAlign: textAlign,
       ),

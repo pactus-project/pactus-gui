@@ -62,10 +62,7 @@ mixin FileRemover {
       }
 
       await file.delete();
-      return FileDeleteResult(
-        success: true,
-        path: fullPath,
-      );
+      return FileDeleteResult(success: true, path: fullPath);
     } on Exception catch (e) {
       return FileDeleteResult(
         success: false,
@@ -77,11 +74,7 @@ mixin FileRemover {
 }
 
 class FileDeleteResult {
-  FileDeleteResult({
-    required this.success,
-    this.error,
-    required this.path,
-  });
+  FileDeleteResult({required this.success, this.error, required this.path});
   final bool success;
   final String? error;
   final String path;

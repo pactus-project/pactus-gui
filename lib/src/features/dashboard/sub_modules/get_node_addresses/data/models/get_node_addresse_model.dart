@@ -1,9 +1,5 @@
 class AddressModel {
-  AddressModel({
-    required this.id,
-    required this.address,
-    required this.label,
-  });
+  AddressModel({required this.id, required this.address, required this.label});
   final int id;
   final String address;
   final String label;

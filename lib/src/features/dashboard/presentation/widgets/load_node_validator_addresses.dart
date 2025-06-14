@@ -20,8 +20,8 @@ class _LoadNodeValidatorAddressesState
   void initState() {
     super.initState();
     context.read<DaemonManagerBloc>().add(
-          RunGetNodeValidatorAddressesCommand(),
-        );
+      RunGetNodeValidatorAddressesCommand(),
+    );
   }
 
   @override
@@ -48,9 +48,7 @@ class _LoadNodeValidatorAddressesState
                         itemBuilder: (context, index) {
                           final contact = list[index];
                           return Column(
-                            children: [
-                              AddressesCardContent(contact: contact),
-                            ],
+                            children: [AddressesCardContent(contact: contact)],
                           );
                         },
                       ),
@@ -70,9 +68,7 @@ class _LoadNodeValidatorAddressesState
                 child: ListView.builder(
                   itemCount: 7,
                   itemBuilder: (context, index) {
-                    return ShimmerCardItem(
-                      width: 650,
-                    );
+                    return ShimmerCardItem(width: 650);
                   },
                 ),
               ),

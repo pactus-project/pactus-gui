@@ -220,14 +220,12 @@ class CustomInputWidgetState extends State<CustomInputWidget> {
                     ? AppTheme.of(context).extension<RedPallet>()!.red500
                     : AppTheme.of(context).extension<DarkPallet>()!.contrast,
               ),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 12,
-                vertical: 5,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
               decoration: WidgetStateProperty.resolveWith((states) {
                 final isFocused = states.isFocused;
                 return BoxDecoration(
-                  color: widget.backgroundColor ??
+                  color:
+                      widget.backgroundColor ??
                       AppTheme.of(context).extension<LightPallet>()!.light900,
                   borderRadius: widget.borderRadius ?? BorderRadius.circular(4),
                   border: Border(
@@ -235,8 +233,8 @@ class CustomInputWidgetState extends State<CustomInputWidget> {
                       color: errorText != null
                           ? AppTheme.of(context).extension<RedPallet>()!.red500!
                           : (isFocused
-                              ? FluentTheme.of(context).accentColor
-                              : Colors.transparent),
+                                ? FluentTheme.of(context).accentColor
+                                : Colors.transparent),
                       width: 2,
                     ),
                   ),
@@ -244,12 +242,13 @@ class CustomInputWidgetState extends State<CustomInputWidget> {
               }),
               suffix: widget.obscureText
                   ? IconButton(
-                      icon: widget.obscureIcon ??
+                      icon:
+                          widget.obscureIcon ??
                           Icon(
                             _obscureText ? FluentIcons.hide3 : FluentIcons.view,
-                            color: AppTheme.of(context)
-                                .extension<DarkPallet>()!
-                                .contrast,
+                            color: AppTheme.of(
+                              context,
+                            ).extension<DarkPallet>()!.contrast,
                             size: 19,
                           ),
                       onPressed: () {

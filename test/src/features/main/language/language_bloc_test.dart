@@ -36,9 +36,7 @@ Future<void> main() async {
   Widget buildTestableWidget(Widget child) {
     return BlocProvider.value(
       value: languageBloc,
-      child: FluentApp(
-        home: child,
-      ),
+      child: FluentApp(home: child),
     );
   }
 
@@ -72,11 +70,13 @@ Future<void> main() async {
 
     // Test: Ensure language changes to French (frFR) when the ChangeLanguage
     // event is triggered
-    testWidgets('Change language to French (frFR) when triggered',
-        (tester) async {
+    testWidgets('Change language to French (frFR) when triggered', (
+      tester,
+    ) async {
       // Arrange: Set up the ChangeLanguage event to switch to French
-      final frenchLanguageEvent =
-          ChangeLanguage(selectedLanguage: LanguageConstants.frFR);
+      final frenchLanguageEvent = ChangeLanguage(
+        selectedLanguage: LanguageConstants.frFR,
+      );
       await tester.pumpWidget(buildTestableWidget(Container()));
 
       // Act: Add the ChangeLanguage event to switch to French
@@ -88,17 +88,20 @@ Future<void> main() async {
     });
 
     // Test: Ensure language switches back to English (enUS) when triggered
-    testWidgets('Switch back to English (enUS) when triggered again',
-        (tester) async {
+    testWidgets('Switch back to English (enUS) when triggered again', (
+      tester,
+    ) async {
       // Arrange: Change the language to French first
-      languageBloc
-          .add(ChangeLanguage(selectedLanguage: LanguageConstants.frFR));
+      languageBloc.add(
+        ChangeLanguage(selectedLanguage: LanguageConstants.frFR),
+      );
       await tester.pumpWidget(buildTestableWidget(Container()));
       await tester.pump(); // Wait for state change
 
       // Act: Now change back to English
-      languageBloc
-          .add(ChangeLanguage(selectedLanguage: LanguageConstants.enUS));
+      languageBloc.add(
+        ChangeLanguage(selectedLanguage: LanguageConstants.enUS),
+      );
       await tester.pump();
 
       // Assert: The language should now be English (enUS)
@@ -107,11 +110,13 @@ Future<void> main() async {
 
     // Test: Ensure language changes to Spanish (esES) when the ChangeLanguage
     // event is triggered
-    testWidgets('Change language to Spanish (esES) when triggered',
-        (tester) async {
+    testWidgets('Change language to Spanish (esES) when triggered', (
+      tester,
+    ) async {
       // Arrange: Set up the ChangeLanguage event to switch to Spanish
-      final spanishLanguageEvent =
-          ChangeLanguage(selectedLanguage: LanguageConstants.esES);
+      final spanishLanguageEvent = ChangeLanguage(
+        selectedLanguage: LanguageConstants.esES,
+      );
       await tester.pumpWidget(buildTestableWidget(Container()));
 
       // Act: Add the ChangeLanguage event to switch to Spanish

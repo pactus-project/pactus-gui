@@ -15,21 +15,22 @@ class ComboBoxLanguageSelector extends StatelessWidget {
 
         return ComboBox<LanguageCase>(
           value: selectedLanguage,
-          items: [
-            LanguageConstants.enUS,
-            LanguageConstants.frFR,
-            LanguageConstants.esES,
-          ].map((lang) {
-            return ComboBoxItem<LanguageCase>(
-              value: lang,
-              child: Text(lang.name),
-            );
-          }).toList(),
+          items:
+              [
+                LanguageConstants.enUS,
+                LanguageConstants.frFR,
+                LanguageConstants.esES,
+              ].map((lang) {
+                return ComboBoxItem<LanguageCase>(
+                  value: lang,
+                  child: Text(lang.name),
+                );
+              }).toList(),
           onChanged: (LanguageCase? newLang) {
             if (newLang != null) {
-              context
-                  .read<LanguageBloc>()
-                  .add(ChangeLanguage(selectedLanguage: newLang));
+              context.read<LanguageBloc>().add(
+                ChangeLanguage(selectedLanguage: newLang),
+              );
             }
           },
         );

@@ -52,9 +52,7 @@ class _InitializingScreenState extends State<InitializingScreen> {
         NodeConfigData.instance.validatorQty,
       ],
     );
-    context.read<DaemonCubit>().runPactusDaemon(
-          cliCommand: initialCommand,
-        );
+    context.read<DaemonCubit>().runPactusDaemon(cliCommand: initialCommand);
     printDebug(
       '${CliConstants.workingDirArgument} '
       '${NodeConfigData.instance.workingDirectory}',
@@ -98,9 +96,9 @@ class _InitializingScreenState extends State<InitializingScreen> {
       builder: (context, daemonState) {
         /// to-do(esmaeil): check performance cost
         context.read<StepValidationCubit>().setStepValid(
-              stepIndex: newIndex,
-              isValid: daemonState is DaemonSuccess,
-            );
+          stepIndex: newIndex,
+          isValid: daemonState is DaemonSuccess,
+        );
         return BlocBuilder<NavigationPaneCubit, NavigationState>(
           builder: (context, selectedIndex) {
             return StandardPageLayout(
@@ -153,8 +151,8 @@ class _InitializingScreenState extends State<InitializingScreen> {
                         selectedIndex: selectedIndex.selectedIndex,
                         onBackPressed: () {
                           context.read<NavigationPaneCubit>().setSelectedIndex(
-                                selectedIndex.selectedIndex - 1,
-                              );
+                            selectedIndex.selectedIndex - 1,
+                          );
                         },
                         onNextPressed: (state is DaemonSuccess)
                             ? () {

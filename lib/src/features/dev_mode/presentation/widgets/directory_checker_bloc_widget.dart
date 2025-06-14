@@ -28,8 +28,10 @@ class DirectoryCheckerBlocWidget extends StatelessWidget {
         }
 
         if (status.error != null) {
-          return Text('${context.tr(LocaleKeys.error)}'
-              ': ${status.error}');
+          return Text(
+            '${context.tr(LocaleKeys.error)}'
+            ': ${status.error}',
+          );
         }
 
         if (status.isReady != null) {

@@ -41,7 +41,8 @@ class EnvironmentRepository {
       // Try to create directory
       try {
         //print('Attempting to create directory...');
-        /*final createdDir =*/ await dirSelectedNet.create(recursive: true);
+        /*final createdDir =*/
+        await dirSelectedNet.create(recursive: true);
         //print('✅ Successfully created directory at: ${createdDir.path}');
         //print('✅ Directory is EMPTY (ready for use)');
         return false;

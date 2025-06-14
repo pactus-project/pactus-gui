@@ -18,10 +18,7 @@ enum DashboardCardType {
     asset: 'assets/icons/ic_total_power.svg',
   );
 
-  const DashboardCardType({
-    required this.title,
-    required this.asset,
-  });
+  const DashboardCardType({required this.title, required this.asset});
   final String title;
   final String asset;
 }

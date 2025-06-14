@@ -162,8 +162,9 @@ Future<void> _generateLocaleKeysFile(
     ..writeln('// ignore_for_file: constant_identifier_names')
     ..writeln('abstract class LocaleKeys {');
 
-  final keys =
-      translations.values.first.keys.where((key) => !key.startsWith('@'));
+  final keys = translations.values.first.keys.where(
+    (key) => !key.startsWith('@'),
+  );
   for (final key in keys) {
     buffer.writeln('  static const String ${_sanitizeKey(key)} = \'$key\';');
   }
@@ -212,18 +213,10 @@ Future<void> _generateCodegenLoaderFile(
     ..writeln('    Map<String, dynamic> localeMap,')
     ..writeln('  ) {')
     ..writeln('    return Future.value(')
-    ..writeln(
-      '      mapLocales["\${Locale(',
-    )
-    ..writeln(
-      '        "\${localeMap["language"]}",',
-    )
-    ..writeln(
-      '        "\${localeMap["country"]}",',
-    )
-    ..writeln(
-      '      )}"],',
-    )
+    ..writeln('      mapLocales["\${Locale(')
+    ..writeln('        "\${localeMap["language"]}",')
+    ..writeln('        "\${localeMap["country"]}",')
+    ..writeln('      )}"],')
     ..writeln('    );')
     ..writeln('  }')
     ..writeln();

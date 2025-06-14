@@ -11,19 +11,21 @@ class PasswordValidation {
 
   static final _validatePassword =
       StreamTransformer<String, String>.fromHandlers(
-    handleData: (password, sink) {
-      const passwordPattern =
-          r'^(?=.*[a-z])(?=.*[A-Z])(?=.*[@!])[a-zA-Z0-9@!]{8,}$';
-      if (password.isEmpty) {
-        sink.addError('Password cannot be empty');
-      } else if (!RegExp(passwordPattern).hasMatch(password)) {
-        sink.addError('Password must be at least 8 characters,contain\n'
-            'uppercase, lowercase, and special character (@!)');
-      } else {
-        sink.add(password);
-      }
-    },
-  );
+        handleData: (password, sink) {
+          const passwordPattern =
+              r'^(?=.*[a-z])(?=.*[A-Z])(?=.*[@!])[a-zA-Z0-9@!]{8,}$';
+          if (password.isEmpty) {
+            sink.addError('Password cannot be empty');
+          } else if (!RegExp(passwordPattern).hasMatch(password)) {
+            sink.addError(
+              'Password must be at least 8 characters,contain\n'
+              'uppercase, lowercase, and special character (@!)',
+            );
+          } else {
+            sink.add(password);
+          }
+        },
+      );
 
   // Cleanup
   void dispose() {

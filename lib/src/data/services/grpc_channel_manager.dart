@@ -14,15 +14,11 @@ class GrpcChannelManager {
     return instance;
   }
 
-  GrpcChannelManager._({
-    required this.serverDetails,
-  }) {
+  GrpcChannelManager._({required this.serverDetails}) {
     _channel = ClientChannel(
       serverDetails.ip,
       port: serverDetails.port,
-      options: const ChannelOptions(
-        credentials: ChannelCredentials.insecure(),
-      ),
+      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
     );
   }
   final NodeDetails serverDetails;

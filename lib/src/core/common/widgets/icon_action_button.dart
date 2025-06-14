@@ -31,8 +31,9 @@ class IconActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final defaultColor =
-        AppTheme.of(context).extension<DarkPallet>()!.contrast!.toAccentColor();
+    final defaultColor = AppTheme.of(
+      context,
+    ).extension<DarkPallet>()!.contrast!.toAccentColor();
 
     final theme = AppTheme.of(context);
     final hoverColor =

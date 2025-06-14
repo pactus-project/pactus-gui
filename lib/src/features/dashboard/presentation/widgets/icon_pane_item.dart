@@ -8,10 +8,7 @@ import 'package:pactus_gui_widgetbook/app_styles.dart'
     show AppTheme, PanePallet;
 
 class IconPaneItem extends StatelessWidget {
-  const IconPaneItem({
-    super.key,
-    required this.type,
-  });
+  const IconPaneItem({super.key, required this.type});
   final PaneItemType type;
 
   @override

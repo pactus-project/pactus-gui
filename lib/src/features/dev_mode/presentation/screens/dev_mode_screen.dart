@@ -55,15 +55,11 @@ class _DeveloperModeScreenState extends State<DeveloperModeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              EnvironmentSelector(
-                textStyle: textStyle,
-              ),
+              EnvironmentSelector(textStyle: textStyle),
               GenerateSeedAndSetPasswordSection(textStyle: textStyle),
               Spacer(),
               // Submit button
-              Center(
-                child: SubmitButtonWidget(),
-              ),
+              Center(child: SubmitButtonWidget()),
             ],
           ),
         ),

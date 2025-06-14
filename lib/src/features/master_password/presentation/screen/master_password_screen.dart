@@ -66,9 +66,9 @@ class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
     return BlocBuilder<NavigationPaneCubit, NavigationState>(
       builder: (context, selectedIndex) {
         context.read<StepValidationCubit>().setStepValid(
-              stepIndex: selectedIndex.selectedIndex,
-              isValid: true,
-            );
+          stepIndex: selectedIndex.selectedIndex,
+          isValid: true,
+        );
         return StandardPageLayout(
           content: MasterPasswordSection(
             passwordController: passwordController,
@@ -79,16 +79,16 @@ class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
             showSkipButton: true,
             onSkipPressed: () {
               NodeConfigData.instance.password = '';
-              context
-                  .read<NavigationPaneCubit>()
-                  .setSelectedIndex(selectedIndex.selectedIndex + 1);
+              context.read<NavigationPaneCubit>().setSelectedIndex(
+                selectedIndex.selectedIndex + 1,
+              );
             },
             onNextPressed: () {
               if (passwordController.text == confirmPasswordController.text) {
                 NodeConfigData.instance.password = passwordController.text;
-                context
-                    .read<NavigationPaneCubit>()
-                    .setSelectedIndex(selectedIndex.selectedIndex + 1);
+                context.read<NavigationPaneCubit>().setSelectedIndex(
+                  selectedIndex.selectedIndex + 1,
+                );
               } else {
                 showFluentAlert(
                   context,
@@ -97,9 +97,9 @@ class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
               }
             },
             onBackPressed: () {
-              context
-                  .read<NavigationPaneCubit>()
-                  .setSelectedIndex(selectedIndex.selectedIndex - 1);
+              context.read<NavigationPaneCubit>().setSelectedIndex(
+                selectedIndex.selectedIndex - 1,
+              );
             },
           ),
         );

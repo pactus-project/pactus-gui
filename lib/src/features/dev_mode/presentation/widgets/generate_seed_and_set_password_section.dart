@@ -10,10 +10,7 @@ import 'package:pactus_gui/src/features/dev_mode/presentation/widgets/generate_s
 import 'package:pactus_gui/src/features/dev_mode/presentation/widgets/set_password_widget.dart';
 
 class GenerateSeedAndSetPasswordSection extends StatelessWidget {
-  const GenerateSeedAndSetPasswordSection({
-    super.key,
-    required this.textStyle,
-  });
+  const GenerateSeedAndSetPasswordSection({super.key, required this.textStyle});
 
   final TextStyle textStyle;
 
@@ -67,9 +64,7 @@ class GenerateSeedAndSetPasswordSection extends StatelessWidget {
                 title: 'The Node Created Successfully!',
                 dialogType: DialogType.succeed,
               ),
-              content: DialogContentWidget(
-                title: state.output,
-              ),
+              content: DialogContentWidget(title: state.output),
               actions: [
                 DialogActionWidget(
                   dialogType: DialogType.normal,
@@ -99,9 +94,7 @@ class GenerateSeedAndSetPasswordSection extends StatelessWidget {
                 title: 'The Operation Failed!',
                 dialogType: DialogType.error,
               ),
-              content: DialogContentWidget(
-                title: state.error,
-              ),
+              content: DialogContentWidget(title: state.error),
               actions: [
                 DialogActionWidget(
                   dialogType: DialogType.normal,
@@ -117,9 +110,7 @@ class GenerateSeedAndSetPasswordSection extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is DaemonManagerLoading) {
-          return Center(
-            child: ProgressRing(),
-          );
+          return Center(child: ProgressRing());
         }
         return Column(
           spacing: 24,

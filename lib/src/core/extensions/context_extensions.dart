@@ -43,10 +43,12 @@ extension DialogTypeOnContext on BuildContext {
     return switch (type) {
       DialogType.error => AppTheme.of(this).extension<RedPallet>()!.red600!,
       DialogType.info => AppTheme.of(this).extension<BluePallet>()!.blue600!,
-      DialogType.succeed =>
-        AppTheme.of(this).extension<GreenPallet>()!.green600!,
-      DialogType.warning =>
-        AppTheme.of(this).extension<OrangePallet>()!.orange600!,
+      DialogType.succeed => AppTheme.of(
+        this,
+      ).extension<GreenPallet>()!.green600!,
+      DialogType.warning => AppTheme.of(
+        this,
+      ).extension<OrangePallet>()!.orange600!,
       DialogType.normal => AppTheme.of(this).accentColor,
     };
   }

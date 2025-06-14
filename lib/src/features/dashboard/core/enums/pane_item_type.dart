@@ -11,11 +11,7 @@ enum PaneItemType {
     asset: 'assets/icons/ic_transaction.svg',
     name: LocaleKeys.transaction,
   ),
-  wallet(
-    id: 2,
-    asset: 'assets/icons/ic_wallet.svg',
-    name: LocaleKeys.wallet,
-  ),
+  wallet(id: 2, asset: 'assets/icons/ic_wallet.svg', name: LocaleKeys.wallet),
   nodeLogs(
     id: 3,
     name: LocaleKeys.node_logs,
@@ -26,16 +22,8 @@ enum PaneItemType {
     name: LocaleKeys.settings,
     asset: 'assets/icons/ic_settings.svg',
   ),
-  faqs(
-    id: 5,
-    name: LocaleKeys.faqs,
-    asset: 'assets/icons/ic_faqs.svg',
-  ),
-  about(
-    id: 6,
-    name: LocaleKeys.about,
-    asset: 'assets/icons/ic_about_us.svg',
-  );
+  faqs(id: 5, name: LocaleKeys.faqs, asset: 'assets/icons/ic_faqs.svg'),
+  about(id: 6, name: LocaleKeys.about, asset: 'assets/icons/ic_about_us.svg');
 
   const PaneItemType({
     required this.id,

@@ -47,15 +47,11 @@ class BlockchainInfoSection extends StatelessWidget {
                   CustomizedTextItem(
                     title: 'committeePower : ${data.committeePower}',
                   ),
-                  CustomizedTextItem(
-                    title: 'totalPower : ${data.totalPower}',
-                  ),
+                  CustomizedTextItem(title: 'totalPower : ${data.totalPower}'),
                   CustomizedTextItem(
                     title: 'totalValidators : ${data.totalValidators}',
                   ),
-                  CustomizedTextItem(
-                    title: 'isPruned : ${data.isPruned}',
-                  ),
+                  CustomizedTextItem(title: 'isPruned : ${data.isPruned}'),
                 ],
               ),
             );

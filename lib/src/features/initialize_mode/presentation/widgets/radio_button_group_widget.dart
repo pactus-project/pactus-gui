@@ -42,8 +42,9 @@ class RadioButtonGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle =
-        TextStyle(color: AppTheme.of(context).extension<DarkPallet>()!.dark800);
+    final textStyle = TextStyle(
+      color: AppTheme.of(context).extension<DarkPallet>()!.dark800,
+    );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 8,

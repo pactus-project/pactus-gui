@@ -3,9 +3,7 @@ import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:pactus_gui/src/features/dashboard/presentation/widgets/addresses_card_header_item.dart';
 
 class AddressesCardHeader extends StatelessWidget {
-  const AddressesCardHeader({
-    super.key,
-  });
+  const AddressesCardHeader({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -38,6 +38,13 @@ class DaemonCubit extends Cubit<DaemonState> {
   /// Gets the appropriate native resources directory
   /// based on the operating system
   String _getNativeResourcesPath(String scriptDir) {
+    final envPath = Platform.environment['PACTUS_NATIVE_RESOURCES'];
+
+    if (envPath != null && envPath.isNotEmpty) {
+      return envPath;
+    }
+
+    final scriptDir = dirname(Platform.script.toFilePath());
     final platform = Platform.operatingSystem;
     final nativeDir = join(scriptDir, 'lib', 'src', 'core', 'native_resources');
 
@@ -85,8 +92,10 @@ class DaemonCubit extends Cubit<DaemonState> {
   ///
   Future<void> runPactusDaemon({required CliCommand cliCommand}) async {
     emit(DaemonLoading());
-    printDebug('Starting daemon process with command:'
-        ' ${cliCommand.command} ${cliCommand.arguments}');
+    printDebug(
+      'Starting daemon process with command:'
+      ' ${cliCommand.command} ${cliCommand.arguments}',
+    );
 
     try {
       final executablePath = _executablePath(cliCommand.command);
@@ -225,9 +234,6 @@ class DaemonCubit extends Cubit<DaemonState> {
   }
 
   String _executablePath(String command) {
-    return join(
-      _executableDir(),
-      _matchOsCommand(command),
-    );
+    return join(_executableDir(), _matchOsCommand(command));
   }
 }

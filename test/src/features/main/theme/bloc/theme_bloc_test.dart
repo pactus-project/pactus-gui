@@ -30,7 +30,7 @@ Future<void> main() async {
   });
 
   group('AppThemeCubit Tests', () {
-/*
+    /*
     late AppThemeCubit themeCubit;
 
     // Set up the ThemeCubit before each test
@@ -63,7 +63,6 @@ Future<void> main() async {
       // Arrange: First, toggle to dark theme
       themeCubit
         ..toggleTheme()
-
         // Act: Toggle back to light theme
         ..toggleTheme();
 
@@ -85,7 +84,6 @@ Future<void> main() async {
       // Arrange: First, set the theme to dark
       themeCubit
         ..setDarkTheme()
-
         // Act: Call setLightTheme
         ..setLightTheme();
 

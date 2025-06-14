@@ -5,10 +5,7 @@ class SeedItemData {
 }
 
 class ConfirmationSeedState {
-  ConfirmationSeedState({
-    required this.words,
-    required this.validationResults,
-  });
+  ConfirmationSeedState({required this.words, required this.validationResults});
 
   final List<SeedItemData> words;
   final Map<int, bool> validationResults;

@@ -6,10 +6,7 @@ import 'package:pactus_gui/src/features/dev_mode/presentation/bloc/environment_s
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class GenerateSeedsWidget extends StatelessWidget {
-  const GenerateSeedsWidget({
-    super.key,
-    required this.textStyle,
-  });
+  const GenerateSeedsWidget({super.key, required this.textStyle});
 
   final TextStyle textStyle;
 
@@ -17,10 +14,7 @@ class GenerateSeedsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          'Generate seed',
-          style: textStyle,
-        ),
+        Text('Generate seed', style: textStyle),
         const SizedBox(width: 16),
         BlocBuilder<EnvironmentSelectionCubit, EnvironmentSelectionState>(
           builder: (context, state) {
@@ -29,9 +23,7 @@ class GenerateSeedsWidget extends StatelessWidget {
                 child: TextBox(
                   placeholder: 'Seed will appear here',
                   readOnly: true,
-                  controller: TextEditingController(
-                    text: state.seeds,
-                  ),
+                  controller: TextEditingController(text: state.seeds),
                 ),
               ),
             );
@@ -42,9 +34,9 @@ class GenerateSeedsWidget extends StatelessWidget {
           child: Text(
             'Generate',
             style: TextStyle(
-              color: AppTheme.of(context)
-                  .extension<OnAccentPallet>()!
-                  .onAccentColor,
+              color: AppTheme.of(
+                context,
+              ).extension<OnAccentPallet>()!.onAccentColor,
             ),
           ),
           onPressed: () {
