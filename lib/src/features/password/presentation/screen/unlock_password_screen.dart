@@ -54,17 +54,17 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
     );
 
     context.read<DaemonCubit>().runStartNodeCommand(
-          cliCommand: CliCommand(
-            command: CliConstants.pactusDaemon,
-            arguments: [
-              CliConstants.start,
-              CliConstants.workingDirArgument,
-              nodeDirectory!,
-              CliConstants.passwordArgument,
-              'null',
-            ],
-          ),
-        );
+      cliCommand: CliCommand(
+        command: CliConstants.pactusDaemon,
+        arguments: [
+          CliConstants.start,
+          CliConstants.workingDirArgument,
+          nodeDirectory!,
+          CliConstants.passwordArgument,
+          'null',
+        ],
+      ),
+    );
   }
 
   @override
@@ -138,8 +138,9 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                         // Password Field
                         CustomInputWidget(
                           width: 280,
-                          placeholder:
-                              context.tr(LocaleKeys.enter_your_password),
+                          placeholder: context.tr(
+                            LocaleKeys.enter_your_password,
+                          ),
                           obscureText: true,
                           onChanged: (value) {
                             passwordNotifier.value = value;
@@ -168,17 +169,17 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                                   child: AdaptivePrimaryButton(
                                     buttonType: ButtonTypeEnum.titleOnly,
                                     paddingSize: PaddingSizeEnum.min,
-                                    requestState: context
-                                            .read<DaemonCubit>()
-                                            .state is DaemonLoading
+                                    requestState:
+                                        context.read<DaemonCubit>().state
+                                            is DaemonLoading
                                         ? RequestStateEnum.loading
                                         : RequestStateEnum.initial,
                                     onPressed: password.isNotEmpty
                                         ? () {
                                             final nodeDirectory =
-                                                '${StorageUtils.getData<String>(
-                                              StorageKeys.nodeDirectory,
-                                            )}';
+                                                StorageUtils.getData<String>(
+                                                  StorageKeys.nodeDirectory,
+                                                );
 
                                             context
                                                 .read<DaemonCubit>()
@@ -190,7 +191,7 @@ class _UnlockPasswordScreenState extends State<UnlockPasswordScreen> {
                                                       CliConstants.start,
                                                       CliConstants
                                                           .workingDirArgument,
-                                                      nodeDirectory,
+                                                      nodeDirectory ?? '',
                                                       CliConstants
                                                           .passwordArgument,
                                                       password,
