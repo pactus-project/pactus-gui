@@ -1,3 +1,9 @@
+# 1.65.1+68
+### [CI]
+- Enhanced CI/CD pipelines for better cross-platform support [#205](https://github.com/pactus-project/pactus-gui/pull/206)
+  - Added support for building `.dmg` files on macOS (`amd64` and `arm64`)
+  - Fixed compatibility issues with runner versions and `appimage-tools` to support `.AppImage` builds on Linux (`amd64` and `arm64`)
+
 # 1.65.0+67
 ### [CI]
 - Add support for building `.AppImage` on Linux amd64 [#202](https://github.com/pactus-project/pactus-gui/pull/204)
