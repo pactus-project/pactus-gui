@@ -1,6 +1,6 @@
 # 1.65.2+69
 ### [Feat]
-- Added "Connect to Remote Node" button to the initialize mode screen [#207](https://github.com/pactus-project/pactus-gui/pull/208)
+- Added `Connect to Remote Node` button to the initialize mode screen [#207](https://github.com/pactus-project/pactus-gui/pull/208)
 
 # 1.65.1+68
 ### [CI]
