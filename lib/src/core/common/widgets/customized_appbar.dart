@@ -60,6 +60,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       onPanStart: (details) async {
         await windowManager.startDragging();
       },
+      onDoubleTap: _toggleMaximize,
       child: Container(
         height: preferredSize.height,
         decoration: BoxDecoration(
