@@ -23,7 +23,7 @@ class CliConstants {
   static const String validators12 = '12';
   static const String validators24 = '24';
   static const String validators32 = '32';
-  static const String grpcServerStarted = 'grpc server started';
+  static const String grpcServerStarted = 'gRPC server start';
   static const String detectNetwork = 'network=';
   static const String detectSucceedWalletPassword =
       'Your wallet password successfully';
