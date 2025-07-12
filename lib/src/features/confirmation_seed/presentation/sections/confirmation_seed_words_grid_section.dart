@@ -24,45 +24,57 @@ class ConfirmationSeedWordsGridSection extends StatelessWidget {
         color: AppTheme.of(context).extension<LightPallet>()!.light900,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       ),
-      child: GridView.builder(
-        shrinkWrap: true,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: crossAxisCount,
-          crossAxisSpacing: 12,
-          mainAxisSpacing: 12,
-          childAspectRatio: 141 / 30,
-        ),
-        itemCount: confirmationSeedState.words.length,
-        padding: EdgeInsets.zero,
-        itemBuilder: (context, index) {
-          final item = confirmationSeedState.words[index];
-          final wordID = index + 1;
-          final chipTextMode = confirmationSeedState.validationResults[index]
-              .detectChipTextModeOnBoolean();
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final maxWidth = constraints.maxWidth;
+          final crossAxisSpacing = 12.0;
+          final childAspectRatio =
+              (maxWidth - ((crossAxisCount - 1) * crossAxisSpacing)) /
+              crossAxisCount /
+              30;
 
-          return item.isNeedConfirmation
-              ? ChipTextBox(
-                  prefixText: '$wordID.',
-                  chipTextMode: chipTextMode,
-                  onChanged: (value) {
-                    context.read<ConfirmationSeedCubit>().updateValidation(
-                      index,
-                      value,
+          return GridView.builder(
+            shrinkWrap: true,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: crossAxisCount,
+              crossAxisSpacing: crossAxisSpacing,
+              mainAxisSpacing: 12,
+              childAspectRatio: childAspectRatio,
+            ),
+            itemCount: confirmationSeedState.words.length,
+            padding: EdgeInsets.zero,
+            itemBuilder: (context, index) {
+              final item = confirmationSeedState.words[index];
+              final wordID = index + 1;
+              final chipTextMode = confirmationSeedState
+                  .validationResults[index]
+                  .detectChipTextModeOnBoolean();
+
+              return item.isNeedConfirmation
+                  ? ChipTextBox(
+                      prefixText: '$wordID.',
+                      chipTextMode: chipTextMode,
+                      onChanged: (value) {
+                        context.read<ConfirmationSeedCubit>().updateValidation(
+                          index,
+                          value,
+                        );
+                      },
+                    )
+                  : ChipTextBox(
+                      prefixText: '$wordID.',
+                      isReadOnly: true,
+                      chipTextMode: ChipTextMode.normal,
+                      placeholder: item.word,
+                      onChanged: (value) {
+                        context.read<ConfirmationSeedCubit>().updateValidation(
+                          index,
+                          value,
+                        );
+                      },
                     );
-                  },
-                )
-              : ChipTextBox(
-                  prefixText: '$wordID.',
-                  isReadOnly: true,
-                  chipTextMode: ChipTextMode.normal,
-                  placeholder: item.word,
-                  onChanged: (value) {
-                    context.read<ConfirmationSeedCubit>().updateValidation(
-                      index,
-                      value,
-                    );
-                  },
-                );
+            },
+          );
         },
       ),
     );
