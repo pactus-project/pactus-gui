@@ -47,25 +47,36 @@ class SeedWordsGridSection extends StatelessWidget {
         color: AppTheme.of(context).extension<LightPallet>()!.light900,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       ),
-      child: GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: crossAxisCount,
-          crossAxisSpacing: 12,
-          mainAxisSpacing: 12,
-          childAspectRatio: 141 / 30,
-        ),
-        itemCount: seedWords.length,
-        itemBuilder: (context, index) {
-          final item = seedWords[index];
-          final wordID = index + 1;
-          return ChipTextBox(
-            isReadOnly: true,
-            prefixText: '$wordID.',
-            placeholder: item,
-            chipTextMode: ChipTextMode.normal,
-            onChanged: (String value) {},
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final maxWidth = constraints.maxWidth;
+          final crossAxisSpacing = 12.0;
+          final childAspectRatio =
+              (maxWidth - ((crossAxisCount - 1) * crossAxisSpacing)) /
+              crossAxisCount /
+              30;
+
+          return GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: crossAxisCount,
+              crossAxisSpacing: crossAxisSpacing,
+              mainAxisSpacing: 12,
+              childAspectRatio: childAspectRatio,
+            ),
+            itemCount: seedWords.length,
+            itemBuilder: (context, index) {
+              final item = seedWords[index];
+              final wordID = index + 1;
+              return ChipTextBox(
+                isReadOnly: true,
+                prefixText: '$wordID.',
+                placeholder: item,
+                chipTextMode: ChipTextMode.normal,
+                onChanged: (String value) {},
+              );
+            },
           );
         },
       ),
