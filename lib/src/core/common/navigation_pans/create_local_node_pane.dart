@@ -9,11 +9,11 @@ import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:pactus_gui/src/data/models/fluent_navigation_state_model.dart';
 import 'package:pactus_gui/src/features/confirmation_seed/presentation/screen/confirmation_seed_screen.dart';
 import 'package:pactus_gui/src/features/finish/presentation/screen/finish_screen.dart';
-import 'package:pactus_gui/src/features/generation_seed/presentation/screens/generation_seed_screen.dart';
 import 'package:pactus_gui/src/features/initializing/presentation/screen/initializing_screen.dart';
 import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:pactus_gui/src/features/master_password/presentation/screen/master_password_screen.dart';
+import 'package:pactus_gui/src/features/node_type/presentation/screens/node_type_screen.dart';
 import 'package:pactus_gui/src/features/validator_config/presentation/screen/validator_config_screen.dart';
 
 class CreateLocalNodePane extends StatelessWidget {
@@ -47,8 +47,21 @@ class CreateLocalNodePane extends StatelessWidget {
                       ),
                     ),
                   ),
-                  body: GenerationSeedScreen(),
+                  body: NodeTypeScreen(),
                 ),
+
+                // PaneItem(
+                //  icon: const SizedBox(),
+                //  title: Text(
+                //  context.tr(LocaleKeys.wallet_seed),
+                //  style: TextStyle(
+                //  color: context.detectPaneTextColor(
+                //  isEnabledTextStyle: navigationState.selectedIndex == 0 ,
+                //  ),
+                //  ),
+                //  ),
+                //  body: GenerationSeedScreen(),
+                // ),
                 PaneItem(
                   icon: const SizedBox(),
                   title: Text(

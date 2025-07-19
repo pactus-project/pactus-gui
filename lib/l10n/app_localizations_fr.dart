@@ -484,4 +484,11 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get directory_creation_failed =>
       'Échec de la création du répertoire. Veuillez vérifier les permissions et réessayer.';
+
+  @override
+  String get node_type => 'Type de nœud';
+
+  @override
+  String get snapshot_select_to_download =>
+      'Veuillez sélectionner un instantané à télécharger';
 }

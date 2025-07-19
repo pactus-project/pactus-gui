@@ -201,6 +201,8 @@ class CodegenLoader {
     'password_mismatch_error': 'Passwords do not match!',
     'directory_creation_failed':
         'Failed to create application directory. Please check permissions and try again.',
+    'node_type': 'Node type',
+    'snapshot_select_to_download': 'Please select a snapshot to download',
   };
   static const Map<String, dynamic> frFR = {
     'title': 'Bonjour le Monde!',
@@ -384,6 +386,9 @@ class CodegenLoader {
     'password_mismatch_error': 'Les mots de passe ne correspondent pas !',
     'directory_creation_failed':
         'Échec de la création du répertoire. Veuillez vérifier les permissions et réessayer.',
+    'node_type': 'Type de nœud',
+    'snapshot_select_to_download':
+        'Veuillez sélectionner un instantané à télécharger',
   };
   static const Map<String, dynamic> esES = {
     'title': 'Hola Mundo!',
@@ -565,6 +570,9 @@ class CodegenLoader {
     'password_mismatch_error': '¡Las contraseñas no coinciden!',
     'directory_creation_failed':
         'No se pudo crear el directorio. Por favor verifique los permisos e intente nuevamente.',
+    'node_type': 'Tipo de nodo',
+    'snapshot_select_to_download':
+        'Por favor seleccione una instantánea para descargar',
   };
 
   static const Map<String, Map<String, dynamic>> mapLocales = {

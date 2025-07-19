@@ -70,6 +70,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_settings.svg
   String get icSettings => 'assets/icons/ic_settings.svg';
 
+  /// File path: assets/icons/ic_snapshot_selected.svg
+  String get icSnapshotSelected => 'assets/icons/ic_snapshot_selected.svg';
+
+  /// File path: assets/icons/ic_snapshot_un_selected.svg
+  String get icSnapshotUnSelected => 'assets/icons/ic_snapshot_un_selected.svg';
+
   /// File path: assets/icons/ic_total_power.svg
   String get icTotalPower => 'assets/icons/ic_total_power.svg';
 
@@ -109,6 +115,8 @@ class $AssetsIconsGen {
     icNodeLogs,
     icReachbility,
     icSettings,
+    icSnapshotSelected,
+    icSnapshotUnSelected,
     icTotalPower,
     icTransaction,
     icValidators,

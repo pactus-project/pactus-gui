@@ -481,4 +481,11 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get directory_creation_failed =>
       'No se pudo crear el directorio. Por favor verifique los permisos e intente nuevamente.';
+
+  @override
+  String get node_type => 'Tipo de nodo';
+
+  @override
+  String get snapshot_select_to_download =>
+      'Por favor seleccione una instantánea para descargar';
 }

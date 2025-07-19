@@ -957,6 +957,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Failed to create application directory. Please check permissions and try again.'**
   String get directory_creation_failed;
+
+  /// No description provided for @node_type.
+  ///
+  /// In en, this message translates to:
+  /// **'Node type'**
+  String get node_type;
+
+  /// No description provided for @snapshot_select_to_download.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select a snapshot to download'**
+  String get snapshot_select_to_download;
 }
 
 class _AppLocalizationsDelegate

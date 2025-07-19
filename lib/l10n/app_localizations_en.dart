@@ -476,4 +476,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get directory_creation_failed =>
       'Failed to create application directory. Please check permissions and try again.';
+
+  @override
+  String get node_type => 'Node type';
+
+  @override
+  String get snapshot_select_to_download =>
+      'Please select a snapshot to download';
 }
