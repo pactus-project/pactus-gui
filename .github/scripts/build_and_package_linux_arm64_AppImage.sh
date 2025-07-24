@@ -61,7 +61,7 @@ download_and_extract_pactus_cli() {
 
 download_appimagetool() {
   echo "⬇️ Downloading AppImageTool for ARM64..."
-  wget -q https://github.com/AppImage/AppImageKit/releases/download/continuous/${APPIMAGE_TOOL}
+  wget -q "https://github.com/AppImage/appimagetool/releases/download/continuous/${APPIMAGE_TOOL}"
   chmod +x "${APPIMAGE_TOOL}"
 }
 
