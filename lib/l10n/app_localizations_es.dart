@@ -481,4 +481,8 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get directory_creation_failed =>
       'No se pudo crear el directorio. Por favor verifique los permisos e intente nuevamente.';
+
+  @override
+  String get error_node_duplicate_running =>
+      'Un nodo duplicado está en ejecución. El nodo está bloqueado.';
 }

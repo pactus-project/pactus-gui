@@ -49,7 +49,9 @@ mixin NodeListenerHandler {
       _startNodeDaemon(context, password);
     }
     // Handle GRPC port extraction & navigation
-    if (state.output.contains(CliConstants.grpcServerStarted)) {
+    if (state.output.toLowerCase().contains(
+      CliConstants.grpcServerStarLowerCase,
+    )) {
       updateNodeDetailsSingleton(
         password: password,
         port: state.output.extractNetworkPort(),
@@ -63,11 +65,15 @@ mixin NodeListenerHandler {
     DaemonError state,
     String password,
   ) {
-    if (state.error.contains('invalid password') && password != '') {
+    if (state.error.toLowerCase().contains('invalid password') &&
+        password != '') {
       _showErrorDialog(context, context.tr(LocaleKeys.incorrect_password));
     }
-    if (state.error == 'The node is locked') {
-      _resetNode();
+    if (state.error.toLowerCase() == 'the node is locked') {
+      _showErrorDialog(
+        context,
+        context.tr(LocaleKeys.error_node_duplicate_running),
+      );
     }
   }
 
@@ -91,25 +97,5 @@ mixin NodeListenerHandler {
 
   static void _showErrorDialog(BuildContext context, String message) {
     showFluentAlert(context, message);
-  }
-
-  static Future<void> _resetNode() async {
-    try {
-      await DirectoryManager().killDaemonProcess(DaemonFileEnum.pactusDaemon);
-      await DirectoryManager().removeLockFile();
-      await _restartApp();
-    } on Exception catch (e) {
-      printDebug('Window action failed: $e');
-    }
-  }
-
-  static Future<void> _restartApp() async {
-    final executable = Platform.resolvedExecutable;
-    final arguments = Platform.executableArguments;
-    final script = Platform.script.toFilePath();
-
-    await Process.start(executable, [...arguments, script]);
-
-    exit(0);
   }
 }

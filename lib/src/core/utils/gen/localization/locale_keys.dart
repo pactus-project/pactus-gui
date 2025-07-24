@@ -176,4 +176,6 @@ abstract class LocaleKeys {
   static const String seed_placeholder = 'seed_placeholder';
   static const String password_mismatch_error = 'password_mismatch_error';
   static const String directory_creation_failed = 'directory_creation_failed';
+  static const String error_node_duplicate_running =
+      'error_node_duplicate_running';
 }

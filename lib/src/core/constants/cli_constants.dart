@@ -23,7 +23,8 @@ class CliConstants {
   static const String validators12 = '12';
   static const String validators24 = '24';
   static const String validators32 = '32';
-  static const String grpcServerStarted = 'gRPC server start';
+  // [grpcServerStarLowerCase] : used as lower-case
+  static const String grpcServerStarLowerCase = 'grpc server start';
   static const String detectNetwork = 'network=';
   static const String detectSucceedWalletPassword =
       'Your wallet password successfully';
