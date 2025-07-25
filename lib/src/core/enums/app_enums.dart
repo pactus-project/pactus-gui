@@ -1,13 +1,7 @@
 enum ValidatorQty {
-  seven(
-    qty: 7,
-  ),
-  twentyFour(
-    qty: 24,
-  ),
-  thirtyTwo(
-    qty: 32,
-  );
+  seven(qty: 7),
+  twentyFour(qty: 24),
+  thirtyTwo(qty: 32);
 
   const ValidatorQty({required this.qty});
 
@@ -29,3 +23,5 @@ enum DelayTime {
 
   final Duration duration;
 }
+
+enum DialogType { warning, info, succeed, error, normal }

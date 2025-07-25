@@ -1,13 +1,11 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gui/src/core/common/colors/app_colors.dart';
-import 'package:gui/src/core/common/widgets/adaptive_text_button.dart';
-import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
-import 'package:gui/src/core/common/widgets/custom_outlined_button.dart';
-import 'package:gui/src/core/router/route_name.dart';
-import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
-import 'package:gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui/src/core/router/route_name.dart';
+import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui_widgetbook/app_core.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+import 'package:pactus_gui_widgetbook/app_widgets.dart';
 
 class NavigationFooterSection extends StatelessWidget {
   const NavigationFooterSection({
@@ -32,47 +30,65 @@ class NavigationFooterSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 89,
       color: AppTheme.of(context).extension<LightPallet>()!.light900,
-      padding: const EdgeInsets.symmetric(horizontal: 46),
+      padding: const EdgeInsets.all(32),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // Always reserve space for Back button
           if (selectedIndex > 0 && onBackPressed != null)
-            CustomOutlinedButton(
-              text: context.tr(LocaleKeys.back),
-              onPressed: onBackPressed,
-              borderColor: AppColors.primaryGray,
+            IntrinsicWidth(
+              child: SizedBox(
+                height: 32,
+                child: AdaptiveSecondaryButton.createTitleOnly(
+                  isDefaultOutlinedButton: true,
+                  requestState: RequestStateEnum.loaded,
+                  onPressed: onBackPressed,
+                  title: context.tr(LocaleKeys.back),
+                ),
+              ),
             )
           else
-            CustomOutlinedButton(
-              text: context.tr(LocaleKeys.back),
-              onPressed: () {
-                context.goNamed(AppRoute.initializeMode.name);
-              },
-              borderColor: AppColors.primaryGray,
+            IntrinsicWidth(
+              child: SizedBox(
+                height: 32,
+                child: AdaptiveSecondaryButton.createTitleOnly(
+                  isDefaultOutlinedButton: true,
+                  requestState: RequestStateEnum.loaded,
+                  onPressed: () {
+                    context.goNamed(AppRoute.initializeMode.name);
+                  },
+                  title: context.tr(LocaleKeys.back),
+                ),
+              ),
             ),
 
           // Modified Next button section with optional Skip
           Row(
             children: [
               if (showSkipButton) ...[
-                AdaptiveTextButton(
-                  text: context.tr(LocaleKeys.skip),
-                  onPressed: onSkipPressed!,
-                  textColor: FluentTheme.of(context).accentColor,
+                IntrinsicWidth(
+                  child: SizedBox(
+                    height: 32,
+                    child: AdaptiveTextButton.createTitleOnly(
+                      requestState: RequestStateEnum.loaded,
+                      title: context.tr(LocaleKeys.skip),
+                      onPressed: onSkipPressed,
+                    ),
+                  ),
                 ),
                 const SizedBox(width: 10),
               ],
-              CustomFilledButton(
-                text: 'Next',
-                style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all<Color?>(
-                    FluentTheme.of(context).accentColor,
+              IntrinsicWidth(
+                child: SizedBox(
+                  height: 32,
+                  child: AdaptivePrimaryButton.createTitleOnly(
+                    requestState: RequestStateEnum.loaded,
+                    onPressed: selectedIndex < 6 ? onNextPressed : null,
+                    title: context.tr(LocaleKeys.next),
+                    paddingSize: PaddingSizeEnum.large,
                   ),
                 ),
-                onPressed: selectedIndex < 6 ? onNextPressed : null,
               ),
             ],
           ),

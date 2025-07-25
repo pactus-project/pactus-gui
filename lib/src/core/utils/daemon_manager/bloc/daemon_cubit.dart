@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/core/constants/cli_constants.dart';
-import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
-import 'package:logger/logger.dart';
+import 'package:pactus_gui/src/core/constants/cli_constants.dart';
+import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
+import 'package:pactus_gui/src/core/utils/methods/print_debug.dart';
 import 'package:path/path.dart' show dirname, join;
+
 import 'daemon_state.dart';
 
 /// [DaemonCubit] Documentation:
@@ -32,11 +34,17 @@ import 'daemon_state.dart';
 /// - Handles exceptions and errors gracefully.
 class DaemonCubit extends Cubit<DaemonState> {
   DaemonCubit() : super(DaemonInitial());
-  final Logger _logger = Logger();
 
   /// Gets the appropriate native resources directory
   /// based on the operating system
   String _getNativeResourcesPath(String scriptDir) {
+    final envPath = Platform.environment['PACTUS_NATIVE_RESOURCES'];
+
+    if (envPath != null && envPath.isNotEmpty) {
+      return envPath;
+    }
+
+    final scriptDir = dirname(Platform.script.toFilePath());
     final platform = Platform.operatingSystem;
     final nativeDir = join(scriptDir, 'lib', 'src', 'core', 'native_resources');
 
@@ -84,13 +92,15 @@ class DaemonCubit extends Cubit<DaemonState> {
   ///
   Future<void> runPactusDaemon({required CliCommand cliCommand}) async {
     emit(DaemonLoading());
-    _logger.i('Starting daemon process with command:'
-        ' ${cliCommand.command} ${cliCommand.arguments}');
+    printDebug(
+      'Starting daemon process with command:'
+      ' ${cliCommand.command} ${cliCommand.arguments}',
+    );
 
     try {
       final executablePath = _executablePath(cliCommand.command);
 
-      _logger.d('Executable path: $executablePath');
+      printDebug('Executable path: $executablePath');
 
       // Ensure executable permissions (skips on Windows)
       _ensureExecutablePermissions(executablePath);
@@ -101,19 +111,20 @@ class DaemonCubit extends Cubit<DaemonState> {
         cliCommand.arguments,
         workingDirectory: _executableDir(),
       );
+      printDebug('process path: $process');
 
       // bypass password-less wallet cli and init node
-      if (cliCommand.command == './pactus-daemon' &&
-          cliCommand.arguments.first == 'init' &&
-          !cliCommand.arguments.contains(CliConstants.password)) {
-        // Writing password interactively
-        process.stdin.writeln();
-
-        Future.delayed(Duration(seconds: 2), () {
-          // Writing password interactively
-          process.stdin.writeln();
-        });
-      }
+      // if (cliCommand.command == './pactus-daemon' &&
+      //     cliCommand.arguments.first == 'init' &&
+      //     !cliCommand.arguments.contains(CliConstants.password)) {
+      //   // Writing password interactively
+      //   process.stdin.writeln();
+      //
+      //   Future.delayed(Duration(seconds: 2), () {
+      //     // Writing password interactively
+      //     process.stdin.writeln();
+      //   });
+      // }
 
       if (cliCommand.command == CliConstants.pactusWallet &&
           cliCommand.arguments[0] == CliConstants.password) {
@@ -131,41 +142,43 @@ class DaemonCubit extends Cubit<DaemonState> {
         });
       }
 
-      _logger.d('Process started with PID: ${process.pid}');
+      printDebug('Process started with PID: ${process.pid}');
 
       // Handle process output
       process.stdout.transform<String>(utf8.decoder).listen((data) {
-        _logger.i('Daemon stdout: $data');
+        printDebug('Daemon stdout: $data');
         emit(DaemonSuccess(data));
       });
 
       process.stderr.transform<String>(utf8.decoder).listen((data) {
         if (kDebugMode) {
-          debugPrint('Daemon stderr: $data');
+          printDebug('Daemon stderr: $data');
         }
         if (!data.contains('new block committed')) {
           emit(DaemonError(data));
         }
       });
       await process.exitCode.then((code) {
-        _logger.i('Process exited with code: $code');
+        printDebug('Process exited with code: $code');
         if (code != 0) {
           emit(DaemonError('Process exited with code: $code'));
         }
       });
     } on FileSystemException catch (e) {
-      _logger.e('File system error: ${e.message}');
+      printDebug('File system error: ${e.message}');
       emit(DaemonError('File system error: ${e.message}'));
     } on ProcessException catch (e) {
-      _logger.e('Process execution error: ${e.message}');
+      printDebug('Process execution error: ${e.message}');
       emit(DaemonError('Process error: ${e.message}'));
     } on Exception catch (e) {
-      _logger.e('Unexpected error: $e');
+      printDebug('Unexpected error: $e');
       emit(DaemonError('Exception occurred: $e'));
     }
   }
 
   Future<void> runStartNodeCommand({required CliCommand cliCommand}) async {
+    emit(DaemonLoading());
+
     try {
       final executablePath = _executablePath(cliCommand.command);
       _ensureExecutablePermissions(executablePath);
@@ -176,7 +189,36 @@ class DaemonCubit extends Cubit<DaemonState> {
         workingDirectory: _executableDir(),
       );
 
-      process.stderr.transform<String>(utf8.decoder).listen((data) {});
+      process.stderr.transform<String>(utf8.decoder).listen((data) {
+        if (kDebugMode) {
+          printDebug('DATA--->:$data');
+        }
+        if (data.toLowerCase().contains(CliConstants.grpcServerStarLowerCase)) {
+          emit(DaemonSuccess(data));
+        }
+      });
+
+      process.stdout.transform<String>(utf8.decoder).listen((data) {
+        if (kDebugMode) {
+          printDebug('DATA--->:$data');
+        }
+
+        if (data.toLowerCase().contains('another instance is running') ||
+            data.toLowerCase().contains('could not start grpc server:')) {
+          emit(DaemonError('The node is locked'));
+        }
+        if (data.contains('invalid password')) {
+          emit(DaemonError(data));
+        }
+      });
+
+      // await process.exitCode.then((code) {
+      //   printDebug('Process exited with code: $code');
+      //   if (code != 0) {
+      //     emit(DaemonError('Process exited with code: $code'));
+      //   }
+      // });
+      //
     } on Exception catch (_) {}
   }
 
@@ -186,10 +228,12 @@ class DaemonCubit extends Cubit<DaemonState> {
     return executableDir;
   }
 
+  String _matchOsCommand(String command) {
+    final result = Platform.isWindows ? '$command.exe' : command;
+    return result;
+  }
+
   String _executablePath(String command) {
-    return join(
-      _executableDir(),
-      Platform.isWindows ? '$command.exe' : command,
-    );
+    return join(_executableDir(), _matchOsCommand(command));
   }
 }

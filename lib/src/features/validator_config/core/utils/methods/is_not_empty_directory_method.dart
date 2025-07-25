@@ -1,27 +1,49 @@
 import 'dart:io';
 
-/// ## [isNotEmptyDirectory] Function Documentation
+import 'package:flutter_app_info/package_info_plus.dart' show PackageInfo;
+import 'package:pactus_gui/src/core/utils/methods/print_debug.dart';
+import 'package:path/path.dart' as path;
+
+/// ## [createNodeDirectory] Function Documentation
 ///
-/// Checks if the given directory is not empty.
-/// If the directory does not exist, it attempts to create it.
+/// Creates a new Pactus node directory with version-specific naming inside
+/// the specified base path.
 ///
-/// ### Parameters:
+/// Returns the full path of the newly created directory if successful.
+/// Returns `null` if the base directory doesn't exist or if creation fails.
+/// Silently handles errors with debug logging.
 ///
-/// - **[text]** (String, required):
-///   - The path of the directory to check.
+/// The generated directory follows the naming pattern: `pactus_node_[version]`
+/// where version is derived from the app's package info.
 ///
-/// ### Returns:
-///
-/// - **[Future<bool>]**:
-///   - `true` if the directory exists and contains files/folders.
-///   - `false` if the directory is empty or could not be created.
-///
-Future<bool> isNotEmptyDirectory({required String text}) async {
-  final directory = Directory(text);
-  if (!directory.existsSync()) {
-    try {
-      await directory.create(recursive: true);
-    } on Exception catch (_) {}
+/// Example:
+/// ```dart
+/// final nodeDir = await createNodeDirectory('/user/documents');
+/// if (nodeDir != null) {
+///   // Success - use the new directory path
+///   print('Created node directory at: $nodeDir');
+/// }
+/// ```
+
+Future<String?> createNodeDirectory(String basePath) async {
+  try {
+    // Verify base directory exists
+    final baseDir = Directory(basePath);
+    if (!baseDir.existsSync()) {
+      return null;
+    }
+
+    // Generate unique directory name
+    final packageInfo = await PackageInfo.fromPlatform();
+    final version = packageInfo.version.replaceAll('.', '_');
+    final dirName = 'pactus_node_$version';
+
+    // Create new directory
+    final newPath = path.join(basePath, dirName);
+    await Directory(newPath).create(recursive: true);
+    return newPath;
+  } on Exception catch (e) {
+    printDebug('Directory creation error: $e');
+    return null;
   }
-  return directory.listSync().isNotEmpty;
 }

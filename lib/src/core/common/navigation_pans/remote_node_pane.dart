@@ -1,16 +1,16 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
-import 'package:gui/src/core/common/widgets/app_layout.dart';
-import 'package:gui/src/core/constants/app_constants.dart';
-import 'package:gui/src/core/enums/app_enums.dart';
-import 'package:gui/src/core/extensions/context_extensions.dart';
-import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
-import 'package:gui/src/data/models/fluent_navigation_state_model.dart';
-import 'package:gui/src/features/finish/presentation/screen/finish_screen.dart';
-import 'package:gui/src/features/initializing/presentation/screen/initializing_screen.dart';
-import 'package:gui/src/features/main/language/core/localization_extension.dart';
-import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
+import 'package:pactus_gui/src/core/common/cubits/step_validation_cubit.dart';
+import 'package:pactus_gui/src/core/common/widgets/app_layout.dart';
+import 'package:pactus_gui/src/core/constants/app_constants.dart';
+import 'package:pactus_gui/src/core/enums/app_enums.dart';
+import 'package:pactus_gui/src/core/extensions/context_extensions.dart';
+import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:pactus_gui/src/data/models/fluent_navigation_state_model.dart';
+import 'package:pactus_gui/src/features/finish/presentation/screen/finish_screen.dart';
+import 'package:pactus_gui/src/features/initializing/presentation/screen/initializing_screen.dart';
+import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 
 class RemoteNodePane extends StatelessWidget {
   const RemoteNodePane({super.key});
@@ -24,8 +24,10 @@ class RemoteNodePane extends StatelessWidget {
             pane: NavigationPane(
               displayMode: PaneDisplayMode.open,
               menuButton: const SizedBox(),
-              size:
-                  const NavigationPaneSize(openMaxWidth: 209, compactWidth: 52),
+              size: const NavigationPaneSize(
+                openMaxWidth: 209,
+                compactWidth: 52,
+              ),
               selected: navigationState.selectedIndex,
               onChanged: (index) =>
                   _handleNavigationChange(context, navigationState, index),
@@ -41,9 +43,7 @@ class RemoteNodePane extends StatelessWidget {
                       ),
                     ),
                   ),
-                  body: InitializingScreen(
-                    initialMode: InitialMode.remote,
-                  ),
+                  body: InitializingScreen(initialMode: InitialMode.remote),
                 ),
                 PaneItem(
                   icon: const SizedBox(),
@@ -74,11 +74,13 @@ class RemoteNodePane extends StatelessWidget {
     final navigationCubit = context.read<NavigationPaneCubit>();
 
     // Allow moving forward only if the previous step is valid
-    final canGoForward = index == navigationState.selectedIndex + 1 &&
+    final canGoForward =
+        index == navigationState.selectedIndex + 1 &&
         stepValidationCubit.isStepValid(navigationState.selectedIndex);
 
     // Allow moving backward only if you're not at the first page
-    final canGoBack = index == navigationState.selectedIndex - 1 &&
+    final canGoBack =
+        index == navigationState.selectedIndex - 1 &&
         navigationState.selectedIndex < AppConstants.remoteNodeMaxIndex;
 
     // If you've reached the first page,you won't be able to go back

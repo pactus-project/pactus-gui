@@ -1,5 +1,284 @@
-# 1.43.0+46
+# 1.66.0+71
 
+### [Fix]
+- Updated daemon files to v1.8.0 (Paris) and fixed initial node startup logic for compatibility with this version
+  - fix(core): correct loading state behavior on unlock button in `UnlockPasswordScreen` [#211](https://github.com/pactus-project/pactus-gui/pull/212)
+  - ci: ci: update pactus cli download links to v1.8.0 in ci/cd pipeline [#211](https://github.com/pactus-project/pactus-gui/pull/212)
+    - start node detection condition was changed
+  - fix(password): fix some login issues [#211](https://github.com/pactus-project/pactus-gui/pull/212)
+    - show error message for `duplicate running node`
+    - detect grpc server started in new version of `pactus-daemon` file
+  - fix(password): fix some hardcoded strings [#211](https://github.com/pactus-project/pactus-gui/pull/212)
+### [Update]
+- Improvement some ui parts
+  - update(dashboard): fix some overflow in shimmer widgets at dashboard screen [#211](https://github.com/pactus-project/pactus-gui/pull/212)
+  - update(core): double-click the `AppBar` to maximize the window [#211](https://github.com/pactus-project/pactus-gui/pull/210)
+### [CI]
+- Fix download url of `AppImageTool` for create linux `AppImage` files [#211](https://github.com/pactus-project/pactus-gui/pull/212)
+
+# 1.65.3+70
+### [CI]
+- Use `appimagetool` for amd64 AppImage on Ubuntu 22.04 [#205](https://github.com/pactus-project/pactus-gui/pull/209)
+
+# 1.65.2+69
+### [Feat]
+- Added `Connect to Remote Node` button to the initialize mode screen [#207](https://github.com/pactus-project/pactus-gui/pull/208)
+
+# 1.65.1+68
+### [CI]
+- Enhanced CI/CD pipelines for better cross-platform support [#205](https://github.com/pactus-project/pactus-gui/pull/206)
+  - Added support for building `.dmg` files on macOS (`amd64` and `arm64`)
+  - Fixed compatibility issues with runner versions and `appimage-tools` to support `.AppImage` builds on Linux (`amd64` and `arm64`)
+
+# 1.65.0+67
+### [CI]
+- Add support for building `.AppImage` on Linux amd64 [#202](https://github.com/pactus-project/pactus-gui/pull/204)
+
+# 1.64.0+66
+### [Feature]
+- Fix reported some ui issues for version `1.6.3.0-rc1` [#200](https://github.com/pactus-project/pactus-gui/pull/203)
+  - fix(dashboard): fix maximize issue and crash call api in dashboard screen
+  - update: fixed some UI issues
+    - moved UI elements to the center of the welcome screen.
+    - fixed some spelling corrections.
+    - improved the font size of some text sections.
+    - add padding to version number in splash screen
+    - increase font size for copy to clipboard dialog
+    - remove `dark blue` from accent colors and themes
+
+# 1.63.0+65
+### [Feature]
+- Remove empty-directory requirement for node setup [#199](https://github.com/pactus-project/pactus-gui/pull/199)
+  - Auto-generates `pactus_node_[version]` subfolders in any selected directory
+
+# 1.62.0+64
+### [Refactor]
+- Move LoadNodeValidatorAddresses component to the start of the dashboard home screen [#193](https://github.com/pactus-project/pactus-gui/pull/198)
+- Change color of the close button in the Windows toolbar [#193](https://github.com/pactus-project/pactus-gui/pull/198)
+
+# 1.61.0+63
+### [Fix]
+- Update dashboard item color according figma specs [#193](https://github.com/pactus-project/pactus-gui/pull/197)
+
+# 1.60.0+62
+### [Feature]
+- Adjustment background color of seed input component [#195](https://github.com/pactus-project/pactus-gui/pull/196)
+
+# 1.59.0+61
+### [Fix]
+- Fix lock node in debugging mode and force close app [#187](https://github.com/pactus-project/pactus-gui/pull/188)
+    - Detect running `pactus-daemon` process
+    - Remove lock file
+- Fix lock file and stop running node in debug mode and force close app [#187](https://github.com/pactus-project/pactus-gui/pull/188)
+- Resolved extra error message at unlock password screen [#187](https://github.com/pactus-project/pactus-gui/pull/188)
+
+### [Update]
+- Change pactus package name from gui to pactus_gui [#187](https://github.com/pactus-project/pactus-gui/pull/188)
+- Fix some hardcoded texts [#187](https://github.com/pactus-project/pactus-gui/pull/188)
+    - Master password feature
+    - Generate seeds feature
+
+### [Refactor]
+- Close pactus-daemon process when user clicks close button [#187](https://github.com/pactus-project/pactus-gui/pull/188)
+
+### [Update]
+- Fix lock node in debugging mode and force close app  [#187](https://github.com/pactus-project/pactus-gui/pull/188)
+    - detect running `pactus-daemon` process
+    - remove lock file
+
+# 1.58.0+60
+### [Feature]
+- Implement password validation for master password. [#190](https://github.com/pactus-project/pactus-gui/pull/194)
+  - Add password validation using RxDart.
+### [Refactor]
+- Refactor custom input widget to support password validation [#190](https://github.com/pactus-project/pactus-gui/pull/194)
+
+# 1.57.1+59
+### [CI]
+- Update linux amd github action. [#183](https://github.com/pactus-project/pactus-gui/pull/184)
+
+# 1.57.0+58
+### [Refactor]
+- Add "Coming Soon" label to sections in dashboard. [#185](https://github.com/pactus-project/pactus-gui/pull/186)
+  - `Node logs` section
+  - `Transactions` section
+  - `Wallet` section
+- Fix location of combo-box in generation seed screen. [#185](https://github.com/pactus-project/pactus-gui/pull/186)
+
+### [Fix]
+- Fix scrolling bug in about screen [#185](https://github.com/pactus-project/pactus-gui/pull/186)
+
+# 1.56.0+57
+
+### [Refactor]
+- Split dashboard code into smaller files for better maintainability [156](https://github.com/pactus-project/pactus-gui/pull/183)
+- Refactor and improve dashboard UI [156](https://github.com/pactus-project/pactus-gui/pull/183)
+- Refactor About Item To Showing Text Correctly And Responsive For Smaller Screen [156](https://github.com/pactus-project/pactus-gui/pull/183)
+
+### [Fix]
+- Fix analyze error [156](https://github.com/pactus-project/pactus-gui/pull/183)
+- Update contents in the about screen [156](https://github.com/pactus-project/pactus-gui/pull/183)
+
+### [Feat]
+- implementation all about text [156](https://github.com/pactus-project/pactus-gui/pull/183)
+- Add package info for show app version [156](https://github.com/pactus-project/pactus-gui/pull/183)
+- Update application icons for windows and macos [156](https://github.com/pactus-project/pactus-gui/pull/183)
+
+# 1.53.0+56
+### [Fix]
+- Fixed navigation issues between dashboard panes [#178](https://github.com/pactus-project/pactus-gui/pull/182)
+- Resolved rendering issues in the FAQ section of the dashboard [#178](https://github.com/pactus-project/pactus-gui/pull/182)
+- Eliminated unnecessary padding in the welcome screen for smoother scrolling [#178](https://github.com/pactus-project/pactus-gui/pull/182)
+- Adjusted button sizing in the unlock password interface [#178](https://github.com/pactus-project/pactus-gui/pull/182)
+- Corrected seed selection logic for 24/12 seed password generation [#178](https://github.com/pactus-project/pactus-gui/pull/182)
+- Updated color scheme for CopyToClipboardButton [#178](https://github.com/pactus-project/pactus-gui/pull/182)
+- Deactivated remote node functionality in initializeMode [#178](https://github.com/pactus-project/pactus-gui/pull/182)
+- Applied updates to localization files [#178](https://github.com/pactus-project/pactus-gui/pull/182)
+- Modified color settings in ValidatorConfig feature [#178](https://github.com/pactus-project/pactus-gui/pull/182)
+- Enhanced UI and color consistency in ScreenHeaderWidget [#178](https://github.com/pactus-project/pactus-gui/pull/182)
+- Fixed node initialization command for Windows compatibility [#178](https://github.com/pactus-project/pactus-gui/pull/182)
+- Updated various localization texts #181
+
+### [Update]
+- Repositioned seed combo-box in the restoration seed interface [#178](https://github.com/pactus-project/pactus-gui/pull/182)
+
+
+# 1.52.0+55
+### [Fix] 
+- Fixed correctly switching between pane items in dashboard [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+- Fixed FAQ screen usage in dashboard feature  [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+- Removed extra space in welcome screen UI for better scrolling [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+- Fixed button width in unlock password feature [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+- Fixed 24/12 seed selection for password generation in contents [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+- Fixed colors of CopyToClipboardButton [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+- Disabled remote node feature in initializeMode [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+- Made changes in localization files [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+- Fixed color changes in ValidatorConfig feature  [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+- Fixed UI and color changes in ScreenHeaderWidget  [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+- Fixed init node command in windows OS [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+
+### [Update]
+- Changed location of seed combo-box in restoration seed screen [#179](https://github.com/pactus-project/pactus-gui/pull/180)
+
+# 1.51.0+54
+### [Feat]
+- Add infrastructure to receive node wallet/validator addresses [#158](https://github.com/pactus-project/pactus-gui/pull/177)
+- Add API infrastructure to receive details for any node wallet/validator address [#158](https://github.com/pactus-project/pactus-gui/pull/177)
+- Implementation UI for addresses_card on dashboard home screen [#158](https://github.com/pactus-project/pactus-gui/pull/177)
+- Show address card data on the dashboard home screen [#158](https://github.com/pactus-project/pactus-gui/pull/177)
+
+### [Fix]
+- Fix transparent color of window background in Windows OS [#158](https://github.com/pactus-project/pactus-gui/pull/177)
+- Fix widget tree for usage ScaffoldPage in splash screen [#158](https://github.com/pactus-project/pactus-gui/pull/177)
+- Validate password of node by start node and review validation [#158](https://github.com/pactus-project/pactus-gui/pull/177)
+- Load data from GRPC port in node configuration [#158](https://github.com/pactus-project/pactus-gui/pull/177)
+
+### [Refactor]
+- Split dashboard code into smaller files for better maintainability [#158](https://github.com/pactus-project/pactus-gui/pull/177)
+- Refactor and improve dashboard UI [#158](https://github.com/pactus-project/pactus-gui/pull/177)
+
+# 1.50.0+53
+### [Feat]
+- Implemented settings section for dashboard and settings screens [#154](https://github.com/pactus-project/pactus-gui/pull/175)
+- Updated app constants to define static text for settings section [#154](https://github.com/pactus-project/pactus-gui/pull/175)
+- Fix switch language when autoSelect english [#154](https://github.com/pactus-project/pactus-gui/pull/175)
+
+### [Refactor]
+- Refactored settings text style for improved consistency [#154](https://github.com/pactus-project/pactus-gui/pull/175)
+- Refactored dashboard screen: [#154](https://github.com/pactus-project/pactus-gui/pull/175)
+- Removed selector color and language from welcome screen [#154](https://github.com/pactus-project/pactus-gui/pull/175)
+- Added Bloc provider for dropdown functionality on dashboard screen [#154](https://github.com/pactus-project/pactus-gui/pull/175)
+- Refactored language widget to use dropdown instead of button [#154](https://github.com/pactus-project/pactus-gui/pull/175)
+- Refactored app color accent [#154](https://github.com/pactus-project/pactus-gui/pull/175)
+- Changed shape to rectangle [#154](https://github.com/pactus-project/pactus-gui/pull/175)
+- Added check icon display when a color is selected [#154](https://github.com/pactus-project/pactus-gui/pull/175)
+
+
+# 1.49.0+52
+### [Feature]
+- Implemented translation for FAQ text on dashboard and FAQ screens [#155](https://github.com/pactus-project/pactus-gui/pull/176)
+
+### [Update]
+- Implemented FAQ section:
+  - Added FAQ section to handle all FAQ content [#155](https://github.com/pactus-project/pactus-gui/pull/176)
+  - Implemented FAQ item to manage title and subtitle [#155](https://github.com/pactus-project/pactus-gui/pull/176)
+
+### [Refactor]
+- Refactored FAQ item text style for improved consistency [#155](https://github.com/pactus-project/pactus-gui/pull/176)
+
+# 1.48.0+51
+### [Fix]
+- Resolved Windows OS transparent window background issue [#171](https://github.com/pactus-project/pactus-gui/pull/174)
+- Fixed splash screen widget tree for proper `ScaffoldPage` usage [#171](https://github.com/pactus-project/pactus-gui/pull/174)
+- Improved password validation for node startup with stdout message review [#171](https://github.com/pactus-project/pactus-gui/pull/174)
+- Fixed dashboard data loading from GRPC port in node configuration [#171](https://github.com/pactus-project/pactus-gui/pull/174)
+
+### [Update]
+- Removed logger package and updated related code [#171](https://github.com/pactus-project/pactus-gui/pull/174)
+
+# 1.47.0+50
+
+### [Feature]
+- Persist selected theme using `AppThemeCubit` and `localStorage` [#31](https://github.com/pactus-project/pactus-gui/pull/169)
+- Persist selected language using `LanguageBloc` and `localStorage` [#31](https://github.com/pactus-project/pactus-gui/pull/169)
+
+### [Update]
+- Added error handling in language state management [#31](https://github.com/pactus-project/pactus-gui/pull/169)
+
+### [Test]
+- Verified storage operations and data consistency in `LanguageBloc` [#31](https://github.com/pactus-project/pactus-gui/pull/169)
+- Verified storage operations and data consistency in `AppThemeCubit` [#31](https://github.com/pactus-project/pactus-gui/pull/169)
+
+# 1.46.0+49
+### [Refactor]
+- Improved scroll performance and UI consistency [#167](https://github.com/pactus-project/pactus-gui/pull/168)
+    - Added `scrollBehavior` to `FluentApp.router` for better scrolling speed in desktop apps
+    - Adjusted padding in fetch component to match Figma specifications
+    ٖ
+### [Fix]
+- Fix Item Scroll Problem On Generation Seed And Master Password [#167](https://github.com/pactus-project/pactus-gui/pull/168)
+
+# 1.45.0+48
+- [Refactor] : Replaced all `FilledButton` instances with `AdaptivePrimaryButton` from `widgetBook`. [#128](https://github.com/pactus-project/pactus-gui/pull/166)
+    - Updated `CopyToClipboardButton` class.
+    - Updated `FinishScreen`.
+    - Updated `InitializeModeScreen`.
+    - Updated `NavigationFooterSection`.
+    - Updated `ValidatorConfigScreen`.
+    - Updated `WelcomeScreen`.
+
+- [Refactor] : Replaced all `OutlinedButton` & `TextButton` instances with `AdaptiveSecondaryButton` & `AdaptiveTextButton` from `widgetBook`. [#128](https://github.com/pactus-project/pactus-gui/pull/166)
+    - Removed unused `AdaptiveFilledButton` overall class.
+    - Removed unused `AdaptiveTextButton` overall class.
+    - Removed unused `CustomFilledButton` overall class.
+    - Removed unused `CustomOutlinedButton` overall class.
+    - Updated `ConfirmationSeedWordsGridSection`.
+    - Updated `context_extensions` file.
+    - Updated `CopyToClipboardButton`.
+    - Updated `FinishScreen`.
+    - Updated `InitializeModeScreen`.
+    - Updated `NavigationFooterSection`.
+    - Updated `SeedWordsGridSection`.
+    - Updated `ValidatorConfigScreen`.
+    - Updated `WelcomeScreen`.
+
+# 1.44.0+47
+### [Feature]
+- Added `dev_mode` feature for `settings` Pactus GUI `network` for developers.
+- Added `set as default` button to preparing `start node` in devMode.
+
+### [Update]
+- Added `keyboard shortcut` (Ctrl+D) to enable `dev mode` (in debugging) directly from the `splash screen` and `unlock password screen` . 
+- Called daemon commands for initial node and `start node` in devMode.
+- Fixed UI `devMode` screen and used bloc to manage states.
+- Improved form states after `creating node` in devMode.
+- Changed `localNodePort` in core constants.
+
+### [Refactor]
+- Changed some properties of `CliConstants` class.
+- Fixed redirect `created node` to `unblock password` screen.
+
+# 1.43.0+46
 ### [Feature]
 - Implemented navigation pane for dashboard screen. [#130](https://github.com/pactus-project/pactus-gui/pull/157)
 
@@ -15,7 +294,6 @@
     - Automated release process triggered by new Git tags starting with `v`.
 
 # 1.42.0+44
-
 ### [Feature]
 - Implemented custom window header for the dashboard screen. [#49](https://github.com/pactus-project/pactus-gui/pull/139)
 
@@ -24,7 +302,6 @@
 - Updated icon size in the `IconActionButton` widget for better visual consistency. [#49](https://github.com/pactus-project/pactus-gui/pull/139)
 
 # 1.41.0+43
-
 ### [Feature]
 - Implemented base layout for the app bar. [#42](https://github.com/pactus-project/pactus-gui/pull/135)
 
@@ -40,7 +317,6 @@
 - Enabled accent color selection visibility in developer mode for easier theme testing.  [#42](https://github.com/pactus-project/pactus-gui/pull/135)
 
 # 1.40.0+42
-
 ### [Feature]
 - Added blockchain info infrastructure to support data retrieval and management. [#118](https://github.com/pactus-project/pactus-gui/pull/133)
 - Implemented node startup and data display functionality in the dashboard screen. [#118](https://github.com/pactus-project/pactus-gui/pull/133)
@@ -55,12 +331,10 @@
 - Integrated the `shimmer` package for smooth loading animations. [#118](https://github.com/pactus-project/pactus-gui/pull/133)
 
 # 1.39.0+41
-
 ### [Refactor]
 - Optimize navigation of dashboard route and welcome [#122](https://github.com/pactus-project/pactus-gui/pull/129)
 
 # 1.38.0+40
-
 ### [Feature]
 - Optimize and align accent color with Widgetbook repository [#121](https://github.com/pactus-project/pactus-gui/pull/125)
   - Updated color management to ensure uniform styling across all components.
@@ -78,12 +352,10 @@
 - Added tests for different states of saving/loading data from local storage.[#121](https://github.com/pactus-project/pactus-gui/pull/125)
  
 # 1.37.0+39
-
 ### [Fix]
 - Resolve initialization bug in remote node connection step [#116](https://github.com/pactus-project/pactus-gui/pull/119)
 
 # 1.36.0+38
-
 ### [Feature]
 - Implemented accent color feature in the GUI app [#117](https://github.com/pactus-project/pactus-gui/pull/120)
   - Added `AccentColorPicker` for selecting accent colors [#117](https://github.com/pactus-project/pactus-gui/pull/120)
@@ -103,7 +375,6 @@
   - Updated `ValidatorConfigScreen` [#117](https://github.com/pactus-project/pactus-gui/pull/120)
 
 # 1.35.0+37
-
 ### [Fix]
 - Fixed crash when tapping the "Next" button in `MasterPassword` and added back action [#107](https://github.com/pactus-project/pactus-gui/pull/108)
 
@@ -111,7 +382,6 @@
 - Adjusted item height in `ConfirmationSeed` screen [#107](https://github.com/pactus-project/pactus-gui/pull/108)
 
 # 1.34.0+36
-
 ### [Fix]
 - Refactor some cli commands settings in `splash` and `unlockPassword` features [#114](https://github.com/pactus-project/pactus-gui/pull/115)
   - change on using pactus-wallet `password` commands
@@ -119,7 +389,6 @@
   - save `node directory path` in local storage
 
 # 1.33.0+35
-
 - [feat]: Implement Master Password screen
   - Added `MasterPasswordScreen` with new UI and functionality.
   - Renamed "Master Password page" to "Master Password screen".
@@ -178,7 +447,6 @@
   - Removed unused widgets to optimize performance.
 
 # 1.32.0+34
-
 - [Fix]: Change first route to UnblockPasswordScreen if wallet has a password. [#109](https://github.com/pactus-project/pactus-gui/pull/113)
   - Ensured that when the wallet has a password, the app correctly navigates to the `UnblockPasswordScreen` on launch.
   - Improved security by enforcing password authentication before accessing the app.
@@ -188,7 +456,6 @@
   - Resolved potential issues with incorrect password checks in the splash screen flow.
 
 # 1.31.0+33
-
 - [Fix]: Handle disable mode for back button in `NavigationFooterSection` [#97](https://github.com/pactus-project/pactus-gui/pull/112)
   - Ensured that the back button is properly disabled when necessary.
 
@@ -209,7 +476,6 @@
   - Ensured proper handling of seed data when initializing a new node.
 
 # 1.30.0+32
-
 - [feat]: Implement Master Password screen [#100](https://github.com/pactus-project/pactus-gui/pull/103)
   - Added `MasterPasswordScreen` with new UI and functionality.
   - Renamed "Master Password page" to "Master Password screen".
@@ -226,11 +492,9 @@
   - Removed unused widgets to optimize performance.
 
 # 1.29.0+31
-
 - [Feature]: implement UI for remote connect server page [#101](https://github.com/pactus-project/pactus-gui/pull/102)
 
 # 1.28.0+30
-
 - [Refactor]: Update bottom navigation and create base layout. [#96](https://github.com/pactus-project/pactus-gui/pull/98)
   - Improved bottom navigation structure.
   - Introduced a base layout for consistent page structure.
@@ -253,7 +517,6 @@
   - Implemented a method to bypass CLI interaction when necessary.
 
 # 1.27.0+29
-
 - [fix]: Correct navigation pane in restore node flow [#92](https://github.com/pactus-project/pactus-gui/pull/99)
   - Fixed issues with the navigation pane during the restore node process.
 
@@ -270,7 +533,6 @@
 
 
 # 1.26.0+28
-
 - [Fix]: Fix BlocProviders for drop-down widgets. [#94](https://github.com/pactus-project/pactus-gui/pull/95)
   - Resolved issues with BlocProviders in drop-down widgets to improve functionality.
 
@@ -289,7 +551,6 @@
 
 
 # 1.25.0+27
-
 - [Fix]: Resolve style conflicts in codebase. [#88](https://github.com/pactus-project/pactus-gui/pull/93)
   - Re-arranged code styles and imports to ensure consistency.
   - Cleaned up redundant styles and improved readability.
@@ -316,7 +577,6 @@
   - Added new asset files and updated locale keys for multi-language support.
 
 # 1.24.0+26
-
 - [Feat]: Implement required widgets for `ValidatorConfigScreen`. [#81](https://github.com/pactus-project/pactus-gui/pull/81)
     - Added `ValidatorQtySelectorSection` and `ValidatorQtyCubit` for managing validator selection.
     - Created `ValidatorConfigTitleSection` and `ValidatorConfigScreen` UI.

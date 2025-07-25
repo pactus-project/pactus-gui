@@ -1,9 +1,9 @@
 import 'package:go_router/go_router.dart';
-import 'package:gui/src/core/common/navigation_pans/create_local_node_pane.dart';
-import 'package:gui/src/core/common/navigation_pans/remote_node_pane.dart';
-import 'package:gui/src/core/common/navigation_pans/restoring_node_pane.dart';
-import 'package:gui/src/features/initialize_mode/presentation/screen/initialize_mode_screen.dart';
-import 'package:gui/src/features/welcome/presentation/screen/welcome_screen.dart';
+import 'package:pactus_gui/src/core/common/navigation_pans/create_local_node_pane.dart';
+import 'package:pactus_gui/src/core/common/navigation_pans/remote_node_pane.dart';
+import 'package:pactus_gui/src/core/common/navigation_pans/restoring_node_pane.dart';
+import 'package:pactus_gui/src/features/initialize_mode/presentation/screen/initialize_mode_screen.dart';
+import 'package:pactus_gui/src/features/welcome/presentation/screen/welcome_screen.dart';
 
 import 'route_name.dart';
 

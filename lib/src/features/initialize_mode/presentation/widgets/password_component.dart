@@ -1,8 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:gui/src/core/common/colors/app_colors.dart';
-import 'package:gui/src/core/common/widgets/custom_password_widget.dart';
-import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
-import 'package:gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui/src/core/common/widgets/custom_password_widget.dart';
+import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 /// ## [PasswordComponent] Class Documentation
@@ -13,7 +12,8 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 ///
 /// - **Password Label:**
 ///   - Displays the localized password text . `context.tr(LocaleKeys.password)`
-///   - Styled with `InterTextStyles.captionMedium` and `AppColors.primaryGray`.
+///   - Styled with `InterTextStyles.caption` and
+///   `AppTheme.of(context).extension<GrayPallet>()!.contrast`.
 ///
 /// - **Password Input Field:**
 ///   - Uses `CustomInputWidget` for password input functionality.
@@ -23,9 +23,7 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 ///   debugging purposes.
 ///
 class PasswordComponent extends StatefulWidget {
-  const PasswordComponent({
-    super.key,
-  });
+  const PasswordComponent({super.key});
 
   @override
   PasswordComponentState createState() => PasswordComponentState();
@@ -48,8 +46,8 @@ class PasswordComponentState extends State<PasswordComponent> {
       children: [
         Text(
           context.tr(LocaleKeys.password),
-          style: InterTextStyles.captionMedium.copyWith(
-            color: AppColors.primaryGray,
+          style: InterTextStyles.caption.copyWith(
+            color: AppTheme.of(context).extension<GrayPallet>()!.contrast,
           ),
         ),
         CustomPasswordWidget(

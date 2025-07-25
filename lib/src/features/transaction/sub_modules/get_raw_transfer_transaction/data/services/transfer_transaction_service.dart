@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:fixnum/fixnum.dart';
 import 'package:get_it/get_it.dart';
 import 'package:grpc/grpc.dart';
-import 'package:gui/src/data/models/generated/transaction.pbgrpc.dart';
-import 'package:gui/src/features/transaction/sub_modules/get_raw_transfer_transaction/data/params/transfer_transaction_params.dart';
+import 'package:pactus_gui/src/data/models/generated/transaction.pbgrpc.dart';
+import 'package:pactus_gui/src/features/transaction/sub_modules/get_raw_transfer_transaction/data/params/transfer_transaction_params.dart';
 
 class TransferTransactionService {
   Future<GetRawTransactionResponse> getRawTransferTransaction(

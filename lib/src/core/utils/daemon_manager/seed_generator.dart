@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'dart:typed_data';
+
 import 'package:bcrypt/bcrypt.dart';
 import 'package:bip39_mnemonic/bip39_mnemonic.dart';
 import 'package:convert/convert.dart';
@@ -12,8 +13,8 @@ class SeedGenerator {
       final entropyLength = (wordCount == 12)
           ? 128
           : (wordCount == 24)
-              ? 256
-              : 128;
+          ? 256
+          : 128;
 
       // Generate secure random bytes for entropy
       final secureRandomBytes = generateSecureRandomBytes(entropyLength ~/ 8);

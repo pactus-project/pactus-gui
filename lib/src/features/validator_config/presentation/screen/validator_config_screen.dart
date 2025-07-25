@@ -2,25 +2,25 @@ import 'package:file_selector/file_selector.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:gui/src/core/common/colors/app_colors.dart';
-import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
-import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
-import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
-import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
-import 'package:gui/src/core/constants/storage_keys.dart';
-import 'package:gui/src/core/enums/app_enums.dart';
-import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
-import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
-import 'package:gui/src/core/utils/storage_utils.dart';
-import 'package:gui/src/data/models/fluent_navigation_state_model.dart';
-import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
-import 'package:gui/src/features/main/language/core/localization_extension.dart';
-import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
-import 'package:gui/src/features/validator_config/core/utils/methods/is_not_empty_directory_method.dart';
-import 'package:gui/src/features/validator_config/core/utils/methods/show_fluent_alert_method.dart';
-import 'package:gui/src/features/validator_config/presentation/sections/validator_config_title_section.dart';
-import 'package:gui/src/features/validator_config/presentation/sections/validator_qty_selector_section.dart';
+import 'package:pactus_gui/src/core/common/cubits/step_validation_cubit.dart';
+import 'package:pactus_gui/src/core/common/sections/navigation_footer_section.dart';
+import 'package:pactus_gui/src/core/common/widgets/standard_page_layout.dart';
+import 'package:pactus_gui/src/core/constants/storage_keys.dart';
+import 'package:pactus_gui/src/core/enums/app_enums.dart';
+import 'package:pactus_gui/src/core/utils/daemon_manager/node_config_data.dart';
+import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:pactus_gui/src/core/utils/storage_utils.dart';
+import 'package:pactus_gui/src/data/models/fluent_navigation_state_model.dart';
+import 'package:pactus_gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
+import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
+import 'package:pactus_gui/src/features/validator_config/core/utils/methods/is_not_empty_directory_method.dart';
+import 'package:pactus_gui/src/features/validator_config/core/utils/methods/show_fluent_alert_method.dart';
+import 'package:pactus_gui/src/features/validator_config/presentation/sections/validator_config_title_section.dart';
+import 'package:pactus_gui/src/features/validator_config/presentation/sections/validator_qty_selector_section.dart';
+import 'package:pactus_gui_widgetbook/app_core.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+import 'package:pactus_gui_widgetbook/app_widgets.dart';
 
 /// ## [ValidatorConfigScreen] Class Documentation
 ///
@@ -86,10 +86,9 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
         builder: (context, selectedIndex) {
           isDirectoryValid = directoryController.text.isNotEmpty;
           context.read<StepValidationCubit>().setStepValid(
-                stepIndex:
-                    context.read<NavigationPaneCubit>().state.selectedIndex,
-                isValid: isDirectoryValid,
-              );
+            stepIndex: context.read<NavigationPaneCubit>().state.selectedIndex,
+            isValid: isDirectoryValid,
+          );
           return StandardPageLayout(
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,8 +97,10 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
                 const Gap(28),
                 Text(
                   context.tr(LocaleKeys.working_directory),
-                  style: InterTextStyles.captionMedium.copyWith(
-                    color: AppColors.primaryGray,
+                  style: InterTextStyles.caption.copyWith(
+                    color: AppTheme.of(
+                      context,
+                    ).extension<GrayPallet>()!.contrast,
                   ),
                 ),
                 const Gap(8),
@@ -127,19 +128,13 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
                       ),
                     ),
                     const Gap(28),
-                    CustomFilledButton(
-                      text: context.tr(LocaleKeys.select_folder),
-                      onPressed: _chooseDirectory,
-                      style: ButtonStyle(
-                        padding:
-                            WidgetStateProperty.all<EdgeInsetsDirectional?>(
-                          const EdgeInsetsDirectional.symmetric(
-                            horizontal: 8,
-                            vertical: 4,
-                          ),
-                        ),
-                        backgroundColor: WidgetStateProperty.all<Color?>(
-                          FluentTheme.of(context).accentColor,
+                    IntrinsicWidth(
+                      child: SizedBox(
+                        height: 32,
+                        child: AdaptivePrimaryButton.createTitleOnly(
+                          onPressed: _chooseDirectory,
+                          requestState: RequestStateEnum.loaded,
+                          title: context.tr(LocaleKeys.select_folder),
                         ),
                       ),
                     ),
@@ -153,47 +148,40 @@ class _ValidatorConfigScreenState extends State<ValidatorConfigScreen> {
               selectedIndex: selectedIndex.selectedIndex,
               onNextPressed: isDirectoryValid
                   ? () async {
-                      final isDirectoryNotEmpty = await isNotEmptyDirectory(
-                        text: directoryController.text,
+                      final newPath = await createNodeDirectory(
+                        directoryController.text,
                       );
 
-                      // Check if context is still mounted before proceeding
                       if (!context.mounted) {
                         return;
                       }
 
-                      // save `nodeDirectory` in `shared preferences` .
-                      // used for run cli commands in splash screen .
-                      StorageUtils.saveData(
-                        StorageKeys.nodeDirectory,
-                        directoryController.text,
-                      );
-
-                      if (isDirectoryNotEmpty) {
+                      if (newPath == null) {
                         showFluentAlert(
                           context,
-                          context.tr(LocaleKeys.directory_not_empty),
+                          context.tr(LocaleKeys.directory_creation_failed),
                         );
-                      } else {
-                        final selectedQty =
-                            context.read<DropdownCubit<ValidatorQty>>().state;
-
-                        NodeConfigData.instance.validatorQty =
-                            '${selectedQty.qty}';
-
-                        NodeConfigData.instance.workingDirectory =
-                            directoryController.text;
-
-                        context
-                            .read<NavigationPaneCubit>()
-                            .setSelectedIndex(selectedIndex.selectedIndex + 1);
+                        return;
                       }
+
+                      StorageUtils.saveData(StorageKeys.nodeDirectory, newPath);
+
+                      final selectedQty = context
+                          .read<DropdownCubit<ValidatorQty>>()
+                          .state;
+                      NodeConfigData.instance.validatorQty =
+                          '${selectedQty.qty}';
+                      NodeConfigData.instance.workingDirectory = newPath;
+
+                      context.read<NavigationPaneCubit>().setSelectedIndex(
+                        selectedIndex.selectedIndex + 1,
+                      );
                     }
                   : null,
               onBackPressed: () {
-                context
-                    .read<NavigationPaneCubit>()
-                    .setSelectedIndex(selectedIndex.selectedIndex - 1);
+                context.read<NavigationPaneCubit>().setSelectedIndex(
+                  selectedIndex.selectedIndex - 1,
+                );
               },
             ),
           );

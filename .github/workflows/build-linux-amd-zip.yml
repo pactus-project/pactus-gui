@@ -1,0 +1,79 @@
+name: Build & Release Linux (AMD64/Zip)
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+env:
+  FLUTTER_VERSION: 3.32.0
+  TARGET_OS: linux # example `linux` , `windows` , `macos`
+  ARCH: amd64 # example `arm64` , `amd64`
+  FILE_TYPE: zip # example `AppImage` , `zip` , `dmg`
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-22.04 # example `ubuntu-22.04-arm` , `ubuntu-22.04` , `ubuntu-latest` , `macos-latest` , `windows-latest`
+    outputs:
+      tag_name: ${{ steps.set-outputs.outputs.tag_name }}
+      download_link: ${{ steps.set-outputs.outputs.download_link }}
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Flutter ${{ env.FLUTTER_VERSION }}
+        run: |
+          git clone https://github.com/flutter/flutter.git --branch ${{ env.FLUTTER_VERSION }} --depth 1
+          echo "$PWD/flutter/bin" >> $GITHUB_PATH
+          export PATH="$PWD/flutter/bin:$PATH"
+
+      - name: Configure Flutter
+        run: |
+          flutter doctor -v
+          flutter config --enable-${{ env.TARGET_OS }}-desktop
+          flutter precache --${{ env.TARGET_OS }}
+
+      - name: Run build and release script
+        run: chmod +x .github/scripts/build_and_package_${{ env.TARGET_OS }}_${{ env.ARCH }}_${{ env.FILE_TYPE }}.sh && .github/scripts/build_and_package_${{ env.TARGET_OS }}_${{ env.ARCH }}_${{ env.FILE_TYPE }}.sh ${{ github.ref_name }}
+
+      - name: Upload build file to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: "${{ github.ref_name }}"
+          name: "${{ github.ref_name }}"
+          body: "Automated release for ${{ github.ref_name }}"
+          files: "artifacts/PactusGUI-${{ github.ref_name }}-${{ env.TARGET_OS }}-${{ env.ARCH }}.${{ env.FILE_TYPE }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate release download links
+        run: |
+          TAG=${{ github.ref_name }}
+          FILE=PactusGUI-${TAG}-${{ env.TARGET_OS }}-${{ env.ARCH }}.${{ env.FILE_TYPE }}
+          DOWNLOAD_URL="https://github.com/${{ github.repository }}/releases/download/${TAG}/${FILE}"
+          RELEASE_URL="https://github.com/${{ github.repository }}/releases/tag/${TAG}"
+          echo "Download URL: $DOWNLOAD_URL"
+          echo "Release URL: $RELEASE_URL"
+
+  notify-sercive:
+    needs: build-and-release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Discord Notification
+        uses: Ilshidur/action-discord@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          args: |
+            🚀 **GUI Release:** [${{ needs.build-and-release.outputs.tag_name }}](${{ needs.build-and-release.outputs.release_link }})  📥[Download ${{ env.TARGET_OS }}-${{ env.ARCH }} Version](${{ needs.build-and-release.download_link }})
+
+      - name: Send Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_MESSAGE: |
+            🚀 **GUI Release:** [${{ needs.build-and-release.outputs.tag_name }}](${{ needs.build-and-release.outputs.release_link }})      📥[Download  ${{ env.TARGET_OS }}-${{ env.ARCH }} Version](${{ needs.build-and-release.outputs.download_link }})

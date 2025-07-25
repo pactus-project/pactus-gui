@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:gui/src/features/transaction/sub_modules/get_raw_transfer_transaction/data/params/transfer_transaction_params.dart';
-import 'package:gui/src/features/transaction/sub_modules/get_raw_transfer_transaction/domain/entities/transfer_transaction_entity.dart';
-import 'package:gui/src/features/transaction/sub_modules/get_raw_transfer_transaction/domain/use_cases/get_transfer_transaction_use_case.dart';
+import 'package:pactus_gui/src/features/transaction/sub_modules/get_raw_transfer_transaction/data/params/transfer_transaction_params.dart';
+import 'package:pactus_gui/src/features/transaction/sub_modules/get_raw_transfer_transaction/domain/entities/transfer_transaction_entity.dart';
+import 'package:pactus_gui/src/features/transaction/sub_modules/get_raw_transfer_transaction/domain/use_cases/get_transfer_transaction_use_case.dart';
 
 part 'get_transfer_bloc.freezed.dart';
 part 'get_transfer_event.dart';

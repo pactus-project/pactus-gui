@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:grpc/grpc.dart';
-import 'package:gui/src/data/models/node_details.dart';
+import 'package:pactus_gui/src/data/models/node_details.dart';
 
 class GrpcChannelManager {
   // Factory Method for creating or retrieving a singleton
@@ -14,15 +14,11 @@ class GrpcChannelManager {
     return instance;
   }
 
-  GrpcChannelManager._({
-    required this.serverDetails,
-  }) {
+  GrpcChannelManager._({required this.serverDetails}) {
     _channel = ClientChannel(
       serverDetails.ip,
       port: serverDetails.port,
-      options: const ChannelOptions(
-        credentials: ChannelCredentials.insecure(),
-      ),
+      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
     );
   }
   final NodeDetails serverDetails;

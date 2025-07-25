@@ -12,10 +12,10 @@
 // ignore_for_file: avoid_renaming_method_parameters
 
 import 'dart:async' as $async;
+import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'dart:core' as $core;
 import 'utils.pb.dart' as $3;
 import 'utils.pbjson.dart';
 

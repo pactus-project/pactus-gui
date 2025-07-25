@@ -12,7 +12,8 @@ part of 'error_response_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 ErrorResponseModel _$ErrorResponseModelFromJson(Map<String, dynamic> json) {
   return _ErrorResponseModel.fromJson(json);
@@ -36,8 +37,9 @@ mixin _$ErrorResponseModel {
 /// @nodoc
 abstract class $ErrorResponseModelCopyWith<$Res> {
   factory $ErrorResponseModelCopyWith(
-          ErrorResponseModel value, $Res Function(ErrorResponseModel) then) =
-      _$ErrorResponseModelCopyWithImpl<$Res, ErrorResponseModel>;
+    ErrorResponseModel value,
+    $Res Function(ErrorResponseModel) then,
+  ) = _$ErrorResponseModelCopyWithImpl<$Res, ErrorResponseModel>;
   @useResult
   $Res call({int? status, String? msg});
 }
@@ -56,29 +58,30 @@ class _$ErrorResponseModelCopyWithImpl<$Res, $Val extends ErrorResponseModel>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? status = freezed,
-    Object? msg = freezed,
-  }) {
-    return _then(_value.copyWith(
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as int?,
-      msg: freezed == msg
-          ? _value.msg
-          : msg // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+  $Res call({Object? status = freezed, Object? msg = freezed}) {
+    return _then(
+      _value.copyWith(
+            status: freezed == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            msg: freezed == msg
+                ? _value.msg
+                : msg // ignore: cast_nullable_to_non_nullable
+                      as String?,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$ErrorResponseModelImplCopyWith<$Res>
     implements $ErrorResponseModelCopyWith<$Res> {
-  factory _$$ErrorResponseModelImplCopyWith(_$ErrorResponseModelImpl value,
-          $Res Function(_$ErrorResponseModelImpl) then) =
-      __$$ErrorResponseModelImplCopyWithImpl<$Res>;
+  factory _$$ErrorResponseModelImplCopyWith(
+    _$ErrorResponseModelImpl value,
+    $Res Function(_$ErrorResponseModelImpl) then,
+  ) = __$$ErrorResponseModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int? status, String? msg});
@@ -88,28 +91,28 @@ abstract class _$$ErrorResponseModelImplCopyWith<$Res>
 class __$$ErrorResponseModelImplCopyWithImpl<$Res>
     extends _$ErrorResponseModelCopyWithImpl<$Res, _$ErrorResponseModelImpl>
     implements _$$ErrorResponseModelImplCopyWith<$Res> {
-  __$$ErrorResponseModelImplCopyWithImpl(_$ErrorResponseModelImpl _value,
-      $Res Function(_$ErrorResponseModelImpl) _then)
-      : super(_value, _then);
+  __$$ErrorResponseModelImplCopyWithImpl(
+    _$ErrorResponseModelImpl _value,
+    $Res Function(_$ErrorResponseModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of ErrorResponseModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? status = freezed,
-    Object? msg = freezed,
-  }) {
-    return _then(_$ErrorResponseModelImpl(
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as int?,
-      msg: freezed == msg
-          ? _value.msg
-          : msg // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+  $Res call({Object? status = freezed, Object? msg = freezed}) {
+    return _then(
+      _$ErrorResponseModelImpl(
+        status: freezed == status
+            ? _value.status
+            : status // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        msg: freezed == msg
+            ? _value.msg
+            : msg // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }
 
@@ -151,13 +154,13 @@ class _$ErrorResponseModelImpl implements _ErrorResponseModel {
   @pragma('vm:prefer-inline')
   _$$ErrorResponseModelImplCopyWith<_$ErrorResponseModelImpl> get copyWith =>
       __$$ErrorResponseModelImplCopyWithImpl<_$ErrorResponseModelImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ErrorResponseModelImplToJson(
-      this,
-    );
+    return _$$ErrorResponseModelImplToJson(this);
   }
 }
 

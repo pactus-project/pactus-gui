@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:gui/src/features/generation_seed/core/constants/enums/seed_type_enum.dart';
+import 'package:pactus_gui/src/features/generation_seed/core/constants/enums/seed_type_enum.dart';
 
 /// ## [SeedTextCubit] Class Documentation
 ///

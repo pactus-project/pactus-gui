@@ -1,4 +1,4 @@
-import 'package:gui/src/features/transaction/sub_modules/get_raw_transfer_transaction/presentation/bloc/get_transfer_bloc.dart';
+import 'package:pactus_gui/src/features/transaction/sub_modules/get_raw_transfer_transaction/presentation/bloc/get_transfer_bloc.dart';
 
 class TransferTransactionParams {
   TransferTransactionParams({

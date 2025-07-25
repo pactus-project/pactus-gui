@@ -35,17 +35,13 @@
 ///   generation process.
 library;
 
-import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
 
 enum SeedTypeEnum {
   twelve(1, LocaleKeys.seed_twelve_words, 12),
   twentyFour(2, LocaleKeys.seed_twenty_four_words, 24);
 
-  const SeedTypeEnum(
-    this.id,
-    this.text,
-    this.qty,
-  );
+  const SeedTypeEnum(this.id, this.text, this.qty);
   final int id;
   final String text;
   final int qty;
