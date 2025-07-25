@@ -1,8 +1,36 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gui/src/features/main/theme/bloc/theme_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:pactus_gui/src/core/di/locator.dart';
+import 'package:pactus_gui/src/features/main/theme/bloc/theme_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+// void main() {
+Future<void> main() async {
+  Future<void> prepareSharedPreferencesLocator() async {
+    SharedPreferences.setMockInitialValues({});
+    await setupSharedPreferences();
+  }
+
+  Future<void> cleanUpLocator() async {
+    await GetIt.instance.reset();
+  }
+
+  late AppThemeCubit themeCubit;
+
+  // Set up the LanguageBloc before each test
+  setUp(() async {
+    await cleanUpLocator();
+    await prepareSharedPreferencesLocator();
+    themeCubit = AppThemeCubit();
+  });
+
+  // Close the LanguageBloc after each test
+  tearDown(() {
+    themeCubit.close();
+  });
+
   group('AppThemeCubit Tests', () {
+    /*
     late AppThemeCubit themeCubit;
 
     // Set up the ThemeCubit before each test
@@ -14,6 +42,7 @@ void main() {
     tearDown(() {
       themeCubit.close();
     });
+*/
 
     // Test: Ensure the initial theme is light
     test('Initial state should be light theme', () {
@@ -34,7 +63,6 @@ void main() {
       // Arrange: First, toggle to dark theme
       themeCubit
         ..toggleTheme()
-
         // Act: Toggle back to light theme
         ..toggleTheme();
 
@@ -56,7 +84,6 @@ void main() {
       // Arrange: First, set the theme to dark
       themeCubit
         ..setDarkTheme()
-
         // Act: Call setLightTheme
         ..setLightTheme();
 

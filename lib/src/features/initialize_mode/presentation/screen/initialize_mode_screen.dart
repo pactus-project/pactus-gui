@@ -2,19 +2,20 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gui/src/core/common/colors/app_colors.dart';
-import 'package:gui/src/core/common/widgets/adaptive_filled_button.dart';
-import 'package:gui/src/core/common/widgets/app_layout.dart';
-import 'package:gui/src/core/router/route_name.dart';
-import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
-import 'package:gui/src/data/models/fluent_navigation_state_model.dart';
-import 'package:gui/src/features/initialize_mode/presentation/sections/remote_node_section.dart';
-import 'package:gui/src/features/initialize_mode/presentation/widgets/radio_button_group_widget.dart';
-import 'package:gui/src/features/main/language/core/localization_extension.dart';
-import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
-import 'package:gui/src/features/main/radio_button_cubit/presentation/radio_button_cubit.dart';
-import 'package:gui/src/features/validator_config/core/utils/methods/show_fluent_alert_method.dart';
+import 'package:pactus_gui/src/core/common/widgets/app_layout.dart';
+import 'package:pactus_gui/src/core/constants/feature_flag.dart';
+import 'package:pactus_gui/src/core/router/route_name.dart';
+import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:pactus_gui/src/data/models/fluent_navigation_state_model.dart';
+import 'package:pactus_gui/src/features/initialize_mode/presentation/sections/remote_node_section.dart';
+import 'package:pactus_gui/src/features/initialize_mode/presentation/widgets/radio_button_group_widget.dart';
+import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
+import 'package:pactus_gui/src/features/main/radio_button_cubit/presentation/radio_button_cubit.dart';
+import 'package:pactus_gui/src/features/validator_config/core/utils/methods/show_fluent_alert_method.dart';
+import 'package:pactus_gui_widgetbook/app_core.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+import 'package:pactus_gui_widgetbook/app_widgets.dart';
 
 /// ## [InitializeModeScreen] Class Documentation
 ///
@@ -112,8 +113,10 @@ class _InitializeModeScreenState extends State<InitializeModeScreen> {
                             const Gap(46),
                             Text(
                               context.tr(LocaleKeys.initiate_your_node),
-                              style: InterTextStyles.bodyBold.copyWith(
-                                color: AppColors.primaryDark,
+                              style: InterTextStyles.bodyStrong.copyWith(
+                                color: AppTheme.of(
+                                  context,
+                                ).extension<DarkPallet>()!.contrast,
                               ),
                             ),
                             const Gap(8),
@@ -121,8 +124,10 @@ class _InitializeModeScreenState extends State<InitializeModeScreen> {
                               context.tr(
                                 LocaleKeys.initiate_your_node_for_first_time,
                               ),
-                              style: InterTextStyles.smallRegular.copyWith(
-                                color: AppColors.primaryGray,
+                              style: InterTextStyles.body.copyWith(
+                                color: AppTheme.of(
+                                  context,
+                                ).extension<DarkPallet>()!.dark800,
                               ),
                             ),
                             const Gap(24),
@@ -139,15 +144,16 @@ class _InitializeModeScreenState extends State<InitializeModeScreen> {
                               },
                             ),
                             const Gap(30),
-                            BlocBuilder<RadioButtonCubit, int>(
-                              builder: (context, selectedValue) {
-                                return selectedValue == 2
-                                    ? RemoteNodeSection(
-                                        key: _remoteNodeSectionKey,
-                                      )
-                                    : const SizedBox();
-                              },
-                            ),
+                            if (fullyDisabledFeature)
+                              BlocBuilder<RadioButtonCubit, int>(
+                                builder: (context, selectedValue) {
+                                  return selectedValue == 2
+                                      ? RemoteNodeSection(
+                                          key: _remoteNodeSectionKey,
+                                        )
+                                      : const SizedBox();
+                                },
+                              ),
                           ],
                         ),
                       ),
@@ -159,24 +165,23 @@ class _InitializeModeScreenState extends State<InitializeModeScreen> {
                     right: 0,
                     child: Container(
                       height: 89,
-                      color: AppTheme.of(context)
-                          .extension<LightPallet>()!
-                          .light900,
+                      color: AppTheme.of(
+                        context,
+                      ).extension<LightPallet>()!.light900,
                       padding: const EdgeInsets.only(right: 46),
                       child: Align(
                         alignment: Alignment.centerRight,
                         child: BlocBuilder<RadioButtonCubit, int>(
                           builder: (context, selectedValue) {
-                            return AdaptiveFilledButton(
-                              text: context.tr(LocaleKeys.next),
-                              onPressed: () =>
-                                  _handleNextPressed(selectedValue),
-                              style: ButtonStyle(
-                                backgroundColor: WidgetStatePropertyAll(
-                                  FluentTheme.of(context).accentColor,
-                                ),
-                                padding: WidgetStatePropertyAll(
-                                  const EdgeInsets.symmetric(horizontal: 16),
+                            return IntrinsicWidth(
+                              child: SizedBox(
+                                height: 32,
+                                child: AdaptivePrimaryButton.createTitleOnly(
+                                  requestState: RequestStateEnum.loaded,
+                                  onPressed: () =>
+                                      _handleNextPressed(selectedValue),
+                                  title: context.tr(LocaleKeys.next),
+                                  paddingSize: PaddingSizeEnum.large,
                                 ),
                               ),
                             );

@@ -12,7 +12,8 @@ part of 'fluent_navigation_state_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$NavigationState {
@@ -29,8 +30,9 @@ mixin _$NavigationState {
 /// @nodoc
 abstract class $NavigationStateCopyWith<$Res> {
   factory $NavigationStateCopyWith(
-          NavigationState value, $Res Function(NavigationState) then) =
-      _$NavigationStateCopyWithImpl<$Res, NavigationState>;
+    NavigationState value,
+    $Res Function(NavigationState) then,
+  ) = _$NavigationStateCopyWithImpl<$Res, NavigationState>;
   @useResult
   $Res call({int selectedIndex, bool isMenuOpen});
 }
@@ -49,29 +51,30 @@ class _$NavigationStateCopyWithImpl<$Res, $Val extends NavigationState>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? selectedIndex = null,
-    Object? isMenuOpen = null,
-  }) {
-    return _then(_value.copyWith(
-      selectedIndex: null == selectedIndex
-          ? _value.selectedIndex
-          : selectedIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-      isMenuOpen: null == isMenuOpen
-          ? _value.isMenuOpen
-          : isMenuOpen // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+  $Res call({Object? selectedIndex = null, Object? isMenuOpen = null}) {
+    return _then(
+      _value.copyWith(
+            selectedIndex: null == selectedIndex
+                ? _value.selectedIndex
+                : selectedIndex // ignore: cast_nullable_to_non_nullable
+                      as int,
+            isMenuOpen: null == isMenuOpen
+                ? _value.isMenuOpen
+                : isMenuOpen // ignore: cast_nullable_to_non_nullable
+                      as bool,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$NavigationStateImplCopyWith<$Res>
     implements $NavigationStateCopyWith<$Res> {
-  factory _$$NavigationStateImplCopyWith(_$NavigationStateImpl value,
-          $Res Function(_$NavigationStateImpl) then) =
-      __$$NavigationStateImplCopyWithImpl<$Res>;
+  factory _$$NavigationStateImplCopyWith(
+    _$NavigationStateImpl value,
+    $Res Function(_$NavigationStateImpl) then,
+  ) = __$$NavigationStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int selectedIndex, bool isMenuOpen});
@@ -82,35 +85,37 @@ class __$$NavigationStateImplCopyWithImpl<$Res>
     extends _$NavigationStateCopyWithImpl<$Res, _$NavigationStateImpl>
     implements _$$NavigationStateImplCopyWith<$Res> {
   __$$NavigationStateImplCopyWithImpl(
-      _$NavigationStateImpl _value, $Res Function(_$NavigationStateImpl) _then)
-      : super(_value, _then);
+    _$NavigationStateImpl _value,
+    $Res Function(_$NavigationStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of NavigationState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? selectedIndex = null,
-    Object? isMenuOpen = null,
-  }) {
-    return _then(_$NavigationStateImpl(
-      selectedIndex: null == selectedIndex
-          ? _value.selectedIndex
-          : selectedIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-      isMenuOpen: null == isMenuOpen
-          ? _value.isMenuOpen
-          : isMenuOpen // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+  $Res call({Object? selectedIndex = null, Object? isMenuOpen = null}) {
+    return _then(
+      _$NavigationStateImpl(
+        selectedIndex: null == selectedIndex
+            ? _value.selectedIndex
+            : selectedIndex // ignore: cast_nullable_to_non_nullable
+                  as int,
+        isMenuOpen: null == isMenuOpen
+            ? _value.isMenuOpen
+            : isMenuOpen // ignore: cast_nullable_to_non_nullable
+                  as bool,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$NavigationStateImpl implements _NavigationState {
-  const _$NavigationStateImpl(
-      {required this.selectedIndex, required this.isMenuOpen});
+  const _$NavigationStateImpl({
+    required this.selectedIndex,
+    required this.isMenuOpen,
+  });
 
   @override
   final int selectedIndex;
@@ -143,13 +148,16 @@ class _$NavigationStateImpl implements _NavigationState {
   @pragma('vm:prefer-inline')
   _$$NavigationStateImplCopyWith<_$NavigationStateImpl> get copyWith =>
       __$$NavigationStateImplCopyWithImpl<_$NavigationStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _NavigationState implements NavigationState {
-  const factory _NavigationState(
-      {required final int selectedIndex,
-      required final bool isMenuOpen}) = _$NavigationStateImpl;
+  const factory _NavigationState({
+    required final int selectedIndex,
+    required final bool isMenuOpen,
+  }) = _$NavigationStateImpl;
 
   @override
   int get selectedIndex;

@@ -1,5 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:pactus_gui_widgetbook/app_core.dart';
+import 'package:pactus_gui_widgetbook/app_styles.dart';
 import 'package:pactus_gui_widgetbook/app_widgets.dart';
 
 /// ## [SeedWordsGridSection] Class Documentation
@@ -40,27 +41,34 @@ class SeedWordsGridSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: crossAxisCount,
-        crossAxisSpacing: 12,
-        mainAxisSpacing: 12,
-        childAspectRatio: 141 / 30,
+    return Container(
+      padding: const EdgeInsets.all(32),
+      decoration: ShapeDecoration(
+        color: AppTheme.of(context).extension<LightPallet>()!.light900,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       ),
-      itemCount: seedWords.length,
-      itemBuilder: (context, index) {
-        final item = seedWords[index];
-        final wordID = index + 1;
-        return ChipTextBox(
-          isReadOnly: true,
-          prefixText: '$wordID.',
-          placeholder: item,
-          chipTextMode: ChipTextMode.normal,
-          onChanged: (String value) {},
-        );
-      },
+      child: GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: crossAxisCount,
+          crossAxisSpacing: 12,
+          mainAxisSpacing: 12,
+          childAspectRatio: 141 / 30,
+        ),
+        itemCount: seedWords.length,
+        itemBuilder: (context, index) {
+          final item = seedWords[index];
+          final wordID = index + 1;
+          return ChipTextBox(
+            isReadOnly: true,
+            prefixText: '$wordID.',
+            placeholder: item,
+            chipTextMode: ChipTextMode.normal,
+            onChanged: (String value) {},
+          );
+        },
+      ),
     );
   }
 }

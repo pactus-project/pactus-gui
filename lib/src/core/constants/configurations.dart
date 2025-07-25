@@ -9,9 +9,5 @@ class AppConfigs {
   static const frLocale = Locale('fr', 'FR'); // French (France)
 
   /// Define the list of supported locales in the desired order
-  static const supportedLocales = [
-    enLocale,
-    esLocale,
-    frLocale,
-  ];
+  static const supportedLocales = [enLocale, esLocale, frLocale];
 }

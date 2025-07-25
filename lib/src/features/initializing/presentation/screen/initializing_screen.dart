@@ -1,21 +1,23 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
-import 'package:gui/src/core/common/sections/navigation_footer_section.dart';
-import 'package:gui/src/core/common/widgets/standard_page_layout.dart';
-import 'package:gui/src/core/constants/cli_constants.dart';
-import 'package:gui/src/core/enums/app_enums.dart';
-import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
-import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
-import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_state.dart';
-import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
-import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
-import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
-import 'package:gui/src/data/models/fluent_navigation_state_model.dart';
-import 'package:gui/src/features/main/language/core/localization_extension.dart';
-import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
-import 'package:logger/logger.dart';
+import 'package:go_router/go_router.dart';
+import 'package:pactus_gui/src/core/common/cubits/step_validation_cubit.dart';
+import 'package:pactus_gui/src/core/common/sections/navigation_footer_section.dart';
+import 'package:pactus_gui/src/core/common/widgets/standard_page_layout.dart';
+import 'package:pactus_gui/src/core/constants/cli_constants.dart';
+import 'package:pactus_gui/src/core/enums/app_enums.dart';
+import 'package:pactus_gui/src/core/router/route_name.dart';
+import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
+import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
+import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/daemon_state.dart';
+import 'package:pactus_gui/src/core/utils/daemon_manager/node_config_data.dart';
+import 'package:pactus_gui/src/core/utils/gen/assets/assets.gen.dart';
+import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:pactus_gui/src/core/utils/methods/print_debug.dart';
+import 'package:pactus_gui/src/data/models/fluent_navigation_state_model.dart';
+import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class InitializingScreen extends StatefulWidget {
@@ -28,8 +30,6 @@ class InitializingScreen extends StatefulWidget {
 }
 
 class _InitializingScreenState extends State<InitializingScreen> {
-  final logger = Logger();
-
   @override
   void initState() {
     super.initState();
@@ -38,36 +38,33 @@ class _InitializingScreenState extends State<InitializingScreen> {
       arguments: [
         CliConstants.init,
         // if (widget.initialMode == InitialMode.restore)
-        CliConstants.dashDashRestore,
+        CliConstants.restoreArgument,
         // if (widget.initialMode == InitialMode.restore)
         NodeConfigData.instance.restorationSeed?.sentence ?? '',
-        CliConstants.dashDashWorkingDir,
+        CliConstants.workingDirArgument,
         NodeConfigData.instance.workingDirectory,
-        if (NodeConfigData.instance.password.isNotEmpty)
-          CliConstants.dashDashPassword,
-        if (NodeConfigData.instance.password.isNotEmpty)
-          NodeConfigData
-              .instance.password, // Add password only if it's not empty
-        CliConstants.dashDashValNum,
+        CliConstants.passwordArgument,
+        NodeConfigData.instance.password == null ||
+                NodeConfigData.instance.password!.isEmpty
+            ? 'null'
+            : NodeConfigData.instance.password!,
+        CliConstants.valNumArgument,
         NodeConfigData.instance.validatorQty,
       ],
     );
-    context.read<DaemonCubit>().runPactusDaemon(
-          cliCommand: initialCommand,
-        );
-    logger
-      ..i(
-        '${CliConstants.dashDashWorkingDir} '
-        '${NodeConfigData.instance.workingDirectory}',
-      )
-      ..i(
-        '${CliConstants.dashDashPassword} '
-        '${NodeConfigData.instance.password}',
-      )
-      ..i(
-        '${CliConstants.dashDashValNum} '
-        '${NodeConfigData.instance.validatorQty}',
-      );
+    context.read<DaemonCubit>().runPactusDaemon(cliCommand: initialCommand);
+    printDebug(
+      '${CliConstants.workingDirArgument} '
+      '${NodeConfigData.instance.workingDirectory}',
+    );
+    printDebug(
+      '${CliConstants.passwordArgument} '
+      '${NodeConfigData.instance.password}',
+    );
+    printDebug(
+      '${CliConstants.valNumArgument} '
+      '${NodeConfigData.instance.validatorQty}',
+    );
   }
 
   @override
@@ -79,12 +76,12 @@ class _InitializingScreenState extends State<InitializingScreen> {
     return BlocConsumer<DaemonCubit, DaemonState>(
       listener: (context, state) {
         if (state is DaemonLoading) {
-          logger.i('DaemonState is DaemonLoading \n\n please wait \n\n');
+          printDebug('DaemonState is DaemonLoading \n\n please wait \n\n');
         }
 
         if (state is DaemonSuccess) {
-          logger.i('DaemonState is DaemonSuccess');
-
+          printDebug('DaemonState is DaemonSuccess');
+          context.goNamed(AppRoute.basicPassword.name);
           Future.delayed(const Duration(seconds: 2), () {
             if (mounted) {
               cubit.setSelectedIndex(newIndex);
@@ -93,15 +90,15 @@ class _InitializingScreenState extends State<InitializingScreen> {
         }
 
         if (state is DaemonError) {
-          logger.i('DaemonState is DaemonError');
+          printDebug('DaemonState is DaemonError');
         }
       },
       builder: (context, daemonState) {
         /// to-do(esmaeil): check performance cost
         context.read<StepValidationCubit>().setStepValid(
-              stepIndex: newIndex,
-              isValid: daemonState is DaemonSuccess,
-            );
+          stepIndex: newIndex,
+          isValid: daemonState is DaemonSuccess,
+        );
         return BlocBuilder<NavigationPaneCubit, NavigationState>(
           builder: (context, selectedIndex) {
             return StandardPageLayout(
@@ -154,8 +151,8 @@ class _InitializingScreenState extends State<InitializingScreen> {
                         selectedIndex: selectedIndex.selectedIndex,
                         onBackPressed: () {
                           context.read<NavigationPaneCubit>().setSelectedIndex(
-                                selectedIndex.selectedIndex - 1,
-                              );
+                            selectedIndex.selectedIndex - 1,
+                          );
                         },
                         onNextPressed: (state is DaemonSuccess)
                             ? () {

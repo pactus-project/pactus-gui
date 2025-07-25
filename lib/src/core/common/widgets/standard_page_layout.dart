@@ -16,18 +16,10 @@ class StandardPageLayout extends StatelessWidget {
         children: [
           Positioned.fill(
             child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: content,
-              ),
+              child: Padding(padding: const EdgeInsets.all(46), child: content),
             ),
           ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: footer,
-          ),
+          Positioned(bottom: 0, left: 0, right: 0, child: footer),
         ],
       ),
     );

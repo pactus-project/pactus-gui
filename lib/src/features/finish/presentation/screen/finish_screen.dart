@@ -2,20 +2,20 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:gui/src/core/common/widgets/custom_filled_button.dart';
-import 'package:gui/src/core/constants/cli_constants.dart';
-import 'package:gui/src/core/extensions/context_extensions.dart';
-import 'package:gui/src/core/router/route_name.dart';
-import 'package:gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
-import 'package:gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
-import 'package:gui/src/core/utils/daemon_manager/node_config_data.dart';
-import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
-import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
-import 'package:gui/src/core/utils/methods/update_node_details_singleton.dart';
-import 'package:gui/src/core/utils/string_extension.dart';
-import 'package:gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui/src/core/constants/cli_constants.dart';
+import 'package:pactus_gui/src/core/extensions/context_extensions.dart';
+import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
+import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
+import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/daemon_state.dart';
+import 'package:pactus_gui/src/core/utils/daemon_manager/node_config_data.dart';
+import 'package:pactus_gui/src/core/utils/gen/assets/assets.gen.dart';
+import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:pactus_gui/src/core/utils/string_extension.dart';
+import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui/src/features/password/core/utils/node_listener_handler.dart';
+import 'package:pactus_gui_widgetbook/app_core.dart';
 import 'package:pactus_gui_widgetbook/app_styles.dart';
+import 'package:pactus_gui_widgetbook/app_widgets.dart';
 
 class FinishScreen extends StatefulWidget {
   const FinishScreen({super.key});
@@ -29,10 +29,7 @@ class _FinishScreenState extends State<FinishScreen> {
   Widget build(BuildContext context) {
     return NavigationView(
       content: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 50,
-          vertical: 20,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
         child: Row(
           children: [
             Expanded(
@@ -51,13 +48,11 @@ class _FinishScreenState extends State<FinishScreen> {
                       children: [
                         Text(
                           context.tr(LocaleKeys.your_journey_finalized),
-                          style: FluentTheme.of(context)
-                              .typography
-                              .title
+                          style: FluentTheme.of(context).typography.title
                               ?.copyWith(
-                                color: AppTheme.of(context)
-                                    .extension<DarkPallet>()!
-                                    .dark900,
+                                color: AppTheme.of(
+                                  context,
+                                ).extension<DarkPallet>()!.dark900,
                               ),
                         ),
                         const SizedBox(height: 20),
@@ -65,12 +60,12 @@ class _FinishScreenState extends State<FinishScreen> {
                           context
                               .tr(LocaleKeys.your_journey_finalized_description)
                               .replaceHashWithSpecialCharacter(),
-                          style:
-                              FluentTheme.of(context).typography.body?.copyWith(
-                                    color: AppTheme.of(context)
-                                        .extension<DarkPallet>()!
-                                        .dark900,
-                                  ),
+                          style: FluentTheme.of(context).typography.body
+                              ?.copyWith(
+                                color: AppTheme.of(
+                                  context,
+                                ).extension<DarkPallet>()!.dark900,
+                              ),
                           textAlign: TextAlign.left,
                         ),
                         const SizedBox(height: 20),
@@ -81,12 +76,12 @@ class _FinishScreenState extends State<FinishScreen> {
                                     .your_journey_finalized_description_last,
                               )
                               .replaceHashWithSpecialCharacter(),
-                          style:
-                              FluentTheme.of(context).typography.body?.copyWith(
-                                    color: AppTheme.of(context)
-                                        .extension<DarkPallet>()!
-                                        .dark900,
-                                  ),
+                          style: FluentTheme.of(context).typography.body
+                              ?.copyWith(
+                                color: AppTheme.of(
+                                  context,
+                                ).extension<DarkPallet>()!.dark900,
+                              ),
                           textAlign: TextAlign.left,
                         ),
                         const SizedBox(height: 64),
@@ -94,31 +89,43 @@ class _FinishScreenState extends State<FinishScreen> {
                     ),
                     Align(
                       alignment: AlignmentDirectional.bottomCenter,
-                      child: CustomFilledButton(
-                        text: LocaleKeys.go_to_dashboard,
-                        onPressed: () {
-                          context.read<DaemonCubit>().runStartNodeCommand(
-                                cliCommand: CliCommand(
-                                  command: CliConstants.pactusDaemon,
-                                  arguments: [
-                                    CliConstants.start,
-                                    CliConstants.dashDashWorkingDir,
-                                    NodeConfigData.instance.workingDirectory,
-                                    CliConstants.dashDashPassword,
-                                    NodeConfigData.instance.password,
-                                  ],
-                                ),
+                      child: IntrinsicWidth(
+                        child: SizedBox(
+                          height: 32,
+                          child: BlocConsumer<DaemonCubit, DaemonState>(
+                            listener: (ctxListener, state) {
+                              NodeListenerHandler.handleState(
+                                context: ctxListener,
+                                state: state,
+                                password:
+                                    NodeConfigData.instance.password ?? 'null',
                               );
-
-                          updateNodeDetailsSingleton(
-                            NodeConfigData.instance.password,
-                          );
-
-                          context.go(AppRoute.dashboard.fullPath);
-                        },
-                        style: ButtonStyle(
-                          backgroundColor: WidgetStateProperty.all<Color?>(
-                            FluentTheme.of(context).accentColor,
+                            },
+                            builder: (ctxBuilder, state) {
+                              return AdaptivePrimaryButton.createTitleOnly(
+                                onPressed: () {
+                                  context
+                                      .read<DaemonCubit>()
+                                      .runStartNodeCommand(
+                                        cliCommand: CliCommand(
+                                          command: CliConstants.pactusDaemon,
+                                          arguments: [
+                                            CliConstants.start,
+                                            CliConstants.workingDirArgument,
+                                            NodeConfigData
+                                                .instance
+                                                .workingDirectory,
+                                            CliConstants.passwordArgument,
+                                            NodeConfigData.instance.password ??
+                                                'null',
+                                          ],
+                                        ),
+                                      );
+                                },
+                                requestState: RequestStateEnum.loaded,
+                                title: context.tr(LocaleKeys.go_to_dashboard),
+                              );
+                            },
                           ),
                         ),
                       ),

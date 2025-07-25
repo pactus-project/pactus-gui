@@ -12,7 +12,8 @@ part of 'remote_data_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$RemoteDataState<T> {
@@ -22,40 +23,34 @@ mixin _$RemoteDataState<T> {
   TResult when<TResult extends Object?>({
     required TResult Function(T? remoteData, String? error) success,
     required TResult Function(T? remoteData, String? error) failed,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T? remoteData, String? error)? success,
     TResult? Function(T? remoteData, String? error)? failed,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T? remoteData, String? error)? success,
     TResult Function(T? remoteData, String? error)? failed,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(RemoteDataSuccess<T> value) success,
     required TResult Function(RemoteDataFailed<T> value) failed,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(RemoteDataSuccess<T> value)? success,
     TResult? Function(RemoteDataFailed<T> value)? failed,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(RemoteDataSuccess<T> value)? success,
     TResult Function(RemoteDataFailed<T> value)? failed,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
 
   /// Create a copy of RemoteDataState
   /// with the given fields replaced by the non-null parameter values.
@@ -67,8 +62,9 @@ mixin _$RemoteDataState<T> {
 /// @nodoc
 abstract class $RemoteDataStateCopyWith<T, $Res> {
   factory $RemoteDataStateCopyWith(
-          RemoteDataState<T> value, $Res Function(RemoteDataState<T>) then) =
-      _$RemoteDataStateCopyWithImpl<T, $Res, RemoteDataState<T>>;
+    RemoteDataState<T> value,
+    $Res Function(RemoteDataState<T>) then,
+  ) = _$RemoteDataStateCopyWithImpl<T, $Res, RemoteDataState<T>>;
   @useResult
   $Res call({T? remoteData, String? error});
 }
@@ -87,29 +83,30 @@ class _$RemoteDataStateCopyWithImpl<T, $Res, $Val extends RemoteDataState<T>>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? remoteData = freezed,
-    Object? error = freezed,
-  }) {
-    return _then(_value.copyWith(
-      remoteData: freezed == remoteData
-          ? _value.remoteData
-          : remoteData // ignore: cast_nullable_to_non_nullable
-              as T?,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+  $Res call({Object? remoteData = freezed, Object? error = freezed}) {
+    return _then(
+      _value.copyWith(
+            remoteData: freezed == remoteData
+                ? _value.remoteData
+                : remoteData // ignore: cast_nullable_to_non_nullable
+                      as T?,
+            error: freezed == error
+                ? _value.error
+                : error // ignore: cast_nullable_to_non_nullable
+                      as String?,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$RemoteDataSuccessImplCopyWith<T, $Res>
     implements $RemoteDataStateCopyWith<T, $Res> {
-  factory _$$RemoteDataSuccessImplCopyWith(_$RemoteDataSuccessImpl<T> value,
-          $Res Function(_$RemoteDataSuccessImpl<T>) then) =
-      __$$RemoteDataSuccessImplCopyWithImpl<T, $Res>;
+  factory _$$RemoteDataSuccessImplCopyWith(
+    _$RemoteDataSuccessImpl<T> value,
+    $Res Function(_$RemoteDataSuccessImpl<T>) then,
+  ) = __$$RemoteDataSuccessImplCopyWithImpl<T, $Res>;
   @override
   @useResult
   $Res call({T? remoteData, String? error});
@@ -119,28 +116,28 @@ abstract class _$$RemoteDataSuccessImplCopyWith<T, $Res>
 class __$$RemoteDataSuccessImplCopyWithImpl<T, $Res>
     extends _$RemoteDataStateCopyWithImpl<T, $Res, _$RemoteDataSuccessImpl<T>>
     implements _$$RemoteDataSuccessImplCopyWith<T, $Res> {
-  __$$RemoteDataSuccessImplCopyWithImpl(_$RemoteDataSuccessImpl<T> _value,
-      $Res Function(_$RemoteDataSuccessImpl<T>) _then)
-      : super(_value, _then);
+  __$$RemoteDataSuccessImplCopyWithImpl(
+    _$RemoteDataSuccessImpl<T> _value,
+    $Res Function(_$RemoteDataSuccessImpl<T>) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of RemoteDataState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? remoteData = freezed,
-    Object? error = freezed,
-  }) {
-    return _then(_$RemoteDataSuccessImpl<T>(
-      remoteData: freezed == remoteData
-          ? _value.remoteData
-          : remoteData // ignore: cast_nullable_to_non_nullable
-              as T?,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+  $Res call({Object? remoteData = freezed, Object? error = freezed}) {
+    return _then(
+      _$RemoteDataSuccessImpl<T>(
+        remoteData: freezed == remoteData
+            ? _value.remoteData
+            : remoteData // ignore: cast_nullable_to_non_nullable
+                  as T?,
+        error: freezed == error
+            ? _value.error
+            : error // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }
 
@@ -164,14 +161,19 @@ class _$RemoteDataSuccessImpl<T> implements RemoteDataSuccess<T> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RemoteDataSuccessImpl<T> &&
-            const DeepCollectionEquality()
-                .equals(other.remoteData, remoteData) &&
+            const DeepCollectionEquality().equals(
+              other.remoteData,
+              remoteData,
+            ) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(remoteData), error);
+    runtimeType,
+    const DeepCollectionEquality().hash(remoteData),
+    error,
+  );
 
   /// Create a copy of RemoteDataState
   /// with the given fields replaced by the non-null parameter values.
@@ -179,9 +181,11 @@ class _$RemoteDataSuccessImpl<T> implements RemoteDataSuccess<T> {
   @override
   @pragma('vm:prefer-inline')
   _$$RemoteDataSuccessImplCopyWith<T, _$RemoteDataSuccessImpl<T>>
-      get copyWith =>
-          __$$RemoteDataSuccessImplCopyWithImpl<T, _$RemoteDataSuccessImpl<T>>(
-              this, _$identity);
+  get copyWith =>
+      __$$RemoteDataSuccessImplCopyWithImpl<T, _$RemoteDataSuccessImpl<T>>(
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
@@ -260,15 +264,16 @@ abstract class RemoteDataSuccess<T> implements RemoteDataState<T> {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RemoteDataSuccessImplCopyWith<T, _$RemoteDataSuccessImpl<T>>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$RemoteDataFailedImplCopyWith<T, $Res>
     implements $RemoteDataStateCopyWith<T, $Res> {
-  factory _$$RemoteDataFailedImplCopyWith(_$RemoteDataFailedImpl<T> value,
-          $Res Function(_$RemoteDataFailedImpl<T>) then) =
-      __$$RemoteDataFailedImplCopyWithImpl<T, $Res>;
+  factory _$$RemoteDataFailedImplCopyWith(
+    _$RemoteDataFailedImpl<T> value,
+    $Res Function(_$RemoteDataFailedImpl<T>) then,
+  ) = __$$RemoteDataFailedImplCopyWithImpl<T, $Res>;
   @override
   @useResult
   $Res call({T? remoteData, String? error});
@@ -278,28 +283,28 @@ abstract class _$$RemoteDataFailedImplCopyWith<T, $Res>
 class __$$RemoteDataFailedImplCopyWithImpl<T, $Res>
     extends _$RemoteDataStateCopyWithImpl<T, $Res, _$RemoteDataFailedImpl<T>>
     implements _$$RemoteDataFailedImplCopyWith<T, $Res> {
-  __$$RemoteDataFailedImplCopyWithImpl(_$RemoteDataFailedImpl<T> _value,
-      $Res Function(_$RemoteDataFailedImpl<T>) _then)
-      : super(_value, _then);
+  __$$RemoteDataFailedImplCopyWithImpl(
+    _$RemoteDataFailedImpl<T> _value,
+    $Res Function(_$RemoteDataFailedImpl<T>) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of RemoteDataState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? remoteData = freezed,
-    Object? error = freezed,
-  }) {
-    return _then(_$RemoteDataFailedImpl<T>(
-      remoteData: freezed == remoteData
-          ? _value.remoteData
-          : remoteData // ignore: cast_nullable_to_non_nullable
-              as T?,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+  $Res call({Object? remoteData = freezed, Object? error = freezed}) {
+    return _then(
+      _$RemoteDataFailedImpl<T>(
+        remoteData: freezed == remoteData
+            ? _value.remoteData
+            : remoteData // ignore: cast_nullable_to_non_nullable
+                  as T?,
+        error: freezed == error
+            ? _value.error
+            : error // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }
 
@@ -323,14 +328,19 @@ class _$RemoteDataFailedImpl<T> implements RemoteDataFailed<T> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RemoteDataFailedImpl<T> &&
-            const DeepCollectionEquality()
-                .equals(other.remoteData, remoteData) &&
+            const DeepCollectionEquality().equals(
+              other.remoteData,
+              remoteData,
+            ) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(remoteData), error);
+    runtimeType,
+    const DeepCollectionEquality().hash(remoteData),
+    error,
+  );
 
   /// Create a copy of RemoteDataState
   /// with the given fields replaced by the non-null parameter values.
@@ -339,7 +349,9 @@ class _$RemoteDataFailedImpl<T> implements RemoteDataFailed<T> {
   @pragma('vm:prefer-inline')
   _$$RemoteDataFailedImplCopyWith<T, _$RemoteDataFailedImpl<T>> get copyWith =>
       __$$RemoteDataFailedImplCopyWithImpl<T, _$RemoteDataFailedImpl<T>>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs

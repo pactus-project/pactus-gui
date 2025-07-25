@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:gui/src/data/models/fluent_navigation_state_model.dart';
+import 'package:pactus_gui/src/data/models/fluent_navigation_state_model.dart';
 
 class NavigationPaneCubit extends Cubit<NavigationState> {
   NavigationPaneCubit() : super(NavigationState.initial());
@@ -10,9 +10,7 @@ class NavigationPaneCubit extends Cubit<NavigationState> {
       if (index > _maxVisitedIndex) {
         _maxVisitedIndex = index;
       }
-      emit(
-        state.copyWith(selectedIndex: index),
-      );
+      emit(state.copyWith(selectedIndex: index));
     }
   }
 

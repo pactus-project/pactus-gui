@@ -28,6 +28,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_code.svg
   String get icCode => 'assets/icons/ic_code.svg';
 
+  /// File path: assets/icons/ic_committee_power.svg
+  String get icCommitteePower => 'assets/icons/ic_committee_power.svg';
+
+  /// File path: assets/icons/ic_committee_size.svg
+  String get icCommitteeSize => 'assets/icons/ic_committee_size.svg';
+
   /// File path: assets/icons/ic_connection.svg
   String get icConnection => 'assets/icons/ic_connection.svg';
 
@@ -64,8 +70,14 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_settings.svg
   String get icSettings => 'assets/icons/ic_settings.svg';
 
+  /// File path: assets/icons/ic_total_power.svg
+  String get icTotalPower => 'assets/icons/ic_total_power.svg';
+
   /// File path: assets/icons/ic_transaction.svg
   String get icTransaction => 'assets/icons/ic_transaction.svg';
+
+  /// File path: assets/icons/ic_validators.svg
+  String get icValidators => 'assets/icons/ic_validators.svg';
 
   /// File path: assets/icons/ic_wallet.svg
   String get icWallet => 'assets/icons/ic_wallet.svg';
@@ -78,28 +90,32 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<dynamic> get values => [
-        clipboard,
-        icAboutUs,
-        icClock,
-        icClose,
-        icCode,
-        icConnection,
-        icDarkMode,
-        icDashboard,
-        icFaqs,
-        icLightMode,
-        icLogoDark,
-        icLogoLight,
-        icMaximize,
-        icMinimize,
-        icNodeLogs,
-        icReachbility,
-        icSettings,
-        icTransaction,
-        icWallet,
-        lock,
-        logo
-      ];
+    clipboard,
+    icAboutUs,
+    icClock,
+    icClose,
+    icCode,
+    icCommitteePower,
+    icCommitteeSize,
+    icConnection,
+    icDarkMode,
+    icDashboard,
+    icFaqs,
+    icLightMode,
+    icLogoDark,
+    icLogoLight,
+    icMaximize,
+    icMinimize,
+    icNodeLogs,
+    icReachbility,
+    icSettings,
+    icTotalPower,
+    icTransaction,
+    icValidators,
+    icWallet,
+    lock,
+    logo,
+  ];
 }
 
 class $AssetsImagesGen {
@@ -144,18 +160,18 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<dynamic> get values => [
-        backgroundInitializing,
-        bgFinishDark,
-        bgFinishLight,
-        gears,
-        gift,
-        logoName,
-        masterPassword,
-        masterPasswordDark,
-        masterPasswordLight,
-        splash,
-        welcomePic
-      ];
+    backgroundInitializing,
+    bgFinishDark,
+    bgFinishLight,
+    gears,
+    gift,
+    logoName,
+    masterPassword,
+    masterPasswordDark,
+    masterPasswordLight,
+    splash,
+    welcomePic,
+  ];
 }
 
 class Assets {
@@ -166,11 +182,7 @@ class Assets {
 }
 
 class AssetGenImage {
-  const AssetGenImage(
-    this._assetName, {
-    this.size,
-    this.flavors = const {},
-  });
+  const AssetGenImage(this._assetName, {this.size, this.flavors = const {}});
 
   final String _assetName;
 
@@ -230,15 +242,8 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({
-    AssetBundle? bundle,
-    String? package,
-  }) {
-    return AssetImage(
-      _assetName,
-      bundle: bundle,
-      package: package,
-    );
+  ImageProvider provider({AssetBundle? bundle, String? package}) {
+    return AssetImage(_assetName, bundle: bundle, package: package);
   }
 
   String get path => _assetName;

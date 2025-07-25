@@ -3,7 +3,7 @@
 
 # Miscellaneous
 *.class
-*.lock
+#*.lock
 *.log
 *.pyc
 *.swp
@@ -142,7 +142,8 @@ app.*.symbols
 !.vscode/settings.json
 /daemon/
 
-pubspec.lock
-
 # FVM Version Cache
 .fvm/
+
+# Allow pubspec.lock (for Flutter projects)
+!pubspec.lock

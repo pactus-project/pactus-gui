@@ -1,11 +1,13 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:gui/src/core/common/widgets/custom_input_widget.dart';
-import 'package:gui/src/core/common/widgets/screen_header_widget.dart';
-import 'package:gui/src/core/utils/gen/assets/assets.gen.dart';
-import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
-import 'package:gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui/src/core/common/widgets/custom_input_widget.dart';
+import 'package:pactus_gui/src/core/common/widgets/screen_header_widget.dart';
+import 'package:pactus_gui/src/core/utils/gen/assets/assets.gen.dart';
+import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:pactus_gui/src/core/utils/validators/password_validation.dart'
+    show PasswordValidation;
+import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
 
 /// ## [MasterPasswordSection] Class Documentation
 ///
@@ -43,55 +45,42 @@ class MasterPasswordSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsetsDirectional.only(
-          start: 47,
-          end: 47,
-          top: 47,
+    return Column(
+      spacing: 24,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Align(
+          alignment: AlignmentDirectional.centerStart,
+          child: const ScreenHeaderWidget(
+            title: LocaleKeys.master_password,
+            description: LocaleKeys.master_password_description,
+          ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        SizedBox(
+          height: 250,
+          child: SvgPicture.asset(Assets.images.masterPasswordLight),
+        ),
+        Column(
+          spacing: 16,
           children: [
-            const ScreenHeaderWidget(
-              title: LocaleKeys.master_password,
-              description: LocaleKeys.master_password_description,
+            CustomInputWidget(
+              width: 280,
+              controller: passwordController,
+              placeholder: context.tr(LocaleKeys.enter_your_password),
+              passwordValidation: PasswordValidation(),
+              obscureText: true,
             ),
-            Center(
-              child: SizedBox(
-                width: 406,
-                height: 363,
-                child: SvgPicture.asset(
-                  Assets.images.masterPasswordLight,
-                  width: 406,
-                  height: 363,
-                ),
-              ),
-            ),
-            const Gap(24),
-            Center(
-              child: Column(
-                children: [
-                  CustomInputWidget(
-                    width: 280,
-                    controller: passwordController,
-                    placeholder: context.tr(LocaleKeys.enter_your_password),
-                    obscureText: true,
-                  ),
-                  const Gap(24),
-                  CustomInputWidget(
-                    width: 280,
-                    controller: confirmPasswordController,
-                    placeholder: context.tr(LocaleKeys.confirm_password),
-                    confirmationController: passwordController,
-                    obscureText: true,
-                  ),
-                ],
-              ),
+            CustomInputWidget(
+              width: 280,
+              controller: confirmPasswordController,
+              placeholder: context.tr(LocaleKeys.confirm_password),
+              confirmationController: passwordController,
+              obscureText: true,
             ),
           ],
         ),
-      ),
+        Gap(70),
+      ],
     );
   }
 }

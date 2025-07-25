@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
-import 'package:gui/src/core/di/locator.dart';
-import 'package:gui/src/core/utils/storage_utils.dart';
+import 'package:pactus_gui/src/core/di/locator.dart';
+import 'package:pactus_gui/src/core/utils/storage_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {

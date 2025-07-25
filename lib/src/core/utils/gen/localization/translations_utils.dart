@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:gui/src/features/main/language/core/language_constants.dart';
+import 'package:pactus_gui/src/features/main/language/core/language_constants.dart';
 
 /// This script generates the necessary files to support localization in your
 /// Flutter app.
@@ -162,8 +162,9 @@ Future<void> _generateLocaleKeysFile(
     ..writeln('// ignore_for_file: constant_identifier_names')
     ..writeln('abstract class LocaleKeys {');
 
-  final keys =
-      translations.values.first.keys.where((key) => !key.startsWith('@'));
+  final keys = translations.values.first.keys.where(
+    (key) => !key.startsWith('@'),
+  );
   for (final key in keys) {
     buffer.writeln('  static const String ${_sanitizeKey(key)} = \'$key\';');
   }
@@ -212,18 +213,10 @@ Future<void> _generateCodegenLoaderFile(
     ..writeln('    Map<String, dynamic> localeMap,')
     ..writeln('  ) {')
     ..writeln('    return Future.value(')
-    ..writeln(
-      '      mapLocales["\${Locale(',
-    )
-    ..writeln(
-      '        "\${localeMap["language"]}",',
-    )
-    ..writeln(
-      '        "\${localeMap["country"]}",',
-    )
-    ..writeln(
-      '      )}"],',
-    )
+    ..writeln('      mapLocales["\${Locale(')
+    ..writeln('        "\${localeMap["language"]}",')
+    ..writeln('        "\${localeMap["country"]}",')
+    ..writeln('      )}"],')
     ..writeln('    );')
     ..writeln('  }')
     ..writeln();

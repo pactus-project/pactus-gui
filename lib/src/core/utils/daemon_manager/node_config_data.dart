@@ -66,7 +66,7 @@ class NodeConfigData {
   // Private variables
   String? _workingDirectory;
   Mnemonic? _restorationSeed;
-  String? _password;
+  String? password;
   String? _validatorQty;
 
   // Getters - return empty strings if values are null
@@ -74,7 +74,6 @@ class NodeConfigData {
 
   // ignore: unnecessary_getters_setters
   Mnemonic? get restorationSeed => _restorationSeed;
-  String get password => _password ?? '';
   String get validatorQty => _validatorQty ?? '';
 
   // Setters - update private variables
@@ -84,10 +83,6 @@ class NodeConfigData {
 
   set restorationSeed(Mnemonic? value) {
     _restorationSeed = value;
-  }
-
-  set password(String value) {
-    _password = value;
   }
 
   set validatorQty(String value) {

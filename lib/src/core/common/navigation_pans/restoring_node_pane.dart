@@ -1,22 +1,22 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gui/src/core/common/cubits/step_validation_cubit.dart';
-import 'package:gui/src/core/common/widgets/app_layout.dart';
-import 'package:gui/src/core/constants/app_constants.dart';
-import 'package:gui/src/core/enums/app_enums.dart';
-import 'package:gui/src/core/extensions/context_extensions.dart';
-import 'package:gui/src/core/utils/gen/localization/locale_keys.dart';
-import 'package:gui/src/data/models/fluent_navigation_state_model.dart';
-import 'package:gui/src/features/finish/presentation/screen/finish_screen.dart';
-import 'package:gui/src/features/generation_seed/core/constants/enums/seed_type_enum.dart';
-import 'package:gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
-import 'package:gui/src/features/initializing/presentation/screen/initializing_screen.dart';
-import 'package:gui/src/features/main/language/core/localization_extension.dart';
-import 'package:gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
-import 'package:gui/src/features/master_password/presentation/screen/master_password_screen.dart';
-import 'package:gui/src/features/restoration_seed/presentation/cubits/restoration_seed_cubit.dart';
-import 'package:gui/src/features/restoration_seed/presentation/screen/restoration_seed_screen.dart';
-import 'package:gui/src/features/validator_config/presentation/screen/validator_config_screen.dart';
+import 'package:pactus_gui/src/core/common/cubits/step_validation_cubit.dart';
+import 'package:pactus_gui/src/core/common/widgets/app_layout.dart';
+import 'package:pactus_gui/src/core/constants/app_constants.dart';
+import 'package:pactus_gui/src/core/enums/app_enums.dart';
+import 'package:pactus_gui/src/core/extensions/context_extensions.dart';
+import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:pactus_gui/src/data/models/fluent_navigation_state_model.dart';
+import 'package:pactus_gui/src/features/finish/presentation/screen/finish_screen.dart';
+import 'package:pactus_gui/src/features/generation_seed/core/constants/enums/seed_type_enum.dart';
+import 'package:pactus_gui/src/features/generation_seed/presentation/cubits/seed_type_cubit.dart';
+import 'package:pactus_gui/src/features/initializing/presentation/screen/initializing_screen.dart';
+import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
+import 'package:pactus_gui/src/features/master_password/presentation/screen/master_password_screen.dart';
+import 'package:pactus_gui/src/features/restoration_seed/presentation/cubits/restoration_seed_cubit.dart';
+import 'package:pactus_gui/src/features/restoration_seed/presentation/screen/restoration_seed_screen.dart';
+import 'package:pactus_gui/src/features/validator_config/presentation/screen/validator_config_screen.dart';
 
 class RestoringNodePane extends StatelessWidget {
   const RestoringNodePane({super.key});
@@ -30,8 +30,10 @@ class RestoringNodePane extends StatelessWidget {
             pane: NavigationPane(
               displayMode: PaneDisplayMode.open,
               menuButton: const SizedBox(),
-              size:
-                  const NavigationPaneSize(openMaxWidth: 209, compactWidth: 52),
+              size: const NavigationPaneSize(
+                openMaxWidth: 209,
+                compactWidth: 52,
+              ),
               selected: navigationState.selectedIndex,
               onChanged: (index) =>
                   _handleNavigationChange(context, navigationState, index),
@@ -94,9 +96,7 @@ class RestoringNodePane extends StatelessWidget {
                       ),
                     ),
                   ),
-                  body: InitializingScreen(
-                    initialMode: InitialMode.restore,
-                  ),
+                  body: InitializingScreen(initialMode: InitialMode.restore),
                 ),
                 PaneItem(
                   icon: const SizedBox(),
@@ -127,11 +127,13 @@ class RestoringNodePane extends StatelessWidget {
     final navigationCubit = context.read<NavigationPaneCubit>();
 
     // Allow moving forward only if the previous step is valid
-    final canGoForward = index == navigationState.selectedIndex + 1 &&
+    final canGoForward =
+        index == navigationState.selectedIndex + 1 &&
         stepValidationCubit.isStepValid(navigationState.selectedIndex);
 
     // Allow moving backward only if you're not at the last page
-    final canGoBack = index == navigationState.selectedIndex - 1 &&
+    final canGoBack =
+        index == navigationState.selectedIndex - 1 &&
         navigationState.selectedIndex < AppConstants.restoreNodeMaxIndex;
 
     // If you've reached the last page, you won't be able to go back
