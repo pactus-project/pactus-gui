@@ -5,10 +5,15 @@
   - fix(core): correct loading state behavior on unlock button in `UnlockPasswordScreen` [#211](https://github.com/pactus-project/pactus-gui/pull/212)
   - ci: ci: update pactus cli download links to v1.8.0 in ci/cd pipeline [#211](https://github.com/pactus-project/pactus-gui/pull/212)
     - start node detection condition was changed
+  - fix(password): fix some login issues [#211](https://github.com/pactus-project/pactus-gui/pull/212)
+    - show error message for `duplicate running node`
+    - detect grpc server started in new version of `pactus-daemon` file
 ### [Update]
 - Improvement some ui parts
   - update(dashboard): fix some overflow in shimmer widgets at dashboard screen [#211](https://github.com/pactus-project/pactus-gui/pull/212)
   - update(core): double-click the `AppBar` to maximize the window [#211](https://github.com/pactus-project/pactus-gui/pull/210)
+### [CI]
+- Fix download url of `AppImageTool` for create linux `AppImage` files [#211](https://github.com/pactus-project/pactus-gui/pull/212)
 
 # 1.65.3+70
 ### [CI]
