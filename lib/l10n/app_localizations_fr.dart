@@ -484,4 +484,8 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get directory_creation_failed =>
       'Échec de la création du répertoire. Veuillez vérifier les permissions et réessayer.';
+
+  @override
+  String get error_node_duplicate_running =>
+      'Un nœud dupliqué est actif. Le nœud est verrouillé.';
 }

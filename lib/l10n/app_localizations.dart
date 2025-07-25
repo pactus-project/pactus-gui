@@ -957,6 +957,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Failed to create application directory. Please check permissions and try again.'**
   String get directory_creation_failed;
+
+  /// No description provided for @error_node_duplicate_running.
+  ///
+  /// In en, this message translates to:
+  /// **'Duplicate node is running. The node is locked.'**
+  String get error_node_duplicate_running;
 }
 
 class _AppLocalizationsDelegate

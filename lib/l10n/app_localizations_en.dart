@@ -476,4 +476,8 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get directory_creation_failed =>
       'Failed to create application directory. Please check permissions and try again.';
+
+  @override
+  String get error_node_duplicate_running =>
+      'Duplicate node is running. The node is locked.';
 }

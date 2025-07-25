@@ -21,7 +21,7 @@ class AddressesCardContent extends StatelessWidget {
         BlocBuilder<BlockchainGetInfoBloc, BlockchainGetInfoState>(
           builder: (context, state) {
             return state.maybeWhen(
-              orElse: ShimmerCardItem.new,
+              orElse: () => ShimmerCardItem(width: 100),
               loaded: (response) {
                 final stakeValue =
                     response.committeeValidators
@@ -50,7 +50,7 @@ class AddressesCardContent extends StatelessWidget {
               BlocBuilder<BlockchainGetInfoBloc, BlockchainGetInfoState>(
                 builder: (context, state) {
                   return state.maybeWhen(
-                    orElse: ShimmerCardItem.new,
+                    orElse: () => ShimmerCardItem(width: 48),
                     loaded: (response) {
                       final result =
                           response.committeeValidators.any(
@@ -69,7 +69,7 @@ class AddressesCardContent extends StatelessWidget {
               BlocBuilder<BlockchainGetInfoBloc, BlockchainGetInfoState>(
                 builder: (context, state) {
                   return state.maybeWhen(
-                    orElse: ShimmerCardItem.new,
+                    orElse: () => ShimmerCardItem(width: 32),
                     loaded: (response) {
                       return AddressesCardContentItem(
                         contact:

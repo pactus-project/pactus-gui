@@ -201,6 +201,8 @@ class CodegenLoader {
     'password_mismatch_error': 'Passwords do not match!',
     'directory_creation_failed':
         'Failed to create application directory. Please check permissions and try again.',
+    'error_node_duplicate_running':
+        'Duplicate node is running. The node is locked.',
   };
   static const Map<String, dynamic> frFR = {
     'title': 'Bonjour le Monde!',
@@ -384,6 +386,8 @@ class CodegenLoader {
     'password_mismatch_error': 'Les mots de passe ne correspondent pas !',
     'directory_creation_failed':
         'Échec de la création du répertoire. Veuillez vérifier les permissions et réessayer.',
+    'error_node_duplicate_running':
+        'Un nœud dupliqué est actif. Le nœud est verrouillé.',
   };
   static const Map<String, dynamic> esES = {
     'title': 'Hola Mundo!',
@@ -565,6 +569,8 @@ class CodegenLoader {
     'password_mismatch_error': '¡Las contraseñas no coinciden!',
     'directory_creation_failed':
         'No se pudo crear el directorio. Por favor verifique los permisos e intente nuevamente.',
+    'error_node_duplicate_running':
+        'Un nodo duplicado está en ejecución. El nodo está bloqueado.',
   };
 
   static const Map<String, Map<String, dynamic>> mapLocales = {

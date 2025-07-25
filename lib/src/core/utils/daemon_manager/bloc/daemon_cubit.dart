@@ -193,7 +193,7 @@ class DaemonCubit extends Cubit<DaemonState> {
         if (kDebugMode) {
           printDebug('DATA--->:$data');
         }
-        if (data.contains(CliConstants.grpcServerStarted)) {
+        if (data.toLowerCase().contains(CliConstants.grpcServerStarLowerCase)) {
           emit(DaemonSuccess(data));
         }
       });
