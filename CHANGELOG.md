@@ -8,6 +8,7 @@
   - fix(password): fix some login issues [#211](https://github.com/pactus-project/pactus-gui/pull/212)
     - show error message for `duplicate running node`
     - detect grpc server started in new version of `pactus-daemon` file
+  - fix(password): fix some hardcoded strings [#211](https://github.com/pactus-project/pactus-gui/pull/212)
 ### [Update]
 - Improvement some ui parts
   - update(dashboard): fix some overflow in shimmer widgets at dashboard screen [#211](https://github.com/pactus-project/pactus-gui/pull/212)

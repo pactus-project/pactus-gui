@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -12,11 +10,7 @@ import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/cli_command.dart';
 import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart';
 import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/daemon_state.dart';
 import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
-import 'package:pactus_gui/src/core/utils/methods/print_debug.dart'
-    show printDebug;
 import 'package:pactus_gui/src/core/utils/methods/update_node_details_singleton.dart';
-import 'package:pactus_gui/src/core/utils/node_lock_manager/directory_manager.dart'
-    show DaemonFileEnum, DirectoryManager;
 import 'package:pactus_gui/src/core/utils/storage_utils.dart';
 import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui/src/features/validator_config/core/utils/methods/show_fluent_alert_method.dart';
@@ -65,11 +59,11 @@ mixin NodeListenerHandler {
     DaemonError state,
     String password,
   ) {
-    if (state.error.toLowerCase().contains('invalid password') &&
+    if (state.error.toLowerCase().contains(CliConstants.invalidPassword) &&
         password != '') {
       _showErrorDialog(context, context.tr(LocaleKeys.incorrect_password));
     }
-    if (state.error.toLowerCase() == 'the node is locked') {
+    if (state.error.toLowerCase() == CliConstants.nodeIsLocked) {
       _showErrorDialog(
         context,
         context.tr(LocaleKeys.error_node_duplicate_running),
