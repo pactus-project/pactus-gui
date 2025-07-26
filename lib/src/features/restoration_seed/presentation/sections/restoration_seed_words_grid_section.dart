@@ -53,22 +53,33 @@ class RestorationSeedWordsGridSection extends StatelessWidget {
         color: AppTheme.of(context).extension<LightPallet>()!.light900,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       ),
-      child: GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: crossAxisCount,
-          crossAxisSpacing: 12,
-          mainAxisSpacing: 12,
-          childAspectRatio: 141 / 30,
-        ),
-        itemCount: state.qty,
-        itemBuilder: (context, index) {
-          return ChipTextBox(
-            prefixText: '${index + 1}.',
-            chipTextMode: ChipTextMode.normal,
-            onChanged: (value) {
-              context.read<SeedTextCubit>().updateWord(index, value);
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final maxWidth = constraints.maxWidth;
+          final crossAxisSpacing = 12.0;
+          final childAspectRatio =
+              (maxWidth - ((crossAxisCount - 1) * crossAxisSpacing)) /
+              crossAxisCount /
+              30;
+
+          return GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: crossAxisCount,
+              crossAxisSpacing: crossAxisSpacing,
+              mainAxisSpacing: 12,
+              childAspectRatio: childAspectRatio,
+            ),
+            itemCount: state.qty,
+            itemBuilder: (context, index) {
+              return ChipTextBox(
+                prefixText: '${index + 1}.',
+                chipTextMode: ChipTextMode.normal,
+                onChanged: (value) {
+                  context.read<SeedTextCubit>().updateWord(index, value);
+                },
+              );
             },
           );
         },
