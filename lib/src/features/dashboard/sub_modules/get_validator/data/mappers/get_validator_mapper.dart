@@ -6,7 +6,9 @@ mixin GetValidatorMapper {
   static GetValidatorEntity toEntity(GetValidatorModel model) {
     return GetValidatorEntity(
       validatorAddress: model.validatorAddress,
-      validatorAvailabilityScore: model.validatorAvailabilityScore,
+      validatorAvailabilityScore: double.parse(
+        model.validatorAvailabilityScore.toStringAsFixed(1),
+      ),
       validatorStack: model.validatorStack,
     );
   }
