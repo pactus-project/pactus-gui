@@ -19,6 +19,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_about_us.svg
   String get icAboutUs => 'assets/icons/ic_about_us.svg';
 
+  /// File path: assets/icons/ic_client_version.svg
+  String get icClientVersion => 'assets/icons/ic_client_version.svg';
+
   /// File path: assets/icons/ic_clock.svg
   String get icClock => 'assets/icons/ic_clock.svg';
 
@@ -43,6 +46,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_dashboard.svg
   String get icDashboard => 'assets/icons/ic_dashboard.svg';
 
+  /// File path: assets/icons/ic_encrypt_wallet.svg
+  String get icEncryptWallet => 'assets/icons/ic_encrypt_wallet.svg';
+
   /// File path: assets/icons/ic_faqs.svg
   String get icFaqs => 'assets/icons/ic_faqs.svg';
 
@@ -61,11 +67,32 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_minimize.svg
   String get icMinimize => 'assets/icons/ic_minimize.svg';
 
+  /// File path: assets/icons/ic_monikor.svg
+  String get icMonikor => 'assets/icons/ic_monikor.svg';
+
+  /// File path: assets/icons/ic_network.svg
+  String get icNetwork => 'assets/icons/ic_network.svg';
+
+  /// File path: assets/icons/ic_network_logo.svg
+  String get icNetworkLogo => 'assets/icons/ic_network_logo.svg';
+
   /// File path: assets/icons/ic_node_logs.svg
   String get icNodeLogs => 'assets/icons/ic_node_logs.svg';
 
+  /// File path: assets/icons/ic_node_type.svg
+  String get icNodeType => 'assets/icons/ic_node_type.svg';
+
+  /// File path: assets/icons/ic_protocol_version.svg
+  String get icProtocolVersion => 'assets/icons/ic_protocol_version.svg';
+
+  /// File path: assets/icons/ic_prune.svg
+  String get icPrune => 'assets/icons/ic_prune.svg';
+
   /// File path: assets/icons/ic_reachbility.svg
   String get icReachbility => 'assets/icons/ic_reachbility.svg';
+
+  /// File path: assets/icons/ic_services.svg
+  String get icServices => 'assets/icons/ic_services.svg';
 
   /// File path: assets/icons/ic_settings.svg
   String get icSettings => 'assets/icons/ic_settings.svg';
@@ -82,6 +109,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_wallet.svg
   String get icWallet => 'assets/icons/ic_wallet.svg';
 
+  /// File path: assets/icons/ic_working_dir.svg
+  String get icWorkingDir => 'assets/icons/ic_working_dir.svg';
+
   /// File path: assets/icons/lock.png
   AssetGenImage get lock => const AssetGenImage('assets/icons/lock.png');
 
@@ -92,6 +122,7 @@ class $AssetsIconsGen {
   List<dynamic> get values => [
     clipboard,
     icAboutUs,
+    icClientVersion,
     icClock,
     icClose,
     icCode,
@@ -100,19 +131,28 @@ class $AssetsIconsGen {
     icConnection,
     icDarkMode,
     icDashboard,
+    icEncryptWallet,
     icFaqs,
     icLightMode,
     icLogoDark,
     icLogoLight,
     icMaximize,
     icMinimize,
+    icMonikor,
+    icNetwork,
+    icNetworkLogo,
     icNodeLogs,
+    icNodeType,
+    icProtocolVersion,
+    icPrune,
     icReachbility,
+    icServices,
     icSettings,
     icTotalPower,
     icTransaction,
     icValidators,
     icWallet,
+    icWorkingDir,
     lock,
     logo,
   ];

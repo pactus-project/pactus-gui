@@ -145,5 +145,16 @@
   "password_mismatch_error": "¡Las contraseñas no coinciden!",
   "directory_creation_failed": "No se pudo crear el directorio. Por favor verifique los permisos e intente nuevamente.",
   "error_node_duplicate_running": "Un nodo duplicado está en ejecución. El nodo está bloqueado.",
+  "network": "Red",
+  "moniker": "Moniker",
+  "networkId": "ID de red",
+  "workingDir": "Directorio de trabajo",
+  "encryptedWallet": "Monedero cifrado",
+  "clientVersion": "Versión del cliente",
+  "protocolVersion": "Versión del protocolo",
+  "nodeType": "Tipo de nodo",
+  "isPrune": "Es podado",
+  "services": "Servicios",
+  "protocols": "Protocolos",
   "answer_how_is_pactus_different_from_ethereum": "Pactus y Ethereum son ambas blockchains de Prueba de Participación, pero difieren en su enfoque para ejecutar un validador. Ejecutar un validador en Ethereum puede ser desafiante y requiere 32 monedas Ethereum para participar. En Pactus, no hay una cantidad fija para la participación. Pactus está diseñado específicamente para ser más accesible para usuarios normales, y puedes ejecutar la blockchain Pactus en tu computadora personal con hardware básico."
 }
