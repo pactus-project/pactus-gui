@@ -33,7 +33,7 @@ class _LoadNodeValidatorAddressesState
           final result = state.output;
           final list = AddressMapper.fromText(result);
           return SizedBox(
-            height: 230,
+            height: 320,
             width: 660,
             child: Card(
               child: Padding(
@@ -42,7 +42,7 @@ class _LoadNodeValidatorAddressesState
                   children: [
                     AddressesCardHeader(),
                     SizedBox(
-                      height: 180,
+                      height: 270,
                       width: 660,
                       child: ListView.builder(
                         itemCount: list.length,

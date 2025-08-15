@@ -28,73 +28,76 @@ class AddressesCardContent extends StatelessWidget {
             ),
         ),
       ],
-      child: Row(
-        spacing: 4,
-        children: [
-          SimpleTextCard(text: '${contact.label} ${contact.id}', width: 80),
-          TooltipTextCard(text: contact.address, width: 200),
-          Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                BlocBuilder<GetValidatorBloc, GetValidatorState>(
-                  builder: (context, state) {
-                    return state.maybeWhen(
-                      orElse: () => ShimmerCardItem(width: 35, height: 20),
-                      error: (string) => SimpleTextCard(
-                        width: 35,
-                        textAlign: TextAlign.center,
-                        text: '0.0',
-                      ),
-                      loaded: (response) {
-                        return SimpleTextCard(
+      child: SizedBox(
+        height: 24,
+        child: Row(
+          spacing: 4,
+          children: [
+            SimpleTextCard(text: '${contact.label} ${contact.id}', width: 80),
+            TooltipTextCard(text: contact.address, width: 200),
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  BlocBuilder<GetValidatorBloc, GetValidatorState>(
+                    builder: (context, state) {
+                      return state.maybeWhen(
+                        orElse: () => ShimmerCardItem(width: 35, height: 24),
+                        error: (string) => SimpleTextCard(
                           width: 35,
                           textAlign: TextAlign.center,
-                          text: '${response.validatorStack / 1000000000}',
-                        );
-                      },
-                    );
-                  },
-                ),
-                BlocBuilder<BlockchainGetInfoBloc, BlockchainGetInfoState>(
-                  builder: (context, state) {
-                    return state.maybeWhen(
-                      orElse: () => ShimmerCardItem(width: 48, height: 20),
-                      loaded: (response) {
-                        final result =
-                            response.committeeValidators.any(
-                              (item) => item.address == contact.address,
-                            )
-                            ? 'Yes'
-                            : 'No';
-                        return SimpleTextCard(text: result, width: 32);
-                      },
-                    );
-                  },
-                ),
-                BlocBuilder<GetValidatorBloc, GetValidatorState>(
-                  builder: (context, state) {
-                    return state.maybeWhen(
-                      orElse: () => ShimmerCardItem(width: 35, height: 20),
-                      error: (string) => SimpleTextCard(
-                        width: 35,
-                        textAlign: TextAlign.center,
-                        text: '0.0',
-                      ),
-                      loaded: (response) {
-                        return SimpleTextCard(
+                          text: '0.0',
+                        ),
+                        loaded: (response) {
+                          return SimpleTextCard(
+                            width: 35,
+                            textAlign: TextAlign.center,
+                            text: '${response.validatorStack / 1000000000}',
+                          );
+                        },
+                      );
+                    },
+                  ),
+                  BlocBuilder<BlockchainGetInfoBloc, BlockchainGetInfoState>(
+                    builder: (context, state) {
+                      return state.maybeWhen(
+                        orElse: () => ShimmerCardItem(width: 48, height: 24),
+                        loaded: (response) {
+                          final result =
+                              response.committeeValidators.any(
+                                (item) => item.address == contact.address,
+                              )
+                              ? 'Yes'
+                              : 'No';
+                          return SimpleTextCard(text: result, width: 32);
+                        },
+                      );
+                    },
+                  ),
+                  BlocBuilder<GetValidatorBloc, GetValidatorState>(
+                    builder: (context, state) {
+                      return state.maybeWhen(
+                        orElse: () => ShimmerCardItem(width: 35, height: 24),
+                        error: (string) => SimpleTextCard(height: 24,
                           width: 35,
                           textAlign: TextAlign.center,
-                          text: '${response.validatorAvailabilityScore}',
-                        );
-                      },
-                    );
-                  },
-                ),
-              ],
+                          text: '0.0',
+                        ),
+                        loaded: (response) {
+                          return SimpleTextCard(height: 24,
+                            width: 35,
+                            textAlign: TextAlign.center,
+                            text: '${response.validatorAvailabilityScore}',
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

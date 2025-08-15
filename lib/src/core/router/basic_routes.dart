@@ -3,8 +3,12 @@ import 'package:go_router/go_router.dart';
 import 'package:pactus_gui/src/core/di/locator.dart';
 import 'package:pactus_gui/src/features/dashboard/presentation/screen/dashboard_screen.dart';
 import 'package:pactus_gui/src/features/dashboard/sub_modules/blockchain_get_info/presentation/bloc/blockchain_get_info_bloc.dart';
+import 'package:pactus_gui/src/features/dashboard/sub_modules/get_node_info/presentation/bloc/get_node_info_bloc.dart'
+    show GetNodeInfoBloc, GetNodeInfoEvent;
 import 'package:pactus_gui/src/features/password/presentation/screen/unlock_password_screen.dart';
 
+import '../../data/models/generated/network.pbgrpc.dart'
+    show GetNodeInfoRequest;
 import 'route_name.dart';
 
 final List<GoRoute> basicRoutes = [
@@ -24,6 +28,10 @@ final List<GoRoute> basicRoutes = [
     builder: (context, state) {
       return MultiBlocProvider(
         providers: [
+          BlocProvider(
+            create: (context) => GetNodeInfoBloc(getIt())
+              ..add(GetNodeInfoEvent.fetchStream(params: GetNodeInfoRequest())),
+          ),
           BlocProvider(
             create: (context) =>
                 BlockchainGetInfoBloc(getIt())

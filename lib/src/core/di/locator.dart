@@ -6,6 +6,16 @@ import 'package:pactus_gui/src/features/dashboard/sub_modules/blockchain_get_inf
 import 'package:pactus_gui/src/features/dashboard/sub_modules/blockchain_get_info/data/services/blockchain_service.dart';
 import 'package:pactus_gui/src/features/dashboard/sub_modules/blockchain_get_info/domain/repositories/blockchain_repository.dart';
 import 'package:pactus_gui/src/features/dashboard/sub_modules/blockchain_get_info/domain/use_cases/get_blockchain_info_use_case.dart';
+import 'package:pactus_gui/src/features/dashboard/sub_modules/get_node_info/data/data_sources/get_node_info_remote_data_source.dart'
+    show GetNodeInfoRemoteDataSource, GetNodeInfoRemoteDataSourceImpl;
+import 'package:pactus_gui/src/features/dashboard/sub_modules/get_node_info/data/repositories/get_node_info_repository_impl.dart'
+    show GetNodeInfoRepositoryImpl;
+import 'package:pactus_gui/src/features/dashboard/sub_modules/get_node_info/data/services/get_node_info_service.dart'
+    show GetNodeInfoService;
+import 'package:pactus_gui/src/features/dashboard/sub_modules/get_node_info/domain/repositories/get_node_info_repository.dart'
+    show GetNodeInfoRepository;
+import 'package:pactus_gui/src/features/dashboard/sub_modules/get_node_info/domain/use_cases/get_node_info_use_case.dart'
+    show GetNodeInfoUseCase;
 import 'package:pactus_gui/src/features/dashboard/sub_modules/get_validator/data/data_sources/get_validator_remote_data_source.dart'
     show GetValidatorRemoteDataSource, GetValidatorRemoteDataSourceImpl;
 import 'package:pactus_gui/src/features/dashboard/sub_modules/get_validator/data/repositories/get_validator_repository_impl.dart'
@@ -32,9 +42,7 @@ Future<void> setupSharedPreferences({SharedPreferences? param}) async {
 }
 
 Future<void> setupDependencies() async {
-  //
   // Register `ClientChannel` as factory
-  //
   getIt
     ..registerFactory<ClientChannel>(() {
       final nodeDetails = getIt<NodeDetails>();
@@ -46,30 +54,30 @@ Future<void> setupDependencies() async {
         ),
       );
     })
-    //
     // Register `services`
-    //
+    ..registerSingleton<GetNodeInfoService>(GetNodeInfoService())
     ..registerSingleton<GetValidatorService>(GetValidatorService())
     ..registerSingleton<BlockchainService>(BlockchainService())
-    //
     // Register `DataSources`
-    //
+    ..registerSingleton<GetNodeInfoRemoteDataSource>(
+      GetNodeInfoRemoteDataSourceImpl(getIt()),
+    )
     ..registerSingleton<GetValidatorRemoteDataSource>(
       GetValidatorRemoteDataSourceImpl(getIt()),
     )
     ..registerSingleton<BlockchainRemoteDataSource>(
       BlockchainRemoteDataSourceImpl(getIt()),
     )
-    //
     // Register `Repositories`
-    //
+    ..registerSingleton<GetNodeInfoRepository>(
+      GetNodeInfoRepositoryImpl(getIt()),
+    )
     ..registerSingleton<BlockchainRepository>(BlockchainRepositoryImpl(getIt()))
     ..registerSingleton<GetValidatorRepository>(
       GetValidatorRepositoryImpl(getIt()),
     )
-    //
     // Register `UseCases`
-    //
+    ..registerSingleton<GetNodeInfoUseCase>(GetNodeInfoUseCase(getIt()))
     ..registerSingleton<GetValidatorUseCase>(GetValidatorUseCase(getIt()))
     ..registerSingleton<GetBlockchainInfoUseCase>(
       GetBlockchainInfoUseCase(getIt()),

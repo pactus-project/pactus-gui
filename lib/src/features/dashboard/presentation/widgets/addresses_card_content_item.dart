@@ -8,10 +8,12 @@ abstract class _BaseTextCard extends StatelessWidget {
     super.key,
     required this.text,
     required this.width,
+      this.height,
     this.textAlign = TextAlign.start,
   });
   final String text;
   final double width;
+  final double? height;
   final TextAlign? textAlign;
 
   @protected
@@ -42,6 +44,7 @@ class SimpleTextCard extends _BaseTextCard {
     super.key,
     required super.text,
     required super.width,
+      super.height,
     super.textAlign,
   });
 
@@ -49,6 +52,7 @@ class SimpleTextCard extends _BaseTextCard {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
+      height: height,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 4),
         child: buildTextWidget(context, text, getTextStyle(context)),
