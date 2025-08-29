@@ -37,17 +37,12 @@ Future<void> setupSharedPreferences({SharedPreferences? param}) async {
 }
 
 Future<void> setupDependencies() async {
-  // Register `ClientChannel` as factory
   getIt
+    ..registerLazySingleton<NodeDetails>(NodeDetails.new)
+    // Register `ClientChannel` as factory
     ..registerFactory<ClientChannel>(() {
       final nodeDetails = getIt<NodeDetails>();
-      return ClientChannel(
-        nodeDetails.ip,
-        port: nodeDetails.port,
-        options: const ChannelOptions(
-          credentials: ChannelCredentials.insecure(),
-        ),
-      );
+      return _clientChannel(nodeDetails);
     })
     // Register `services`
     ..registerSingleton<GetNodeInfoService>(GetNodeInfoService())
@@ -67,4 +62,12 @@ Future<void> setupDependencies() async {
     ..registerSingleton<GetBlockchainInfoUseCase>(
       GetBlockchainInfoUseCase(getIt()),
     );
+}
+
+ClientChannel _clientChannel(NodeDetails nodeDetails) {
+  return ClientChannel(
+    nodeDetails.ip!,
+    port: nodeDetails.port!,
+    options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
+  );
 }

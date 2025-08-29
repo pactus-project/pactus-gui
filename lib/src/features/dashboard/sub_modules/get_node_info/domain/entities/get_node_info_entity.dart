@@ -40,7 +40,30 @@ class GetNodeInfoEntity {
       services,
     ];
   }
+
+  GetNodeInfoEntity copyWith({
+    String? moniker,
+    String? networkId,
+    String? clientVersion,
+    String? protocols,
+    String? nodeType,
+    String? services,
+    String? isPrune,
+    String? networkName,
+    String? workingDir,
+    String? isEncryptedWallet,
+  }) {
+    return GetNodeInfoEntity(
+      moniker: moniker ?? this.moniker,
+      networkId: networkId ?? this.networkId,
+      clientVersion: clientVersion ?? this.clientVersion,
+      protocols: protocols ?? this.protocols,
+      nodeType: nodeType ?? this.nodeType,
+      services: services ?? this.services,
+      isPrune: isPrune ?? this.isPrune,
+      networkName: networkName ?? this.networkName,
+      workingDir: workingDir ?? this.workingDir,
+      isEncryptedWallet: isEncryptedWallet ?? this.isEncryptedWallet,
+    );
+  }
 }
-
-
-

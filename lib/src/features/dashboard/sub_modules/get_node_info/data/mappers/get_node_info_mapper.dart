@@ -2,16 +2,18 @@ import 'package:pactus_gui/src/data/models/generated/network.pbgrpc.dart';
 import 'package:pactus_gui/src/features/dashboard/sub_modules/get_node_info/domain/entities/get_node_info_entity.dart';
 
 class GetNodeInfoMapper {
-  static GetNodeInfoEntity toEntity(
-      GetNodeInfoResponse model,
-
-   ) {
+  static GetNodeInfoEntity toEntity({
+      required GetNodeInfoResponse model,
+      required bool isEncryptedWallet,
+      required String networkName,
+      required String workingDir,
+  }) {
     final agentProperties = _extractAgentProperties(model.agent);
 
     return GetNodeInfoEntity(
-      isEncryptedWallet: 'isEncryptedWallet' /*? 'Yes' : 'No'*/,
-      networkName: 'networkName',
-      workingDir: 'workingDir',
+      isEncryptedWallet: isEncryptedWallet? 'Yes' : 'No',
+      networkName: networkName,
+      workingDir: workingDir,
       networkId: model.peerId,
       moniker: model.moniker,
       services: '${model.services}',
@@ -53,3 +55,26 @@ class NodeInfoModel {
   final String value;
   final String icon;
 }
+
+
+// static GetNodeInfoEntity toEntity({
+// required GetNodeInfoResponse model,
+// required bool isEncryptedWallet,
+// required String networkName,
+// required String workingDir,
+// }) {
+// final agentProperties = _extractAgentProperties(model.agent);
+//
+// return GetNodeInfoEntity(
+// isEncryptedWallet: isEncryptedWallet ? 'Yes' : 'No',
+// networkName: networkName,
+// workingDir: workingDir,
+// networkId: model.peerId,
+// moniker: model.moniker,
+// services: '${model.services}',
+// nodeType: agentProperties['node'] ?? '',
+// clientVersion: agentProperties['node-version'] ?? '',
+// protocols: agentProperties['protocol-version'] ?? '',
+// isPrune: model.servicesNames == 'PRUNED' ? 'Yes' : 'No',
+// );
+// }
