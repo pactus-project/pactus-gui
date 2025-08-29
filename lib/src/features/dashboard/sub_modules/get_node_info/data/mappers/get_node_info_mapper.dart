@@ -2,18 +2,16 @@ import 'package:pactus_gui/src/data/models/generated/network.pbgrpc.dart';
 import 'package:pactus_gui/src/features/dashboard/sub_modules/get_node_info/domain/entities/get_node_info_entity.dart';
 
 class GetNodeInfoMapper {
-  static GetNodeInfoEntity toEntity({
-    required GetNodeInfoResponse model,
-    required bool isEncryptedWallet,
-    required String networkName,
-    required String workingDir,
-  }) {
+  static GetNodeInfoEntity toEntity(
+      GetNodeInfoResponse model,
+
+   ) {
     final agentProperties = _extractAgentProperties(model.agent);
 
     return GetNodeInfoEntity(
-      isEncryptedWallet: isEncryptedWallet ? 'Yes' : 'No',
-      networkName: networkName,
-      workingDir: workingDir,
+      isEncryptedWallet: 'isEncryptedWallet' /*? 'Yes' : 'No'*/,
+      networkName: 'networkName',
+      workingDir: 'workingDir',
       networkId: model.peerId,
       moniker: model.moniker,
       services: '${model.services}',
@@ -23,8 +21,6 @@ class GetNodeInfoMapper {
       isPrune: model.servicesNames == 'PRUNED' ? 'Yes' : 'No',
     );
   }
-
-
 
   /// Extracts key-value properties from an agent string.
   static Map<String, String> _extractAgentProperties(String agentString) {

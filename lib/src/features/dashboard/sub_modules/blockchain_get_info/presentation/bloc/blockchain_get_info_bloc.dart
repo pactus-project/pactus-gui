@@ -28,9 +28,8 @@ class BlockchainGetInfoBloc
 
     result.fold(
       (errorState) =>
-          emit(BlockchainGetInfoState.error(errorState.remoteData?.msg ?? '')),
-      (successState) =>
-          emit(BlockchainGetInfoState.loaded(successState.remoteData!)),
+          emit(BlockchainGetInfoState.error(errorState.message ?? '')),
+      (successState) => emit(BlockchainGetInfoState.loaded(successState)),
     );
   }
 
@@ -46,11 +45,9 @@ class BlockchainGetInfoBloc
       final result = await _getBlockchainInfoUseCase();
 
       result.fold(
-        (errorState) => emit(
-          BlockchainGetInfoState.error(errorState.remoteData?.msg ?? ''),
-        ),
-        (successState) =>
-            emit(BlockchainGetInfoState.loaded(successState.remoteData!)),
+        (errorState) =>
+            emit(BlockchainGetInfoState.error(errorState.message ?? '')),
+        (successState) => emit(BlockchainGetInfoState.loaded(successState)),
       );
       runCounter++;
 

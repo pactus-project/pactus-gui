@@ -30,9 +30,8 @@ class GetNodeInfoBloc extends Bloc<GetNodeInfoEvent, GetNodeInfoState> {
     final result = await _getNodeInfoUseCase(params: event.params);
 
     result.fold(
-      (errorState) =>
-          emit(GetNodeInfoState.error(errorState.remoteData?.msg ?? '')),
-      (successState) => emit(GetNodeInfoState.loaded(successState.remoteData!)),
+      (errorState) => emit(GetNodeInfoState.error(errorState.message ?? '')),
+      (successState) => emit(GetNodeInfoState.loaded(successState)),
     );
   }
 
@@ -48,10 +47,8 @@ class GetNodeInfoBloc extends Bloc<GetNodeInfoEvent, GetNodeInfoState> {
       final result = await _getNodeInfoUseCase(params: event.params);
 
       result.fold(
-        (errorState) =>
-            emit(GetNodeInfoState.error(errorState.remoteData?.msg ?? '')),
-        (successState) =>
-            emit(GetNodeInfoState.loaded(successState.remoteData!)),
+        (errorState) => emit(GetNodeInfoState.error(errorState.message ?? '')),
+        (successState) => emit(GetNodeInfoState.loaded(successState)),
       );
       runCounter++;
 
