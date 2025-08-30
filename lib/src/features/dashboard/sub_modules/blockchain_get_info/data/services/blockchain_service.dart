@@ -18,10 +18,8 @@ class BlockchainService
   Future<Either<Failure, GetBlockchainInfoResponse>> service() async {
     final request = GetBlockchainInfoRequest();
     final result = SafeGrpcCall.call(
-      () => BlockchainClient(
-        GetIt.I<ClientChannel>(),
-        options: AppConstants.callOptions,
-      ).getBlockchainInfo(request),
+      () =>
+          BlockchainClient(GetIt.I<ClientChannel>()).getBlockchainInfo(request),
     );
     return result;
   }

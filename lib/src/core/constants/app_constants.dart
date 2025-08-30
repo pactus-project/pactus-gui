@@ -21,15 +21,4 @@ class AppConstants {
   static const String english = 'English';
   static const String spanish = 'Español';
   static const String french = 'Français';
-
-  // TODO(esmaeil): temporary basic-auth debug-solution in callOptions
-  //hardcoded  authHeader  test user/password: 'username:Aa@12345'
-  // static String authHeader =
-  //     'Basic ${base64Encode(utf8.encode('username:Aa@12345'))}';
-  static final callOptions = CallOptions(
-    metadata: {
-      'authorization':
-          'Basic ${base64Encode(utf8.encode('username:Aa@12345'))}',
-    },
-  );
 }

@@ -23,10 +23,7 @@ class GetValidatorService
     GetValidatorRequest params,
   ) async {
     final result = SafeGrpcCall.call(
-      () => BlockchainClient(
-        GetIt.I<ClientChannel>(),
-        options: AppConstants.callOptions,
-      ).getValidator(params),
+      () => BlockchainClient(GetIt.I<ClientChannel>()).getValidator(params),
     );
     return result;
   }
