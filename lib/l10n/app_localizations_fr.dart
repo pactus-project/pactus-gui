@@ -527,7 +527,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Pas de connexion Internet ou serveur inaccessible';
 
   @override
-  String get error_timeout => 'Délai d\'attente dépassé, veuillez réessayer';
+  String get error_timeout => 'Délai d`attente dépassé, veuillez réessayer';
 
   @override
   String get error_unexpected => 'Erreur inattendue';
@@ -536,7 +536,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get error_grpc_cancelled => 'La requête a été annulée';
 
   @override
-  String get error_grpc_unauthenticated => 'Vous n\'êtes pas authentifié';
+  String get error_grpc_unauthenticated => 'Vous n`êtes pas authentifié';
 
   @override
   String get error_grpc_permission_denied => 'Permission refusée';

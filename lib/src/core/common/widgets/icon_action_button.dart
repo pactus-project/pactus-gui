@@ -1,6 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart' as material;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pactus_gui/src/core/common/widgets/custom_tooltip.dart'
     show CustomTooltip;

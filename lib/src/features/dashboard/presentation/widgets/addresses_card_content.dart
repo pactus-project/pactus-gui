@@ -42,7 +42,7 @@ class AddressesCardContent extends StatelessWidget {
                   BlocBuilder<GetValidatorBloc, GetValidatorState>(
                     builder: (context, state) {
                       return state.maybeWhen(
-                        orElse: () => ShimmerCardItem(width: 35, height: 24),
+                        orElse: () => ShimmerCardItem(width: 35),
                         error: (string) => SimpleTextCard(
                           width: 35,
                           textAlign: TextAlign.center,
@@ -61,7 +61,7 @@ class AddressesCardContent extends StatelessWidget {
                   BlocBuilder<BlockchainGetInfoBloc, BlockchainGetInfoState>(
                     builder: (context, state) {
                       return state.maybeWhen(
-                        orElse: () => ShimmerCardItem(width: 48, height: 24),
+                        orElse: () => ShimmerCardItem(width: 48),
                         loaded: (response) {
                           final result =
                               response.committeeValidators.any(
@@ -77,14 +77,16 @@ class AddressesCardContent extends StatelessWidget {
                   BlocBuilder<GetValidatorBloc, GetValidatorState>(
                     builder: (context, state) {
                       return state.maybeWhen(
-                        orElse: () => ShimmerCardItem(width: 35, height: 24),
-                        error: (string) => SimpleTextCard(height: 24,
+                        orElse: () => ShimmerCardItem(width: 35),
+                        error: (string) => SimpleTextCard(
+                          height: 24,
                           width: 35,
                           textAlign: TextAlign.center,
                           text: '0.0',
                         ),
                         loaded: (response) {
-                          return SimpleTextCard(height: 24,
+                          return SimpleTextCard(
+                            height: 24,
                             width: 35,
                             textAlign: TextAlign.center,
                             text: '${response.validatorAvailabilityScore}',

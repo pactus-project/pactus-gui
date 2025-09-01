@@ -21,7 +21,6 @@ import 'package:pactus_gui/src/features/dashboard/sub_modules/get_validator/doma
     show GetValidatorRepository;
 import 'package:pactus_gui/src/features/dashboard/sub_modules/get_validator/domain/use_cases/get_validator_use_case.dart'
     show GetValidatorUseCase;
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 final getIt = GetIt.instance;

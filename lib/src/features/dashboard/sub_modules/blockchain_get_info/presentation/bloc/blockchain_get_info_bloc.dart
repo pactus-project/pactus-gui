@@ -27,8 +27,7 @@ class BlockchainGetInfoBloc
     final result = await _getBlockchainInfoUseCase();
 
     result.fold(
-      (errorState) =>
-          emit(BlockchainGetInfoState.error(errorState.message ?? '')),
+      (errorState) => emit(BlockchainGetInfoState.error(errorState.message)),
       (successState) => emit(BlockchainGetInfoState.loaded(successState)),
     );
   }
@@ -45,8 +44,7 @@ class BlockchainGetInfoBloc
       final result = await _getBlockchainInfoUseCase();
 
       result.fold(
-        (errorState) =>
-            emit(BlockchainGetInfoState.error(errorState.message ?? '')),
+        (errorState) => emit(BlockchainGetInfoState.error(errorState.message)),
         (successState) => emit(BlockchainGetInfoState.loaded(successState)),
       );
       runCounter++;

@@ -19,6 +19,6 @@ class GetValidatorUseCase
   Future<Either<Failure, GetValidatorEntity>> call({
     required GetValidatorRequest params,
   }) async {
-    return _repository.getValidator( params);
+    return _repository.getValidator(params);
   }
 }

@@ -23,7 +23,8 @@ void updateNodeDetailsSingleton({
     // Provide default if no existing value
     port: port ?? existingDetails?.port ?? 0,
     password: password ?? existingDetails?.password,
-    nodeWorkingDirectory: nodeWorkingDirectory ?? existingDetails?.nodeWorkingDirectory,
+    nodeWorkingDirectory:
+        nodeWorkingDirectory ?? existingDetails?.nodeWorkingDirectory,
     networkName: networkName ?? existingDetails?.networkName,
     isEncryptedNode: isEncryptedNode ?? existingDetails?.isEncryptedNode,
   );

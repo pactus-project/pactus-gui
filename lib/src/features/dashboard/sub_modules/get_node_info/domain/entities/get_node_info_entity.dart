@@ -1,7 +1,3 @@
-import 'package:pactus_gui/src/core/utils/gen/assets/assets.gen.dart'
-    show Assets;
-import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
-
 class GetNodeInfoEntity {
   GetNodeInfoEntity({
     required this.moniker,

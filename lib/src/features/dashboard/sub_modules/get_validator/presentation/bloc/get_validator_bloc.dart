@@ -30,7 +30,7 @@ class GetValidatorBloc extends Bloc<GetValidatorEvent, GetValidatorState> {
     final result = await _getValidatorUseCase(params: event.params);
 
     result.fold(
-      (errorState) => emit(GetValidatorState.error(errorState.message ?? '')),
+      (errorState) => emit(GetValidatorState.error(errorState.message)),
       (successState) => emit(GetValidatorState.loaded(successState)),
     );
   }
@@ -47,7 +47,7 @@ class GetValidatorBloc extends Bloc<GetValidatorEvent, GetValidatorState> {
       final result = await _getValidatorUseCase(params: event.params);
 
       result.fold(
-        (errorState) => emit(GetValidatorState.error(errorState.message ?? '')),
+        (errorState) => emit(GetValidatorState.error(errorState.message)),
         (successState) => emit(GetValidatorState.loaded(successState)),
       );
       runCounter++;

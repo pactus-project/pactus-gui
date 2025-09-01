@@ -8,7 +8,7 @@ abstract class _BaseTextCard extends StatelessWidget {
     super.key,
     required this.text,
     required this.width,
-      this.height,
+    this.height,
     this.textAlign = TextAlign.start,
   });
   final String text;
@@ -44,7 +44,7 @@ class SimpleTextCard extends _BaseTextCard {
     super.key,
     required super.text,
     required super.width,
-      super.height,
+    super.height,
     super.textAlign,
   });
 

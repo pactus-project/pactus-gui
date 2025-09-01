@@ -3,15 +3,15 @@ import 'package:pactus_gui/src/features/dashboard/sub_modules/get_node_info/doma
 
 class GetNodeInfoMapper {
   static GetNodeInfoEntity toEntity({
-      required GetNodeInfoResponse model,
-      required bool isEncryptedWallet,
-      required String networkName,
-      required String workingDir,
+    required GetNodeInfoResponse model,
+    required bool isEncryptedWallet,
+    required String networkName,
+    required String workingDir,
   }) {
     final agentProperties = _extractAgentProperties(model.agent);
 
     return GetNodeInfoEntity(
-      isEncryptedWallet: isEncryptedWallet? 'Yes' : 'No',
+      isEncryptedWallet: isEncryptedWallet ? 'Yes' : 'No',
       networkName: networkName,
       workingDir: workingDir,
       networkId: model.peerId,
@@ -55,26 +55,3 @@ class NodeInfoModel {
   final String value;
   final String icon;
 }
-
-
-// static GetNodeInfoEntity toEntity({
-// required GetNodeInfoResponse model,
-// required bool isEncryptedWallet,
-// required String networkName,
-// required String workingDir,
-// }) {
-// final agentProperties = _extractAgentProperties(model.agent);
-//
-// return GetNodeInfoEntity(
-// isEncryptedWallet: isEncryptedWallet ? 'Yes' : 'No',
-// networkName: networkName,
-// workingDir: workingDir,
-// networkId: model.peerId,
-// moniker: model.moniker,
-// services: '${model.services}',
-// nodeType: agentProperties['node'] ?? '',
-// clientVersion: agentProperties['node-version'] ?? '',
-// protocols: agentProperties['protocol-version'] ?? '',
-// isPrune: model.servicesNames == 'PRUNED' ? 'Yes' : 'No',
-// );
-// }
