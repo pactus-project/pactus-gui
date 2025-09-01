@@ -1,5 +1,21 @@
-# 1.66.0+71
+# 1.67.0+72
+### [Feature]
+- Implement API connection for Network Information card and connect to UI [#118](https://github.com/pactus-project/pactus-gui/pull/215)
+- Extract network information data from daemon for Network Information card  [#118](https://github.com/pactus-project/pactus-gui/pull/215)
 
+### [Update]
+- Implement Network Information card assets [#118](https://github.com/pactus-project/pactus-gui/pull/215)
+  - Add SVG icon for network status visualization
+  - Include localization files (EN/FR/ES) for card labels
+  - Update asset dependencies
+- Update localization for error messages in error handling [#118](https://github.com/pactus-project/pactus-gui/pull/215)
+- Remove Basic Authentication header from all dashboard API requests [#118](https://github.com/pactus-project/pactus-gui/pull/215)
+
+### [Refactor]
+- Refactor call API infrastructure for error handling [#118](https://github.com/pactus-project/pactus-gui/pull/215)
+- Use basic_auth for API calls in dashboard screen [#118](https://github.com/pactus-project/pactus-gui/pull/215)
+
+# 1.66.0+71
 ### [Fix]
 - Updated daemon files to v1.8.0 (Paris) and fixed initial node startup logic for compatibility with this version
   - fix(core): correct loading state behavior on unlock button in `UnlockPasswordScreen` [#211](https://github.com/pactus-project/pactus-gui/pull/212)
