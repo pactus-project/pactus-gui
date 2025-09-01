@@ -156,5 +156,14 @@
   "isPrune": "Es podado",
   "services": "Servicios",
   "protocols": "Protocolos",
-  "answer_how_is_pactus_different_from_ethereum": "Pactus y Ethereum son ambas blockchains de Prueba de Participación, pero difieren en su enfoque para ejecutar un validador. Ejecutar un validador en Ethereum puede ser desafiante y requiere 32 monedas Ethereum para participar. En Pactus, no hay una cantidad fija para la participación. Pactus está diseñado específicamente para ser más accesible para usuarios normales, y puedes ejecutar la blockchain Pactus en tu computadora personal con hardware básico."
+  "answer_how_is_pactus_different_from_ethereum": "Pactus y Ethereum son ambas blockchains de Prueba de Participación, pero difieren en su enfoque para ejecutar un validador. Ejecutar un validador en Ethereum puede ser desafiante y requiere 32 monedas Ethereum para participar. En Pactus, no hay una cantidad fija para la participación. Pactus está diseñado específicamente para ser más accesible para usuarios normales, y puedes ejecutar la blockchain Pactus en tu computadora personal con hardware básico.",
+  "error_no_internet": "Sin conexión a internet o servidor inalcanzable",
+  "error_timeout": "Tiempo de espera agotado, por favor intente nuevamente",
+  "error_unexpected": "Error inesperado",
+  "error_grpc_cancelled": "La solicitud fue cancelada",
+  "error_grpc_unauthenticated": "No estás autenticado",
+  "error_grpc_permission_denied": "Permiso denegado",
+  "error_grpc_unavailable": "Servicio temporalmente no disponible",
+  "error_grpc_deadline_exceeded": "El servidor tardó demasiado en responder",
+  "error_grpc_unknown": "Error gRPC desconocido"
 }

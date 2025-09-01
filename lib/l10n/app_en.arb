@@ -156,5 +156,14 @@
   "isPrune": "Is Prune",
   "services": "Services",
   "protocols": "Protocols",
-  "answer_how_is_pactus_different_from_ethereum": "Pactus and Ethereum are both Proof of Stake blockchains, but they differ in their approach to running a validator. Running a validator on Ethereum can be challenging and requires 32 Ethereum coins to stake. In Pactus, there is no fixed amount for staking. Pactus is specifically designed to be more accessible to normal users, and you can run the Pactus blockchain on your personal computer with basic hardware."
+  "answer_how_is_pactus_different_from_ethereum": "Pactus and Ethereum are both Proof of Stake blockchains, but they differ in their approach to running a validator. Running a validator on Ethereum can be challenging and requires 32 Ethereum coins to stake. In Pactus, there is no fixed amount for staking. Pactus is specifically designed to be more accessible to normal users, and you can run the Pactus blockchain on your personal computer with basic hardware.",
+  "error_no_internet": "No internet connection or server unreachable",
+  "error_timeout": "Request timed out, please try again",
+  "error_unexpected": "Unexpected error",
+  "error_grpc_cancelled": "Request was cancelled",
+  "error_grpc_unauthenticated": "You are not authenticated",
+  "error_grpc_permission_denied": "Permission denied",
+  "error_grpc_unavailable": "Service temporarily unavailable",
+  "error_grpc_deadline_exceeded": "Server took too long to respond",
+  "error_grpc_unknown": "Unknown gRPC error"
 }

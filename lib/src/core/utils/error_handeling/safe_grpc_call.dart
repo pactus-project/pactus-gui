@@ -1,9 +1,12 @@
 import 'dart:async';
 import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:grpc/grpc.dart';
 import 'package:pactus_gui/src/core/utils/error_handeling/failure_model.dart'
     show Failure;
+import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart'
+    show LocaleKeys;
 
 class SafeGrpcCall {
   static Future<Either<Failure, T>> call<T>(
@@ -15,28 +18,28 @@ class SafeGrpcCall {
     } on GrpcError catch (e) {
       return Left(Failure(_mapGrpcError(e)));
     } on SocketException {
-      return Left(Failure("No internet connection or server unreachable"));
+      return Left(Failure(LocaleKeys.error_no_internet));
     } on TimeoutException {
-      return Left(Failure("Request timed out, please try again"));
-    } catch (e) {
-      return Left(Failure("Unexpected error: ${e.toString()}"));
+      return Left(Failure(LocaleKeys.error_timeout));
+    } on Exception catch (_) {
+      return Left(Failure(LocaleKeys.error_unexpected));
     }
   }
 
   static String _mapGrpcError(GrpcError error) {
     switch (error.code) {
       case StatusCode.cancelled:
-        return "Request was cancelled";
+        return LocaleKeys.error_grpc_cancelled;
       case StatusCode.unauthenticated:
-        return "You are not authenticated";
+        return LocaleKeys.error_grpc_unauthenticated;
       case StatusCode.permissionDenied:
-        return "Permission denied";
+        return LocaleKeys.error_grpc_permission_denied;
       case StatusCode.unavailable:
-        return "Service temporarily unavailable";
+        return LocaleKeys.error_grpc_unavailable;
       case StatusCode.deadlineExceeded:
-        return "Server took too long to respond";
+        return LocaleKeys.error_grpc_deadline_exceeded;
       default:
-        return error.message ?? "Unknown gRPC error";
+        return error.message ?? LocaleKeys.error_grpc_unknown;
     }
   }
 }
