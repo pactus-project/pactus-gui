@@ -14,6 +14,7 @@ import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/daemon_cubit.dart'
 import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/daemon_state.dart';
 import 'package:pactus_gui/src/core/utils/gen/assets/assets.gen.dart';
 import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:pactus_gui/src/core/utils/methods/update_node_details_singleton.dart';
 import 'package:pactus_gui/src/core/utils/node_lock_manager/bloc/unlock_node_cubit.dart';
 import 'package:pactus_gui/src/core/utils/storage_utils.dart';
 import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
@@ -69,6 +70,21 @@ class SplashScreen extends StatelessWidget {
                     final isUndefinedNode =
                         !state.output.contains('is encrtypted') &&
                         !state.output.contains('created at');
+                    if (state.output.contains('network:')) {
+                      final match = RegExp(
+                        r'mainnet|testnet|localnet',
+                      ).firstMatch(state.output.toLowerCase());
+
+                      final storageKey = StorageKeys.nodeDirectory;
+
+                      final nodeDirectory =
+                          '${StorageUtils.getData<String>(storageKey)}';
+
+                      updateNodeDetailsSingleton(
+                        networkName: match?.group(0) ?? 'unknown',
+                        nodeWorkingDirectory: nodeDirectory,
+                      );
+                    }
 
                     if (isUnprotectedNode) {
                       Future.delayed(_splashDuration, () {
@@ -78,6 +94,7 @@ class SplashScreen extends StatelessWidget {
                       });
                     }
                     if (isProtectedNode) {
+                      updateNodeDetailsSingleton(isEncryptedNode: true);
                       Future.delayed(_splashDuration, () {
                         if (context.mounted) {
                           context.go(AppRoute.basicPassword.fullPath);

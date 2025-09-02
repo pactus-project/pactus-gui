@@ -485,4 +485,67 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get error_node_duplicate_running =>
       'Un nodo duplicado está en ejecución. El nodo está bloqueado.';
+
+  @override
+  String get network => 'Red';
+
+  @override
+  String get moniker => 'Moniker';
+
+  @override
+  String get networkId => 'ID de red';
+
+  @override
+  String get workingDir => 'Directorio de trabajo';
+
+  @override
+  String get encryptedWallet => 'Monedero cifrado';
+
+  @override
+  String get clientVersion => 'Versión del cliente';
+
+  @override
+  String get protocolVersion => 'Versión del protocolo';
+
+  @override
+  String get nodeType => 'Tipo de nodo';
+
+  @override
+  String get isPrune => 'Es podado';
+
+  @override
+  String get services => 'Servicios';
+
+  @override
+  String get protocols => 'Protocolos';
+
+  @override
+  String get error_no_internet =>
+      'Sin conexión a internet o servidor inalcanzable';
+
+  @override
+  String get error_timeout =>
+      'Tiempo de espera agotado, por favor intente nuevamente';
+
+  @override
+  String get error_unexpected => 'Error inesperado';
+
+  @override
+  String get error_grpc_cancelled => 'La solicitud fue cancelada';
+
+  @override
+  String get error_grpc_unauthenticated => 'No estás autenticado';
+
+  @override
+  String get error_grpc_permission_denied => 'Permiso denegado';
+
+  @override
+  String get error_grpc_unavailable => 'Servicio temporalmente no disponible';
+
+  @override
+  String get error_grpc_deadline_exceeded =>
+      'El servidor tardó demasiado en responder';
+
+  @override
+  String get error_grpc_unknown => 'Error gRPC desconocido';
 }

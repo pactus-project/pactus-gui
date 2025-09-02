@@ -5,6 +5,7 @@ import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/daemon_manager_blo
 import 'package:pactus_gui/src/features/dashboard/presentation/widgets/addresses_card_content.dart';
 import 'package:pactus_gui/src/features/dashboard/presentation/widgets/addresses_card_header.dart';
 import 'package:pactus_gui/src/features/dashboard/sub_modules/get_node_addresses/data/mappers/get_node_addresses_mapper.dart';
+import 'package:pactus_gui/src/features/dashboard/sub_modules/get_node_addresses/data/models/get_node_addresse_model.dart';
 
 class LoadNodeValidatorAddresses extends StatefulWidget {
   const LoadNodeValidatorAddresses({super.key});
@@ -32,7 +33,7 @@ class _LoadNodeValidatorAddressesState
           final result = state.output;
           final list = AddressMapper.fromText(result);
           return SizedBox(
-            height: 230,
+            height: 320,
             width: 660,
             child: Card(
               child: Padding(
@@ -41,14 +42,22 @@ class _LoadNodeValidatorAddressesState
                   children: [
                     AddressesCardHeader(),
                     SizedBox(
-                      height: 180,
+                      height: 270,
                       width: 660,
                       child: ListView.builder(
                         itemCount: list.length,
                         itemBuilder: (context, index) {
                           final contact = list[index];
                           return Column(
-                            children: [AddressesCardContent(contact: contact)],
+                            children: [
+                              AddressesCardContent(
+                                contact: AddressModel(
+                                  id: contact.id,
+                                  address: contact.address,
+                                  label: contact.label,
+                                ),
+                              ),
+                            ],
                           );
                         },
                       ),

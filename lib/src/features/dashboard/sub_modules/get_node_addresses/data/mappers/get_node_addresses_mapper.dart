@@ -23,15 +23,16 @@ mixin AddressMapper {
     }
 
     return AddressModel(
-      id: id,
+      // set id , only to validators
+      id: (id == 1 ? '' : id - 1).toString(),
       address: remainingParts[0].trim(),
-      label: remainingParts.skip(1).join(' ').trim(),
+      label: remainingParts[1].trim(),
     );
   }
 
   static String toText(List<AddressModel> addresses) {
     return addresses
-        .map((addr) => '${addr.id}- ${addr.address} ${addr.label}')
+        .map((address) => '${address.id}- ${address.address} ${address.label}')
         .join('\n');
   }
 }

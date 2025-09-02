@@ -178,4 +178,26 @@ abstract class LocaleKeys {
   static const String directory_creation_failed = 'directory_creation_failed';
   static const String error_node_duplicate_running =
       'error_node_duplicate_running';
+  static const String network = 'network';
+  static const String moniker = 'moniker';
+  static const String networkId = 'networkId';
+  static const String workingDir = 'workingDir';
+  static const String encryptedWallet = 'encryptedWallet';
+  static const String clientVersion = 'clientVersion';
+  static const String protocolVersion = 'protocolVersion';
+  static const String nodeType = 'nodeType';
+  static const String isPrune = 'isPrune';
+  static const String services = 'services';
+  static const String protocols = 'protocols';
+  static const String error_no_internet = 'error_no_internet';
+  static const String error_timeout = 'error_timeout';
+  static const String error_unexpected = 'error_unexpected';
+  static const String error_grpc_cancelled = 'error_grpc_cancelled';
+  static const String error_grpc_unauthenticated = 'error_grpc_unauthenticated';
+  static const String error_grpc_permission_denied =
+      'error_grpc_permission_denied';
+  static const String error_grpc_unavailable = 'error_grpc_unavailable';
+  static const String error_grpc_deadline_exceeded =
+      'error_grpc_deadline_exceeded';
+  static const String error_grpc_unknown = 'error_grpc_unknown';
 }

@@ -10,8 +10,8 @@ class AddressesCardHeader extends StatelessWidget {
     return Row(
       spacing: 8,
       children: [
-        AddressesCardHeaderItem(label: LocaleKeys.label, size: 120),
-        AddressesCardHeaderItem(label: LocaleKeys.address, size: 284),
+        AddressesCardHeaderItem(label: LocaleKeys.label, size: 80),
+        AddressesCardHeaderItem(label: LocaleKeys.address, size: 224),
         AddressesCardHeaderItem(label: LocaleKeys.stake, size: 48),
         Expanded(
           child: Row(

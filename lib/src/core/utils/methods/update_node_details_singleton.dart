@@ -6,6 +6,9 @@ void updateNodeDetailsSingleton({
   String? password,
   int? port,
   String? nodeType,
+  bool? isEncryptedNode,
+  String? networkName,
+  String? nodeWorkingDirectory,
 }) {
   // Get the existing instance if it exists
   final existingDetails = GetIt.I.isRegistered<NodeDetails>()
@@ -20,6 +23,10 @@ void updateNodeDetailsSingleton({
     // Provide default if no existing value
     port: port ?? existingDetails?.port ?? 0,
     password: password ?? existingDetails?.password,
+    nodeWorkingDirectory:
+        nodeWorkingDirectory ?? existingDetails?.nodeWorkingDirectory,
+    networkName: networkName ?? existingDetails?.networkName,
+    isEncryptedNode: isEncryptedNode ?? existingDetails?.isEncryptedNode,
   );
 
   // Unregister if already registered

@@ -488,4 +488,66 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get error_node_duplicate_running =>
       'Un nœud dupliqué est actif. Le nœud est verrouillé.';
+
+  @override
+  String get network => 'Réseau';
+
+  @override
+  String get moniker => 'Moniker';
+
+  @override
+  String get networkId => 'ID du réseau';
+
+  @override
+  String get workingDir => 'Répertoire de travail';
+
+  @override
+  String get encryptedWallet => 'Portefeuille chiffré';
+
+  @override
+  String get clientVersion => 'Version du client';
+
+  @override
+  String get protocolVersion => 'Version du protocole';
+
+  @override
+  String get nodeType => 'Type de nœud';
+
+  @override
+  String get isPrune => 'Est élagué';
+
+  @override
+  String get services => 'Services';
+
+  @override
+  String get protocols => 'Protocoles';
+
+  @override
+  String get error_no_internet =>
+      'Pas de connexion Internet ou serveur inaccessible';
+
+  @override
+  String get error_timeout => 'Délai d`attente dépassé, veuillez réessayer';
+
+  @override
+  String get error_unexpected => 'Erreur inattendue';
+
+  @override
+  String get error_grpc_cancelled => 'La requête a été annulée';
+
+  @override
+  String get error_grpc_unauthenticated => 'Vous n`êtes pas authentifié';
+
+  @override
+  String get error_grpc_permission_denied => 'Permission refusée';
+
+  @override
+  String get error_grpc_unavailable => 'Service temporairement indisponible';
+
+  @override
+  String get error_grpc_deadline_exceeded =>
+      'Le serveur a mis trop de temps à répondre';
+
+  @override
+  String get error_grpc_unknown => 'Erreur gRPC inconnue';
 }

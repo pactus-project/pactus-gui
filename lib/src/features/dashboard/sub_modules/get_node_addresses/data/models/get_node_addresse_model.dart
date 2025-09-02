@@ -1,6 +1,6 @@
 class AddressModel {
   AddressModel({required this.id, required this.address, required this.label});
-  final int id;
+  final String id;
   final String address;
   final String label;
 

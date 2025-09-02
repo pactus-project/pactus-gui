@@ -480,4 +480,65 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get error_node_duplicate_running =>
       'Duplicate node is running. The node is locked.';
+
+  @override
+  String get network => 'Network';
+
+  @override
+  String get moniker => 'Moniker';
+
+  @override
+  String get networkId => 'Network ID';
+
+  @override
+  String get workingDir => 'Working Dir';
+
+  @override
+  String get encryptedWallet => 'Encrypted Wallet';
+
+  @override
+  String get clientVersion => 'Client Version';
+
+  @override
+  String get protocolVersion => 'Protocol Version';
+
+  @override
+  String get nodeType => 'Node Type';
+
+  @override
+  String get isPrune => 'Is Prune';
+
+  @override
+  String get services => 'Services';
+
+  @override
+  String get protocols => 'Protocols';
+
+  @override
+  String get error_no_internet =>
+      'No internet connection or server unreachable';
+
+  @override
+  String get error_timeout => 'Request timed out, please try again';
+
+  @override
+  String get error_unexpected => 'Unexpected error';
+
+  @override
+  String get error_grpc_cancelled => 'Request was cancelled';
+
+  @override
+  String get error_grpc_unauthenticated => 'You are not authenticated';
+
+  @override
+  String get error_grpc_permission_denied => 'Permission denied';
+
+  @override
+  String get error_grpc_unavailable => 'Service temporarily unavailable';
+
+  @override
+  String get error_grpc_deadline_exceeded => 'Server took too long to respond';
+
+  @override
+  String get error_grpc_unknown => 'Unknown gRPC error';
 }
