@@ -9,6 +9,7 @@ Future<void> windowsManager() async {
     final windowOptions = WindowOptions(
       title: 'Pactus GUI',
       size: Size(1280, 720),
+      minimumSize: Size(1280, 720),
       skipTaskbar: false,
       titleBarStyle: TitleBarStyle.hidden,
     );
