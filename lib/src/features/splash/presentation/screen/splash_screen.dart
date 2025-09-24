@@ -65,12 +65,16 @@ class SplashScreen extends StatelessWidget {
                     });
                   }
                   if (state is DaemonSuccess) {
-                    final isUnprotectedNode = state.output.contains('false');
-                    final isProtectedNode = state.output.contains('true');
+                    final isUnprotectedNode = state.output
+                        .toLowerCase()
+                        .contains('false');
+                    final isProtectedNode = state.output.toLowerCase().contains(
+                      'true',
+                    );
                     final isUndefinedNode =
-                        !state.output.contains('is encrtypted') &&
-                        !state.output.contains('created at');
-                    if (state.output.contains('network:')) {
+                        !state.output.toLowerCase().contains('is encrtypted') &&
+                        !state.output.toLowerCase().contains('created at');
+                    if (state.output.toLowerCase().contains('network:')) {
                       final match = RegExp(
                         r'mainnet|testnet|localnet',
                       ).firstMatch(state.output.toLowerCase());
@@ -171,6 +175,7 @@ class SplashScreen extends StatelessWidget {
 
                         final nodeDirectory =
                             '${StorageUtils.getData<String>(storageKey)}';
+
                         final walletPath =
                             '$sign${CliConstants.wallets}'
                             '$sign${CliConstants.defaultWallet}';
