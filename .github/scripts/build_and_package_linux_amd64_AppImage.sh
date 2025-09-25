@@ -11,7 +11,7 @@ ARCH="x86_64"
 ARCH_NAME="amd64"
 APPDIR="AppDir"
 OUTPUT_NAME="PactusGUI-${TAG_NAME}-linux-${ARCH_NAME}.AppImage"
-PACTUS_CLI_URL="https://github.com/pactus-project/pactus/releases/download/v1.9.0/pactus-cli_1.9.0_linux_amd64.tar.gz"
+PACTUS_CLI_URL="https://github.com/pactus-project/pactus/releases/download/v1.9.1/pactus-cli_1.9.1_linux_amd64.tar.gz"
 FINAL_CLI_DEST="$APPDIR/usr/bin/lib/src/core/native_resources/linux"
 APPIMAGE_TOOL="appimagetool-x86_64.AppImage"
 
