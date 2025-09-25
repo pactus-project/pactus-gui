@@ -1,3 +1,10 @@
+# 1.68.0+73
+### [Feature]
+- Update daemon files to version  `v1.9.0 (Lisbon)` [#217](https://github.com/pactus-project/pactus-gui/pull/218)
+  - fix(splashScreen): resolved detection node-network & protected-node conditions
+  - ci: update cli files to version (v1.9.0)
+
+
 # 1.67.0+72
 ### [Feature]
 - Implement API connection for Network Information card and connect to UI [#118](https://github.com/pactus-project/pactus-gui/pull/215)
