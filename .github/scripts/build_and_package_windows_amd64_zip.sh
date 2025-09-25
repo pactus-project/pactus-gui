@@ -11,7 +11,7 @@ BUILD_DIR="$(pwd)/build/windows/x64/runner/Release"
 OUTPUT_DIR="$(pwd)/artifacts/windows/${ARCH}"
 ROOT_OUTPUT_DIR="$(pwd)/artifacts"
 OUTPUT_NAME="PactusGUI-${TAG_NAME}-windows-${ARCH}.zip"
-PACTUS_CLI_URL="https://github.com/pactus-project/pactus/releases/download/v1.8.0/pactus-cli_1.8.0_windows_amd64.zip"
+PACTUS_CLI_URL="https://github.com/pactus-project/pactus/releases/download/v1.9.0/pactus-cli_1.9.0_windows_amd64.zip"
 FINAL_CLI_DEST="${BUILD_DIR}/lib/src/core/native_resources/windows"
 
 # ------------------------

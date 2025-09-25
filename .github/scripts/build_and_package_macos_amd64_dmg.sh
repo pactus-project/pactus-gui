@@ -11,7 +11,7 @@ OUTPUT_NAME="PactusGUI-${TAG_NAME}-macos-amd64.dmg"
 APP_NAME="Pactus GUI"
 APPDIR="temp_dmg"
 APP_PATH="build/macos/Build/Products/Release/gui.app"
-PACTUS_CLI_URL="https://github.com/pactus-project/pactus/releases/download/v1.8.0/pactus-cli_1.8.0_darwin_amd64.tar.gz"
+PACTUS_CLI_URL="https://github.com/pactus-project/pactus/releases/download/v1.9.0/pactus-cli_1.9.0_darwin_amd64.tar.gz"
 
 # --------------------------------------
 # FUNCTIONS

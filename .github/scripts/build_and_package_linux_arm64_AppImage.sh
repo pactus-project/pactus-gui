@@ -7,7 +7,7 @@ TAG_NAME="${1:-local}"
 ARCH="arm64"
 APPDIR="AppDir"
 OUTPUT_NAME="PactusGUI-${TAG_NAME}-linux-${ARCH}.AppImage"
-PACTUS_CLI_URL="https://github.com/pactus-project/pactus/releases/download/v1.8.0/pactus-cli_1.8.0_linux_arm64.tar.gz"
+PACTUS_CLI_URL="https://github.com/pactus-project/pactus/releases/download/v1.9.0/pactus-cli_1.9.0_linux_arm64.tar.gz"
 FINAL_CLI_DEST="$APPDIR/usr/bin/lib/src/core/native_resources/linux"
 APPIMAGE_TOOL="appimagetool-aarch64.AppImage"
 
