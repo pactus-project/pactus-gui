@@ -1,3 +1,8 @@
+# 1.69.0+75
+### [Feature]
+- Update daemon files to version  `v1.9.1 (Lisbon)` [#217](https://github.com/pactus-project/pactus-gui/pull/218)
+  - ci: update cli files to version (v1.9.1)
+
 # 1.68.0+73
 ### [Feature]
 - Update daemon files to version  `v1.9.0 (Lisbon)` [#217](https://github.com/pactus-project/pactus-gui/pull/218)
