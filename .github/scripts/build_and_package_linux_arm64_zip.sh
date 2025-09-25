@@ -12,7 +12,7 @@ BUILD_DIR="$(pwd)/build/linux/${ARCH}/release/bundle"
 OUTPUT_DIR="$(pwd)/artifacts/linux/${ARCH}/release/bundle"
 ROOT_OUTPUT_DIR="$(pwd)/artifacts"
 OUTPUT_NAME="PactusGUI-${TAG_NAME}-linux-${ARCH}.zip"
-PACTUS_CLI_URL="https://github.com/pactus-project/pactus/releases/download/v1.9.0/pactus-cli_1.9.0_linux_arm64.tar.gz"
+PACTUS_CLI_URL="https://github.com/pactus-project/pactus/releases/download/v1.9.1/pactus-cli_1.9.1_linux_arm64.tar.gz"
 FINAL_CLI_DEST="${BUILD_DIR}/lib/src/core/native_resources/linux"
 
 # ------------------------
