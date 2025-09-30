@@ -1,3 +1,10 @@
+# 1.70.0+76
+### [Refactor]
+- Implement API calls using `pactus gRPC package` [#221](https://github.com/pactus-project/pactus-gui/pull/222)
+  - Add gRPC dependency and configuration
+  - Delete old generated files
+  - Replace existing API implementation with pactus gRPC client
+
 # 1.69.0+75
 ### [Feature]
 - Update daemon files to version  `v1.9.1 (Lisbon)` [#217](https://github.com/pactus-project/pactus-gui/pull/218)
