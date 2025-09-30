@@ -1,5 +1,4 @@
-import 'package:flutter_pactus_grpc/exports/blockchain.dart'
-    show ValidatorInfo;
+import 'package:flutter_pactus_grpc/exports/blockchain.dart' show ValidatorInfo;
 
 extension ListValidatorInfoExtension on List<ValidatorInfo> {
   ValidatorInfo? getByAddress(String address) {

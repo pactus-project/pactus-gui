@@ -2,7 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:grpc/grpc.dart';
+// ignore: depend_on_referenced_packages
+import 'package:grpc/grpc.dart' show GrpcError, StatusCode;
 import 'package:pactus_gui/src/core/utils/error_handeling/failure_model.dart'
     show Failure;
 import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart'

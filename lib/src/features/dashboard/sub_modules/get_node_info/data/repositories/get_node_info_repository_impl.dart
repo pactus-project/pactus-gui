@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_pactus_grpc/exports/network.dart' show GetNodeInfoRequest;
+import 'package:flutter_pactus_grpc/exports/network.dart'
+    show GetNodeInfoRequest;
 import 'package:get_it/get_it.dart' show GetIt;
 import 'package:pactus_gui/src/core/utils/error_handeling/failure_model.dart';
 import 'package:pactus_gui/src/data/models/node_details.dart' show NodeDetails;

@@ -10,7 +10,6 @@ import 'package:pactus_gui/src/features/dashboard/sub_modules/get_node_addresses
 import 'package:pactus_gui/src/features/dashboard/sub_modules/get_validator/presentation/bloc/get_validator_bloc.dart'
     show GetValidatorBloc, GetValidatorEvent, GetValidatorState;
 
-
 class AddressesCardContent extends StatelessWidget {
   const AddressesCardContent({super.key, required this.contact});
 
@@ -65,9 +64,9 @@ class AddressesCardContent extends StatelessWidget {
                         orElse: () => ShimmerCardItem(width: 48),
                         loaded: (response) {
                           final result =
-                          response.committeeValidators.any(
+                              response.committeeValidators.any(
                                 (item) => item.address == contact.address,
-                          )
+                              )
                               ? 'Yes'
                               : 'No';
                           return SimpleTextCard(text: result, width: 32);

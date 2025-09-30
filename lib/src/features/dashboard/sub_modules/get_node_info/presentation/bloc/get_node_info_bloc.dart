@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_pactus_grpc/exports/network.dart' show GetNodeInfoRequest;
+import 'package:flutter_pactus_grpc/exports/network.dart'
+    show GetNodeInfoRequest;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:pactus_gui/src/core/enums/app_enums.dart';
 import 'package:pactus_gui/src/features/dashboard/sub_modules/get_node_info/domain/entities/get_node_info_entity.dart'

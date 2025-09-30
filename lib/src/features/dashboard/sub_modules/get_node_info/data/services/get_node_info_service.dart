@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart' show Either;
 import 'package:flutter_pactus_grpc/exports/network.dart'
     show GetNodeInfoRequest, GetNodeInfoResponse, NetworkClient;
 import 'package:get_it/get_it.dart';
+// ignore: depend_on_referenced_packages
 import 'package:grpc/grpc.dart' show ClientChannel;
 import 'package:pactus_gui/src/core/utils/error_handeling/failure_model.dart'
     show Failure;
