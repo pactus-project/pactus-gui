@@ -1,4 +1,4 @@
-import 'package:pactus_gui/src/data/models/generated/network.pbgrpc.dart';
+import 'package:flutter_pactus_grpc/exports/network.dart' show GetNodeInfoResponse;
 import 'package:pactus_gui/src/features/dashboard/sub_modules/get_node_info/domain/entities/get_node_info_entity.dart';
 
 class GetNodeInfoMapper {

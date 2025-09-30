@@ -27,13 +27,13 @@ dependencies:
   flutter_gen_runner: ^5.3.1
   flutter_localizations:
     sdk: flutter
+  flutter_pactus_grpc: ^0.1.2
   flutter_svg: ^2.0.16
   freezed: ^2.3.4
   freezed_annotation: ^2.2.0
   gap: ^3.0.1
   get_it: ^8.0.2
   go_router: ^14.6.1
-  grpc:
   intl: ^0.20.2
   pactus_gui_widgetbook:
 #        path: ../pactus-gui-widgetbook
@@ -42,7 +42,6 @@ dependencies:
       ref: fdf61d75a8d689a65b6abc05ec315f0420e3e071
   path: ^1.8.3
   process_run: ^1.2.2+1
-  protobuf:
   rxdart: ^0.28.0
   shared_preferences: ^2.2.2
   shimmer: ^3.0.0

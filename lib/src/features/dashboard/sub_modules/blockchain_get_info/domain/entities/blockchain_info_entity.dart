@@ -1,4 +1,4 @@
-import 'package:pactus_gui/src/data/models/generated/blockchain.pb.dart';
+import 'package:flutter_pactus_grpc/exports/blockchain.dart' show ValidatorInfo;
 
 class BlockchainInfoEntity {
   BlockchainInfoEntity({

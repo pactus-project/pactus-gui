@@ -1,4 +1,5 @@
-import 'package:pactus_gui/src/data/models/generated/blockchain.pbgrpc.dart';
+import 'package:flutter_pactus_grpc/exports/blockchain.dart'
+    show GetValidatorResponse;
 import 'package:pactus_gui/src/features/dashboard/sub_modules/get_validator/domain/entities/get_validator_entity.dart';
 
 class GetValidatorMapper {
