@@ -467,6 +467,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_pactus_grpc:
+    dependency: "direct main"
+    description:
+      name: flutter_pactus_grpc
+      sha256: "9835bc3d898340d6c4c2ddc02a66c1e96257f8dbdd4ff168cb0d58ca2c710d55"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.2+3"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -545,10 +553,10 @@ packages:
     dependency: transitive
     description:
       name: google_identity_services_web
-      sha256: "55580f436822d64c8ff9a77e37d61f5fb1e6c7ec9d632a43ee324e2a05c3c6c9"
+      sha256: "5d187c46dc59e02646e10fe82665fc3884a9b71bc1c90c2b8b749316d33ee454"
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.3"
+    version: "0.3.3+1"
   googleapis_auth:
     dependency: transitive
     description:
@@ -566,13 +574,13 @@ packages:
     source: hosted
     version: "2.3.2"
   grpc:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: grpc
-      sha256: "30e1edae6846b163a64f6d8716e3443980fe1f7d2d1f086f011d24ea186f2582"
+      sha256: "2dde469ddd8bbd7a33a0765da417abe1ad2142813efce3a86c512041294e2b26"
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.4"
+    version: "4.1.0"
   hashcodes:
     dependency: transitive
     description:
@@ -903,13 +911,13 @@ packages:
     source: hosted
     version: "1.2.2+1"
   protobuf:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: protobuf
-      sha256: fbb0c37d435641d0b84813c1dad41e6fa61ddc880a320bce16b3063ecec35aa6
+      sha256: de9c9eb2c33f8e933a42932fe1dc504800ca45ebc3d673e6ed7f39754ee4053e
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.0"
+    version: "4.2.0"
   provider:
     dependency: transitive
     description:

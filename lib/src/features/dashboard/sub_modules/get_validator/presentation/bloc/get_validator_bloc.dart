@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_pactus_grpc/exports/blockchain.dart'
+    show GetValidatorRequest;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:pactus_gui/src/core/enums/app_enums.dart';
-import 'package:pactus_gui/src/data/models/generated/blockchain.pbgrpc.dart'
-    show GetValidatorRequest;
 import 'package:pactus_gui/src/features/dashboard/sub_modules/get_validator/domain/entities/get_validator_entity.dart'
     show GetValidatorEntity;
 import 'package:pactus_gui/src/features/dashboard/sub_modules/get_validator/domain/use_cases/get_validator_use_case.dart'

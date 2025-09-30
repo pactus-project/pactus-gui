@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:pactus_gui/src/core/utils/error_handeling/failure_model.dart';
-import 'package:pactus_gui/src/data/models/generated/blockchain.pbgrpc.dart'
+import 'package:flutter_pactus_grpc/exports/blockchain.dart'
     show GetValidatorRequest;
+import 'package:pactus_gui/src/core/utils/error_handeling/failure_model.dart';
 import 'package:pactus_gui/src/features/dashboard/sub_modules/get_validator/data/mappers/get_validator_mapper.dart';
 import 'package:pactus_gui/src/features/dashboard/sub_modules/get_validator/data/services/get_validator_service.dart'
     show GetValidatorService;

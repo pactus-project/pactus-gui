@@ -1,9 +1,9 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_pactus_grpc/exports/blockchain.dart'
+    show GetValidatorRequest;
 import 'package:pactus_gui/src/core/common/widgets/shimmer_card_item.dart';
 import 'package:pactus_gui/src/core/di/locator.dart' show getIt;
-import 'package:pactus_gui/src/data/models/generated/blockchain.pbgrpc.dart'
-    show GetValidatorRequest;
 import 'package:pactus_gui/src/features/dashboard/presentation/widgets/addresses_card_content_item.dart';
 import 'package:pactus_gui/src/features/dashboard/sub_modules/blockchain_get_info/presentation/bloc/blockchain_get_info_bloc.dart';
 import 'package:pactus_gui/src/features/dashboard/sub_modules/get_node_addresses/data/models/get_node_addresse_model.dart';

@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
-import 'package:grpc/grpc.dart';
+// ignore: depend_on_referenced_packages
+import 'package:grpc/grpc.dart'
+    show ChannelCredentials, ChannelOptions, ClientChannel;
 import 'package:pactus_gui/src/data/models/node_details.dart';
 import 'package:pactus_gui/src/features/dashboard/sub_modules/blockchain_get_info/data/repositories/blockchain_repository_impl.dart';
 import 'package:pactus_gui/src/features/dashboard/sub_modules/blockchain_get_info/data/services/blockchain_service.dart';

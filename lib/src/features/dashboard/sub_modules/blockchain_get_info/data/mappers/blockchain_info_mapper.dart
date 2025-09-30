@@ -1,4 +1,5 @@
-import 'package:pactus_gui/src/data/models/generated/blockchain.pbgrpc.dart';
+import 'package:flutter_pactus_grpc/exports/blockchain.dart'
+    show GetBlockchainInfoResponse;
 import 'package:pactus_gui/src/features/dashboard/sub_modules/blockchain_get_info/domain/entities/blockchain_info_entity.dart';
 
 mixin BlockchainInfoMapper {

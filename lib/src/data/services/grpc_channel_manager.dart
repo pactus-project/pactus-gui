@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
-import 'package:grpc/grpc.dart';
+// ignore: depend_on_referenced_packages
+import 'package:grpc/grpc.dart'
+    show ChannelCredentials, ChannelOptions, ClientChannel;
 import 'package:pactus_gui/src/data/models/node_details.dart';
 
 class GrpcChannelManager {
