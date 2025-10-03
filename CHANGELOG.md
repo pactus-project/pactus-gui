@@ -1,3 +1,7 @@
+# 1.71.0+77
+### [Feature]
+- Add minimum size to the application window [#223](https://github.com/pactus-project/pactus-gui/pull/213)
+
 # 1.70.0+76
 ### [Refactor]
 - Implement API calls using `pactus gRPC package` [#221](https://github.com/pactus-project/pactus-gui/pull/222)
