@@ -1,3 +1,8 @@
+# 1.72.0+78
+### [Feature]
+- Improve responsiveness seed phrase component [#224](https://github.com/pactus-project/pactus-gui/pull/214)
+  - feat(features): fixed seed phrase display height
+
 # 1.71.0+77
 ### [Feature]
 - Add minimum size to the application window [#223](https://github.com/pactus-project/pactus-gui/pull/213)
