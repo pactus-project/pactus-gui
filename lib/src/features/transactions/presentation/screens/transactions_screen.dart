@@ -1,6 +1,17 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
-import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
+import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder;
+import 'package:pactus_gui/src/core/constants/app_constants.dart'
+    show AppConstants;
+import 'package:pactus_gui/src/core/enums/app_enums.dart';
+import 'package:pactus_gui/src/features/transactions/presentation/blocs/transaction_type_cubit.dart';
+import 'package:pactus_gui/src/features/transactions/presentation/forms/bond_input_form.dart'
+    show BondInputForm;
+import 'package:pactus_gui/src/features/transactions/presentation/forms/transfer_input_form.dart'
+    show TransferInputForm;
+import 'package:pactus_gui/src/features/transactions/presentation/forms/unbond_input_form.dart'
+    show UnbondInputForm;
+import 'package:pactus_gui/src/features/transactions/presentation/forms/withdraw_input_form.dart'
+    show WithdrawInputForm;
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class TransactionsScreen extends StatelessWidget {
@@ -8,15 +19,34 @@ class TransactionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppTheme.of(context).extension<BlueGrayPallet>()!.blueGray100,
-      width: double.infinity,
-      child: Center(
-        child: Text(
-          '${context.tr(LocaleKeys.coming_soon)}'
-          '...',
-          style: TextStyle(
-            color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
+    final bgTransactionBoxColor =
+        AppTheme.of(context).brightness == Brightness.light
+        ? AppConstants.bgTransactionBoxLight
+        : AppConstants.bgTransactionBoxDark;
+    final transactionBoxColor =
+        AppTheme.of(context).brightness == Brightness.light
+        ? AppConstants.transactionBoxLight
+        : AppConstants.transactionBoxDark;
+
+    return ColoredBox(
+      color: bgTransactionBoxColor,
+      child: UnconstrainedBox(
+        child: Container(
+          width: 553,
+          decoration: BoxDecoration(
+            color: transactionBoxColor,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          padding: const EdgeInsets.all(32),
+          child: BlocBuilder<TransactionTypeCubit, TransactionType>(
+            builder: (context, state) {
+              return switch (state) {
+                TransactionType.unbond => UnbondInputForm(),
+                TransactionType.bond => BondInputForm(),
+                TransactionType.transfer => TransferInputForm(),
+                TransactionType.withdraw => WithdrawInputForm(),
+              };
+            },
           ),
         ),
       ),

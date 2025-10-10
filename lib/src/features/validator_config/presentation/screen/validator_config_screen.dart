@@ -34,7 +34,7 @@ import 'package:pactus_gui_widgetbook/app_widgets.dart';
 /// This screen allows the user to:
 /// - Select a working directory via the "Select Folder" button.
 /// - Choose the validator quantity from a predefined set of options.
-/// - Navigate between sections using the navigation pane.
+/// - Navigate between forms using the navigation pane.
 ///
 /// ### Methods:
 ///

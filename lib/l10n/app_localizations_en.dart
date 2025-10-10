@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -538,6 +539,30 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get error_grpc_deadline_exceeded => 'Server took too long to respond';
+
+  @override
+  String get transaction_type => 'Transaction type';
+
+  @override
+  String get withdraw => 'Withdraw';
+
+  @override
+  String get bond => 'Bond';
+
+  @override
+  String get unbond => 'Unbond';
+
+  @override
+  String get transfer => 'Transfer';
+
+  @override
+  String get transaction_form => 'Transaction Form';
+
+  @override
+  String get confirmation => 'Confirmation';
+
+  @override
+  String get result => 'Result';
 
   @override
   String get error_grpc_unknown => 'Unknown gRPC error';

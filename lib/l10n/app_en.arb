@@ -165,5 +165,13 @@
   "error_grpc_permission_denied": "Permission denied",
   "error_grpc_unavailable": "Service temporarily unavailable",
   "error_grpc_deadline_exceeded": "Server took too long to respond",
+  "transaction_type": "Transaction type",
+  "withdraw": "Withdraw",
+  "bond": "Bond",
+  "unbond": "Unbond",
+  "transfer": "Transfer",
+  "transaction_form": "Transaction Form",
+  "confirmation": "Confirmation",
+  "result": "Result",
   "error_grpc_unknown": "Unknown gRPC error"
 }
