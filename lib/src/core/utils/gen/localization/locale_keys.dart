@@ -199,5 +199,13 @@ abstract class LocaleKeys {
   static const String error_grpc_unavailable = 'error_grpc_unavailable';
   static const String error_grpc_deadline_exceeded =
       'error_grpc_deadline_exceeded';
+  static const String transaction_type = 'transaction_type';
+  static const String withdraw = 'withdraw';
+  static const String bond = 'bond';
+  static const String unbond = 'unbond';
+  static const String transfer = 'transfer';
+  static const String transaction_form = 'transaction_form';
+  static const String confirmation = 'confirmation';
+  static const String result = 'result';
   static const String error_grpc_unknown = 'error_grpc_unknown';
 }

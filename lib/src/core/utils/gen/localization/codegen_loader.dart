@@ -222,6 +222,14 @@ class CodegenLoader {
     'error_grpc_permission_denied': 'Permission denied',
     'error_grpc_unavailable': 'Service temporarily unavailable',
     'error_grpc_deadline_exceeded': 'Server took too long to respond',
+    'transaction_type': 'Transaction type',
+    'withdraw': 'Withdraw',
+    'bond': 'Bond',
+    'unbond': 'Unbond',
+    'transfer': 'Transfer',
+    'transaction_form': 'Transaction Form',
+    'confirmation': 'Confirmation',
+    'result': 'Result',
     'error_grpc_unknown': 'Unknown gRPC error',
   };
   static const Map<String, dynamic> frFR = {
@@ -427,6 +435,14 @@ class CodegenLoader {
     'error_grpc_permission_denied': 'Permission refusée',
     'error_grpc_unavailable': 'Service temporairement indisponible',
     'error_grpc_deadline_exceeded': 'Le serveur a mis trop de temps à répondre',
+    'transaction_type': 'Type de Transaction',
+    'withdraw': 'Retirer',
+    'bond': 'Lier',
+    'unbond': 'Délier',
+    'transfer': 'Transférer',
+    'transaction_form': 'Formulaire de Transaction',
+    'confirmation': 'Confirmation',
+    'result': 'Résultat',
     'error_grpc_unknown': 'Erreur gRPC inconnue',
   };
   static const Map<String, dynamic> esES = {
@@ -630,6 +646,14 @@ class CodegenLoader {
     'error_grpc_permission_denied': 'Permiso denegado',
     'error_grpc_unavailable': 'Servicio temporalmente no disponible',
     'error_grpc_deadline_exceeded': 'El servidor tardó demasiado en responder',
+    'transaction_type': 'Tipo de Transacción',
+    'withdraw': 'Retirar',
+    'bond': 'Vincular',
+    'unbond': 'Desvincular',
+    'transfer': 'Transferir',
+    'transaction_form': 'Formulario de Transacción',
+    'confirmation': 'Confirmación',
+    'result': 'Resultado',
     'error_grpc_unknown': 'Error gRPC desconocido',
   };
 
