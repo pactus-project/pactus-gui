@@ -1,3 +1,5 @@
+import '../utils/gen/localization/locale_keys.dart';
+
 enum ValidatorQty {
   seven(qty: 7),
   twentyFour(qty: 24),
@@ -25,3 +27,26 @@ enum DelayTime {
 }
 
 enum DialogType { warning, info, succeed, error, normal }
+
+enum TransactionType {
+  withdraw(LocaleKeys.withdraw, 0),
+  bond(LocaleKeys.bond, 1),
+  unbond(LocaleKeys.unbond, 2),
+  transfer(LocaleKeys.transfer, 3);
+
+  const TransactionType(this.title, this.id);
+
+  final String title;
+  final int id;
+}
+
+enum TransactionStep {
+  transactionForm(LocaleKeys.transaction_form, 0),
+  confirmation(LocaleKeys.confirm, 1),
+  result(LocaleKeys.result, 2);
+
+  const TransactionStep(this.title, this.id);
+
+  final String title;
+  final int id;
+}

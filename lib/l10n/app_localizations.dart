@@ -166,6 +166,12 @@ abstract class AppLocalizations {
   /// **'Confirm seed'**
   String get confirm_seed;
 
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
   /// No description provided for @master_password.
   ///
   /// In en, this message translates to:
@@ -1077,6 +1083,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Server took too long to respond'**
   String get error_grpc_deadline_exceeded;
+
+  /// No description provided for @transaction_type.
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction type'**
+  String get transaction_type;
+
+  /// No description provided for @withdraw.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdraw'**
+  String get withdraw;
+
+  /// No description provided for @bond.
+  ///
+  /// In en, this message translates to:
+  /// **'Bond'**
+  String get bond;
+
+  /// No description provided for @unbond.
+  ///
+  /// In en, this message translates to:
+  /// **'Unbond'**
+  String get unbond;
+
+  /// No description provided for @transfer.
+  ///
+  /// In en, this message translates to:
+  /// **'Transfer'**
+  String get transfer;
+
+  /// No description provided for @transaction_form.
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction'**
+  String get transaction_form;
+
+  /// No description provided for @confirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmation'**
+  String get confirmation;
+
+  /// No description provided for @result.
+  ///
+  /// In en, this message translates to:
+  /// **'Result'**
+  String get result;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
 
   /// No description provided for @error_grpc_unknown.
   ///

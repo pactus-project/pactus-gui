@@ -66,7 +66,7 @@ class _InitializeModeScreenState extends State<InitializeModeScreen> {
   final _remoteNodeSectionKey = GlobalKey<RemoteNodeSectionState>();
 
   void _handleNextPressed(int selectedValue) {
-    // Validate all sections before proceeding
+    // Validate all forms before proceeding
     switch (selectedValue) {
       case 0:
         context.go(
