@@ -11,6 +11,7 @@
   "initialize_mode": "Mode dinitialisation",
   "wallet_seed": "Graine de portefeuille",
   "confirm_seed": "Confirmer la graine",
+  "confirm": "Confirmer",
   "master_password": "mot de passe principal",
   "validator_config": "Configuration du validateur",
   "initializing": "Initialisation",
@@ -170,8 +171,9 @@
   "bond": "Lier",
   "unbond": "Délier",
   "transfer": "Transférer",
-  "transaction_form": "Formulaire de Transaction",
+  "transaction_form": "Transaction",
   "confirmation": "Confirmation",
   "result": "Résultat",
+  "close": "Fermer",
   "error_grpc_unknown": "Erreur gRPC inconnue"
 }

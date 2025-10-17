@@ -11,6 +11,7 @@
   "initialize_mode": "Modo de inicialización",
   "wallet_seed": "Semilla de billetera",
   "confirm_seed": "Confirmar semilla",
+  "confirm": "Confirmar",
   "master_password": "contraseña maestra",
   "validator_config": "Configuración del validador",
   "initializing": "Inicializando",
@@ -170,8 +171,9 @@
   "bond": "Vincular",
   "unbond": "Desvincular",
   "transfer": "Transferir",
-  "transaction_form": "Formulario de Transacción",
+  "transaction_form": "Transacción",
   "confirmation": "Confirmación",
   "result": "Resultado",
+  "close": "Cerrar",
   "error_grpc_unknown": "Error gRPC desconocido"
 }

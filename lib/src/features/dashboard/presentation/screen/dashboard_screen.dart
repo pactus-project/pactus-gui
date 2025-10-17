@@ -12,6 +12,8 @@ import 'package:pactus_gui/src/features/main/language/core/localization_extensio
 import 'package:pactus_gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:pactus_gui/src/features/node_logs/presentation/screens/node_logs_screen.dart';
 import 'package:pactus_gui/src/features/settings/presentation/screens/settings_screen.dart';
+import 'package:pactus_gui/src/features/transactions/presentation/blocs/transaction_step_cubit.dart'
+    show TransactionStepCubit;
 import 'package:pactus_gui/src/features/transactions/presentation/blocs/transaction_type_cubit.dart'
     show TransactionTypeCubit;
 import 'package:pactus_gui/src/features/transactions/presentation/screens/transactions_screen.dart';
@@ -107,6 +109,9 @@ class DashboardScreen extends StatelessWidget {
                     providers: [
                       BlocProvider<TransactionTypeCubit>(
                         create: (_) => TransactionTypeCubit(),
+                      ),
+                      BlocProvider<TransactionStepCubit>(
+                        create: (_) => TransactionStepCubit(),
                       ),
                     ],
                     child: TransactionsScreen(),

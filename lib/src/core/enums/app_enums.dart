@@ -42,7 +42,7 @@ enum TransactionType {
 
 enum TransactionStep {
   transactionForm(LocaleKeys.transaction_form, 0),
-  confirmation(LocaleKeys.confirmation, 1),
+  confirmation(LocaleKeys.confirm, 1),
   result(LocaleKeys.result, 2);
 
   const TransactionStep(this.title, this.id);

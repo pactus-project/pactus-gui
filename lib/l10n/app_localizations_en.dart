@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -43,6 +42,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get confirm_seed => 'Confirm seed';
+
+  @override
+  String get confirm => 'Confirm';
 
   @override
   String get master_password => 'Master Password';
@@ -556,13 +558,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get transfer => 'Transfer';
 
   @override
-  String get transaction_form => 'Transaction Form';
+  String get transaction_form => 'Transaction';
 
   @override
   String get confirmation => 'Confirmation';
 
   @override
   String get result => 'Result';
+
+  @override
+  String get close => 'Close';
 
   @override
   String get error_grpc_unknown => 'Unknown gRPC error';

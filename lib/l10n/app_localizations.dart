@@ -166,6 +166,12 @@ abstract class AppLocalizations {
   /// **'Confirm seed'**
   String get confirm_seed;
 
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
   /// No description provided for @master_password.
   ///
   /// In en, this message translates to:
@@ -1111,7 +1117,7 @@ abstract class AppLocalizations {
   /// No description provided for @transaction_form.
   ///
   /// In en, this message translates to:
-  /// **'Transaction Form'**
+  /// **'Transaction'**
   String get transaction_form;
 
   /// No description provided for @confirmation.
@@ -1125,6 +1131,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Result'**
   String get result;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
 
   /// No description provided for @error_grpc_unknown.
   ///

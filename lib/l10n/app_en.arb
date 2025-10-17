@@ -11,6 +11,7 @@
   "initialize_mode": "Initialize mode",
   "wallet_seed": "Wallet seed",
   "confirm_seed": "Confirm seed",
+  "confirm": "Confirm",
   "master_password": "Master Password",
   "validator_config": "Validator config",
   "initializing": "Initializing",
@@ -170,8 +171,9 @@
   "bond": "Bond",
   "unbond": "Unbond",
   "transfer": "Transfer",
-  "transaction_form": "Transaction Form",
+  "transaction_form": "Transaction",
   "confirmation": "Confirmation",
   "result": "Result",
+  "close": "Close",
   "error_grpc_unknown": "Unknown gRPC error"
 }

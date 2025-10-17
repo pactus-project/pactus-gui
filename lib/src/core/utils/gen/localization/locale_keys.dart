@@ -11,6 +11,7 @@ abstract class LocaleKeys {
   static const String initialize_mode = 'initialize_mode';
   static const String wallet_seed = 'wallet_seed';
   static const String confirm_seed = 'confirm_seed';
+  static const String confirm = 'confirm';
   static const String master_password = 'master_password';
   static const String validator_config = 'validator_config';
   static const String initializing = 'initializing';
@@ -207,5 +208,6 @@ abstract class LocaleKeys {
   static const String transaction_form = 'transaction_form';
   static const String confirmation = 'confirmation';
   static const String result = 'result';
+  static const String close = 'close';
   static const String error_grpc_unknown = 'error_grpc_unknown';
 }

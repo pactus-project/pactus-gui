@@ -37,6 +37,7 @@ class CodegenLoader {
     'initialize_mode': 'Initialize mode',
     'wallet_seed': 'Wallet seed',
     'confirm_seed': 'Confirm seed',
+    'confirm': 'Confirm',
     'master_password': 'Master Password',
     'validator_config': 'Validator config',
     'initializing': 'Initializing',
@@ -227,9 +228,10 @@ class CodegenLoader {
     'bond': 'Bond',
     'unbond': 'Unbond',
     'transfer': 'Transfer',
-    'transaction_form': 'Transaction Form',
+    'transaction_form': 'Transaction',
     'confirmation': 'Confirmation',
     'result': 'Result',
+    'close': 'Close',
     'error_grpc_unknown': 'Unknown gRPC error',
   };
   static const Map<String, dynamic> frFR = {
@@ -245,6 +247,7 @@ class CodegenLoader {
     'initialize_mode': 'Mode dinitialisation',
     'wallet_seed': 'Graine de portefeuille',
     'confirm_seed': 'Confirmer la graine',
+    'confirm': 'Confirmer',
     'master_password': 'mot de passe principal',
     'validator_config': 'Configuration du validateur',
     'initializing': 'Initialisation',
@@ -440,9 +443,10 @@ class CodegenLoader {
     'bond': 'Lier',
     'unbond': 'Délier',
     'transfer': 'Transférer',
-    'transaction_form': 'Formulaire de Transaction',
+    'transaction_form': 'Transaction',
     'confirmation': 'Confirmation',
     'result': 'Résultat',
+    'close': 'Fermer',
     'error_grpc_unknown': 'Erreur gRPC inconnue',
   };
   static const Map<String, dynamic> esES = {
@@ -458,6 +462,7 @@ class CodegenLoader {
     'initialize_mode': 'Modo de inicialización',
     'wallet_seed': 'Semilla de billetera',
     'confirm_seed': 'Confirmar semilla',
+    'confirm': 'Confirmar',
     'master_password': 'contraseña maestra',
     'validator_config': 'Configuración del validador',
     'initializing': 'Inicializando',
@@ -651,9 +656,10 @@ class CodegenLoader {
     'bond': 'Vincular',
     'unbond': 'Desvincular',
     'transfer': 'Transferir',
-    'transaction_form': 'Formulario de Transacción',
+    'transaction_form': 'Transacción',
     'confirmation': 'Confirmación',
     'result': 'Resultado',
+    'close': 'Cerrar',
     'error_grpc_unknown': 'Error gRPC desconocido',
   };
 
