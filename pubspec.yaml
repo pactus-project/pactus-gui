@@ -1,7 +1,7 @@
 name: pactus_gui
 description: "A Flutter-based cross-platform desktop app (Linux/macOS/Windows) for secure Pactus blockchain interaction, featuring wallet management, token transactions, staking delegation, and real-time network analytics."
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 1.72.0+78
+version: 1.73.0+79
 
 environment:
   sdk: ^3.8.0
@@ -39,7 +39,7 @@ dependencies:
 #        path: ../pactus-gui-widgetbook
     git:
       url: https://github.com/pactus-project/pactus-gui-widgetbook.git
-      ref: fdf61d75a8d689a65b6abc05ec315f0420e3e071
+      ref: v1.18.1
   path: ^1.8.3
   process_run: ^1.2.2+1
   rxdart: ^0.28.0

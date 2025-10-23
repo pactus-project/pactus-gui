@@ -11,6 +11,7 @@
   "initialize_mode": "Mode dinitialisation",
   "wallet_seed": "Graine de portefeuille",
   "confirm_seed": "Confirmer la graine",
+  "confirm": "Confirmer",
   "master_password": "mot de passe principal",
   "validator_config": "Configuration du validateur",
   "initializing": "Initialisation",
@@ -165,5 +166,14 @@
   "error_grpc_permission_denied": "Permission refusée",
   "error_grpc_unavailable": "Service temporairement indisponible",
   "error_grpc_deadline_exceeded": "Le serveur a mis trop de temps à répondre",
+  "transaction_type": "Type de Transaction",
+ "withdraw": "Retirer",
+  "bond": "Lier",
+  "unbond": "Délier",
+  "transfer": "Transférer",
+  "transaction_form": "Transaction",
+  "confirmation": "Confirmation",
+  "result": "Résultat",
+  "close": "Fermer",
   "error_grpc_unknown": "Erreur gRPC inconnue"
 }

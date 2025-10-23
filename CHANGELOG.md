@@ -1,3 +1,12 @@
+# 1.73.0+79
+### [Feature]
+- Implementation basic ui of transaction feature [#143](https://github.com/pactus-project/pactus-gui/pull/225)
+  - feat(transaction): implementation basic ui of transaction view
+  - feat(transaction): implement bottom navigation and stepper components
+    - add bottom navigation bar for step switching
+    - add stepper component with step indicators
+    - implement transaction view step navigation
+
 # 1.72.0+78
 ### [Feature]
 - Improve responsiveness seed phrase component [#224](https://github.com/pactus-project/pactus-gui/pull/214)

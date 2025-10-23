@@ -1,6 +1,11 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
-import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
+import 'package:gap/gap.dart' show Gap;
+import 'package:pactus_gui/src/features/transactions/presentation/widgets/step_viewer_widget.dart'
+    show StepViewerWidget;
+import 'package:pactus_gui/src/features/transactions/presentation/widgets/stepper_widget.dart'
+    show StepperWidget;
+import 'package:pactus_gui/src/features/transactions/presentation/widgets/transaction_bottom_bar_widget.dart'
+    show TransactionBottomBarWidget;
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class TransactionsScreen extends StatelessWidget {
@@ -8,18 +13,15 @@ class TransactionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppTheme.of(context).extension<BlueGrayPallet>()!.blueGray100,
-      width: double.infinity,
-      child: Center(
-        child: Text(
-          '${context.tr(LocaleKeys.coming_soon)}'
-          '...',
-          style: TextStyle(
-            color: AppTheme.of(context).extension<DarkPallet>()!.dark900,
-          ),
-        ),
+    return ScaffoldPage(
+      padding: EdgeInsets.all(0),
+      content: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.only(top: 32),
+        color: AppTheme.of(context).scaffoldBackgroundColor,
+        child: Column(children: [StepperWidget(), Gap(46), StepViewerWidget()]),
       ),
+      bottomBar: TransactionBottomBarWidget(),
     );
   }
 }

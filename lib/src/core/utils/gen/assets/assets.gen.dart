@@ -37,6 +37,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_committee_size.svg
   String get icCommitteeSize => 'assets/icons/ic_committee_size.svg';
 
+  /// File path: assets/icons/ic_confirmation_step.svg
+  String get icConfirmationStep => 'assets/icons/ic_confirmation_step.svg';
+
   /// File path: assets/icons/ic_connection.svg
   String get icConnection => 'assets/icons/ic_connection.svg';
 
@@ -91,6 +94,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_reachbility.svg
   String get icReachbility => 'assets/icons/ic_reachbility.svg';
 
+  /// File path: assets/icons/ic_result_step.svg
+  String get icResultStep => 'assets/icons/ic_result_step.svg';
+
   /// File path: assets/icons/ic_services.svg
   String get icServices => 'assets/icons/ic_services.svg';
 
@@ -102,6 +108,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/ic_transaction.svg
   String get icTransaction => 'assets/icons/ic_transaction.svg';
+
+  /// File path: assets/icons/ic_transaction_step.svg
+  String get icTransactionStep => 'assets/icons/ic_transaction_step.svg';
 
   /// File path: assets/icons/ic_validators.svg
   String get icValidators => 'assets/icons/ic_validators.svg';
@@ -128,6 +137,7 @@ class $AssetsIconsGen {
     icCode,
     icCommitteePower,
     icCommitteeSize,
+    icConfirmationStep,
     icConnection,
     icDarkMode,
     icDashboard,
@@ -146,10 +156,12 @@ class $AssetsIconsGen {
     icProtocolVersion,
     icPrune,
     icReachbility,
+    icResultStep,
     icServices,
     icSettings,
     icTotalPower,
     icTransaction,
+    icTransactionStep,
     icValidators,
     icWallet,
     icWorkingDir,

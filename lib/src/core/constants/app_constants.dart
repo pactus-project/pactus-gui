@@ -1,3 +1,5 @@
+import 'package:fluent_ui/fluent_ui.dart' show Color;
+
 class AppConstants {
   AppConstants._();
 
@@ -17,4 +19,10 @@ class AppConstants {
   static const String english = 'English';
   static const String spanish = 'Español';
   static const String french = 'Français';
+
+  static const Color transactionBoxLight = Color(0xffF0F0F0);
+  static const Color transactionBoxDark = Color(0xff202020);
+
+  static const Color bgTransactionBoxLight = Color(0xffFFFFFF);
+  static const Color bgTransactionBoxDark = Color(0xff2B2D30);
 }

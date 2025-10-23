@@ -44,6 +44,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get confirm_seed => 'Confirmer la graine';
 
   @override
+  String get confirm => 'Confirmer';
+
+  @override
   String get master_password => 'mot de passe principal';
 
   @override
@@ -547,6 +550,33 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get error_grpc_deadline_exceeded =>
       'Le serveur a mis trop de temps à répondre';
+
+  @override
+  String get transaction_type => 'Type de Transaction';
+
+  @override
+  String get withdraw => 'Retirer';
+
+  @override
+  String get bond => 'Lier';
+
+  @override
+  String get unbond => 'Délier';
+
+  @override
+  String get transfer => 'Transférer';
+
+  @override
+  String get transaction_form => 'Transaction';
+
+  @override
+  String get confirmation => 'Confirmation';
+
+  @override
+  String get result => 'Résultat';
+
+  @override
+  String get close => 'Fermer';
 
   @override
   String get error_grpc_unknown => 'Erreur gRPC inconnue';

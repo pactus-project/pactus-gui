@@ -13,10 +13,10 @@ packages:
     dependency: transitive
     description:
       name: accessibility_tools
-      sha256: "3a36d23e8566f0618730c89b304f4faa5bc843255e26a47ee0ff15df0c30b15d"
+      sha256: aaa782bf794d823f371f45d232efe8605cffe081c34a1d83fe4db491ddbba0c7
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.1"
+    version: "2.6.0"
   analyzer:
     dependency: "direct dev"
     description:
@@ -641,10 +641,10 @@ packages:
     dependency: transitive
     description:
       name: inspector
-      sha256: "4df4a50b36975550ecd76dc30720ffe03ecb8003f594e3e0b2d34916735094d2"
+      sha256: a01ea538b15947a9189835cc910041bab91aea3ad7c421684118aa1040189ded
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.0"
+    version: "3.1.0"
   intl:
     dependency: "direct main"
     description:
@@ -809,11 +809,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: fdf61d75a8d689a65b6abc05ec315f0420e3e071
-      resolved-ref: fdf61d75a8d689a65b6abc05ec315f0420e3e071
+      ref: "v1.18.1"
+      resolved-ref: "7fbc2f8c8a951996852753bd50ffaf5a5d95acc4"
       url: "https://github.com/pactus-project/pactus-gui-widgetbook.git"
     source: git
-    version: "1.15.0+22"
+    version: "1.18.1+26"
   path:
     dependency: "direct main"
     description:
@@ -1263,26 +1263,26 @@ packages:
     dependency: transitive
     description:
       name: url_launcher
-      sha256: "9d06212b1362abc2f0f0d78e6f09f726608c74e3b9462e8368bb03314aa8d603"
+      sha256: f6a7e5c4835bb4e3026a04793a4199ca2d14c739ec378fdfe23fc8075d0439f8
       url: "https://pub.dev"
     source: hosted
-    version: "6.3.1"
+    version: "6.3.2"
   url_launcher_android:
     dependency: transitive
     description:
       name: url_launcher_android
-      sha256: "8582d7f6fe14d2652b4c45c9b6c14c0b678c2af2d083a11b604caeba51930d79"
+      sha256: "81777b08c498a292d93ff2feead633174c386291e35612f8da438d6e92c4447e"
       url: "https://pub.dev"
     source: hosted
-    version: "6.3.16"
+    version: "6.3.20"
   url_launcher_ios:
     dependency: transitive
     description:
       name: url_launcher_ios
-      sha256: "7f2022359d4c099eea7df3fdf739f7d3d3b9faf3166fb1dd390775176e0b76cb"
+      sha256: d80b3f567a617cb923546034cc94bfe44eb15f989fe670b37f26abdb9d939cb7
       url: "https://pub.dev"
     source: hosted
-    version: "6.3.3"
+    version: "6.3.4"
   url_launcher_linux:
     dependency: transitive
     description:
@@ -1295,10 +1295,10 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_macos
-      sha256: "17ba2000b847f334f16626a574c702b196723af2a289e7a93ffcb79acff855c2"
+      sha256: c043a77d6600ac9c38300567f33ef12b0ef4f4783a2c1f00231d2b1941fea13f
       url: "https://pub.dev"
     source: hosted
-    version: "3.2.2"
+    version: "3.2.3"
   url_launcher_platform_interface:
     dependency: transitive
     description:
@@ -1415,18 +1415,18 @@ packages:
     dependency: transitive
     description:
       name: widgetbook
-      sha256: a9d58080174ba5666e8515311b4c952ba02ddcb5cc9d9db244d0aac447988052
+      sha256: "83a58c9b4556debc7b87209a860bd5ab3daaec0786a54189aa5a3fd54bdcb6fb"
       url: "https://pub.dev"
     source: hosted
-    version: "3.14.3"
+    version: "3.18.0"
   widgetbook_annotation:
     dependency: transitive
     description:
       name: widgetbook_annotation
-      sha256: "41662c48c2a0e82cac676a83727203d863621a5f6fb2505395287b8789afdf38"
+      sha256: d29eef40efac4beb51f5e9d3bb6dd800db986f7020822b06b60d27f0299dac49
       url: "https://pub.dev"
     source: hosted
-    version: "3.5.0"
+    version: "3.7.0"
   win32:
     dependency: transitive
     description:
@@ -1477,4 +1477,4 @@ packages:
     version: "3.1.3"
 sdks:
   dart: ">=3.8.0 <4.0.0"
-  flutter: ">=3.27.0"
+  flutter: ">=3.32.0"
