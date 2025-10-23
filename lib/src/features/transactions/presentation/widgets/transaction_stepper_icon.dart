@@ -27,8 +27,8 @@ class TransactionStepperIcon extends StatelessWidget {
               color: state.id >= transactionStep.id
                   ? AppTheme.of(context).accentColor
                   : AppTheme.of(
-                context,
-              ).extension<TransactionsPallet>()!.border!,
+                      context,
+                    ).extension<TransactionsPallet>()!.border!,
 
               width: 2,
             ),

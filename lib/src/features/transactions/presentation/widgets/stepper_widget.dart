@@ -4,8 +4,10 @@ import 'package:pactus_gui/src/core/enums/app_enums.dart';
 import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
 import 'package:pactus_gui/src/features/transactions/presentation/blocs/transaction_step_cubit.dart'
     show TransactionStepCubit;
-import 'package:pactus_gui/src/features/transactions/presentation/widgets/dotted_line_widget.dart' show DottedLineWidget;
-import 'package:pactus_gui/src/features/transactions/presentation/widgets/transaction_stepper_icon.dart' show TransactionStepperIcon;
+import 'package:pactus_gui/src/features/transactions/presentation/widgets/dotted_line_widget.dart'
+    show DottedLineWidget;
+import 'package:pactus_gui/src/features/transactions/presentation/widgets/transaction_stepper_icon.dart'
+    show TransactionStepperIcon;
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class StepperWidget extends StatelessWidget {
@@ -55,13 +57,13 @@ class StepperWidget extends StatelessWidget {
                         context.tr(TransactionStep.transactionForm.title),
                         style: AppTheme.of(context).typography.bodyStrong!
                             .copyWith(
-                          color:
-                          state.id >= TransactionStep.transactionForm.id
-                              ? AppTheme.of(context).accentColor
-                              : AppTheme.of(
-                            context,
-                          ).extension<TransactionsPallet>()!.text,
-                        ),
+                              color:
+                                  state.id >= TransactionStep.transactionForm.id
+                                  ? AppTheme.of(context).accentColor
+                                  : AppTheme.of(
+                                      context,
+                                    ).extension<TransactionsPallet>()!.text,
+                            ),
                       ),
                     ),
                   ),
@@ -73,12 +75,12 @@ class StepperWidget extends StatelessWidget {
                         context.tr(TransactionStep.confirmation.title),
                         style: AppTheme.of(context).typography.bodyStrong!
                             .copyWith(
-                          color: state.id >= TransactionStep.confirmation.id
-                              ? AppTheme.of(context).accentColor
-                              : AppTheme.of(
-                            context,
-                          ).extension<TransactionsPallet>()!.text,
-                        ),
+                              color: state.id >= TransactionStep.confirmation.id
+                                  ? AppTheme.of(context).accentColor
+                                  : AppTheme.of(
+                                      context,
+                                    ).extension<TransactionsPallet>()!.text,
+                            ),
                       ),
                     ),
                   ),
@@ -89,12 +91,12 @@ class StepperWidget extends StatelessWidget {
                         context.tr(TransactionStep.result.title),
                         style: AppTheme.of(context).typography.bodyStrong!
                             .copyWith(
-                          color: state.id >= TransactionStep.result.id
-                              ? AppTheme.of(context).accentColor
-                              : AppTheme.of(
-                            context,
-                          ).extension<TransactionsPallet>()!.text,
-                        ),
+                              color: state.id >= TransactionStep.result.id
+                                  ? AppTheme.of(context).accentColor
+                                  : AppTheme.of(
+                                      context,
+                                    ).extension<TransactionsPallet>()!.text,
+                            ),
                       ),
                     ),
                   ),

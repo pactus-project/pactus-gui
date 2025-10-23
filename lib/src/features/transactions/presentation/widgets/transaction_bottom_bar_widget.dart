@@ -10,9 +10,7 @@ import 'package:pactus_gui_widgetbook/app_styles.dart';
 import 'package:pactus_gui_widgetbook/app_widgets.dart';
 
 class TransactionBottomBarWidget extends StatelessWidget {
-  const TransactionBottomBarWidget({
-    super.key,
-  });
+  const TransactionBottomBarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
