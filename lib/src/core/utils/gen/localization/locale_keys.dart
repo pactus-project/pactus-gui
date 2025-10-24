@@ -209,5 +209,6 @@ abstract class LocaleKeys {
   static const String confirmation = 'confirmation';
   static const String result = 'result';
   static const String close = 'close';
+  static const String validator = 'validator';
   static const String error_grpc_unknown = 'error_grpc_unknown';
 }

@@ -579,5 +579,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get close => 'Fermer';
 
   @override
+  String get validator => 'Validateur';
+
+  @override
   String get error_grpc_unknown => 'Erreur gRPC inconnue';
 }
