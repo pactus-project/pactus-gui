@@ -1087,7 +1087,7 @@ abstract class AppLocalizations {
   /// No description provided for @transaction_type.
   ///
   /// In en, this message translates to:
-  /// **'Transaction type'**
+  /// **'Transaction Type'**
   String get transaction_type;
 
   /// No description provided for @withdraw.
@@ -1137,6 +1137,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Close'**
   String get close;
+
+  /// No description provided for @validator.
+  ///
+  /// In en, this message translates to:
+  /// **'Validator'**
+  String get validator;
 
   /// No description provided for @error_grpc_unknown.
   ///

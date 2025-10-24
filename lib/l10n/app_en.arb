@@ -175,5 +175,7 @@
   "confirmation": "Confirmation",
   "result": "Result",
   "close": "Close",
+  "transaction_type": "Transaction Type",
+  "validator": "Validator",
   "error_grpc_unknown": "Unknown gRPC error"
 }

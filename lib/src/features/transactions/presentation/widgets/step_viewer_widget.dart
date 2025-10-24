@@ -22,7 +22,7 @@ class StepViewerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return UnconstrainedBox(
       child: Container(
-        width: 553,
+        width: 650,
         decoration: BoxDecoration(
           color: AppTheme.of(context).extension<TransactionsPallet>()!.surface,
           borderRadius: BorderRadius.circular(16),

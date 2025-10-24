@@ -7,7 +7,13 @@ import 'package:pactus_gui/src/features/dev_mode/data/repositories/environment_r
 import 'package:pactus_gui/src/features/dev_mode/presentation/bloc/directory_check_bloc.dart';
 import 'package:pactus_gui/src/features/dev_mode/presentation/bloc/environment_selection_cubit.dart';
 import 'package:pactus_gui/src/features/dev_mode/presentation/screens/dev_mode_screen.dart';
-import 'package:pactus_gui/src/features/splash/presentation/screen/splash_screen.dart';
+import 'package:pactus_gui/src/features/splash/presentation/screen/splash_screen.dart'
+    show SplashScreen;
+// import 'package:pactus_gui/src/features/transactions/presentation/blocs/transaction_step_cubit.dart'
+//     show TransactionStepCubit;
+// import 'package:pactus_gui/src/features/transactions/presentation/blocs/transaction_type_cubit.dart'
+//     show TransactionTypeCubit;
+// import 'package:pactus_gui/src/features/transactions/presentation/screens/transactions_screen.dart';
 
 import 'basic_routes.dart';
 import 'registration_routes.dart';
@@ -20,7 +26,14 @@ final GoRouter routerConfig = GoRouter(
       builder: (context, state) => MultiBlocProvider(
         providers: [
           BlocProvider<UnlockNodeCubit>(create: (_) => UnlockNodeCubit()),
+          // BlocProvider<TransactionTypeCubit>(
+          //   create: (_) => TransactionTypeCubit(),
+          // ),
+          // BlocProvider<TransactionStepCubit>(
+          //   create: (_) => TransactionStepCubit(),
+          // ),
         ],
+        // child: TransactionsScreen(),
         child: SplashScreen(),
       ),
     ),

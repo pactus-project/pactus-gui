@@ -543,7 +543,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get error_grpc_deadline_exceeded => 'Server took too long to respond';
 
   @override
-  String get transaction_type => 'Transaction type';
+  String get transaction_type => 'Transaction Type';
 
   @override
   String get withdraw => 'Withdraw';
@@ -568,6 +568,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get close => 'Close';
+
+  @override
+  String get validator => 'Validator';
 
   @override
   String get error_grpc_unknown => 'Unknown gRPC error';
