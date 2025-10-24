@@ -1,3 +1,7 @@
+# 1.74.0+80
+### [Feature]
+- Implementation `combo-box` of validator in the unbound feature [#143](https://github.com/pactus-project/pactus-gui/pull/226)
+  
 # 1.73.0+79
 ### [Feature]
 - Implementation basic ui of transaction feature [#143](https://github.com/pactus-project/pactus-gui/pull/225)
