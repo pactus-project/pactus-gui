@@ -50,3 +50,12 @@ enum TransactionStep {
   final String title;
   final int id;
 }
+
+/// Enum representing different types of addresses in the system.
+enum AddressType {
+  /// Wallet address type, typically used for user accounts
+  wallet,
+
+  /// Validator address type, typically used for network validators
+  validator,
+}

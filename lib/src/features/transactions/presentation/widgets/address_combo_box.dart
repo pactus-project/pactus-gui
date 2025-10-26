@@ -1,5 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pactus_gui/src/core/enums/app_enums.dart' show AddressType;
+import 'package:pactus_gui/src/core/extensions/address_type_extension.dart';
 import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/daemon_manager_bloc.dart'
     show
         DaemonManagerBloc,
@@ -11,25 +13,27 @@ import 'package:pactus_gui/src/features/dashboard/sub_modules/get_node_addresses
 import 'package:pactus_gui/src/features/dashboard/sub_modules/get_node_addresses/data/models/get_node_addresse_model.dart'
     show AddressModel;
 
-class ValidatorComboBox extends StatefulWidget {
-  const ValidatorComboBox({
+class AddressComboBox extends StatefulWidget {
+  const AddressComboBox({
     super.key,
     this.onChanged,
     this.isMandatory = true,
     this.height = 32,
     this.width = 428,
+    this.addressType = AddressType.validator,
   });
 
   final bool isMandatory;
+  final AddressType addressType;
   final double width;
   final double height;
   final ValueChanged<AddressModel?>? onChanged;
 
   @override
-  State<ValidatorComboBox> createState() => _ValidatorComboBoxState();
+  State<AddressComboBox> createState() => _AddressComboBoxState();
 }
 
-class _ValidatorComboBoxState extends State<ValidatorComboBox> {
+class _AddressComboBoxState extends State<AddressComboBox> {
   late final ValueNotifier<AddressModel?> _validatorNotifier;
   final double comboBoxInnerGap = 44;
 
@@ -55,6 +59,7 @@ class _ValidatorComboBoxState extends State<ValidatorComboBox> {
           if (state is DaemonManagerSuccess) {
             final validators = _filterValidators(
               _processDaemonOutput(state.output),
+              addressType: widget.addressType,
             );
             return _succeedWidget(validators);
           }
@@ -119,7 +124,10 @@ class _ValidatorComboBoxState extends State<ValidatorComboBox> {
         child: SizedBox(
           width: widget.width - comboBoxInnerGap,
           child: Row(
-            children: [Text('${validator.id} - '), Text(validator.address)],
+            children: [
+              if (validator.id.isNotEmpty) Text('${validator.id} - '),
+              Text(validator.address),
+            ],
           ),
         ),
       );
@@ -131,15 +139,18 @@ class _ValidatorComboBoxState extends State<ValidatorComboBox> {
     widget.onChanged?.call(newValidator);
   }
 
-  List<AddressModel> _filterValidators(List<AddressModel> validators) {
+  List<AddressModel> _filterValidators(
+    List<AddressModel> validators, {
+    required AddressType addressType,
+  }) {
     return validators.where((validator) {
-      // Remove items where label starts with 'r' (case insensitive)
-      return !validator.label.toLowerCase().startsWith('r');
+      return !validator.label.toLowerCase().startsWith(
+        addressType.removeFilter(),
+      );
     }).toList();
   }
 
   List<AddressModel> _processDaemonOutput(String output) {
-    // Use your existing AddressMapper or adapt it for validators
     final addresses = AddressMapper.fromText(output);
     return addresses
         .map(

@@ -11,8 +11,8 @@ import 'package:pactus_gui/src/features/transactions/presentation/blocs/transact
     show TransactionTypeCubit;
 import 'package:pactus_gui/src/features/transactions/presentation/widgets/transaction_type_selector.dart'
     show TransactionTypeSelector;
-import 'package:pactus_gui/src/features/transactions/presentation/widgets/validator_combo_box.dart'
-    show ValidatorComboBox;
+import 'package:pactus_gui/src/features/transactions/presentation/widgets/address_combo_box.dart'
+    show AddressComboBox;
 import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class UnbondInputForm extends StatelessWidget {
@@ -59,7 +59,7 @@ class UnbondInputForm extends StatelessWidget {
               ),
               MandatoryStarWidget(),
               Spacer(),
-              ValidatorComboBox(),
+              AddressComboBox(),
             ],
           ),
         ],
