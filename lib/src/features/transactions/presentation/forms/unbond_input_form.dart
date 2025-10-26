@@ -2,6 +2,8 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pactus_gui/src/core/common/widgets/form_row_item.dart'
     show FormRowItem;
+import 'package:pactus_gui/src/core/common/widgets/text_input.dart'
+    show TextInputBox;
 import 'package:pactus_gui/src/core/enums/app_enums.dart'
     show AddressType, TransactionType;
 import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/daemon_manager_bloc.dart'
@@ -40,6 +42,14 @@ class UnBondInputForm extends StatelessWidget {
             inputWidget: AddressComboBox(
               addressType: AddressType.validator,
               onChanged: (result) {},
+            ),
+          ),
+          FormRowItem(
+            title: LocaleKeys.memo,
+            inputWidget: TextInputBox(
+              placeholder: LocaleKeys.addNote,
+              onChanged: (result) {},
+              maxLength: 64,
             ),
           ),
         ],
