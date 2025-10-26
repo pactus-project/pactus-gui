@@ -21,7 +21,7 @@ class WithdrawInputForm extends StatelessWidget {
         FormRowItem(
           title: LocaleKeys.transaction_type,
           inputWidget: TransactionTypeSelector(
-            initialValue: TransactionType.transfer,
+            initialValue: TransactionType.withdraw,
             onChanged: (selectedItem) {
               context.read<TransactionTypeCubit>().selectType(selectedItem!);
             },

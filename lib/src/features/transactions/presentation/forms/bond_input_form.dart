@@ -19,7 +19,7 @@ class BondInputForm extends StatelessWidget {
         FormRowItem(
           title: LocaleKeys.transaction_type,
           inputWidget: TransactionTypeSelector(
-            initialValue: TransactionType.transfer,
+            initialValue: TransactionType.bond,
             onChanged: (selectedItem) {
               context.read<TransactionTypeCubit>().selectType(selectedItem!);
             },
