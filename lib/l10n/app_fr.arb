@@ -184,5 +184,6 @@
   "selectWallet": "Sélectionner le Portefeuille",
   "recipient": "Destinataire",
   "enterRecipientAddress": "Entrer l\\'adresse du destinataire...",
+  "sender": "Expéditeur",
   "error_grpc_unknown": "Erreur gRPC inconnue"
 }

@@ -552,5 +552,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get enterRecipientAddress => 'Ingresar dirección del destinatario...';
 
   @override
+  String get sender => 'Remitente';
+
+  @override
   String get error_grpc_unknown => 'Error gRPC desconocido';
 }

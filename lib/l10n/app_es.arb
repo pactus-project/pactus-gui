@@ -184,5 +184,6 @@
   "selectWallet": "Seleccionar Monedero",
   "recipient": "Destinatario",
   "enterRecipientAddress": "Ingresar dirección del destinatario...",
+  "sender": "Remitente",
   "error_grpc_unknown": "Error gRPC desconocido"
 }

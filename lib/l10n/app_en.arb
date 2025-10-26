@@ -184,5 +184,6 @@
   "selectWallet": "Select Wallet",
   "recipient": "Recipient",
   "enterRecipientAddress": "Enter recipient address...",
+  "sender": "Sender",
   "error_grpc_unknown": "Unknown gRPC error"
 }

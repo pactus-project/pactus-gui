@@ -1183,6 +1183,12 @@ abstract class AppLocalizations {
   /// **'Enter recipient address...'**
   String get enterRecipientAddress;
 
+  /// No description provided for @sender.
+  ///
+  /// In en, this message translates to:
+  /// **'Sender'**
+  String get sender;
+
   /// No description provided for @error_grpc_unknown.
   ///
   /// In en, this message translates to:
