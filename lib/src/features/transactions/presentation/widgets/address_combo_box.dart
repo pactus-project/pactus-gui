@@ -8,10 +8,12 @@ import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/daemon_manager_blo
         DaemonManagerState,
         DaemonManagerSuccess,
         RunGetNodeValidatorAddressesCommand;
+import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:pactus_gui/src/features/dashboard/sub_modules/get_node_addresses/data/mappers/get_node_addresses_mapper.dart'
     show AddressMapper;
 import 'package:pactus_gui/src/features/dashboard/sub_modules/get_node_addresses/data/models/get_node_addresse_model.dart'
     show AddressModel;
+import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
 
 class AddressComboBox extends StatefulWidget {
   const AddressComboBox({
@@ -82,7 +84,7 @@ class _AddressComboBoxState extends State<AddressComboBox> {
         child: ComboBox<AddressModel?>(
           isExpanded: true,
           items: [],
-          placeholder: Text('Retry to getting Data'),
+          placeholder: Text(context.tr(LocaleKeys.retryGettingData)),
           onChanged: _handleValidatorChanged,
         ),
       ),
@@ -99,7 +101,7 @@ class _AddressComboBoxState extends State<AddressComboBox> {
             isExpanded: true,
             value: currentValidator,
             items: _buildValidatorItems(validators),
-            placeholder: Text('Select Validator'),
+            placeholder: Text(context.tr(LocaleKeys.selectValidator)),
             onChanged: _handleValidatorChanged,
           );
         },

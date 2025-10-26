@@ -177,5 +177,10 @@
   "close": "Cerrar",
   "transaction_type": "Tipo de Transacción",
   "validator": "Validador",
+  "addNote": "Agregar una nota...",
+  "retryGettingData": "Reintentar obtener datos",
+  "memo": "Memo",
+  "selectValidator": "Seleccionar Validador",
+  "selectWallet": "Seleccionar Monedero",
   "error_grpc_unknown": "Error gRPC desconocido"
 }

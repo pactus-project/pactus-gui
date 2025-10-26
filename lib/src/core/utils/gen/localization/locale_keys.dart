@@ -17,12 +17,9 @@ abstract class LocaleKeys {
   static const String initializing = 'initializing';
   static const String finish = 'finish';
   static const String initiate_your_node = 'initiate_your_node';
-  static const String initiate_your_node_for_first_time =
-      'initiate_your_node_for_first_time';
-  static const String create_local_node_from_scratch =
-      'create_local_node_from_scratch';
-  static const String restore_local_node_from_seed_pharse =
-      'restore_local_node_from_seed_pharse';
+  static const String initiate_your_node_for_first_time = 'initiate_your_node_for_first_time';
+  static const String create_local_node_from_scratch = 'create_local_node_from_scratch';
+  static const String restore_local_node_from_seed_pharse = 'restore_local_node_from_seed_pharse';
   static const String connect_to_remote_node = 'connect_to_remote_node';
   static const String remote_address = 'remote_address';
   static const String auth_method = 'auth_method';
@@ -39,23 +36,18 @@ abstract class LocaleKeys {
   static const String working_directory = 'working_directory';
   static const String choose_your_directory = 'choose_your_directory';
   static const String select_folder = 'select_folder';
-  static const String validator_config_description =
-      'validator_config_description';
+  static const String validator_config_description = 'validator_config_description';
   static const String number_of_validators = 'number_of_validators';
   static const String directory_not_empty = 'directory_not_empty';
   static const String your_journey_finalized = 'your_journey_finalized';
   static const String go_to_dashboard = 'go_to_dashboard';
-  static const String go_to_dashboard_description =
-      'go_to_dashboard_description';
+  static const String go_to_dashboard_description = 'go_to_dashboard_description';
   static const String next = 'next';
   static const String basic_auth = 'basic_auth';
-  static const String your_journey_finalized_description =
-      'your_journey_finalized_description';
-  static const String your_journey_finalized_description_last =
-      'your_journey_finalized_description_last';
+  static const String your_journey_finalized_description = 'your_journey_finalized_description';
+  static const String your_journey_finalized_description_last = 'your_journey_finalized_description_last';
   static const String generation_seed_title = 'generation_seed_title';
-  static const String generation_seed_description =
-      'generation_seed_description';
+  static const String generation_seed_description = 'generation_seed_description';
   static const String generation_seed_note1 = 'generation_seed_note1';
   static const String generation_seed_note2 = 'generation_seed_note2';
   static const String warning = 'warning';
@@ -78,17 +70,14 @@ abstract class LocaleKeys {
   static const String seed_twenty_four_words = 'seed_twenty_four_words';
   static const String restoration = 'restoration';
   static const String restoration_seed_title = 'restoration_seed_title';
-  static const String restoration_seed_description =
-      'restoration_seed_description';
+  static const String restoration_seed_description = 'restoration_seed_description';
   static const String please_input_all_fields = 'please_input_all_fields';
-  static const String master_password_description =
-      'master_password_description';
+  static const String master_password_description = 'master_password_description';
   static const String confirm_password = 'confirm_password';
   static const String skip = 'skip';
   static const String back = 'back';
   static const String confirmation_seed_title = 'confirmation_seed_title';
-  static const String confirmation_seed_description =
-      'confirmation_seed_description';
+  static const String confirmation_seed_description = 'confirmation_seed_description';
   static const String log = 'log';
   static const String connection = 'connection';
   static const String reachability = 'reachability';
@@ -109,46 +98,29 @@ abstract class LocaleKeys {
   static const String faq = 'faq';
   static const String answer_faq = 'answer_faq';
   static const String what_does_pactus_mean = 'what_does_pactus_mean';
-  static const String answer_what_does_pactus_mean =
-      'answer_what_does_pactus_mean';
-  static const String is_pactus_a_copy_of_any_other_blockchain =
-      'is_pactus_a_copy_of_any_other_blockchain';
-  static const String answer_is_pactus_a_copy_of_any_other_blockchain =
-      'answer_is_pactus_a_copy_of_any_other_blockchain';
+  static const String answer_what_does_pactus_mean = 'answer_what_does_pactus_mean';
+  static const String is_pactus_a_copy_of_any_other_blockchain = 'is_pactus_a_copy_of_any_other_blockchain';
+  static const String answer_is_pactus_a_copy_of_any_other_blockchain = 'answer_is_pactus_a_copy_of_any_other_blockchain';
   static const String did_pactus_have_an_ico = 'did_pactus_have_an_ico';
-  static const String answer_did_pactus_have_an_ico =
-      'answer_did_pactus_have_an_ico';
-  static const String where_can_i_buy_pactus_coins =
-      'where_can_i_buy_pactus_coins';
-  static const String answer_where_can_i_buy_pactus_coins =
-      'answer_where_can_i_buy_pactus_coins';
-  static const String how_is_pactus_different_from_bitcoin =
-      'how_is_pactus_different_from_bitcoin';
-  static const String answer_how_is_pactus_different_from_bitcoin =
-      'answer_how_is_pactus_different_from_bitcoin';
-  static const String how_is_pactus_different_from_ethereum =
-      'how_is_pactus_different_from_ethereum';
-  static const String answer_how_is_pactus_different_from_ethereum =
-      'answer_how_is_pactus_different_from_ethereum';
+  static const String answer_did_pactus_have_an_ico = 'answer_did_pactus_have_an_ico';
+  static const String where_can_i_buy_pactus_coins = 'where_can_i_buy_pactus_coins';
+  static const String answer_where_can_i_buy_pactus_coins = 'answer_where_can_i_buy_pactus_coins';
+  static const String how_is_pactus_different_from_bitcoin = 'how_is_pactus_different_from_bitcoin';
+  static const String answer_how_is_pactus_different_from_bitcoin = 'answer_how_is_pactus_different_from_bitcoin';
+  static const String how_is_pactus_different_from_ethereum = 'how_is_pactus_different_from_ethereum';
+  static const String answer_how_is_pactus_different_from_ethereum = 'answer_how_is_pactus_different_from_ethereum';
   static const String about_pactus_gui = 'about_pactus_gui';
   static const String answer_about_pactus_gui = 'answer_about_pactus_gui';
-  static const String key_features_and_functionalities =
-      'key_features_and_functionalities';
+  static const String key_features_and_functionalities = 'key_features_and_functionalities';
   static const String node_management = 'node_management';
-  static const String answer_first_node_management =
-      'answer_first_node_management';
-  static const String answer_second_node_management =
-      'answer_second_node_management';
+  static const String answer_first_node_management = 'answer_first_node_management';
+  static const String answer_second_node_management = 'answer_second_node_management';
   static const String transaction_management = 'transaction_management';
-  static const String answer_transaction_management =
-      'answer_transaction_management';
+  static const String answer_transaction_management = 'answer_transaction_management';
   static const String security_and_privacy = 'security_and_privacy';
-  static const String answer_security_and_privacy =
-      'answer_security_and_privacy';
-  static const String decentralization_and_accessibility =
-      'decentralization_and_accessibility';
-  static const String answer_decentralization_and_accessibility =
-      'answer_decentralization_and_accessibility';
+  static const String answer_security_and_privacy = 'answer_security_and_privacy';
+  static const String decentralization_and_accessibility = 'decentralization_and_accessibility';
+  static const String answer_decentralization_and_accessibility = 'answer_decentralization_and_accessibility';
   static const String committee_size = 'committee_size';
   static const String committee_power = 'committee_power';
   static const String total_power = 'total_power';
@@ -161,24 +133,18 @@ abstract class LocaleKeys {
   static const String noSeedGenerated = 'noSeedGenerated';
   static const String generatedSeed = 'generatedSeed';
   static const String startNode = 'startNode';
-  static const String user_experience_enhancements =
-      'user_experience_enhancements';
-  static const String answer_user_experience_enhancements =
-      'answer_user_experience_enhancements';
-  static const String realtime_blockchain_monitoring =
-      'realtime_blockchain_monitoring';
-  static const String answer_realtime_blockchain_monitoring =
-      'answer_realtime_blockchain_monitoring';
-  static const String current_application_version =
-      'current_application_version';
+  static const String user_experience_enhancements = 'user_experience_enhancements';
+  static const String answer_user_experience_enhancements = 'answer_user_experience_enhancements';
+  static const String realtime_blockchain_monitoring = 'realtime_blockchain_monitoring';
+  static const String answer_realtime_blockchain_monitoring = 'answer_realtime_blockchain_monitoring';
+  static const String current_application_version = 'current_application_version';
   static const String coming_soon = 'coming_soon';
   static const String generate_seed_button = 'generate_seed_button';
   static const String generate_button = 'generate_button';
   static const String seed_placeholder = 'seed_placeholder';
   static const String password_mismatch_error = 'password_mismatch_error';
   static const String directory_creation_failed = 'directory_creation_failed';
-  static const String error_node_duplicate_running =
-      'error_node_duplicate_running';
+  static const String error_node_duplicate_running = 'error_node_duplicate_running';
   static const String network = 'network';
   static const String moniker = 'moniker';
   static const String networkId = 'networkId';
@@ -195,11 +161,9 @@ abstract class LocaleKeys {
   static const String error_unexpected = 'error_unexpected';
   static const String error_grpc_cancelled = 'error_grpc_cancelled';
   static const String error_grpc_unauthenticated = 'error_grpc_unauthenticated';
-  static const String error_grpc_permission_denied =
-      'error_grpc_permission_denied';
+  static const String error_grpc_permission_denied = 'error_grpc_permission_denied';
   static const String error_grpc_unavailable = 'error_grpc_unavailable';
-  static const String error_grpc_deadline_exceeded =
-      'error_grpc_deadline_exceeded';
+  static const String error_grpc_deadline_exceeded = 'error_grpc_deadline_exceeded';
   static const String transaction_type = 'transaction_type';
   static const String withdraw = 'withdraw';
   static const String bond = 'bond';
@@ -210,5 +174,10 @@ abstract class LocaleKeys {
   static const String result = 'result';
   static const String close = 'close';
   static const String validator = 'validator';
+  static const String addNote = 'addNote';
+  static const String retryGettingData = 'retryGettingData';
+  static const String memo = 'memo';
+  static const String selectValidator = 'selectValidator';
+  static const String selectWallet = 'selectWallet';
   static const String error_grpc_unknown = 'error_grpc_unknown';
 }
