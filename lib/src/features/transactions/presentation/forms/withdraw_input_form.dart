@@ -4,7 +4,7 @@ import 'package:pactus_gui/src/core/common/widgets/form_row_item.dart'
     show FormRowItem;
 import 'package:pactus_gui/src/core/common/widgets/text_input.dart'
     show TextInputBox;
-import 'package:pactus_gui/src/core/enums/app_enums.dart' show TransactionType;
+import 'package:pactus_gui/src/core/enums/app_enums.dart' show InputFilter, TransactionType;
 import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart'
     show LocaleKeys;
 import 'package:pactus_gui/src/features/transactions/presentation/blocs/transaction_type_cubit.dart'
@@ -41,6 +41,25 @@ class WithdrawInputForm extends StatelessWidget {
             placeholder: LocaleKeys.addNote,
             onChanged: (result) {},
             maxLength: 64,
+          ),
+        ),
+        FormRowItem(
+          title: LocaleKeys.stake,
+          isMandatory: true,
+          inputWidget: TextInputBox(
+            inputFilter: InputFilter.numbersWithDecimal,
+            placeholder: LocaleKeys.enterStakeAmount,
+            onChanged: (result) {},
+            suffix: Text('PAC'),
+          ),
+        ),
+        FormRowItem(
+          title: LocaleKeys.fee,
+          inputWidget: TextInputBox(
+            inputFilter: InputFilter.numbersWithDecimal,
+            placeholder: LocaleKeys.enterFee,
+            onChanged: (result) {},
+            suffix: Text('PAC'),
           ),
         ),
       ],

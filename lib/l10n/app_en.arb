@@ -184,6 +184,12 @@
   "selectWallet": "Select Wallet",
   "recipient": "Recipient",
   "enterRecipientAddress": "Enter recipient address...",
+  "amount": "Amount",
+  "enterAmount": "Enter PAC amount...",
+  "fee": "Fee",
+  "enterFee": "Transaction fee...",
+  "stake": "Stake",
+  "enterStakeAmount": "Enter stake amount...",
   "sender": "Sender",
   "error_grpc_unknown": "Unknown gRPC error"
 }

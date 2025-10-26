@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pactus_gui/src/core/common/widgets/form_row_item.dart'
     show FormRowItem;
 import 'package:pactus_gui/src/core/common/widgets/text_input.dart' show TextInputBox;
-import 'package:pactus_gui/src/core/enums/app_enums.dart' show TransactionType;
+import 'package:pactus_gui/src/core/enums/app_enums.dart' show InputFilter, TransactionType;
 import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:pactus_gui/src/features/transactions/presentation/blocs/transaction_type_cubit.dart'
     show TransactionTypeCubit;
@@ -31,6 +31,25 @@ class BondInputForm extends StatelessWidget {
             placeholder: LocaleKeys.addNote,
             onChanged: (result) {},
             maxLength: 64,
+          ),
+        ),
+        FormRowItem(
+          title: LocaleKeys.amount,
+          isMandatory: true,
+          inputWidget: TextInputBox(
+            inputFilter: InputFilter.numbersWithDecimal,
+            placeholder: LocaleKeys.enterAmount,
+            onChanged: (result) {},
+            suffix: Text('PAC'),
+          ),
+        ),
+        FormRowItem(
+          title: LocaleKeys.fee,
+          inputWidget: TextInputBox(
+            inputFilter: InputFilter.numbersWithDecimal,
+            placeholder: LocaleKeys.enterFee,
+            onChanged: (result) {},
+            suffix: Text('PAC'),
           ),
         ),
       ],

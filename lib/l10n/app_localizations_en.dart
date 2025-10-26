@@ -552,6 +552,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enterRecipientAddress => 'Enter recipient address...';
 
   @override
+  String get amount => 'Amount';
+
+  @override
+  String get enterAmount => 'Enter PAC amount...';
+
+  @override
+  String get fee => 'Fee';
+
+  @override
+  String get enterFee => 'Transaction fee...';
+
+  @override
+  String get enterStakeAmount => 'Enter stake amount...';
+
+  @override
   String get sender => 'Sender';
 
   @override

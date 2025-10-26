@@ -393,7 +393,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get score => 'Score';
 
   @override
-  String get stake => 'Enjeu';
+  String get stake => 'Stake';
 
   @override
   String get submit => 'Soumettre';
@@ -550,6 +550,21 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get enterRecipientAddress => 'Entrer l\\\'adresse du destinataire...';
+
+  @override
+  String get amount => 'Montant';
+
+  @override
+  String get enterAmount => 'Saisir le montant en PAC...';
+
+  @override
+  String get fee => 'Frais';
+
+  @override
+  String get enterFee => 'Frais de transaction...';
+
+  @override
+  String get enterStakeAmount => 'Saisir le montant du stake...';
 
   @override
   String get sender => 'Expéditeur';

@@ -1183,6 +1183,36 @@ abstract class AppLocalizations {
   /// **'Enter recipient address...'**
   String get enterRecipientAddress;
 
+  /// No description provided for @amount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get amount;
+
+  /// No description provided for @enterAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter PAC amount...'**
+  String get enterAmount;
+
+  /// No description provided for @fee.
+  ///
+  /// In en, this message translates to:
+  /// **'Fee'**
+  String get fee;
+
+  /// No description provided for @enterFee.
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction fee...'**
+  String get enterFee;
+
+  /// No description provided for @enterStakeAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter stake amount...'**
+  String get enterStakeAmount;
+
   /// No description provided for @sender.
   ///
   /// In en, this message translates to:

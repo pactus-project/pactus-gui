@@ -181,6 +181,11 @@ abstract class LocaleKeys {
   static const String selectWallet = 'selectWallet';
   static const String recipient = 'recipient';
   static const String enterRecipientAddress = 'enterRecipientAddress';
+  static const String amount = 'amount';
+  static const String enterAmount = 'enterAmount';
+  static const String fee = 'fee';
+  static const String enterFee = 'enterFee';
+  static const String enterStakeAmount = 'enterStakeAmount';
   static const String sender = 'sender';
   static const String error_grpc_unknown = 'error_grpc_unknown';
 }

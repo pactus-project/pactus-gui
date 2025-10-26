@@ -4,7 +4,7 @@ import 'package:pactus_gui/src/core/common/widgets/form_row_item.dart';
 import 'package:pactus_gui/src/core/common/widgets/text_input.dart'
     show TextInputBox;
 import 'package:pactus_gui/src/core/enums/app_enums.dart'
-    show AddressType, TransactionType;
+    show AddressType, InputFilter, TransactionType;
 import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/daemon_manager_bloc.dart'
     show DaemonManagerBloc;
 import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart'
@@ -56,6 +56,25 @@ class TransferInputForm extends StatelessWidget {
               placeholder: LocaleKeys.addNote,
               onChanged: (result) {},
               maxLength: 64,
+            ),
+          ),
+          FormRowItem(
+            title: LocaleKeys.amount,
+            isMandatory: true,
+            inputWidget: TextInputBox(
+              inputFilter: InputFilter.numbersWithDecimal,
+              placeholder: LocaleKeys.enterAmount,
+              onChanged: (result) {},
+              suffix: Text('PAC'),
+            ),
+          ),
+          FormRowItem(
+            title: LocaleKeys.fee,
+            inputWidget: TextInputBox(
+              inputFilter: InputFilter.numbersWithDecimal,
+              placeholder: LocaleKeys.enterFee,
+              onChanged: (result) {},
+              suffix: Text('PAC'),
             ),
           ),
         ],

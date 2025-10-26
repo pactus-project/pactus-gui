@@ -209,6 +209,11 @@ class CodegenLoader {
     'selectWallet': 'Select Wallet',
     'recipient': 'Recipient',
     'enterRecipientAddress': 'Enter recipient address...',
+    'amount': 'Amount',
+    'enterAmount': 'Enter PAC amount...',
+    'fee': 'Fee',
+    'enterFee': 'Transaction fee...',
+    'enterStakeAmount': 'Enter stake amount...',
     'sender': 'Sender',
     'error_grpc_unknown': 'Unknown gRPC error',
   };
@@ -341,7 +346,7 @@ class CodegenLoader {
     'address': 'Adresse',
     'committee': 'Comité',
     'score': 'Score',
-    'stake': 'Enjeu',
+    'stake': 'Stake',
     'submit': 'Soumettre',
     'noSeedGenerated': 'Aucune graine générée.',
     'generatedSeed': 'Graine Générée',
@@ -395,6 +400,11 @@ class CodegenLoader {
     'recipient': 'Destinataire',
     'enterRecipientAddress': 'Entrer l\'adresse du destinataire...',
     'sender': 'Expéditeur',
+    'amount': 'Montant',
+    'enterAmount': 'Saisir le montant en PAC...',
+    'fee': 'Frais',
+    'enterFee': 'Frais de transaction...',
+    'enterStakeAmount': 'Saisir le montant du stake...',
     'error_grpc_unknown': 'Erreur gRPC inconnue',
   };
   static const Map<String, dynamic> esES = {
@@ -526,7 +536,7 @@ class CodegenLoader {
     'address': 'Dirección',
     'committee': 'Comité',
     'score': 'Puntuación',
-    'stake': 'Participación',
+    'stake': 'Stake',
     'submit': 'Enviar',
     'noSeedGenerated': 'No se generaron palabras semilla.',
     'generatedSeed': 'Semilla Generada',
@@ -580,6 +590,11 @@ class CodegenLoader {
     'recipient': 'Destinatario',
     'enterRecipientAddress': 'Ingresar dirección del destinatario...',
     'sender': 'Remitente',
+    'amount': 'Cantidad',
+    'enterAmount': 'Ingresar cantidad de PAC...',
+    'fee': 'Tarifa',
+    'enterFee': 'Tarifa de transacción...',
+    'enterStakeAmount': 'Ingresar cantidad de stake...',
     'error_grpc_unknown': 'Error gRPC desconocido',
   };
 

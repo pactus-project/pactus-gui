@@ -185,5 +185,11 @@
   "recipient": "Destinataire",
   "enterRecipientAddress": "Entrer l\\'adresse du destinataire...",
   "sender": "Expéditeur",
+  "amount": "Montant",
+  "enterAmount": "Saisir le montant en PAC...",
+  "fee": "Frais",
+  "enterFee": "Frais de transaction...",
+  "stake": "Stake",
+  "enterStakeAmount": "Saisir le montant du stake...",
   "error_grpc_unknown": "Erreur gRPC inconnue"
 }
