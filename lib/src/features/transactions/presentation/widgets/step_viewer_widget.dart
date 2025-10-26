@@ -10,7 +10,7 @@ import 'package:pactus_gui/src/features/transactions/presentation/forms/bond_inp
 import 'package:pactus_gui/src/features/transactions/presentation/forms/transfer_input_form.dart'
     show TransferInputForm;
 import 'package:pactus_gui/src/features/transactions/presentation/forms/unbond_input_form.dart'
-    show UnbondInputForm;
+    show UnBondInputForm;
 import 'package:pactus_gui/src/features/transactions/presentation/forms/withdraw_input_form.dart'
     show WithdrawInputForm;
 import 'package:pactus_gui_widgetbook/app_styles.dart';
@@ -35,7 +35,7 @@ class StepViewerWidget extends StatelessWidget {
                 BlocBuilder<TransactionTypeCubit, TransactionType>(
                   builder: (context, state) {
                     return switch (state) {
-                      TransactionType.unbond => UnbondInputForm(),
+                      TransactionType.unbond => UnBondInputForm(),
                       TransactionType.bond => BondInputForm(),
                       TransactionType.transfer => TransferInputForm(),
                       TransactionType.withdraw => WithdrawInputForm(),

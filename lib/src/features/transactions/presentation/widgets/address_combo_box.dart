@@ -20,7 +20,7 @@ class AddressComboBox extends StatefulWidget {
     this.isMandatory = true,
     this.height = 32,
     this.width = 428,
-    this.addressType = AddressType.validator,
+    required this.addressType,
   });
 
   final bool isMandatory;
