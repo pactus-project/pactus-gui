@@ -207,6 +207,8 @@ class CodegenLoader {
     'memo': 'Memo',
     'selectValidator': 'Select Validator',
     'selectWallet': 'Select Wallet',
+    'recipient': 'Recipient',
+    'enterRecipientAddress': 'Enter recipient address...',
     'error_grpc_unknown': 'Unknown gRPC error',
   };
   static const Map<String, dynamic> frFR = {
@@ -389,6 +391,8 @@ class CodegenLoader {
     'memo': 'Mémo',
     'selectValidator': 'Sélectionner le Validateur',
     'selectWallet': 'Sélectionner le Portefeuille',
+    'recipient': 'Destinataire',
+    'enterRecipientAddress': 'Entrer l\'adresse du destinataire...',
     'error_grpc_unknown': 'Erreur gRPC inconnue',
   };
   static const Map<String, dynamic> esES = {
@@ -571,6 +575,8 @@ class CodegenLoader {
     'memo': 'Memo',
     'selectValidator': 'Seleccionar Validador',
     'selectWallet': 'Seleccionar Monedero',
+    'recipient': 'Destinatario',
+    'enterRecipientAddress': 'Ingresar dirección del destinatario...',
     'error_grpc_unknown': 'Error gRPC desconocido',
   };
 

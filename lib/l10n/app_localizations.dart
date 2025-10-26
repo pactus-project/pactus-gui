@@ -1171,6 +1171,18 @@ abstract class AppLocalizations {
   /// **'Select Wallet'**
   String get selectWallet;
 
+  /// No description provided for @recipient.
+  ///
+  /// In en, this message translates to:
+  /// **'Recipient'**
+  String get recipient;
+
+  /// No description provided for @enterRecipientAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter recipient address...'**
+  String get enterRecipientAddress;
+
   /// No description provided for @error_grpc_unknown.
   ///
   /// In en, this message translates to:

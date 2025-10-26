@@ -182,5 +182,7 @@
   "memo": "Memo",
   "selectValidator": "Seleccionar Validador",
   "selectWallet": "Seleccionar Monedero",
+  "recipient": "Destinatario",
+  "enterRecipientAddress": "Ingresar dirección del destinatario...",
   "error_grpc_unknown": "Error gRPC desconocido"
 }

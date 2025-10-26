@@ -179,5 +179,7 @@ abstract class LocaleKeys {
   static const String memo = 'memo';
   static const String selectValidator = 'selectValidator';
   static const String selectWallet = 'selectWallet';
+  static const String recipient = 'recipient';
+  static const String enterRecipientAddress = 'enterRecipientAddress';
   static const String error_grpc_unknown = 'error_grpc_unknown';
 }

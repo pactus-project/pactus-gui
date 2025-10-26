@@ -13,6 +13,7 @@ class TextInputBox extends StatefulWidget {
     this.errorText,
     this.header,
     this.maxLength,
+    this.suffix,
   });
 
   final double width;
@@ -24,6 +25,7 @@ class TextInputBox extends StatefulWidget {
   final String? errorText;
   final String? header;
   final int? maxLength;
+  final Widget? suffix;
 
   @override
   State<TextInputBox> createState() => _TextInputBoxState();
@@ -96,12 +98,54 @@ class _TextInputBoxState extends State<TextInputBox> {
     );
   }
 
+  Align _buildSuffixWidgets(
+    BuildContext context,
+    FluentThemeData fluentTheme,
+    String currentText,
+  ) {
+    final widgets = <Widget>[];
+
+    // Add custom suffix first (if provided)
+    if (widget.suffix != null) {
+      widgets.add(
+        Padding(
+          padding: const EdgeInsetsDirectional.only(end: 8),
+          child: widget.suffix,
+        ),
+      );
+    }
+
+    // Add counter suffix (if maxLength is provided)
+    if (widget.maxLength != null) {
+      widgets.add(_buildCounterSuffix(context, fluentTheme, currentText));
+    }
+
+    return Align(
+      alignment: AlignmentDirectional.centerEnd,
+      child: Row(mainAxisSize: MainAxisSize.min, children: widgets),
+    );
+  }
+
+  EdgeInsetsGeometry _calculatePadding() {
+    double endPadding = 8; // Base padding
+
+    // Add space for custom suffix
+    if (widget.suffix != null) {
+      endPadding += 32; // Approximate width for custom suffix
+    }
+
+    // Add space for counter
+    if (widget.maxLength != null) {
+      endPadding += 40; // Approximate width for counter
+    }
+
+    return EdgeInsetsDirectional.only(end: endPadding, start: 8);
+  }
+
   @override
   Widget build(BuildContext context) {
     final fluentTheme = FluentTheme.of(context);
-    final padding = widget.maxLength != null
-        ? EdgeInsetsDirectional.only(end: 56, start: 8)
-        : EdgeInsetsDirectional.only(start: 8);
+    final hasSuffix = widget.suffix != null || widget.maxLength != null;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
@@ -123,7 +167,7 @@ class _TextInputBoxState extends State<TextInputBox> {
                 const SizedBox(height: 8),
               ],
 
-              // Text Field with Counter Suffix
+              // Text Field with Suffix Widgets
               SizedBox(
                 height: widget.height,
                 child: ValueListenableBuilder<String>(
@@ -131,7 +175,7 @@ class _TextInputBoxState extends State<TextInputBox> {
                   builder: (context, currentText, _) {
                     final Widget textBox = TextBox(
                       maxLength: widget.maxLength,
-                      padding: padding,
+                      padding: _calculatePadding(),
                       controller: _textController,
                       focusNode: _focusNode,
                       onChanged: widget.onChanged,
@@ -139,17 +183,20 @@ class _TextInputBoxState extends State<TextInputBox> {
                       placeholder: context.tr(widget.placeholder!),
                       style: fluentTheme.typography.body,
                     );
-                    return widget.maxLength == null
+
+                    return !hasSuffix
                         ? textBox
                         : Stack(
                             alignment: AlignmentDirectional.centerEnd,
                             children: [
                               textBox,
-                              _buildCounterSuffix(
-                                context,
-                                fluentTheme,
-                                currentText,
-                              ),
+                              ...[
+                                _buildSuffixWidgets(
+                                  context,
+                                  fluentTheme,
+                                  currentText,
+                                ),
+                              ],
                             ],
                           );
                   },

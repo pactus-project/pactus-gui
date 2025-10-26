@@ -546,5 +546,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get selectWallet => 'Select Wallet';
 
   @override
+  String get recipient => 'Recipient';
+
+  @override
+  String get enterRecipientAddress => 'Enter recipient address...';
+
+  @override
   String get error_grpc_unknown => 'Unknown gRPC error';
 }

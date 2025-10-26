@@ -1,7 +1,8 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pactus_gui/src/core/common/widgets/form_row_item.dart';
-import 'package:pactus_gui/src/core/common/widgets/text_input.dart' show TextInputBox;
+import 'package:pactus_gui/src/core/common/widgets/text_input.dart'
+    show TextInputBox;
 import 'package:pactus_gui/src/core/enums/app_enums.dart' show TransactionType;
 import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart'
     show LocaleKeys;
@@ -23,6 +24,14 @@ class TransferInputForm extends StatelessWidget {
             onChanged: (selectedItem) {
               context.read<TransactionTypeCubit>().selectType(selectedItem!);
             },
+          ),
+        ),
+        FormRowItem(
+          isMandatory: true,
+          title: LocaleKeys.recipient,
+          inputWidget: TextInputBox(
+            placeholder: LocaleKeys.enterRecipientAddress,
+            onChanged: (result) {},
           ),
         ),
         FormRowItem(

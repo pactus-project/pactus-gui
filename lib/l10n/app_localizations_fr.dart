@@ -546,5 +546,11 @@ class AppLocalizationsFr extends AppLocalizations {
   String get selectWallet => 'Sélectionner le Portefeuille';
 
   @override
+  String get recipient => 'Destinataire';
+
+  @override
+  String get enterRecipientAddress => 'Entrer l\\\'adresse du destinataire...';
+
+  @override
   String get error_grpc_unknown => 'Erreur gRPC inconnue';
 }
