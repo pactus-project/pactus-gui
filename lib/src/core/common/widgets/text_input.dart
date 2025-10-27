@@ -50,40 +50,40 @@ class _TextInputBoxState extends State<TextInputBox> {
     // _textController.addListener(_onTextChanged);
   }
 
-  // Remove this method since we're handling it in onChanged
-  // void _onTextChanged() {
-  //   _textNotifier.value = _textController.text;
-  //   widget.onChanged?.call(_textController.text);
-  // }
-
   void _handleTextInput(String newValue) {
-    // If no filter is set, allow all input
-    if (widget.inputFilter == null) {
-      _textController.text = newValue;
-      _textNotifier.value = newValue;
-      widget.onChanged?.call(newValue);
-      return;
+    final oldValue = _textController.text;
+
+    // FIX: Detect if this is a deletion operation
+    final isDeletion = newValue.length < oldValue.length;
+
+    var finalValue = newValue;
+
+    // Only apply filtering for non-deletion operations
+    if (!isDeletion && widget.inputFilter != null) {
+      finalValue = widget.inputFilter!.filter(newValue);
     }
 
-    // Filter input using the enum's filter method
-    final filteredValue = widget.inputFilter!.filter(newValue);
+    // Always update the controller for deletion operations
+    // Only update for insertion if the value changed due to filtering
+    if (isDeletion || finalValue != oldValue) {
+      _textController.text = finalValue;
 
-    // Only update if the value changed due to filtering
-    if (filteredValue != _textController.text) {
-      _textController.text = filteredValue;
-      _textNotifier.value = filteredValue;
-
-      // Move cursor to end after filtering
-      _textController.selection = TextSelection.collapsed(
-        offset: filteredValue.length,
-      );
-
-      widget.onChanged?.call(filteredValue);
-    } else {
-      // If no filtering occurred, just update the notifier and callback
-      _textNotifier.value = newValue;
-      widget.onChanged?.call(newValue);
+      // FIX: Smart cursor positioning
+      if (isDeletion) {
+      } else if (finalValue != newValue) {
+        // Filtering occurred during insertion - adjust cursor
+        final cursorPosition = _textController.selection.baseOffset;
+        final adjustedPosition = (cursorPosition <= finalValue.length)
+            ? cursorPosition
+            : finalValue.length;
+        _textController.selection = TextSelection.collapsed(
+          offset: adjustedPosition,
+        );
+      }
     }
+
+    _textNotifier.value = finalValue;
+    widget.onChanged?.call(finalValue);
   }
 
   @override
@@ -106,10 +106,10 @@ class _TextInputBoxState extends State<TextInputBox> {
   }
 
   Widget _buildCounterSuffix(
-      BuildContext context,
-      FluentThemeData fluentTheme,
-      String currentText,
-      ) {
+    BuildContext context,
+    FluentThemeData fluentTheme,
+    String currentText,
+  ) {
     if (widget.maxLength == null) {
       return const SizedBox.shrink();
     }
@@ -132,10 +132,10 @@ class _TextInputBoxState extends State<TextInputBox> {
   }
 
   Align _buildSuffixWidgets(
-      BuildContext context,
-      FluentThemeData fluentTheme,
-      String currentText,
-      ) {
+    BuildContext context,
+    FluentThemeData fluentTheme,
+    String currentText,
+  ) {
     final widgets = <Widget>[];
 
     // Add custom suffix first (if provided)
@@ -220,16 +220,16 @@ class _TextInputBoxState extends State<TextInputBox> {
                     return !hasSuffix
                         ? textBox
                         : Stack(
-                      alignment: AlignmentDirectional.centerEnd,
-                      children: [
-                        textBox,
-                        _buildSuffixWidgets(
-                          context,
-                          fluentTheme,
-                          currentText,
-                        ),
-                      ],
-                    );
+                            alignment: AlignmentDirectional.centerEnd,
+                            children: [
+                              textBox,
+                              _buildSuffixWidgets(
+                                context,
+                                fluentTheme,
+                                currentText,
+                              ),
+                            ],
+                          );
                   },
                 ),
               ),

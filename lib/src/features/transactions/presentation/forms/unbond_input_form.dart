@@ -39,7 +39,6 @@ class UnBondInputForm extends StatelessWidget {
           ),
           FormRowItem(
             title: LocaleKeys.validator,
-            isMandatory: true,
             inputWidget: AddressComboBox(
               addressType: AddressType.validator,
               onChanged: (result) {},

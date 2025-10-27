@@ -59,6 +59,7 @@ enum AddressType {
   /// Validator address type, typically used for network validators
   validator,
 }
+
 enum InputFilter {
   numbersOnly(
     pattern: r'[0-9]',
@@ -155,13 +156,21 @@ enum InputFilter {
       final dotIndex = cleaned.indexOf('.');
       if (dotIndex != -1) {
         // Keep only the first dot
-        cleaned = cleaned.substring(0, dotIndex + 1) +
+        cleaned =
+            cleaned.substring(0, dotIndex + 1) +
             cleaned.substring(dotIndex + 1).replaceAll('.', '');
       }
       return cleaned;
     }
 
-    // Default filtering for others
-    return input.split('').where(allows).join();
+    // FIX: Use StringBuffer for better performance
+    final buffer = StringBuffer();
+    for (var i = 0; i < input.length; i++) {
+      final character = input[i];
+      if (allows(character)) {
+        buffer.write(character);
+      }
+    }
+    return buffer.toString();
   }
 }
