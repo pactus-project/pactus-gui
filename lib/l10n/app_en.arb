@@ -191,5 +191,9 @@
   "stake": "Stake",
   "enterStakeAmount": "Enter stake amount...",
   "sender": "Sender",
+  "validatorAddress": "Validator Address",
+  "enterValidatorAddress": "Enter a validator address",
+  "validatorPublicKey": "Validator Public Key",
+  "validatorPublicKeyDescription": "Optional, only set when it is not your validator",
   "error_grpc_unknown": "Unknown gRPC error"
 }

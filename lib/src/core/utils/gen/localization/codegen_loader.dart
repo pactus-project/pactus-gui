@@ -215,6 +215,10 @@ class CodegenLoader {
     'enterFee': 'Transaction fee...',
     'enterStakeAmount': 'Enter stake amount...',
     'sender': 'Sender',
+    'validatorAddress': 'Validator Address',
+    'enterValidatorAddress': 'Enter a validator address',
+    'validatorPublicKey': 'Validator Public Key',
+    'validatorPublicKeyDescription': 'Optional, only set when it is not your validator',
     'error_grpc_unknown': 'Unknown gRPC error',
   };
   static const Map<String, dynamic> frFR = {
@@ -405,6 +409,10 @@ class CodegenLoader {
     'fee': 'Frais',
     'enterFee': 'Frais de transaction...',
     'enterStakeAmount': 'Saisir le montant du stake...',
+    'validatorAddress': 'Adresse du Validateur',
+    'enterValidatorAddress': 'Saisir l\'adresse du validateur',
+    'validatorPublicKey': 'Clé Publique Validateur',
+    'validatorPublicKeyDescription': 'Optionnel, à définir uniquement lorsque ce n\'est pas votre validateur',
     'error_grpc_unknown': 'Erreur gRPC inconnue',
   };
   static const Map<String, dynamic> esES = {
@@ -595,6 +603,10 @@ class CodegenLoader {
     'fee': 'Tarifa',
     'enterFee': 'Tarifa de transacción...',
     'enterStakeAmount': 'Ingresar cantidad de stake...',
+    'validatorAddress': 'Dirección del Validador',
+    'enterValidatorAddress': 'Ingresar dirección del validador',
+    'validatorPublicKey': 'Clave Pública Validador',
+    'validatorPublicKeyDescription': 'Opcional, solo configurar cuando no es tu validador',
     'error_grpc_unknown': 'Error gRPC desconocido',
   };
 

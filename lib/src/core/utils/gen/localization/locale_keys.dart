@@ -187,5 +187,9 @@ abstract class LocaleKeys {
   static const String enterFee = 'enterFee';
   static const String enterStakeAmount = 'enterStakeAmount';
   static const String sender = 'sender';
+  static const String validatorAddress = 'validatorAddress';
+  static const String enterValidatorAddress = 'enterValidatorAddress';
+  static const String validatorPublicKey = 'validatorPublicKey';
+  static const String validatorPublicKeyDescription = 'validatorPublicKeyDescription';
   static const String error_grpc_unknown = 'error_grpc_unknown';
 }

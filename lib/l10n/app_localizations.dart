@@ -1219,6 +1219,30 @@ abstract class AppLocalizations {
   /// **'Sender'**
   String get sender;
 
+  /// No description provided for @validatorAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Validator Address'**
+  String get validatorAddress;
+
+  /// No description provided for @enterValidatorAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a validator address'**
+  String get enterValidatorAddress;
+
+  /// No description provided for @validatorPublicKey.
+  ///
+  /// In en, this message translates to:
+  /// **'Validator Public Key'**
+  String get validatorPublicKey;
+
+  /// No description provided for @validatorPublicKeyDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional, only set when it is not your validator'**
+  String get validatorPublicKeyDescription;
+
   /// No description provided for @error_grpc_unknown.
   ///
   /// In en, this message translates to:

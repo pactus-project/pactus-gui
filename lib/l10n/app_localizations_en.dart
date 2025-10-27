@@ -570,5 +570,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sender => 'Sender';
 
   @override
+  String get validatorAddress => 'Validator Address';
+
+  @override
+  String get enterValidatorAddress => 'Enter a validator address';
+
+  @override
+  String get validatorPublicKey => 'Validator Public Key';
+
+  @override
+  String get validatorPublicKeyDescription => 'Optional, only set when it is not your validator';
+
+  @override
   String get error_grpc_unknown => 'Unknown gRPC error';
 }
