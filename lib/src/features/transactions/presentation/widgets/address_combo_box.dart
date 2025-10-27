@@ -101,7 +101,12 @@ class _AddressComboBoxState extends State<AddressComboBox> {
             isExpanded: true,
             value: currentValidator,
             items: _buildValidatorItems(validators),
-            placeholder: Text(context.tr(LocaleKeys.selectValidator)),
+            placeholder: switch (widget.addressType) {
+              AddressType.wallet => Text(context.tr(LocaleKeys.selectWallet)),
+              AddressType.validator => Text(
+                context.tr(LocaleKeys.selectValidator),
+              ),
+            },
             onChanged: _handleValidatorChanged,
           );
         },
