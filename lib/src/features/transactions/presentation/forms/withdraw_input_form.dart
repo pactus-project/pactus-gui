@@ -4,7 +4,8 @@ import 'package:pactus_gui/src/core/common/widgets/form_row_item.dart'
     show FormRowItem;
 import 'package:pactus_gui/src/core/common/widgets/text_input.dart'
     show TextInputBox;
-import 'package:pactus_gui/src/core/enums/app_enums.dart' show InputFilter, TransactionType;
+import 'package:pactus_gui/src/core/enums/app_enums.dart'
+    show InputFilter, TransactionType;
 import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart'
     show LocaleKeys;
 import 'package:pactus_gui/src/features/transactions/presentation/blocs/transaction_type_cubit.dart'
@@ -17,6 +18,7 @@ class WithdrawInputForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      spacing: 16,
       children: [
         FormRowItem(
           title: LocaleKeys.transaction_type,

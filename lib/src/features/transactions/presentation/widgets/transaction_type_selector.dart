@@ -55,7 +55,11 @@ class _TransactionTypeSelectorState extends State<TransactionTypeSelector> {
         value: transactionType,
         child: SizedBox(
           width: widget.width - comboBoxInnerGap,
-          child: Text(context.tr(transactionType.title)),
+          child: Row(
+            children: [
+              Text(context.tr(transactionType.title)),
+            ],
+          ),
         ),
       );
     }).toList();

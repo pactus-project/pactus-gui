@@ -26,6 +26,7 @@ class UnBondInputForm extends StatelessWidget {
         BlocProvider<DaemonManagerBloc>(create: (_) => DaemonManagerBloc()),
       ],
       child: Column(
+        spacing: 16,
         children: [
           FormRowItem(
             title: LocaleKeys.transaction_type,

@@ -15,6 +15,7 @@ class BondInputForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      spacing: 16,
       children: [
         FormRowItem(
           title: LocaleKeys.transaction_type,
