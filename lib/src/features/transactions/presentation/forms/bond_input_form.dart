@@ -9,6 +9,7 @@ import 'package:pactus_gui/src/features/transactions/presentation/blocs/transact
     show TransactionTypeCubit;
 import 'package:pactus_gui/src/features/transactions/presentation/widgets/transaction_type_selector.dart'
     show TransactionTypeSelector;
+import 'package:pactus_gui_widgetbook/app_styles.dart' show AppTheme, DarkPallet;
 
 class BondInputForm extends StatelessWidget {
   const BondInputForm({super.key});
@@ -41,7 +42,12 @@ class BondInputForm extends StatelessWidget {
             inputFilter: InputFilter.numbersWithDecimal,
             placeholder: LocaleKeys.enterAmount,
             onChanged: (result) {},
-            suffix: Text('PAC'),
+            suffix: Text(
+              'PAC',
+              style: TextStyle(
+                color: AppTheme.of(context).extension<DarkPallet>()!.contrast,
+              ),
+            ),
           ),
         ),
         FormRowItem(
@@ -50,7 +56,12 @@ class BondInputForm extends StatelessWidget {
             inputFilter: InputFilter.numbersWithDecimal,
             placeholder: LocaleKeys.enterFee,
             onChanged: (result) {},
-            suffix: Text('PAC'),
+            suffix: Text(
+              'PAC',
+              style: TextStyle(
+                color: AppTheme.of(context).extension<DarkPallet>()!.contrast,
+              ),
+            ),
           ),
         ),
       ],

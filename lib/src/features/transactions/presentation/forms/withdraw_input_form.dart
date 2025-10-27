@@ -12,6 +12,7 @@ import 'package:pactus_gui/src/features/transactions/presentation/blocs/transact
     show TransactionTypeCubit;
 import 'package:pactus_gui/src/features/transactions/presentation/widgets/transaction_type_selector.dart'
     show TransactionTypeSelector;
+import 'package:pactus_gui_widgetbook/app_styles.dart';
 
 class WithdrawInputForm extends StatelessWidget {
   const WithdrawInputForm({super.key});
@@ -52,7 +53,12 @@ class WithdrawInputForm extends StatelessWidget {
             inputFilter: InputFilter.numbersWithDecimal,
             placeholder: LocaleKeys.enterStakeAmount,
             onChanged: (result) {},
-            suffix: Text('PAC'),
+            suffix: Text(
+              'PAC',
+              style: TextStyle(
+                color: AppTheme.of(context).extension<DarkPallet>()!.contrast,
+              ),
+            ),
           ),
         ),
         FormRowItem(
@@ -61,7 +67,12 @@ class WithdrawInputForm extends StatelessWidget {
             inputFilter: InputFilter.numbersWithDecimal,
             placeholder: LocaleKeys.enterFee,
             onChanged: (result) {},
-            suffix: Text('PAC'),
+            suffix:Text(
+              'PAC',
+              style: TextStyle(
+                color: AppTheme.of(context).extension<DarkPallet>()!.contrast,
+              ),
+            ),
           ),
         ),
       ],

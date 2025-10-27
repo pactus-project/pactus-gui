@@ -15,6 +15,7 @@ import 'package:pactus_gui/src/features/transactions/presentation/widgets/addres
     show AddressComboBox;
 import 'package:pactus_gui/src/features/transactions/presentation/widgets/transaction_type_selector.dart'
     show TransactionTypeSelector;
+import 'package:pactus_gui_widgetbook/app_styles.dart' show AppTheme, DarkPallet;
 
 class TransferInputForm extends StatelessWidget {
   const TransferInputForm({super.key});
@@ -66,7 +67,12 @@ class TransferInputForm extends StatelessWidget {
               inputFilter: InputFilter.numbersWithDecimal,
               placeholder: LocaleKeys.enterAmount,
               onChanged: (result) {},
-              suffix: Text('PAC'),
+              suffix:Text(
+                'PAC',
+                style: TextStyle(
+                  color: AppTheme.of(context).extension<DarkPallet>()!.contrast,
+                ),
+              ),
             ),
           ),
           FormRowItem(
@@ -75,7 +81,12 @@ class TransferInputForm extends StatelessWidget {
               inputFilter: InputFilter.numbersWithDecimal,
               placeholder: LocaleKeys.enterFee,
               onChanged: (result) {},
-              suffix: Text('PAC'),
+              suffix: Text(
+                'PAC',
+                style: TextStyle(
+                  color: AppTheme.of(context).extension<DarkPallet>()!.contrast,
+                ),
+              ),
             ),
           ),
         ],
