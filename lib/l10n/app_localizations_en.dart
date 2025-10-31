@@ -573,5 +573,57 @@ class AppLocalizationsEn extends AppLocalizations {
   String get validator => 'Validator';
 
   @override
+  String get addNote => 'Add a note...';
+
+  @override
+  String get retryGettingData => 'Retry to getting Data';
+
+  @override
+  String get memo => 'Memo';
+
+  @override
+  String get selectValidator => 'Select Validator';
+
+  @override
+  String get selectWallet => 'Select Wallet';
+
+  @override
+  String get recipient => 'Recipient';
+
+  @override
+  String get enterRecipientAddress => 'Enter recipient address...';
+
+  @override
+  String get amount => 'Amount';
+
+  @override
+  String get enterAmount => 'Enter PAC amount...';
+
+  @override
+  String get fee => 'Fee';
+
+  @override
+  String get enterFee => 'Transaction fee...';
+
+  @override
+  String get enterStakeAmount => 'Enter stake amount...';
+
+  @override
+  String get sender => 'Sender';
+
+  @override
+  String get validatorAddress => 'Validator Address';
+
+  @override
+  String get enterValidatorAddress => 'Enter a validator address';
+
+  @override
+  String get validatorPublicKey => 'Validator Public Key';
+
+  @override
+  String get validatorPublicKeyDescription =>
+      'Optional, only set when it is not your validator';
+
+  @override
   String get error_grpc_unknown => 'Unknown gRPC error';
 }

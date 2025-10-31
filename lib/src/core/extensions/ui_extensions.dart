@@ -22,7 +22,7 @@ extension CenterEllipsisExtension on String {
       final leftCount = ((length - removeCount) / 2).floor();
       start = substring(0, leftCount);
       end = substring(length - leftCount);
-      final candidate = '$start....$end';
+      final candidate = '$start . . . $end';
 
       tp
         ..text = TextSpan(text: candidate, style: style)
@@ -33,6 +33,6 @@ extension CenterEllipsisExtension on String {
       }
     }
 
-    return '$start....$end';
+    return '$start . . . $end';
   }
 }

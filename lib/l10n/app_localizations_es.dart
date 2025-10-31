@@ -433,7 +433,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get score => 'Puntuación';
 
   @override
-  String get stake => 'Participación';
+  String get stake => 'Stake';
 
   @override
   String get submit => 'Enviar';
@@ -578,6 +578,58 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get validator => 'Validador';
+
+  @override
+  String get addNote => 'Agregar una nota...';
+
+  @override
+  String get retryGettingData => 'Reintentar obtener datos';
+
+  @override
+  String get memo => 'Memo';
+
+  @override
+  String get selectValidator => 'Seleccionar Validador';
+
+  @override
+  String get selectWallet => 'Seleccionar Monedero';
+
+  @override
+  String get recipient => 'Destinatario';
+
+  @override
+  String get enterRecipientAddress => 'Ingresar dirección del destinatario...';
+
+  @override
+  String get amount => 'Cantidad';
+
+  @override
+  String get enterAmount => 'Ingresar cantidad de PAC...';
+
+  @override
+  String get fee => 'Tarifa';
+
+  @override
+  String get enterFee => 'Tarifa de transacción...';
+
+  @override
+  String get enterStakeAmount => 'Ingresar cantidad de stake...';
+
+  @override
+  String get sender => 'Remitente';
+
+  @override
+  String get validatorAddress => 'Dirección del Validador';
+
+  @override
+  String get enterValidatorAddress => 'Ingresar dirección del validador';
+
+  @override
+  String get validatorPublicKey => 'Clave Pública Validador';
+
+  @override
+  String get validatorPublicKeyDescription =>
+      'Opcional, solo configurar cuando no es tu validador';
 
   @override
   String get error_grpc_unknown => 'Error gRPC desconocido';

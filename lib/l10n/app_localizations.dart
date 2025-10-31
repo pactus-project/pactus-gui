@@ -1144,6 +1144,108 @@ abstract class AppLocalizations {
   /// **'Validator'**
   String get validator;
 
+  /// No description provided for @addNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a note...'**
+  String get addNote;
+
+  /// No description provided for @retryGettingData.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry to getting Data'**
+  String get retryGettingData;
+
+  /// No description provided for @memo.
+  ///
+  /// In en, this message translates to:
+  /// **'Memo'**
+  String get memo;
+
+  /// No description provided for @selectValidator.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Validator'**
+  String get selectValidator;
+
+  /// No description provided for @selectWallet.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Wallet'**
+  String get selectWallet;
+
+  /// No description provided for @recipient.
+  ///
+  /// In en, this message translates to:
+  /// **'Recipient'**
+  String get recipient;
+
+  /// No description provided for @enterRecipientAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter recipient address...'**
+  String get enterRecipientAddress;
+
+  /// No description provided for @amount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get amount;
+
+  /// No description provided for @enterAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter PAC amount...'**
+  String get enterAmount;
+
+  /// No description provided for @fee.
+  ///
+  /// In en, this message translates to:
+  /// **'Fee'**
+  String get fee;
+
+  /// No description provided for @enterFee.
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction fee...'**
+  String get enterFee;
+
+  /// No description provided for @enterStakeAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter stake amount...'**
+  String get enterStakeAmount;
+
+  /// No description provided for @sender.
+  ///
+  /// In en, this message translates to:
+  /// **'Sender'**
+  String get sender;
+
+  /// No description provided for @validatorAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Validator Address'**
+  String get validatorAddress;
+
+  /// No description provided for @enterValidatorAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a validator address'**
+  String get enterValidatorAddress;
+
+  /// No description provided for @validatorPublicKey.
+  ///
+  /// In en, this message translates to:
+  /// **'Validator Public Key'**
+  String get validatorPublicKey;
+
+  /// No description provided for @validatorPublicKeyDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional, only set when it is not your validator'**
+  String get validatorPublicKeyDescription;
+
   /// No description provided for @error_grpc_unknown.
   ///
   /// In en, this message translates to:

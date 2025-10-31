@@ -210,5 +210,23 @@ abstract class LocaleKeys {
   static const String result = 'result';
   static const String close = 'close';
   static const String validator = 'validator';
+  static const String addNote = 'addNote';
+  static const String retryGettingData = 'retryGettingData';
+  static const String memo = 'memo';
+  static const String selectValidator = 'selectValidator';
+  static const String selectWallet = 'selectWallet';
+  static const String recipient = 'recipient';
+  static const String enterRecipientAddress = 'enterRecipientAddress';
+  static const String amount = 'amount';
+  static const String enterAmount = 'enterAmount';
+  static const String fee = 'fee';
+  static const String enterFee = 'enterFee';
+  static const String enterStakeAmount = 'enterStakeAmount';
+  static const String sender = 'sender';
+  static const String validatorAddress = 'validatorAddress';
+  static const String enterValidatorAddress = 'enterValidatorAddress';
+  static const String validatorPublicKey = 'validatorPublicKey';
+  static const String validatorPublicKeyDescription =
+      'validatorPublicKeyDescription';
   static const String error_grpc_unknown = 'error_grpc_unknown';
 }

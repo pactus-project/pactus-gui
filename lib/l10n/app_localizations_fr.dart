@@ -435,7 +435,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get score => 'Score';
 
   @override
-  String get stake => 'Enjeu';
+  String get stake => 'Stake';
 
   @override
   String get submit => 'Soumettre';
@@ -580,6 +580,58 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get validator => 'Validateur';
+
+  @override
+  String get addNote => 'Ajouter une note...';
+
+  @override
+  String get retryGettingData => 'Réessayer d\\\'obtenir les données';
+
+  @override
+  String get memo => 'Mémo';
+
+  @override
+  String get selectValidator => 'Sélectionner le Validateur';
+
+  @override
+  String get selectWallet => 'Sélectionner le Portefeuille';
+
+  @override
+  String get recipient => 'Destinataire';
+
+  @override
+  String get enterRecipientAddress => 'Entrer l\\\'adresse du destinataire...';
+
+  @override
+  String get amount => 'Montant';
+
+  @override
+  String get enterAmount => 'Saisir le montant en PAC...';
+
+  @override
+  String get fee => 'Frais';
+
+  @override
+  String get enterFee => 'Frais de transaction...';
+
+  @override
+  String get enterStakeAmount => 'Saisir le montant du stake...';
+
+  @override
+  String get sender => 'Expéditeur';
+
+  @override
+  String get validatorAddress => 'Adresse du Validateur';
+
+  @override
+  String get enterValidatorAddress => 'Saisir l\\\'adresse du validateur';
+
+  @override
+  String get validatorPublicKey => 'Clé Publique Validateur';
+
+  @override
+  String get validatorPublicKeyDescription =>
+      'Optionnel, à définir uniquement lorsque ce n\\\'est pas votre validateur';
 
   @override
   String get error_grpc_unknown => 'Erreur gRPC inconnue';

@@ -1,6 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:gap/gap.dart' show Gap;
-import 'package:pactus_gui/src/features/transactions/presentation/widgets/step_viewer_widget.dart'
+import 'package:pactus_gui/src/features/transactions/presentation/views/step_viewer_widget.dart'
     show StepViewerWidget;
 import 'package:pactus_gui/src/features/transactions/presentation/widgets/stepper_widget.dart'
     show StepperWidget;
