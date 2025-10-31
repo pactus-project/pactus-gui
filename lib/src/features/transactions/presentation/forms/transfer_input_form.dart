@@ -9,13 +9,15 @@ import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/daemon_manager_blo
     show DaemonManagerBloc;
 import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart'
     show LocaleKeys;
+import 'package:pactus_gui/src/features/transactions/presentation/blocs/form_validations/transter_form_validation.dart';
 import 'package:pactus_gui/src/features/transactions/presentation/blocs/transaction_type_cubit.dart'
     show TransactionTypeCubit;
 import 'package:pactus_gui/src/features/transactions/presentation/widgets/address_combo_box.dart'
     show AddressComboBox;
 import 'package:pactus_gui/src/features/transactions/presentation/widgets/transaction_type_selector.dart'
     show TransactionTypeSelector;
-import 'package:pactus_gui_widgetbook/app_styles.dart' show AppTheme, DarkPallet;
+import 'package:pactus_gui_widgetbook/app_styles.dart'
+    show AppTheme, DarkPallet;
 
 class TransferInputForm extends StatelessWidget {
   const TransferInputForm({super.key});
@@ -41,7 +43,11 @@ class TransferInputForm extends StatelessWidget {
             title: LocaleKeys.sender,
             inputWidget: AddressComboBox(
               addressType: AddressType.wallet,
-              onChanged: (result) {},
+              onChanged: (result) {
+                context.read<TransferFormValidation>().setSender(
+                  result!.address,
+                );
+              },
             ),
           ),
           FormRowItem(
@@ -49,14 +55,18 @@ class TransferInputForm extends StatelessWidget {
             title: LocaleKeys.recipient,
             inputWidget: TextInputBox(
               placeholder: LocaleKeys.enterRecipientAddress,
-              onChanged: (result) {},
+              onChanged: (result) {
+                context.read<TransferFormValidation>().setRecipient(result);
+              },
             ),
           ),
           FormRowItem(
             title: LocaleKeys.memo,
             inputWidget: TextInputBox(
               placeholder: LocaleKeys.addNote,
-              onChanged: (result) {},
+              onChanged: (result) {
+                context.read<TransferFormValidation>().setMemo(result);
+              },
               maxLength: 64,
             ),
           ),
@@ -66,8 +76,10 @@ class TransferInputForm extends StatelessWidget {
             inputWidget: TextInputBox(
               inputFilter: InputFilter.numbersWithDecimal,
               placeholder: LocaleKeys.enterAmount,
-              onChanged: (result) {},
-              suffix:Text(
+              onChanged: (result) {
+                context.read<TransferFormValidation>().setAmount(result);
+              },
+              suffix: Text(
                 'PAC',
                 style: TextStyle(
                   color: AppTheme.of(context).extension<DarkPallet>()!.contrast,
@@ -80,7 +92,9 @@ class TransferInputForm extends StatelessWidget {
             inputWidget: TextInputBox(
               inputFilter: InputFilter.numbersWithDecimal,
               placeholder: LocaleKeys.enterFee,
-              onChanged: (result) {},
+              onChanged: (result) {
+                context.read<TransferFormValidation>().setFee(result);
+              },
               suffix: Text(
                 'PAC',
                 style: TextStyle(

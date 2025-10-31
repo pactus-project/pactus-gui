@@ -10,6 +10,8 @@ import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/daemon_manager_blo
     show DaemonManagerBloc;
 import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart'
     show LocaleKeys;
+import 'package:pactus_gui/src/features/transactions/presentation/blocs/form_validations/withdraw_form_validator.dart'
+    show WithdrawFormValidation;
 import 'package:pactus_gui/src/features/transactions/presentation/blocs/transaction_type_cubit.dart'
     show TransactionTypeCubit;
 import 'package:pactus_gui/src/features/transactions/presentation/widgets/address_combo_box.dart'
@@ -42,7 +44,11 @@ class WithdrawInputForm extends StatelessWidget {
             title: LocaleKeys.validator,
             inputWidget: AddressComboBox(
               addressType: AddressType.validator,
-              onChanged: (result) {},
+              onChanged: (result) {
+                context.read<WithdrawFormValidation>().setValidator(
+                  result!.address,
+                );
+              },
             ),
           ),
           FormRowItem(
@@ -50,14 +56,18 @@ class WithdrawInputForm extends StatelessWidget {
             title: LocaleKeys.recipient,
             inputWidget: TextInputBox(
               placeholder: LocaleKeys.enterRecipientAddress,
-              onChanged: (result) {},
+              onChanged: (result) {
+                context.read<WithdrawFormValidation>().setRecipient(result);
+              },
             ),
           ),
           FormRowItem(
             title: LocaleKeys.memo,
             inputWidget: TextInputBox(
               placeholder: LocaleKeys.addNote,
-              onChanged: (result) {},
+              onChanged: (result) {
+                context.read<WithdrawFormValidation>().setMemo(result);
+              },
               maxLength: 64,
             ),
           ),
@@ -67,7 +77,9 @@ class WithdrawInputForm extends StatelessWidget {
             inputWidget: TextInputBox(
               inputFilter: InputFilter.numbersWithDecimal,
               placeholder: LocaleKeys.enterStakeAmount,
-              onChanged: (result) {},
+              onChanged: (result) {
+                context.read<WithdrawFormValidation>().setStake(result);
+              },
               suffix: Text(
                 'PAC',
                 style: TextStyle(
@@ -81,7 +93,9 @@ class WithdrawInputForm extends StatelessWidget {
             inputWidget: TextInputBox(
               inputFilter: InputFilter.numbersWithDecimal,
               placeholder: LocaleKeys.enterFee,
-              onChanged: (result) {},
+              onChanged: (result) {
+                context.read<WithdrawFormValidation>().setFee(result);
+              },
               suffix: Text(
                 'PAC',
                 style: TextStyle(

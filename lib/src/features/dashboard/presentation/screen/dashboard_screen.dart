@@ -12,6 +12,14 @@ import 'package:pactus_gui/src/features/main/language/core/localization_extensio
 import 'package:pactus_gui/src/features/main/navigation_pan_cubit/presentation/cubits/navigation_pan_cubit.dart';
 import 'package:pactus_gui/src/features/node_logs/presentation/screens/node_logs_screen.dart';
 import 'package:pactus_gui/src/features/settings/presentation/screens/settings_screen.dart';
+import 'package:pactus_gui/src/features/transactions/presentation/blocs/form_validations/bond_form_validation.dart'
+    show BondFormValidation;
+import 'package:pactus_gui/src/features/transactions/presentation/blocs/form_validations/transter_form_validation.dart'
+    show TransferFormValidation;
+import 'package:pactus_gui/src/features/transactions/presentation/blocs/form_validations/unbond_form_validation.dart'
+    show UnBondFormValidation;
+import 'package:pactus_gui/src/features/transactions/presentation/blocs/form_validations/withdraw_form_validator.dart'
+    show WithdrawFormValidation;
 import 'package:pactus_gui/src/features/transactions/presentation/blocs/transaction_step_cubit.dart'
     show TransactionStepCubit;
 import 'package:pactus_gui/src/features/transactions/presentation/blocs/transaction_type_cubit.dart'
@@ -112,6 +120,18 @@ class DashboardScreen extends StatelessWidget {
                       ),
                       BlocProvider<TransactionStepCubit>(
                         create: (_) => TransactionStepCubit(),
+                      ),
+                      BlocProvider<TransferFormValidation>(
+                        create: (_) => TransferFormValidation(),
+                      ),
+                      BlocProvider<BondFormValidation>(
+                        create: (_) => BondFormValidation(),
+                      ),
+                      BlocProvider<UnBondFormValidation>(
+                        create: (_) => UnBondFormValidation(),
+                      ),
+                      BlocProvider<WithdrawFormValidation>(
+                        create: (_) => WithdrawFormValidation(),
                       ),
                     ],
                     child: TransactionsScreen(),

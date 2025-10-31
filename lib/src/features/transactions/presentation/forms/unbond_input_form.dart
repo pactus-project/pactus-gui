@@ -10,6 +10,8 @@ import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/daemon_manager_blo
     show DaemonManagerBloc;
 import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart'
     show LocaleKeys;
+import 'package:pactus_gui/src/features/transactions/presentation/blocs/form_validations/unbond_form_validation.dart'
+    show UnBondFormValidation;
 import 'package:pactus_gui/src/features/transactions/presentation/blocs/transaction_type_cubit.dart'
     show TransactionTypeCubit;
 import 'package:pactus_gui/src/features/transactions/presentation/widgets/address_combo_box.dart'
@@ -41,14 +43,20 @@ class UnBondInputForm extends StatelessWidget {
             title: LocaleKeys.validator,
             inputWidget: AddressComboBox(
               addressType: AddressType.validator,
-              onChanged: (result) {},
+              onChanged: (result) {
+                context.read<UnBondFormValidation>().setValidator(
+                  result!.address,
+                );
+              },
             ),
           ),
           FormRowItem(
             title: LocaleKeys.memo,
             inputWidget: TextInputBox(
               placeholder: LocaleKeys.addNote,
-              onChanged: (result) {},
+              onChanged: (result) {
+                context.read<UnBondFormValidation>().setMemo(result);
+              },
               maxLength: 64,
             ),
           ),
