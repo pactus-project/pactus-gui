@@ -2,17 +2,28 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pactus_gui/src/core/router/route_name.dart';
 import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/daemon_manager_bloc.dart';
-import 'package:pactus_gui/src/core/utils/node_lock_manager/bloc/unlock_node_cubit.dart';
+import 'package:pactus_gui/src/core/utils/node_lock_manager/bloc/unlock_node_cubit.dart'
+    show UnlockNodeCubit;
 import 'package:pactus_gui/src/features/dev_mode/data/repositories/environment_repository.dart';
 import 'package:pactus_gui/src/features/dev_mode/presentation/bloc/directory_check_bloc.dart';
 import 'package:pactus_gui/src/features/dev_mode/presentation/bloc/environment_selection_cubit.dart';
 import 'package:pactus_gui/src/features/dev_mode/presentation/screens/dev_mode_screen.dart';
 import 'package:pactus_gui/src/features/splash/presentation/screen/splash_screen.dart'
     show SplashScreen;
+// import 'package:pactus_gui/src/features/transactions/presentation/blocs/form_validations/bond_form_validation.dart'
+//     show BondFormValidation;
+// import 'package:pactus_gui/src/features/transactions/presentation/blocs/form_validations/transter_form_validation.dart'
+//     show TransferFormValidation;
+// import 'package:pactus_gui/src/features/transactions/presentation/blocs/form_validations/unbond_form_validation.dart'
+//     show UnBondFormValidation;
+// import 'package:pactus_gui/src/features/transactions/presentation/blocs/form_validations/withdraw_form_validator.dart'
+//     show WithdrawFormValidation;
 // import 'package:pactus_gui/src/features/transactions/presentation/blocs/transaction_step_cubit.dart'
 //     show TransactionStepCubit;
 // import 'package:pactus_gui/src/features/transactions/presentation/blocs/transaction_type_cubit.dart'
 //     show TransactionTypeCubit;
+// import 'package:pactus_gui/src/features/transactions/presentation/screens/transactions_screen.dart'
+//     show TransactionsScreen;
 // import 'package:pactus_gui/src/features/transactions/presentation/screens/transactions_screen.dart';
 
 import 'basic_routes.dart';
@@ -31,6 +42,17 @@ final GoRouter routerConfig = GoRouter(
           // ),
           // BlocProvider<TransactionStepCubit>(
           //   create: (_) => TransactionStepCubit(),
+          // ),
+          // BlocProvider<TransferFormValidation>(
+          //   create: (_) => TransferFormValidation(),
+          // ),
+          // BlocProvider<BondFormValidation>(
+          // create: (_) => BondFormValidation()),
+          // BlocProvider<UnBondFormValidation>(
+          //   create: (_) => UnBondFormValidation(),
+          // ),
+          // BlocProvider<WithdrawFormValidation>(
+          //   create: (_) => WithdrawFormValidation(),
           // ),
         ],
         // child: TransactionsScreen(),

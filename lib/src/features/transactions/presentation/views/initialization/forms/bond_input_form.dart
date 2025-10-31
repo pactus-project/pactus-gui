@@ -8,22 +8,24 @@ import 'package:pactus_gui/src/core/enums/app_enums.dart'
     show AddressType, InputFilter, TransactionType;
 import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/daemon_manager_bloc.dart'
     show DaemonManagerBloc;
-import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart'
-    show LocaleKeys;
-import 'package:pactus_gui/src/features/transactions/presentation/blocs/form_validations/withdraw_form_validator.dart'
-    show WithdrawFormValidation;
+import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
+import 'package:pactus_gui/src/features/transactions/presentation/blocs/form_validations/bond_form_validation.dart'
+    show BondFormValidation;
 import 'package:pactus_gui/src/features/transactions/presentation/blocs/transaction_type_cubit.dart'
     show TransactionTypeCubit;
 import 'package:pactus_gui/src/features/transactions/presentation/widgets/address_combo_box.dart'
     show AddressComboBox;
 import 'package:pactus_gui/src/features/transactions/presentation/widgets/transaction_type_selector.dart'
     show TransactionTypeSelector;
-import 'package:pactus_gui_widgetbook/app_styles.dart';
+import 'package:pactus_gui_widgetbook/app_styles.dart'
+    show AppTheme, DarkPallet;
 
-class WithdrawInputForm extends StatelessWidget {
-  const WithdrawInputForm({super.key});
+class BondInputForm extends StatelessWidget {
+  const BondInputForm({super.key});
   @override
   Widget build(BuildContext context) {
+    final formData = context.read<BondFormValidation>().state;
+
     return MultiBlocProvider(
       providers: [
         BlocProvider<DaemonManagerBloc>(create: (_) => DaemonManagerBloc()),
@@ -34,51 +36,65 @@ class WithdrawInputForm extends StatelessWidget {
           FormRowItem(
             title: LocaleKeys.transaction_type,
             inputWidget: TransactionTypeSelector(
-              initialValue: TransactionType.withdraw,
+              initialValue: TransactionType.bond,
               onChanged: (selectedItem) {
                 context.read<TransactionTypeCubit>().selectType(selectedItem!);
               },
             ),
           ),
           FormRowItem(
-            title: LocaleKeys.validator,
+            title: LocaleKeys.sender,
             inputWidget: AddressComboBox(
-              addressType: AddressType.validator,
+              initialValue: formData.sender,
+              addressType: AddressType.wallet,
               onChanged: (result) {
-                context.read<WithdrawFormValidation>().setValidator(
-                  result!.address,
-                );
+                context.read<BondFormValidation>().setSender(result!.address);
               },
             ),
           ),
           FormRowItem(
+            title: LocaleKeys.validatorAddress,
             isMandatory: true,
-            title: LocaleKeys.recipient,
             inputWidget: TextInputBox(
-              placeholder: LocaleKeys.enterRecipientAddress,
+              initialValue: formData.validatorAddress ?? '',
+              placeholder: LocaleKeys.enterValidatorAddress,
               onChanged: (result) {
-                context.read<WithdrawFormValidation>().setRecipient(result);
+                context.read<BondFormValidation>().setValidatorAddress(result);
+              },
+            ),
+          ),
+          FormRowItem(
+            title: LocaleKeys.validatorPublicKey,
+            inputWidget: TextInputBox(
+              initialValue: formData.validatorPublicKey ?? '',
+              placeholder: LocaleKeys.validatorPublicKeyDescription,
+              onChanged: (result) {
+                context.read<BondFormValidation>().setValidatorPublicKey(
+                  result,
+                );
               },
             ),
           ),
           FormRowItem(
             title: LocaleKeys.memo,
             inputWidget: TextInputBox(
+              initialValue: formData.memo ?? '',
               placeholder: LocaleKeys.addNote,
               onChanged: (result) {
-                context.read<WithdrawFormValidation>().setMemo(result);
+                context.read<BondFormValidation>().setMemo(result);
               },
               maxLength: 64,
             ),
           ),
           FormRowItem(
-            title: LocaleKeys.stake,
+            title: LocaleKeys.amount,
             isMandatory: true,
             inputWidget: TextInputBox(
+              initialValue: formData.amount ?? '',
               inputFilter: InputFilter.numbersWithDecimal,
-              placeholder: LocaleKeys.enterStakeAmount,
+              placeholder: LocaleKeys.enterAmount,
               onChanged: (result) {
-                context.read<WithdrawFormValidation>().setStake(result);
+                context.read<BondFormValidation>().setAmount(result);
               },
               suffix: Text(
                 'PAC',
@@ -91,10 +107,11 @@ class WithdrawInputForm extends StatelessWidget {
           FormRowItem(
             title: LocaleKeys.fee,
             inputWidget: TextInputBox(
+              initialValue: formData.fee ?? '',
               inputFilter: InputFilter.numbersWithDecimal,
               placeholder: LocaleKeys.enterFee,
               onChanged: (result) {
-                context.read<WithdrawFormValidation>().setFee(result);
+                context.read<BondFormValidation>().setFee(result);
               },
               suffix: Text(
                 'PAC',

@@ -3,6 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
 import 'package:pactus_gui/src/core/enums/app_enums.dart';
 import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
 import 'package:pactus_gui/src/features/main/language/core/localization_extension.dart';
+import 'package:pactus_gui/src/features/transactions/presentation/blocs/form_validations/bond_form_validation.dart';
+import 'package:pactus_gui/src/features/transactions/presentation/blocs/form_validations/transter_form_validation.dart';
+import 'package:pactus_gui/src/features/transactions/presentation/blocs/form_validations/unbond_form_validation.dart'
+    show UnBondFormValidation;
+import 'package:pactus_gui/src/features/transactions/presentation/blocs/form_validations/withdraw_form_validator.dart'
+    show WithdrawFormValidation;
 import 'package:pactus_gui/src/features/transactions/presentation/blocs/transaction_step_cubit.dart'
     show TransactionStepCubit;
 import 'package:pactus_gui_widgetbook/app_core.dart';
@@ -14,6 +20,13 @@ class TransactionBottomBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void resetForms() {
+      context.read<TransferFormValidation>().resetForm();
+      context.read<BondFormValidation>().resetForm();
+      context.read<UnBondFormValidation>().resetForm();
+      context.read<WithdrawFormValidation>().resetForm();
+    }
+
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16),
       height: 88,
@@ -62,6 +75,7 @@ class TransactionBottomBarWidget extends StatelessWidget {
                       context.read<TransactionStepCubit>().goToResult();
                     },
                     TransactionStep.result => () {
+                      resetForms();
                       context.read<TransactionStepCubit>().goToForm();
                     },
                   },

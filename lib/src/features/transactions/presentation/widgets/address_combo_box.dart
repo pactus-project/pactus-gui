@@ -23,6 +23,7 @@ class AddressComboBox extends StatefulWidget {
     this.height = 32,
     this.width = 428,
     required this.addressType,
+    this.initialValue,
   });
 
   final bool isMandatory;
@@ -30,6 +31,7 @@ class AddressComboBox extends StatefulWidget {
   final double width;
   final double height;
   final ValueChanged<AddressModel?>? onChanged;
+  final String? initialValue;
 
   @override
   State<AddressComboBox> createState() => _AddressComboBoxState();
@@ -38,6 +40,7 @@ class AddressComboBox extends StatefulWidget {
 class _AddressComboBoxState extends State<AddressComboBox> {
   late final ValueNotifier<AddressModel?> _validatorNotifier;
   final double comboBoxInnerGap = 44;
+  List<AddressModel> _availableValidators = [];
 
   @override
   void initState() {
@@ -53,6 +56,31 @@ class _AddressComboBoxState extends State<AddressComboBox> {
   }
 
   @override
+  void didUpdateWidget(covariant AddressComboBox oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.initialValue != widget.initialValue) {
+      _setInitialValue();
+    }
+  }
+
+  void _setInitialValue() {
+    if (widget.initialValue != null && _availableValidators.isNotEmpty) {
+      final matchingValidator = _availableValidators.firstWhere(
+        (validator) => validator.address == widget.initialValue,
+        orElse: () => AddressModel(address: '', label: '', id: ''),
+      );
+
+      if (matchingValidator.address.isNotEmpty) {
+        _validatorNotifier.value = matchingValidator;
+        widget.onChanged?.call(matchingValidator);
+      } else {
+        _validatorNotifier.value = null;
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: widget.width,
@@ -63,6 +91,8 @@ class _AddressComboBoxState extends State<AddressComboBox> {
               _processDaemonOutput(state.output),
               addressType: widget.addressType,
             );
+            _availableValidators = validators;
+            _setInitialValue();
             return _succeedWidget(validators);
           }
           return _errorWidget(context);
@@ -74,7 +104,6 @@ class _AddressComboBoxState extends State<AddressComboBox> {
   Widget _errorWidget(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-
       onTap: () {
         context.read<DaemonManagerBloc>().add(
           RunGetNodeValidatorAddressesCommand(),
@@ -97,16 +126,22 @@ class _AddressComboBoxState extends State<AddressComboBox> {
       child: ValueListenableBuilder<AddressModel?>(
         valueListenable: _validatorNotifier,
         builder: (context, currentValidator, _) {
+          final isValidSelection =
+              currentValidator != null &&
+              validators.any((v) => v.address == currentValidator.address);
+
+          final placeholder = switch (widget.addressType) {
+            AddressType.wallet => Text(context.tr(LocaleKeys.selectWallet)),
+            AddressType.validator => Text(
+              context.tr(LocaleKeys.selectValidator),
+            ),
+          };
+
           return ComboBox<AddressModel?>(
             isExpanded: true,
-            value: currentValidator,
+            value: isValidSelection ? currentValidator : null,
             items: _buildValidatorItems(validators),
-            placeholder: switch (widget.addressType) {
-              AddressType.wallet => Text(context.tr(LocaleKeys.selectWallet)),
-              AddressType.validator => Text(
-                context.tr(LocaleKeys.selectValidator),
-              ),
-            },
+            placeholder: placeholder,
             onChanged: _handleValidatorChanged,
           );
         },

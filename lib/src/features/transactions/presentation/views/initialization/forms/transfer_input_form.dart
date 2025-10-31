@@ -1,16 +1,15 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pactus_gui/src/core/common/widgets/form_row_item.dart'
-    show FormRowItem;
+import 'package:pactus_gui/src/core/common/widgets/form_row_item.dart';
 import 'package:pactus_gui/src/core/common/widgets/text_input.dart'
     show TextInputBox;
 import 'package:pactus_gui/src/core/enums/app_enums.dart'
     show AddressType, InputFilter, TransactionType;
 import 'package:pactus_gui/src/core/utils/daemon_manager/bloc/daemon_manager_bloc.dart'
     show DaemonManagerBloc;
-import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart';
-import 'package:pactus_gui/src/features/transactions/presentation/blocs/form_validations/bond_form_validation.dart'
-    show BondFormValidation;
+import 'package:pactus_gui/src/core/utils/gen/localization/locale_keys.dart'
+    show LocaleKeys;
+import 'package:pactus_gui/src/features/transactions/presentation/blocs/form_validations/transter_form_validation.dart';
 import 'package:pactus_gui/src/features/transactions/presentation/blocs/transaction_type_cubit.dart'
     show TransactionTypeCubit;
 import 'package:pactus_gui/src/features/transactions/presentation/widgets/address_combo_box.dart'
@@ -20,10 +19,11 @@ import 'package:pactus_gui/src/features/transactions/presentation/widgets/transa
 import 'package:pactus_gui_widgetbook/app_styles.dart'
     show AppTheme, DarkPallet;
 
-class BondInputForm extends StatelessWidget {
-  const BondInputForm({super.key});
+class TransferInputForm extends StatelessWidget {
+  const TransferInputForm({super.key});
   @override
   Widget build(BuildContext context) {
+    final formData = context.read<TransferFormValidation>().state;
     return MultiBlocProvider(
       providers: [
         BlocProvider<DaemonManagerBloc>(create: (_) => DaemonManagerBloc()),
@@ -34,7 +34,7 @@ class BondInputForm extends StatelessWidget {
           FormRowItem(
             title: LocaleKeys.transaction_type,
             inputWidget: TransactionTypeSelector(
-              initialValue: TransactionType.bond,
+              initialValue: TransactionType.transfer,
               onChanged: (selectedItem) {
                 context.read<TransactionTypeCubit>().selectType(selectedItem!);
               },
@@ -43,30 +43,23 @@ class BondInputForm extends StatelessWidget {
           FormRowItem(
             title: LocaleKeys.sender,
             inputWidget: AddressComboBox(
+              initialValue: formData.sender,
               addressType: AddressType.wallet,
               onChanged: (result) {
-                context.read<BondFormValidation>().setSender(result!.address);
-              },
-            ),
-          ),
-          FormRowItem(
-            title: LocaleKeys.validatorAddress,
-            isMandatory: true,
-            inputWidget: TextInputBox(
-              placeholder: LocaleKeys.enterValidatorAddress,
-              onChanged: (result) {
-                context.read<BondFormValidation>().setValidatorAddress(result);
-              },
-            ),
-          ),
-          FormRowItem(
-            title: LocaleKeys.validatorPublicKey,
-            inputWidget: TextInputBox(
-              placeholder: LocaleKeys.validatorPublicKeyDescription,
-              onChanged: (result) {
-                context.read<BondFormValidation>().setValidatorPublicKey(
-                  result,
+                context.read<TransferFormValidation>().setSender(
+                  result!.address,
                 );
+              },
+            ),
+          ),
+          FormRowItem(
+            isMandatory: true,
+            title: LocaleKeys.recipient,
+            inputWidget: TextInputBox(
+              initialValue: formData.recipient ?? '',
+              placeholder: LocaleKeys.enterRecipientAddress,
+              onChanged: (result) {
+                context.read<TransferFormValidation>().setRecipient(result);
               },
             ),
           ),
@@ -74,8 +67,9 @@ class BondInputForm extends StatelessWidget {
             title: LocaleKeys.memo,
             inputWidget: TextInputBox(
               placeholder: LocaleKeys.addNote,
+              initialValue: formData.recipient ?? '',
               onChanged: (result) {
-                context.read<BondFormValidation>().setMemo(result);
+                context.read<TransferFormValidation>().setMemo(result);
               },
               maxLength: 64,
             ),
@@ -84,10 +78,11 @@ class BondInputForm extends StatelessWidget {
             title: LocaleKeys.amount,
             isMandatory: true,
             inputWidget: TextInputBox(
+              initialValue: formData.amount ?? '',
               inputFilter: InputFilter.numbersWithDecimal,
               placeholder: LocaleKeys.enterAmount,
               onChanged: (result) {
-                context.read<BondFormValidation>().setAmount(result);
+                context.read<TransferFormValidation>().setAmount(result);
               },
               suffix: Text(
                 'PAC',
@@ -100,10 +95,11 @@ class BondInputForm extends StatelessWidget {
           FormRowItem(
             title: LocaleKeys.fee,
             inputWidget: TextInputBox(
+              initialValue: formData.fee ?? '',
               inputFilter: InputFilter.numbersWithDecimal,
               placeholder: LocaleKeys.enterFee,
               onChanged: (result) {
-                context.read<BondFormValidation>().setFee(result);
+                context.read<TransferFormValidation>().setFee(result);
               },
               suffix: Text(
                 'PAC',

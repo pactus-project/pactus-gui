@@ -113,7 +113,7 @@ class TooltipTextCard extends _BaseTextCard {
       final leftCount = ((text.length - removeCount) / 2).floor();
       start = text.substring(0, leftCount);
       end = text.substring(text.length - leftCount);
-      final candidate = '$start....$end';
+      final candidate = '$start . . . $end';
 
       tp
         ..text = TextSpan(text: candidate, style: style)
@@ -124,6 +124,6 @@ class TooltipTextCard extends _BaseTextCard {
       }
     }
 
-    return '$start....$end';
+    return '$start . . . $end';
   }
 }

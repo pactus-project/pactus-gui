@@ -23,6 +23,8 @@ class UnBondInputForm extends StatelessWidget {
   const UnBondInputForm({super.key});
   @override
   Widget build(BuildContext context) {
+    final formData = context.read<UnBondFormValidation>().state;
+
     return MultiBlocProvider(
       providers: [
         BlocProvider<DaemonManagerBloc>(create: (_) => DaemonManagerBloc()),
@@ -42,6 +44,7 @@ class UnBondInputForm extends StatelessWidget {
           FormRowItem(
             title: LocaleKeys.validator,
             inputWidget: AddressComboBox(
+              initialValue: formData.validator,
               addressType: AddressType.validator,
               onChanged: (result) {
                 context.read<UnBondFormValidation>().setValidator(
@@ -53,6 +56,7 @@ class UnBondInputForm extends StatelessWidget {
           FormRowItem(
             title: LocaleKeys.memo,
             inputWidget: TextInputBox(
+              initialValue: formData.memo ?? '',
               placeholder: LocaleKeys.addNote,
               onChanged: (result) {
                 context.read<UnBondFormValidation>().setMemo(result);
