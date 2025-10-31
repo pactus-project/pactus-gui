@@ -1,3 +1,40 @@
+# 1.75.0+81
+### [Feature]
+- Add memo widget to transaction forms [#227](https://github.com/pactus-project/pactus-gui/pull/228)
+- Add recipient address widget to transaction forms [#227](https://github.com/pactus-project/pactus-gui/pull/228)
+- Add sender address widget to transfer form [#227](https://github.com/pactus-project/pactus-gui/pull/228)
+- Add amount/fee/stake widgets to transaction forms [#227](https://github.com/pactus-project/pactus-gui/pull/228)
+- Add validations on all transaction form fields [#227](https://github.com/pactus-project/pactus-gui/pull/228)
+  - Add validations on `bond` form
+  - Add validations on `unbond` form
+  - Add validations on `withdraw` form
+  - Add validations on `transfer` form
+- Fix validations for show data in confirmation and result screens [#227](https://github.com/pactus-project/pactus-gui/pull/228)
+
+### [Update]
+- Update some localization translations [#227](https://github.com/pactus-project/pactus-gui/pull/228)
+
+### [Refactor]
+- Generalize ValidatorComboBox as reusable AddressComboBox [#227](https://github.com/pactus-project/pactus-gui/pull/228)
+  - Component now handles both reward and validator addresses
+- Extract reusable FormRowItem component from form layouts [#227](https://github.com/pactus-project/pactus-gui/pull/228)
+  - Create FormRowItem component to consolidate duplicate form row structures
+  - Standardize spacing, alignment, and styling across all form rows
+  - Reduce maintenance overhead by eliminating repetitive layout code
+- Implementation text input as re-usable component [#227](https://github.com/pactus-project/pactus-gui/pull/228)
+
+### [Fix]
+- Set correct initial values for bond and withdraw forms [#227](https://github.com/pactus-project/pactus-gui/pull/228)
+- Align transaction type selector text to left [#227](https://github.com/pactus-project/pactus-gui/pull/228)
+- Match suffix icon colors in dark/light mode [#227](https://github.com/pactus-project/pactus-gui/pull/228)
+- Fix placeholder in AddressComboBox component [#227](https://github.com/pactus-project/pactus-gui/pull/228)
+- Fix missing ui parts in BondInputForm component [#227](https://github.com/pactus-project/pactus-gui/pull/228)
+  - Add `Validator Public Key` widget
+  - Add `Sender` widget
+  - Add `validatorAddress` widget
+- Fix missing ui parts in WithdrawInputForm component [#227](https://github.com/pactus-project/pactus-gui/pull/228)
+  - Add `validatorAddress` widget
+
 # 1.74.0+80
 ### [Feature]
 - Implementation `combo-box` of validator in the unbound feature [#143](https://github.com/pactus-project/pactus-gui/pull/226)
